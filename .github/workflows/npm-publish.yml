@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 18.x
 
-        name: Build Test
-      - run: npx react-native run-ios
-      - env:
+      - name: Build Test
+        run: npx react-native run-ios
+        env:
           CI: true
