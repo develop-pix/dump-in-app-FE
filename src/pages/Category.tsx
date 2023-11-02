@@ -1,9 +1,9 @@
 import NavigationBar from "../components/reuse/navigation-bar/NavigationBar";
 
-export default function Home() {
+export default function Category() {
   return (
     <div>
-      Home 페이지
+      카테고리 페이지
       <NavigationBar />
     </div>
   );
