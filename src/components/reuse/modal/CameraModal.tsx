@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function CameraModal() {
-  return <div>CameraModal</div>;
+  return (
+    <View>
+      <Text>CameraModal 페이지</Text>
+    </View>
+  );
 }

@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function LoginModal() {
-  return <div>LoginModal</div>;
+  return (
+    <View>
+      <Text>LoginModal 페이지</Text>
+    </View>
+  );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
@@ -17,27 +17,27 @@ export default function NavigationBar() {
     <View
       style={{
         position: "absolute",
-        bottom: 0,
         flexDirection: "row",
         justifyContent: "space-between",
         backgroundColor: "black",
         padding: 30,
         width: "100%",
+        bottom: 0,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+      <Pressable onPress={() => navigation.navigate("Home")}>
         <Text style={{ color: "white" }}>홈</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Location")}>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("Location")}>
         <Text style={{ color: "white" }}>Location</Text>
-      </TouchableOpacity>
-      <Text style={{ color: "white" }}>+</Text> {/* 카메라 */}
-      <TouchableOpacity onPress={() => navigation.navigate("Category")}>
+      </Pressable>
+      <Text style={{ color: "white" }}>+</Text>
+      <Pressable onPress={() => navigation.navigate("Category")}>
         <Text style={{ color: "white" }}>Category</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("MyPage")}>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("MyPage")}>
         <Text style={{ color: "white" }}>My Page</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }

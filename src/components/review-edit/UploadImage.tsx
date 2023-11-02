@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function UploadImage() {
-  return <div>UploadImage</div>;
+  return (
+    <View>
+      <Text>UploadImage 페이지</Text>
+    </View>
+  );
 }

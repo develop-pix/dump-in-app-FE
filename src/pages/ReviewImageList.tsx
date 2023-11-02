@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function ReviewImageList() {
-  return <div>ReviewImageList</div>;
+  return (
+    <View>
+      <Text>ReviewImageList 페이지</Text>
+    </View>
+  );
 }

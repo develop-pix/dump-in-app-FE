@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function MyProfile() {
-  return <div>MyProfile</div>;
+  return (
+    <View>
+      <Text>MyProfile 페이지</Text>
+    </View>
+  );
 }

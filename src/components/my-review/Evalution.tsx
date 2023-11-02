@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function Evalution() {
-  return <div>Evalution</div>;
+  return (
+    <View>
+      <Text>Evalution 페이지</Text>
+    </View>
+  );
 }

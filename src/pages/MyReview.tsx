@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function MyReview() {
-  return <div>MyReview</div>;
+  return (
+    <View>
+      <Text>MyReview 페이지</Text>
+    </View>
+  );
 }
