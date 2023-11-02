@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function EventImage() {
-  return <div>EventImage</div>;
+  return (
+    <View>
+      <Text>EventImage 페이지</Text>
+    </View>
+  );
 }

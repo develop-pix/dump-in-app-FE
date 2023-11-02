@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function Map() {
-  return <div>Map</div>;
+  return (
+    <View>
+      <Text>Map 페이지</Text>
+    </View>
+  );
 }

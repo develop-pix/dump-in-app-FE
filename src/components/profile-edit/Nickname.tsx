@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function Nickname() {
-  return <div>Nickname</div>;
+  return (
+    <View>
+      <Text>Nickname 페이지</Text>
+    </View>
+  );
 }

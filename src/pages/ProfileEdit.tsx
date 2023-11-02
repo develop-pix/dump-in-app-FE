@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function ProfileEdit() {
-  return <div>ProfileEdit</div>;
+  return (
+    <View>
+      <Text>ProfileEdit 페이지</Text>
+    </View>
+  );
 }

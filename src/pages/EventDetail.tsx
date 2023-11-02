@@ -1,3 +1,10 @@
+import React from "react";
+import { View, Text } from "react-native";
+
 export default function EventDetail() {
-  return <div>EventDetail</div>;
+  return (
+    <View>
+      <Text>EventDetail 페이지</Text>
+    </View>
+  );
 }
