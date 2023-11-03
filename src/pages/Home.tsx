@@ -1,12 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import styled from 'styled-components/native';
 import NavigationBar from '../components/reuse/navigation-bar/NavigationBar';
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: space-between;
+`;
+
+const HomeText = styled.Text``;
 
 export default function Home() {
   return (
-    <View style={{flex: 1}}>
-      <Text>Home 페이지</Text>
+    <Container>
+      <HomeText>Home 페이지</HomeText>
       <NavigationBar />
-    </View>
+    </Container>
   );
 }
