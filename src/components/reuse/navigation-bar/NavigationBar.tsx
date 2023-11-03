@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Text, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from 'react';
+import {View, Text, Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export default function NavigationBar() {
   type RootStackParam = {
@@ -16,27 +16,26 @@ export default function NavigationBar() {
   return (
     <View
       style={{
-        position: "absolute",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        backgroundColor: "black",
+        position: 'absolute',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: 'black',
         padding: 30,
-        width: "100%",
+        width: '100%',
         bottom: 0,
-      }}
-    >
-      <Pressable onPress={() => navigation.navigate("Home")}>
-        <Text style={{ color: "white" }}>홈</Text>
+      }}>
+      <Pressable onPress={() => navigation.navigate('Home')}>
+        <Text style={{color: 'white'}}>홈</Text>
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("Location")}>
-        <Text style={{ color: "white" }}>Location</Text>
+      <Pressable onPress={() => navigation.navigate('Location')}>
+        <Text style={{color: 'white'}}>Location</Text>
       </Pressable>
-      <Text style={{ color: "white" }}>+</Text>
-      <Pressable onPress={() => navigation.navigate("Category")}>
-        <Text style={{ color: "white" }}>Category</Text>
+      <Text style={{color: 'white'}}>+</Text>
+      <Pressable onPress={() => navigation.navigate('Category')}>
+        <Text style={{color: 'white'}}>Category</Text>
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("MyPage")}>
-        <Text style={{ color: "white" }}>My Page</Text>
+      <Pressable onPress={() => navigation.navigate('MyPage')}>
+        <Text style={{color: 'white'}}>My Page</Text>
       </Pressable>
     </View>
   );
