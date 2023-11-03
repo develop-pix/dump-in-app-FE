@@ -1,40 +1,4 @@
 {
-<<<<<<< HEAD
-  "expo": {
-    "name": "photo_booth_expo",
-    "slug": "photo_booth_expo",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/favicon/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./src/assets/favicon/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "jsee53"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./src/assets/favicon/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.jinseeyoung.photo_booth_expo"
-    },
-    "web": {
-      "favicon": "./src/assets/favicon/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "172053d8-4c8b-47d4-af1d-b8e2cd5f07a9"
-      }
-    }
-  }
-=======
   "name": "dump_in_app_FE",
   "displayName": "dump_in_app_FE"
->>>>>>> master
 }
