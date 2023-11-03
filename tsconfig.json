@@ -1,10 +1,5 @@
 {
-<<<<<<< HEAD
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true
-  }
-=======
+
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -24,5 +19,4 @@
     "metro.config.js",
     "jest.config.js"
   ]
->>>>>>> master
 }
