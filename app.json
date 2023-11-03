@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "expo": {
     "name": "photo_booth_expo",
     "slug": "photo_booth_expo",
@@ -32,4 +33,8 @@
       }
     }
   }
+=======
+  "name": "dump_in_app_FE",
+  "displayName": "dump_in_app_FE"
+>>>>>>> master
 }
