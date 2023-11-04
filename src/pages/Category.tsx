@@ -1,12 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
+import styled from 'styled-components/native';
 import NavigationBar from '../components/reuse/navigation-bar/NavigationBar';
+
+const SafeContainer = styled(SafeAreaView)`
+  flex: 1;
+  justify-content: space-between;
+`;
+
+const CategoryText = styled(Text)`
+  text-align: center;
+`;
 
 export default function Category() {
   return (
-    <View style={{flex: 1}}>
-      <Text>카테고리 페이지</Text>
+    <SafeContainer>
+      <CategoryText>Category 페이지</CategoryText>
       <NavigationBar />
-    </View>
+    </SafeContainer>
   );
 }
