@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import PhotoBoothFrame from './PhotoBoothFrame';
+import {PhotoBoothListProps} from '../../interfaces/PhotoBoothList.interface';
+import {Container} from '../../styles/styled-components/photo-booth-list/PhotoBoothList';
 
-export default function PhotoBoothList() {
+export default function PhotoBoothList({data}: PhotoBoothListProps) {
   return (
-    <View>
-      <Text>PhotoBoothList 페이지</Text>
-    </View>
+    <Container>
+      {data.map((photoBooth, index) => (
+        <PhotoBoothFrame key={index} data={photoBooth} />
+      ))}
+    </Container>
   );
 }
