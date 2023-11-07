@@ -24,6 +24,7 @@ export default function Collection() {
   const handleFilterSubmit = (newFilterData: FilterProps) => {
     // 필터 데이터 변경
     setFilterData(newFilterData);
+    //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
   };
 
   // 포토부스 지점들 데이터 임의로 생성 (데이터 종류 수정 필요)

@@ -1,4 +1,3 @@
-// PhotoBoothFrame.styles.ts
 import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {customColors} from '../../base/Variable';

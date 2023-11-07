@@ -14,7 +14,7 @@ export default function Filter({
   // 필터 데이터 제출 함수
   const handleFilterSubmit = () => {
     onFilterSubmit(filterData);
-    // 모달 창 닫음
+    // 제출 후 모달 창 닫음
     handleFilterModal();
   };
 
@@ -30,11 +30,7 @@ export default function Filter({
   };
 
   return (
-    <Modal
-      visible={true} // 모달의 가시성
-      animationType="slide" // 슬라이드 애니메이션 사용
-      transparent={true} // 배경을 투명하게 설정
-    >
+    <Modal visible={true} animationType="slide" transparent={true}>
       <View
         style={{
           flex: 1,
@@ -78,16 +74,16 @@ export default function Filter({
             <FilterButton
               onPress={handleFilterReset}
               text="초기화"
-              backgroundColor="blue"
-              borderColor="blue"
+              backgroundColor="black"
+              borderColor="white"
               textColor="white"
             />
 
             <FilterButton
               onPress={handleFilterSubmit}
               text="필터적용하기"
-              backgroundColor="green"
-              borderColor="green"
+              backgroundColor="black"
+              borderColor="white"
               textColor="white"
             />
           </View>
