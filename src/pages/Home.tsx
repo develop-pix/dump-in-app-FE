@@ -15,7 +15,7 @@ const HomeText = styled(Text)`
 export default function Home() {
   return (
     <SafeContainer>
-      <HomeText>Home 페이지</HomeText>
+      <HomeText>Home 페이지Test</HomeText>
       <NavigationBar />
     </SafeContainer>
   );
