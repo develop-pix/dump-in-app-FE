@@ -1,3 +1,4 @@
 export const customColors = {
-  primary_black: '#A3A3A3',
+  text_grey: '#A3A3A3',
+  background_grey: '#2D2D2D',
 };

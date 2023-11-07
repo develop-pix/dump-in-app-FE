@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {View, ScrollView, TouchableOpacity, Image} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {ScrollView, Image} from 'react-native';
 import PhotoBoothList from '../photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
 import UpScroll from '../../assets/favicon/up-scroll.png';
@@ -8,8 +8,24 @@ import {
   CollectionScrollView,
   UpScrollImage,
 } from '../../styles/styled-components/home/Collection';
+import {FilterProps} from '../../interfaces/Home.interface';
 
 export default function Collection() {
+  // 필터 변수
+  const [filterData, setFilterData] = useState<FilterProps>({
+    geolocation: '',
+    frameColor: '',
+    party: 0,
+    cameraShot: '',
+    concept: [],
+  });
+
+  // 필터 제출 함수
+  const handleFilterSubmit = (newFilterData: FilterProps) => {
+    // 필터 데이터 변경
+    setFilterData(newFilterData);
+  };
+
   // 포토부스 지점들 데이터 임의로 생성 (데이터 종류 수정 필요)
   const photoBoothData = [
     {
@@ -101,7 +117,11 @@ export default function Collection() {
 
   return (
     <Container>
-      <HomeMenuBar />
+      <HomeMenuBar
+        filterData={filterData}
+        setFilterData={setFilterData}
+        onFilterSubmit={handleFilterSubmit}
+      />
       <CollectionScrollView ref={scrollRef}>
         <PhotoBoothList data={photoBoothData} />
       </CollectionScrollView>

@@ -45,7 +45,7 @@ export const LocationIcon = styled.Image`
 `;
 
 export const BoothName = styled.Text`
-  color: ${customColors.primary_black};
+  color: ${customColors.text_grey};
   padding-top: 10px;
   padding-bottom: 10px;
 `;
