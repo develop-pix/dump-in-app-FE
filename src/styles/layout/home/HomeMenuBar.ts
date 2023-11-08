@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const HomeMunuBarContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: black;
@@ -12,11 +12,11 @@ export const FilterIcon = styled.Image`
   height: 40px;
 `;
 
-export const RightIconsBox = styled.View`
+export const HomeMunuBarIconsBox = styled.View`
   flex-direction: row;
 `;
 
-export const Icon = styled.Image`
+export const HomeMunuBarIcon = styled.Image`
   width: 40px;
   height: 40px;
   margin-left: 10px;

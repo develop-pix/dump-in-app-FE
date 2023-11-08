@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {customColors} from '../../base/Variable';
 
-export const PhotoBooth = styled.View`
+export const PhotoBoothFrameContainer = styled.View`
   width: ${Dimensions.get('window').width * 0.48}px;
   aspect-ratio: 1;
   border-radius: 20px;
@@ -24,14 +24,14 @@ export const TagImage = styled.Image`
   height: 30px;
 `;
 
-export const BranchInfo = styled.View`
+export const PhotoBoothInfo = styled.View`
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 `;
 
-export const BoothNameContainer = styled.View`
+export const PhotoBoothNameContainer = styled.View`
   flex-direction: row;
   align-items: center;
 `;
@@ -43,7 +43,7 @@ export const LocationIcon = styled.Image`
   margin-left: 5px;
 `;
 
-export const BoothName = styled.Text`
+export const PhotoBoothName = styled.Text`
   color: ${customColors.text_grey};
   padding-top: 10px;
   padding-bottom: 10px;

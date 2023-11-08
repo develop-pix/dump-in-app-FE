@@ -3,11 +3,11 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
-import CameraImage from '../../../assets/favicon/navigation-bar/camera.png';
+import CameraImage from '../../../assets/image/navigation-bar/camera.png';
 import {
-  Container,
-  ImageBox,
-} from '../../../styles/styled-components/navigation-bar/NavigationBar';
+  NavigationBarContainer,
+  CameraImageBox,
+} from '../../../styles/layout/navigation-bar/NavigationBar';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function NavigationBar() {
@@ -43,7 +43,7 @@ export default function NavigationBar() {
   };
 
   return (
-    <Container>
+    <NavigationBarContainer>
       <NavigationBarListItem
         screen="Home"
         selectedScreen={selectedScreen}
@@ -54,9 +54,9 @@ export default function NavigationBar() {
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />
-      <ImageBox>
+      <CameraImageBox>
         <Image source={CameraImage} />
-      </ImageBox>
+      </CameraImageBox>
 
       <NavigationBarListItem
         screen="Category"
@@ -68,6 +68,6 @@ export default function NavigationBar() {
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />
-    </Container>
+    </NavigationBarContainer>
   );
 }

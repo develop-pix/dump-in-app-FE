@@ -1,14 +1,13 @@
 import React from 'react';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
 
-import Collection from './Collection';
-import {SafeContainer} from '../../styles/styled-components/home/HomeForm';
+import HomeDataCollection from './HomeDataCollection';
 
 export default function HomeForm() {
   return (
-    <SafeContainer>
-      <Collection />
+    <>
+      <HomeDataCollection />
       <NavigationBar />
-    </SafeContainer>
+    </>
   );
 }

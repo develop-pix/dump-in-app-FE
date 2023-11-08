@@ -1,32 +1,23 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {FilterButtonProps} from '../../../interfaces/Button.interfaces';
+import {
+  FilterButtonContainer,
+  FilterButtonText,
+} from '../../../styles/layout/Button/FilterButton';
 
-export default function FilterButton({
+export const FilterButton = ({
   onPress,
   text,
   backgroundColor,
   borderColor,
   textColor,
-}: FilterButtonProps) {
+}: FilterButtonProps) => {
   return (
-    <TouchableOpacity
-      style={[styles.button, {backgroundColor, borderColor}]}
+    <FilterButtonContainer
+      backgroundColor={backgroundColor}
+      borderColor={borderColor}
       onPress={onPress}>
-      <Text style={[styles.text, {color: textColor}]}>{text}</Text>
-    </TouchableOpacity>
+      <FilterButtonText textColor={textColor}>{text}</FilterButtonText>
+    </FilterButtonContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  button: {
-    padding: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: 'transparent',
-  },
-  text: {
-    fontSize: 16,
-    textAlign: 'center',
-  },
-});
+};

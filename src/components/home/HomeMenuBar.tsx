@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import FilterImage from '../../assets/favicon/home-menu-bar/filter.png';
-import SearchImage from '../../assets/favicon/home-menu-bar/search.png';
-import NotificationImage from '../../assets/favicon/home-menu-bar/notification.png';
+import FilterImage from '../../assets/image/home-menu-bar/filter.png';
+import SearchImage from '../../assets/image/reuse/search.png';
+import NotificationImage from '../../assets/image/home-menu-bar/notification.png';
 import {
-  Container,
+  HomeMunuBarContainer,
   FilterIcon,
-  RightIconsBox,
-  Icon,
-} from '../../styles/styled-components/home/HomeMenuBar';
+  HomeMunuBarIconsBox,
+  HomeMunuBarIcon,
+} from '../../styles/layout/home/HomeMenuBar';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
-import Filter from './Filter';
-import {TouchableOpacity} from 'react-native';
+import FilterForm from '../Filter/FilterForm';
+import {TouchableOpacity, Modal} from 'react-native';
 
 export default function HomeMenuBar({
   filterData,
@@ -19,28 +19,34 @@ export default function HomeMenuBar({
 }: HomeMenuBarProps) {
   const [isFilterVisible, setFilterVisible] = useState(false);
 
-  const handleFilterModal = () => {
-    setFilterVisible(!isFilterVisible);
+  // 필터 모달창 여는 함수
+  const handleShowFilterModal = () => {
+    setFilterVisible(true);
+  };
+
+  // 필터 모달창 닫는 함수
+  const handleHideFilterModal = () => {
+    setFilterVisible(false);
   };
 
   return (
-    <Container>
-      <TouchableOpacity onPress={handleFilterModal}>
+    <HomeMunuBarContainer>
+      <TouchableOpacity onPress={handleShowFilterModal}>
         <FilterIcon source={FilterImage} />
       </TouchableOpacity>
-      <RightIconsBox>
-        <Icon source={SearchImage} />
-        <Icon source={NotificationImage} />
-      </RightIconsBox>
+      <HomeMunuBarIconsBox>
+        <HomeMunuBarIcon source={SearchImage} />
+        <HomeMunuBarIcon source={NotificationImage} />
+      </HomeMunuBarIconsBox>
 
       {isFilterVisible && (
-        <Filter
+        <FilterForm
           filterData={filterData}
           setFilterData={setFilterData}
-          handleFilterModal={handleFilterModal}
+          handleHideFilterModal={handleHideFilterModal}
           onFilterSubmit={onFilterSubmit}
         />
       )}
-    </Container>
+    </HomeMunuBarContainer>
   );
 }

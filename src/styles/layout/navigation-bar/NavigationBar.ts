@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const NavigationBarContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: black;
@@ -11,6 +11,6 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const ImageBox = styled.Pressable`
+export const CameraImageBox = styled.Pressable`
   padding: 5px;
 `;

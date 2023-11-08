@@ -2,15 +2,15 @@ import React, {useRef, useState} from 'react';
 import {ScrollView, Image} from 'react-native';
 import PhotoBoothList from '../photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
-import UpScroll from '../../assets/favicon/up-scroll.png';
-import {
-  Container,
-  CollectionScrollView,
-  UpScrollImage,
-} from '../../styles/styled-components/home/Collection';
-import {FilterProps} from '../../interfaces/Home.interface';
 
-export default function Collection() {
+import {
+  CollectContainer,
+  CollectionScrollView,
+  UpScrollImageBox,
+} from '../../styles/layout/home/HomeDataCollection';
+import {FilterProps} from '../../interfaces/Filter.interface';
+
+export default function HomeDataCollection() {
   // 필터 변수
   const [filterData, setFilterData] = useState<FilterProps>({
     geolocation: '',
@@ -117,7 +117,7 @@ export default function Collection() {
   };
 
   return (
-    <Container>
+    <CollectContainer>
       <HomeMenuBar
         filterData={filterData}
         setFilterData={setFilterData}
@@ -126,9 +126,9 @@ export default function Collection() {
       <CollectionScrollView ref={scrollRef}>
         <PhotoBoothList data={photoBoothData} />
       </CollectionScrollView>
-      <UpScrollImage onPress={handleScrollToTop}>
-        <Image source={UpScroll} />
-      </UpScrollImage>
-    </Container>
+      <UpScrollImageBox onPress={handleScrollToTop}>
+        <Image source={require('../../assets/image/reuse/up-scroll.png')} />
+      </UpScrollImageBox>
+    </CollectContainer>
   );
 }

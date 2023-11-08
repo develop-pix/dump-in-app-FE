@@ -1,16 +1,16 @@
 import React from 'react';
-import HomeImage from '../../../assets/favicon/navigation-bar/home.png';
-import ClickHomeImage from '../../../assets/favicon/navigation-bar/click-home.png';
-import LocationImage from '../../../assets/favicon/navigation-bar/location.png';
-import ClickLocationImage from '../../../assets/favicon/navigation-bar/click-location.png';
-import CategoryImage from '../../../assets/favicon/navigation-bar/category.png';
-import ClickCategoryImage from '../../../assets/favicon/navigation-bar/click-category.png';
-import MyPageImage from '../../../assets/favicon/navigation-bar/mypage.png';
-import ClickMyPageImage from '../../../assets/favicon/navigation-bar/click-mypage.png';
+import HomeImage from '../../../assets/image/navigation-bar/home.png';
+import ClickHomeImage from '../../../assets/image/navigation-bar/click-home.png';
+import LocationImage from '../../../assets/image/navigation-bar/location.png';
+import ClickLocationImage from '../../../assets/image/navigation-bar/click-location.png';
+import CategoryImage from '../../../assets/image/navigation-bar/category.png';
+import ClickCategoryImage from '../../../assets/image/navigation-bar/click-category.png';
+import MyPageImage from '../../../assets/image/navigation-bar/mypage.png';
+import ClickMyPageImage from '../../../assets/image/navigation-bar/click-mypage.png';
 import {
-  Container,
-  StyledImage,
-} from '../../../styles/styled-components/navigation-bar/NavigationBarItem';
+  NavigationBarListItemContainer,
+  NavigationImage,
+} from '../../../styles/layout/navigation-bar/NavigationBarItem';
 import {NavigationBarListItemProps} from '../../../interfaces/NavigationBar';
 
 const imageMap: Record<string, any> = {
@@ -36,8 +36,8 @@ export default function NavigationBarListItem({
     selectedScreen === screen ? clickImageMap[screen] : imageMap[screen];
 
   return (
-    <Container onPress={() => handleListClick(screen)}>
-      <StyledImage source={imageSource} resizeMode="contain" />
-    </Container>
+    <NavigationBarListItemContainer onPress={() => handleListClick(screen)}>
+      <NavigationImage source={imageSource} resizeMode="contain" />
+    </NavigationBarListItemContainer>
   );
 }
