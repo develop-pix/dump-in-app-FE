@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {customColors} from '../../styles/base/Variable';
+import {colors} from '../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
 
 const availableConcepts = [
@@ -49,7 +49,7 @@ export default function FilterConcept({
     <View>
       <Text
         style={{
-          color: customColors.text_grey,
+          color: colors.first_grey,
           fontSize: 16,
           marginBottom: 10,
         }}>
@@ -64,7 +64,7 @@ export default function FilterConcept({
               {
                 backgroundColor: filterData.concept.includes(concept)
                   ? 'white'
-                  : customColors.background_black,
+                  : colors.third_grey,
               },
             ]}
             onPress={() => handleConceptToggle(concept)}>
@@ -72,7 +72,7 @@ export default function FilterConcept({
               style={{
                 color: filterData.concept.includes(concept)
                   ? 'black'
-                  : customColors.sub_text_grey,
+                  : colors.second_grey,
               }}>
               {concept}
             </Text>
