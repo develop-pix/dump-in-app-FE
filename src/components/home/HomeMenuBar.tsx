@@ -10,7 +10,7 @@ import {
 } from '../../styles/layout/home/HomeMenuBar';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
 import FilterForm from '../Filter/FilterForm';
-import {TouchableOpacity, Modal} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 
 export default function HomeMenuBar({
   filterData,
