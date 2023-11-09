@@ -1,51 +1,73 @@
-import React from 'react';
-import {View, Text, Pressable} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState, useEffect} from 'react';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import styled from 'styled-components/native';
-
-type RootStackParam = {
-  Home: undefined;
-  Location: undefined;
-  Category: undefined;
-  MyPage: undefined;
-};
-
-const Container = styled(View)`
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: black;
-  padding: 30px;
-  width: 100%;
-  bottom: 0;
-`;
-
-const Button = styled(Pressable)`
-  padding: 5px;
-`;
-
-const NavigationText = styled(Text)`
-  color: white;
-`;
+import NavigationBarListItem from './NavigationBarListItem';
+import CameraImage from '../../../assets/image/navigation-bar/camera.png';
+import {
+  NavigationBarContainer,
+  CameraImageBox,
+} from '../../../styles/layout/navigation-bar/NavigationBar';
+import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function NavigationBar() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
+  const route = useRoute();
+
+  // 현재 화면의 이름을 가져와 selectedScreen 상태로 설정
+  const [selectedScreen, setSelectedScreen] = useState<string>('');
+
+  useEffect(() => {
+    if (route.name) {
+      setSelectedScreen(route.name);
+    }
+  }, [route.name]);
+
+  const handleListClick = (screen: string) => {
+    switch (screen) {
+      case 'Home':
+        navigation.navigate('Home');
+        break;
+      case 'Location':
+        navigation.navigate('Location');
+        break;
+      case 'Category':
+        navigation.navigate('Category');
+        break;
+      case 'MyPage':
+        navigation.navigate('MyPage');
+        break;
+      default:
+    }
+  };
+
   return (
-    <Container>
-      <Button onPress={() => navigation.navigate('Home')}>
-        <NavigationText>Home</NavigationText>
-      </Button>
-      <Button onPress={() => navigation.navigate('Location')}>
-        <NavigationText>Location</NavigationText>
-      </Button>
-      <NavigationText>+</NavigationText>
-      <Button onPress={() => navigation.navigate('Category')}>
-        <NavigationText>Category</NavigationText>
-      </Button>
-      <Button onPress={() => navigation.navigate('MyPage')}>
-        <NavigationText>My Page</NavigationText>
-      </Button>
-    </Container>
+    <NavigationBarContainer>
+      <NavigationBarListItem
+        screen="Home"
+        selectedScreen={selectedScreen}
+        handleListClick={handleListClick}
+      />
+      <NavigationBarListItem
+        screen="Location"
+        selectedScreen={selectedScreen}
+        handleListClick={handleListClick}
+      />
+      <CameraImageBox>
+        <Image source={CameraImage} />
+      </CameraImageBox>
+
+      <NavigationBarListItem
+        screen="Category"
+        selectedScreen={selectedScreen}
+        handleListClick={handleListClick}
+      />
+      <NavigationBarListItem
+        screen="MyPage"
+        selectedScreen={selectedScreen}
+        handleListClick={handleListClick}
+      />
+    </NavigationBarContainer>
   );
 }

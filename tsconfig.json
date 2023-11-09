@@ -13,6 +13,7 @@
     "lib": ["es6", "dom"],
     "types": ["jest", "node"]
   },
+
   "exclude": [
     "node_modules",
     "babel.config.js",
