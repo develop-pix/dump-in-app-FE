@@ -1,11 +1,12 @@
 import styled from 'styled-components/native';
-import {customColors} from '../../base/Variable';
+import {colors, fontSize, fontWeight} from '../../base/Variable';
 
 export const LocationContainer = styled.View``;
 
 export const LocationText = styled.Text`
-  color: ${customColors.text_grey};
-  font-size: 16px;
+  color: ${colors.first_grey};
+  font-size: ${fontSize.H5};
+  font-weight: ${fontWeight.SB};
   margin-bottom: 10px;
 `;
 
@@ -20,10 +21,9 @@ export const LocationButton = styled.TouchableOpacity<{isSelected: boolean}>`
   margin: 5px;
   border-radius: 5px;
   background-color: ${({isSelected}) =>
-    isSelected ? 'white' : customColors.background_black};
+    isSelected ? 'white' : colors.fourth_grey};
 `;
 
 export const LocationButtonText = styled.Text<{isSelected: boolean}>`
-  color: ${({isSelected}) =>
-    isSelected ? 'black' : customColors.sub_text_grey};
+  color: ${({isSelected}) => (isSelected ? colors.black : colors.second_grey)};
 `;

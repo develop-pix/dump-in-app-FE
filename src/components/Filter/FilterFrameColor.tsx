@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {customColors} from '../../styles/base/Variable';
+import {colors} from '../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
 import WhiteCheckImage from '../../assets/image/filter/white-check.png';
 import BlackCheckImage from '../../assets/image/filter/black-check.png';
@@ -34,7 +34,7 @@ export default function FilterFrameColor({
     <View>
       <Text
         style={{
-          color: customColors.text_grey,
+          color: colors.first_grey,
           fontSize: 16,
           marginBottom: 10,
         }}>

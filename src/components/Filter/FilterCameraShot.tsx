@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {customColors} from '../../styles/base/Variable';
+import {colors} from '../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
 
 const cameraShots = [
@@ -39,7 +39,7 @@ export default function FilterCameraShot({
     <View>
       <Text
         style={{
-          color: customColors.text_grey,
+          color: colors.first_grey,
           fontSize: 16,
           marginBottom: 10,
         }}>
@@ -72,7 +72,7 @@ export default function FilterCameraShot({
                   color:
                     filterData.cameraShot === cameraShotOption.name
                       ? 'white'
-                      : customColors.text_grey,
+                      : colors.first_grey,
                 },
               ]}>
               {cameraShotOption.name}

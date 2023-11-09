@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
-import {customColors} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const PhotoBoothFrameContainer = styled.View`
   width: ${Dimensions.get('window').width * 0.48}px;
@@ -44,7 +44,7 @@ export const LocationIcon = styled.Image`
 `;
 
 export const PhotoBoothName = styled.Text`
-  color: ${customColors.text_grey};
+  color: ${colors.first_grey};
   padding-top: 10px;
   padding-bottom: 10px;
 `;

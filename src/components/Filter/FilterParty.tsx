@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {customColors} from '../../styles/base/Variable';
+import {colors} from '../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
 
 const partyNum = [1, 2, 3, 4, 5];
@@ -22,8 +22,7 @@ export default function FilterParty({
 
   return (
     <View>
-      <Text
-        style={{color: customColors.text_grey, fontSize: 16, marginBottom: 10}}>
+      <Text style={{color: colors.first_grey, fontSize: 16, marginBottom: 10}}>
         인원
       </Text>
       <View style={styles.partyContainer}>
@@ -36,7 +35,7 @@ export default function FilterParty({
                 backgroundColor:
                   filterData.party === partyOption
                     ? 'white'
-                    : customColors.background_black,
+                    : colors.fourth_grey,
               },
             ]}
             onPress={() => handlePartyToggle(partyOption)}>
@@ -45,7 +44,7 @@ export default function FilterParty({
                 color:
                   filterData.party === partyOption
                     ? 'black'
-                    : customColors.sub_text_grey,
+                    : colors.second_grey,
               }}>
               {partyOption === 5 ? '5 +' : partyOption}
             </Text>
