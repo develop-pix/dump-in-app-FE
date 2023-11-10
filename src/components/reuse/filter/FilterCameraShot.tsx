@@ -1,24 +1,24 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {colors} from '../../styles/base/Variable';
-import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
+import {colors} from '../../../styles/base/Variable';
+import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
 
-const cameraShots = [
+const availablecameraShots = [
   {
     name: '클로즈업',
-    image: require('../../assets/image/filter/filter-close-up.png'),
+    image: require('../../../assets/image/filter/filter-close-up.png'),
   },
   {
     name: '상반신',
-    image: require('../../assets/image/filter/filter-bust.png'),
+    image: require('../../../assets/image/filter/filter-bust.png'),
   },
   {
     name: '무릎',
-    image: require('../../assets/image/filter/filter-knee.png'),
+    image: require('../../../assets/image/filter/filter-knee.png'),
   },
   {
     name: '전신',
-    image: require('../../assets/image/filter/filter-whole-body.png'),
+    image: require('../../../assets/image/filter/filter-whole-body.png'),
   },
 ];
 
@@ -46,7 +46,7 @@ export default function FilterCameraShot({
         카메라 샷
       </Text>
       <View style={styles.cameraShotContainer}>
-        {cameraShots.map(cameraShotOption => (
+        {availablecameraShots.map(cameraShotOption => (
           <TouchableOpacity
             key={cameraShotOption.name}
             style={[styles.cameraShotButton]}

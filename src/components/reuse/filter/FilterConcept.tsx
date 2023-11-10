@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {colors} from '../../styles/base/Variable';
-import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
+import {colors} from '../../../styles/base/Variable';
+import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
 
 const availableConcepts = [
   '일상',
@@ -64,7 +64,7 @@ export default function FilterConcept({
               {
                 backgroundColor: filterData.concept.includes(concept)
                   ? 'white'
-                  : colors.third_grey,
+                  : colors.fourth_grey,
               },
             ]}
             onPress={() => handleConceptToggle(concept)}>

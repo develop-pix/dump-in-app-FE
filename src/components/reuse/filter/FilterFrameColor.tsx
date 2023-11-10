@@ -1,21 +1,15 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {colors} from '../../styles/base/Variable';
-import {FilterDataUpdateProps} from '../../interfaces/Filter.interface';
-import WhiteCheckImage from '../../assets/image/filter/white-check.png';
-import BlackCheckImage from '../../assets/image/filter/black-check.png';
+import {colors, frameColors} from '../../../styles/base/Variable';
+import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
+import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
+import BlackCheckImage from '../../../assets/image/filter/black-check.png';
+import {
+  FilterTitle,
+  FilterContentContainer,
+} from '../../../styles/layout/reuse/Filter';
 
-// 색상 변수 따로 빼서 선언해줘야함. 피그마 색상대로 하려면 #xxxxx 이런식으로 선언해야할듯
-const availableColors = [
-  'black',
-  'white',
-  'blue',
-  'red',
-  'green',
-  'yellow',
-  'purple',
-  'grey',
-];
+const availableColors = Object.values(frameColors);
 
 export default function FilterFrameColor({
   filterData,
@@ -32,41 +26,41 @@ export default function FilterFrameColor({
 
   return (
     <View>
-      <Text
-        style={{
-          color: colors.first_grey,
-          fontSize: 16,
-          marginBottom: 10,
-        }}>
-        프레임 색상
-      </Text>
-      <View style={styles.colorContainer}>
-        {availableColors.map(color => (
+      <FilterTitle>프레임 색상</FilterTitle>
+
+      <FilterContentContainer>
+        {availableColors.map(colorOption => (
           <TouchableOpacity
-            key={color}
+            key={colorOption}
             style={[
               styles.colorButton,
               {
-                backgroundColor: color,
+                backgroundColor: colorOption,
                 borderColor:
-                  filterData.frameColor === color ? 'white' : 'transparent',
+                  filterData.frameColor === colorOption
+                    ? 'white'
+                    : 'transparent',
                 borderWidth: 1,
                 opacity:
-                  filterData.frameColor && filterData.frameColor !== color
+                  filterData.frameColor && filterData.frameColor !== colorOption
                     ? 0.3
                     : 1,
               },
             ]}
-            onPress={() => handleColorToggle(color)}>
-            {filterData.frameColor === color && (
+            onPress={() => handleColorToggle(colorOption)}>
+            {filterData.frameColor === colorOption && (
               <Image
-                source={color === 'white' ? BlackCheckImage : WhiteCheckImage}
+                source={
+                  colorOption === frameColors.white
+                    ? BlackCheckImage
+                    : WhiteCheckImage
+                }
                 style={styles.checkIcon}
               />
             )}
           </TouchableOpacity>
         ))}
-      </View>
+      </FilterContentContainer>
     </View>
   );
 }
@@ -78,8 +72,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   colorButton: {
-    width: 40,
-    height: 40,
+    width: 36,
+    height: 36,
     margin: 5,
     borderRadius: 10,
     justifyContent: 'center',

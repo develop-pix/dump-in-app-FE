@@ -7,11 +7,11 @@ export const FilterFormContainer = styled.View`
 `;
 
 export const FilterFormBody = styled.View`
-  height: 95%;
+  height: 92%;
   background-color: ${colors.third_grey};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 20px;
+  padding: 10px 20px;
 `;
 
 export const FilterFormHeader = styled.View`
@@ -44,5 +44,5 @@ export const FilterButtonBox = styled.View`
 `;
 
 export const Margin = styled.View`
-  margin-vertical: 20px;
+  margin-vertical: 15px;
 `;

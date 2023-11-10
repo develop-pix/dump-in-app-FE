@@ -3,7 +3,7 @@ import {FilterButtonProps} from '../../../interfaces/Button.interfaces';
 import {
   FilterButtonContainer,
   FilterButtonText,
-} from '../../../styles/layout/Button/FilterButton';
+} from '../../../styles/layout/button/FilterButton';
 
 export const FilterButton = ({
   onPress,
