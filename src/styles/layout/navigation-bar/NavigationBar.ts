@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
+import {colors} from '../../base/Variable';
 
 export const NavigationBarContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  background-color: black;
+  background-color: ${colors.black};
   padding: 15px;
   width: 100%;
   position: absolute;

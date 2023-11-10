@@ -1,26 +1,25 @@
 import styled from 'styled-components/native';
+import {fontSize, fontWeight} from '../../base/Variable';
 
-interface ButtonContainerProps {
+export const FilterButtonContainer = styled.TouchableOpacity<{
   backgroundColor: string;
   borderColor: string;
-}
-
-interface ButtonTextProps {
-  textColor: string;
-}
-
-export const FilterButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`
-  padding: 10px;
+}>`
   border-radius: 10px;
   border-width: 1px;
-  width: 180px;
-  height: 50px;
+  width: 162px;
+  height: 43px;
+  justify-content: center;
+  align-items: center;
   background-color: ${({backgroundColor}) => backgroundColor};
   border-color: ${({borderColor}) => borderColor};
 `;
 
-export const FilterButtonText = styled.Text<ButtonTextProps>`
-  font-size: 16px;
+export const FilterButtonText = styled.Text<{
+  textColor: string;
+}>`
+  font-size: ${fontSize.BTN};
+  font-weight: ${fontWeight.SB};
   text-align: center;
   color: ${({textColor}) => textColor};
 `;

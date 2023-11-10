@@ -1,6 +1,7 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import Modal from 'react-native-modal';
+import LinearGradient from 'react-native-linear-gradient';
 import CloseBtnImage from '../../assets/image/reuse/close-btn.png';
 import {HomeFilterModalFormProps} from '../../interfaces/Filter.interface';
 import {FilterButton} from '../reuse/button/FilterButton';
@@ -14,11 +15,13 @@ import {
   FilterFormBody,
   FilterFormHeader,
   FilterFormTitle,
+  FilterOptionContainer,
   CloseButton,
   CloseButtonImage,
   FilterButtonBox,
   Margin,
 } from '../../styles/layout/home/HomeFilterModalForm';
+import {colors} from '../../styles/base/Variable';
 
 export default function HomeFilterModalForm({
   filterData,
@@ -66,58 +69,72 @@ export default function HomeFilterModalForm({
           </FilterFormHeader>
 
           <ScrollView>
-            <Margin />
-
-            <FilterLocation
-              filterData={filterData}
-              setFilterData={setFilterData}
+            <LinearGradient
+              colors={['transparent', colors.black]}
+              locations={[0.1, 0.4]}
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: 130,
+              }}
             />
 
-            <Margin />
+            <FilterOptionContainer>
+              <Margin />
 
-            <FilterFrameColor
-              filterData={filterData}
-              setFilterData={setFilterData}
-            />
-
-            <Margin />
-
-            <FilterParty
-              filterData={filterData}
-              setFilterData={setFilterData}
-            />
-
-            <Margin />
-
-            <FilterCameraShot
-              filterData={filterData}
-              setFilterData={setFilterData}
-            />
-
-            <Margin />
-
-            <FilterConcept
-              filterData={filterData}
-              setFilterData={setFilterData}
-            />
-
-            <FilterButtonBox>
-              <FilterButton
-                onPress={handleFilterReset}
-                text="초기화"
-                backgroundColor="black"
-                borderColor="black"
-                textColor="white"
+              <FilterLocation
+                filterData={filterData}
+                setFilterData={setFilterData}
               />
 
-              <FilterButton
-                onPress={handleFilterSubmit}
-                text="필터적용하기"
-                backgroundColor="black"
-                borderColor="white"
-                textColor="white"
+              <Margin />
+
+              <FilterFrameColor
+                filterData={filterData}
+                setFilterData={setFilterData}
               />
-            </FilterButtonBox>
+
+              <Margin />
+
+              <FilterParty
+                filterData={filterData}
+                setFilterData={setFilterData}
+              />
+
+              <Margin />
+
+              <FilterCameraShot
+                filterData={filterData}
+                setFilterData={setFilterData}
+              />
+
+              <Margin />
+
+              <FilterConcept
+                filterData={filterData}
+                setFilterData={setFilterData}
+              />
+
+              <FilterButtonBox>
+                <FilterButton
+                  onPress={handleFilterReset}
+                  text="초기화"
+                  backgroundColor={colors.third_grey}
+                  borderColor={colors.black}
+                  textColor={colors.white}
+                />
+
+                <FilterButton
+                  onPress={handleFilterSubmit}
+                  text="필터적용하기"
+                  backgroundColor={colors.black}
+                  borderColor={colors.white}
+                  textColor={colors.white}
+                />
+              </FilterButtonBox>
+            </FilterOptionContainer>
           </ScrollView>
         </FilterFormBody>
       </FilterFormContainer>
