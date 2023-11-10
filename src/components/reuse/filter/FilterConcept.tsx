@@ -1,7 +1,12 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {colors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
+import {
+  FilterTitle,
+  FilterContentContainer,
+  FilterTextButton,
+  FilterTextButtonContent,
+} from '../../../styles/layout/filter/Filter';
+import {View} from 'react-native';
 
 const availableConcepts = [
   '일상',
@@ -27,71 +32,40 @@ export default function FilterConcept({
   setFilterData,
 }: FilterDataUpdateProps) {
   const handleConceptToggle = (concept: string) => {
-    // 현재 컨셉 목록에 있는지 확인
     const isSelected = filterData.concept.includes(concept);
-    let updatedConcepts: string[];
+    let conceptArray: string[];
 
     if (isSelected) {
-      // 이미 선택된 경우, 선택 해제
-      updatedConcepts = filterData.concept.filter(c => c !== concept);
+      conceptArray = filterData.concept.filter(e => e !== concept);
     } else {
-      // 아닌 경우, 선택
-      updatedConcepts = [...filterData.concept, concept];
+      conceptArray = [...filterData.concept, concept];
     }
 
     setFilterData(prevFilterData => ({
       ...prevFilterData,
-      concept: updatedConcepts,
+      concept: conceptArray,
     }));
   };
 
   return (
     <View>
-      <Text
-        style={{
-          color: colors.first_grey,
-          fontSize: 16,
-          marginBottom: 10,
-        }}>
-        컨셉
-      </Text>
-      <View style={styles.conceptContainer}>
-        {availableConcepts.map(concept => (
-          <TouchableOpacity
-            key={concept}
-            style={[
-              styles.conceptButton,
-              {
-                backgroundColor: filterData.concept.includes(concept)
-                  ? 'white'
-                  : colors.fourth_grey,
-              },
-            ]}
-            onPress={() => handleConceptToggle(concept)}>
-            <Text
-              style={{
-                color: filterData.concept.includes(concept)
-                  ? 'black'
-                  : colors.second_grey,
-              }}>
-              {concept}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <FilterTitle>컨셉</FilterTitle>
+
+      <FilterContentContainer>
+        {availableConcepts.map(conceptOption => {
+          const isSelected = filterData.concept.includes(conceptOption);
+          return (
+            <FilterTextButton
+              key={conceptOption}
+              isSelected={isSelected}
+              onPress={() => handleConceptToggle(conceptOption)}>
+              <FilterTextButtonContent isSelected={isSelected}>
+                {conceptOption}
+              </FilterTextButtonContent>
+            </FilterTextButton>
+          );
+        })}
+      </FilterContentContainer>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  conceptContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-  },
-  conceptButton: {
-    padding: 10,
-    margin: 5,
-    borderRadius: 5,
-  },
-});

@@ -1,14 +1,19 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {colors, frameColors} from '../../../styles/base/Variable';
+import {View, StyleSheet} from 'react-native';
+import {frameColors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
 import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
 import BlackCheckImage from '../../../assets/image/filter/black-check.png';
 import {
   FilterTitle,
   FilterContentContainer,
-} from '../../../styles/layout/reuse/Filter';
+} from '../../../styles/layout/filter/Filter';
+import {
+  FrameColorButton,
+  FrameColorCheckIcon,
+} from '../../../styles/layout/filter/FilterFrameColor';
 
+// 무지개 색상은 기타색상을 의미? -> 기타 색상을 의미하는 데이터값(string)을 따로 만들어서 서버로 보내줘야함
 const availableColors = Object.values(frameColors);
 
 export default function FilterFrameColor({
@@ -29,37 +34,28 @@ export default function FilterFrameColor({
       <FilterTitle>프레임 색상</FilterTitle>
 
       <FilterContentContainer>
-        {availableColors.map(colorOption => (
-          <TouchableOpacity
-            key={colorOption}
-            style={[
-              styles.colorButton,
-              {
-                backgroundColor: colorOption,
-                borderColor:
-                  filterData.frameColor === colorOption
-                    ? 'white'
-                    : 'transparent',
-                borderWidth: 1,
-                opacity:
-                  filterData.frameColor && filterData.frameColor !== colorOption
-                    ? 0.3
-                    : 1,
-              },
-            ]}
-            onPress={() => handleColorToggle(colorOption)}>
-            {filterData.frameColor === colorOption && (
-              <Image
-                source={
-                  colorOption === frameColors.white
-                    ? BlackCheckImage
-                    : WhiteCheckImage
-                }
-                style={styles.checkIcon}
-              />
-            )}
-          </TouchableOpacity>
-        ))}
+        {availableColors.map(colorOption => {
+          const isSelected = filterData.frameColor === colorOption;
+
+          return (
+            <FrameColorButton
+              key={colorOption}
+              isSelected={isSelected}
+              colorOption={colorOption}
+              selectedColor={filterData.frameColor}
+              onPress={() => handleColorToggle(colorOption)}>
+              {isSelected && (
+                <FrameColorCheckIcon
+                  source={
+                    colorOption === frameColors.white
+                      ? BlackCheckImage
+                      : WhiteCheckImage
+                  }
+                />
+              )}
+            </FrameColorButton>
+          );
+        })}
       </FilterContentContainer>
     </View>
   );

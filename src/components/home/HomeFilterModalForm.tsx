@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import Modal from 'react-native-modal';
 import CloseBtnImage from '../../assets/image/reuse/close-btn.png';
-import {HomeFilterFormProps} from '../../interfaces/Filter.interface';
+import {HomeFilterModalFormProps} from '../../interfaces/Filter.interface';
 import {FilterButton} from '../reuse/button/FilterButton';
 import FilterLocation from '../reuse/filter/FilterLocation';
 import FilterFrameColor from '../reuse/filter/FilterFrameColor';
@@ -18,14 +18,14 @@ import {
   CloseButtonImage,
   FilterButtonBox,
   Margin,
-} from '../../styles/layout/home/HomeFilterForm';
+} from '../../styles/layout/home/HomeFilterModalForm';
 
-export default function HomeFilterForm({
+export default function HomeFilterModalForm({
   filterData,
   setFilterData,
   handleHideFilterModal,
   onFilterSubmit,
-}: HomeFilterFormProps) {
+}: HomeFilterModalFormProps) {
   // 필터 데이터 제출 함수
   const handleFilterSubmit = () => {
     onFilterSubmit(filterData);

@@ -1,9 +1,17 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {colors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
+import {
+  FilterTitle,
+  FilterContentContainer,
+} from '../../../styles/layout/filter/Filter';
+import {
+  CameraShotImageContainer,
+  CameraShotImage,
+  CameraShotImageText,
+} from '../../../styles/layout/filter/FilterCameraShot';
+import {View} from 'react-native';
 
-const availablecameraShots = [
+const availableCameraShots = [
   {
     name: '클로즈업',
     image: require('../../../assets/image/filter/filter-close-up.png'),
@@ -37,72 +45,29 @@ export default function FilterCameraShot({
 
   return (
     <View>
-      <Text
-        style={{
-          color: colors.first_grey,
-          fontSize: 16,
-          marginBottom: 10,
-        }}>
-        카메라 샷
-      </Text>
-      <View style={styles.cameraShotContainer}>
-        {availablecameraShots.map(cameraShotOption => (
-          <TouchableOpacity
-            key={cameraShotOption.name}
-            style={[styles.cameraShotButton]}
-            onPress={() => handleCameraShotToggle(cameraShotOption.name)}>
-            <Image
-              source={cameraShotOption.image}
-              style={[
-                styles.cameraShotImage,
-                {
-                  opacity:
-                    filterData.cameraShot !== cameraShotOption.name ? 0.5 : 1,
-                  borderColor:
-                    filterData.cameraShot === cameraShotOption.name
-                      ? 'white'
-                      : 'transparent',
-                },
-              ]}
-            />
-            <Text
-              style={[
-                styles.cameraShotText,
-                {
-                  color:
-                    filterData.cameraShot === cameraShotOption.name
-                      ? 'white'
-                      : colors.first_grey,
-                },
-              ]}>
-              {cameraShotOption.name}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <FilterTitle>카메라 샷</FilterTitle>
+
+      <FilterContentContainer>
+        {availableCameraShots.map(cameraShotOption => {
+          const isSelected = filterData.cameraShot === cameraShotOption.name;
+
+          return (
+            <CameraShotImageContainer
+              isSelected={isSelected}
+              key={cameraShotOption.name}
+              onPress={() => handleCameraShotToggle(cameraShotOption.name)}>
+              <CameraShotImage
+                isSelected={isSelected}
+                cameraShot={filterData.cameraShot}
+                source={cameraShotOption.image}
+              />
+              <CameraShotImageText isSelected={isSelected}>
+                {cameraShotOption.name}
+              </CameraShotImageText>
+            </CameraShotImageContainer>
+          );
+        })}
+      </FilterContentContainer>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  cameraShotContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-  },
-  cameraShotButton: {
-    padding: 5,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  cameraShotImage: {
-    width: 80,
-    height: 100,
-    marginBottom: 5,
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-  cameraShotText: {
-    fontSize: 14,
-  },
-});

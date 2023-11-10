@@ -6,7 +6,7 @@ export interface FilterProps {
   concept: string[];
 }
 
-export interface HomeFilterFormProps {
+export interface HomeFilterModalFormProps {
   filterData: FilterProps;
   setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
   handleHideFilterModal: () => void;
