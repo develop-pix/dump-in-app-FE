@@ -1,17 +1,17 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {frameColors} from '../../../styles/base/Variable';
-import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
+import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
 import BlackCheckImage from '../../../assets/image/filter/black-check.png';
 import {
   FilterTitle,
   FilterContentContainer,
-} from '../../../styles/layout/filter/Filter';
+} from '../../../styles/layout/reuse/filter/Filter';
 import {
   FrameColorButton,
   FrameColorCheckIcon,
-} from '../../../styles/layout/filter/FilterFrameColor';
+} from '../../../styles/layout/reuse/filter/FilterFrameColor';
 
 // 무지개 색상은 기타색상을 의미? -> 기타 색상을 의미하는 데이터값(string)을 따로 만들어서 서버로 보내줘야함
 const availableColors = Object.values(frameColors);

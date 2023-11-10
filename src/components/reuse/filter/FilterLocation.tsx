@@ -1,11 +1,11 @@
 import React from 'react';
-import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
+import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
   FilterTitle,
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
-} from '../../../styles/layout/filter/Filter';
+} from '../../../styles/layout/reuse/filter/Filter';
 import {View} from 'react-native';
 
 const availableLocations = [

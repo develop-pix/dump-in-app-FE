@@ -3,7 +3,7 @@ import {ScrollView} from 'react-native';
 import Modal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
 import CloseBtnImage from '../../assets/image/reuse/close-btn.png';
-import {HomeFilterModalFormProps} from '../../interfaces/Filter.interface';
+import {HomeFilterModalFormProps} from '../../interfaces/reuse/Filter.interface';
 import {FilterButton} from '../reuse/button/FilterButton';
 import FilterLocation from '../reuse/filter/FilterLocation';
 import FilterFrameColor from '../reuse/filter/FilterFrameColor';

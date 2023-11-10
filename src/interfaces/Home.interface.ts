@@ -1,4 +1,4 @@
-import {FilterProps} from './Filter.interface';
+import {FilterProps} from './reuse/Filter.interface';
 
 export interface HomeMenuBarProps {
   filterData: FilterProps;

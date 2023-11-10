@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
 // 필터 타이틀 스타일 ex) 프레임 컬러, 지역...
 export const FilterTitle = styled.Text`

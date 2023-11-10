@@ -8,7 +8,7 @@ import {
   CollectionScrollView,
   UpScrollImageBox,
 } from '../../styles/layout/home/HomeDataCollection';
-import {FilterProps} from '../../interfaces/Filter.interface';
+import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 
 export default function HomeDataCollection() {
   // 필터 변수

@@ -1,14 +1,14 @@
 import React from 'react';
-import {FilterDataUpdateProps} from '../../../interfaces/Filter.interface';
+import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
   FilterTitle,
   FilterContentContainer,
-} from '../../../styles/layout/filter/Filter';
+} from '../../../styles/layout/reuse/filter/Filter';
 import {
   CameraShotImageContainer,
   CameraShotImage,
   CameraShotImageText,
-} from '../../../styles/layout/filter/FilterCameraShot';
+} from '../../../styles/layout/reuse/filter/FilterCameraShot';
 import {View} from 'react-native';
 
 const availableCameraShots = [
