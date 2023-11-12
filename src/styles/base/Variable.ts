@@ -12,7 +12,7 @@ export const colors = {
   second_grey: '#757575',
   third_grey: '#2D2D2D',
   fourth_grey: '#222222',
-  yellow: 'DFFF39',
+  yellow: '#DFFF39',
 };
 
 export const frameColors = {
@@ -21,9 +21,9 @@ export const frameColors = {
   blue: '#0072FF',
   red: '#FF2E00',
   green: '#00C868',
-  yellow: 'FFE045',
-  purple: '8F00FF',
-  grey: 'A1A1A1',
+  yellow: '#FFE045',
+  purple: '#8F00FF',
+  grey: '#A1A1A1',
 };
 
 export const fontSize = {
