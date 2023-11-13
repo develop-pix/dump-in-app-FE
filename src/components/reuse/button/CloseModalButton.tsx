@@ -3,20 +3,20 @@ import React from 'react';
 import {BackModalProps} from '../../../interfaces/reuse/modal/BackModal.interface';
 import {
   BackImage,
-  BackModalWrapper,
-} from '../../../styles/layout/reuse/modal/BackModal';
+  CloseModalButtonContainer,
+} from '../../../styles/layout/reuse/Button/CloseModalButton.style';
 import BackIcon from '../../../assets/image/reuse/arrow_back.png';
 
-export default function BackModal({setModal}: BackModalProps) {
+export default function CloseModalButton({setModal}: BackModalProps) {
   const onClickCloseModal = () => {
     setModal(false);
   };
 
   return (
-    <BackModalWrapper>
+    <CloseModalButtonContainer>
       <TouchableOpacity onPress={onClickCloseModal}>
         <BackImage source={BackIcon} />
       </TouchableOpacity>
-    </BackModalWrapper>
+    </CloseModalButtonContainer>
   );
 }

@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import Search from '../../reuse/input/Search';
 import {
   SearchContainer,
-  Test,
+  SearchForm,
 } from '../../../styles/layout/location/Location.style';
 import {
   BranchData,
   LocationSearchProps,
 } from '../../../interfaces/Location.interface';
-import BackModal from '../../reuse/modal/BackModal';
+import CloseModalButton from '../../reuse/button/CloseModalButton';
 import Modal from 'react-native-modal';
 import SearchBranchList from './SearchBranchList';
 
@@ -85,17 +85,17 @@ export default function LoactionSearch({
       animationIn="slideInRight"
       animationOut="slideOutLeft"
       deviceWidth={1}>
-      <SearchContainer>
-        <Test>
-          <BackModal setModal={setModal} />
+      <SearchForm>
+        <SearchContainer>
+          <CloseModalButton setModal={setModal} />
           <Search placeholder="포토부스, 주소 검색" setSearch={setSearch} />
           <SearchBranchList
             data={resultData}
             setLocation={setLocation}
             setModal={setModal}
           />
-        </Test>
-      </SearchContainer>
+        </SearchContainer>
+      </SearchForm>
     </Modal>
   );
 }

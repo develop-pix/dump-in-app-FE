@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const BackModalWrapper = styled.View`
+export const CloseModalButtonContainer = styled.View`
   display: flex;
   justify-content: center;
   width: 100%;

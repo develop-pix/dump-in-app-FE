@@ -1,6 +1,6 @@
 import React from 'react';
-import BranchForm from '../components/location/branch/BranchForm';
 import {BranchContainer} from '../styles/layout/branch/Branch';
+import BranchForm from '../components/branch/BranchForm';
 
 export default function Branch() {
   return (

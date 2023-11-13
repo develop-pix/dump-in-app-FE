@@ -1,10 +1,17 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {BranchForm, BranchScrollView} from '../../styles/layout/branch/Branch';
+import BranchLocation from './BranchLocation';
+import BranchInfo from './BranchInfo';
+import BranchOfficial from './BranchOfficial';
 
 export default function Branch() {
   return (
-    <View>
-      <Text>Branch 페이지</Text>
-    </View>
+    <BranchScrollView>
+      <BranchForm>
+        <BranchLocation />
+        <BranchInfo />
+        <BranchOfficial />
+      </BranchForm>
+    </BranchScrollView>
   );
 }

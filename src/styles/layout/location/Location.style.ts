@@ -2,12 +2,12 @@ import styled from 'styled-components/native';
 import {colors, fontSize, fontWeight} from '../../base/Variable';
 
 /* LocationSearch */
-export const SearchContainer = styled.SafeAreaView`
+export const SearchForm = styled.SafeAreaView`
   flex: 1;
   background-color: ${colors.fourth_grey};
 `;
 
-export const Test = styled.View`
+export const SearchContainer = styled.View`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;

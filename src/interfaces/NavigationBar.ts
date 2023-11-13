@@ -7,7 +7,7 @@ export type RootStackParam = {
 };
 
 export interface NavigationBarListItemProps {
-  screen: string;
+  screen: string[];
   selectedScreen: string;
   handleListClick: (screen: string) => void;
 }

@@ -5,3 +5,8 @@ export interface FilterButtonProps {
   borderColor: string;
   textColor: string;
 }
+
+export interface FavortiteButtonProps {
+  favorite: boolean;
+  setFavorite: React.Dispatch<React.SetStateAction<boolean>>;
+}
