@@ -22,9 +22,10 @@ export default function SearchBranchList({
                 key={branch.branchID}
                 branchName={branch.branchName}
                 distance={branch.distance}
-                location={branch.location}
+                location={branch.address}
                 setLocation={setLocation}
                 setModal={setModal}
+                branchID={branch.branchID}
               />
             );
           })}

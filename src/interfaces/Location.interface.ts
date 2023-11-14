@@ -19,7 +19,7 @@ export interface BranchData {
   branchID: number;
   branchName: string;
   distance: string;
-  location: string;
+  address: string;
 }
 
 export interface BranchListProps {
@@ -28,4 +28,5 @@ export interface BranchListProps {
   location: string;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  branchID: number;
 }

@@ -10,21 +10,23 @@ import {
 } from '../../styles/layout/branch/Branch';
 import LocationImage from '../../assets/image/reuse/location_dark.png';
 import ClockImage from '../../assets/image/reuse/clock.png';
+import {BranchDescriptionProps} from '../../interfaces/Branch.interface';
 
-export default function BranchDescription() {
+export default function BranchDescription({
+  address,
+  open,
+}: BranchDescriptionProps) {
   return (
     <BranchDescriptionContainer>
       <SubTitleText>INFO</SubTitleText>
       <BranchDesc>
         <DescContainer>
           <LocationIcon source={LocationImage} />
-          <DescText>
-            서울 마포구 양화로 18길 15 1층 (동교동)321 321 312 32132312312
-          </DescText>
+          <DescText>{address}</DescText>
         </DescContainer>
         <DescContainer>
           <ClockIcon source={ClockImage} />
-          <DescText> 24시간 영업</DescText>
+          <DescText>{open}</DescText>
         </DescContainer>
       </BranchDesc>
     </BranchDescriptionContainer>

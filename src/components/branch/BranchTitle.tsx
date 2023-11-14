@@ -8,17 +8,24 @@ import {
   TitleContainer,
 } from '../../styles/layout/branch/Branch';
 import FavoirteButton from '../reuse/button/FavoritetButton';
+import {BranchTitleProps} from '../../interfaces/Branch.interface';
 
-export default function BranchTitle() {
-  const [favorite, setFavorite] = useState<boolean>(false);
+export default function BranchTitle({
+  photoboothName,
+  branchName,
+  branchHashtag,
+  myBranch,
+}: BranchTitleProps) {
+  const [favorite, setFavorite] = useState<boolean>(myBranch);
+  branchHashtag.unshift(' ');
   return (
     <BranchTitleContainer>
       <TitleContainer>
         <BranchNameContainer>
-          <PhotoboothName>포토그레이</PhotoboothName>
-          <BranchName>연희중앙점</BranchName>
+          <PhotoboothName>{photoboothName}</PhotoboothName>
+          <BranchName>{branchName}</BranchName>
         </BranchNameContainer>
-        <Hashtags>#레드프레임 #컨셉사진 #레드</Hashtags>
+        <Hashtags>{branchHashtag.join(' #')}</Hashtags>
       </TitleContainer>
       <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
     </BranchTitleContainer>

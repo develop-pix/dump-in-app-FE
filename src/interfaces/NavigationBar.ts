@@ -3,7 +3,7 @@ export type RootStackParam = {
   Location: undefined;
   Category: undefined;
   MyPage: undefined;
-  Branch: undefined;
+  Branch: {branchID: number};
 };
 
 export interface NavigationBarListItemProps {
@@ -11,3 +11,9 @@ export interface NavigationBarListItemProps {
   selectedScreen: string;
   handleListClick: (screen: string) => void;
 }
+
+export type BranchParamList = {
+  branchType: {
+    branchID: number;
+  };
+};

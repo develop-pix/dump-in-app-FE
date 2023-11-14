@@ -19,7 +19,11 @@ const App = () => {
         <Stack.Screen name="Location" component={Location} />
         <Stack.Screen name="Category" component={Category} />
         <Stack.Screen name="MyPage" component={MyPage} />
-        <Stack.Screen name="Branch" component={Branch} />
+        <Stack.Screen
+          name="Branch"
+          component={Branch}
+          initialParams={{branchID: 0}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -20,13 +20,14 @@ export default function BranchList({
   location,
   setLocation,
   setModal,
+  branchID,
 }: BranchListProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
   const onSelectLocation = () => {
     setLocation(location);
     setModal(false);
-    navigation.navigate('Branch');
+    navigation.navigate('Branch', {branchID: branchID});
   };
   return (
     <BranchListContainer onPress={onSelectLocation}>
