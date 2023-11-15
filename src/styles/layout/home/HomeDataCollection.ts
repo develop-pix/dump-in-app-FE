@@ -6,7 +6,6 @@ export const CollectContainer = styled.View`
 
 export const CollectionScrollView = styled.ScrollView.attrs({
   contentContainerStyle: {paddingBottom: 100},
-  bounces: false, // 아이폰 바운스 효과 제거
 })``;
 
 export const UpScrollImageBox = styled.TouchableOpacity`
