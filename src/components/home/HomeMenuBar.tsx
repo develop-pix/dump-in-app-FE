@@ -9,7 +9,7 @@ import {
   HomeMunuBarIcon,
 } from '../../styles/layout/home/HomeMenuBar';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
-import FilterForm from '../Filter/FilterForm';
+import FilterForm from './HomeFilterModalForm';
 import {TouchableOpacity} from 'react-native';
 
 export default function HomeMenuBar({

@@ -7,17 +7,17 @@ export const FilterFormContainer = styled.View`
 `;
 
 export const FilterFormBody = styled.View`
-  height: 95%;
+  height: 92%;
   background-color: ${colors.third_grey};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 20px;
 `;
 
 export const FilterFormHeader = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin: 10px 0px 0px;
 `;
 
 export const FilterFormTitle = styled.Text`
@@ -31,18 +31,21 @@ export const FilterFormTitle = styled.Text`
 export const CloseButton = styled.TouchableOpacity``;
 
 export const CloseButtonImage = styled.Image`
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+`;
+
+export const FilterOptionContainer = styled.View`
+  padding: 10px 20px;
 `;
 
 export const FilterButtonBox = styled.View`
   flex-direction: row;
-  align-items: center;
-  flex: 1;
   justify-content: space-between;
-  margin-top: 60px;
+  margin: 20px 0px;
+  padding: 20px 10px;
 `;
 
 export const Margin = styled.View`
-  margin-vertical: 20px;
+  margin-vertical: 15px;
 `;

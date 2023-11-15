@@ -4,6 +4,7 @@ export const HomeMunuBarContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: black;
+  height: 8%;
   padding: 15px;
 `;
 

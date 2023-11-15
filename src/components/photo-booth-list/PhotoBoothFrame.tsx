@@ -12,17 +12,22 @@ import {
   LocationIcon,
   PhotoBoothName,
 } from '../../styles/layout/photo-booth-list/PhotoBoothFrame';
+import {colors} from '../../styles/base/Variable';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
   return (
     <PhotoBoothFrameContainer>
       <FrameImage source={{uri: data['repersentative-image']}} />
       <LinearGradient
-        colors={['transparent', 'black']}
-        start={{x: 0, y: 0}}
-        end={{x: 0, y: 1}}
-        locations={[0.7, 1]}
-        style={{position: 'absolute', top: 0, bottom: 0, left: 0, right: 0}}
+        colors={['transparent', colors.black]}
+        locations={[0.1, 1]}
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 130,
+        }}
       />
 
       {data['my-branch'] && <TagImage source={PickImage} />}
