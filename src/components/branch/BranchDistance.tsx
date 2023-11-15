@@ -3,7 +3,7 @@ import {
   BranchDistanceContainer,
   BranchDistanceForm,
   DistanceText,
-} from '../../styles/layout/branch/Branch';
+} from '../../styles/layout/branch/Branch.style';
 
 export default function BranchDistance() {
   return (

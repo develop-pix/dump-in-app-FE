@@ -6,11 +6,11 @@ import {
   DescContainer,
   DescText,
   LocationIcon,
-  SubTitleText,
-} from '../../styles/layout/branch/Branch';
+} from '../../styles/layout/branch/Branch.style';
 import LocationImage from '../../assets/image/reuse/location_dark.png';
 import ClockImage from '../../assets/image/reuse/clock.png';
 import {BranchDescriptionProps} from '../../interfaces/Branch.interface';
+import {SubTitleText} from '../../styles/layout/reuse/text/Text.style';
 
 export default function BranchDescription({
   address,

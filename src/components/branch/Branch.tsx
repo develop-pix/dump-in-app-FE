@@ -1,11 +1,16 @@
 import React from 'react';
-import {BranchForm, BranchScrollView} from '../../styles/layout/branch/Branch';
+import {
+  BranchForm,
+  BranchScrollView,
+} from '../../styles/layout/branch/Branch.style';
 import BranchLocation from './BranchLocation';
 import BranchInfo from './BranchInfo';
-import BranchOfficial from './BranchOfficial';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {BranchParamList} from '../../interfaces/NavigationBar';
 import {BranchData} from '../../interfaces/Branch.interface';
+
+import PhotoDump from '../reuse/photo-dump/PhotoDump';
+import OfficialImages from '../reuse/official-images/OfficialImages';
 
 export default function Branch() {
   const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
@@ -148,7 +153,7 @@ export default function Branch() {
     },
     {
       branchID: 6,
-      branchName: '???점',
+      branchName: 'abc점',
       branchHashtag: ['일상', '가족', '우정샷', '기타'],
       photoBoothName: 'Test',
       geolocation: [1234, 5678],
@@ -244,7 +249,8 @@ export default function Branch() {
                 open={data.open}
                 myBranch={data.myBranch}
               />
-              <BranchOfficial />
+              <OfficialImages />
+              <PhotoDump />
             </BranchForm>
           );
         }

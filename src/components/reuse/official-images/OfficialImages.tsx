@@ -1,20 +1,20 @@
 import React from 'react';
+import TempImage from '../../../assets/image/dummy/img_official.png';
 import {
-  BranchOfficialContainer,
   OfficialContainer,
+  SubTitleContainer,
   OfficialImage,
   OfficialImageWrapper,
   OfficialImagesContainer,
-  SubTitleText,
-} from '../../styles/layout/branch/Branch';
-import TempImage from '../../assets/image/dummy/img_official.png';
+} from '../../../styles/layout/reuse/offcial-images/OfficialImages.style';
+import {SubTitleText} from '../../../styles/layout/reuse/text/Text.style';
 
-export default function BranchOfficial() {
+export default function OfficialImages() {
   return (
-    <BranchOfficialContainer>
-      <OfficialContainer>
+    <OfficialContainer>
+      <SubTitleContainer>
         <SubTitleText>OFFICIAL</SubTitleText>
-      </OfficialContainer>
+      </SubTitleContainer>
       <OfficialImagesContainer>
         <OfficialImageWrapper>
           <OfficialImage source={TempImage} />
@@ -29,6 +29,6 @@ export default function BranchOfficial() {
           <OfficialImage source={TempImage} />
         </OfficialImageWrapper>
       </OfficialImagesContainer>
-    </BranchOfficialContainer>
+    </OfficialContainer>
   );
 }

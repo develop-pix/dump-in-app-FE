@@ -125,14 +125,6 @@ export const BranchDescriptionContainer = styled.View`
   gap: 10px;
 `;
 
-// 글씨체 지정 필요함 - Montserrat
-export const SubTitleText = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.T2};
-  font-weight: ${fontWeight.SB};
-  letter-spacing: 3px;
-`;
-
 export const BranchDesc = styled.View`
   width: 100%;
   background-color: ${colors.fourth_grey};
@@ -167,36 +159,4 @@ export const DescText = styled.Text.attrs({
   color: ${colors.second_grey};
   font-size: ${fontSize.B2};
   font-weight: ${fontWeight.M};
-`;
-
-/* BranchOfficial */
-
-export const BranchOfficialContainer = styled.View`
-  width: 100%;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`;
-
-export const OfficialContainer = styled.View`
-  width: 90%;
-`;
-
-export const OfficialImagesContainer = styled.View`
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 11px;
-  flex-wrap: wrap;
-`;
-
-export const OfficialImageWrapper = styled.View`
-  width: 48%;
-  aspect-ratio: 0.666;
-`;
-
-export const OfficialImage = styled.Image`
-  width: 100%;
-  border-radius: 10px;
 `;

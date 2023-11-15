@@ -6,9 +6,10 @@ import {
   Hashtags,
   PhotoboothName,
   TitleContainer,
-} from '../../styles/layout/branch/Branch';
+} from '../../styles/layout/branch/Branch.style';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {BranchTitleProps} from '../../interfaces/Branch.interface';
+import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
 
 export default function BranchTitle({
   photoboothName,
@@ -17,7 +18,7 @@ export default function BranchTitle({
   myBranch,
 }: BranchTitleProps) {
   const [favorite, setFavorite] = useState<boolean>(myBranch);
-  branchHashtag.unshift(' ');
+
   return (
     <BranchTitleContainer>
       <TitleContainer>
@@ -25,7 +26,9 @@ export default function BranchTitle({
           <PhotoboothName>{photoboothName}</PhotoboothName>
           <BranchName>{branchName}</BranchName>
         </BranchNameContainer>
-        <Hashtags>{branchHashtag.join(' #')}</Hashtags>
+        <Hashtags>
+          {TagsArrayToHashTagArrayForm(branchHashtag).join(' ')}
+        </Hashtags>
       </TitleContainer>
       <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
     </BranchTitleContainer>
