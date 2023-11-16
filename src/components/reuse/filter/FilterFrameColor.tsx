@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {frameColors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
@@ -60,28 +60,3 @@ export default function FilterFrameColor({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  colorContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-  },
-  colorButton: {
-    width: 36,
-    height: 36,
-    margin: 5,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-  },
-  checkIcon: {
-    position: 'absolute',
-    width: 24,
-    height: 24,
-    top: '50%',
-    left: '50%',
-    transform: [{translateX: -12}, {translateY: -12}],
-  },
-});

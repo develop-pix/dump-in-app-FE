@@ -45,12 +45,12 @@ export default function NavigationBar() {
   return (
     <NavigationBarContainer>
       <NavigationBarListItem
-        screen="Home"
+        screen={['Home']}
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
-        screen="Location"
+        screen={['Location', 'Branch']}
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />
@@ -59,12 +59,12 @@ export default function NavigationBar() {
       </CameraImageBox>
 
       <NavigationBarListItem
-        screen="Category"
+        screen={['Category']}
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
-        screen="MyPage"
+        screen={['MyPage']}
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />

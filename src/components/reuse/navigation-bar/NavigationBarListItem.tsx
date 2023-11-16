@@ -13,18 +13,20 @@ import {
 } from '../../../styles/layout/navigation-bar/NavigationBarItem';
 import {NavigationBarListItemProps} from '../../../interfaces/NavigationBar';
 
-const imageMap: Record<string, any> = {
+const imageMap: Record<string, HTMLImageElement> = {
   Home: HomeImage,
   Location: LocationImage,
   Category: CategoryImage,
   MyPage: MyPageImage,
+  Branch: LocationImage,
 };
 
-const clickImageMap: Record<string, any> = {
+const clickImageMap: Record<string, HTMLImageElement> = {
   Home: ClickHomeImage,
   Location: ClickLocationImage,
   Category: ClickCategoryImage,
   MyPage: ClickMyPageImage,
+  Branch: ClickLocationImage,
 };
 
 export default function NavigationBarListItem({
@@ -33,10 +35,14 @@ export default function NavigationBarListItem({
   handleListClick,
 }: NavigationBarListItemProps) {
   const imageSource =
-    selectedScreen === screen ? clickImageMap[screen] : imageMap[screen];
+    screen.findIndex(index => index === selectedScreen) !== -1
+      ? clickImageMap[
+          screen[screen.findIndex(index => index === selectedScreen)]
+        ]
+      : imageMap[screen[0]];
 
   return (
-    <NavigationBarListItemContainer onPress={() => handleListClick(screen)}>
+    <NavigationBarListItemContainer onPress={() => handleListClick(screen[0])}>
       <NavigationImage source={imageSource} resizeMode="contain" />
     </NavigationBarListItemContainer>
   );

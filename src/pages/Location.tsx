@@ -1,22 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import styled from 'styled-components/native';
-import NavigationBar from '../components/reuse/navigation-bar/NavigationBar';
-
-const SafeContainer = styled(SafeAreaView)`
-  flex: 1;
-  justify-content: space-between;
-`;
-
-const LocationText = styled(Text)`
-  text-align: center;
-`;
+import {LocationContainer} from '../styles/layout/location/Map.style';
+import LocationForm from '../components/location/LocationForm';
 
 export default function Location() {
   return (
-    <SafeContainer>
-      <LocationText>Location 페이지</LocationText>
-      <NavigationBar />
-    </SafeContainer>
+    <LocationContainer>
+      <LocationForm />
+    </LocationContainer>
   );
 }

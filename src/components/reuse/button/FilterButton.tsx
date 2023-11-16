@@ -1,5 +1,5 @@
 import React from 'react';
-import {FilterButtonProps} from '../../../interfaces/reuse/Button.interfaces';
+import {FilterButtonProps} from '../../../interfaces/reuse/button/Button.interfaces';
 import {
   FilterButtonContainer,
   FilterButtonText,
