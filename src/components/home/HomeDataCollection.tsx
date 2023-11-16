@@ -10,6 +10,7 @@ import {
 } from '../../styles/layout/home/HomeDataCollection.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 import {CollectionProps} from '../../interfaces/PhotoBoothList.interface';
+import NoResultPhotoBooth from './NoResultPhotoBooth';
 
 export default function HomeDataCollection() {
   // 필터 변수
@@ -27,6 +28,7 @@ export default function HomeDataCollection() {
     setFilterData(newFilterData);
     //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
 
+    // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
     setPhotoBoothData([]);
   };
 
@@ -130,12 +132,18 @@ export default function HomeDataCollection() {
         <HomeSelectedFilterOption filterData={filterData} />
       )}
 
-      <CollectionScrollView ref={scrollRef}>
-        <PhotoBoothList data={photoBoothData} />
-      </CollectionScrollView>
-      <UpScrollImageBox onPress={handleScrollToTop}>
-        <Image source={require('../../assets/image/reuse/up-scroll.png')} />
-      </UpScrollImageBox>
+      {photoBoothData.length > 0 ? (
+        <>
+          <CollectionScrollView ref={scrollRef}>
+            <PhotoBoothList data={photoBoothData} />
+          </CollectionScrollView>
+          <UpScrollImageBox onPress={handleScrollToTop}>
+            <Image source={require('../../assets/image/reuse/up-scroll.png')} />
+          </UpScrollImageBox>
+        </>
+      ) : (
+        <NoResultPhotoBooth filterData={filterData} />
+      )}
     </CollectionContainer>
   );
 }
