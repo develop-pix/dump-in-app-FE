@@ -26,8 +26,8 @@ export default function BranchList({
 
   const onSelectLocation = () => {
     setLocation(location);
-    setModal(false);
     navigation.navigate('Branch', {branchID: branchID});
+    setTimeout(() => setModal(false), 50);
   };
   return (
     <BranchListContainer onPress={onSelectLocation}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchImage from '../../../assets/image/reuse/search.png';
+import SearchImage from '../../../assets/image/reuse/search-grey.png';
 import {
   SearchButtonIcon,
   SearchInput,

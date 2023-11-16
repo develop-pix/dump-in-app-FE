@@ -27,10 +27,9 @@ export const SearchInput = styled.TextInput.attrs({
   color: ${colors.white};
 `;
 
-/* PNG 파일 색상 변경 불가능 추루 #757575 색상으로 변경 */
 export const SearchButtonIcon = styled.Image`
-  width: 40px;
-  height: 40px;
+  width: 18px;
+  height: 18px;
   margin-left: 10px;
   margin-right: 10px;
 `;

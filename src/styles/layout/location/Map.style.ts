@@ -24,9 +24,7 @@ export const InputWrapper = styled.View`
   justify-content: center;
   width: 100%;
 `;
-export const InputForm = styled.View`
-  display: flex;
-  justify-content: space-between;
+export const MapInputContainer = styled.View`
   width: 90%;
 `;
 
@@ -36,12 +34,20 @@ export const MapInputhWrapper = styled(TouchableOpacity)`
   align-items: center;
   height: 46px;
   background-color: ${colors.white};
+`;
+
+export const InputForm = styled.View`
+  display: flex;
+  height: 46px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   border: 1px solid;
   border-radius: 10px;
 `;
 
 export const BlockInput = styled.TextInput`
-  width: 100%;
   margin-left: 10px;
   color: ${colors.second_grey};
 `;

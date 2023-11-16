@@ -4,8 +4,9 @@ import {
   InputWrapper,
   MapInputhWrapper,
   InputForm,
+  MapInputContainer,
 } from '../../../styles/layout/location/Map.style';
-import SearchImage from '../../../assets/image/reuse/search.png';
+import SearchImage from '../../../assets/image/reuse/search-grey.png';
 import {MapInputProps} from '../../../interfaces/Location.interface';
 import LoactionSearch from '../search/LoactionSearch';
 import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search';
@@ -20,16 +21,18 @@ export default function MapInput({location, setLocation}: MapInputProps) {
   return (
     <>
       <InputWrapper>
-        <InputForm>
+        <MapInputContainer>
           <MapInputhWrapper activeOpacity={0.8} onPress={onClickOpenModal}>
-            <BlockInput
-              value={location}
-              editable={false}
-              selectTextOnFocus={false}
-            />
-            <SearchButtonIcon source={SearchImage} />
+            <InputForm>
+              <BlockInput
+                value={location}
+                editable={false}
+                selectTextOnFocus={false}
+              />
+              <SearchButtonIcon source={SearchImage} />
+            </InputForm>
           </MapInputhWrapper>
-        </InputForm>
+        </MapInputContainer>
       </InputWrapper>
       {modal ? (
         <LoactionSearch

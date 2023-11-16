@@ -5,6 +5,7 @@ export const CloseModalButtonContainer = styled.View`
   justify-content: center;
   width: 100%;
   height: 44px;
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
 
