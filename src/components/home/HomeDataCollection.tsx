@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {ScrollView, Image} from 'react-native';
 import PhotoBoothList from '../photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
+import HomeSelectedFilterOption from './HomeSelectedFilterOption';
 
 import {
   CollectContainer,
@@ -20,11 +21,16 @@ export default function HomeDataCollection() {
     concept: [],
   });
 
+  // const [selectedFilterOption, setSelectesFilterOption] =
+  //   useState<boolean>(false);
+
   // 필터 제출 함수
   const handleFilterSubmit = (newFilterData: FilterProps) => {
     // 필터 데이터 변경
     setFilterData(newFilterData);
     //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
+
+    // 필터 제출 후 상단에 선택한 필터 보이게 함
   };
 
   // 포토부스 지점들 데이터 임의로 생성 (데이터 종류 수정 필요)
@@ -123,6 +129,9 @@ export default function HomeDataCollection() {
         setFilterData={setFilterData}
         onFilterSubmit={handleFilterSubmit}
       />
+
+      <HomeSelectedFilterOption filterData={filterData} />
+
       <CollectionScrollView ref={scrollRef}>
         <PhotoBoothList data={photoBoothData} />
       </CollectionScrollView>
