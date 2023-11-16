@@ -3,13 +3,13 @@ import {ScrollView, Image} from 'react-native';
 import PhotoBoothList from '../photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
-
 import {
-  CollectContainer,
+  CollectionContainer,
   CollectionScrollView,
   UpScrollImageBox,
-} from '../../styles/layout/home/HomeDataCollection';
+} from '../../styles/layout/home/HomeDataCollection.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
+import {CollectionProps} from '../../interfaces/PhotoBoothList.interface';
 
 export default function HomeDataCollection() {
   // 필터 변수
@@ -21,20 +21,17 @@ export default function HomeDataCollection() {
     concept: [],
   });
 
-  // const [selectedFilterOption, setSelectesFilterOption] =
-  //   useState<boolean>(false);
-
   // 필터 제출 함수
   const handleFilterSubmit = (newFilterData: FilterProps) => {
     // 필터 데이터 변경
     setFilterData(newFilterData);
     //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
 
-    // 필터 제출 후 상단에 선택한 필터 보이게 함
+    setPhotoBoothData([]);
   };
 
   // 포토부스 지점들 데이터 임의로 생성 (데이터 종류 수정 필요)
-  const photoBoothData = [
+  const temporaryPhotoBoothData = [
     {
       'branch-name': '포토부스 혜화점',
       'repersentative-image':
@@ -105,32 +102,33 @@ export default function HomeDataCollection() {
       'my-branch': false,
       mine: false,
     },
-    {
-      'branch-name': '포토이즘 홍대점',
-      'repersentative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 3',
-      date: '2023-10-27',
-      hashtag: ['# 생일', '# 고데기 있음'],
-      'my-branch': false,
-      mine: false,
-    },
   ];
+
+  const [photoBoothData, setPhotoBoothData] = useState<CollectionProps[]>(
+    temporaryPhotoBoothData,
+  );
 
   const scrollRef = useRef<ScrollView>(null);
   const handleScrollToTop = () => {
     scrollRef.current?.scrollTo({y: 0, animated: true});
   };
 
+  // 필터 존재 여부 확인 변수
+  const hasFilterOptionData = Object.values(filterData).some(
+    value => value && (Array.isArray(value) ? value.length > 0 : true),
+  );
+
   return (
-    <CollectContainer>
+    <CollectionContainer>
       <HomeMenuBar
         filterData={filterData}
         setFilterData={setFilterData}
         onFilterSubmit={handleFilterSubmit}
       />
 
-      <HomeSelectedFilterOption filterData={filterData} />
+      {hasFilterOptionData && (
+        <HomeSelectedFilterOption filterData={filterData} />
+      )}
 
       <CollectionScrollView ref={scrollRef}>
         <PhotoBoothList data={photoBoothData} />
@@ -138,6 +136,6 @@ export default function HomeDataCollection() {
       <UpScrollImageBox onPress={handleScrollToTop}>
         <Image source={require('../../assets/image/reuse/up-scroll.png')} />
       </UpScrollImageBox>
-    </CollectContainer>
+    </CollectionContainer>
   );
 }

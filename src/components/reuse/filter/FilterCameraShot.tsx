@@ -3,12 +3,12 @@ import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface'
 import {
   FilterTitle,
   FilterContentContainer,
-} from '../../../styles/layout/reuse/filter/Filter';
+} from '../../../styles/layout/reuse/filter/Filter.style';
 import {
   CameraShotImageContainer,
   CameraShotImage,
   CameraShotImageText,
-} from '../../../styles/layout/reuse/filter/FilterCameraShot';
+} from '../../../styles/layout/reuse/filter/FilterCameraShot.style';
 import {View} from 'react-native';
 
 const availableCameraShots = [

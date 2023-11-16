@@ -7,7 +7,7 @@ import CameraImage from '../../../assets/image/navigation-bar/camera.png';
 import {
   NavigationBarContainer,
   CameraImageBox,
-} from '../../../styles/layout/navigation-bar/NavigationBar';
+} from '../../../styles/layout/navigation-bar/NavigationBar.style';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function NavigationBar() {

@@ -10,7 +10,7 @@ import ClickMyPageImage from '../../../assets/image/navigation-bar/click-mypage.
 import {
   NavigationBarListItemContainer,
   NavigationImage,
-} from '../../../styles/layout/navigation-bar/NavigationBarItem';
+} from '../../../styles/layout/navigation-bar/NavigationBarItem.style';
 import {NavigationBarListItemProps} from '../../../interfaces/NavigationBar';
 
 const imageMap: Record<string, HTMLImageElement> = {

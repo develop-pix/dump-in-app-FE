@@ -7,9 +7,9 @@ import {
   FilterIcon,
   HomeMunuBarIconsBox,
   HomeMunuBarIcon,
-} from '../../styles/layout/home/HomeMenuBar';
+} from '../../styles/layout/home/HomeMenuBar.style';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
-import FilterForm from './HomeFilterModalForm';
+import HomeFilterModalForm from './HomeFilterModalForm';
 import {TouchableOpacity} from 'react-native';
 
 export default function HomeMenuBar({
@@ -40,7 +40,7 @@ export default function HomeMenuBar({
       </HomeMunuBarIconsBox>
 
       {isFilterVisible && (
-        <FilterForm
+        <HomeFilterModalForm
           filterData={filterData}
           setFilterData={setFilterData}
           handleHideFilterModal={handleHideFilterModal}

@@ -5,7 +5,7 @@ import {
   SearchInput,
   SearchWrapper,
   Wrapper,
-} from '../../../styles/layout/reuse/input/Search';
+} from '../../../styles/layout/reuse/input/Search.style';
 import {TouchableOpacity} from 'react-native';
 import {SearchProps} from '../../../interfaces/reuse/input/Search.interface';
 

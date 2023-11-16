@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import Modal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
@@ -19,8 +19,9 @@ import {
   CloseButton,
   CloseButtonImage,
   FilterButtonBox,
-  Margin,
-} from '../../styles/layout/home/HomeFilterModalForm';
+} from '../../styles/layout/home/HomeFilterModalForm.style';
+import {MarginTop} from '../../styles/layout/reuse/Margin.style';
+import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 import {colors} from '../../styles/base/Variable';
 
 export default function HomeFilterModalForm({
@@ -29,16 +30,21 @@ export default function HomeFilterModalForm({
   handleHideFilterModal,
   onFilterSubmit,
 }: HomeFilterModalFormProps) {
+  // 모달창의 필터 변수
+  const [filterModalFilterData, setFilterModalFilterData] =
+    useState<FilterProps>(filterData);
+
   // 필터 데이터 제출 함수
   const handleFilterSubmit = () => {
-    onFilterSubmit(filterData);
+    setFilterData(filterModalFilterData);
+    onFilterSubmit(filterModalFilterData);
     // 제출 후 모달 창 닫음
     handleHideFilterModal();
   };
 
   // 필터 데이터 초기화 함수
   const handleFilterReset = () => {
-    setFilterData({
+    setFilterModalFilterData({
       geolocation: '',
       frameColor: '',
       party: 0,
@@ -82,39 +88,39 @@ export default function HomeFilterModalForm({
             />
 
             <FilterOptionContainer>
-              <Margin />
+              <MarginTop />
 
               <FilterLocation
-                filterData={filterData}
-                setFilterData={setFilterData}
+                filterData={filterModalFilterData}
+                setFilterData={setFilterModalFilterData}
               />
 
-              <Margin />
+              <MarginTop />
 
               <FilterFrameColor
-                filterData={filterData}
-                setFilterData={setFilterData}
+                filterData={filterModalFilterData}
+                setFilterData={setFilterModalFilterData}
               />
 
-              <Margin />
+              <MarginTop />
 
               <FilterParty
-                filterData={filterData}
-                setFilterData={setFilterData}
+                filterData={filterModalFilterData}
+                setFilterData={setFilterModalFilterData}
               />
 
-              <Margin />
+              <MarginTop />
 
               <FilterCameraShot
-                filterData={filterData}
-                setFilterData={setFilterData}
+                filterData={filterModalFilterData}
+                setFilterData={setFilterModalFilterData}
               />
 
-              <Margin />
+              <MarginTop />
 
               <FilterConcept
-                filterData={filterData}
-                setFilterData={setFilterData}
+                filterData={filterModalFilterData}
+                setFilterData={setFilterModalFilterData}
               />
 
               <FilterButtonBox>

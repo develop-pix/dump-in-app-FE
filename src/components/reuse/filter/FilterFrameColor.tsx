@@ -7,11 +7,11 @@ import BlackCheckImage from '../../../assets/image/filter/black-check.png';
 import {
   FilterTitle,
   FilterContentContainer,
-} from '../../../styles/layout/reuse/filter/Filter';
+} from '../../../styles/layout/reuse/filter/Filter.style';
 import {
   FrameColorButton,
   FrameColorCheckIcon,
-} from '../../../styles/layout/reuse/filter/FilterFrameColor';
+} from '../../../styles/layout/reuse/filter/FilterFrameColor.style';
 
 // 무지개 색상은 기타색상을 의미? -> 기타 색상을 의미하는 데이터값(string)을 따로 만들어서 서버로 보내줘야함
 const availableColors = Object.values(frameColors);
