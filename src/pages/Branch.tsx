@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {BranchContainer} from '../styles/layout/branch/Branch.style';
+import BranchForm from '../components/branch/BranchForm';
 
 export default function Branch() {
   return (
-    <View>
-      <Text>Branch 페이지</Text>
-    </View>
+    <BranchContainer>
+      <BranchForm />
+    </BranchContainer>
   );
 }

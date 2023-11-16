@@ -1,9 +1,9 @@
 import React from 'react';
-import {FilterButtonProps} from '../../../interfaces/Button.interfaces';
+import {FilterButtonProps} from '../../../interfaces/reuse/button/Button.interfaces';
 import {
   FilterButtonContainer,
   FilterButtonText,
-} from '../../../styles/layout/reuse/button/FilterButton';
+} from '../../../styles/layout/reuse/Button/FilterButton';
 
 export const FilterButton = ({
   onPress,
