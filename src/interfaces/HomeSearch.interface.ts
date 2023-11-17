@@ -3,5 +3,5 @@ export type HomeSearchProps = {
 };
 
 export type ReviewSearchEtcProps = {
-  data: string[];
+  data: string;
 };

@@ -16,8 +16,8 @@ export default function ReviewSearchInput() {
 
   // 자동 완성 데이터
   const autoCompleteTempData: string[] = [
-    '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
-    '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
+    'testtesttesttesttesttesttesttest',
+    'testtesttesttesttesttesttesttest',
     '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
   ];
 
@@ -71,7 +71,9 @@ export default function ReviewSearchInput() {
           onSearchClick={onSearchClick}
         />
 
-        <ReviewSearchEtc data={resultData} />
+        {resultData.map((item, index) => (
+          <ReviewSearchEtc key={index} data={item} />
+        ))}
 
         <RecentSearch onRecentListClick={getSearchData} />
 

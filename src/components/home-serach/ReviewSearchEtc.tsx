@@ -1,14 +1,20 @@
-// components/ReviewSearchEtc.tsx
 import React from 'react';
-import {Text, View} from 'react-native';
 import {ReviewSearchEtcProps} from '../../interfaces/HomeSearch.interface';
+import {
+  ReviewSearchEtcContainer,
+  SearchListIcon,
+  SearchListInfo,
+  SearchListText,
+} from '../../styles/home-search/ReviewSearchEtc.style';
+import SearchResultIcon from '../../assets/image/reuse/search-result.png';
 
 export default function ReviewSearchEtc({data}: ReviewSearchEtcProps) {
   return (
-    <View style={{flexDirection: 'column'}}>
-      {data.map((item, index) => (
-        <Text key={index}>{item}</Text>
-      ))}
-    </View>
+    <ReviewSearchEtcContainer>
+      <SearchListInfo>
+        <SearchListIcon source={SearchResultIcon} />
+        <SearchListText>{data}</SearchListText>
+      </SearchListInfo>
+    </ReviewSearchEtcContainer>
   );
 }
