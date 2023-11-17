@@ -68,7 +68,7 @@ export default function ReviewSearchInput() {
         <Search
           placeholder="지역, 포토부스, 키워드로 검색"
           setSearch={setSearch}
-          onSearchClick={onSearchClick}
+          SubmitSearch={onSearchClick}
         />
 
         {resultData.map((item, index) => (

@@ -8,8 +8,7 @@ import {
 } from '../../../styles/layout/location/Map.style';
 import SearchImage from '../../../assets/image/reuse/search-grey.png';
 import {MapInputProps} from '../../../interfaces/Location.interface';
-
-import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search';
+import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
