@@ -1,10 +1,39 @@
-import {View, Text} from 'react-native';
+import React from 'react';
+import {
+  RecommendSearchContainer,
+  RecommendSearchTitle,
+  RecommendSearchContentContainer,
+  RecommendSearchButton,
+  RecommendSearchText,
+} from '../../styles/home-search/RecommendSearch.style';
+import {MarginTop} from '../../styles/layout/reuse/Margin.style';
+import {HomeSearchProps} from '../../interfaces/HomeSearch.interface';
 
-export default function RecommendSearch() {
-  // TODO: 최근 검색어 로직 구현
+export default function RecommendSearch({onRecentListClick}: HomeSearchProps) {
+  const recentSearches: string[] = [
+    '원조네컷',
+    '컨셉사진',
+    '스튜디오',
+    '앵글',
+    '클래식',
+    '이벤트',
+  ];
+
   return (
-    <View>
-      <Text style={{color: 'white'}}>추천 검색어 컴포넌트</Text>
-    </View>
+    <RecommendSearchContainer>
+      <RecommendSearchTitle>추천 검색어</RecommendSearchTitle>
+
+      <MarginTop />
+
+      <RecommendSearchContentContainer>
+        {recentSearches.map((search, index) => (
+          <RecommendSearchButton
+            key={index}
+            onPress={() => onRecentListClick(search)}>
+            <RecommendSearchText>{search}</RecommendSearchText>
+          </RecommendSearchButton>
+        ))}
+      </RecommendSearchContentContainer>
+    </RecommendSearchContainer>
   );
 }

@@ -3,7 +3,7 @@ import {HomeSelectedFilterOptionProps} from '../../interfaces/Home.interface';
 import {
   FilterOptionContainer,
   ColorBox,
-  TextBox,
+  FilterOptionTextBox,
   FilterOptionText,
 } from '../../styles/layout/home/HomeSelectedFilterOption.style';
 
@@ -19,27 +19,27 @@ export default function HomeSelectedFilterOption({
 
         if (key === 'party' && value > 0) {
           return (
-            <TextBox key={key}>
+            <FilterOptionTextBox key={key}>
               <FilterOptionText>
                 {value == 5 ? '5+' : value.toString()}
               </FilterOptionText>
-            </TextBox>
+            </FilterOptionTextBox>
           );
         }
 
         if (key === 'concept' && value.length > 0) {
           return (value as string[]).map((concept: string, index: number) => (
-            <TextBox key={`${key}-${index}`}>
+            <FilterOptionTextBox key={`${key}-${index}`}>
               <FilterOptionText>{concept}</FilterOptionText>
-            </TextBox>
+            </FilterOptionTextBox>
           ));
         }
 
         if (value && value.length > 0) {
           return (
-            <TextBox key={key}>
+            <FilterOptionTextBox key={key}>
               <FilterOptionText>{value}</FilterOptionText>
-            </TextBox>
+            </FilterOptionTextBox>
           );
         }
       })}

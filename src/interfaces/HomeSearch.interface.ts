@@ -1,6 +1,7 @@
-export interface ReviewSearchInputProps {
-  branchID: number;
-  branchName: string;
-  distance: string;
-  address: string;
-}
+export type HomeSearchProps = {
+  onRecentListClick: (search: string) => void;
+};
+
+export type ReviewSearchEtcProps = {
+  data: string[];
+};

@@ -1,43 +1,33 @@
 import React, {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Search from '../reuse/input/Search';
 import {
   ReviewSearchContainer,
   ReviewSearchForm,
 } from '../../styles/home-search/ReviewSearch.style';
-import {ReviewSearchInputProps} from '../../interfaces/HomeSearch.interface';
 import {MarginTop} from '../../styles/layout/reuse/Margin.style';
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';
+import ReviewSearchEtc from './ReviewSearchEtc';
 
 export default function ReviewSearchInput() {
   const [search, setSearch] = useState<string>('');
-  const [resultData, setResultData] = useState<ReviewSearchInputProps[] | []>(
-    [],
-  );
+  const [resultData, setResultData] = useState<string[]>([]);
 
   // 자동 완성 데이터
-  const autoCompleteTempData: ReviewSearchInputProps[] = [
-    {
-      branchID: 1,
-      branchName: '인생네컷 동대문 현대아울렛점',
-      distance: '300m',
-      address: '서울 중구 장충단로13길 20 1층',
-    },
-    {
-      branchID: 2,
-      branchName: 'Test1',
-      distance: '119.9m',
-      address: '서울 용산구 청파로47길 11',
-    },
+  const autoCompleteTempData: string[] = [
+    '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
+    '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
+    '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
   ];
 
   const getSearchData = async (searchData: string) => {
+    // searchData를 검색 결과 페이지로 넘겨주고 이동
+
     // 나중에 API 연결
     // const result = await getLocationData(search);
     setResultData(
-      autoCompleteTempData.filter(data => {
-        return data.branchName.indexOf(searchData) === 0;
-      }),
+      autoCompleteTempData.filter(data => data.indexOf(searchData) === 0),
     );
   };
 
@@ -48,11 +38,25 @@ export default function ReviewSearchInput() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   // 검색 버튼 클릭 시 실행
-  const onSearchClick = () => {
+  const onSearchClick = async () => {
     if (search !== '') {
-      getSearchData(search); // 검색 실행
-      setSearch(''); // 검색창 비우기
+      await getSearchData(search); // 검색 실행
+
+      // 기존에 저장된 검색어
+      const loadedSearches = await AsyncStorage.getItem('searches');
+      let newSearches =
+        loadedSearches !== null ? JSON.parse(loadedSearches) : [];
+
+      // 최신 검색어 중복 방지
+      if (!newSearches.includes(search)) {
+        // 기존 검색어에 새 검색어 추가
+        newSearches = [search, ...newSearches];
+
+        setRecentSearches(newSearches); // 검색어를 상태에 저장
+        await AsyncStorage.setItem('searches', JSON.stringify(newSearches)); // 검색어를 로컬 스토리지에 저장
+      }
     }
   };
 
@@ -67,8 +71,13 @@ export default function ReviewSearchInput() {
           onSearchClick={onSearchClick}
         />
 
-        <RecentSearch />
-        <RecommendSearch />
+        <ReviewSearchEtc data={resultData} />
+
+        <RecentSearch onRecentListClick={getSearchData} />
+
+        <MarginTop />
+
+        <RecommendSearch onRecentListClick={getSearchData} />
       </ReviewSearchContainer>
     </ReviewSearchForm>
   );

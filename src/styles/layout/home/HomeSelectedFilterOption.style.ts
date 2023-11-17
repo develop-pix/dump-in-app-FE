@@ -15,7 +15,7 @@ export const ColorBox = styled.View<{backgroundColor: string}>`
   background-color: ${props => props.backgroundColor};
 `;
 
-export const TextBox = styled.View`
+export const FilterOptionTextBox = styled.View`
   padding: 4px 10px;
   background-color: ${colors.fourth_grey};
   border-radius: 6px;
