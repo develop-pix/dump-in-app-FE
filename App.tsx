@@ -6,6 +6,7 @@ import Location from './src/pages/Location';
 import Category from './src/pages/Category';
 import MyPage from './src/pages/MyPage';
 import Branch from './src/pages/Branch';
+import LocationSearch from './src/pages/LocationSearch';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const App = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Location" component={Location} />
+        <Stack.Screen name="LocationSearch" component={LocationSearch} />
         <Stack.Screen name="Category" component={Category} />
         <Stack.Screen name="MyPage" component={MyPage} />
         <Stack.Screen

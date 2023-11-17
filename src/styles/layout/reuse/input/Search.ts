@@ -6,7 +6,7 @@ export const Wrapper = styled.View`
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin: 10px 0px 20px 0px;
 `;
 
 export const SearchWrapper = styled.View`
