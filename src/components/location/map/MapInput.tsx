@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   BlockInput,
   InputWrapper,
@@ -8,39 +8,32 @@ import {
 } from '../../../styles/layout/location/Map.style';
 import SearchImage from '../../../assets/image/reuse/search-grey.png';
 import {MapInputProps} from '../../../interfaces/Location.interface';
-import LoactionSearch from '../search/LoactionSearch';
-import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search.style';
 
-export default function MapInput({location, setLocation}: MapInputProps) {
-  const [modal, setModal] = useState<boolean>(false);
+import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam} from '../../../interfaces/NavigationBar';
 
+export default function MapInput({location}: MapInputProps) {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const onClickOpenModal = () => {
-    setModal(true);
+    navigation.navigate('LocationSearch');
   };
 
   return (
-    <>
-      <InputWrapper>
-        <MapInputContainer>
-          <MapInputhWrapper activeOpacity={0.8} onPress={onClickOpenModal}>
-            <InputForm>
-              <BlockInput
-                value={location}
-                editable={false}
-                selectTextOnFocus={false}
-              />
-              <SearchButtonIcon source={SearchImage} />
-            </InputForm>
-          </MapInputhWrapper>
-        </MapInputContainer>
-      </InputWrapper>
-      {modal ? (
-        <LoactionSearch
-          location={location}
-          setLocation={setLocation}
-          setModal={setModal}
-        />
-      ) : null}
-    </>
+    <InputWrapper>
+      <MapInputContainer>
+        <MapInputhWrapper activeOpacity={0.7} onPress={onClickOpenModal}>
+          <InputForm>
+            <BlockInput
+              value={location}
+              editable={false}
+              selectTextOnFocus={false}
+            />
+            <SearchButtonIcon source={SearchImage} />
+          </InputForm>
+        </MapInputhWrapper>
+      </MapInputContainer>
+    </InputWrapper>
   );
 }

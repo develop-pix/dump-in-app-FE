@@ -12,7 +12,7 @@ import {SearchProps} from '../../../interfaces/reuse/input/Search.interface';
 export default function Search({
   placeholder,
   setSearch,
-  onSearchClick,
+  SubmitSearch,
 }: SearchProps) {
   const onChangeSearch = (str: string) => {
     setSearch(str);
@@ -22,7 +22,7 @@ export default function Search({
     <Wrapper>
       <SearchWrapper>
         <SearchInput placeholder={placeholder} onChangeText={onChangeSearch} />
-        <TouchableOpacity onPress={onSearchClick}>
+        <TouchableOpacity onPress={SubmitSearch}>
           <SearchButtonIcon source={SearchImage} />
         </TouchableOpacity>
       </SearchWrapper>

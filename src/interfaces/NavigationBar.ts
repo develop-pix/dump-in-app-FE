@@ -2,6 +2,7 @@ export type RootStackParam = {
   Home: undefined;
   HomeSearch: undefined;
   Location: undefined;
+  LocationSearch: undefined;
   Category: undefined;
   MyPage: undefined;
   Branch: {branchID: number};

@@ -1,23 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import Search from '../../reuse/input/Search';
+import Search from '../reuse/input/Search';
 import {
   SearchContainer,
   SearchForm,
-} from '../../../styles/layout/location/Location.style';
-import {
-  BranchData,
-  LocationSearchProps,
-} from '../../../interfaces/Location.interface';
-import CloseModalButton from '../../reuse/button/CloseModalButton';
-import Modal from 'react-native-modal';
+} from '../../styles/layout/location-search/Location.style';
+import {BranchData} from '../../interfaces/Location.interface';
 import SearchBranchList from './SearchBranchList';
+import {Platform} from 'react-native';
+import GoBackButton from '../reuse/button/GoBackButton';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam} from '../../interfaces/NavigationBar';
 
-export default function LoactionSearch({
-  setLocation,
-  setModal,
-}: LocationSearchProps) {
+export default function LocactionSearchForm({}) {
+  const platform = Platform.OS;
   const [search, setSearch] = useState<string>('');
   const [resultData, setResultData] = useState<BranchData[] | []>([]);
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
   const tempData: BranchData[] = [
     {
@@ -63,6 +64,7 @@ export default function LoactionSearch({
       address: '서울 용산구 청파로47길 11',
     },
   ];
+
   const getSearchData = async (searchData: string) => {
     // 나중에 API 연결
     // const result = await getLocationData(search);
@@ -72,6 +74,12 @@ export default function LoactionSearch({
       }),
     );
   };
+
+  const SearchBranch = () => {
+    // 나중에 API 연결
+    navigation.navigate('Branch', {branchID: resultData[0].branchID});
+  };
+
   useEffect(() => {
     if (search !== '') {
       getSearchData(search);
@@ -87,26 +95,18 @@ export default function LoactionSearch({
   };
 
   return (
-    <Modal
-      isVisible={true}
-      animationIn="slideInRight"
-      animationOut="slideOutLeft"
-      deviceWidth={1}>
-      <SearchForm>
-        <SearchContainer>
-          <CloseModalButton setModal={setModal} />
-          <Search
-            placeholder="포토부스, 주소 검색"
-            setSearch={setSearch}
-            onSearchClick={onSearchClick}
-          />
-          <SearchBranchList
-            data={resultData}
-            setLocation={setLocation}
-            setModal={setModal}
-          />
-        </SearchContainer>
-      </SearchForm>
-    </Modal>
+    <SearchForm>
+      <SearchContainer>
+        <GoBackButtonContainer platform={platform}>
+          <GoBackButton />
+        </GoBackButtonContainer>
+        <Search
+          placeholder="포토부스, 주소 검색"
+          setSearch={setSearch}
+          SubmitSearch={SearchBranch}
+        />
+        <SearchBranchList data={resultData} />
+      </SearchContainer>
+    </SearchForm>
   );
 }
