@@ -14,7 +14,7 @@ export default function NoResultPhotoBooth({
   filterData,
 }: HomeSelectedFilterOptionProps) {
   const onPressButton = () => {
-    // 리뷰 등록 페이지로 이동하도록 추가, filterData 데이터도 넘겨줌
+    // filterData 데이터도 넘겨주고 리뷰 등록 페이지로 이동하도록 추가, 디자인 나오면 수정
   };
 
   return (

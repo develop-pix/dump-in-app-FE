@@ -29,7 +29,11 @@ export default function HomeDataCollection() {
     //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
 
     // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
-    setPhotoBoothData([]);
+    if (photoBoothData.length === 0) {
+      setPhotoBoothData(temporaryPhotoBoothData);
+    } else {
+      setPhotoBoothData([]); // 이 부분에 초기화하고 싶은 데이터를 넣으세요.
+    }
   };
 
   // 포토부스 지점들 데이터 임의로 생성 (데이터 종류 수정 필요)

@@ -79,6 +79,13 @@ export default function LoactionSearch({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
+  // 검색 버튼 클릭 시 실행
+  const onSearchClick = () => {
+    if (search !== '') {
+      getSearchData(search);
+    }
+  };
+
   return (
     <Modal
       isVisible={true}
@@ -88,7 +95,11 @@ export default function LoactionSearch({
       <SearchForm>
         <SearchContainer>
           <CloseModalButton setModal={setModal} />
-          <Search placeholder="포토부스, 주소 검색" setSearch={setSearch} />
+          <Search
+            placeholder="포토부스, 주소 검색"
+            setSearch={setSearch}
+            onSearchClick={onSearchClick}
+          />
           <SearchBranchList
             data={resultData}
             setLocation={setLocation}
