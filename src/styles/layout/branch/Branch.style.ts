@@ -26,21 +26,6 @@ export const BranchLocationContainer = styled.View`
   background-color: ${colors.first_grey};
 `;
 
-export const GoBackButtonContainerAndroid = styled.View`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 44px;
-`;
-
-export const GoBackButtonContaineriOS = styled.View`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 44px;
-  margin-top: 40px;
-`;
-
 /* BranchDisatnace */
 export const BranchDistanceContainer = styled.View`
   position: absolute;

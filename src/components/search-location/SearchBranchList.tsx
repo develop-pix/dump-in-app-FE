@@ -3,15 +3,11 @@ import {
   ListContainer,
   SearchBranchContainer,
   SearchBranchScrollView,
-} from '../../../styles/layout/location/Location.style';
-import {SearchBranchListProps} from '../../../interfaces/Location.interface';
+} from '../../styles/layout/location-search/Location.style';
+import {SearchBranchListProps} from '../../interfaces/Location.interface';
 import BranchList from './BranchList';
 
-export default function SearchBranchList({
-  data,
-  setLocation,
-  setModal,
-}: SearchBranchListProps) {
+export default function SearchBranchList({data}: SearchBranchListProps) {
   return (
     <SearchBranchScrollView>
       <SearchBranchContainer>
@@ -22,9 +18,6 @@ export default function SearchBranchList({
                 key={branch.branchID}
                 branchName={branch.branchName}
                 distance={branch.distance}
-                location={branch.address}
-                setLocation={setLocation}
-                setModal={setModal}
                 branchID={branch.branchID}
               />
             );
