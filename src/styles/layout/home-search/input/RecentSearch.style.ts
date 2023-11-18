@@ -17,6 +17,7 @@ export const RecentSearchContentContainer = styled.View`
   justify-content: flex-start;
   gap: 8px;
   width: 335px;
+  margin-top: 15px;
 `;
 
 export const RecentSearchButton = styled.TouchableOpacity`

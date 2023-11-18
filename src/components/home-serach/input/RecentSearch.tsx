@@ -12,11 +12,13 @@ import {
   EmptySearchMessage,
 } from '../../../styles/layout/home-search/input/RecentSearch.style';
 import CloseBtnImage from '../../../assets/image/reuse/close-btn-sub.png';
-import {MarginTop} from '../../../styles/layout/reuse/Margin.style';
 import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
+import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
 
 export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<RecentSearchItemProps[]>(
+    [],
+  );
 
   useEffect(() => {
     // 사용자 기기의 최근 검색어를 불러옴
@@ -42,20 +44,20 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
     <RecentSearchContainer>
       <RecentSearchTitle>최근 검색어</RecentSearchTitle>
 
-      <MarginTop />
-
       <RecentSearchContentContainer>
         {recentSearches.length > 0 ? (
-          recentSearches.map((search, index) => (
-            <RecentSearchButton
-              key={index}
-              onPress={() => onRecentListClick(search)}>
-              <RecentSearchText>{search}</RecentSearchText>
-              <CloseButton onPress={() => onDelete(index)}>
-                <CloseButtonIcon source={CloseBtnImage} />
-              </CloseButton>
-            </RecentSearchButton>
-          ))
+          recentSearches.map(
+            (searchItem: RecentSearchItemProps, index: number) => (
+              <RecentSearchButton
+                key={searchItem.search}
+                onPress={() => onRecentListClick(searchItem.search)}>
+                <RecentSearchText>{searchItem.search}</RecentSearchText>
+                <CloseButton onPress={() => onDelete(index)}>
+                  <CloseButtonIcon source={CloseBtnImage} />
+                </CloseButton>
+              </RecentSearchButton>
+            ),
+          )
         ) : (
           <EmptySearchMessageContainer>
             <EmptySearchMessage>최근 검색어가 없습니다.</EmptySearchMessage>

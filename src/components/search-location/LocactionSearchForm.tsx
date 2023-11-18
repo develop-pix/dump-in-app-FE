@@ -87,13 +87,6 @@ export default function LocactionSearchForm({}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
-  // 검색 버튼 클릭 시 실행
-  const onSearchClick = () => {
-    if (search !== '') {
-      getSearchData(search);
-    }
-  };
-
   return (
     <SearchForm>
       <SearchContainer>
@@ -102,6 +95,7 @@ export default function LocactionSearchForm({}) {
         </GoBackButtonContainer>
         <Search
           placeholder="포토부스, 주소 검색"
+          search={search}
           setSearch={setSearch}
           SubmitSearch={SearchBranch}
         />

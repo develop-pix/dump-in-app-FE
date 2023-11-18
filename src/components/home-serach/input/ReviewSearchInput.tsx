@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Search from '../../reuse/input/Search';
 import {
   ReviewSearchContainer,
   ReviewSearchForm,
 } from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
-import {MarginTop} from '../../../styles/layout/reuse/Margin.style';
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';
 import {EventDataProps} from '../../../interfaces/HomeSearch.interface';
 import {CollectionProps} from '../../../interfaces/PhotoBoothList.interface';
 import SearchResult from '../search-result/SearchResult';
+import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
 
 export default function ReviewSearchInput() {
   const [search, setSearch] = useState<string>('');
@@ -94,32 +94,48 @@ export default function ReviewSearchInput() {
     setShowSearchResult(true);
   };
 
-  useEffect(() => {
-    if (search !== '') {
-      getSearchData(search);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
-
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   // 검색 버튼 클릭 시 실행
   const onSearchClick = async () => {
     if (search !== '') {
       await getSearchData(search); // 검색 실행
 
       // 기존에 저장된 검색어
-      const loadedSearches = await AsyncStorage.getItem('searches');
-      let newSearches =
+      let loadedSearches = await AsyncStorage.getItem('searches');
+      let newSearches: RecentSearchItemProps[] =
         loadedSearches !== null ? JSON.parse(loadedSearches) : [];
 
       // 최신 검색어 중복 방지
-      if (!newSearches.includes(search)) {
-        // 기존 검색어에 새 검색어 추가
-        newSearches = [search, ...newSearches];
-
-        setRecentSearches(newSearches); // 검색어를 상태에 저장
-        await AsyncStorage.setItem('searches', JSON.stringify(newSearches)); // 검색어를 로컬 스토리지에 저장
+      const existingSearchIndex = newSearches.findIndex(
+        (item: RecentSearchItemProps) => item.search === search,
+      );
+      if (existingSearchIndex > -1) {
+        // 저장되어있는 검색어를 다시 검색하면 order를 최댓값으로 설정
+        newSearches[existingSearchIndex].order =
+          Math.max(
+            ...newSearches.map((item: RecentSearchItemProps) => item.order),
+          ) + 1;
+      } else {
+        // 검색어 추가
+        newSearches.push({
+          search,
+          order:
+            newSearches.length > 0
+              ? Math.max(
+                  ...newSearches.map(
+                    (item: RecentSearchItemProps) => item.order,
+                  ),
+                ) + 1
+              : 1,
+        });
       }
+
+      // 최근 입력 순으로 정렬
+      newSearches.sort(
+        (a: RecentSearchItemProps, b: RecentSearchItemProps) =>
+          b.order - a.order,
+      );
+
+      await AsyncStorage.setItem('searches', JSON.stringify(newSearches)); // 검색어 저장
     }
   };
 
@@ -142,7 +158,6 @@ export default function ReviewSearchInput() {
         ) : (
           <>
             <RecentSearch onRecentListClick={getSearchData} />
-            <MarginTop />
             <RecommendSearch onRecentListClick={getSearchData} />
           </>
         )}

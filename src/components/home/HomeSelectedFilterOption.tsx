@@ -21,7 +21,7 @@ export default function HomeSelectedFilterOption({
           return (
             <FilterOptionTextBox key={key}>
               <FilterOptionText>
-                {value == 5 ? '5+' : value.toString()}
+                {value === 5 ? '5+' : value.toString()}
               </FilterOptionText>
             </FilterOptionTextBox>
           );

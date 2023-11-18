@@ -20,7 +20,6 @@ import {
   CloseButtonImage,
   FilterButtonBox,
 } from '../../styles/layout/home/HomeFilterModalForm.style';
-import {MarginTop} from '../../styles/layout/reuse/Margin.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 import {colors} from '../../styles/base/Variable';
 
@@ -77,46 +76,36 @@ export default function HomeFilterModalForm({
           <ScrollView>
             <LinearGradient
               colors={['transparent', colors.black]}
-              locations={[0.1, 0.4]}
+              locations={[0.2, 0.3]}
               style={{
                 position: 'absolute',
                 left: 0,
                 right: 0,
-                bottom: 0,
-                height: 130,
+                bottom: -400,
+                height: 720,
               }}
             />
 
             <FilterOptionContainer>
-              <MarginTop />
-
               <FilterLocation
                 filterData={filterModalFilterData}
                 setFilterData={setFilterModalFilterData}
               />
-
-              <MarginTop />
 
               <FilterFrameColor
                 filterData={filterModalFilterData}
                 setFilterData={setFilterModalFilterData}
               />
 
-              <MarginTop />
-
               <FilterParty
                 filterData={filterModalFilterData}
                 setFilterData={setFilterModalFilterData}
               />
 
-              <MarginTop />
-
               <FilterCameraShot
                 filterData={filterModalFilterData}
                 setFilterData={setFilterModalFilterData}
               />
-
-              <MarginTop />
 
               <FilterConcept
                 filterData={filterModalFilterData}

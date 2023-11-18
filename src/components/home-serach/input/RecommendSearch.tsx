@@ -6,7 +6,6 @@ import {
   RecommendSearchButton,
   RecommendSearchText,
 } from '../../../styles/layout/home-search/input/RecommendSearch.style';
-import {MarginTop} from '../../../styles/layout/reuse/Margin.style';
 import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 
 export default function RecommendSearch({onRecentListClick}: HomeSearchProps) {
@@ -22,8 +21,6 @@ export default function RecommendSearch({onRecentListClick}: HomeSearchProps) {
   return (
     <RecommendSearchContainer>
       <RecommendSearchTitle>추천 검색어</RecommendSearchTitle>
-
-      <MarginTop />
 
       <RecommendSearchContentContainer>
         {recentSearches.map((search, index) => (
