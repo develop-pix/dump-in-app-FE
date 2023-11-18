@@ -10,6 +10,9 @@ import renderer from 'react-test-renderer';
 
 jest.mock('react-native-modal', () => 'react-native-modal');
 jest.mock('react-native-linear-gradient', () => 'react-native-linear-gradient');
+jest.mock('@react-native-async-storage/async-storage', () =>
+  require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+);
 
 it('renders correctly', () => {
   renderer.create(<App />);
