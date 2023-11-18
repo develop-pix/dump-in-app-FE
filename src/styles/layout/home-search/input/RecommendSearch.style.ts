@@ -3,6 +3,7 @@ import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
 export const RecommendSearchContainer = styled.View`
   padding: 24px 20px 0px 20px;
+  margin-top: 15px;
 `;
 
 export const RecommendSearchTitle = styled.Text`
@@ -17,6 +18,7 @@ export const RecommendSearchContentContainer = styled.View`
   justify-content: flex-start;
   gap: 8px;
   width: 335px;
+  margin-top: 15px;
 `;
 
 export const RecommendSearchButton = styled.TouchableOpacity`

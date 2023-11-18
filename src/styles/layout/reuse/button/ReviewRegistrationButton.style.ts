@@ -10,6 +10,7 @@ export const ReviewRegistrationButtonContainer = styled.TouchableOpacity`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 `;
 
 export const ReviewRegistrationButtonText = styled.Text`

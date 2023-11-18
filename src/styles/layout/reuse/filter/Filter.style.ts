@@ -14,6 +14,7 @@ export const FilterContentContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  margin-bottom: 15px;
 `;
 
 // 필터 텍스트 버튼 스타일 ex) 지역, 인원, 컨셉, 소품 버튼

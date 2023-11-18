@@ -24,3 +24,8 @@ export interface EventResultProps {
   searchData: string;
   data: EventDataProps;
 }
+
+export interface RecentSearchItemProps {
+  search: string;
+  order: number;
+}
