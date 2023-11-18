@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../base/Variable';
+import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
 export const RecentSearchContainer = styled.View`
   padding: 24px 20px 0px 20px;
@@ -43,4 +43,16 @@ export const CloseButtonIcon = styled.Image`
   width: 20px;
   height: 20px;
   margin-top: 2px;
+`;
+
+export const EmptySearchMessageContainer = styled.View`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+export const EmptySearchMessage = styled.Text`
+  color: ${colors.first_grey};
+  font-size: ${fontSize.H3};
+  font-weight: ${fontWeight.M};
 `;

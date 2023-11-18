@@ -8,10 +8,12 @@ import {
   RecentSearchText,
   CloseButton,
   CloseButtonIcon,
-} from '../../styles/home-search/RecentSearch.style';
-import CloseBtnImage from '../../assets/image/reuse/close-btn-sub.png';
-import {MarginTop} from '../../styles/layout/reuse/Margin.style';
-import {HomeSearchProps} from '../../interfaces/HomeSearch.interface';
+  EmptySearchMessageContainer,
+  EmptySearchMessage,
+} from '../../../styles/layout/home-search/input/RecentSearch.style';
+import CloseBtnImage from '../../../assets/image/reuse/close-btn-sub.png';
+import {MarginTop} from '../../../styles/layout/reuse/Margin.style';
+import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 
 export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -43,16 +45,22 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
       <MarginTop />
 
       <RecentSearchContentContainer>
-        {recentSearches.map((search, index) => (
-          <RecentSearchButton
-            key={index}
-            onPress={() => onRecentListClick(search)}>
-            <RecentSearchText>{search}</RecentSearchText>
-            <CloseButton onPress={() => onDelete(index)}>
-              <CloseButtonIcon source={CloseBtnImage} />
-            </CloseButton>
-          </RecentSearchButton>
-        ))}
+        {recentSearches.length > 0 ? (
+          recentSearches.map((search, index) => (
+            <RecentSearchButton
+              key={index}
+              onPress={() => onRecentListClick(search)}>
+              <RecentSearchText>{search}</RecentSearchText>
+              <CloseButton onPress={() => onDelete(index)}>
+                <CloseButtonIcon source={CloseBtnImage} />
+              </CloseButton>
+            </RecentSearchButton>
+          ))
+        ) : (
+          <EmptySearchMessageContainer>
+            <EmptySearchMessage>최근 검색어가 없습니다.</EmptySearchMessage>
+          </EmptySearchMessageContainer>
+        )}
       </RecentSearchContentContainer>
     </RecentSearchContainer>
   );

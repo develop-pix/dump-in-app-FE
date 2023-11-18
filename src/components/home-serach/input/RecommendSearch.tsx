@@ -5,9 +5,9 @@ import {
   RecommendSearchContentContainer,
   RecommendSearchButton,
   RecommendSearchText,
-} from '../../styles/home-search/RecommendSearch.style';
-import {MarginTop} from '../../styles/layout/reuse/Margin.style';
-import {HomeSearchProps} from '../../interfaces/HomeSearch.interface';
+} from '../../../styles/layout/home-search/input/RecommendSearch.style';
+import {MarginTop} from '../../../styles/layout/reuse/Margin.style';
+import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 
 export default function RecommendSearch({onRecentListClick}: HomeSearchProps) {
   const recentSearches: string[] = [

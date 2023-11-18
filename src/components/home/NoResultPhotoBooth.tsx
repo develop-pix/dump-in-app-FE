@@ -10,6 +10,7 @@ import {MarginTop} from '../../styles/layout/reuse/Margin.style';
 import {ReviewRegistrationButton} from '../reuse/button/ReviewRegistrationButton';
 import {HomeSelectedFilterOptionProps} from '../../interfaces/Home.interface';
 
+// 결과 없는 화면은 따로 컴포넌트화 시켜는 방식으로 수정 예정
 export default function NoResultPhotoBooth({
   filterData,
 }: HomeSelectedFilterOptionProps) {
