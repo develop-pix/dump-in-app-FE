@@ -96,13 +96,6 @@ export const BranchName = styled.Text`
   font-weight: ${fontWeight.SB};
 `;
 
-export const Hashtags = styled.Text`
-  color: ${colors.yellow};
-  font-size: ${fontSize.B3};
-  font-weight: ${fontWeight.M};
-  letter-spacing: -0.5px;
-`;
-
 /* BranchInfo */
 
 export const BranchDescriptionContainer = styled.View`

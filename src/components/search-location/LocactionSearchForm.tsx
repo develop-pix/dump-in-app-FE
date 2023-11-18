@@ -8,10 +8,11 @@ import {BranchData} from '../../interfaces/Location.interface';
 import SearchBranchList from './SearchBranchList';
 import {Platform} from 'react-native';
 import GoBackButton from '../reuse/button/GoBackButton';
-import {GoBackButtonContainer} from '../../styles/layout/reuse/Button/GoBackButton.style';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import SearchNoData from '../reuse/alert/SearchNoData';
 
 export default function LocactionSearchForm({}) {
   const platform = Platform.OS;
@@ -77,7 +78,9 @@ export default function LocactionSearchForm({}) {
 
   const SearchBranch = () => {
     // 나중에 API 연결
-    navigation.navigate('Branch', {branchID: resultData[0].branchID});
+    if (search !== '' && resultData.length !== 0) {
+      navigation.navigate('Branch', {branchID: resultData[0].branchID});
+    }
   };
 
   useEffect(() => {
@@ -98,7 +101,11 @@ export default function LocactionSearchForm({}) {
           setSearch={setSearch}
           SubmitSearch={SearchBranch}
         />
-        <SearchBranchList data={resultData} />
+        {search === '' ? null : resultData.length !== 0 ? (
+          <SearchBranchList data={resultData} />
+        ) : (
+          <SearchNoData alertText="검색 결과가 없습니다." recommendText="" />
+        )}
       </SearchContainer>
     </SearchForm>
   );

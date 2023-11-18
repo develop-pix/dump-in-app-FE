@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BackButton,
   BackImage,
-} from '../../../styles/layout/reuse/Button/GoBackButton.style';
+} from '../../../styles/layout/reuse/button/GoBackButton.style';
 import BackIcon from '../../../assets/image/reuse/arrow_back.png';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
