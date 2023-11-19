@@ -4,7 +4,7 @@ import {BackModalProps} from '../../../interfaces/reuse/modal/BackModal.interfac
 import {
   BackImage,
   CloseModalButtonContainer,
-} from '../../../styles/layout/reuse/Button/CloseModalButton.style';
+} from '../../../styles/layout/reuse/button/CloseModalButton.style';
 import BackIcon from '../../../assets/image/reuse/arrow_back.png';
 
 export default function CloseModalButton({setModal}: BackModalProps) {

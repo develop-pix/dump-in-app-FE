@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/pages/Home';
+import HomeSearch from './src/pages/HomeSearch';
 import Location from './src/pages/Location';
 import Category from './src/pages/Category';
 import MyPage from './src/pages/MyPage';
@@ -17,6 +18,7 @@ const App = () => {
         initialRouteName="Home"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="HomeSearch" component={HomeSearch} />
         <Stack.Screen name="Location" component={Location} />
         <Stack.Screen name="LocationSearch" component={LocationSearch} />
         <Stack.Screen name="Category" component={Category} />

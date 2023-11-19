@@ -4,7 +4,7 @@ import {FavortiteButtonProps} from '../../../interfaces/reuse/button/Button.inte
 import {
   HeartButtonContainer,
   HeartImage,
-} from '../../../styles/layout/reuse/Button/HeartButton.style';
+} from '../../../styles/layout/reuse/button/HeartButton.style';
 import FillFavoriteIcon from '../../../assets/image/reuse/fillfavorite.png';
 import FavoriteIcon from '../../../assets/image/reuse/favorite.png';
 

@@ -8,7 +8,7 @@ import {BranchData} from '../../interfaces/Location.interface';
 import SearchBranchList from './SearchBranchList';
 import {Platform} from 'react-native';
 import GoBackButton from '../reuse/button/GoBackButton';
-import {GoBackButtonContainer} from '../../styles/layout/reuse/Button/GoBackButton.style';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
@@ -95,6 +95,7 @@ export default function LocactionSearchForm({}) {
         </GoBackButtonContainer>
         <Search
           placeholder="포토부스, 주소 검색"
+          search={search}
           setSearch={setSearch}
           SubmitSearch={SearchBranch}
         />
