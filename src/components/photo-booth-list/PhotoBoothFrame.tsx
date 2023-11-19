@@ -11,7 +11,7 @@ import {
   PhotoBoothNameContainer,
   LocationIcon,
   PhotoBoothName,
-} from '../../styles/layout/photo-booth-list/PhotoBoothFrame';
+} from '../../styles/layout/photo-booth-list/PhotoBoothFrame.style';
 import {colors} from '../../styles/base/Variable';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {

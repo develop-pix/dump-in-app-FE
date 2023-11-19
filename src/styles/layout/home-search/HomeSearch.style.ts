@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
 import {colors} from '../../base/Variable';
 
-export const PhotoBoothListContainer = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+export const HomeSearchSafeContainer = styled.SafeAreaView`
+  flex: 1;
+  justify-content: space-between;
   background-color: ${colors.black};
 `;

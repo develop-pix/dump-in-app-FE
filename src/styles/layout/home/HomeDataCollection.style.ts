@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const CollectContainer = styled.View`
+export const CollectionContainer = styled.View`
   flex: 1;
 `;
 

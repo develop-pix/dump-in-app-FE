@@ -5,3 +5,7 @@ export interface HomeMenuBarProps {
   setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
   onFilterSubmit: (newFilterData: FilterProps) => void;
 }
+
+export interface HomeSelectedFilterOptionProps {
+  filterData: FilterProps;
+}

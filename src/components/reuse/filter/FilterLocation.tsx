@@ -5,7 +5,7 @@ import {
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
-} from '../../../styles/layout/reuse/filter/Filter';
+} from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
 
 const availableLocations = [

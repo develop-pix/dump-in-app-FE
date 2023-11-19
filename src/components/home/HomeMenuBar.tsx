@@ -7,10 +7,13 @@ import {
   FilterIcon,
   HomeMunuBarIconsBox,
   HomeMunuBarIcon,
-} from '../../styles/layout/home/HomeMenuBar';
+} from '../../styles/layout/home/HomeMenuBar.style';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
-import FilterForm from './HomeFilterModalForm';
+import HomeFilterModalForm from './HomeFilterModalForm';
 import {TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam} from '../../interfaces/NavigationBar';
 
 export default function HomeMenuBar({
   filterData,
@@ -29,18 +32,26 @@ export default function HomeMenuBar({
     setFilterVisible(false);
   };
 
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+
+  const onSearchScreen = () => {
+    navigation.navigate('HomeSearch');
+  };
+
   return (
     <HomeMunuBarContainer>
       <TouchableOpacity onPress={handleShowFilterModal}>
         <FilterIcon source={FilterImage} />
       </TouchableOpacity>
       <HomeMunuBarIconsBox>
-        <HomeMunuBarIcon source={SearchImage} />
+        <TouchableOpacity onPress={onSearchScreen}>
+          <HomeMunuBarIcon source={SearchImage} />
+        </TouchableOpacity>
         <HomeMunuBarIcon source={NotificationImage} />
       </HomeMunuBarIconsBox>
 
       {isFilterVisible && (
-        <FilterForm
+        <HomeFilterModalForm
           filterData={filterData}
           setFilterData={setFilterData}
           handleHideFilterModal={handleHideFilterModal}

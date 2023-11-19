@@ -4,7 +4,7 @@ import {BranchLocationContainer} from '../../styles/layout/branch/Branch.style';
 import GoBackButton from '../reuse/button/GoBackButton';
 import BranchDistance from './BranchDistance';
 import {BranchLocationProps} from '../../interfaces/Branch.interface';
-import {GoBackButtonContainerWithSafeArea} from '../../styles/layout/reuse/button/GoBackButton.style';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
 
 export default function BranchLocation({
   geolocation,
@@ -15,9 +15,9 @@ export default function BranchLocation({
   console.log('BranchLocation-distance:' + distance);
   return (
     <BranchLocationContainer>
-      <GoBackButtonContainerWithSafeArea platform={platform}>
+      <GoBackButtonContainer platform={platform}>
         <GoBackButton />
-      </GoBackButtonContainerWithSafeArea>
+      </GoBackButtonContainer>
       <BranchDistance />
     </BranchLocationContainer>
   );

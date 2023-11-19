@@ -5,12 +5,13 @@ import {
   SearchInput,
   SearchWrapper,
   Wrapper,
-} from '../../../styles/layout/reuse/input/Search';
+} from '../../../styles/layout/reuse/input/Search.style';
 import {TouchableOpacity} from 'react-native';
 import {SearchProps} from '../../../interfaces/reuse/input/Search.interface';
 
 export default function Search({
   placeholder,
+  search,
   setSearch,
   SubmitSearch,
 }: SearchProps) {
@@ -21,7 +22,11 @@ export default function Search({
   return (
     <Wrapper>
       <SearchWrapper>
-        <SearchInput placeholder={placeholder} onChangeText={onChangeSearch} />
+        <SearchInput
+          placeholder={placeholder}
+          onChangeText={onChangeSearch}
+          value={search}
+        />
         <TouchableOpacity onPress={SubmitSearch}>
           <SearchButtonIcon source={SearchImage} />
         </TouchableOpacity>
