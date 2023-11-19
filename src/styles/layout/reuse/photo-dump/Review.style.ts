@@ -4,7 +4,7 @@ import {colors} from '../../../base/Variable';
 
 export const ReviewContainer = styled.View`
   border-radius: 10px;
-  width: ${Dimensions.get('window').width * 0.9}px;
+  width: ${Dimensions.get('window').width * 0.8}px;
   aspect-ratio: 1;
   display: flex;
   gap: 10px;

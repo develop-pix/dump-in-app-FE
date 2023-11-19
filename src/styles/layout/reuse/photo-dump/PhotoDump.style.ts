@@ -26,14 +26,14 @@ export const CarouselContainer = styled.View`
   width: 100%;
 `;
 
-export const PhotoCarusel = styled.ScrollView``;
-
 export const ReviewWrapper = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
 
 export const Reviews = styled.View`
-  width: ${Dimensions.get('window').width}px;
+  width: ${Dimensions.get('window').width * 0.8}px;
   align-items: center;
+  margin-left: ${Dimensions.get('window').width * 0.02}px;
+  margin-right: ${Dimensions.get('window').width * 0.02}px;
 `;
