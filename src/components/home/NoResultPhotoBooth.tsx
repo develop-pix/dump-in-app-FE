@@ -1,13 +1,9 @@
 import React from 'react';
-import NoResultIcon from '../../assets/image/reuse/ic_alert.png';
-import {
-  NoResultPhotoBoothContainer,
-  AlertIcon,
-  NoResultText,
-  NoResultSubText,
-} from '../../styles/layout/home/NoResultPhotoBooth.style';
+
+import {NoResultPhotoBoothContainer} from '../../styles/layout/home/NoResultPhotoBooth.style';
 import {ReviewRegistrationButton} from '../reuse/button/ReviewRegistrationButton';
 import {HomeSelectedFilterOptionProps} from '../../interfaces/Home.interface';
+import SearchNoData from '../reuse/alert/SearchNoData';
 
 // 결과 없는 화면은 따로 컴포넌트화 시켜는 방식으로 수정 예정
 export default function NoResultPhotoBooth({
@@ -19,10 +15,10 @@ export default function NoResultPhotoBooth({
 
   return (
     <NoResultPhotoBoothContainer>
-      <AlertIcon source={NoResultIcon} />
-      <NoResultText>필터 결과가 없습니다.</NoResultText>
-      <NoResultSubText>이 조건으로 내 사진을 등록해 보세요</NoResultSubText>
-
+      <SearchNoData
+        alertText="필터 결과가 없습니다."
+        recommendText="이 조건으로 내 사진을 등록해 보세요."
+      />
       <ReviewRegistrationButton onPress={onPressButton} />
     </NoResultPhotoBoothContainer>
   );

@@ -8,6 +8,7 @@ import Category from './src/pages/Category';
 import MyPage from './src/pages/MyPage';
 import Branch from './src/pages/Branch';
 import LocationSearch from './src/pages/LocationSearch';
+import ReviewDetail from './src/pages/ReviewDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,11 @@ const App = () => {
           name="Branch"
           component={Branch}
           initialParams={{branchID: 0}}
+        />
+        <Stack.Screen
+          name="ReviewDetail"
+          component={ReviewDetail}
+          initialParams={{ReviewID: 0}}
         />
       </Stack.Navigator>
     </NavigationContainer>

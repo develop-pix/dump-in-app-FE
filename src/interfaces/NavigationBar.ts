@@ -6,6 +6,7 @@ export type RootStackParam = {
   Category: undefined;
   MyPage: undefined;
   Branch: {branchID: number};
+  ReviewDetail: {reviewID: number};
 };
 
 export interface NavigationBarListItemProps {
@@ -17,5 +18,11 @@ export interface NavigationBarListItemProps {
 export type BranchParamList = {
   branchType: {
     branchID: number;
+  };
+};
+
+export type ReviewDetailParamList = {
+  reviewType: {
+    reviewID: number;
   };
 };
