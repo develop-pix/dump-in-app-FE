@@ -14,14 +14,22 @@ import {
   ReviewDescText,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function Review({
+  reviewID,
   reviewImage,
   reviewDescription,
   reviewHashtags,
 }: ReviewProps) {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const onPressReview = () => {
+    navigation.navigate('ReviewDetail', {reviewID: reviewID});
+  };
   return (
-    <ReviewContainer>
+    <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
       <ReviewImage source={{uri: reviewImage}} />
       <LinearGradient
         colors={['transparent', colors.black]}
@@ -40,9 +48,9 @@ export default function Review({
           <ReviewDescText>{reviewDescription}</ReviewDescText>
         </ReviewDescription>
         <ReviewHastags>
-          <HashtagsText>
-            {TagsArrayToHashTagArrayForm(reviewHashtags).join(' ')}
-          </HashtagsText>
+          {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
+            <HashtagsText>{tag}</HashtagsText>
+          ))}
         </ReviewHastags>
       </ReviewDescriptionContainer>
     </ReviewContainer>

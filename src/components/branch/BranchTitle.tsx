@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  BranchHashTagsContainer,
   BranchName,
   BranchNameContainer,
   BranchTitleContainer,
@@ -26,9 +27,11 @@ export default function BranchTitle({
           <PhotoboothName>{photoboothName}</PhotoboothName>
           <BranchName>{branchName}</BranchName>
         </BranchNameContainer>
-        <HashtagsText>
-          {TagsArrayToHashTagArrayForm(branchHashtag).join(' ')}
-        </HashtagsText>
+        <BranchHashTagsContainer>
+          {TagsArrayToHashTagArrayForm(branchHashtag).map(tag => (
+            <HashtagsText>{tag}</HashtagsText>
+          ))}
+        </BranchHashTagsContainer>
       </TitleContainer>
       <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
     </BranchTitleContainer>

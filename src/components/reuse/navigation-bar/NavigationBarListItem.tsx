@@ -19,6 +19,7 @@ const imageMap: Record<string, HTMLImageElement> = {
   Category: CategoryImage,
   MyPage: MyPageImage,
   Branch: LocationImage,
+  ReviewDetail: LocationImage || CategoryImage || MyPageImage,
 };
 
 const clickImageMap: Record<string, HTMLImageElement> = {
@@ -27,6 +28,7 @@ const clickImageMap: Record<string, HTMLImageElement> = {
   Category: ClickCategoryImage,
   MyPage: ClickMyPageImage,
   Branch: ClickLocationImage,
+  ReviewDetail: ClickLocationImage || ClickCategoryImage || ClickMyPageImage,
 };
 
 export default function NavigationBarListItem({

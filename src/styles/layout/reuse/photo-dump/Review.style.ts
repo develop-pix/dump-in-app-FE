@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {colors} from '../../../base/Variable';
 
-export const ReviewContainer = styled.View`
+export const ReviewContainer = styled.TouchableOpacity`
   border-radius: 10px;
   width: ${Dimensions.get('window').width * 0.8}px;
   aspect-ratio: 1;
@@ -29,4 +29,8 @@ export const ReviewDescriptionContainer = styled.View`
 
 export const ReviewDescription = styled.View``;
 
-export const ReviewHastags = styled.View``;
+export const ReviewHastags = styled.View`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;

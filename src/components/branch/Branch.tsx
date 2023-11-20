@@ -14,7 +14,6 @@ import OfficialImages from '../reuse/official-images/OfficialImages';
 
 export default function Branch() {
   const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
-  console.log(route.params.branchID);
 
   /* 임시 데이터, myBranch는 앱 로그인 할때 전부 저장? */
   const tempData: BranchData[] = [

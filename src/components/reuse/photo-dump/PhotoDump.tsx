@@ -63,10 +63,11 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
   }: {
     item: ReviewData;
   }) => (
-    <Reviews>
+    <Reviews key={item.reviewID}>
       {item.reviewID === reviewData[reviewActive].reviewID ? (
         <Animated.View style={{opacity: translateIn}}>
           <Review
+            reviewID={item.reviewID}
             reviewImage={item.representativeImage}
             reviewDescription={item.description}
             reviewHashtags={item.hashtag}
@@ -75,6 +76,7 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
       ) : (
         <Animated.View style={{opacity: translateOut}}>
           <Review
+            reviewID={item.reviewID}
             reviewImage={item.representativeImage}
             reviewDescription={item.description}
             reviewHashtags={item.hashtag}

@@ -96,6 +96,12 @@ export const BranchName = styled.Text`
   font-weight: ${fontWeight.SB};
 `;
 
+export const BranchHashTagsContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+
 /* BranchInfo */
 
 export const BranchDescriptionContainer = styled.View`
