@@ -50,7 +50,7 @@ export default function NavigationBar() {
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
-        screen={['Location', 'Branch']}
+        screen={['Location', 'Branch', 'ReviewDetail']}
         selectedScreen={selectedScreen}
         handleListClick={handleListClick}
       />

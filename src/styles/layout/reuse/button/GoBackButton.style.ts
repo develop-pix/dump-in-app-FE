@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 //platform이 ios일 경우, android일 경우, 나머지 일경우 분리
-export const GoBackButtonContainerWithSafeArea = styled.View<{
+export const GoBackButtonContainer = styled.View<{
   platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
 }>`
   display: flex;
@@ -16,7 +16,7 @@ export const GoBackButtonContainerWithSafeArea = styled.View<{
       : null};
 `;
 
-export const GoBackButtonContainer = styled.View<{
+export const GoBackButtonContainerWithSafeArea = styled.View<{
   platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
 }>`
   display: flex;

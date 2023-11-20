@@ -14,7 +14,6 @@ import OfficialImages from '../reuse/official-images/OfficialImages';
 
 export default function Branch() {
   const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
-  console.log(route.params.branchID);
 
   /* 임시 데이터, myBranch는 앱 로그인 할때 전부 저장? */
   const tempData: BranchData[] = [
@@ -32,21 +31,24 @@ export default function Branch() {
       review: [
         {
           reviewID: 1,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음'],
           description:
             '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
         },
         {
           reviewID: 8,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 35글자임',
         },
         {
           reviewID: 9,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 40글자임',
@@ -67,21 +69,24 @@ export default function Branch() {
       review: [
         {
           reviewID: 2,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음', '소품 많음'],
           description:
             '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
         },
         {
           reviewID: 10,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 45글자임',
         },
         {
           reviewID: 11,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 50글자임',
@@ -102,7 +107,8 @@ export default function Branch() {
       review: [
         {
           reviewID: 3,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['일상', '연예인', '크리스마스'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 55글자임',
@@ -123,7 +129,8 @@ export default function Branch() {
       review: [
         {
           reviewID: 4,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '소품 많음', '고데기 있음'],
           description:
             '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
@@ -144,7 +151,8 @@ export default function Branch() {
       review: [
         {
           reviewID: 5,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['이달의 프레임', '생일', '고데기 있음'],
           description:
             '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
@@ -166,28 +174,32 @@ export default function Branch() {
       review: [
         {
           reviewID: 6,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['콜라보', '커플', '고데기 있음', '앵글'],
           description:
             '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
         },
         {
           reviewID: 10,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['일상', '연예인', '크리스마스'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 55글자임',
         },
         {
           reviewID: 11,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['이달의 프레임', '생일', '고데기 있음'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 60글자임',
         },
         {
           reviewID: 12,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음', '소품 많음'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 35글자임',
@@ -208,21 +220,24 @@ export default function Branch() {
       review: [
         {
           reviewID: 7,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['무릎', '생일', '고데기 있음'],
           description:
             '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
         },
         {
           reviewID: 13,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['일상', '연예인', '크리스마스'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 55글자임',
         },
         {
           reviewID: 14,
-          representativeImage: '',
+          representativeImage:
+            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
           hashtag: ['일상', '연예인', '크리스마스'],
           description:
             '테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 테스트용 55글자임',
@@ -250,7 +265,7 @@ export default function Branch() {
                 myBranch={data.myBranch}
               />
               <OfficialImages />
-              <PhotoDump />
+              <PhotoDump reviewData={data.review} />
             </BranchForm>
           );
         }
