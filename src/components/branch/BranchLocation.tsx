@@ -4,7 +4,6 @@ import {BranchLocationContainer} from '../../styles/layout/branch/Branch.style';
 import GoBackButton from '../reuse/button/GoBackButton';
 import BranchDistance from './BranchDistance';
 import {BranchLocationProps} from '../../interfaces/Branch.interface';
-
 import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
 
 export default function BranchLocation({
