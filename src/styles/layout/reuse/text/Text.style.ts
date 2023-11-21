@@ -34,3 +34,15 @@ export const ReviewDescText = styled.Text`
   font-size: ${fontSize.H3};
   font-weight: ${fontWeight.M};
 `;
+
+export const DateText = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.B2};
+  font-weight: ${fontWeight.M};
+`;
+
+export const SeeMoreText = styled.Text`
+  color: ${colors.first_grey};
+  font-size: ${fontSize.H3};
+  font-weight: ${fontWeight.M};
+`;

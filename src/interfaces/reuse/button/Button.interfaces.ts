@@ -14,3 +14,8 @@ export interface FavortiteButtonProps {
 export interface ReviewRegistrationButtonProps {
   onPress: () => void; // 버튼 클릭 시 실행할 함수
 }
+
+export interface CloseButtonWithBranchNameProps {
+  photoboothName: string;
+  branchName: string;
+}

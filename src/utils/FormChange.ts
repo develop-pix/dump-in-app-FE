@@ -5,3 +5,9 @@ export const TagsArrayToHashTagArrayForm = (hashtags: string[]) => {
   });
   return newForm;
 };
+
+export const DateToReviewDateForm = (date: Date) => {
+  let dateForm: string = '';
+  dateForm = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+  return dateForm;
+};
