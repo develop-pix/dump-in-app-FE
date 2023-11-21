@@ -9,33 +9,36 @@ import MyPage from './src/pages/MyPage';
 import Branch from './src/pages/Branch';
 import LocationSearch from './src/pages/LocationSearch';
 import ReviewDetail from './src/pages/ReviewDetail';
+import {ScreenProvider} from './src/utils/ScreenContext';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="HomeSearch" component={HomeSearch} />
-        <Stack.Screen name="Location" component={Location} />
-        <Stack.Screen name="LocationSearch" component={LocationSearch} />
-        <Stack.Screen name="Category" component={Category} />
-        <Stack.Screen name="MyPage" component={MyPage} />
-        <Stack.Screen
-          name="Branch"
-          component={Branch}
-          initialParams={{branchID: 0}}
-        />
-        <Stack.Screen
-          name="ReviewDetail"
-          component={ReviewDetail}
-          initialParams={{ReviewID: 0}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ScreenProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="HomeSearch" component={HomeSearch} />
+          <Stack.Screen name="Location" component={Location} />
+          <Stack.Screen name="LocationSearch" component={LocationSearch} />
+          <Stack.Screen name="Category" component={Category} />
+          <Stack.Screen name="MyPage" component={MyPage} />
+          <Stack.Screen
+            name="Branch"
+            component={Branch}
+            initialParams={{branchID: 0}}
+          />
+          <Stack.Screen
+            name="ReviewDetail"
+            component={ReviewDetail}
+            initialParams={{ReviewID: 0}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ScreenProvider>
   );
 };
 

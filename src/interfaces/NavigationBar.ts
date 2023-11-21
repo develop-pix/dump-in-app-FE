@@ -1,3 +1,5 @@
+import {ReactNode} from 'react';
+
 export type RootStackParam = {
   Home: undefined;
   HomeSearch: undefined;
@@ -10,7 +12,7 @@ export type RootStackParam = {
 };
 
 export interface NavigationBarListItemProps {
-  screen: string[];
+  screen: string;
   selectedScreen: string;
   handleListClick: (screen: string) => void;
 }
@@ -26,3 +28,12 @@ export type ReviewDetailParamList = {
     reviewID: number;
   };
 };
+
+export type ScreenContextType = {
+  screen: string;
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export interface ScreenProviderProps {
+  children: ReactNode;
+}

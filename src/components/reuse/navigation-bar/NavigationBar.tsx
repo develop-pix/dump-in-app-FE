@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
@@ -9,22 +9,15 @@ import {
   CameraImageBox,
 } from '../../../styles/layout/navigation-bar/NavigationBar.style';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {useScreen} from '../../../utils/ScreenContext';
 
 export default function NavigationBar() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const {screen, setScreen} = useScreen();
 
-  const route = useRoute();
+  const handleListClick = (selectedScreen: string) => {
+    setScreen(selectedScreen);
 
-  // 현재 화면의 이름을 가져와 selectedScreen 상태로 설정
-  const [selectedScreen, setSelectedScreen] = useState<string>('');
-
-  useEffect(() => {
-    if (route.name) {
-      setSelectedScreen(route.name);
-    }
-  }, [route.name]);
-
-  const handleListClick = (screen: string) => {
     switch (screen) {
       case 'Home':
         navigation.navigate('Home');
@@ -45,13 +38,13 @@ export default function NavigationBar() {
   return (
     <NavigationBarContainer>
       <NavigationBarListItem
-        screen={['Home']}
-        selectedScreen={selectedScreen}
+        screen="Home"
+        selectedScreen={screen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
-        screen={['Location', 'Branch', 'ReviewDetail']}
-        selectedScreen={selectedScreen}
+        screen="Location"
+        selectedScreen={screen}
         handleListClick={handleListClick}
       />
       <CameraImageBox>
@@ -59,13 +52,13 @@ export default function NavigationBar() {
       </CameraImageBox>
 
       <NavigationBarListItem
-        screen={['Category']}
-        selectedScreen={selectedScreen}
+        screen="Category"
+        selectedScreen={screen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
-        screen={['MyPage']}
-        selectedScreen={selectedScreen}
+        screen="MyPage"
+        selectedScreen={screen}
         handleListClick={handleListClick}
       />
     </NavigationBarContainer>
