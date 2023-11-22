@@ -18,8 +18,6 @@ const imageMap: Record<string, HTMLImageElement> = {
   Location: LocationImage,
   Category: CategoryImage,
   MyPage: MyPageImage,
-  Branch: LocationImage,
-  ReviewDetail: LocationImage || CategoryImage || MyPageImage,
 };
 
 const clickImageMap: Record<string, HTMLImageElement> = {
@@ -27,8 +25,6 @@ const clickImageMap: Record<string, HTMLImageElement> = {
   Location: ClickLocationImage,
   Category: ClickCategoryImage,
   MyPage: ClickMyPageImage,
-  Branch: ClickLocationImage,
-  ReviewDetail: ClickLocationImage || ClickCategoryImage || ClickMyPageImage,
 };
 
 export default function NavigationBarListItem({
@@ -37,14 +33,10 @@ export default function NavigationBarListItem({
   handleListClick,
 }: NavigationBarListItemProps) {
   const imageSource =
-    screen.findIndex(index => index === selectedScreen) !== -1
-      ? clickImageMap[
-          screen[screen.findIndex(index => index === selectedScreen)]
-        ]
-      : imageMap[screen[0]];
+    screen === selectedScreen ? clickImageMap[screen] : imageMap[screen];
 
   return (
-    <NavigationBarListItemContainer onPress={() => handleListClick(screen[0])}>
+    <NavigationBarListItemContainer onPress={() => handleListClick(screen)}>
       <NavigationImage source={imageSource} resizeMode="contain" />
     </NavigationBarListItemContainer>
   );
