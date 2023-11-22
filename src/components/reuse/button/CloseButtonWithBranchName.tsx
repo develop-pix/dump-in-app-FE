@@ -1,14 +1,17 @@
 import {Platform} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   BranchNameContainer,
   CloseButtonWithBranchNameContainer,
-  CloseImage,
+  GoBackImage,
   CloseImageContainer,
   LocationImage,
   ReviewDescTextContainer,
+  ReviewManageButtonContainer,
+  ReviewManageButton,
 } from '../../../styles/layout/reuse/button/CloseButtonWithBranchName.style';
-import CloseIcon from '../../../assets/image/reuse/close-btn.png';
+import ArrowBackIcon from '../../../assets/image/reuse/arrow_back.png';
+import SeeMoreIcon from '../../../assets/image/reuse/SeeMore.png';
 import LocationIcon from '../../../assets/image/reuse/location_white.png';
 import {ReviewDescText} from '../../../styles/layout/reuse/text/Text.style';
 import {useNavigation} from '@react-navigation/native';
@@ -19,15 +22,25 @@ import {CloseButtonWithBranchNameProps} from '../../../interfaces/reuse/button/B
 export default function CloseButtonWithBranchName({
   photoboothName,
   branchName,
+  mine,
 }: CloseButtonWithBranchNameProps) {
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const platform = Platform.OS;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const onPressClose = () => {
     navigation.goBack();
   };
 
+  const onPressOpenModal = () => {
+    setOpenModal(true);
+    console.log(openModal);
+  };
+
   return (
     <CloseButtonWithBranchNameContainer platform={platform}>
+      <CloseImageContainer onPress={onPressClose}>
+        <GoBackImage source={ArrowBackIcon} />
+      </CloseImageContainer>
       <BranchNameContainer>
         <LocationImage source={LocationIcon} />
         <ReviewDescTextContainer>
@@ -35,9 +48,13 @@ export default function CloseButtonWithBranchName({
           <ReviewDescText>{branchName}</ReviewDescText>
         </ReviewDescTextContainer>
       </BranchNameContainer>
-      <CloseImageContainer onPress={onPressClose}>
-        <CloseImage source={CloseIcon} />
-      </CloseImageContainer>
+      {mine ? (
+        <ReviewManageButtonContainer onPress={onPressOpenModal}>
+          <ReviewManageButton source={SeeMoreIcon} />
+        </ReviewManageButtonContainer>
+      ) : (
+        <ReviewManageButtonContainer />
+      )}
     </CloseButtonWithBranchNameContainer>
   );
 }

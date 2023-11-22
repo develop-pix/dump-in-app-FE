@@ -18,11 +18,16 @@ export const CloseButtonWithBranchNameContainer = styled.View<{
   margin-bottom: 10px;
 `;
 
-export const BranchNameContainer = styled.View`
-  flex-direction: row;
+export const CloseImageContainer = styled.TouchableOpacity`
+  width: 44px;
+  height: 44px;
   align-items: center;
-  gap: 5px;
-  margin-left: 105px;
+  justify-content: center;
+`;
+
+export const GoBackImage = styled.Image`
+  width: 16px;
+  height: 16px;
 `;
 
 export const ReviewDescTextContainer = styled.View`
@@ -36,14 +41,19 @@ export const LocationImage = styled.Image`
   height: 24px;
 `;
 
-export const CloseImageContainer = styled.TouchableOpacity`
+export const BranchNameContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ReviewManageButtonContainer = styled.TouchableOpacity`
   width: 44px;
   height: 44px;
   align-items: center;
   justify-content: center;
 `;
 
-export const CloseImage = styled.Image`
-  width: 44px;
-  height: 44px;
+export const ReviewManageButton = styled.Image`
+  width: 4px;
+  height: 16px;
 `;

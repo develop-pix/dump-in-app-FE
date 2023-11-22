@@ -18,4 +18,5 @@ export interface ReviewRegistrationButtonProps {
 export interface CloseButtonWithBranchNameProps {
   photoboothName: string;
   branchName: string;
+  mine: boolean;
 }

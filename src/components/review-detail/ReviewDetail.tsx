@@ -258,6 +258,7 @@ export default function ReviewDetail() {
                 <CloseButtonWithBranchName
                   photoboothName={data.photoboothName}
                   branchName={data.branchName}
+                  mine={data.mine}
                 />
               </TitleContainer>
               <ReviewImageContainer>

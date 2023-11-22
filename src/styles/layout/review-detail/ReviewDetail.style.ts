@@ -9,7 +9,7 @@ export const ReviewDetailContainer = styled.SafeAreaView`
 `;
 
 export const TitleContainer = styled.View`
-  width: 95%;
+  width: 100%;
 `;
 export const ReviewDetailFormContainer = styled.SafeAreaView`
   width: 100%;
@@ -27,9 +27,9 @@ export const ReviewImageContainer = styled.View`
 `;
 
 export const ReviewImage = styled.Image`
-  object-fit: contain;
+  object-fit: scale-down;
   width: 100%;
-  height: ${Dimensions.get('window').height - 44}px;
+  height: ${Dimensions.get('window').height - 88}px;
 `;
 
 /* left: ReviewContainer width의 1/2 */
