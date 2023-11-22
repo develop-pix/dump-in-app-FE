@@ -12,10 +12,12 @@ export type RootStackParam = {
 };
 
 export interface NavigationBarListItemProps {
-  screen: string;
+  screen: ScreenName;
   selectedScreen: string;
-  handleListClick: (screen: string) => void;
+  handleListClick: (screen: ScreenName) => void;
 }
+
+export type ScreenName = 'Home' | 'Location' | 'Category' | 'MyPage';
 
 export type BranchParamList = {
   branchType: {

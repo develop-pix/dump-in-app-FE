@@ -10,29 +10,16 @@ import {
 } from '../../../styles/layout/navigation-bar/NavigationBar.style';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {useScreen} from '../../../utils/ScreenContext';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function NavigationBar() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const {screen, setScreen} = useScreen();
 
-  const handleListClick = (selectedScreen: string) => {
+  const handleListClick = (selectedScreen: ScreenName) => {
     setScreen(selectedScreen);
-
-    switch (screen) {
-      case 'Home':
-        navigation.navigate('Home');
-        break;
-      case 'Location':
-        navigation.navigate('Location');
-        break;
-      case 'Category':
-        navigation.navigate('Category');
-        break;
-      case 'MyPage':
-        navigation.navigate('MyPage');
-        break;
-      default:
-    }
+    // 선택한 페이지로 이동
+    navigation.navigate(selectedScreen);
   };
 
   return (
