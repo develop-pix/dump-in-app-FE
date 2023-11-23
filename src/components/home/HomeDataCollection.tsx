@@ -36,13 +36,6 @@ export default function HomeDataCollection() {
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       'my-photobooth': true,
     },
-    {
-      photoBoothID: 2,
-      'photobooth-name': '인생네컷',
-      'representative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      'my-photobooth': false,
-    },
   ]);
 
   const [eventData, setEventData] = useState<EventProps[]>([
@@ -51,12 +44,6 @@ export default function HomeDataCollection() {
       'representative-image':
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       'new-event': true,
-    },
-    {
-      eventID: 2,
-      'representative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      'new-event': false,
     },
   ]);
 
@@ -82,18 +69,6 @@ export default function HomeDataCollection() {
     {
       reviewID: 4,
       'branch-name': '인생네컷 홍대점',
-      'representative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-    },
-    {
-      reviewID: 5,
-      'branch-name': '포토이즘 경기점',
-      'representative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-    },
-    {
-      reviewID: 6,
-      'branch-name': '포토부스 용인점',
       'representative-image':
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },

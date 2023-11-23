@@ -5,7 +5,7 @@ export const CollectionContainer = styled.View`
 `;
 
 export const CollectionScrollView = styled.ScrollView.attrs({
-  contentContainerStyle: {paddingBottom: 100},
+  contentContainerStyle: {paddingBottom: 250},
 })``;
 
 export const UpScrollImageBox = styled.TouchableOpacity`
