@@ -22,7 +22,7 @@ export default function BranchList({
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
   const onSelectLocation = () => {
-    navigation.navigate('Branch', {branchID: branchID});
+    navigation.push('Branch', {branchID: branchID});
   };
   return (
     <BranchListContainer onPress={onSelectLocation}>

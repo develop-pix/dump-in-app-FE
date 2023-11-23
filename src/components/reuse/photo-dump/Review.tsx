@@ -26,7 +26,7 @@ export default function Review({
 }: ReviewProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const onPressReview = () => {
-    navigation.navigate('ReviewDetail', {reviewID: reviewID});
+    navigation.push('ReviewDetail', {reviewID: reviewID});
   };
   return (
     <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>

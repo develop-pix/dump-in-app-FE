@@ -6,7 +6,6 @@ export const PhotoBoothListContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: ${colors.black};
 `;
 
 // 데이터 없을 경우 정렬을 위한 더미 영역

@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {colors, fontWeight, fontSize} from '../../../base/Variable';
 
-export const ReviewFrameContainer = styled.View`
+export const ReviewFrameContainer = styled.TouchableOpacity`
   width: ${Dimensions.get('window').width * 0.45}px;
   aspect-ratio: 1;
   border-radius: 20px;
@@ -13,7 +13,7 @@ export const ReviewFrameContainer = styled.View`
 
 export const ReviewFrameImage = styled.Image`
   width: 100%;
-  height: 229px;
+  height: 215px;
 `;
 
 export const ReviewInfo = styled.View`

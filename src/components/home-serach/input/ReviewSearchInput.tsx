@@ -8,10 +8,12 @@ import {
 } from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';
-import {EventDataProps} from '../../../interfaces/HomeSearch.interface';
-import {CollectionProps} from '../../../interfaces/home/PhotoBoothList.interface';
+import {ReviewProps} from '../../../interfaces/Home.interface';
 import SearchResult from '../search-result/SearchResult';
-import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
+import {
+  RecentSearchItemProps,
+  EventDataProps,
+} from '../../../interfaces/HomeSearch.interface';
 import SearchNoData from '../../reuse/alert/SearchNoData';
 
 export default function ReviewSearchInput() {
@@ -26,7 +28,7 @@ export default function ReviewSearchInput() {
     eventData: [],
     finishedEvent: true,
   });
-  const [photoDumpData, setPhotoDumpData] = useState<CollectionProps[]>([]);
+  const [photoDumpData, setPhotoDumpData] = useState<ReviewProps[]>([]);
 
   const getSearchData = async (searchData: string) => {
     // 검색어 상태 업데이트
@@ -35,72 +37,56 @@ export default function ReviewSearchInput() {
     // 나중에 API 연결
     // 임시 데이터
     const tempEventData: EventDataProps[] = [
-      // {
-      //   eventID: 1,
-      //   eventName: '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
-      // },
-      // {
-      //   eventID: 2,
-      //   eventName: '포토이즘의 가을가을 프레임',
-      // },
-      // {
-      //   eventID: 3,
-      //   eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
-      // },
-      // {
-      //   eventID: 4,
-      //   eventName: 'test 하이라이트 테스트',
-      // },
+      {
+        eventID: 1,
+        eventName: '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
+      },
+      {
+        eventID: 2,
+        eventName: '포토이즘의 가을가을 프레임',
+      },
+      {
+        eventID: 3,
+        eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
+      },
+      {
+        eventID: 4,
+        eventName: 'test 하이라이트 테스트',
+      },
     ];
     const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우를 나타냄(true로 바꾸고 alert 테스트)
-    const tempPhotoDumpData: CollectionProps[] = [
-      // {
-      //   'branch-name': '포토이즘 홍대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 1',
-      //   date: '2023-11-04',
-      //   hashtag: ['# 고데기 있음', '# 생일'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
-      // {
-      //   'branch-name': '돈룩업 서울대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 2',
-      //   date: '2023-11-03',
-      //   hashtag: ['#tag3', '#tag4'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
-      // {
-      //   'branch-name': '포토이즘 홍대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 1',
-      //   date: '2023-11-04',
-      //   hashtag: ['# 고데기 있음', '# 생일'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
-      // {
-      //   'branch-name': '돈룩업 서울대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 2',
-      //   date: '2023-11-03',
-      //   hashtag: ['#tag3', '#tag4'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
+    const tempReviewData: ReviewProps[] = [
+      {
+        reviewID: 1,
+        'branch-name': '포토부스 혜화점',
+        'representative-image':
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
+      {
+        reviewID: 2,
+        'branch-name': '포토부스 서울대점',
+        'representative-image':
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
+      {
+        reviewID: 3,
+        'branch-name': '포토그레이 홍대점',
+        'representative-image':
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
+      {
+        reviewID: 4,
+        'branch-name': '인생네컷 홍대점',
+        'representative-image':
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
     ];
 
     setEventData({
       eventData: tempEventData,
       finishedEvent: tempFinishedEvent,
     });
-    setPhotoDumpData(tempPhotoDumpData);
+    setPhotoDumpData(tempReviewData);
 
     // 검색 결과 컴포넌트 보여줌
     setShowSearchResult(true);

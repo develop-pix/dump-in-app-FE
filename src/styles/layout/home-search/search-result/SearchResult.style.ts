@@ -11,3 +11,9 @@ export const PhotoDumpTitle = styled.Text`
   font-size: ${fontSize.H5};
   font-weight: ${fontWeight.SB};
 `;
+
+export const PhotoDumpContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
