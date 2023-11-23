@@ -49,7 +49,7 @@ export default function Review({
         </ReviewDescription>
         <ReviewHastags>
           {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
-            <HashtagsText>{tag}</HashtagsText>
+            <HashtagsText key={tag}>{tag}</HashtagsText>
           ))}
         </ReviewHastags>
       </ReviewDescriptionContainer>
