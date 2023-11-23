@@ -13,7 +13,7 @@ import {
 import ArrowBackIcon from '../../../assets/image/reuse/arrow_back.png';
 import SeeMoreIcon from '../../../assets/image/reuse/SeeMore.png';
 import LocationIcon from '../../../assets/image/reuse/location_white.png';
-import {ReviewDescText} from '../../../styles/layout/reuse/text/Text.style';
+import {BranchNameText} from '../../../styles/layout/reuse/text/Text.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
@@ -43,8 +43,8 @@ export default function CloseButtonWithBranchName({
       <BranchNameContainer>
         <LocationImage source={LocationIcon} />
         <ReviewDescTextContainer>
-          <ReviewDescText>{photoboothName}</ReviewDescText>
-          <ReviewDescText>{branchName}</ReviewDescText>
+          <BranchNameText>{photoboothName}</BranchNameText>
+          <BranchNameText>{branchName}</BranchNameText>
         </ReviewDescTextContainer>
       </BranchNameContainer>
       {mine ? (

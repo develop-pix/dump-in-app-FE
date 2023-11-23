@@ -52,3 +52,10 @@ export const ReviewManageModalText = styled.Text`
   font-size: ${fontSize.H2};
   font-weight: ${fontWeight.SB};
 `;
+
+export const BranchNameText = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.H3};
+  font-weight: ${fontWeight.M};
+  line-height: 24px;
+`;
