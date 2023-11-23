@@ -1,4 +1,4 @@
-import {CollectionProps} from './PhotoBoothList.interface';
+import {CollectionProps} from './home/PhotoBoothList.interface';
 
 export interface HomeSearchProps {
   onRecentListClick: (search: string) => void;

@@ -18,9 +18,7 @@ export const FilterButton = ({
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       onPress={onPress}
-      disabled={disabled} // 비활성화 상태 설정
-      style={{opacity: disabled ? 0.5 : 1}} // 버튼 비활성화 시 투명도 변경
-    >
+      disabled={disabled}>
       <FilterButtonText textColor={textColor}>{text}</FilterButtonText>
     </FilterButtonContainer>
   );

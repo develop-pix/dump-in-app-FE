@@ -9,7 +9,7 @@ import {
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';
 import {EventDataProps} from '../../../interfaces/HomeSearch.interface';
-import {CollectionProps} from '../../../interfaces/PhotoBoothList.interface';
+import {CollectionProps} from '../../../interfaces/home/PhotoBoothList.interface';
 import SearchResult from '../search-result/SearchResult';
 import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
 import SearchNoData from '../../reuse/alert/SearchNoData';

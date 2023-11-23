@@ -1,23 +1,23 @@
 import React from 'react';
-import {PhotoBoothFrameProps} from '../../interfaces/PhotoBoothList.interface';
-import LocationImage from '../../assets/image/reuse/location.png';
-import PickImage from '../../assets/image/reuse/pick.png';
+import {PhotoBoothFrameProps} from '../../../interfaces/Home.interface';
+import LocationImage from '../../../assets/image/reuse/location.png';
+import PickImage from '../../../assets/image/reuse/pick.png';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   PhotoBoothFrameContainer,
-  FrameImage,
+  PhotoBoothFrameImage,
   TagImage,
   PhotoBoothInfo,
   PhotoBoothNameContainer,
   LocationIcon,
   PhotoBoothName,
-} from '../../styles/layout/photo-booth-list/PhotoBoothFrame.style';
-import {colors} from '../../styles/base/Variable';
+} from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
+import {colors} from '../../../styles/base/Variable';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
   return (
     <PhotoBoothFrameContainer>
-      <FrameImage source={{uri: data['repersentative-image']}} />
+      <PhotoBoothFrameImage source={{uri: data['representative-image']}} />
       <LinearGradient
         colors={['transparent', colors.black]}
         locations={[0.1, 1]}
@@ -30,12 +30,12 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
         }}
       />
 
-      {data['my-branch'] && <TagImage source={PickImage} />}
+      {data['my-photobooth'] && <TagImage source={PickImage} />}
 
       <PhotoBoothInfo>
         <PhotoBoothNameContainer>
           <LocationIcon source={LocationImage} />
-          <PhotoBoothName>{data['branch-name']}</PhotoBoothName>
+          <PhotoBoothName>{data['photobooth-name']}</PhotoBoothName>
         </PhotoBoothNameContainer>
       </PhotoBoothInfo>
     </PhotoBoothFrameContainer>

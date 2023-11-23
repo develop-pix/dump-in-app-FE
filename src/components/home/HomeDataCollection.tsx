@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {ScrollView, Image} from 'react-native';
-import PhotoBoothList from '../photo-booth-list/PhotoBoothList';
+import PhotoBoothList from './photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
 import {
@@ -9,8 +9,13 @@ import {
   UpScrollImageBox,
 } from '../../styles/layout/home/HomeDataCollection.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
-import {CollectionProps} from '../../interfaces/PhotoBoothList.interface';
 import NoResultPhotoBooth from './NoResultPhotoBooth';
+import {
+  CollectionDataProps,
+  PhotoBoothProps,
+  EventProps,
+  ReviewProps,
+} from '../../interfaces/Home.interface';
 
 export default function HomeDataCollection() {
   // 필터 변수
@@ -22,83 +27,83 @@ export default function HomeDataCollection() {
     concept: [],
   });
 
-  // 포토부스 지점들 데이터 임의로 생성 (데이터 종류 수정 필요)
-  const temporaryPhotoBoothData = [
+  // 포토부스, 이벤트, 리뷰 데이터 임의로 생성
+  const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothProps[]>([
     {
-      'branch-name': '포토부스 혜화점',
-      'repersentative-image':
+      photoBoothID: 1,
+      'photobooth-name': '포토랩',
+      'representative-image':
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 1',
-      date: '2023-11-04',
-      hashtag: ['# 고데기 있음', '# 생일'],
-      'my-branch': false,
-      mine: false,
+      'my-photobooth': true,
     },
     {
-      'branch-name': '돈룩업 서울대점',
-      'repersentative-image':
+      photoBoothID: 2,
+      'photobooth-name': '인생네컷',
+      'representative-image':
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 2',
-      date: '2023-11-03',
-      hashtag: ['#tag3', '#tag4'],
-      'my-branch': true,
-      mine: true,
+      'my-photobooth': false,
     },
-    {
-      'branch-name': '포토그레이 홍대점',
-      'repersentative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 3',
-      date: '2023-10-27',
-      hashtag: ['# 소품 많음', '# 고데기 있음'],
-      'my-branch': false,
-      mine: false,
-    },
-    {
-      'branch-name': '포토이즘 홍대점',
-      'repersentative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 3',
-      date: '2023-10-27',
-      hashtag: ['# 생일', '# 소품 많음'],
-      'my-branch': false,
-      mine: false,
-    },
-    {
-      'branch-name': '포토이즘 혜화점',
-      'repersentative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 3',
-      date: '2023-10-27',
-      hashtag: ['# 3', '# 무릎'],
-      'my-branch': true,
-      mine: false,
-    },
-    {
-      'branch-name': '포토이즘 홍대점',
-      'repersentative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 3',
-      date: '2023-10-27',
-      hashtag: ['# 생일', '# 고데기 있음'],
-      'my-branch': false,
-      mine: false,
-    },
-    {
-      'branch-name': '포토이즘 홍대점',
-      'repersentative-image':
-        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      description: 'Description 3',
-      date: '2023-10-27',
-      hashtag: ['# 생일', '# 고데기 있음'],
-      'my-branch': false,
-      mine: false,
-    },
-  ];
+  ]);
 
-  const [photoBoothData, setPhotoBoothData] = useState<CollectionProps[]>(
-    temporaryPhotoBoothData,
-  );
+  const [eventData, setEventData] = useState<EventProps[]>([
+    {
+      eventID: 1,
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      'new-event': true,
+    },
+    {
+      eventID: 2,
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      'new-event': false,
+    },
+  ]);
+
+  const [reviewData, setReviewData] = useState<ReviewProps[]>([
+    {
+      reviewID: 1,
+      'branch-name': '포토부스 혜화점',
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    },
+    {
+      reviewID: 2,
+      'branch-name': '포토부스 서울대점',
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    },
+    {
+      reviewID: 3,
+      'branch-name': '포토그레이 홍대점',
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    },
+    {
+      reviewID: 4,
+      'branch-name': '인생네컷 홍대점',
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    },
+    {
+      reviewID: 5,
+      'branch-name': '포토이즘 경기점',
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    },
+    {
+      reviewID: 6,
+      'branch-name': '포토부스 용인점',
+      'representative-image':
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    },
+  ]);
+  // 위 데이터를 담을 변수
+  const [collectionData, setCollectionData] = useState<CollectionDataProps>({
+    photoBoothData: photoBoothData,
+    eventData: eventData,
+    reviewData: reviewData,
+  });
 
   const scrollRef = useRef<ScrollView>(null);
   const handleScrollToTop = () => {
@@ -117,10 +122,23 @@ export default function HomeDataCollection() {
     //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
 
     // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
-    if (photoBoothData.length === 0) {
-      setPhotoBoothData(temporaryPhotoBoothData);
+    if (
+      Object.values(collectionData).some(
+        (value: PhotoBoothProps[] | EventProps[] | ReviewProps[]) =>
+          value.length > 0,
+      )
+    ) {
+      setCollectionData({
+        photoBoothData: [],
+        eventData: [],
+        reviewData: [],
+      });
     } else {
-      setPhotoBoothData([]); // 이 부분에 초기화하고 싶은 데이터를 넣으세요.
+      setCollectionData({
+        photoBoothData: photoBoothData,
+        eventData: eventData,
+        reviewData: reviewData,
+      });
     }
   };
 
@@ -136,10 +154,13 @@ export default function HomeDataCollection() {
         <HomeSelectedFilterOption filterData={filterData} />
       )}
 
-      {photoBoothData.length > 0 ? (
+      {Object.values(collectionData).some(
+        (value: PhotoBoothProps[] | EventProps[] | ReviewProps[]) =>
+          value.length > 0,
+      ) ? (
         <>
           <CollectionScrollView ref={scrollRef}>
-            <PhotoBoothList data={photoBoothData} />
+            <PhotoBoothList data={collectionData} />
           </CollectionScrollView>
           <UpScrollImageBox onPress={handleScrollToTop}>
             <Image source={require('../../assets/image/reuse/up-scroll.png')} />
