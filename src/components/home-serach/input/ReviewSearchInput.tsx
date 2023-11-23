@@ -51,7 +51,7 @@ export default function ReviewSearchInput() {
       },
       {
         eventID: 4,
-        eventName: 'test 하이라이트 테스트',
+        eventName: '원조네컷 x 월벤져스원조네컷 x 원조네컷',
       },
     ];
     const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우를 나타냄(true로 바꾸고 alert 테스트)

@@ -97,24 +97,14 @@ export default function HomeDataCollection() {
     //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
 
     // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
-    if (
-      Object.values(collectionData).some(
-        (value: PhotoBoothProps[] | EventProps[] | ReviewProps[]) =>
-          value.length > 0,
-      )
-    ) {
-      setCollectionData({
-        photoBoothData: [],
-        eventData: [],
-        reviewData: [],
-      });
-    } else {
-      setCollectionData({
-        photoBoothData: photoBoothData,
-        eventData: eventData,
-        reviewData: reviewData,
-      });
-    }
+    setPhotoBoothData([]);
+    setEventData([]);
+    setReviewData([]);
+    setCollectionData({
+      photoBoothData: [],
+      eventData: [],
+      reviewData: [],
+    });
   };
 
   return (
