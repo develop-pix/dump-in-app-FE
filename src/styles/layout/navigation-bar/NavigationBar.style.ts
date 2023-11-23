@@ -10,6 +10,7 @@ export const NavigationBarContainer = styled.View`
   position: absolute;
   bottom: 0;
   align-items: center;
+  elevation: 1;
 `;
 
 export const CameraImageBox = styled.Pressable`

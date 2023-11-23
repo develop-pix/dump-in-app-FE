@@ -29,7 +29,7 @@ export default function BranchTitle({
         </BranchNameContainer>
         <BranchHashTagsContainer>
           {TagsArrayToHashTagArrayForm(branchHashtag).map(tag => (
-            <HashtagsText>{tag}</HashtagsText>
+            <HashtagsText key={tag}>{tag}</HashtagsText>
           ))}
         </BranchHashTagsContainer>
       </TitleContainer>

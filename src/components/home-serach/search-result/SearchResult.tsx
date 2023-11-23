@@ -5,7 +5,9 @@ import {
   SearchResultContainer,
   PhotoDumpTitle,
 } from '../../../styles/layout/home-search/search-result/SearchResult.style';
+
 import PhotoBoothList from '../../home/photo-booth-list/PhotoBoothList';
+
 import SearchNoData from '../../reuse/alert/SearchNoData';
 import {SearchResultAlertContainer} from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
 
