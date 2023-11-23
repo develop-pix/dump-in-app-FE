@@ -1,5 +1,5 @@
 import {Platform} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {
   BranchNameContainer,
   CloseButtonWithBranchNameContainer,
@@ -23,8 +23,8 @@ export default function CloseButtonWithBranchName({
   photoboothName,
   branchName,
   mine,
+  setOpenModal,
 }: CloseButtonWithBranchNameProps) {
-  const [openModal, setOpenModal] = useState<boolean>(false);
   const platform = Platform.OS;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const onPressClose = () => {
@@ -33,7 +33,6 @@ export default function CloseButtonWithBranchName({
 
   const onPressOpenModal = () => {
     setOpenModal(true);
-    console.log(openModal);
   };
 
   return (

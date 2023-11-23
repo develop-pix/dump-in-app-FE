@@ -9,3 +9,13 @@ export interface ReviewData {
   photoboothName: string;
   branchName: string;
 }
+
+export interface ReviewDescriptionProps {
+  date: Date;
+  description: string;
+  hashtag: string[];
+}
+
+export interface ReviewManageModalProps {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}

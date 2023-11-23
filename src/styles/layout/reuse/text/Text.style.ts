@@ -46,3 +46,9 @@ export const SeeMoreText = styled.Text`
   font-size: ${fontSize.H3};
   font-weight: ${fontWeight.M};
 `;
+
+export const ReviewManageModalText = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.H2};
+  font-weight: ${fontWeight.SB};
+`;

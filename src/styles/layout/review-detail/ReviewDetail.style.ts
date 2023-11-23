@@ -70,3 +70,8 @@ export const ReviewDescBottom = styled.View`
   flex-direction: row;
   gap: 10px;
 `;
+
+export const ReviewDetailForm = styled.View`
+  width: 100%;
+  height: ${Dimensions.get('window').height}px;
+`;
