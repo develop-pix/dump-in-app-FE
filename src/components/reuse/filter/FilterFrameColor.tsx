@@ -22,6 +22,7 @@ const availableColors = Object.values(frameColors);
 export default function FilterFrameColor({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleColorToggle = (color: string) => {
     const isSelected = filterData.frameColor === color;
@@ -30,6 +31,8 @@ export default function FilterFrameColor({
       ...prevFilterData,
       frameColor: isSelected ? '' : color,
     }));
+
+    filterOptionSelect();
   };
 
   return (

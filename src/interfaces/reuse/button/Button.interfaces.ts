@@ -4,6 +4,7 @@ export interface FilterButtonProps {
   backgroundColor: string;
   borderColor: string;
   textColor: string;
+  disabled: boolean;
 }
 
 export interface FavortiteButtonProps {
