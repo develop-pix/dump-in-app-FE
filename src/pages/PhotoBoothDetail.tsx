@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import PhotoBoothDetailForm from '../components/photobooth-detail/PhotoBoothDetailForm';
+import {PhotoBoothDetailSafeContainer} from '../styles/layout/PhotoBoothDetail.style';
 
 export default function PhotoBoothDetail() {
   return (
-    <View>
-      <Text>PhotoBoothDetail 페이지</Text>
-    </View>
+    <PhotoBoothDetailSafeContainer>
+      <PhotoBoothDetailForm />
+    </PhotoBoothDetailSafeContainer>
   );
 }

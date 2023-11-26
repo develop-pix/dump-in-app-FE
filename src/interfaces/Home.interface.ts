@@ -42,7 +42,6 @@ export interface PhotoBoothProps {
 export interface EventProps {
   eventID: number;
   'representative-image': string;
-  'new-event': boolean;
 }
 
 export interface ReviewProps {

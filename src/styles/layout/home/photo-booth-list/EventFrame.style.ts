@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {colors} from '../../../base/Variable';
 
-export const EventFrameContainer = styled.View`
+export const EventFrameContainer = styled.TouchableOpacity`
   width: ${Dimensions.get('window').width * 0.45}px;
   aspect-ratio: 1;
   border-radius: 20px;

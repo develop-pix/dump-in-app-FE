@@ -9,6 +9,8 @@ import MyPage from './src/pages/MyPage';
 import Branch from './src/pages/Branch';
 import LocationSearch from './src/pages/LocationSearch';
 import ReviewDetail from './src/pages/ReviewDetail';
+import PhotoBoothDetail from './src/pages/PhotoBoothDetail';
+import EventDetail from './src/pages/EventDetail';
 import {ScreenProvider} from './src/utils/ScreenContext';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +27,16 @@ const App = () => {
           <Stack.Screen name="Location" component={Location} />
           <Stack.Screen name="LocationSearch" component={LocationSearch} />
           <Stack.Screen name="Category" component={Category} />
+          <Stack.Screen
+            name="PhotoBoothDetail"
+            component={PhotoBoothDetail}
+            initialParams={{PhotoBoothID: 0}}
+          />
+          <Stack.Screen
+            name="EventDetail"
+            component={EventDetail}
+            initialParams={{EventID: 0}}
+          />
           <Stack.Screen name="MyPage" component={MyPage} />
           <Stack.Screen
             name="Branch"

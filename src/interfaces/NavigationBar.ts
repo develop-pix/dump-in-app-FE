@@ -9,6 +9,8 @@ export type RootStackParam = {
   MyPage: undefined;
   Branch: {branchID: number};
   ReviewDetail: {reviewID: number};
+  PhotoBoothDetail: {photoboothID: number};
+  EventDetail: {eventID: number};
 };
 
 export interface NavigationBarListItemProps {

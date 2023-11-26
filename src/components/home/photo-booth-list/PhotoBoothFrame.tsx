@@ -13,10 +13,18 @@ import {
   PhotoBoothName,
 } from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
 import {colors} from '../../../styles/base/Variable';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const onPressReview = () => {
+    navigation.push('PhotoBoothDetail', {photoboothID: data.photoBoothID});
+  };
+
   return (
-    <PhotoBoothFrameContainer>
+    <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressReview}>
       <PhotoBoothFrameImage source={{uri: data['representative-image']}} />
       <LinearGradient
         colors={['transparent', colors.black]}

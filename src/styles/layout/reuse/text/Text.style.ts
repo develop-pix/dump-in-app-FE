@@ -20,6 +20,8 @@ export const RecommendText = styled.Text`
   color: ${colors.second_grey};
   font-size: ${fontSize.B2};
   font-weight: ${fontWeight.M};
+  width: 240px;
+  text-align: center;
 `;
 
 export const HashtagsText = styled.Text`

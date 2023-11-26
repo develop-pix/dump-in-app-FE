@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import EventDetailForm from '../components/event-detail/EventDetailForm';
+import {EventDetailSafeContainer} from '../styles/layout/EventDetail.style';
 
 export default function EventDetail() {
   return (
-    <View>
-      <Text>EventDetail 페이지</Text>
-    </View>
+    <EventDetailSafeContainer>
+      <EventDetailForm />
+    </EventDetailSafeContainer>
   );
 }
