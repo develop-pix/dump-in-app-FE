@@ -10,10 +10,22 @@ export const GoBackButtonContainer = styled.View<{
   height: 44px;
   margin-top: ${props =>
     props.platform === 'ios'
-      ? '45px'
+      ? '45'
       : props.platform === 'android'
-      ? '15px'
-      : null};
+      ? '15'
+      : null}px;
+`;
+
+export const GoBackButtonFloatContainer = styled.View<{
+  platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
+}>`
+  position: absolute;
+  top: ${props =>
+    props.platform === 'ios'
+      ? '75'
+      : props.platform === 'android'
+      ? '30'
+      : null}px;
 `;
 
 export const GoBackButtonContainerWithSafeArea = styled.View<{

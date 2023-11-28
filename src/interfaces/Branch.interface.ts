@@ -3,7 +3,7 @@ export interface BranchData {
   branchName: string;
   branchHashtag: string[];
   photoBoothName: string;
-  geolocation: number[];
+  geolocation: Geolocation;
   open: string;
   distance: number;
   address: string;
@@ -20,7 +20,7 @@ interface ReviewData {
 }
 
 export interface BranchLocationProps {
-  geolocation: number[];
+  geolocation: Geolocation;
   distance: number;
 }
 
@@ -43,4 +43,9 @@ export interface BranchTitleProps {
 export interface BranchDescriptionProps {
   address: string;
   open: string;
+}
+
+export interface Geolocation {
+  latitude: number;
+  longitude: number;
 }
