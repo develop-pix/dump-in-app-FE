@@ -39,7 +39,8 @@ export default function ReviewSearchInput() {
     const tempEventData: EventDataProps[] = [
       {
         eventID: 1,
-        eventName: '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
+        eventName:
+          '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 윌벤져스윌벤져스윌벤져스',
       },
       {
         eventID: 2,
@@ -47,11 +48,11 @@ export default function ReviewSearchInput() {
       },
       {
         eventID: 3,
-        eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
+        eventName: '원조네컷 x 월벤져스원조네컷 x 원조네컷',
       },
       {
         eventID: 4,
-        eventName: '원조네컷 x 월벤져스원조네컷 x 원조네컷',
+        eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
       },
     ];
     const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우를 나타냄(true로 바꾸고 alert 테스트)

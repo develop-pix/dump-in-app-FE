@@ -32,3 +32,10 @@ export interface RecentSearchItemProps {
   search: string;
   order: number;
 }
+
+// 이벤트 더보기 모달 데이터 타입
+export interface MoreEventResultProps {
+  eventData: EventDataProps[];
+  searchData: string;
+  closeMoreEventModal: () => void;
+}

@@ -19,7 +19,9 @@ export default function EventResult({searchData, data}: EventResultProps) {
       <EventResultContainer>
         <EventListInfo>
           <EventListIcon source={SearchResultIcon} />
-          <EventListText>{data.eventName}</EventListText>
+          <EventListText numberOfLines={1} ellipsizeMode="tail">
+            {data.eventName}
+          </EventListText>
         </EventListInfo>
       </EventResultContainer>
     );
@@ -33,7 +35,7 @@ export default function EventResult({searchData, data}: EventResultProps) {
     <EventResultContainer>
       <EventListInfo>
         <EventListIcon source={SearchResultIcon} />
-        <EventListText>
+        <EventListText numberOfLines={1} ellipsizeMode="tail">
           {beforeEventName}
           <HighlightedText>{searchData}</HighlightedText>
           {afterEventName}

@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
-export const SearchResultContainer = styled.View`
-  width: 100%;
+export const ModalContainer = styled.View`
+  flex: 1;
+  background-color: ${colors.black};
 `;
 
 export const EventTitleContainer = styled.View`
@@ -19,21 +20,8 @@ export const EventTitle = styled.Text`
   font-weight: ${fontWeight.SB};
 `;
 
-export const MoreText = styled.Text`
+export const EventCount = styled.Text`
   color: ${colors.first_grey};
-  font-size: ${fontSize.H3};
-  font-weight: ${fontWeight.M};
-`;
-
-export const PhotoDumpTitle = styled.Text`
-  margin: 30px 20px 10px;
-  color: ${colors.first_grey};
-  font-size: ${fontSize.T2};
+  font-size: ${fontSize.B4};
   font-weight: ${fontWeight.SB};
-`;
-
-export const PhotoDumpContainer = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
 `;
