@@ -16,7 +16,7 @@ import {RootStackParam} from '../../../interfaces/NavigationBar';
 export default function MapInput({location}: MapInputProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const onClickOpenModal = () => {
-    navigation.navigate('LocationSearch');
+    navigation.push('LocationSearch');
   };
 
   return (
