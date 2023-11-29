@@ -6,19 +6,23 @@ import {
   EventFrameImage,
   TagImage,
 } from '../../../styles/layout/home/photo-booth-list/EventFrame.style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function EventFrame({data}: EventFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const onPressReview = () => {
+  const isFocused = useIsFocused();
+  const onPressEvent = () => {
+    if (!isFocused) {
+      return;
+    }
     navigation.push('EventDetail', {eventID: data.eventID});
   };
 
   return (
-    <EventFrameContainer activeOpacity={0.9} onPress={onPressReview}>
-      <EventFrameImage source={{uri: data['representative-image']}} />
+    <EventFrameContainer activeOpacity={0.9} onPress={onPressEvent}>
+      <EventFrameImage source={{uri: data.representativeImage}} />
       <TagImage source={NewEventImage} />
     </EventFrameContainer>
   );

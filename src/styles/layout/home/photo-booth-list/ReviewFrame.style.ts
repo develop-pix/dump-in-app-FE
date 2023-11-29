@@ -13,7 +13,7 @@ export const ReviewFrameContainer = styled.TouchableOpacity`
 
 export const ReviewFrameImage = styled.Image`
   width: 100%;
-  height: 215px;
+  height: 100%;
 `;
 
 export const ReviewInfo = styled.View`

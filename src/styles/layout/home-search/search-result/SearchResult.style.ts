@@ -32,8 +32,13 @@ export const PhotoDumpTitle = styled.Text`
   font-weight: ${fontWeight.SB};
 `;
 
-export const PhotoDumpContainer = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+export const PhotoDumpUpScrollImageBox = styled.TouchableOpacity`
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50px);
+  z-index: 999;
+  elevation: 999;
 `;

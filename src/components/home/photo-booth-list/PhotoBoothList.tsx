@@ -4,19 +4,32 @@ import {PhotoBoothListProps} from '../../../interfaces/Home.interface';
 import {PhotoBoothListContainer} from '../../../styles/layout/home/photo-booth-list/PhotoBoothList.style';
 import EventFrame from './EventFrame';
 import ReviewFrame from './ReviewFrame';
+import {
+  PhotoBoothProps,
+  EventProps,
+  ReviewProps,
+} from '../../../interfaces/Home.interface';
 
 export default function PhotoBoothList({data}: PhotoBoothListProps) {
   const {photoBoothData, eventData, reviewData} = data;
 
-  // 배치 순서에 따라 한 화면에 6개씩 받아서 보여줌(데이터 짝 안맞는 경우 수정 필요)
+  const allData = [...photoBoothData, ...eventData, ...reviewData] as (
+    | PhotoBoothProps
+    | EventProps
+    | ReviewProps
+  )[];
+
   return (
     <PhotoBoothListContainer>
-      <PhotoBoothFrame data={photoBoothData[0]} />
-      <ReviewFrame data={reviewData[0]} />
-      <ReviewFrame data={reviewData[1]} />
-      <EventFrame data={eventData[0]} />
-      <ReviewFrame data={reviewData[2]} />
-      <ReviewFrame data={reviewData[3]} />
+      {allData.slice(0, 6).map((item, index) => {
+        if ('photoBoothID' in item) {
+          return <PhotoBoothFrame key={index} data={item as PhotoBoothProps} />;
+        } else if ('eventID' in item) {
+          return <EventFrame key={index} data={item as EventProps} />;
+        } else if ('reviewID' in item) {
+          return <ReviewFrame key={index} data={item as ReviewProps} />;
+        }
+      })}
     </PhotoBoothListContainer>
   );
 }

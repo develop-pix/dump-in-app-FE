@@ -5,7 +5,7 @@ import {
   PhotoBoothLogo,
   PhotoBoothName,
 } from '../../styles/layout/category/CategoryPhotoBooth.style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
 
@@ -14,14 +14,18 @@ const photoBoothData = Array(12)
   .fill(null)
   .map((_, index) => ({
     photoboothID: index + 1,
-    'representative-image':
+    representativeImage:
       'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-    'photobooth-name': '포토그레이',
+    photoboothName: '포토그레이',
   }));
 
 export default function CategoryPhotoBooth() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const onPressPhotoBooth = (id: number) => {
+    if (!isFocused) {
+      return;
+    }
     navigation.push('PhotoBoothDetail', {photoboothID: id});
   };
 
@@ -31,8 +35,8 @@ export default function CategoryPhotoBooth() {
         <PhotoBoothItem
           key={item.photoboothID}
           onPress={() => onPressPhotoBooth(item.photoboothID)}>
-          <PhotoBoothLogo source={{uri: item['representative-image']}} />
-          <PhotoBoothName>{item['photobooth-name']}</PhotoBoothName>
+          <PhotoBoothLogo source={{uri: item.representativeImage}} />
+          <PhotoBoothName>{item.photoboothName}</PhotoBoothName>
         </PhotoBoothItem>
       ))}
     </CategoryPhotoBoothContainer>

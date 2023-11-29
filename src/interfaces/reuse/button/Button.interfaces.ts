@@ -12,7 +12,8 @@ export interface FavortiteButtonProps {
   setFavorite: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface ReviewRegistrationButtonProps {
+export interface NormalButtonProps {
+  text: string;
   onPress: () => void; // 버튼 클릭 시 실행할 함수
 }
 

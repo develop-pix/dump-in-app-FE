@@ -34,6 +34,37 @@ export default function ReviewSearchInput() {
     // 검색어 상태 업데이트
     setSearch(searchData);
 
+    // 검색어 저장 로직
+    let loadedSearches = await AsyncStorage.getItem('searches');
+    let newSearches: RecentSearchItemProps[] =
+      loadedSearches !== null ? JSON.parse(loadedSearches) : [];
+
+    const existingSearchIndex = newSearches.findIndex(
+      (item: RecentSearchItemProps) => item.search === searchData,
+    );
+    if (existingSearchIndex > -1) {
+      newSearches[existingSearchIndex].order =
+        Math.max(
+          ...newSearches.map((item: RecentSearchItemProps) => item.order),
+        ) + 1;
+    } else {
+      newSearches.push({
+        search: searchData,
+        order:
+          newSearches.length > 0
+            ? Math.max(
+                ...newSearches.map((item: RecentSearchItemProps) => item.order),
+              ) + 1
+            : 1,
+      });
+    }
+
+    newSearches.sort(
+      (a: RecentSearchItemProps, b: RecentSearchItemProps) => b.order - a.order,
+    );
+
+    await AsyncStorage.setItem('searches', JSON.stringify(newSearches));
+
     // 나중에 API 연결
     // 임시 데이터
     const tempEventData: EventDataProps[] = [
@@ -59,26 +90,26 @@ export default function ReviewSearchInput() {
     const tempReviewData: ReviewProps[] = [
       {
         reviewID: 1,
-        'branch-name': '포토부스 혜화점',
-        'representative-image':
+        branchName: '포토부스 혜화점',
+        representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       },
       {
         reviewID: 2,
-        'branch-name': '포토부스 서울대점',
-        'representative-image':
+        branchName: '포토부스 서울대점',
+        representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       },
       {
         reviewID: 3,
-        'branch-name': '포토그레이 홍대점',
-        'representative-image':
+        branchName: '포토그레이 홍대점',
+        representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       },
       {
         reviewID: 4,
-        'branch-name': '인생네컷 홍대점',
-        'representative-image':
+        branchName: '인생네컷 홍대점',
+        representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       },
     ];
@@ -97,44 +128,6 @@ export default function ReviewSearchInput() {
   const onSearchClick = async () => {
     if (search !== '') {
       await getSearchData(search); // 검색 실행
-
-      // 기존에 저장된 검색어
-      let loadedSearches = await AsyncStorage.getItem('searches');
-      let newSearches: RecentSearchItemProps[] =
-        loadedSearches !== null ? JSON.parse(loadedSearches) : [];
-
-      // 최신 검색어 중복 방지
-      const existingSearchIndex = newSearches.findIndex(
-        (item: RecentSearchItemProps) => item.search === search,
-      );
-      if (existingSearchIndex > -1) {
-        // 저장되어있는 검색어를 다시 검색하면 order를 최댓값으로 설정
-        newSearches[existingSearchIndex].order =
-          Math.max(
-            ...newSearches.map((item: RecentSearchItemProps) => item.order),
-          ) + 1;
-      } else {
-        // 검색어 추가
-        newSearches.push({
-          search,
-          order:
-            newSearches.length > 0
-              ? Math.max(
-                  ...newSearches.map(
-                    (item: RecentSearchItemProps) => item.order,
-                  ),
-                ) + 1
-              : 1,
-        });
-      }
-
-      // 최근 입력 순으로 정렬
-      newSearches.sort(
-        (a: RecentSearchItemProps, b: RecentSearchItemProps) =>
-          b.order - a.order,
-      );
-
-      await AsyncStorage.setItem('searches', JSON.stringify(newSearches)); // 검색어 저장
     }
   };
 

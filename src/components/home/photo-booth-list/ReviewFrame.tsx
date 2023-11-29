@@ -11,19 +11,23 @@ import {
   ReviewName,
 } from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
 import {colors} from '../../../styles/base/Variable';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function ReviewFrame({data}: ReviewFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const onPressReview = () => {
+    if (!isFocused) {
+      return;
+    }
     navigation.push('ReviewDetail', {reviewID: data.reviewID});
   };
 
   return (
     <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
-      <ReviewFrameImage source={{uri: data['representative-image']}} />
+      <ReviewFrameImage source={{uri: data.representativeImage}} />
       <LinearGradient
         colors={['transparent', colors.black]}
         locations={[0.1, 1]}
@@ -39,7 +43,7 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
       <ReviewInfo>
         <ReviewNameContainer>
           <LocationIcon source={LocationImage} />
-          <ReviewName>{data['branch-name']}</ReviewName>
+          <ReviewName>{data.branchName}</ReviewName>
         </ReviewNameContainer>
       </ReviewInfo>
     </ReviewFrameContainer>

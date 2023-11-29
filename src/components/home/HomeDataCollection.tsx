@@ -1,11 +1,10 @@
 import React, {useRef, useState} from 'react';
-import {ScrollView, Image} from 'react-native';
+import {FlatList, Image} from 'react-native';
 import PhotoBoothList from './photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
 import {
   CollectionContainer,
-  CollectionScrollView,
   UpScrollImageBox,
 } from '../../styles/layout/home/HomeDataCollection.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
@@ -16,6 +15,7 @@ import {
   EventProps,
   ReviewProps,
 } from '../../interfaces/Home.interface';
+import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
 
 export default function HomeDataCollection() {
   // 필터 변수
@@ -27,21 +27,24 @@ export default function HomeDataCollection() {
     concept: [],
   });
 
+  // 무한 스크롤 페이지
+  const [page, setPage] = useState<number>(0);
+
   // 포토부스, 이벤트, 리뷰 데이터 임의로 생성
   const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothProps[]>([
     {
       photoBoothID: 1,
-      'photobooth-name': '포토랩',
-      'representative-image':
+      photoboothName: '포토랩',
+      representativeImage:
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      'my-photobooth': true,
+      myPhotobooth: true,
     },
   ]);
 
   const [eventData, setEventData] = useState<EventProps[]>([
     {
       eventID: 1,
-      'representative-image':
+      representativeImage:
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },
   ]);
@@ -49,39 +52,41 @@ export default function HomeDataCollection() {
   const [reviewData, setReviewData] = useState<ReviewProps[]>([
     {
       reviewID: 1,
-      'branch-name': '포토부스 혜화점',
-      'representative-image':
+      branchName: '포토부스 혜화점',
+      representativeImage:
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },
     {
       reviewID: 2,
-      'branch-name': '포토부스 서울대점',
-      'representative-image':
+      branchName: '포토부스 서울대점',
+      representativeImage:
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },
     {
       reviewID: 3,
-      'branch-name': '포토그레이 홍대점',
-      'representative-image':
+      branchName: '포토그레이 홍대점',
+      representativeImage:
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },
     {
       reviewID: 4,
-      'branch-name': '인생네컷 홍대점',
-      'representative-image':
+      branchName: '인생네컷 홍대점',
+      representativeImage:
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },
   ]);
   // 위 데이터를 담을 변수
-  const [collectionData, setCollectionData] = useState<CollectionDataProps>({
-    photoBoothData: photoBoothData,
-    eventData: eventData,
-    reviewData: reviewData,
-  });
+  const [collectionData, setCollectionData] = useState<CollectionDataProps[]>([
+    {
+      photoBoothData: photoBoothData,
+      eventData: eventData,
+      reviewData: reviewData,
+    },
+  ]);
 
-  const scrollRef = useRef<ScrollView>(null);
+  const flatListRef = useRef<FlatList>(null);
   const handleScrollToTop = () => {
-    scrollRef.current?.scrollTo({y: 0, animated: true});
+    flatListRef.current?.scrollToOffset({offset: 0, animated: true});
   };
 
   // 필터 존재 여부 확인 변수
@@ -93,18 +98,25 @@ export default function HomeDataCollection() {
   const handleFilterSubmit = (newFilterData: FilterProps) => {
     // 필터 데이터 변경
     setFilterData(newFilterData);
-    //데이터 변경 후 서버에서 지점 데이터 다시 가져옴
 
     // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
-    setPhotoBoothData([]);
-    setEventData([]);
-    setReviewData([]);
-    setCollectionData({
-      photoBoothData: [],
-      eventData: [],
-      reviewData: [],
-    });
+    setCollectionData([]);
   };
+
+  const onEndReached = () => {
+    setPage(prevPage => prevPage + 1);
+
+    const moreData = {
+      photoBoothData: [...collectionData[0].photoBoothData],
+      eventData: [...collectionData[0].eventData],
+      reviewData: [...collectionData[0].reviewData],
+    };
+    setCollectionData(prevData => [...prevData, moreData]);
+  };
+
+  const renderReviewItem = ({item}: {item: CollectionDataProps}) => (
+    <PhotoBoothList data={item} />
+  );
 
   return (
     <CollectionContainer>
@@ -118,14 +130,18 @@ export default function HomeDataCollection() {
         <HomeSelectedFilterOption filterData={filterData} />
       )}
 
-      {Object.values(collectionData).some(
-        (value: PhotoBoothProps[] | EventProps[] | ReviewProps[]) =>
-          value.length > 0,
-      ) ? (
+      {collectionData.length > 0 ? (
         <>
-          <CollectionScrollView ref={scrollRef}>
-            <PhotoBoothList data={collectionData} />
-          </CollectionScrollView>
+          <FlatList
+            data={collectionData}
+            keyExtractor={(_, index) => `${page}-${index}`}
+            ref={flatListRef}
+            renderItem={renderReviewItem}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={<GetMoreReview />}
+          />
+
           <UpScrollImageBox onPress={handleScrollToTop}>
             <Image source={require('../../assets/image/reuse/up-scroll.png')} />
           </UpScrollImageBox>

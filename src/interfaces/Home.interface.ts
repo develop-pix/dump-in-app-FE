@@ -34,18 +34,18 @@ export interface ReviewFrameProps {
 
 export interface PhotoBoothProps {
   photoBoothID: number;
-  'photobooth-name': string;
-  'representative-image': string;
-  'my-photobooth': boolean;
+  photoboothName: string;
+  representativeImage: string;
+  myPhotobooth: boolean;
 }
 
 export interface EventProps {
   eventID: number;
-  'representative-image': string;
+  representativeImage: string;
 }
 
 export interface ReviewProps {
   reviewID: number;
-  'branch-name': string;
-  'representative-image': string;
+  branchName: string;
+  representativeImage: string;
 }

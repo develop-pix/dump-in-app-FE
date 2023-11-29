@@ -13,19 +13,23 @@ import {
   PhotoBoothName,
 } from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
 import {colors} from '../../../styles/base/Variable';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const onPressReview = () => {
+  const isFocused = useIsFocused();
+  const onPressPhotoBooth = () => {
+    if (!isFocused) {
+      return;
+    }
     navigation.push('PhotoBoothDetail', {photoboothID: data.photoBoothID});
   };
 
   return (
-    <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressReview}>
-      <PhotoBoothFrameImage source={{uri: data['representative-image']}} />
+    <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressPhotoBooth}>
+      <PhotoBoothFrameImage source={{uri: data.representativeImage}} />
       <LinearGradient
         colors={['transparent', colors.black]}
         locations={[0.1, 1]}
@@ -38,12 +42,12 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
         }}
       />
 
-      {data['my-photobooth'] && <TagImage source={PickImage} />}
+      {data.myPhotobooth && <TagImage source={PickImage} />}
 
       <PhotoBoothInfo>
         <PhotoBoothNameContainer>
           <LocationIcon source={LocationImage} />
-          <PhotoBoothName>{data['photobooth-name']}</PhotoBoothName>
+          <PhotoBoothName>{data.photoboothName}</PhotoBoothName>
         </PhotoBoothNameContainer>
       </PhotoBoothInfo>
     </PhotoBoothFrameContainer>

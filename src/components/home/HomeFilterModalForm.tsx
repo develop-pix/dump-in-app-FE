@@ -41,17 +41,16 @@ export default function HomeFilterModalForm({
 
   // 필터 옵션 선택 시 실행(제출x)
   const filterOptionSelect = useCallback(() => {
-    const isFilterOptionSelected = Object.values(filterModalFilterData).some(
-      val => val !== '' && val !== 0 && val.length !== 0,
-    );
-    setIsFilterSelected(isFilterOptionSelected);
+    const isFilterChanged =
+      JSON.stringify(filterModalFilterData) !== JSON.stringify(filterData);
+    setIsFilterSelected(isFilterChanged);
 
-    if (isFilterOptionSelected) {
+    if (isFilterChanged) {
       // 서버에서 선택된 필터들(제출한 필터 x) 제출하고 결과데이터 수 받는 로직 추가
       const resultDataNumber = Math.round(Math.random() * 100);
       setRresultNumber(resultDataNumber);
     }
-  }, [filterModalFilterData]);
+  }, [filterModalFilterData, filterData]);
 
   // 필터 데이터 제출 함수
   const handleFilterSubmit = () => {

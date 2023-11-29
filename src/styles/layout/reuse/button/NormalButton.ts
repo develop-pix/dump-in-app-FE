@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
-export const ReviewRegistrationButtonContainer = styled.TouchableOpacity`
+export const NormalButtonContainer = styled.TouchableOpacity`
   width: 335px;
   height: 44px;
   padding: 10px;
@@ -13,7 +13,7 @@ export const ReviewRegistrationButtonContainer = styled.TouchableOpacity`
   margin-top: 30px;
 `;
 
-export const ReviewRegistrationButtonText = styled.Text`
+export const NormalButtonText = styled.Text`
   color: ${colors.white};
   font-size: ${fontSize.BTN};
   font-weight: ${fontWeight.SB};

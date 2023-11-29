@@ -1,11 +1,11 @@
 import React from 'react';
 import EventDetailForm from '../components/event-detail/EventDetailForm';
-import {EventDetailSafeContainer} from '../styles/layout/EventDetail.style';
+import {EventDetailContainer} from '../styles/layout/EventDetail.style';
 
 export default function EventDetail() {
   return (
-    <EventDetailSafeContainer>
+    <EventDetailContainer>
       <EventDetailForm />
-    </EventDetailSafeContainer>
+    </EventDetailContainer>
   );
 }
