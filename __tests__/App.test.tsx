@@ -13,6 +13,11 @@ jest.mock('react-native-linear-gradient', () => 'react-native-linear-gradient');
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
+jest.mock('react-native-nmap', () => 'react-native-nmap');
+jest.mock(
+  'react-native-geolocation-service',
+  () => 'react-native-geolocation-service',
+);
 
 it('renders correctly', () => {
   renderer.create(<App />);

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {colors} from '../../base/Variable';
-import {TouchableOpacity} from 'react-native';
+import {Dimensions, TouchableOpacity} from 'react-native';
 
 /* page */
 export const LocationContainer = styled.View`
@@ -11,18 +11,28 @@ export const LocationContainer = styled.View`
 
 /* Map */
 
-export const MapContainer = styled.SafeAreaView`
-  flex: 1;
+export const MapContainer = styled.View<{
+  platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
+}>`
   display: flex;
+  height: ${props =>
+    props.platform === 'ios'
+      ? Dimensions.get('window').height - 90
+      : props.platform === 'android'
+      ? Dimensions.get('window').height - 120
+      : null}px;
 `;
 
 /* MapInput */
 
+//인풋 위치 수정하기
 export const InputWrapper = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  position: absolute;
+  top: 80px;
 `;
 export const MapInputContainer = styled.View`
   width: 90%;

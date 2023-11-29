@@ -45,6 +45,8 @@ target 'dump_in_app_FE' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'NMapsMap','3.15.0'
+
   target 'dump_in_app_FETests' do
     inherit! :complete
     # Pods for testing

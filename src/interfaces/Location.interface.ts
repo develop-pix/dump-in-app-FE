@@ -18,3 +18,8 @@ export interface BranchListProps {
   distance: string;
   branchID: number;
 }
+
+export interface MyLocation {
+  latitude: number;
+  longitude: number;
+}
