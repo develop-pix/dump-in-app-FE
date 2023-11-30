@@ -1,10 +1,11 @@
 import React from 'react';
 import {Platform} from 'react-native';
 import {BranchLocationContainer} from '../../styles/layout/branch/Branch.style';
-import GoBackButton from '../reuse/button/GoBackButton';
 import BranchDistance from './BranchDistance';
 import {BranchLocationProps} from '../../interfaces/Branch.interface';
-import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
+import {GoBackButtonFloatContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
+import NaverMapView, {Marker} from 'react-native-nmap';
+import GoBackButtonBlack from '../reuse/button/GoBackButtonBlack';
 
 export default function BranchLocation({
   geolocation,
@@ -15,9 +16,23 @@ export default function BranchLocation({
   console.log('BranchLocation-distance:' + distance);
   return (
     <BranchLocationContainer>
-      <GoBackButtonContainer platform={platform}>
-        <GoBackButton />
-      </GoBackButtonContainer>
+      <NaverMapView
+        style={{width: '100%', height: '100%'}}
+        center={{...geolocation, zoom: 17}}
+        zoomControl={false}
+        maxZoomLevel={17}
+        minZoomLevel={17}
+        zoomGesturesEnabled={false}
+        rotateGesturesEnabled={false}
+        tiltGesturesEnabled={false}
+        stopGesturesEnabled={false}
+        showsMyLocationButton={false}
+        scaleBar={false}>
+        <Marker coordinate={geolocation} />
+      </NaverMapView>
+      <GoBackButtonFloatContainer platform={platform}>
+        <GoBackButtonBlack />
+      </GoBackButtonFloatContainer>
       <BranchDistance />
     </BranchLocationContainer>
   );

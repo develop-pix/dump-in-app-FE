@@ -23,7 +23,6 @@ export const BranchForm = styled.View`
 export const BranchLocationContainer = styled.View`
   width: 100%;
   aspect-ratio: 1;
-  background-color: ${colors.first_grey};
 `;
 
 /* BranchDisatnace */

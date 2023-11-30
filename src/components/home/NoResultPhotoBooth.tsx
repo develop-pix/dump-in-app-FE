@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {NoResultPhotoBoothContainer} from '../../styles/layout/home/NoResultPhotoBooth.style';
 import {ReviewRegistrationButton} from '../reuse/button/ReviewRegistrationButton';
 import {HomeSelectedFilterOptionProps} from '../../interfaces/Home.interface';

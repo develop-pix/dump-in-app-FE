@@ -8,9 +8,12 @@ export interface ReviewSearchEtcProps {
   data: string;
 }
 
-export interface SearchResultsProps {
+export interface SearchResultProps {
   searchData: string;
-  eventData: EventDataProps[];
+  eventData: {
+    eventData: EventDataProps[];
+    finishedEvent: boolean;
+  };
   photoDumpData: CollectionProps[];
 }
 

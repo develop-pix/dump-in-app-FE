@@ -10,10 +10,13 @@ import {
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {
   FrameColorButton,
+  EtcFrameColorButton,
   FrameColorCheckIcon,
+  EtcFrameColorCheckIcon,
 } from '../../../styles/layout/reuse/filter/FilterFrameColor.style';
+import EtcImage from '../../../assets/image/filter/etc-color.png';
+import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
 
-// 무지개 색상은 기타색상을 의미? -> 기타 색상을 의미하는 데이터값(string)을 따로 만들어서 서버로 보내줘야함
 const availableColors = Object.values(frameColors);
 
 export default function FilterFrameColor({
@@ -56,6 +59,15 @@ export default function FilterFrameColor({
             </FrameColorButton>
           );
         })}
+
+        <EtcFrameColorButton
+          isSelected={filterData.frameColor === 'etc'}
+          selectedColor={filterData.frameColor}
+          onPress={() => handleColorToggle('etc')}>
+          <EtcFrameColorCheckIcon
+            source={filterData.frameColor === 'etc' ? EtcCheckImage : EtcImage}
+          />
+        </EtcFrameColorButton>
       </FilterContentContainer>
     </View>
   );

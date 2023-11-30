@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Search from '../../reuse/input/Search';
 import {
-  ReviewSearchContainer,
   ReviewSearchForm,
+  ReviewSearchContainer,
+  SearchResultAlertContainer,
 } from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';
@@ -11,13 +12,20 @@ import {EventDataProps} from '../../../interfaces/HomeSearch.interface';
 import {CollectionProps} from '../../../interfaces/PhotoBoothList.interface';
 import SearchResult from '../search-result/SearchResult';
 import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
+import SearchNoData from '../../reuse/alert/SearchNoData';
 
 export default function ReviewSearchInput() {
   const [search, setSearch] = useState<string>('');
   const [showSearchResult, setShowSearchResult] = useState(false);
 
   // 결과 데이터
-  const [eventData, setEventData] = useState<EventDataProps[]>([]);
+  const [eventData, setEventData] = useState<{
+    eventData: EventDataProps[];
+    finishedEvent: boolean;
+  }>({
+    eventData: [],
+    finishedEvent: true,
+  });
   const [photoDumpData, setPhotoDumpData] = useState<CollectionProps[]>([]);
 
   const getSearchData = async (searchData: string) => {
@@ -27,67 +35,71 @@ export default function ReviewSearchInput() {
     // 나중에 API 연결
     // 임시 데이터
     const tempEventData: EventDataProps[] = [
-      {
-        eventID: 1,
-        eventName: '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
-      },
-      {
-        eventID: 2,
-        eventName: '포토이즘의 가을가을 프레임',
-      },
-      {
-        eventID: 3,
-        eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
-      },
-      {
-        eventID: 4,
-        eventName: 'test 하이라이트 테스트',
-      },
+      // {
+      //   eventID: 1,
+      //   eventName: '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
+      // },
+      // {
+      //   eventID: 2,
+      //   eventName: '포토이즘의 가을가을 프레임',
+      // },
+      // {
+      //   eventID: 3,
+      //   eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
+      // },
+      // {
+      //   eventID: 4,
+      //   eventName: 'test 하이라이트 테스트',
+      // },
     ];
+    const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우를 나타냄(true로 바꾸고 alert 테스트)
     const tempPhotoDumpData: CollectionProps[] = [
-      {
-        'branch-name': '포토이즘 홍대점',
-        'repersentative-image':
-          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        description: 'Description 1',
-        date: '2023-11-04',
-        hashtag: ['# 고데기 있음', '# 생일'],
-        'my-branch': false,
-        mine: false,
-      },
-      {
-        'branch-name': '돈룩업 서울대점',
-        'repersentative-image':
-          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        description: 'Description 2',
-        date: '2023-11-03',
-        hashtag: ['#tag3', '#tag4'],
-        'my-branch': false,
-        mine: false,
-      },
-      {
-        'branch-name': '포토이즘 홍대점',
-        'repersentative-image':
-          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        description: 'Description 1',
-        date: '2023-11-04',
-        hashtag: ['# 고데기 있음', '# 생일'],
-        'my-branch': false,
-        mine: false,
-      },
-      {
-        'branch-name': '돈룩업 서울대점',
-        'repersentative-image':
-          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        description: 'Description 2',
-        date: '2023-11-03',
-        hashtag: ['#tag3', '#tag4'],
-        'my-branch': false,
-        mine: false,
-      },
+      // {
+      //   'branch-name': '포토이즘 홍대점',
+      //   'repersentative-image':
+      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      //   description: 'Description 1',
+      //   date: '2023-11-04',
+      //   hashtag: ['# 고데기 있음', '# 생일'],
+      //   'my-branch': false,
+      //   mine: false,
+      // },
+      // {
+      //   'branch-name': '돈룩업 서울대점',
+      //   'repersentative-image':
+      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      //   description: 'Description 2',
+      //   date: '2023-11-03',
+      //   hashtag: ['#tag3', '#tag4'],
+      //   'my-branch': false,
+      //   mine: false,
+      // },
+      // {
+      //   'branch-name': '포토이즘 홍대점',
+      //   'repersentative-image':
+      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      //   description: 'Description 1',
+      //   date: '2023-11-04',
+      //   hashtag: ['# 고데기 있음', '# 생일'],
+      //   'my-branch': false,
+      //   mine: false,
+      // },
+      // {
+      //   'branch-name': '돈룩업 서울대점',
+      //   'repersentative-image':
+      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      //   description: 'Description 2',
+      //   date: '2023-11-03',
+      //   hashtag: ['#tag3', '#tag4'],
+      //   'my-branch': false,
+      //   mine: false,
+      // },
     ];
 
-    setEventData(tempEventData);
+    setEventData({
+      eventData: tempEventData,
+      finishedEvent: tempFinishedEvent,
+    });
     setPhotoDumpData(tempPhotoDumpData);
 
     // 검색 결과 컴포넌트 보여줌
@@ -150,11 +162,24 @@ export default function ReviewSearchInput() {
         />
 
         {showSearchResult ? (
-          <SearchResult
-            searchData={search} // 검색어 부분과 일치하면 흰 글씨로 표시하기 위해 넘겨줌
-            eventData={eventData}
-            photoDumpData={photoDumpData}
-          />
+          eventData.eventData.length > 0 || photoDumpData.length > 0 ? (
+            <SearchResult
+              searchData={search}
+              eventData={eventData}
+              photoDumpData={photoDumpData}
+            />
+          ) : (
+            <>
+              <SearchResultAlertContainer>
+                <SearchNoData
+                  alertText="검색 결과가 없습니다."
+                  recommendText="아래의 추천 검색어는 어때요?"
+                />
+              </SearchResultAlertContainer>
+
+              <RecommendSearch onRecentListClick={getSearchData} />
+            </>
+          )
         ) : (
           <>
             <RecentSearch onRecentListClick={getSearchData} />
