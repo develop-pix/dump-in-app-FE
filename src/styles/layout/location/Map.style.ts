@@ -19,7 +19,7 @@ export const MapContainer = styled.View<{
     props.platform === 'ios'
       ? Dimensions.get('window').height - 90
       : props.platform === 'android'
-      ? Dimensions.get('window').height - 120
+      ? Dimensions.get('window').height - 110
       : null}px;
 `;
 
@@ -62,4 +62,104 @@ export const InputForm = styled.View`
 export const BlockInput = styled.TextInput`
   margin-left: 10px;
   color: ${colors.second_grey};
+`;
+
+/* ResetLocationButton */
+
+export const ResetLocationButtonContainer = styled.View`
+  position: absolute;
+  right: 10px;
+  bottom: 230px;
+  border-radius: 50px;
+`;
+
+export const ResetLocation = styled.TouchableOpacity`
+  width: 44px;
+  height: 44px;
+`;
+
+export const ResetLocationImage = styled.Image`
+  width: 44px;
+  height: 44px;
+`;
+
+/* BranchCard */
+
+export const BranchCardContainer = styled.View`
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+export const CarouselContainer = styled.ScrollView`
+  width: 100%;
+`;
+
+export const Card = styled.View`
+  width: ${Dimensions.get('window').width * 0.9}px;
+  align-items: center;
+  margin-left: ${Dimensions.get('window').width * 0.01}px;
+  margin-right: ${Dimensions.get('window').width * 0.01}px;
+`;
+
+export const TouchableCardContainer = styled.TouchableOpacity`
+  border-radius: 10px;
+  width: 100%;
+  height: 160px;
+  background-color: ${colors.fifth_grey};
+  padding: 20px 0px 20px 0px;
+  align-items: center;
+`;
+
+export const CardContainer = styled.View`
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const BranchCardTop = styled.View`
+  display: flex;
+  padding-bottom: 10px;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+export const BranchCardLogo = styled.Image`
+  width: 44px;
+  height: 44px;
+`;
+
+export const BranchCardDescription = styled.View`
+  diplay: flex;
+  width: 70%;
+`;
+
+export const BranchCardBranchNameWrapper = styled.View`
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  align-items: center;
+`;
+
+export const BranchCardHashtag = styled.View`
+  flex-direction: row;
+  gap: 3px;
+  flex-wrap: wrap;
+  overflow: hidden;
+`;
+
+export const BranchCardHorizonLine = styled.View`
+  border: 1px solid ${colors.fourth_grey};
+`;
+
+export const BranchCardBottom = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;

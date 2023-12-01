@@ -5,6 +5,7 @@ export const colors = {
   second_grey: '#757575',
   third_grey: '#2D2D2D',
   fourth_grey: '#222222',
+  fifth_grey: '#333333',
   yellow: '#DFFF39',
 };
 

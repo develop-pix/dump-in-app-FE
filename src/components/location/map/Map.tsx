@@ -6,6 +6,8 @@ import {MyLocation} from '../../../interfaces/Location.interface';
 import Geolocation from 'react-native-geolocation-service';
 import {Platform, PermissionsAndroid} from 'react-native';
 import {getAddressFromNaverGeocoding} from '../../../hooks/axios/Location';
+import ResetLocationButton from './ResetLocationButton';
+import BranchCarousel from './BranchCarousel';
 
 export default function Map() {
   //대한민국 북,동,남,서 끝단의 위도 or 경도
@@ -20,11 +22,12 @@ export default function Map() {
     latitude: 37.564362,
     longitude: 126.977011,
   });
-  const [zoom, setZoom] = useState<number>(17);
+  const [zoom, setZoom] = useState<number>(18);
+  const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
 
   // 초기 위치 설정
   const GetLocation = () => {
-    Geolocation.getCurrentPosition(
+    const watchID = Geolocation.watchPosition(
       position => {
         setMyPosition({
           latitude: position.coords.latitude,
@@ -34,8 +37,10 @@ export default function Map() {
       error => {
         console.log(error.code, error.message);
       },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      {enableHighAccuracy: true},
     );
+
+    return watchID;
   };
 
   // ReverseGeolocation 호출
@@ -65,21 +70,38 @@ export default function Map() {
     [],
   );
 
+  const GetAuthorization = async () => {
+    try {
+      switch (platform) {
+        case 'ios':
+          return await Geolocation.requestAuthorization('whenInUse');
+        case 'android':
+          return await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          );
+        default:
+          return;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   // 처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출
   useEffect(() => {
-    switch (platform) {
-      case 'ios':
-        Geolocation.requestAuthorization('whenInUse');
-        break;
-      case 'android':
-        PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        );
-        break;
-      default:
-        return;
-    }
-    GetLocation();
+    let watch = -1;
+    GetAuthorization().then(result => {
+      if (result === 'granted') {
+        watch = GetLocation();
+      }
+    });
+
+    //unMount시 위치 연결 해제
+    return () => {
+      if (watch === 0) {
+        Geolocation.clearWatch(watch);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -90,25 +112,24 @@ export default function Map() {
     }
   }, [myPosition.latitude, myPosition.longitude]);
 
-  // 카메라 이동시 마다 PhotoboothData 부르기 호출
-  useEffect(() => {
-    // GetBranchData(pinPosition.latitude, pinPosition.longitude);
-  }, [pinPosition.latitude, pinPosition.longitude]);
-
   return (
     <MapContainer platform={platform}>
       <NaverMapView
         style={{width: '100%', height: '100%'}}
-        showsMyLocationButton={true}
         center={{...pinPosition, zoom: zoom}}
         onCameraChange={e => {
           setZoom(e.zoom);
           setPinPosition({latitude: e.latitude, longitude: e.longitude});
           ResetCameraPosition(e.latitude, e.longitude);
+          setShowNearBranch(false);
         }}
+        onMapClick={e => {
+          setShowNearBranch(true);
+        }}
+        showsMyLocationButton={false}
         scaleBar={false}
         zoomControl={false}
-        maxZoomLevel={17}
+        maxZoomLevel={20}
         minZoomLevel={8}
         rotateGesturesEnabled={false}
         tiltGesturesEnabled={false}>
@@ -116,6 +137,12 @@ export default function Map() {
         <Marker coordinate={pinPosition} pinColor="red" />
       </NaverMapView>
       <MapInput location={location} />
+      <ResetLocationButton
+        myPosition={myPosition}
+        setPinPosition={setPinPosition}
+        setZoom={setZoom}
+      />
+      <BranchCarousel showNearBranch={showNearBranch} />
     </MapContainer>
   );
 }
