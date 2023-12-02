@@ -21,10 +21,9 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const onPressPhotoBooth = () => {
-    if (!isFocused) {
-      return;
+    if (isFocused) {
+      navigation.push('PhotoBoothDetail', {photoboothID: data.photoBoothID});
     }
-    navigation.push('PhotoBoothDetail', {photoboothID: data.photoBoothID});
   };
 
   return (

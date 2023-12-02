@@ -23,10 +23,9 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const onPressEvent = (id: number) => {
-    if (!isFocused) {
-      return;
+    if (isFocused) {
+      navigation.push('EventDetail', {eventID: id});
     }
-    navigation.push('EventDetail', {eventID: id});
   };
 
   const [favorite, setFavorite] = useState<boolean>(eventData.myEvent);

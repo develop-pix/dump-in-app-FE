@@ -23,10 +23,9 @@ export default function CategoryPhotoBooth() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const onPressPhotoBooth = (id: number) => {
-    if (!isFocused) {
-      return;
+    if (isFocused) {
+      navigation.push('PhotoBoothDetail', {photoboothID: id});
     }
-    navigation.push('PhotoBoothDetail', {photoboothID: id});
   };
 
   return (

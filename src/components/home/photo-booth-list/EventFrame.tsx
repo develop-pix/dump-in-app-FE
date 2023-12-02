@@ -14,10 +14,9 @@ export default function EventFrame({data}: EventFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const onPressEvent = () => {
-    if (!isFocused) {
-      return;
+    if (isFocused) {
+      navigation.push('EventDetail', {eventID: data.eventID});
     }
-    navigation.push('EventDetail', {eventID: data.eventID});
   };
 
   return (

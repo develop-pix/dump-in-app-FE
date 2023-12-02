@@ -8,14 +8,17 @@ import {
   EventListText,
   HighlightedText,
 } from '../../../styles/layout/home-search/search-result/EventResult.style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
 export default function EventResult({searchData, data}: EventResultProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const onPressEvent = () => {
-    navigation.push('EventDetail', {eventID: data.eventID});
+    if (isFocused) {
+      navigation.push('EventDetail', {eventID: data.eventID});
+    }
   };
 
   const index = data.eventName.indexOf(searchData);

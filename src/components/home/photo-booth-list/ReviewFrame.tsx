@@ -19,10 +19,9 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const onPressReview = () => {
-    if (!isFocused) {
-      return;
+    if (isFocused) {
+      navigation.push('ReviewDetail', {reviewID: data.reviewID});
     }
-    navigation.push('ReviewDetail', {reviewID: data.reviewID});
   };
 
   return (
