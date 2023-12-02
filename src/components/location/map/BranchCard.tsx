@@ -24,7 +24,7 @@ import {
 import FavoirteButton from '../../reuse/button/FavoritetButton';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 export default function BranchCard({
   branchID,
@@ -38,8 +38,11 @@ export default function BranchCard({
 }: BranchCardProps) {
   const [favorite, setFavorite] = useState<boolean>(myBranch);
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const onPressBranchCard = () => {
-    navigation.navigate('Branch', {branchID: branchID});
+    if (isFocused) {
+      navigation.push('Branch', {branchID: branchID});
+    }
   };
 
   return (
@@ -67,7 +70,7 @@ export default function BranchCard({
           <DescriptionText>
             내 위치로부터 {`${DistanceForm(distance)}`} ·
           </DescriptionText>
-          <DescriptionText> 약 {elapsedTime}분 소요</DescriptionText>
+          <DescriptionText> 약 {elapsedTime} 소요</DescriptionText>
         </BranchCardBottom>
       </CardContainer>
     </TouchableCardContainer>

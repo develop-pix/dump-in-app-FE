@@ -12,8 +12,6 @@ export default function BranchLocation({
   distance,
 }: BranchLocationProps) {
   const platform = Platform.OS;
-  console.log('BranchLocation-geolocation:' + geolocation);
-  console.log('BranchLocation-distance:' + distance);
   return (
     <BranchLocationContainer>
       <NaverMapView
@@ -33,7 +31,7 @@ export default function BranchLocation({
       <GoBackButtonFloatContainer platform={platform}>
         <GoBackButtonBlack />
       </GoBackButtonFloatContainer>
-      <BranchDistance />
+      <BranchDistance distance={distance} />
     </BranchLocationContainer>
   );
 }
