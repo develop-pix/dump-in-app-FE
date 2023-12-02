@@ -22,9 +22,9 @@ import {
   TagsArrayToHashTagArrayForm,
 } from '../../../utils/FormChange';
 import FavoirteButton from '../../reuse/button/FavoritetButton';
-import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {useNavigation} from '@react-navigation/native';
 
 export default function BranchCard({
   branchID,

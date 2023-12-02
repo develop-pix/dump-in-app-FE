@@ -28,7 +28,11 @@ const App = () => {
               screenOptions={{headerShown: false}}>
               <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="HomeSearch" component={HomeSearch} />
-              <Stack.Screen name="Location" component={Location} />
+              <Stack.Screen
+                name="Location"
+                component={Location}
+                initialParams={{photoBoothID: null}}
+              />
               <Stack.Screen name="LocationSearch" component={LocationSearch} />
               <Stack.Screen name="Category" component={Category} />
               <Stack.Screen name="MyPage" component={MyPage} />

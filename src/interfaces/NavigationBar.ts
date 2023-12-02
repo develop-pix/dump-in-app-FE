@@ -3,7 +3,7 @@ import {ReactNode} from 'react';
 export type RootStackParam = {
   Home: undefined;
   HomeSearch: undefined;
-  Location: undefined;
+  Location: undefined | {photoboothID: number | null};
   LocationSearch: undefined;
   Category: undefined;
   MyPage: undefined;
@@ -28,6 +28,12 @@ export type BranchParamList = {
 export type ReviewDetailParamList = {
   reviewType: {
     reviewID: number;
+  };
+};
+
+export type PhotoBoothParamList = {
+  photoboothType: {
+    photoBoothID: number | null;
   };
 };
 
