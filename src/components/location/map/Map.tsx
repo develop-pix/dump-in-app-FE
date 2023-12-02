@@ -24,7 +24,6 @@ export default function Map() {
   });
   const [zoom, setZoom] = useState<number>(18);
   const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
-
   // 초기 위치 설정
   const GetLocation = () => {
     const watchID = Geolocation.watchPosition(
@@ -123,7 +122,7 @@ export default function Map() {
           ResetCameraPosition(e.latitude, e.longitude);
           setShowNearBranch(false);
         }}
-        onMapClick={e => {
+        onMapClick={() => {
           setShowNearBranch(true);
         }}
         showsMyLocationButton={false}
