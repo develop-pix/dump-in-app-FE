@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {useRoute} from '@react-navigation/native';
-import {PhotoBoothDetailRouteProp} from '../../interfaces/PhotoBoothDetail.interface';
 import {ScrollView} from 'react-native';
 import PhotoBoothImageTitle from './PhotoBoothImageTitle';
 import PhotoBoothEvent from './PhotoBoothEvent';
@@ -12,9 +10,6 @@ import {
 } from '../../styles/layout/photobooth-detail/PhotoBoothDetail.style';
 
 export default function PhotoBoothDetail() {
-  const route = useRoute<PhotoBoothDetailRouteProp>();
-  const {photoboothID} = route.params;
-
   // 임시 데이터, 포토부스 아이디 값의 데이터를 서버에서 가져옴
   const [photoboothData, setPhotoboothData] = useState({
     photoboothName: '포토그레이',

@@ -18,12 +18,34 @@ import {
 } from '../../styles/layout/photobooth-detail/PhotoBoothImageTitle.style';
 import {Title} from '../../styles/layout/reuse/text/Text.style';
 import {NormalButton} from '../reuse/button/NormalButton';
+import {
+  RouteProp,
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {
+  PhotoBoothParamList,
+  RootStackParam,
+} from '../../interfaces/NavigationBar';
+import {useScreen} from '../../utils/ScreenContext';
 
 export default function PhotoBoothImageTitle({
   photoboothData,
 }: PhotoBoothImageTitleProps) {
+  const {setScreen} = useScreen();
+  const route = useRoute<RouteProp<PhotoBoothParamList, 'photoboothType'>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
+
   const onPressButton = () => {
-    // 지도 페이지로 이동
+    if (isFocused) {
+      setScreen('Location');
+      navigation.navigate('Location', {
+        PhotoBoothID: route.params.PhotoBoothID,
+      });
+    }
   };
 
   const [favorite, setFavorite] = useState<boolean>(

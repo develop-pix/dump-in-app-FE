@@ -13,7 +13,7 @@ import {RootStackParam} from '../../interfaces/NavigationBar';
 const photoBoothData = Array(12)
   .fill(null)
   .map((_, index) => ({
-    photoboothID: index + 1,
+    PhotoBoothID: index + 1,
     representativeImage:
       'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     photoboothName: '포토그레이',
@@ -24,7 +24,7 @@ export default function CategoryPhotoBooth() {
   const isFocused = useIsFocused();
   const onPressPhotoBooth = (id: number) => {
     if (isFocused) {
-      navigation.push('PhotoBoothDetail', {photoboothID: id});
+      navigation.push('PhotoBoothDetail', {PhotoBoothID: id});
     }
   };
 
@@ -32,8 +32,8 @@ export default function CategoryPhotoBooth() {
     <CategoryPhotoBoothContainer>
       {photoBoothData.map(item => (
         <PhotoBoothItem
-          key={item.photoboothID}
-          onPress={() => onPressPhotoBooth(item.photoboothID)}>
+          key={item.PhotoBoothID}
+          onPress={() => onPressPhotoBooth(item.PhotoBoothID)}>
           <PhotoBoothLogo source={{uri: item.representativeImage}} />
           <PhotoBoothName>{item.photoboothName}</PhotoBoothName>
         </PhotoBoothItem>
