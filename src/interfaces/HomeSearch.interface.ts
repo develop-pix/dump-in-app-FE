@@ -1,4 +1,4 @@
-import {CollectionProps} from './PhotoBoothList.interface';
+import {ReviewProps} from './Home.interface';
 
 export interface HomeSearchProps {
   onRecentListClick: (search: string) => void;
@@ -14,10 +14,10 @@ export interface SearchResultProps {
     eventData: EventDataProps[];
     finishedEvent: boolean;
   };
-  photoDumpData: CollectionProps[];
+  photoDumpData: ReviewProps[];
 }
 
-// 이벤트 데이터 타입
+// 홈-검색 이벤트 데이터 타입
 export interface EventDataProps {
   eventID: number;
   eventName: string;
@@ -31,4 +31,11 @@ export interface EventResultProps {
 export interface RecentSearchItemProps {
   search: string;
   order: number;
+}
+
+// 이벤트 더보기 모달 데이터 타입
+export interface MoreEventResultProps {
+  eventData: EventDataProps[];
+  searchData: string;
+  closeMoreEventModal: () => void;
 }

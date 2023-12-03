@@ -8,11 +8,15 @@ import {Platform, PermissionsAndroid} from 'react-native';
 import {getAddressFromNaverGeocoding} from '../../../hooks/axios/Location';
 import ResetLocationButton from './ResetLocationButton';
 import BranchCarousel from './BranchCarousel';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import {PhotoBoothParamList} from '../../../interfaces/NavigationBar';
 
 export default function Map() {
   //대한민국 북,동,남,서 끝단의 위도 or 경도
   const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
   const platform = Platform.OS;
+  //photoBoothID로 주변 포토부스 호출 null일시 모든 포토부스에 대하여 탐색
+  const route = useRoute<RouteProp<PhotoBoothParamList, 'photoboothType'>>();
   const [location, setLocation] = useState<string>('주소 입력');
   const [myPosition, setMyPosition] = useState<MyLocation>({
     latitude: 37.564362,
@@ -42,6 +46,7 @@ export default function Map() {
     return watchID;
   };
 
+  console.log(route);
   // ReverseGeolocation 호출
   const GetAddressData = async (latitude: number, longitude: number) => {
     const addressData = await getAddressFromNaverGeocoding(latitude, longitude);

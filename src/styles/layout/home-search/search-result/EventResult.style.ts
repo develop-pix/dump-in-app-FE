@@ -29,4 +29,11 @@ export const EventListText = styled.Text`
   color: ${colors.first_grey};
   font-size: ${fontSize.H3};
   font-weight: ${fontWeight.M};
+  width: 280px;
+`;
+
+export const HighlightedText = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.H2};
+  font-weight: ${fontWeight.SB};
 `;

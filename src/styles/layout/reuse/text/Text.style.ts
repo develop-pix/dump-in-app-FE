@@ -3,6 +3,12 @@ import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
 // 글씨체 지정 필요함 - Montserrat
 
+export const Title = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.H1};
+  font-weight: ${fontWeight.SB};
+`;
+
 export const SubTitleText = styled.Text`
   color: ${colors.white};
   font-size: ${fontSize.T2};
@@ -20,6 +26,8 @@ export const RecommendText = styled.Text`
   color: ${colors.second_grey};
   font-size: ${fontSize.B2};
   font-weight: ${fontWeight.M};
+  width: 240px;
+  text-align: center;
 `;
 
 export const HashtagsText = styled.Text`
@@ -75,6 +83,18 @@ export const BranchCardBranchName = styled.Text`
 
 export const DescriptionText = styled.Text`
   color: ${colors.first_grey};
+  font-size: ${fontSize.H5};
+  font-weight: ${fontWeight.M};
+`;
+
+export const SmallText = styled.Text`
+  color: ${colors.first_grey};
+  font-size: ${fontSize.B2};
+  font-weight: ${fontWeight.M};
+`;
+
+export const InfoDateText = styled.Text`
+  color: ${colors.second_grey};
   font-size: ${fontSize.H5};
   font-weight: ${fontWeight.M};
 `;

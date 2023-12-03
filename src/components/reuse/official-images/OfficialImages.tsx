@@ -9,6 +9,7 @@ import {
 } from '../../../styles/layout/reuse/offcial-images/OfficialImages.style';
 import {SubTitleText} from '../../../styles/layout/reuse/text/Text.style';
 
+// props로 이미지 받도록 수정해야함
 export default function OfficialImages() {
   return (
     <OfficialContainer>

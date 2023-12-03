@@ -3,12 +3,14 @@ import {ReactNode} from 'react';
 export type RootStackParam = {
   Home: undefined;
   HomeSearch: undefined;
-  Location: undefined | {photoboothID: number | null};
+  Location: undefined | {PhotoBoothID: number | null};
   LocationSearch: undefined;
   Category: undefined;
   MyPage: undefined;
   Branch: {branchID: number};
   ReviewDetail: {reviewID: number};
+  PhotoBoothDetail: {PhotoBoothID: number};
+  EventDetail: {eventID: number};
 };
 
 export interface NavigationBarListItemProps {
@@ -33,7 +35,7 @@ export type ReviewDetailParamList = {
 
 export type PhotoBoothParamList = {
   photoboothType: {
-    photoBoothID: number | null;
+    PhotoBoothID: number | null;
   };
 };
 

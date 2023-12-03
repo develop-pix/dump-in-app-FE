@@ -8,10 +8,12 @@ import {
 } from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';
-import {EventDataProps} from '../../../interfaces/HomeSearch.interface';
-import {CollectionProps} from '../../../interfaces/PhotoBoothList.interface';
+import {ReviewProps} from '../../../interfaces/Home.interface';
 import SearchResult from '../search-result/SearchResult';
-import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
+import {
+  RecentSearchItemProps,
+  EventDataProps,
+} from '../../../interfaces/HomeSearch.interface';
 import SearchNoData from '../../reuse/alert/SearchNoData';
 
 export default function ReviewSearchInput() {
@@ -26,81 +28,97 @@ export default function ReviewSearchInput() {
     eventData: [],
     finishedEvent: true,
   });
-  const [photoDumpData, setPhotoDumpData] = useState<CollectionProps[]>([]);
+  const [photoDumpData, setPhotoDumpData] = useState<ReviewProps[]>([]);
 
   const getSearchData = async (searchData: string) => {
     // 검색어 상태 업데이트
     setSearch(searchData);
 
+    // 검색어 저장 로직
+    let loadedSearches = await AsyncStorage.getItem('searches');
+    let newSearches: RecentSearchItemProps[] =
+      loadedSearches !== null ? JSON.parse(loadedSearches) : [];
+
+    const existingSearchIndex = newSearches.findIndex(
+      (item: RecentSearchItemProps) => item.search === searchData,
+    );
+    if (existingSearchIndex > -1) {
+      newSearches[existingSearchIndex].order =
+        Math.max(
+          ...newSearches.map((item: RecentSearchItemProps) => item.order),
+        ) + 1;
+    } else {
+      newSearches.push({
+        search: searchData,
+        order:
+          newSearches.length > 0
+            ? Math.max(
+                ...newSearches.map((item: RecentSearchItemProps) => item.order),
+              ) + 1
+            : 1,
+      });
+    }
+
+    newSearches.sort(
+      (a: RecentSearchItemProps, b: RecentSearchItemProps) => b.order - a.order,
+    );
+
+    await AsyncStorage.setItem('searches', JSON.stringify(newSearches));
+
     // 나중에 API 연결
     // 임시 데이터
     const tempEventData: EventDataProps[] = [
-      // {
-      //   eventID: 1,
-      //   eventName: '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 ...',
-      // },
-      // {
-      //   eventID: 2,
-      //   eventName: '포토이즘의 가을가을 프레임',
-      // },
-      // {
-      //   eventID: 3,
-      //   eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
-      // },
-      // {
-      //   eventID: 4,
-      //   eventName: 'test 하이라이트 테스트',
-      // },
+      {
+        eventID: 1,
+        eventName:
+          '포토이즘 X 윌벤져스포토이즘 X 윌벤져스 윌벤져스윌벤져스윌벤져스',
+      },
+      {
+        eventID: 2,
+        eventName: '포토이즘의 가을가을 프레임',
+      },
+      {
+        eventID: 3,
+        eventName: '원조네컷 x 월벤져스원조네컷 x 원조네컷',
+      },
+      {
+        eventID: 4,
+        eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
+      },
     ];
     const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우를 나타냄(true로 바꾸고 alert 테스트)
-    const tempPhotoDumpData: CollectionProps[] = [
-      // {
-      //   'branch-name': '포토이즘 홍대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 1',
-      //   date: '2023-11-04',
-      //   hashtag: ['# 고데기 있음', '# 생일'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
-      // {
-      //   'branch-name': '돈룩업 서울대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 2',
-      //   date: '2023-11-03',
-      //   hashtag: ['#tag3', '#tag4'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
-      // {
-      //   'branch-name': '포토이즘 홍대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 1',
-      //   date: '2023-11-04',
-      //   hashtag: ['# 고데기 있음', '# 생일'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
-      // {
-      //   'branch-name': '돈룩업 서울대점',
-      //   'repersentative-image':
-      //     'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-      //   description: 'Description 2',
-      //   date: '2023-11-03',
-      //   hashtag: ['#tag3', '#tag4'],
-      //   'my-branch': false,
-      //   mine: false,
-      // },
+    const tempReviewData: ReviewProps[] = [
+      {
+        reviewID: 1,
+        branchName: '포토부스 혜화점',
+        representativeImage:
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
+      {
+        reviewID: 2,
+        branchName: '포토부스 서울대점',
+        representativeImage:
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
+      {
+        reviewID: 3,
+        branchName: '포토그레이 홍대점',
+        representativeImage:
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
+      {
+        reviewID: 4,
+        branchName: '인생네컷 홍대점',
+        representativeImage:
+          'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      },
     ];
 
     setEventData({
       eventData: tempEventData,
       finishedEvent: tempFinishedEvent,
     });
-    setPhotoDumpData(tempPhotoDumpData);
+    setPhotoDumpData(tempReviewData);
 
     // 검색 결과 컴포넌트 보여줌
     setShowSearchResult(true);
@@ -110,44 +128,6 @@ export default function ReviewSearchInput() {
   const onSearchClick = async () => {
     if (search !== '') {
       await getSearchData(search); // 검색 실행
-
-      // 기존에 저장된 검색어
-      let loadedSearches = await AsyncStorage.getItem('searches');
-      let newSearches: RecentSearchItemProps[] =
-        loadedSearches !== null ? JSON.parse(loadedSearches) : [];
-
-      // 최신 검색어 중복 방지
-      const existingSearchIndex = newSearches.findIndex(
-        (item: RecentSearchItemProps) => item.search === search,
-      );
-      if (existingSearchIndex > -1) {
-        // 저장되어있는 검색어를 다시 검색하면 order를 최댓값으로 설정
-        newSearches[existingSearchIndex].order =
-          Math.max(
-            ...newSearches.map((item: RecentSearchItemProps) => item.order),
-          ) + 1;
-      } else {
-        // 검색어 추가
-        newSearches.push({
-          search,
-          order:
-            newSearches.length > 0
-              ? Math.max(
-                  ...newSearches.map(
-                    (item: RecentSearchItemProps) => item.order,
-                  ),
-                ) + 1
-              : 1,
-        });
-      }
-
-      // 최근 입력 순으로 정렬
-      newSearches.sort(
-        (a: RecentSearchItemProps, b: RecentSearchItemProps) =>
-          b.order - a.order,
-      );
-
-      await AsyncStorage.setItem('searches', JSON.stringify(newSearches)); // 검색어 저장
     }
   };
 

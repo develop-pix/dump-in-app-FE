@@ -30,6 +30,7 @@ const availableLocations = [
 export default function FilterLocation({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleLocationToggle = (location: string) => {
     const isSelected = filterData.geolocation === location;
@@ -38,6 +39,8 @@ export default function FilterLocation({
       ...prevFilterData,
       geolocation: isSelected ? '' : location,
     }));
+
+    filterOptionSelect();
   };
 
   return (

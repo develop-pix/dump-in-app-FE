@@ -13,6 +13,7 @@ const availableParty = [1, 2, 3, 4];
 export default function FilterParty({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handlePartyToggle = (party: number) => {
     const isSelected = filterData.party === party;
@@ -21,6 +22,8 @@ export default function FilterParty({
       ...prevFilterData,
       party: isSelected ? 0 : party,
     }));
+
+    filterOptionSelect();
   };
 
   return (
