@@ -7,10 +7,10 @@ import {
   SeeMoreContainer,
 } from '../../styles/layout/review-detail/ReviewDetail.style';
 import {
-  DateText,
-  HashtagsText,
-  ReviewDescText,
-  SeeMoreText,
+  FontWhiteSmallerThin,
+  FontYellowSmallerThinWithLineSpacing,
+  FontWhiteNormalThin,
+  FontWhiteGreyNormalThin,
 } from '../../styles/layout/reuse/text/Text.style';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {
@@ -58,26 +58,30 @@ export default function ReviewDescription({
   return (
     <ReviewDescriptionContainer platform={platform}>
       <ReviewDescTop>
-        <DateText>{DateToReviewDateForm(date)}</DateText>
+        <FontWhiteSmallerThin>
+          {DateToReviewDateForm(date)}
+        </FontWhiteSmallerThin>
         <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
       </ReviewDescTop>
       <ReviewDescMiddle>
-        <ReviewDescText
+        <FontWhiteNormalThin
           onTextLayout={onCheckTextLayout}
           numberOfLines={numLines}>
           {description}
-        </ReviewDescText>
+        </FontWhiteNormalThin>
         {showMore ? (
           <SeeMoreContainer>
-            <SeeMoreText onPress={onPressSeeMore}>
+            <FontWhiteGreyNormalThin onPress={onPressSeeMore}>
               {textShown ? '줄이기' : '더보기'}
-            </SeeMoreText>
+            </FontWhiteGreyNormalThin>
           </SeeMoreContainer>
         ) : null}
       </ReviewDescMiddle>
       <ReviewDescBottom>
         {TagsArrayToHashTagArrayForm(hashtag).map(tag => (
-          <HashtagsText key={tag}>{tag}</HashtagsText>
+          <FontYellowSmallerThinWithLineSpacing key={tag}>
+            {tag}
+          </FontYellowSmallerThinWithLineSpacing>
         ))}
       </ReviewDescBottom>
     </ReviewDescriptionContainer>

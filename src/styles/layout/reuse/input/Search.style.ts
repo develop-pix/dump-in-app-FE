@@ -16,12 +16,12 @@ export const SearchWrapper = styled.View`
   align-items: center;
   width: 90%;
   height: 46px;
-  background-color: ${colors.third_grey};
+  background-color: ${colors.darkgrey};
   border-radius: 10px;
 `;
 
 export const SearchInput = styled.TextInput.attrs({
-  placeholderTextColor: `${colors.second_grey}`,
+  placeholderTextColor: `${colors.lightgrey}`,
 })`
   margin-left: 10px;
   color: ${colors.white};

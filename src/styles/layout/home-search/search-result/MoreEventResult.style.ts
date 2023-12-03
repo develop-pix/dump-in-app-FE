@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 export const ModalContainer = styled.View`
   flex: 1;
@@ -12,16 +12,4 @@ export const EventTitleContainer = styled.View`
   align-items: center;
   padding: 0 20px;
   margin-bottom: 10px;
-`;
-
-export const EventTitle = styled.Text`
-  color: ${colors.first_grey};
-  font-size: ${fontSize.T2};
-  font-weight: ${fontWeight.SB};
-`;
-
-export const EventCount = styled.Text`
-  color: ${colors.first_grey};
-  font-size: ${fontSize.B4};
-  font-weight: ${fontWeight.SB};
 `;

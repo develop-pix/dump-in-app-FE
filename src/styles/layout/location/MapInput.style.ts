@@ -1,0 +1,41 @@
+import styled from 'styled-components/native';
+import {colors} from '../../base/Variable';
+import {TouchableOpacity} from 'react-native';
+
+export const InputWrapper = styled.View<{
+  platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
+}>`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: ${props =>
+    props.platform === 'ios' ? 70 : props.platform === 'android' ? 40 : null}px;
+`;
+export const MapInputContainer = styled.View`
+  width: 90%;
+`;
+
+export const MapInputhWrapper = styled(TouchableOpacity)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 46px;
+  background-color: ${colors.white};
+  border-radius: 10px;
+`;
+
+export const InputForm = styled.View`
+  display: flex;
+  height: 46px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const BlockInput = styled.TextInput`
+  margin-left: 10px;
+  color: ${colors.lightgrey};
+`;

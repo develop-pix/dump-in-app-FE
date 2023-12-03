@@ -10,12 +10,12 @@ import {
   PhotoBoothInfo,
   PhotoBoothNameContainer,
   LocationIcon,
-  PhotoBoothName,
 } from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
 import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -46,7 +46,9 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
       <PhotoBoothInfo>
         <PhotoBoothNameContainer>
           <LocationIcon source={LocationImage} />
-          <PhotoBoothName>{data.photoboothName}</PhotoBoothName>
+          <FontWhiteGreySmallerThinWithLineHeight>
+            {data.photoboothName}
+          </FontWhiteGreySmallerThinWithLineHeight>
         </PhotoBoothNameContainer>
       </PhotoBoothInfo>
     </PhotoBoothFrameContainer>

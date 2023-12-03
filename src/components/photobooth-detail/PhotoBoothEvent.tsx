@@ -4,8 +4,10 @@ import {
   PhotoBoothEventContainer,
   TitleContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothEvent.style';
-import {SubTitleText} from '../../styles/layout/reuse/text/Text.style';
-import {SmallText} from '../../styles/layout/reuse/text/Text.style';
+import {
+  FontWhiteGreySmallerThin,
+  FontWhiteSmallerThickWithLineSpacing,
+} from '../../styles/layout/reuse/text/Text.style';
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 import {TouchableOpacity} from 'react-native';
 import SearchNoData from '../reuse/alert/SearchNoData';
@@ -30,10 +32,12 @@ export default function PhotoBoothEvent({eventData}: PhotoBoothEventProps) {
   return (
     <PhotoBoothEventContainer>
       <TitleContainer>
-        <SubTitleText>E V E N T</SubTitleText>
+        <FontWhiteSmallerThickWithLineSpacing>
+          EVENT
+        </FontWhiteSmallerThickWithLineSpacing>
         {eventData.length > 1 && (
           <TouchableOpacity onPress={onMoreClick}>
-            <SmallText>더보기</SmallText>
+            <FontWhiteGreySmallerThin>더보기</FontWhiteGreySmallerThin>
           </TouchableOpacity>
         )}
       </TitleContainer>

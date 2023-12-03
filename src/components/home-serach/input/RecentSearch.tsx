@@ -3,17 +3,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   RecentSearchContainer,
   RecentSearchContentContainer,
-  RecentSearchTitle,
   RecentSearchButton,
-  RecentSearchText,
   CloseButton,
   CloseButtonIcon,
   EmptySearchMessageContainer,
-  EmptySearchMessage,
 } from '../../../styles/layout/home-search/input/RecentSearch.style';
 import CloseBtnImage from '../../../assets/image/reuse/close-btn-sub.png';
 import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
+import {
+  FontWhiteGreyNormalThin,
+  FontWhiteGreySmallerThin,
+  FontWhiteGreySmallestThick,
+} from '../../../styles/layout/reuse/text/Text.style';
 
 export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
   const [recentSearches, setRecentSearches] = useState<RecentSearchItemProps[]>(
@@ -42,8 +44,7 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
 
   return (
     <RecentSearchContainer>
-      <RecentSearchTitle>최근 검색어</RecentSearchTitle>
-
+      <FontWhiteGreySmallestThick>최근 검색어</FontWhiteGreySmallestThick>
       <RecentSearchContentContainer>
         {recentSearches.length > 0 ? (
           recentSearches.map(
@@ -51,7 +52,9 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
               <RecentSearchButton
                 key={searchItem.search}
                 onPress={() => onRecentListClick(searchItem.search)}>
-                <RecentSearchText>{searchItem.search}</RecentSearchText>
+                <FontWhiteGreySmallerThin>
+                  {searchItem.search}
+                </FontWhiteGreySmallerThin>
                 <CloseButton onPress={() => onDelete(index)}>
                   <CloseButtonIcon source={CloseBtnImage} />
                 </CloseButton>
@@ -60,7 +63,9 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
           )
         ) : (
           <EmptySearchMessageContainer>
-            <EmptySearchMessage>최근 검색어가 없습니다.</EmptySearchMessage>
+            <FontWhiteGreyNormalThin>
+              최근 검색어가 없습니다.
+            </FontWhiteGreyNormalThin>
           </EmptySearchMessageContainer>
         )}
       </RecentSearchContentContainer>

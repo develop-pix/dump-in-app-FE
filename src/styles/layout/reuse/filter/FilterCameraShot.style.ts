@@ -29,7 +29,7 @@ export const CameraShotImage = styled.Image<{
 export const CameraShotImageText = styled.Text<{isSelected: boolean}>`
   position: absolute;
   bottom: 5px;
-  color: ${({isSelected}) => (isSelected ? colors.white : colors.first_grey)};
-  font-size: ${fontSize.B2};
-  font-weight: ${fontWeight.M};
+  color: ${({isSelected}) => (isSelected ? colors.white : colors.whitegrey)};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.thin};
 `;

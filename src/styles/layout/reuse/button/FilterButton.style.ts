@@ -19,8 +19,8 @@ export const FilterButtonContainer = styled.TouchableOpacity<{
 export const FilterButtonText = styled.Text<{
   textColor: string;
 }>`
-  font-size: ${fontSize.BTN};
-  font-weight: ${fontWeight.SB};
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.thick};
   text-align: center;
   color: ${({textColor}) => textColor};
 `;

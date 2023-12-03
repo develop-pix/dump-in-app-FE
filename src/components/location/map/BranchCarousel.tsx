@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {
-  BranchCardContainer,
-  Card,
-  CarouselContainer,
-} from '../../../styles/layout/location/Map.style';
+
 import {Dimensions, NativeScrollEvent} from 'react-native';
 import BranchCard from './BranchCard';
 import {
   BranchCardData,
   BranchCarouselProps,
 } from '../../../interfaces/Location.interface';
+import {
+  BranchCardContainer,
+  Card,
+  CarouselContainer,
+} from '../../../styles/layout/location/BranchCarousel.style';
 
 export default function BranchCarousel({showNearBranch}: BranchCarouselProps) {
   const pageWidth = Dimensions.get('window').width * 0.9;
