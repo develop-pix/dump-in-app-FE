@@ -68,6 +68,25 @@ export const BranchNameText = styled.Text`
   line-height: 24px;
 `;
 
+export const BranchCardPhotoboothName = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.H1};
+  font-weight: ${fontWeight.SB};
+  line-height: 24px;
+`;
+
+export const BranchCardBranchName = styled.Text`
+  color: ${colors.first_grey};
+  font-size: ${fontSize.H5};
+  font-weight: ${fontWeight.SB};
+`;
+
+export const DescriptionText = styled.Text`
+  color: ${colors.first_grey};
+  font-size: ${fontSize.H5};
+  font-weight: ${fontWeight.M};
+`;
+
 export const SmallText = styled.Text`
   color: ${colors.first_grey};
   font-size: ${fontSize.B2};
