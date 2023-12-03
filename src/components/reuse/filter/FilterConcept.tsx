@@ -30,6 +30,7 @@ const availableConcepts = [
 export default function FilterConcept({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleConceptToggle = (concept: string) => {
     const isSelected = filterData.concept.includes(concept);
@@ -45,6 +46,8 @@ export default function FilterConcept({
       ...prevFilterData,
       concept: conceptArray,
     }));
+
+    filterOptionSelect();
   };
 
   return (

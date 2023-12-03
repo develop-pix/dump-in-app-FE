@@ -11,12 +11,14 @@ export const FilterButton = ({
   backgroundColor,
   borderColor,
   textColor,
+  disabled,
 }: FilterButtonProps) => {
   return (
     <FilterButtonContainer
       backgroundColor={backgroundColor}
       borderColor={borderColor}
-      onPress={onPress}>
+      onPress={onPress}
+      disabled={disabled}>
       <FilterButtonText textColor={textColor}>{text}</FilterButtonText>
     </FilterButtonContainer>
   );

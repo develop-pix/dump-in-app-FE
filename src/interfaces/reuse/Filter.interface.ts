@@ -16,4 +16,5 @@ export interface HomeFilterModalFormProps {
 export interface FilterDataUpdateProps {
   filterData: FilterProps;
   setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
+  filterOptionSelect: () => void;
 }
