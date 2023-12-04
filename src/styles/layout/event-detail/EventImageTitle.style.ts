@@ -16,7 +16,7 @@ export const EventImageContentContainer = styled.View`
 export const EventImage = styled.ImageBackground`
   width: 100%;
   height: 400px;
-  background-color: ${colors.first_grey};
+  background-color: ${colors.whitegrey};
 `;
 
 export const ContentsContainer = styled.View`

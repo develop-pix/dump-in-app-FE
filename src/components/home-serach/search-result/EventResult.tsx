@@ -5,12 +5,14 @@ import {
   EventResultContainer,
   EventListIcon,
   EventListInfo,
-  EventListText,
-  HighlightedText,
 } from '../../../styles/layout/home-search/search-result/EventResult.style';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {
+  FontWhiteGreyNormalThin,
+  FontWhiteNormalThick,
+} from '../../../styles/layout/reuse/text/Text.style';
 
 export default function EventResult({searchData, data}: EventResultProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -29,9 +31,9 @@ export default function EventResult({searchData, data}: EventResultProps) {
       <EventResultContainer onPress={onPressEvent}>
         <EventListInfo>
           <EventListIcon source={SearchResultIcon} />
-          <EventListText numberOfLines={1} ellipsizeMode="tail">
+          <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
             {data.eventName}
-          </EventListText>
+          </FontWhiteGreyNormalThin>
         </EventListInfo>
       </EventResultContainer>
     );
@@ -45,11 +47,11 @@ export default function EventResult({searchData, data}: EventResultProps) {
     <EventResultContainer onPress={onPressEvent}>
       <EventListInfo>
         <EventListIcon source={SearchResultIcon} />
-        <EventListText numberOfLines={1} ellipsizeMode="tail">
+        <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
           {beforeEventName}
-          <HighlightedText>{searchData}</HighlightedText>
+          <FontWhiteNormalThick>{searchData}</FontWhiteNormalThick>
           {afterEventName}
-        </EventListText>
+        </FontWhiteGreyNormalThin>
       </EventListInfo>
     </EventResultContainer>
   );

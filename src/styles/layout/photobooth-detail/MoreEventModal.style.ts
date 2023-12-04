@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const MoreEventModalContainer = styled.View`
   height: 80%;
-  background-color: ${colors.third_grey};
+  background-color: ${colors.darkgrey};
   padding: 20px;
   width: 100%;
   border-top-left-radius: 20px;
@@ -15,14 +15,6 @@ export const TitleContainer = styled.View`
   justify-content: center;
   align-items: center;
   height: 50px;
-`;
-
-export const Title = styled.Text`
-  flex: 1;
-  text-align: center;
-  color: ${colors.first_grey};
-  font-size: ${fontSize.H2};
-  font-weight: ${fontWeight.SB};
 `;
 
 export const CloseButtonContainer = styled.TouchableOpacity`

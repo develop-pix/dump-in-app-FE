@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const EventItemContainer = styled.TouchableOpacity`
   width: 100%;
@@ -15,7 +15,7 @@ export const EventImageWrapper = styled.View`
   height: 100%;
   position: relative;
   padding: 10px;
-  background-color: ${colors.first_grey};
+  background-color: ${colors.whitegrey};
 `;
 
 export const EventImage = styled.Image`
@@ -42,15 +42,12 @@ export const PhotoBoothNameContainer = styled.View`
   margin-bottom: 5px;
 `;
 
+export const EventTitleContainer = styled.View`
+  margin-bottom: 5px;
+`;
+
 export const LocationIcon = styled.Image`
   width: 18px;
   height: 21px;
   margin-right: 2px;
-`;
-
-export const EventTitle = styled.Text`
-  font-size: ${fontSize.H1};
-  font-weight: ${fontWeight.SB};
-  color: ${colors.white};
-  margin-bottom: 5px;
 `;

@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import GoBackButton from '../reuse/button/GoBackButton';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
-import {HashtagsText} from '../../styles/layout/reuse/text/Text.style';
+import {
+  FontWhiteBiggestThick,
+  FontYellowSmallerThinWithLineSpacing,
+} from '../../styles/layout/reuse/text/Text.style';
 import {ReviewDescBottom} from '../../styles/layout/review-detail/ReviewDetail.style';
 import {EventImageTitleProps} from '../../interfaces/EventDetail.interface';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,7 +18,6 @@ import {
   ContentsContainer,
   TitleContainer,
 } from '../../styles/layout/event-detail/EventImageTitle.style';
-import {Title} from '../../styles/layout/reuse/text/Text.style';
 
 export default function ImageTitle({eventData}: EventImageTitleProps) {
   const [favorite, setFavorite] = useState<boolean>(eventData.myEvent);
@@ -43,13 +45,17 @@ export default function ImageTitle({eventData}: EventImageTitleProps) {
 
         <ContentsContainer>
           <TitleContainer>
-            <Title>{eventData.eventTitle}</Title>
+            <FontWhiteBiggestThick>
+              {eventData.eventTitle}
+            </FontWhiteBiggestThick>
             <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
           </TitleContainer>
 
           <ReviewDescBottom>
             {TagsArrayToHashTagArrayForm(eventData.hashtag).map(tag => (
-              <HashtagsText key={tag}>{tag}</HashtagsText>
+              <FontYellowSmallerThinWithLineSpacing key={tag}>
+                {tag}
+              </FontYellowSmallerThinWithLineSpacing>
             ))}
           </ReviewDescBottom>
         </ContentsContainer>

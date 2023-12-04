@@ -11,9 +11,13 @@ import {
   EventInfo,
   PhotoBoothNameContainer,
   LocationIcon,
-  EventTitle,
+  EventTitleContainer,
 } from '../../styles/layout/category/CategoryEventItem.style';
-import {DateText, SmallText} from '../../styles/layout/reuse/text/Text.style';
+import {
+  FontWhiteSmallerThin,
+  FontWhiteGreySmallerThin,
+  FontWhiteBiggestThick,
+} from '../../styles/layout/reuse/text/Text.style';
 import {CategoryEventItemProps} from '../../interfaces/Category.interface';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -55,12 +59,18 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
         <EventInfo>
           <PhotoBoothNameContainer>
             <LocationIcon source={LocationImage} />
-            <DateText>{eventData.photoboothName}</DateText>
+            <FontWhiteSmallerThin>
+              {eventData.photoboothName}
+            </FontWhiteSmallerThin>
           </PhotoBoothNameContainer>
-          <EventTitle>{eventData.eventTitle}</EventTitle>
-          <SmallText>
+          <EventTitleContainer>
+            <FontWhiteBiggestThick>
+              {eventData.eventTitle}
+            </FontWhiteBiggestThick>
+          </EventTitleContainer>
+          <FontWhiteGreySmallerThin>
             {eventData.startDate + ' ~ ' + eventData.endDate}
-          </SmallText>
+          </FontWhiteGreySmallerThin>
         </EventInfo>
       </EventImageWrapper>
     </EventItemContainer>

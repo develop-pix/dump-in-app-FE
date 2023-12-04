@@ -8,12 +8,12 @@ import {
   ReviewInfo,
   ReviewNameContainer,
   LocationIcon,
-  ReviewName,
 } from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
 import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 
 export default function ReviewFrame({data}: ReviewFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -42,7 +42,9 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
       <ReviewInfo>
         <ReviewNameContainer>
           <LocationIcon source={LocationImage} />
-          <ReviewName>{data.branchName}</ReviewName>
+          <FontWhiteGreySmallerThinWithLineHeight>
+            {data.branchName}
+          </FontWhiteGreySmallerThinWithLineHeight>
         </ReviewNameContainer>
       </ReviewInfo>
     </ReviewFrameContainer>

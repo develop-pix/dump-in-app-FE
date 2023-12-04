@@ -1,12 +1,12 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
-  FilterTitle,
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableConcepts = [
   '일상',
@@ -52,7 +52,7 @@ export default function FilterConcept({
 
   return (
     <View>
-      <FilterTitle>컨셉</FilterTitle>
+      <FontWhiteGreySmallestThick>컨셉</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableConcepts.map(conceptOption => {

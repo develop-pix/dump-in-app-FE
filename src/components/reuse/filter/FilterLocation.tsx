@@ -1,12 +1,12 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
-  FilterTitle,
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableLocations = [
   '서울',
@@ -45,7 +45,7 @@ export default function FilterLocation({
 
   return (
     <View>
-      <FilterTitle>지역</FilterTitle>
+      <FontWhiteGreySmallestThick>지역</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableLocations.map(locationOption => {

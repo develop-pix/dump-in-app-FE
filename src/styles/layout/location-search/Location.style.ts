@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 /* LocationSearchContainer*/
 export const LocationSearchContainer = styled.View`
   flex: 1;
   justify-content: space-between;
-  background-color: ${colors.fourth_grey};
+  background-color: ${colors.blackgrey};
 `;
 
 /* LocationSearchForm */
@@ -66,19 +66,7 @@ export const BranchNameWrapper = styled.View`
   align-items: center;
 `;
 
-export const BranchNameText = styled.Text`
-  color: ${colors.first_grey};
-  font-size: ${fontSize.H3};
-  font-weight: ${fontWeight.M};
-`;
-
 export const BranchDistanceWrapper = styled.View`
   display: flex;
   align-items: center;
-`;
-
-export const BranchDistanceText = styled.Text`
-  color: ${colors.second_grey};
-  font-size: ${fontSize.B2};
-  font-weight: ${fontWeight.M};
 `;

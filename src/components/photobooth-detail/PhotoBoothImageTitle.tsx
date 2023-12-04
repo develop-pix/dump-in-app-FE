@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import GoBackButton from '../reuse/button/GoBackButton';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
-import {HashtagsText} from '../../styles/layout/reuse/text/Text.style';
+import {FontYellowSmallerThinWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 import {ReviewDescBottom} from '../../styles/layout/review-detail/ReviewDetail.style';
 import {PhotoBoothImageTitleProps} from '../../interfaces/PhotoBoothDetail.interface';
 import LinearGradient from 'react-native-linear-gradient';
@@ -16,7 +16,7 @@ import {
   TitleContainer,
   NomalButtonContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothImageTitle.style';
-import {Title} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteBiggestThick} from '../../styles/layout/reuse/text/Text.style';
 import {NormalButton} from '../reuse/button/NormalButton';
 import {
   RouteProp,
@@ -75,13 +75,17 @@ export default function PhotoBoothImageTitle({
 
         <ContentsContainer>
           <TitleContainer>
-            <Title>{photoboothData.photoboothName}</Title>
+            <FontWhiteBiggestThick>
+              {photoboothData.photoboothName}
+            </FontWhiteBiggestThick>
             <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
           </TitleContainer>
 
           <ReviewDescBottom>
             {TagsArrayToHashTagArrayForm(photoboothData.hashtag).map(tag => (
-              <HashtagsText key={tag}>{tag}</HashtagsText>
+              <FontYellowSmallerThinWithLineSpacing key={tag}>
+                {tag}
+              </FontYellowSmallerThinWithLineSpacing>
             ))}
           </ReviewDescBottom>
         </ContentsContainer>

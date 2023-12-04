@@ -5,9 +5,9 @@ export const ReviewManageModalContainer = styled.View<{
   platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
   elevation: 0;
-  background-color: ${colors.fourth_grey};
+  background-color: ${colors.blackgrey};
   align-items: center;
-  border: 1px solid ${colors.fourth_grey};
+  border: 1px solid ${colors.blackgrey};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   width: 100%;
@@ -34,5 +34,5 @@ export const ReviewManageTouchableOpacity = styled.TouchableOpacity`
 `;
 
 export const HorizonLine = styled.View`
-  border: 0.5px solid ${colors.second_grey};
+  border: 0.5px solid ${colors.lightgrey};
 `;

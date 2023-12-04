@@ -15,5 +15,5 @@ export const SearchResultAlertContainer = styled.View`
   width: 90%;
   margin: -20px auto 0px;
   border-bottom-width: 1px;
-  border-color: ${colors.third_grey};
+  border-color: ${colors.darkgrey};
 `;

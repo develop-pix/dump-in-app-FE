@@ -5,7 +5,7 @@ import {
   Reviews,
   SubTitleContainer,
 } from '../../../styles/layout/reuse/photo-dump/PhotoDump.style';
-import {SubTitleText} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteSmallerThickWithLineSpacing} from '../../../styles/layout/reuse/text/Text.style';
 import {
   PhotoDumpProps,
   ReviewData,
@@ -89,7 +89,9 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
   return (
     <PhotoDumpContainer>
       <SubTitleContainer>
-        <SubTitleText>PHOTO DUMP</SubTitleText>
+        <FontWhiteSmallerThickWithLineSpacing>
+          PHOTO DUMP
+        </FontWhiteSmallerThickWithLineSpacing>
       </SubTitleContainer>
       <CarouselContainer>
         <FlatList

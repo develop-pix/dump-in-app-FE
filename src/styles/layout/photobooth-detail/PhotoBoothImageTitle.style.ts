@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const PhotoBoothImageTitleContainer = styled.View`
   position: relative;
@@ -16,7 +16,7 @@ export const PhotoBoothImageContentContainer = styled.View`
 export const PhotoBoothImage = styled.ImageBackground`
   width: 100%;
   height: 500px;
-  background-color: ${colors.first_grey};
+  background-color: ${colors.whitegrey};
 `;
 
 export const ContentsContainer = styled.View`
@@ -32,12 +32,6 @@ export const ButtonContainer = styled.View`
 export const TitleContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-`;
-
-export const PhotoBoothTitle = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.H1};
-  font-weight: ${fontWeight.SB};
 `;
 
 export const NomalButtonContainer = styled.View`

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
-import {colors, fontWeight, fontSize} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 export const ReviewFrameContainer = styled.TouchableOpacity`
   width: ${Dimensions.get('window').width * 0.45}px;
@@ -26,6 +26,7 @@ export const ReviewInfo = styled.View`
 export const ReviewNameContainer = styled.View`
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const LocationIcon = styled.Image`
@@ -33,12 +34,4 @@ export const LocationIcon = styled.Image`
   height: 21px;
   margin-right: 5px;
   margin-left: 5px;
-`;
-
-export const ReviewName = styled.Text`
-  color: ${colors.first_grey};
-  font-weight: ${fontWeight.M};
-  font-size: ${fontSize.B2};
-  padding-top: 8px;
-  padding-bottom: 10px;
 `;

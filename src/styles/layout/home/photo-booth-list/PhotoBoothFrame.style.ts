@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
-import {colors, fontWeight, fontSize} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 // 임시 배경색 설정, 이미지 사이즈는 리뷰마다 차이가 있으므로 비율값 디자인팀에게 받아서 수정 필요
 export const PhotoBoothFrameContainer = styled.TouchableOpacity`
@@ -34,6 +34,7 @@ export const PhotoBoothInfo = styled.View`
 export const PhotoBoothNameContainer = styled.View`
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const LocationIcon = styled.Image`
@@ -41,12 +42,4 @@ export const LocationIcon = styled.Image`
   height: 21px;
   margin-right: 5px;
   margin-left: 5px;
-`;
-
-export const PhotoBoothName = styled.Text`
-  color: ${colors.first_grey};
-  font-weight: ${fontWeight.M};
-  font-size: ${fontSize.B2};
-  padding-top: 8px;
-  padding-bottom: 10px;
 `;
