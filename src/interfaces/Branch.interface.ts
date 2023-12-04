@@ -7,7 +7,7 @@ export interface BranchData {
   open: string;
   distance: number;
   address: string;
-  image: string[];
+  officialImage: string[];
   myBranch: boolean;
   review: ReviewData[];
 }

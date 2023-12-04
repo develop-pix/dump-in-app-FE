@@ -87,34 +87,38 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
   );
 
   return (
-    <PhotoDumpContainer>
-      <SubTitleContainer>
-        <FontWhiteSmallerThickWithLineSpacing>
-          PHOTO DUMP
-        </FontWhiteSmallerThickWithLineSpacing>
-      </SubTitleContainer>
-      <CarouselContainer>
-        <FlatList
-          data={reviewData}
-          keyExtractor={item => item.reviewID.toString()}
-          onScroll={({nativeEvent}) => onCarouselScroll(nativeEvent)}
-          scrollEventThrottle={0}
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          horizontal
-          renderItem={renderItems}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={1}
-          ListFooterComponent={<GetMoreReview />}
-          automaticallyAdjustContentInsets={false}
-          snapToAlignment="start"
-          decelerationRate="fast"
-          snapToInterval={pageWidth + gap}
-          contentContainerStyle={{
-            paddingHorizontal: offset + gap / 2,
-          }}
-        />
-      </CarouselContainer>
-    </PhotoDumpContainer>
+    <>
+      {reviewData.length !== 0 ? (
+        <PhotoDumpContainer>
+          <SubTitleContainer>
+            <FontWhiteSmallerThickWithLineSpacing>
+              PHOTO DUMP
+            </FontWhiteSmallerThickWithLineSpacing>
+          </SubTitleContainer>
+          <CarouselContainer>
+            <FlatList
+              data={reviewData}
+              keyExtractor={item => item.reviewID.toString()}
+              onScroll={({nativeEvent}) => onCarouselScroll(nativeEvent)}
+              scrollEventThrottle={0}
+              showsHorizontalScrollIndicator={false}
+              pagingEnabled
+              horizontal
+              renderItem={renderItems}
+              onEndReached={onEndReached}
+              onEndReachedThreshold={1}
+              ListFooterComponent={<GetMoreReview />}
+              automaticallyAdjustContentInsets={false}
+              snapToAlignment="start"
+              decelerationRate="fast"
+              snapToInterval={pageWidth + gap}
+              contentContainerStyle={{
+                paddingHorizontal: offset + gap / 2,
+              }}
+            />
+          </CarouselContainer>
+        </PhotoDumpContainer>
+      ) : null}
+    </>
   );
 }
