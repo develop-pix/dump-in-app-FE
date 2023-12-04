@@ -18,7 +18,6 @@ import {
 } from '../../styles/layout/photobooth-detail/PhotoBoothImageTitle.style';
 import {Title} from '../../styles/layout/reuse/text/Text.style';
 import {NormalButton} from '../reuse/button/NormalButton';
-
 import {
   RouteProp,
   useIsFocused,

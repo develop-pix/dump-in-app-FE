@@ -15,7 +15,7 @@ import {
 
 export default function PhotoBoothDetail() {
   const route = useRoute<PhotoBoothDetailRouteProp>();
-  const {photoboothID} = route.params;
+  const {PhotoBoothID} = route.params;
 
   // 임시 데이터, 포토부스 아이디 값의 데이터를 서버에서 가져옴
   const [photoboothData, setPhotoboothData] = useState({

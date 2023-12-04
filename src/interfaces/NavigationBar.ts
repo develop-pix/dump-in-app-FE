@@ -9,7 +9,6 @@ export type RootStackParam = {
   MyPage: undefined;
   Branch: {branchID: number};
   ReviewDetail: {reviewID: number};
-
   PhotoBoothDetail: {PhotoBoothID: number};
   EventDetail: {eventID: number};
 };
