@@ -183,16 +183,7 @@ export default function Branch() {
       address: '서울 종로구 자하문로2길 17-2 1층 인생네컷',
       officialImage: [],
       myBranch: true,
-      review: [
-        {
-          reviewID: 5,
-          representativeImage:
-            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-          hashtag: ['이달의 프레임', '생일', '고데기 있음'],
-          description:
-            '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
-        },
-      ],
+      review: [],
     },
     {
       branchID: 6,

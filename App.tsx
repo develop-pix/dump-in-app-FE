@@ -16,6 +16,7 @@ import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
 import store from './src/hooks/redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
+import ReviewNew from './src/pages/ReviewNew';
 
 const Stack = createNativeStackNavigator();
 const persistor = persistStore(store);
@@ -57,6 +58,11 @@ const App = () => {
                 name="EventDetail"
                 component={EventDetail}
                 initialParams={{EventID: 0}}
+              />
+              <Stack.Screen
+                name="ReviewNew"
+                component={ReviewNew}
+                initialParams={{branchID: undefined}}
               />
             </Stack.Navigator>
           </NavigationContainer>
