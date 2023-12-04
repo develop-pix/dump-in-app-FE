@@ -13,15 +13,16 @@ import {colors} from '../../styles/base/Variable';
 import {
   EventImageTitleContainer,
   EventImageContentContainer,
-  ButtonContainer,
   EventImage,
   ContentsContainer,
   TitleContainer,
 } from '../../styles/layout/event-detail/EventImageTitle.style';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
+import {Platform} from 'react-native';
 
 export default function ImageTitle({eventData}: EventImageTitleProps) {
   const [favorite, setFavorite] = useState<boolean>(eventData.myEvent);
-
+  const platform = Platform.OS;
   return (
     <EventImageTitleContainer>
       <EventImage source={{uri: eventData.representativeImage}}>
@@ -39,9 +40,9 @@ export default function ImageTitle({eventData}: EventImageTitleProps) {
       </EventImage>
 
       <EventImageContentContainer>
-        <ButtonContainer>
+        <GoBackButtonContainer platform={platform}>
           <GoBackButton />
-        </ButtonContainer>
+        </GoBackButtonContainer>
 
         <ContentsContainer>
           <TitleContainer>

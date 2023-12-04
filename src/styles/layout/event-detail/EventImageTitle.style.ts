@@ -25,10 +25,6 @@ export const ContentsContainer = styled.View`
   padding: 20px;
 `;
 
-export const ButtonContainer = styled.View`
-  padding: 40px 10px;
-`;
-
 export const TitleContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
