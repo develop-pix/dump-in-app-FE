@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const CategoryPhotoBoothContainer = styled.View`
   flex-direction: row;
@@ -12,7 +12,7 @@ export const CategoryPhotoBoothContainer = styled.View`
 export const PhotoBoothItem = styled.TouchableOpacity`
   width: 44%;
   height: 113px;
-  background-color: ${colors.fourth_grey};
+  background-color: ${colors.blackgrey};
   margin-bottom: 10px;
   border-radius: 10px;
   align-items: center;
@@ -23,11 +23,5 @@ export const PhotoBoothItem = styled.TouchableOpacity`
 export const PhotoBoothLogo = styled.Image`
   width: 44px;
   height: 44px;
-`;
-
-export const PhotoBoothName = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.B2};
-  font-weight: ${fontWeight.M};
-  margin-top: 10px;
+  margin-bottom: 10px;
 `;

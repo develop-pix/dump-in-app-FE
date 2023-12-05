@@ -4,10 +4,8 @@ import EventResult from './EventResult';
 import {
   SearchResultContainer,
   EventTitleContainer,
-  EventTitle,
-  MoreText,
-  PhotoDumpTitle,
   PhotoDumpUpScrollImageBox,
+  PhotoDumpTitleContainer,
 } from '../../../styles/layout/home-search/search-result/SearchResult.style';
 import SearchNoData from '../../reuse/alert/SearchNoData';
 import {SearchResultAlertContainer} from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
@@ -16,6 +14,10 @@ import MoreEventResult from './MoreEventResult';
 import {ReviewProps} from '../../../interfaces/Home.interface';
 import {TouchableOpacity, FlatList, Image, Modal} from 'react-native';
 import GetMoreReview from '../../reuse/photo-dump/GetMoreReview';
+import {
+  FontWhiteGreySmallerThick,
+  FontWhiteGreyNormalThin,
+} from '../../../styles/layout/reuse/text/Text.style';
 
 export default function SearchResult({
   searchData,
@@ -88,7 +90,11 @@ export default function SearchResult({
           </SearchResultAlertContainer>
           {photoDumpData.length > 0 && (
             <>
-              <PhotoDumpTitle>PHOTO DUMP</PhotoDumpTitle>
+              <PhotoDumpTitleContainer>
+                <FontWhiteGreySmallerThick>
+                  PHOTO DUMP
+                </FontWhiteGreySmallerThick>
+              </PhotoDumpTitleContainer>
               <FlatList
                 data={allPhotoBoothData}
                 keyExtractor={item => item.reviewID.toString()}
@@ -106,10 +112,10 @@ export default function SearchResult({
       ) : (
         <>
           <EventTitleContainer>
-            <EventTitle>Event</EventTitle>
+            <FontWhiteGreySmallerThick>Event</FontWhiteGreySmallerThick>
             {eventList.length > 3 && (
               <TouchableOpacity onPress={() => setShowMoreEventModal(true)}>
-                <MoreText>더보기</MoreText>
+                <FontWhiteGreyNormalThin>더보기</FontWhiteGreyNormalThin>
               </TouchableOpacity>
             )}
           </EventTitleContainer>
@@ -123,8 +129,11 @@ export default function SearchResult({
 
           {photoDumpData.length > 0 && (
             <>
-              <PhotoDumpTitle>PHOTO DUMP</PhotoDumpTitle>
-
+              <PhotoDumpTitleContainer>
+                <FontWhiteGreySmallerThick>
+                  PHOTO DUMP
+                </FontWhiteGreySmallerThick>
+              </PhotoDumpTitleContainer>
               <FlatList
                 data={allPhotoBoothData}
                 keyExtractor={item => item.reviewID.toString()}

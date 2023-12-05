@@ -1,11 +1,11 @@
 import React from 'react';
+import ResetLocationIcon from '../../../assets/image/map/btn_reset.png';
+import {ResetLocationButtonProps} from '../../../interfaces/Location.interface';
 import {
   ResetLocation,
   ResetLocationButtonContainer,
   ResetLocationImage,
-} from '../../../styles/layout/location/Map.style';
-import ResetLocationIcon from '../../../assets/image/map/btn_reset.png';
-import {ResetLocationButtonProps} from '../../../interfaces/Location.interface';
+} from '../../../styles/layout/location/ResetLocationButton.style';
 
 export default function ResetLocationButton({
   myPosition,

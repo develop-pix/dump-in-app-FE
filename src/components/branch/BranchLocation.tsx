@@ -1,11 +1,11 @@
 import React from 'react';
 import {Platform} from 'react-native';
-import {BranchLocationContainer} from '../../styles/layout/branch/Branch.style';
 import BranchDistance from './BranchDistance';
 import {BranchLocationProps} from '../../interfaces/Branch.interface';
 import {GoBackButtonFloatContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
 import NaverMapView, {Marker} from 'react-native-nmap';
 import GoBackButtonBlack from '../reuse/button/GoBackButtonBlack';
+import {BranchLocationContainer} from '../../styles/layout/branch/BranchLocation.style';
 
 export default function BranchLocation({
   geolocation,

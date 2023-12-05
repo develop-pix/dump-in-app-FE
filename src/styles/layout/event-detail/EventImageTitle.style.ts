@@ -16,17 +16,13 @@ export const EventImageContentContainer = styled.View`
 export const EventImage = styled.ImageBackground`
   width: 100%;
   height: 400px;
-  background-color: ${colors.first_grey};
+  background-color: ${colors.whitegrey};
 `;
 
 export const ContentsContainer = styled.View`
   justify-content: flex-end;
   flex: 1;
   padding: 20px;
-`;
-
-export const ButtonContainer = styled.View`
-  padding: 40px 10px;
 `;
 
 export const TitleContainer = styled.View`

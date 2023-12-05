@@ -6,6 +6,6 @@ export const GetMoreReviewContainer = styled.View`
   width: ${Dimensions.get('window').width * 0.8}px;
   height: ${Dimensions.get('window').width * 0.8}px;
   border-radius: 10px;
-  background-color: ${colors.second_grey};
+  background-color: ${colors.lightgrey};
   jsutify-content: center;
 `;

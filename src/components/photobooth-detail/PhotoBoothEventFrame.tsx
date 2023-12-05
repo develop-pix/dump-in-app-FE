@@ -7,10 +7,13 @@ import {
   EventImage,
   EventImageWrapper,
   EventInfo,
-  EventTitle,
   FavoirteIcon,
+  EventTitleContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothEventFrame.style';
-import {SmallText} from '../../styles/layout/reuse/text/Text.style';
+import {
+  FontWhiteBiggestThick,
+  FontWhiteGreySmallerThin,
+} from '../../styles/layout/reuse/text/Text.style';
 import {PhotoBoothEventFrameProps} from '../../interfaces/PhotoBoothDetail.interface';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -48,10 +51,11 @@ export default function PhotoBoothEventFrame({
         <FavoirteIcon>
           <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
         </FavoirteIcon>
-
         <EventInfo>
-          <EventTitle>{event.eventTitle}</EventTitle>
-          <SmallText>{`${event.startDate} ~ ${event.endDate}`}</SmallText>
+          <EventTitleContainer>
+            <FontWhiteBiggestThick>{event.eventTitle}</FontWhiteBiggestThick>
+          </EventTitleContainer>
+          <FontWhiteGreySmallerThin>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerThin>
         </EventInfo>
       </EventImageWrapper>
     </EventItem>

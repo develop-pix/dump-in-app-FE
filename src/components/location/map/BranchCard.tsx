@@ -1,4 +1,19 @@
 import React, {useState} from 'react';
+import {BranchCardProps} from '../../../interfaces/Location.interface';
+import {
+  FontWhiteGreySmallerThick,
+  FontWhiteBiggestThickWithLineHeight,
+  FontWhiteGreySmallestThin,
+  FontYellowSmallerThinWithLineSpacing,
+} from '../../../styles/layout/reuse/text/Text.style';
+import {
+  DistanceForm,
+  TagsArrayToHashTagArrayForm,
+} from '../../../utils/FormChange';
+import FavoirteButton from '../../reuse/button/FavoritetButton';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {
   BranchCardBottom,
   BranchCardBranchNameWrapper,
@@ -9,22 +24,7 @@ import {
   BranchCardTop,
   CardContainer,
   TouchableCardContainer,
-} from '../../../styles/layout/location/Map.style';
-import {BranchCardProps} from '../../../interfaces/Location.interface';
-import {
-  BranchCardBranchName,
-  BranchCardPhotoboothName,
-  DescriptionText,
-  HashtagsText,
-} from '../../../styles/layout/reuse/text/Text.style';
-import {
-  DistanceForm,
-  TagsArrayToHashTagArrayForm,
-} from '../../../utils/FormChange';
-import FavoirteButton from '../../reuse/button/FavoritetButton';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+} from '../../../styles/layout/location/BranchCard.style';
 
 export default function BranchCard({
   branchID,
@@ -52,14 +52,18 @@ export default function BranchCard({
           <BranchCardLogo source={{uri: imageLogo}} />
           <BranchCardDescription>
             <BranchCardBranchNameWrapper>
-              <BranchCardPhotoboothName>
+              <FontWhiteBiggestThickWithLineHeight>
                 {photoboothName}
-              </BranchCardPhotoboothName>
-              <BranchCardBranchName>{branchName}</BranchCardBranchName>
+              </FontWhiteBiggestThickWithLineHeight>
+              <FontWhiteGreySmallerThick>
+                {branchName}
+              </FontWhiteGreySmallerThick>
             </BranchCardBranchNameWrapper>
             <BranchCardHashtag>
               {TagsArrayToHashTagArrayForm(hashtag).map(tag => (
-                <HashtagsText key={tag}>{tag}</HashtagsText>
+                <FontYellowSmallerThinWithLineSpacing key={tag}>
+                  {tag}
+                </FontYellowSmallerThinWithLineSpacing>
               ))}
             </BranchCardHashtag>
           </BranchCardDescription>
@@ -67,10 +71,12 @@ export default function BranchCard({
         </BranchCardTop>
         <BranchCardHorizonLine />
         <BranchCardBottom>
-          <DescriptionText>
+          <FontWhiteGreySmallestThin>
             내 위치로부터 {`${DistanceForm(distance)}`} ·
-          </DescriptionText>
-          <DescriptionText> 약 {elapsedTime} 소요</DescriptionText>
+          </FontWhiteGreySmallestThin>
+          <FontWhiteGreySmallestThin>
+            약 {elapsedTime} 소요
+          </FontWhiteGreySmallestThin>
         </BranchCardBottom>
       </CardContainer>
     </TouchableCardContainer>

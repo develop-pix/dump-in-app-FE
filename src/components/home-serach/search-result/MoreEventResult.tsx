@@ -5,10 +5,12 @@ import CloseModalButton from '../../reuse/button/CloseModalButton';
 import {
   ModalContainer,
   EventTitleContainer,
-  EventTitle,
-  EventCount,
 } from '../../../styles/layout/home-search/search-result/MoreEventResult.style';
 import {ScrollView} from 'react-native';
+import {
+  FontWhiteGreySmallestThick,
+  FontWhiteGreySmallerThick,
+} from '../../../styles/layout/reuse/text/Text.style';
 
 export default function MoreEventResult({
   eventData,
@@ -20,8 +22,10 @@ export default function MoreEventResult({
       <ScrollView>
         <CloseModalButton setModal={closeMoreEventModal} />
         <EventTitleContainer>
-          <EventTitle>Event</EventTitle>
-          <EventCount>검색 결과 {eventData.length}개</EventCount>
+          <FontWhiteGreySmallerThick>Event</FontWhiteGreySmallerThick>
+          <FontWhiteGreySmallestThick>
+            검색 결과 {eventData.length}개
+          </FontWhiteGreySmallestThick>
         </EventTitleContainer>
         {eventData.map(data => (
           <EventResult searchData={searchData} key={data.eventID} data={data} />

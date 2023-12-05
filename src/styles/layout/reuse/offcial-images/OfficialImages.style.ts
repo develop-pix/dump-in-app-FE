@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {colors} from '../../../base/Variable';
 
 /* Official */
 
@@ -27,6 +28,9 @@ export const OfficialImageWrapper = styled.View`
 `;
 
 export const OfficialImage = styled.Image`
+  background-color: ${colors.white};
+  object-fit: contain;
   width: 100%;
+  aspect-ratio: 0.8;
   border-radius: 10px;
 `;

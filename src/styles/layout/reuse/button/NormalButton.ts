@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 export const NormalButtonContainer = styled.TouchableOpacity`
   width: 335px;
@@ -11,10 +11,4 @@ export const NormalButtonContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-`;
-
-export const NormalButtonText = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.BTN};
-  font-weight: ${fontWeight.SB};
 `;

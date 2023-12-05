@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
-import {
-  BranchHashTagsContainer,
-  BranchName,
-  BranchNameContainer,
-  BranchTitleContainer,
-  PhotoboothName,
-  TitleContainer,
-} from '../../styles/layout/branch/Branch.style';
+
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {BranchTitleProps} from '../../interfaces/Branch.interface';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
-import {HashtagsText} from '../../styles/layout/reuse/text/Text.style';
+import {
+  FontWhiteGreySmallestThick,
+  FontYellowSmallerThinWithLineSpacing,
+  FontWhiteBiggestThick,
+} from '../../styles/layout/reuse/text/Text.style';
+import {
+  BranchHashTagsContainer,
+  BranchNameContainer,
+  BranchTitleContainer,
+  TitleContainer,
+} from '../../styles/layout/branch/BranchTitle.style';
 
 export default function BranchTitle({
   photoboothName,
@@ -24,12 +27,14 @@ export default function BranchTitle({
     <BranchTitleContainer>
       <TitleContainer>
         <BranchNameContainer>
-          <PhotoboothName>{photoboothName}</PhotoboothName>
-          <BranchName>{branchName}</BranchName>
+          <FontWhiteBiggestThick>{photoboothName}</FontWhiteBiggestThick>
+          <FontWhiteGreySmallestThick>{branchName}</FontWhiteGreySmallestThick>
         </BranchNameContainer>
         <BranchHashTagsContainer>
           {TagsArrayToHashTagArrayForm(branchHashtag).map(tag => (
-            <HashtagsText key={tag}>{tag}</HashtagsText>
+            <FontYellowSmallerThinWithLineSpacing key={tag}>
+              {tag}
+            </FontYellowSmallerThinWithLineSpacing>
           ))}
         </BranchHashTagsContainer>
       </TitleContainer>

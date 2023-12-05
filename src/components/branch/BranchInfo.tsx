@@ -1,8 +1,8 @@
 import React from 'react';
-import {BranchInfoContainer} from '../../styles/layout/branch/Branch.style';
 import BranchTitle from './BranchTitle';
 import BranchDescription from './BranchDescription';
 import {BranchInfoProps} from '../../interfaces/Branch.interface';
+import {BranchInfoContainer} from '../../styles/layout/branch/BranchInfo.style';
 
 export default function BranchInfo({
   photoboothName,

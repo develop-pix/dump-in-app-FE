@@ -14,14 +14,15 @@ import {
   FilterFormContainer,
   FilterFormBody,
   FilterFormHeader,
-  FilterFormTitle,
   FilterOptionContainer,
   CloseButton,
   CloseButtonImage,
   FilterButtonBox,
+  FilterFormTitleContainer,
 } from '../../styles/layout/home/HomeFilterModalForm.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 import {colors} from '../../styles/base/Variable';
+import {FontWhiteGreyNormalThick} from '../../styles/layout/reuse/text/Text.style';
 
 export default function HomeFilterModalForm({
   filterData,
@@ -98,7 +99,9 @@ export default function HomeFilterModalForm({
       <FilterFormContainer>
         <FilterFormBody>
           <FilterFormHeader>
-            <FilterFormTitle>상세 필터</FilterFormTitle>
+            <FilterFormTitleContainer>
+              <FontWhiteGreyNormalThick>상세 필터</FontWhiteGreyNormalThick>
+            </FilterFormTitleContainer>
 
             <CloseButton
               onPress={() => {
@@ -157,7 +160,7 @@ export default function HomeFilterModalForm({
                 <FilterButton
                   onPress={handleFilterReset}
                   text="초기화"
-                  backgroundColor={colors.third_grey}
+                  backgroundColor={colors.darkgrey}
                   borderColor={colors.black}
                   textColor={colors.white}
                   disabled={!activateResetButton}

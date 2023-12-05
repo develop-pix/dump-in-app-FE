@@ -60,11 +60,8 @@ export const ReviewDescMiddle = styled.View`
   gap: 10px;
 `;
 
-export const SeeMoreContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
+export const ReviewDescriptionTouchableContainer = styled.TouchableOpacity``;
+
 export const ReviewDescBottom = styled.View`
   display: flex;
   flex-direction: row;

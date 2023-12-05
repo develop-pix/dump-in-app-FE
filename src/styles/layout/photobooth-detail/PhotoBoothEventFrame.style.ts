@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const EventItem = styled.TouchableOpacity`
   width: 100%;
@@ -13,7 +13,7 @@ export const EventImageWrapper = styled.View`
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: ${colors.first_grey};
+  background-color: ${colors.whitegrey};
 `;
 
 export const EventImage = styled.Image`
@@ -34,9 +34,6 @@ export const EventInfo = styled.View`
   padding: 5px;
 `;
 
-export const EventTitle = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.H1};
-  font-weight: ${fontWeight.SB};
+export const EventTitleContainer = styled.View`
   margin-bottom: 5px;
 `;

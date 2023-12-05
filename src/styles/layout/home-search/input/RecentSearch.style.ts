@@ -1,14 +1,8 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 export const RecentSearchContainer = styled.View`
   padding: 24px 20px 0px 20px;
-`;
-
-export const RecentSearchTitle = styled.Text`
-  color: ${colors.first_grey};
-  font-size: ${fontSize.H5};
-  font-weight: ${fontWeight.SB};
 `;
 
 export const RecentSearchContentContainer = styled.View`
@@ -24,16 +18,10 @@ export const RecentSearchButton = styled.TouchableOpacity`
   height: 36px;
   padding: 4px 14px 4px 14px;
   border-radius: 8px;
-  background-color: ${colors.fourth_grey};
+  background-color: ${colors.blackgrey};
   justify-content: center;
   flex-direction: row;
   align-items: center;
-`;
-
-export const RecentSearchText = styled.Text`
-  color: ${colors.first_grey};
-  font-size: ${fontSize.B2};
-  font-weight: ${fontWeight.M};
 `;
 
 export const CloseButton = styled.TouchableOpacity`
@@ -50,10 +38,4 @@ export const EmptySearchMessageContainer = styled.View`
   display: flex;
   align-items: center;
   width: 100%;
-`;
-
-export const EmptySearchMessage = styled.Text`
-  color: ${colors.first_grey};
-  font-size: ${fontSize.H3};
-  font-weight: ${fontWeight.M};
 `;

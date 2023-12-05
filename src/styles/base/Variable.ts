@@ -1,12 +1,12 @@
 export const colors = {
   black: '#000000',
   white: '#FFFFFF',
-  first_grey: '#A3A3A3',
-  second_grey: '#757575',
-  third_grey: '#2D2D2D',
-  fourth_grey: '#222222',
-  fifth_grey: '#333333',
   yellow: '#DFFF39',
+  whitegrey: '#A3A3A3',
+  lightgrey: '#757575',
+  grey: '#333333',
+  darkgrey: '#2D2D2D',
+  blackgrey: '#222222',
 };
 
 export const frameColors = {
@@ -21,22 +21,14 @@ export const frameColors = {
 };
 
 export const fontSize = {
-  H1: '20px',
-  H2: '16px',
-  H3: '16px',
-  H4: '16px',
-  H5: '14px',
-  T1: '18px',
-  T2: '14px',
-  B1: '14px',
-  B2: '14px',
-  B3: '14px',
-  B4: '12px',
-  B5: '12px',
-  BTN: '16px',
+  biggest: '20px',
+  bigger: '18px',
+  normal: '16px',
+  smaller: '14px',
+  smallest: '12px',
 };
 
 export const fontWeight = {
-  SB: 600,
-  M: 500,
+  thick: 600,
+  thin: 500,
 };

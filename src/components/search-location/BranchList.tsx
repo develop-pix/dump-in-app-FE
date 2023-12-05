@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-  BranchDistanceText,
   BranchDistanceWrapper,
   BranchListContainer,
-  BranchNameText,
   BranchNameWrapper,
   LocationIconContainer,
   LocationInfo,
@@ -13,6 +11,10 @@ import LocationIcon from '../../assets/image/reuse/location.png';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {
+  FontLightGreySmallerThin,
+  FontWhiteGreyNormalThin,
+} from '../../styles/layout/reuse/text/Text.style';
 
 export default function BranchList({
   branchName,
@@ -29,10 +31,10 @@ export default function BranchList({
       <LocationIconContainer source={LocationIcon} />
       <LocationInfo>
         <BranchNameWrapper>
-          <BranchNameText>{branchName}</BranchNameText>
+          <FontWhiteGreyNormalThin>{branchName}</FontWhiteGreyNormalThin>
         </BranchNameWrapper>
         <BranchDistanceWrapper>
-          <BranchDistanceText>{distance}</BranchDistanceText>
+          <FontLightGreySmallerThin>{distance}</FontLightGreySmallerThin>
         </BranchDistanceWrapper>
       </LocationInfo>
     </BranchListContainer>

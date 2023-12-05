@@ -3,11 +3,11 @@ import {
   CategoryPhotoBoothContainer,
   PhotoBoothItem,
   PhotoBoothLogo,
-  PhotoBoothName,
 } from '../../styles/layout/category/CategoryPhotoBooth.style';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {FontWhiteSmallerThin} from '../../styles/layout/reuse/text/Text.style';
 
 // 임시 포토부스 데이터
 const photoBoothData = Array(12)
@@ -36,7 +36,7 @@ export default function CategoryPhotoBooth() {
           key={item.PhotoBoothID}
           onPress={() => onPressPhotoBooth(item.PhotoBoothID)}>
           <PhotoBoothLogo source={{uri: item.representativeImage}} />
-          <PhotoBoothName>{item.photoboothName}</PhotoBoothName>
+          <FontWhiteSmallerThin>{item.photoboothName}</FontWhiteSmallerThin>
         </PhotoBoothItem>
       ))}
     </CategoryPhotoBoothContainer>

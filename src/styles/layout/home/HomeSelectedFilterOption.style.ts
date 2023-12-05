@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const FilterOptionContainer = styled.View`
   padding: 0px 20px 20px;
@@ -17,12 +17,6 @@ export const ColorBox = styled.View<{backgroundColor: string}>`
 
 export const FilterOptionTextBox = styled.View`
   padding: 4px 10px;
-  background-color: ${colors.fourth_grey};
+  background-color: ${colors.blackgrey};
   border-radius: 6px;
-`;
-
-export const FilterOptionText = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.H5};
-  font-weight: ${fontWeight.SB};
 `;

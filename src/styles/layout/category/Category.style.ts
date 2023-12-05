@@ -16,7 +16,7 @@ export const PageBar = styled.View`
 
 export const PageBarText = styled.Text<{selected: boolean}>`
   margin-right: 20px;
-  color: ${props => (props.selected ? colors.white : colors.second_grey)};
-  font-size: ${fontSize.T1};
-  font-weight: ${fontWeight.SB};
+  color: ${props => (props.selected ? colors.white : colors.lightgrey)};
+  font-size: ${fontSize.bigger};
+  font-weight: ${fontWeight.thick};
 `;

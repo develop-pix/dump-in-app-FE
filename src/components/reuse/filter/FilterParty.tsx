@@ -1,12 +1,12 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
-  FilterTitle,
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableParty = [1, 2, 3, 4];
 
@@ -28,7 +28,7 @@ export default function FilterParty({
 
   return (
     <View>
-      <FilterTitle>인원</FilterTitle>
+      <FontWhiteGreySmallestThick>인원</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableParty.map(partyOption => {

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import GoBackButton from '../reuse/button/GoBackButton';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
-import {HashtagsText} from '../../styles/layout/reuse/text/Text.style';
+import {FontYellowSmallerThinWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 import {ReviewDescBottom} from '../../styles/layout/review-detail/ReviewDetail.style';
 import {PhotoBoothImageTitleProps} from '../../interfaces/PhotoBoothDetail.interface';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,13 +10,12 @@ import {colors} from '../../styles/base/Variable';
 import {
   PhotoBoothImageTitleContainer,
   PhotoBoothImageContentContainer,
-  ButtonContainer,
   PhotoBoothImage,
   ContentsContainer,
   TitleContainer,
   NomalButtonContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothImageTitle.style';
-import {Title} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteBiggestThick} from '../../styles/layout/reuse/text/Text.style';
 import {NormalButton} from '../reuse/button/NormalButton';
 import {
   RouteProp,
@@ -30,10 +29,13 @@ import {
   RootStackParam,
 } from '../../interfaces/NavigationBar';
 import {useScreen} from '../../utils/ScreenContext';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
+import {Platform} from 'react-native';
 
 export default function PhotoBoothImageTitle({
   photoboothData,
 }: PhotoBoothImageTitleProps) {
+  const platform = Platform.OS;
   const {setScreen} = useScreen();
   const route = useRoute<RouteProp<PhotoBoothParamList, 'photoboothType'>>();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -69,19 +71,23 @@ export default function PhotoBoothImageTitle({
       </PhotoBoothImage>
 
       <PhotoBoothImageContentContainer>
-        <ButtonContainer>
+        <GoBackButtonContainer platform={platform}>
           <GoBackButton />
-        </ButtonContainer>
+        </GoBackButtonContainer>
 
         <ContentsContainer>
           <TitleContainer>
-            <Title>{photoboothData.photoboothName}</Title>
+            <FontWhiteBiggestThick>
+              {photoboothData.photoboothName}
+            </FontWhiteBiggestThick>
             <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
           </TitleContainer>
 
           <ReviewDescBottom>
             {TagsArrayToHashTagArrayForm(photoboothData.hashtag).map(tag => (
-              <HashtagsText key={tag}>{tag}</HashtagsText>
+              <FontYellowSmallerThinWithLineSpacing key={tag}>
+                {tag}
+              </FontYellowSmallerThinWithLineSpacing>
             ))}
           </ReviewDescBottom>
         </ContentsContainer>

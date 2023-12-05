@@ -95,7 +95,7 @@ export default function PhotoBoothDetail() {
       <PhotoBoothEvent eventData={photoboothData.event} />
 
       <OfficialImagesContainer>
-        <OfficialImages />
+        <OfficialImages image={photoboothData.officialImage} />
       </OfficialImagesContainer>
 
       <PhotoDumpContainer>

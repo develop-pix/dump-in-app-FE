@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors} from '../../base/Variable';
 
 export const FrameContainer = styled.View`
   padding-bottom: 120px;
@@ -11,12 +11,6 @@ export const FrameContainer = styled.View`
 
 export const SubTitleContainer = styled.View`
   width: 90%;
-`;
-
-export const FrameTitle = styled.Text`
-  color: ${colors.white};
-  font-size: ${fontSize.H5};
-  font-weight: ${fontWeight.SB};
 `;
 
 export const FrameImageContainer = styled.View`
