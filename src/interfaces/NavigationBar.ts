@@ -11,6 +11,7 @@ export type RootStackParam = {
   ReviewDetail: {reviewID: number};
   PhotoBoothDetail: {PhotoBoothID: number};
   EventDetail: {eventID: number};
+  ReviewNew: {branchID: number | undefined};
 };
 
 export interface NavigationBarListItemProps {
@@ -47,3 +48,9 @@ export type ScreenContextType = {
 export interface ScreenProviderProps {
   children: ReactNode;
 }
+
+export type NewReviewParamList = {
+  branchType: {
+    branchID: number | undefined;
+  };
+};

@@ -10,7 +10,6 @@ import {colors} from '../../styles/base/Variable';
 import {
   PhotoBoothImageTitleContainer,
   PhotoBoothImageContentContainer,
-  ButtonContainer,
   PhotoBoothImage,
   ContentsContainer,
   TitleContainer,
@@ -30,10 +29,13 @@ import {
   RootStackParam,
 } from '../../interfaces/NavigationBar';
 import {useScreen} from '../../utils/ScreenContext';
+import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButton.style';
+import {Platform} from 'react-native';
 
 export default function PhotoBoothImageTitle({
   photoboothData,
 }: PhotoBoothImageTitleProps) {
+  const platform = Platform.OS;
   const {setScreen} = useScreen();
   const route = useRoute<RouteProp<PhotoBoothParamList, 'photoboothType'>>();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -69,9 +71,9 @@ export default function PhotoBoothImageTitle({
       </PhotoBoothImage>
 
       <PhotoBoothImageContentContainer>
-        <ButtonContainer>
+        <GoBackButtonContainer platform={platform}>
           <GoBackButton />
-        </ButtonContainer>
+        </GoBackButtonContainer>
 
         <ContentsContainer>
           <TitleContainer>

@@ -19,8 +19,18 @@ import {
 } from 'react-native';
 import Review from './Review';
 import GetMoreReview from './GetMoreReview';
+import SearchNoData from '../alert/SearchNoData';
+import {NormalButton} from '../button/NormalButton';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {
+  NewReviewParamList,
+  RootStackParam,
+} from '../../../interfaces/NavigationBar';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export default function PhotoDump({reviewData}: PhotoDumpProps) {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
   const pageWidth = Dimensions.get('window').width * 0.8;
   const gap = Dimensions.get('window').width * 0.04;
   const offset = Dimensions.get('window').width * 0.06;
@@ -55,6 +65,10 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
     //const reviewData = await fetchData();
 
     console.log('get');
+  };
+
+  const onPressRegistrationReview = () => {
+    navigation.push('ReviewNew', {branchID: route.params.branchID});
   };
 
   /* renderItem 안에서 선언해줄경우 TypeError 발생 (타입명시를 위해 따로 선언) */
@@ -93,28 +107,41 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
           PHOTO DUMP
         </FontWhiteSmallerThickWithLineSpacing>
       </SubTitleContainer>
-      <CarouselContainer>
-        <FlatList
-          data={reviewData}
-          keyExtractor={item => item.reviewID.toString()}
-          onScroll={({nativeEvent}) => onCarouselScroll(nativeEvent)}
-          scrollEventThrottle={0}
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          horizontal
-          renderItem={renderItems}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={1}
-          ListFooterComponent={<GetMoreReview />}
-          automaticallyAdjustContentInsets={false}
-          snapToAlignment="start"
-          decelerationRate="fast"
-          snapToInterval={pageWidth + gap}
-          contentContainerStyle={{
-            paddingHorizontal: offset + gap / 2,
-          }}
-        />
-      </CarouselContainer>
+      {reviewData.length === 0 ? (
+        <>
+          <SearchNoData
+            alertText="등록된 후기가 없습니다."
+            recommendText="내 사진을 첫번째로 등록해 보세요!"
+          />
+          <NormalButton
+            text="내 사진 등록하기"
+            onPress={onPressRegistrationReview}
+          />
+        </>
+      ) : (
+        <CarouselContainer>
+          <FlatList
+            data={reviewData}
+            keyExtractor={item => item.reviewID.toString()}
+            onScroll={({nativeEvent}) => onCarouselScroll(nativeEvent)}
+            scrollEventThrottle={0}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            horizontal
+            renderItem={renderItems}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={1}
+            ListFooterComponent={<GetMoreReview />}
+            automaticallyAdjustContentInsets={false}
+            snapToAlignment="start"
+            decelerationRate="fast"
+            snapToInterval={pageWidth + gap}
+            contentContainerStyle={{
+              paddingHorizontal: offset + gap / 2,
+            }}
+          />
+        </CarouselContainer>
+      )}
     </PhotoDumpContainer>
   );
 }

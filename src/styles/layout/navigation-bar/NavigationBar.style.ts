@@ -13,6 +13,11 @@ export const NavigationBarContainer = styled.View`
   elevation: 1;
 `;
 
-export const CameraImageBox = styled.Pressable`
-  padding: 5px;
+export const ReviewNewItem = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50px;
+  elevation: 1;
+  z-index: 1;
 `;

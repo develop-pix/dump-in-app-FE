@@ -6,7 +6,7 @@ import NavigationBarListItem from './NavigationBarListItem';
 import CameraImage from '../../../assets/image/navigation-bar/camera.png';
 import {
   NavigationBarContainer,
-  CameraImageBox,
+  ReviewNewItem,
 } from '../../../styles/layout/navigation-bar/NavigationBar.style';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {useScreen} from '../../../utils/ScreenContext';
@@ -22,6 +22,10 @@ export default function NavigationBar() {
     navigation.navigate(selectedScreen);
   };
 
+  const onPressRegistrationReview = () => {
+    navigation.push('ReviewNew', {branchID: undefined});
+  };
+
   return (
     <NavigationBarContainer>
       <NavigationBarListItem
@@ -34,9 +38,10 @@ export default function NavigationBar() {
         selectedScreen={screen}
         handleListClick={handleListClick}
       />
-      <CameraImageBox>
+
+      <ReviewNewItem onPress={onPressRegistrationReview}>
         <Image source={CameraImage} />
-      </CameraImageBox>
+      </ReviewNewItem>
 
       <NavigationBarListItem
         screen="Category"

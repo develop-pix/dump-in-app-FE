@@ -5,7 +5,6 @@ import {
   FontWhiteBiggestThickWithLineHeight,
   FontWhiteGreySmallestThin,
   FontYellowSmallerThinWithLineSpacing,
-
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   DistanceForm,

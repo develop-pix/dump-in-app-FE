@@ -10,7 +10,7 @@ export const GoBackButtonContainer = styled.View<{
   height: 44px;
   margin-top: ${props =>
     props.platform === 'ios'
-      ? '45'
+      ? '55'
       : props.platform === 'android'
       ? '15'
       : null}px;

@@ -14,7 +14,6 @@ import {
   MapInputhWrapper,
 } from '../../../styles/layout/location/MapInput.style';
 
-
 export default function MapInput({location}: MapInputProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const platform = Platform.OS;

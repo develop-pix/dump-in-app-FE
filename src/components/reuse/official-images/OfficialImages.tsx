@@ -1,5 +1,4 @@
 import React from 'react';
-import TempImage from '../../../assets/image/dummy/img_official.png';
 import {
   OfficialContainer,
   SubTitleContainer,
@@ -8,9 +7,10 @@ import {
   OfficialImagesContainer,
 } from '../../../styles/layout/reuse/offcial-images/OfficialImages.style';
 import {FontWhiteSmallerThickWithLineSpacing} from '../../../styles/layout/reuse/text/Text.style';
+import {OfficialImageProps} from '../../../interfaces/reuse/official-image/OfficialImage.interface';
+import SearchNoData from '../alert/SearchNoData';
 
-// props로 이미지 받도록 수정해야함
-export default function OfficialImages() {
+export default function OfficialImages({image}: OfficialImageProps) {
   return (
     <OfficialContainer>
       <SubTitleContainer>
@@ -18,20 +18,19 @@ export default function OfficialImages() {
           OFFICIAL
         </FontWhiteSmallerThickWithLineSpacing>
       </SubTitleContainer>
-      <OfficialImagesContainer>
-        <OfficialImageWrapper>
-          <OfficialImage source={TempImage} />
-        </OfficialImageWrapper>
-        <OfficialImageWrapper>
-          <OfficialImage source={TempImage} />
-        </OfficialImageWrapper>
-        <OfficialImageWrapper>
-          <OfficialImage source={TempImage} />
-        </OfficialImageWrapper>
-        <OfficialImageWrapper>
-          <OfficialImage source={TempImage} />
-        </OfficialImageWrapper>
-      </OfficialImagesContainer>
+      {image.length === 0 ? (
+        <SearchNoData alertText="등록된 이미지가 없습니다." recommendText="" />
+      ) : (
+        <OfficialImagesContainer>
+          {image.map((url, index) => {
+            return (
+              <OfficialImageWrapper key={index}>
+                <OfficialImage source={{uri: url}} />
+              </OfficialImageWrapper>
+            );
+          })}
+        </OfficialImagesContainer>
+      )}
     </OfficialContainer>
   );
 }
