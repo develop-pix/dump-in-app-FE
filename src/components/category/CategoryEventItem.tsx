@@ -37,14 +37,14 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
       <EventImageWrapper>
         <EventImage source={{uri: eventData.representativeImage}} />
         <LinearGradient
-          colors={['transparent', colors.black]}
-          locations={[0.1, 0.7]}
+          colors={['transparent', colors.fourth_grey]}
+          locations={[0.1, 0.8]}
           style={{
             position: 'absolute',
             left: 0,
             right: 0,
             bottom: 0,
-            height: 130,
+            height: 200,
           }}
         />
 
