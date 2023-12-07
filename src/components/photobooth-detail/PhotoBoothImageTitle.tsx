@@ -44,8 +44,11 @@ export default function PhotoBoothImageTitle({
   const onPressButton = () => {
     if (isFocused) {
       setScreen('Location');
-      navigation.navigate('Location', {
-        PhotoBoothID: route.params.PhotoBoothID,
+      navigation.reset({
+        index: 0,
+        routes: [
+          {name: 'Location', params: {PhotoBoothID: route.params.PhotoBoothID}},
+        ],
       });
     }
   };
