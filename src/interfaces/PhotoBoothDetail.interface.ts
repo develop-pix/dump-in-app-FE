@@ -11,7 +11,6 @@ export interface PhotoBoothImageTitleProps {
     representativeImage: string;
     photoboothName: string;
     hashtag: string[];
-    myPhotobooth: boolean;
   };
 }
 

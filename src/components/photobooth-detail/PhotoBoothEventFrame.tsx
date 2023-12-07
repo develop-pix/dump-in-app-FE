@@ -44,13 +44,14 @@ export default function PhotoBoothEventFrame({
             left: 0,
             right: 0,
             bottom: 0,
-            height: 100,
+            height: 200,
           }}
         />
 
         <FavoirteIcon>
           <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
         </FavoirteIcon>
+
         <EventInfo>
           <EventTitleContainer>
             <FontWhiteBiggestThick>{event.eventTitle}</FontWhiteBiggestThick>

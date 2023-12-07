@@ -25,10 +25,10 @@ export default function MoreEventModal({
 
   const onEndReached = () => {
     // 스크롤 시 새로운 임시 데이터
-    const lastReviewID = allEventData[allEventData.length - 1].eventID;
-    const newReviewData: EventDataType[] = [
+    const lastEventID = allEventData[allEventData.length - 1].eventID;
+    const newEventData: EventDataType[] = [
       {
-        eventID: lastReviewID + 1,
+        eventID: lastEventID + 1,
         representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         eventTitle: '화사의 ‘I Love My Body’ 프레임',
@@ -37,7 +37,7 @@ export default function MoreEventModal({
         myEvent: true,
       },
       {
-        eventID: lastReviewID + 2,
+        eventID: lastEventID + 2,
         representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         eventTitle: '화사의 ‘I Love My Body’ 프레임',
@@ -46,7 +46,7 @@ export default function MoreEventModal({
         myEvent: true,
       },
       {
-        eventID: lastReviewID + 3,
+        eventID: lastEventID + 3,
         representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         eventTitle: '화사의 ‘I Love My Body’ 프레임',
@@ -55,7 +55,7 @@ export default function MoreEventModal({
         myEvent: true,
       },
       {
-        eventID: lastReviewID + 4,
+        eventID: lastEventID + 4,
         representativeImage:
           'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         eventTitle: '화사의 ‘I Love My Body’ 프레임',
@@ -66,7 +66,7 @@ export default function MoreEventModal({
     ];
 
     // 새로운 데이터를 기존 데이터에 추가
-    setAllEventData(prevData => [...prevData, ...newReviewData]);
+    setAllEventData(prevData => [...prevData, ...newEventData]);
   };
 
   const renderEventItem = ({item}: {item: EventDataType}) => (

@@ -35,7 +35,7 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
           left: 0,
           right: 0,
           bottom: 0,
-          height: 130,
+          height: 150,
         }}
       />
 

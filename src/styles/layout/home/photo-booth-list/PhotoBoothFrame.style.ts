@@ -2,18 +2,19 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {colors} from '../../../base/Variable';
 
-// 임시 배경색 설정, 이미지 사이즈는 리뷰마다 차이가 있으므로 비율값 디자인팀에게 받아서 수정 필요
 export const PhotoBoothFrameContainer = styled.TouchableOpacity`
   width: ${Dimensions.get('window').width * 0.45}px;
-  height: ${Dimensions.get('window').width * 0.45}px;
+  aspect-ratio: 1;
   border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 15px;
   background-color: ${colors.white};
 `;
 
 export const PhotoBoothFrameImage = styled.Image`
   width: 100%;
   height: 100%;
+  resize-mode: cover;
 `;
 
 export const TagImage = styled.Image`

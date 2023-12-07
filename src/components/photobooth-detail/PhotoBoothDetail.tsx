@@ -29,7 +29,6 @@ export default function PhotoBoothDetail() {
       'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     ],
-    myPhotobooth: true,
     event: [
       {
         eventID: 1,

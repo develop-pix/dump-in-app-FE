@@ -15,7 +15,7 @@ export const EventImageWrapper = styled.View`
   height: 100%;
   position: relative;
   padding: 10px;
-  background-color: ${colors.whitegrey};
+  background-color: ${colors.white};
 `;
 
 export const EventImage = styled.Image`
