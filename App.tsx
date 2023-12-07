@@ -36,7 +36,11 @@ const App = () => {
                 component={Location}
                 initialParams={{PhotoBoothID: null}}
               />
-              <Stack.Screen name="LocationSearch" component={LocationSearch} />
+              <Stack.Screen
+                name="LocationSearch"
+                component={LocationSearch}
+                initialParams={{NextPage: 'BranchDetail'}}
+              />
               <Stack.Screen name="Category" component={Category} />
               <Stack.Screen name="MyPage" component={MyPage} />
               <Stack.Screen

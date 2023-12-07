@@ -17,19 +17,20 @@ import {
 export default function MapInput({location}: MapInputProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const platform = Platform.OS;
-  const onClickOpenModal = () => {
-    navigation.push('LocationSearch');
+  const onPressLocationSearch = () => {
+    navigation.push('LocationSearch', {NextPage: 'BranchDetail'});
   };
 
   return (
     <InputWrapper platform={platform}>
       <MapInputContainer>
-        <MapInputhWrapper activeOpacity={0.7} onPress={onClickOpenModal}>
+        <MapInputhWrapper activeOpacity={1} onPress={onPressLocationSearch}>
           <InputForm>
             <BlockInput
               value={location}
               editable={false}
               selectTextOnFocus={false}
+              onPressIn={onPressLocationSearch}
             />
             <SearchButtonIcon source={SearchImage} />
           </InputForm>

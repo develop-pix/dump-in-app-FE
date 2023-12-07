@@ -6,11 +6,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import AccessTokenSlice from './AccessTokenSlice';
 import AccessTokenExpireSlice from './AccessTokenExpireSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ReviewDataSlice from './ReviewData';
 
 //상태추가 할것 추가
 const reducers = combineReducers({
   login: AccessTokenSlice.reducer,
   expire: AccessTokenExpireSlice.reducer,
+  reviewData: ReviewDataSlice.reducer,
 });
 
 const logger = createLogger();

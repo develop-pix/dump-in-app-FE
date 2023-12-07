@@ -8,9 +8,12 @@ import {
 } from '../../styles/layout/location-search/Location.style';
 import {BranchListProps} from '../../interfaces/Location.interface';
 import LocationIcon from '../../assets/image/reuse/location.png';
-import {useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParam} from '../../interfaces/NavigationBar';
+import {
+  LocationSearchParamList,
+  RootStackParam,
+} from '../../interfaces/NavigationBar';
 import {
   FontLightGreySmallerThin,
   FontWhiteGreyNormalThin,
@@ -22,10 +25,18 @@ export default function BranchList({
   branchID,
 }: BranchListProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route =
+    useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
 
+  //진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
   const onSelectLocation = () => {
-    navigation.push('Branch', {branchID: branchID});
+    if (route.params.NextPage === 'BranchDetail') {
+      navigation.push('Branch', {branchID: branchID});
+    } else if (route.params.NextPage === 'ReviewNew') {
+      navigation.push('ReviewNew', {branchID: branchID});
+    }
   };
+
   return (
     <BranchListContainer onPress={onSelectLocation}>
       <LocationIconContainer source={LocationIcon} />

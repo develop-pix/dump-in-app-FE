@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import {colors} from '../../base/Variable';
-import {TouchableOpacity} from 'react-native';
 
 export const InputWrapper = styled.View<{
   platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
@@ -17,7 +16,7 @@ export const MapInputContainer = styled.View`
   width: 90%;
 `;
 
-export const MapInputhWrapper = styled(TouchableOpacity)`
+export const MapInputhWrapper = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   align-items: center;
