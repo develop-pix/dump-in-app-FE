@@ -6,7 +6,7 @@ import {
   FilterTextButtonContent,
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
-import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableLocations = [
   '서울',
@@ -45,7 +45,7 @@ export default function FilterLocation({
 
   return (
     <View>
-      <FontWhiteGreySmallestThick>지역</FontWhiteGreySmallestThick>
+      <FontWhiteGreySmallerThick>지역</FontWhiteGreySmallerThick>
 
       <FilterContentContainer>
         {availableLocations.map(locationOption => {

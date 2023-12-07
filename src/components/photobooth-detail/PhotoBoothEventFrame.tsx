@@ -37,7 +37,7 @@ export default function PhotoBoothEventFrame({
       <EventImageWrapper>
         <EventImage source={{uri: event.representativeImage}} />
         <LinearGradient
-          colors={['transparent', colors.fourth_grey]}
+          colors={['transparent', colors.darkgrey]}
           locations={[0.1, 1]}
           style={{
             position: 'absolute',

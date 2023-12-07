@@ -2,6 +2,7 @@ import React from 'react';
 import {EventFrameProps} from '../../interfaces/EventDetail.interface';
 import {
   FrameContainer,
+  SubTitleContainer,
   FrameImageContainer,
   FrameImageWrapper,
   FrameImage,
@@ -11,9 +12,11 @@ import {FontWhiteSmallerThickWithLineSpacing} from '../../styles/layout/reuse/te
 export default function EventFrame({eventData}: EventFrameProps) {
   return (
     <FrameContainer>
-      <FontWhiteSmallerThickWithLineSpacing>
-        FRAME
-      </FontWhiteSmallerThickWithLineSpacing>
+      <SubTitleContainer>
+        <FontWhiteSmallerThickWithLineSpacing>
+          FRAME
+        </FontWhiteSmallerThickWithLineSpacing>
+      </SubTitleContainer>
 
       <FrameImageContainer>
         {eventData.frameImage.map((image, index) => (

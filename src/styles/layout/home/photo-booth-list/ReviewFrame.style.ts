@@ -4,7 +4,7 @@ import {colors} from '../../../base/Variable';
 
 export const ReviewFrameContainer = styled.TouchableOpacity`
   width: ${Dimensions.get('window').width * 0.45}px;
-  aspect-ratio: 1;
+  height: ${Dimensions.get('window').width * 0.45 * 1.2}px;
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 15px;

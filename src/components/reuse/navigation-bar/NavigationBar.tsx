@@ -18,8 +18,12 @@ export default function NavigationBar() {
 
   const handleListClick = (selectedScreen: ScreenName) => {
     setScreen(selectedScreen);
-    // 선택한 페이지로 이동
-    navigation.navigate(selectedScreen);
+
+    // 네이게이션 바로 이동한 기본 페이지들에서는 이전 페이지로 돌아가지 못하도록 스택 초기화
+    navigation.reset({
+      index: 0,
+      routes: [{name: selectedScreen}],
+    });
   };
 
   const onPressRegistrationReview = () => {

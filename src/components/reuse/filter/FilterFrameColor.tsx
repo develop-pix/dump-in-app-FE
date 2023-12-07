@@ -13,7 +13,7 @@ import {
 } from '../../../styles/layout/reuse/filter/FilterFrameColor.style';
 import EtcImage from '../../../assets/image/filter/etc-color.png';
 import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
-import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableColors = Object.values(frameColors);
 
@@ -35,7 +35,7 @@ export default function FilterFrameColor({
 
   return (
     <View>
-      <FontWhiteGreySmallestThick>프레임 색상</FontWhiteGreySmallestThick>
+      <FontWhiteGreySmallerThick>프레임 색상</FontWhiteGreySmallerThick>
 
       <FilterContentContainer>
         {availableColors.map(colorOption => {
