@@ -8,13 +8,14 @@ import {
 } from '../../styles/layout/location-search/Location.style';
 import {BranchListProps} from '../../interfaces/Location.interface';
 import LocationIcon from '../../assets/image/reuse/location.png';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
 import {
   FontLightGreySmallerThin,
   FontWhiteGreyNormalThin,
 } from '../../styles/layout/reuse/text/Text.style';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function BranchList({
   branchName,
@@ -22,9 +23,11 @@ export default function BranchList({
   branchID,
 }: BranchListProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route = useRoute();
 
   const onSelectLocation = () => {
-    navigation.push('Branch', {branchID: branchID});
+    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    navigation.push('Branch', {branchID: branchID, screen: currentScreen});
   };
   return (
     <BranchListContainer onPress={onSelectLocation}>

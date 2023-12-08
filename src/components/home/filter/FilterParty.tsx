@@ -4,7 +4,7 @@ import {
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
-} from '../../../styles/layout/reuse/filter/Filter.style';
+} from '../../../styles/layout/home/filter/Filter.style';
 import {View} from 'react-native';
 import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
 

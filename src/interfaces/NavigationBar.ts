@@ -1,23 +1,33 @@
 import {ReactNode} from 'react';
 
 export type RootStackParam = {
-  Home: undefined;
-  HomeSearch: undefined;
-  Location: undefined | {PhotoBoothID: number | null};
-  LocationSearch: undefined;
-  Category: undefined;
-  MyPage: undefined;
-  Branch: {branchID: number};
-  ReviewDetail: {reviewID: number};
-  PhotoBoothDetail: {PhotoBoothID: number};
-  EventDetail: {eventID: number};
-  ReviewNew: {branchID: number | undefined};
+  Home: {screen: ScreenName};
+  HomeSearch: {screen: ScreenName};
+  Location:
+    | {screen: ScreenName}
+    | {PhotoBoothID: number | null; screen: ScreenName};
+  LocationSearch: {screen: ScreenName};
+  Category: {screen: ScreenName};
+  MyPage: {screen: ScreenName};
+  Branch: {branchID: number; screen: ScreenName};
+  ReviewDetail: {reviewID: number; screen: ScreenName};
+  PhotoBoothDetail: {PhotoBoothID: number; screen: ScreenName};
+  EventDetail: {eventID: number; screen: ScreenName};
+  ReviewNew: {branchID: number | undefined; screen: ScreenName};
 };
+
+export interface NavigationScreenParam {
+  screen: ScreenName;
+}
 
 export interface NavigationBarListItemProps {
   screen: ScreenName;
-  selectedScreen: string;
+  selectedScreen: ScreenName;
   handleListClick: (screen: ScreenName) => void;
+}
+
+export interface NavigationBarProps {
+  currentScreen: ScreenName;
 }
 
 export type ScreenName = 'Home' | 'Location' | 'Category' | 'MyPage';

@@ -23,10 +23,10 @@ export default function PhotoBoothList({data}: PhotoBoothListProps) {
   let reviewIndex = 0;
 
   for (let i = 0; i < 12; i++) {
-    if (i == 0 || i == 3) {
+    if (i === 0 || i === 3) {
       allData.push(photoBoothData[photoBoothIndex]);
       photoBoothIndex = photoBoothIndex + 1;
-    } else if (i == 7 || i == 10) {
+    } else if (i === 7 || i === 10) {
       allData.push(eventData[eventIndex]);
       eventIndex = eventIndex + 1;
     } else {

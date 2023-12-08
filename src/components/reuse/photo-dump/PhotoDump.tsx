@@ -27,10 +27,12 @@ import {
   RootStackParam,
 } from '../../../interfaces/NavigationBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function PhotoDump({reviewData}: PhotoDumpProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
+
   const pageWidth = Dimensions.get('window').width * 0.8;
   const gap = Dimensions.get('window').width * 0.04;
   const offset = Dimensions.get('window').width * 0.06;
@@ -68,7 +70,11 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
   };
 
   const onPressRegistrationReview = () => {
-    navigation.push('ReviewNew', {branchID: route.params.branchID});
+    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    navigation.push('ReviewNew', {
+      branchID: route.params.branchID,
+      screen: currentScreen,
+    });
   };
 
   /* renderItem 안에서 선언해줄경우 TypeError 발생 (타입명시를 위해 따로 선언) */

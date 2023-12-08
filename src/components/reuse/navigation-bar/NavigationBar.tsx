@@ -8,38 +8,38 @@ import {
   NavigationBarContainer,
   ReviewNewItem,
 } from '../../../styles/layout/navigation-bar/NavigationBar.style';
-import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {useScreen} from '../../../utils/ScreenContext';
+import {
+  RootStackParam,
+  NavigationBarProps,
+} from '../../../interfaces/NavigationBar';
 import {ScreenName} from '../../../interfaces/NavigationBar';
 
-export default function NavigationBar() {
+export default function NavigationBar({currentScreen}: NavigationBarProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const {screen, setScreen} = useScreen();
 
+  // 기본 페이지로 이동할 때는 해당 screen값을 넘겨줌
   const handleListClick = (selectedScreen: ScreenName) => {
-    setScreen(selectedScreen);
-
-    // 네이게이션 바로 이동한 기본 페이지들에서는 이전 페이지로 돌아가지 못하도록 스택 초기화
-    navigation.reset({
-      index: 0,
-      routes: [{name: selectedScreen}],
-    });
+    navigation.navigate(selectedScreen, {screen: selectedScreen});
   };
 
+  // 기본 페이지가 아닌 페이지로 이동할 때는 현재 screen값을 넘겨줌
   const onPressRegistrationReview = () => {
-    navigation.push('ReviewNew', {branchID: undefined});
+    navigation.navigate('ReviewNew', {
+      branchID: undefined,
+      screen: currentScreen,
+    });
   };
 
   return (
     <NavigationBarContainer>
       <NavigationBarListItem
         screen="Home"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
         screen="Location"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
 
@@ -49,12 +49,12 @@ export default function NavigationBar() {
 
       <NavigationBarListItem
         screen="Category"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
         screen="MyPage"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
     </NavigationBarContainer>

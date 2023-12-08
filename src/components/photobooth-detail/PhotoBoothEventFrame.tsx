@@ -15,18 +15,22 @@ import {
   FontWhiteGreySmallerThin,
 } from '../../styles/layout/reuse/text/Text.style';
 import {PhotoBoothEventFrameProps} from '../../interfaces/PhotoBoothDetail.interface';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function PhotoBoothEventFrame({
   event,
 }: PhotoBoothEventFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressEvent = (id: number) => {
+    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
     if (isFocused) {
-      navigation.push('EventDetail', {eventID: id});
+      navigation.push('EventDetail', {eventID: id, screen: currentScreen});
     }
   };
 

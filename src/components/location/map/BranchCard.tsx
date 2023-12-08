@@ -13,7 +13,7 @@ import {
 import FavoirteButton from '../../reuse/button/FavoritetButton';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 import {
   BranchCardBottom,
   BranchCardBranchNameWrapper,
@@ -25,6 +25,7 @@ import {
   CardContainer,
   TouchableCardContainer,
 } from '../../../styles/layout/location/BranchCard.style';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function BranchCard({
   branchID,
@@ -39,9 +40,12 @@ export default function BranchCard({
   const [favorite, setFavorite] = useState<boolean>(myBranch);
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressBranchCard = () => {
+    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
     if (isFocused) {
-      navigation.push('Branch', {branchID: branchID});
+      navigation.push('Branch', {branchID: branchID, screen: currentScreen});
     }
   };
 

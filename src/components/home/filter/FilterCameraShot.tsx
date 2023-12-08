@@ -1,11 +1,11 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
-import {FilterContentContainer} from '../../../styles/layout/reuse/filter/Filter.style';
+import {FilterContentContainer} from '../../../styles/layout/home/filter/Filter.style';
 import {
   CameraShotImageContainer,
   CameraShotImage,
   CameraShotImageText,
-} from '../../../styles/layout/reuse/filter/FilterCameraShot.style';
+} from '../../../styles/layout/home/filter/FilterCameraShot.style';
 import {View} from 'react-native';
 import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
 

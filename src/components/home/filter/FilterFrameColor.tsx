@@ -4,13 +4,13 @@ import {frameColors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
 import BlackCheckImage from '../../../assets/image/filter/black-check.png';
-import {FilterContentContainer} from '../../../styles/layout/reuse/filter/Filter.style';
+import {FilterContentContainer} from '../../../styles/layout/home/filter/Filter.style';
 import {
   FrameColorButton,
   EtcFrameColorButton,
   FrameColorCheckIcon,
   EtcFrameColorCheckIcon,
-} from '../../../styles/layout/reuse/filter/FilterFrameColor.style';
+} from '../../../styles/layout/home/filter/FilterFrameColor.style';
 import EtcImage from '../../../assets/image/filter/etc-color.png';
 import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
 import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';

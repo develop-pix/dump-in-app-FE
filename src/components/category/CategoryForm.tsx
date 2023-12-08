@@ -6,7 +6,7 @@ export default function CategoryForm() {
   return (
     <>
       <Category />
-      <NavigationBar />
+      <NavigationBar currentScreen="Category" />
     </>
   );
 }

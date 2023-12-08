@@ -11,9 +11,10 @@ import {
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
 import HomeFilterModalForm from './HomeFilterModalForm';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function HomeMenuBar({
   filterData,
@@ -33,9 +34,11 @@ export default function HomeMenuBar({
   };
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route = useRoute();
 
   const onSearchScreen = () => {
-    navigation.navigate('HomeSearch');
+    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    navigation.navigate('HomeSearch', {screen: currentScreen});
   };
 
   return (
