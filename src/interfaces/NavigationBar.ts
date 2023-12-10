@@ -46,6 +46,7 @@ export type ReviewDetailParamList = {
 export type LocationSearchParamList = {
   locationSearchType: {
     NextPage: 'BranchDetail' | 'ReviewNew';
+    screen: ScreenName;
   };
 };
 

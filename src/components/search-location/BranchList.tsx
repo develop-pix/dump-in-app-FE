@@ -35,9 +35,10 @@ export default function BranchList({
     const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (route.params.NextPage === 'BranchDetail') {
       navigation.pop();
-      navigation.push('Branch', {branchID: branchID, screen: currentScreen});
+      navigation.push('Branch', {branchID: branchID, screen: 'Location'});
     } else if (route.params.NextPage === 'ReviewNew') {
-      navigation.popToTop();
+      navigation.pop();
+      navigation.pop();
       navigation.push('ReviewNew', {branchID: branchID, screen: currentScreen});
     }
   };

@@ -7,12 +7,14 @@ import AccessTokenSlice from './AccessTokenSlice';
 import AccessTokenExpireSlice from './AccessTokenExpireSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReviewDataSlice from './ReviewData';
+import UserDataSlice from './UserDataSlice';
 
 //상태추가 할것 추가
 const reducers = combineReducers({
   login: AccessTokenSlice.reducer,
   expire: AccessTokenExpireSlice.reducer,
   reviewData: ReviewDataSlice.reducer,
+  userData: UserDataSlice.reducer,
 });
 
 const logger = createLogger();
@@ -22,7 +24,7 @@ const initialState = {};
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['login', 'expire'],
+  whitelist: ['login', 'expire', 'userData'],
 };
 const persistedReducer = persistReducer(persistConfig, reducers);
 

@@ -9,7 +9,7 @@ import SearchBranchList from './SearchBranchList';
 import {Platform} from 'react-native';
 import GoBackButton from '../reuse/button/GoBackButton';
 import {GoBackButtonContainerWithSafeArea} from '../../styles/layout/reuse/button/GoBackButton.style';
-import {useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
   LocationSearchParamList,
@@ -25,7 +25,6 @@ export default function LocactionSearchForm() {
   const route =
     useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const route = useRoute();
 
   const tempData: BranchData[] = [
     {
@@ -87,7 +86,19 @@ export default function LocactionSearchForm() {
     // 나중에 API 연결
     const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (search !== '' && resultData.length !== 0) {
-      navigation.navigate('Branch', {branchID: resultData[0].branchID});
+      if (route.params.NextPage === 'BranchDetail') {
+        navigation.pop();
+        navigation.push('Branch', {
+          branchID: resultData[0].branchID,
+          screen: 'Location',
+        });
+      } else if (route.params.NextPage === 'ReviewNew') {
+        navigation.pop();
+        navigation.push('ReviewNew', {
+          branchID: resultData[0].branchID,
+          screen: currentScreen,
+        });
+      }
     }
   };
 

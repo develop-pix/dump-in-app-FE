@@ -45,11 +45,6 @@ const App = () => {
                 initialParams={{screen: 'Location', PhotoBoothID: null}}
               />
               <Stack.Screen
-                name="LocationSearch"
-                component={LocationSearch}
-                initialParams={{screen: 'LocationSearch'}}
-              />
-              <Stack.Screen
                 name="Category"
                 component={Category}
                 initialParams={{screen: 'Category'}}
@@ -62,7 +57,10 @@ const App = () => {
               <Stack.Screen
                 name="LocationSearch"
                 component={LocationSearch}
-                initialParams={{screen: 'Location', NextPage: 'BranchDetail'}}
+                initialParams={{
+                  screen: 'LocationSearch',
+                  NextPage: 'BranchDetail',
+                }}
               />
               <Stack.Screen
                 name="Branch"
