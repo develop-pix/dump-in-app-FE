@@ -25,7 +25,7 @@ export default function NavigationBar() {
 
   const onPressRegistrationReview = () => {
     if (isFocused) {
-      navigation.push('ReviewNew', {branchID: undefined});
+      navigation.navigate('ReviewNew', {branchID: undefined});
     }
   };
 

@@ -39,7 +39,6 @@ export default function GoBackButtonReview() {
     dispatch(setTools(null));
     dispatch(setHairIron(null));
     dispatch(setPublicOpen(true));
-    //navigate,poptoTop: 하단바 문제,  goBack, pop 브랜치 설정 했을때 2번 되돌아가야되는 문제 해결해야함
     navigation.pop();
   };
   return (
