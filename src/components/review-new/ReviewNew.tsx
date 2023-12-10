@@ -26,6 +26,7 @@ import PublicOpenSwitch from './input/PublicOpenSwitch';
 import CameraShotSelect from './input/CameraShotSelect';
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 import {InputDatas} from '../../interfaces/ReviewNew.interface';
+// import AWS from 'aws-sdk';
 
 export default function ReviewNew() {
   const [errorData, setErrorData] = useState<InputDatas[]>([]);
@@ -34,6 +35,12 @@ export default function ReviewNew() {
   const representaiveImage = useAppSelector(
     state => state.reviewData,
   ).representativeImage;
+  const representaiveImageType = useAppSelector(
+    state => state.reviewData,
+  ).representativeImageType;
+  const representaiveImageName = useAppSelector(
+    state => state.reviewData,
+  ).representativeImageName;
   const description = useAppSelector(state => state.reviewData).description;
   const location = useAppSelector(state => state.reviewData).branchID;
   const date = useAppSelector(state => state.reviewData).date;
@@ -53,6 +60,9 @@ export default function ReviewNew() {
 
   const onPressSubmit = () => {
     // 기존에 있던 errorData(빈항목) 초기화
+    console.log(representaiveImage);
+    console.log(representaiveImageType);
+    console.log(representaiveImageName);
     setErrorData([]);
 
     // 각각의 Input요소가 빈 항목일 경우 errorData에 추가

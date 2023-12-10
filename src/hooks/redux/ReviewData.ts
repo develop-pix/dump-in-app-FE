@@ -3,6 +3,8 @@ import type {PayloadAction} from '@reduxjs/toolkit';
 
 interface ReviewDataState {
   representativeImage: string | null | undefined;
+  representativeImageType: string | null | undefined;
+  representativeImageName: string | null | undefined;
   description: string | null;
   branchID: number | null | undefined;
   date: Date | null;
@@ -17,6 +19,8 @@ interface ReviewDataState {
 
 const initialState: ReviewDataState = {
   representativeImage: null,
+  representativeImageType: null,
+  representativeImageName: null,
   description: null,
   branchID: undefined,
   date: null,
@@ -38,6 +42,18 @@ export const ReviewDataSlice = createSlice({
       action: PayloadAction<string | null | undefined>,
     ) {
       state.representativeImage = action.payload;
+    },
+    setRepresentativeImageType(
+      state,
+      action: PayloadAction<string | null | undefined>,
+    ) {
+      state.representativeImageType = action.payload;
+    },
+    setRepresentativeImageName(
+      state,
+      action: PayloadAction<string | null | undefined>,
+    ) {
+      state.representativeImageName = action.payload;
     },
     setDescription(state, action: PayloadAction<string | null>) {
       state.description = action.payload;
@@ -73,6 +89,8 @@ export const ReviewDataSlice = createSlice({
 });
 
 export const {setRepresentativeImage} = ReviewDataSlice.actions;
+export const {setRepresentativeImageType} = ReviewDataSlice.actions;
+export const {setRepresentativeImageName} = ReviewDataSlice.actions;
 export const {setDescription} = ReviewDataSlice.actions;
 export const {setBranchID} = ReviewDataSlice.actions;
 export const {setDate} = ReviewDataSlice.actions;

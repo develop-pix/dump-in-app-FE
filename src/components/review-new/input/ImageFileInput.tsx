@@ -11,7 +11,11 @@ import {FontWhiteGreySmallestThinWithLineHeight} from '../../../styles/layout/re
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
 import {useAppDispatch} from '../../../hooks/redux/store';
-import {setRepresentativeImage} from '../../../hooks/redux/ReviewData';
+import {
+  setRepresentativeImage,
+  setRepresentativeImageName,
+  setRepresentativeImageType,
+} from '../../../hooks/redux/ReviewData';
 import ButtonAddImage from '../../../assets/image/fileInput/ButtonAdd.png';
 import {ImageFileInputProps} from '../../../interfaces/ReviewNew.interface';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -36,6 +40,8 @@ export default function ImageFileInput({
           return null;
         } else if (response.assets) {
           dispatch(setRepresentativeImage(response.assets[0].uri));
+          dispatch(setRepresentativeImageType(response.assets[0].type));
+          dispatch(setRepresentativeImageName(response.assets[0].fileName));
         }
       },
     );
