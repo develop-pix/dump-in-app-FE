@@ -4,7 +4,7 @@ export type RootStackParam = {
   Home: undefined;
   HomeSearch: undefined;
   Location: undefined | {PhotoBoothID: number | null};
-  LocationSearch: undefined;
+  LocationSearch: {NextPage: 'BranchDetail' | 'ReviewNew'};
   Category: undefined;
   MyPage: undefined;
   Branch: {branchID: number};
@@ -31,6 +31,11 @@ export type BranchParamList = {
 export type ReviewDetailParamList = {
   reviewType: {
     reviewID: number;
+  };
+};
+export type LocationSearchParamList = {
+  locationSearchType: {
+    NextPage: 'BranchDetail' | 'ReviewNew';
   };
 };
 

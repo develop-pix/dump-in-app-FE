@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
@@ -14,6 +14,7 @@ import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function NavigationBar() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const {screen, setScreen} = useScreen();
 
   const handleListClick = (selectedScreen: ScreenName) => {
@@ -23,7 +24,9 @@ export default function NavigationBar() {
   };
 
   const onPressRegistrationReview = () => {
-    navigation.push('ReviewNew', {branchID: undefined});
+    if (isFocused) {
+      navigation.navigate('ReviewNew', {branchID: undefined});
+    }
   };
 
   return (
