@@ -45,7 +45,6 @@ export default function ReviewNew() {
   const hairIron = useAppSelector(state => state.reviewData).hairIron;
   const publicOpen = useAppSelector(state => state.reviewData).publicOpen;
 
-  //
   const onErrorScroll = (height: number) => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({y: height, animated: true});

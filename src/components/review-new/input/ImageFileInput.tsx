@@ -15,12 +15,14 @@ import {setRepresentativeImage} from '../../../hooks/redux/ReviewData';
 import ButtonAddImage from '../../../assets/image/fileInput/ButtonAdd.png';
 import {ImageFileInputProps} from '../../../interfaces/ReviewNew.interface';
 import {launchImageLibrary} from 'react-native-image-picker';
+
 export default function ImageFileInput({
   representaiveImage,
 }: ImageFileInputProps) {
   const dispatch = useAppDispatch();
 
   const onPressImageUpload = async () => {
+    //아래 maxWidth,maxHeight,quality 조절하여 용량 조절
     await launchImageLibrary(
       {
         mediaType: 'photo',

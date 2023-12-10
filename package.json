@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.16",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react-native-modal": "^4.1.1",
+    "aws-sdk": "^2.1515.0",
     "axios": "^1.6.0",
     "identity-obj-proxy": "^3.0.0",
     "react": "18.2.0",

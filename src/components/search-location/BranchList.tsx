@@ -31,8 +31,10 @@ export default function BranchList({
   //진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
   const onSelectLocation = () => {
     if (route.params.NextPage === 'BranchDetail') {
+      navigation.pop();
       navigation.push('Branch', {branchID: branchID});
     } else if (route.params.NextPage === 'ReviewNew') {
+      navigation.popToTop();
       navigation.push('ReviewNew', {branchID: branchID});
     }
   };

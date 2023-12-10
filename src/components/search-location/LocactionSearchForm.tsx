@@ -85,8 +85,10 @@ export default function LocactionSearchForm() {
     // 나중에 API 연결
     if (search !== '' && resultData.length !== 0) {
       if (route.params.NextPage === 'BranchDetail') {
+        navigation.pop();
         navigation.push('Branch', {branchID: resultData[0].branchID});
       } else if (route.params.NextPage === 'ReviewNew') {
+        navigation.popToTop();
         navigation.push('ReviewNew', {branchID: resultData[0].branchID});
       }
     }

@@ -8,7 +8,7 @@ export const FrameColorSelectContainer = styled.View`
 
 export const FrameColorSelectWrapper = styled.View`
   flex-direction: row;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 `;
