@@ -36,6 +36,12 @@ export const FontWhiteNormalThinWithLineHeight = styled.Text`
   line-height: 24px;
 `;
 
+export const FontWhiteSmallerThick = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.thick};
+`;
+
 export const FontWhiteSmallerThickWithLineSpacing = styled.Text`
   color: ${colors.white};
   font-size: ${fontSize.smaller};
@@ -99,7 +105,20 @@ export const FontWhiteGreySmallestThin = styled.Text`
   font-weight: ${fontWeight.thin};
 `;
 
+export const FontWhiteGreySmallestThinWithLineHeight = styled.Text`
+  color: ${colors.whitegrey};
+  font-size: ${fontSize.smallest};
+  font-weight: ${fontWeight.thin};
+  line-height: 30px;
+`;
+
 /* lightgrey */
+export const FontLightGreyNormalThin = styled.Text`
+  color: ${colors.lightgrey};
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.thin};
+`;
+
 export const FontLightGreySmallerThick = styled.Text`
   color: ${colors.lightgrey};
   font-size: ${fontSize.smaller};
@@ -112,7 +131,19 @@ export const FontLightGreySmallerThin = styled.Text`
   font-weight: ${fontWeight.thin};
 `;
 
+export const FontLightGreySmallestThin = styled.Text`
+  color: ${colors.lightgrey};
+  font-size: ${fontSize.smallest};
+  font-weight: ${fontWeight.thin};
+`;
+
 /* yellow */
+export const FontYellowBiggerThick = styled.Text`
+  color: ${colors.yellow};
+  font-size: ${fontSize.bigger};
+  font-weight: ${fontWeight.thick};
+`;
+
 export const FontYellowSmallerThin = styled.Text`
   color: ${colors.yellow};
   font-size: ${fontSize.smaller};
@@ -124,4 +155,23 @@ export const FontYellowSmallerThinWithLineSpacing = styled.Text`
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.thin};
   letter-spacing: -0.5px;
+`;
+
+export const FontYellowSmallestThin = styled.Text`
+  color: ${colors.yellow};
+  font-size: ${fontSize.smallest};
+  font-weight: ${fontWeight.thin};
+`;
+
+/* red */
+export const FontRedNormalThin = styled.Text`
+  color: ${colors.red};
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.thin};
+`;
+
+export const FontBlackSmallerThick = styled.Text`
+  color: ${colors.black};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.thick};
 `;

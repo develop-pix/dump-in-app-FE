@@ -2,11 +2,13 @@ export const colors = {
   black: '#000000',
   white: '#FFFFFF',
   yellow: '#DFFF39',
+  red: '#FF2E00',
   whitegrey: '#A3A3A3',
   lightgrey: '#757575',
   grey: '#333333',
   darkgrey: '#2D2D2D',
   blackgrey: '#222222',
+  lightblack: '#161616',
 };
 
 export const frameColors = {

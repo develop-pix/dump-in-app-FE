@@ -60,6 +60,11 @@ const App = () => {
                 initialParams={{screen: 'MyPage'}}
               />
               <Stack.Screen
+                name="LocationSearch"
+                component={LocationSearch}
+                initialParams={{screen: 'Location', NextPage: 'BranchDetail'}}
+              />
+              <Stack.Screen
                 name="Branch"
                 component={Branch}
                 initialParams={{screen: 'Branch', branchID: 0}}

@@ -20,20 +20,24 @@ export default function MapInput({location}: MapInputProps) {
   const route = useRoute();
   const platform = Platform.OS;
 
-  const onClickOpenModal = () => {
+  const onPressLocationSearch = () => {
     const currentScreen = (route.params as {screen: ScreenName}).screen;
-    navigation.push('LocationSearch', {screen: currentScreen});
+    navigation.push('LocationSearch', {
+      NextPage: 'BranchDetail',
+      screen: currentScreen,
+    });
   };
 
   return (
     <InputWrapper platform={platform}>
       <MapInputContainer>
-        <MapInputhWrapper activeOpacity={0.7} onPress={onClickOpenModal}>
+        <MapInputhWrapper activeOpacity={1} onPress={onPressLocationSearch}>
           <InputForm>
             <BlockInput
               value={location}
               editable={false}
               selectTextOnFocus={false}
+              onPressIn={onPressLocationSearch}
             />
             <SearchButtonIcon source={SearchImage} />
           </InputForm>

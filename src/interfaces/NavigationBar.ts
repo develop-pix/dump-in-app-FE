@@ -6,7 +6,7 @@ export type RootStackParam = {
   Location:
     | {screen: ScreenName}
     | {PhotoBoothID: number | null; screen: ScreenName};
-  LocationSearch: {screen: ScreenName};
+  LocationSearch: {NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName};
   Category: {screen: ScreenName};
   MyPage: {screen: ScreenName};
   Branch: {branchID: number; screen: ScreenName};
@@ -41,6 +41,11 @@ export type BranchParamList = {
 export type ReviewDetailParamList = {
   reviewType: {
     reviewID: number;
+  };
+};
+export type LocationSearchParamList = {
+  locationSearchType: {
+    NextPage: 'BranchDetail' | 'ReviewNew';
   };
 };
 

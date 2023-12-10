@@ -9,17 +9,21 @@ import SearchBranchList from './SearchBranchList';
 import {Platform} from 'react-native';
 import GoBackButton from '../reuse/button/GoBackButton';
 import {GoBackButtonContainerWithSafeArea} from '../../styles/layout/reuse/button/GoBackButton.style';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParam} from '../../interfaces/NavigationBar';
+import {
+  LocationSearchParamList,
+  RootStackParam,
+} from '../../interfaces/NavigationBar';
 import SearchNoData from '../reuse/alert/SearchNoData';
 import {ScreenName} from '../../interfaces/NavigationBar';
 
-export default function LocactionSearchForm({}) {
+export default function LocactionSearchForm() {
   const platform = Platform.OS;
   const [search, setSearch] = useState<string>('');
   const [resultData, setResultData] = useState<BranchData[] | []>([]);
-
+  const route =
+    useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute();
 
@@ -78,14 +82,12 @@ export default function LocactionSearchForm({}) {
     );
   };
 
+  //진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
   const SearchBranch = () => {
     // 나중에 API 연결
     const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (search !== '' && resultData.length !== 0) {
-      navigation.navigate('Branch', {
-        branchID: resultData[0].branchID,
-        screen: currentScreen,
-      });
+      navigation.navigate('Branch', {branchID: resultData[0].branchID});
     }
   };
 

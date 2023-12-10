@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
