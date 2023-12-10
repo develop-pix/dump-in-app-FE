@@ -1,12 +1,12 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
-  FilterTitle,
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableLocations = [
   '서울',
@@ -30,6 +30,7 @@ const availableLocations = [
 export default function FilterLocation({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleLocationToggle = (location: string) => {
     const isSelected = filterData.geolocation === location;
@@ -38,11 +39,13 @@ export default function FilterLocation({
       ...prevFilterData,
       geolocation: isSelected ? '' : location,
     }));
+
+    filterOptionSelect();
   };
 
   return (
     <View>
-      <FilterTitle>지역</FilterTitle>
+      <FontWhiteGreySmallestThick>지역</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableLocations.map(locationOption => {

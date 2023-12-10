@@ -1,15 +1,13 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
-import {
-  FilterTitle,
-  FilterContentContainer,
-} from '../../../styles/layout/reuse/filter/Filter.style';
+import {FilterContentContainer} from '../../../styles/layout/reuse/filter/Filter.style';
 import {
   CameraShotImageContainer,
   CameraShotImage,
   CameraShotImageText,
 } from '../../../styles/layout/reuse/filter/FilterCameraShot.style';
 import {View} from 'react-native';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableCameraShots = [
   {
@@ -33,6 +31,7 @@ const availableCameraShots = [
 export default function FilterCameraShot({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleCameraShotToggle = (cameraShot: string) => {
     const isSelected = filterData.cameraShot === cameraShot;
@@ -41,11 +40,13 @@ export default function FilterCameraShot({
       ...prevFilterData,
       cameraShot: isSelected ? '' : cameraShot,
     }));
+
+    filterOptionSelect();
   };
 
   return (
     <View>
-      <FilterTitle>카메라 샷</FilterTitle>
+      <FontWhiteGreySmallestThick>카메라 샷</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableCameraShots.map(cameraShotOption => {

@@ -1,15 +1,20 @@
 import React from 'react';
+
+import {BranchDistanceProps} from '../../interfaces/Branch.interface';
+import {DistanceForm} from '../../utils/FormChange';
+import {FontWhiteSmallerThin} from '../../styles/layout/reuse/text/Text.style';
 import {
   BranchDistanceContainer,
   BranchDistanceForm,
-  DistanceText,
-} from '../../styles/layout/branch/Branch.style';
+} from '../../styles/layout/branch/BranchDistance.style';
 
-export default function BranchDistance() {
+export default function BranchDistance({distance}: BranchDistanceProps) {
   return (
     <BranchDistanceContainer>
       <BranchDistanceForm>
-        <DistanceText>내 위치로부터 350m</DistanceText>
+        <FontWhiteSmallerThin>
+          내 위치로부터 {DistanceForm(distance)}
+        </FontWhiteSmallerThin>
       </BranchDistanceForm>
     </BranchDistanceContainer>
   );

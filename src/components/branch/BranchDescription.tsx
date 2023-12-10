@@ -1,16 +1,18 @@
 import React from 'react';
+import LocationImage from '../../assets/image/reuse/location_dark.png';
+import ClockImage from '../../assets/image/reuse/clock.png';
+import {BranchDescriptionProps} from '../../interfaces/Branch.interface';
+import {
+  FontLightGreySmallerThin,
+  FontWhiteSmallerThickWithLineSpacing,
+} from '../../styles/layout/reuse/text/Text.style';
 import {
   BranchDesc,
   BranchDescriptionContainer,
   ClockIcon,
   DescContainer,
-  DescText,
   LocationIcon,
-} from '../../styles/layout/branch/Branch.style';
-import LocationImage from '../../assets/image/reuse/location_dark.png';
-import ClockImage from '../../assets/image/reuse/clock.png';
-import {BranchDescriptionProps} from '../../interfaces/Branch.interface';
-import {SubTitleText} from '../../styles/layout/reuse/text/Text.style';
+} from '../../styles/layout/branch/BranchDescription.style';
 
 export default function BranchDescription({
   address,
@@ -18,15 +20,19 @@ export default function BranchDescription({
 }: BranchDescriptionProps) {
   return (
     <BranchDescriptionContainer>
-      <SubTitleText>INFO</SubTitleText>
+      <FontWhiteSmallerThickWithLineSpacing>
+        INFO
+      </FontWhiteSmallerThickWithLineSpacing>
       <BranchDesc>
         <DescContainer>
           <LocationIcon source={LocationImage} />
-          <DescText>{address}</DescText>
+          <FontLightGreySmallerThin>{address}</FontLightGreySmallerThin>
         </DescContainer>
         <DescContainer>
           <ClockIcon source={ClockImage} />
-          <DescText>{open}</DescText>
+          <FontLightGreySmallerThin numberOfLines={1}>
+            {open}
+          </FontLightGreySmallerThin>
         </DescContainer>
       </BranchDesc>
     </BranchDescriptionContainer>

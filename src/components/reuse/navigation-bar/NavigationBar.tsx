@@ -1,12 +1,12 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
 import CameraImage from '../../../assets/image/navigation-bar/camera.png';
 import {
   NavigationBarContainer,
-  CameraImageBox,
+  ReviewNewItem,
 } from '../../../styles/layout/navigation-bar/NavigationBar.style';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {useScreen} from '../../../utils/ScreenContext';
@@ -14,12 +14,19 @@ import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function NavigationBar() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const {screen, setScreen} = useScreen();
 
   const handleListClick = (selectedScreen: ScreenName) => {
     setScreen(selectedScreen);
     // 선택한 페이지로 이동
     navigation.navigate(selectedScreen);
+  };
+
+  const onPressRegistrationReview = () => {
+    if (isFocused) {
+      navigation.navigate('ReviewNew', {branchID: undefined});
+    }
   };
 
   return (
@@ -34,9 +41,10 @@ export default function NavigationBar() {
         selectedScreen={screen}
         handleListClick={handleListClick}
       />
-      <CameraImageBox>
+
+      <ReviewNewItem onPress={onPressRegistrationReview}>
         <Image source={CameraImage} />
-      </CameraImageBox>
+      </ReviewNewItem>
 
       <NavigationBarListItem
         screen="Category"

@@ -10,11 +10,11 @@ import {ReviewProps} from '../../../interfaces/reuse/photo-dump/Review.interface
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
 import {
-  HashtagsText,
-  ReviewDescText,
+  FontYellowSmallerThinWithLineSpacing,
+  FontWhiteNormalThin,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 
@@ -25,9 +25,13 @@ export default function Review({
   reviewHashtags,
 }: ReviewProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
   const onPressReview = () => {
-    navigation.navigate('ReviewDetail', {reviewID: reviewID});
+    if (isFocused) {
+      navigation.push('ReviewDetail', {reviewID: reviewID});
+    }
   };
+
   return (
     <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
       <ReviewImage source={{uri: reviewImage}} />
@@ -45,11 +49,13 @@ export default function Review({
 
       <ReviewDescriptionContainer>
         <ReviewDescription>
-          <ReviewDescText>{reviewDescription}</ReviewDescText>
+          <FontWhiteNormalThin>{reviewDescription}</FontWhiteNormalThin>
         </ReviewDescription>
         <ReviewHastags>
           {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
-            <HashtagsText key={tag}>{tag}</HashtagsText>
+            <FontYellowSmallerThinWithLineSpacing key={tag}>
+              {tag}
+            </FontYellowSmallerThinWithLineSpacing>
           ))}
         </ReviewHastags>
       </ReviewDescriptionContainer>

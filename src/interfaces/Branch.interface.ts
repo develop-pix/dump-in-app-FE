@@ -7,7 +7,7 @@ export interface BranchData {
   open: string;
   distance: number;
   address: string;
-  image: string[];
+  officialImage: string[];
   myBranch: boolean;
   review: ReviewData[];
 }
@@ -48,4 +48,8 @@ export interface BranchDescriptionProps {
 export interface Geolocation {
   latitude: number;
   longitude: number;
+}
+
+export interface BranchDistanceProps {
+  distance: number;
 }

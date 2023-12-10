@@ -13,13 +13,14 @@ export const FilterButtonContainer = styled.TouchableOpacity<{
   align-items: center;
   background-color: ${({backgroundColor}) => backgroundColor};
   border-color: ${({borderColor}) => borderColor};
+  opacity: ${({disabled}) => (disabled ? 0.5 : 1)};
 `;
 
 export const FilterButtonText = styled.Text<{
   textColor: string;
 }>`
-  font-size: ${fontSize.BTN};
-  font-weight: ${fontWeight.SB};
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.thick};
   text-align: center;
   color: ${({textColor}) => textColor};
 `;

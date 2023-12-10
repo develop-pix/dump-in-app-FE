@@ -4,10 +4,7 @@ import {frameColors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
 import BlackCheckImage from '../../../assets/image/filter/black-check.png';
-import {
-  FilterTitle,
-  FilterContentContainer,
-} from '../../../styles/layout/reuse/filter/Filter.style';
+import {FilterContentContainer} from '../../../styles/layout/reuse/filter/Filter.style';
 import {
   FrameColorButton,
   EtcFrameColorButton,
@@ -16,12 +13,14 @@ import {
 } from '../../../styles/layout/reuse/filter/FilterFrameColor.style';
 import EtcImage from '../../../assets/image/filter/etc-color.png';
 import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableColors = Object.values(frameColors);
 
 export default function FilterFrameColor({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleColorToggle = (color: string) => {
     const isSelected = filterData.frameColor === color;
@@ -30,11 +29,13 @@ export default function FilterFrameColor({
       ...prevFilterData,
       frameColor: isSelected ? '' : color,
     }));
+
+    filterOptionSelect();
   };
 
   return (
     <View>
-      <FilterTitle>프레임 색상</FilterTitle>
+      <FontWhiteGreySmallestThick>프레임 색상</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableColors.map(colorOption => {

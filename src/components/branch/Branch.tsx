@@ -29,7 +29,12 @@ export default function Branch() {
       distance: 300,
       address: '서울 중구 장충단로13길 20 1층',
       open: '24시간 영업',
-      image: [''],
+      officialImage: [
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      ],
       myBranch: true,
       review: [
         {
@@ -70,7 +75,12 @@ export default function Branch() {
       distance: 450,
       address: '서울 성동구 마조로 25',
       open: '24시간 영업',
-      image: [''],
+      officialImage: [
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      ],
       myBranch: false,
       review: [
         {
@@ -111,7 +121,12 @@ export default function Branch() {
       address: '서울 종로구 대명길 42 1층 인생네컷',
       open: '24시간 영업',
       distance: 880,
-      image: [''],
+      officialImage: [
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      ],
       myBranch: true,
       review: [
         {
@@ -136,7 +151,12 @@ export default function Branch() {
       open: '24시간 영업',
       address: '서울 영등포구 영중로4길 17 1, 2층',
       distance: 999,
-      image: [''],
+      officialImage: [
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      ],
       myBranch: false,
       review: [
         {
@@ -161,18 +181,9 @@ export default function Branch() {
       open: '24시간 영업',
       distance: 1200,
       address: '서울 종로구 자하문로2길 17-2 1층 인생네컷',
-      image: [''],
+      officialImage: [],
       myBranch: true,
-      review: [
-        {
-          reviewID: 5,
-          representativeImage:
-            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-          hashtag: ['이달의 프레임', '생일', '고데기 있음'],
-          description:
-            '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
-        },
-      ],
+      review: [],
     },
     {
       branchID: 6,
@@ -187,7 +198,10 @@ export default function Branch() {
       distance: 999.9,
       address:
         '서울 용산구 청파로45길 24 232 421 4234 5435 2342 3423 321312 test',
-      image: [''],
+      officialImage: [
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      ],
       myBranch: true,
       review: [
         {
@@ -236,7 +250,11 @@ export default function Branch() {
       open: '24시간 영업',
       distance: 119.9,
       address: '서울 용산구 청파로47길 11',
-      image: [''],
+      officialImage: [
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+      ],
       myBranch: false,
       review: [
         {
@@ -285,7 +303,7 @@ export default function Branch() {
                 open={data.open}
                 myBranch={data.myBranch}
               />
-              <OfficialImages />
+              <OfficialImages image={data.officialImage} />
               <PhotoDump reviewData={data.review} />
             </BranchForm>
           );

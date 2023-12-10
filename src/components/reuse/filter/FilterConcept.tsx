@@ -1,12 +1,12 @@
 import React from 'react';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
 import {
-  FilterTitle,
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
 } from '../../../styles/layout/reuse/filter/Filter.style';
 import {View} from 'react-native';
+import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableConcepts = [
   '일상',
@@ -30,6 +30,7 @@ const availableConcepts = [
 export default function FilterConcept({
   filterData,
   setFilterData,
+  filterOptionSelect,
 }: FilterDataUpdateProps) {
   const handleConceptToggle = (concept: string) => {
     const isSelected = filterData.concept.includes(concept);
@@ -45,11 +46,13 @@ export default function FilterConcept({
       ...prevFilterData,
       concept: conceptArray,
     }));
+
+    filterOptionSelect();
   };
 
   return (
     <View>
-      <FilterTitle>컨셉</FilterTitle>
+      <FontWhiteGreySmallestThick>컨셉</FontWhiteGreySmallestThick>
 
       <FilterContentContainer>
         {availableConcepts.map(conceptOption => {

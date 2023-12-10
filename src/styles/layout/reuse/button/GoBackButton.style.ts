@@ -10,7 +10,7 @@ export const GoBackButtonContainer = styled.View<{
   height: 44px;
   margin-top: ${props =>
     props.platform === 'ios'
-      ? '45'
+      ? '55'
       : props.platform === 'android'
       ? '15'
       : null}px;
@@ -43,10 +43,31 @@ export const GoBackButtonContainerWithSafeArea = styled.View<{
       : null};
 `;
 
+export const GoBackButtonWithSubmitContainer = styled.View<{
+  platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
+}>`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 44px;
+  margin-top: ${props =>
+    props.platform === 'ios'
+      ? '0px'
+      : props.platform === 'android'
+      ? '15px'
+      : null};
+`;
+
 export const BackButton = styled.TouchableOpacity`
   width: 16px;
   height: 16px;
   margin-left: 20px;
+`;
+
+export const SubmitButton = styled.TouchableOpacity`
+  margin-right: 20px;
 `;
 
 export const BackImage = styled.Image``;
