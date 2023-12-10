@@ -6,7 +6,7 @@ import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function LocationForm() {
   const route = useRoute();
-  const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+  const currentScreen = (route.params as {screen: ScreenName}).screen;
 
   return (
     <>

@@ -27,7 +27,7 @@ export default function CategoryPhotoBooth() {
   const route = useRoute();
 
   const onPressPhotoBooth = (id: number) => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('PhotoBoothDetail', {
         PhotoBoothID: id,

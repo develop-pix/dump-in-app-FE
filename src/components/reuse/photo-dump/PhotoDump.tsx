@@ -70,7 +70,9 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
   };
 
   const onPressRegistrationReview = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (
+      route.params as {branchID: number; screen: ScreenName}
+    ).screen;
     navigation.push('ReviewNew', {
       branchID: route.params.branchID,
       screen: currentScreen,

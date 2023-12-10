@@ -30,7 +30,7 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
   const route = useRoute();
 
   const onPressEvent = (id: number) => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('EventDetail', {eventID: id, screen: currentScreen});
     }
@@ -45,8 +45,8 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
       <EventImageWrapper>
         <EventImage source={{uri: eventData.representativeImage}} />
         <LinearGradient
-          colors={['transparent', colors.darkgrey]}
-          locations={[0.1, 0.8]}
+          colors={['transparent', colors.black]}
+          locations={[0.1, 1]}
           style={{
             position: 'absolute',
             left: 0,

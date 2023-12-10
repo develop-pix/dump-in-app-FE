@@ -17,7 +17,7 @@ import {ScreenName} from '../../../interfaces/NavigationBar';
 export default function NavigationBar({currentScreen}: NavigationBarProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
-  // 기본 페이지로 이동할 때는 해당 screen값을 넘겨줌
+  // 기본 페이지로 이동할 때는 해당 screen값을 넘겨줌 Home, Location, Category, MyPage
   const handleListClick = (selectedScreen: ScreenName) => {
     navigation.navigate(selectedScreen, {screen: selectedScreen});
   };

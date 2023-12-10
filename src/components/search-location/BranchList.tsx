@@ -26,7 +26,7 @@ export default function BranchList({
   const route = useRoute();
 
   const onSelectLocation = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     navigation.push('Branch', {branchID: branchID, screen: currentScreen});
   };
   return (

@@ -21,7 +21,7 @@ export default function EventResult({searchData, data}: EventResultProps) {
   const route = useRoute();
 
   const onPressEvent = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('EventDetail', {
         eventID: data.eventID,

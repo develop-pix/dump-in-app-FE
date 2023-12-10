@@ -37,7 +37,7 @@ export default function HomeMenuBar({
   const route = useRoute();
 
   const onSearchScreen = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     navigation.navigate('HomeSearch', {screen: currentScreen});
   };
 

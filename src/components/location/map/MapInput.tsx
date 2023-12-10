@@ -21,7 +21,7 @@ export default function MapInput({location}: MapInputProps) {
   const platform = Platform.OS;
 
   const onClickOpenModal = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     navigation.push('LocationSearch', {screen: currentScreen});
   };
 

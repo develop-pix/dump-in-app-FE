@@ -24,7 +24,7 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
   const route = useRoute();
 
   const onPressPhotoBooth = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('PhotoBoothDetail', {
         PhotoBoothID: data.photoBoothID,

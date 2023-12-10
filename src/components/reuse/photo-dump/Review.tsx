@@ -30,7 +30,7 @@ export default function Review({
   const route = useRoute();
 
   const onPressReview = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('ReviewDetail', {
         reviewID: reviewID,

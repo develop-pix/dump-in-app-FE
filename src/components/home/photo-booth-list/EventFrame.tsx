@@ -17,7 +17,7 @@ export default function EventFrame({data}: EventFrameProps) {
   const route = useRoute();
 
   const onPressEvent = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('EventDetail', {
         eventID: data.eventID,

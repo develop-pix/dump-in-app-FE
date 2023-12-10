@@ -80,7 +80,7 @@ export default function LocactionSearchForm({}) {
 
   const SearchBranch = () => {
     // 나중에 API 연결
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (search !== '' && resultData.length !== 0) {
       navigation.navigate('Branch', {
         branchID: resultData[0].branchID,

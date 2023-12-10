@@ -43,7 +43,7 @@ export default function BranchCard({
   const route = useRoute();
 
   const onPressBranchCard = () => {
-    const currentScreen = (route.params as {screen?: ScreenName})?.screen;
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('Branch', {branchID: branchID, screen: currentScreen});
     }
