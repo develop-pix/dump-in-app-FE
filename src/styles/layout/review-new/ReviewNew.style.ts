@@ -23,7 +23,7 @@ export const InputContainer = styled.View`
 
 export const InputWrapper = styled.View`
   width: 90%;
-  gap: 30px;
+  gap: 40px;
 `;
 
 export const LocationAndDateContainer = styled.View`
@@ -52,4 +52,8 @@ export const ReviewInputTitleContainer = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 3px;
+`;
+
+export const ReviewErrorContainer = styled.View`
+  margin-left: 5px;
 `;

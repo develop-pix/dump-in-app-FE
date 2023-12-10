@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 
 interface ReviewDataState {
-  representativeImage: string | null;
+  representativeImage: string | null | undefined;
   description: string | null;
   branchID: number | null | undefined;
   date: Date | null;
@@ -33,7 +33,10 @@ export const ReviewDataSlice = createSlice({
   name: 'reviewData',
   initialState,
   reducers: {
-    setRepresentativeImage(state, action: PayloadAction<string | null>) {
+    setRepresentativeImage(
+      state,
+      action: PayloadAction<string | null | undefined>,
+    ) {
       state.representativeImage = action.payload;
     },
     setDescription(state, action: PayloadAction<string | null>) {

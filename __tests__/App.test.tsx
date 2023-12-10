@@ -18,6 +18,11 @@ jest.mock(
   'react-native-geolocation-service',
   () => 'react-native-geolocation-service',
 );
+jest.mock(
+  'react-native-modal-datetime-picker',
+  () => 'react-native-modal-datetime-picker',
+);
+jest.mock('react-native-image-picker', () => 'react-native-image-picker');
 
 it('renders correctly', () => {
   renderer.create(<App />);

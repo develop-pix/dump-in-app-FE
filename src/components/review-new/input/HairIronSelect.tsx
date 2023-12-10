@@ -3,7 +3,7 @@ import {ReviewInputTitleContainer} from '../../../styles/layout/review-new/Revie
 import {
   FontBlackSmallerThick,
   FontLightGreySmallerThin,
-  FontWhiteSmallerThick,
+  FontWhiteNormalThin,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   HairIronButtonLeft,
@@ -11,13 +11,14 @@ import {
   HairIronInputContainer,
   HairIronSelectContainer,
 } from '../../../styles/layout/review-new/input/HairIronSelect.style';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux/store';
+import {useAppDispatch} from '../../../hooks/redux/store';
 import {setHairIron} from '../../../hooks/redux/ReviewData';
+import {HairIronSelectProps} from '../../../interfaces/ReviewNew.interface';
 
-export default function HairIronSelect() {
+export default function HairIronSelect({hairIron}: HairIronSelectProps) {
   const dispatch = useAppDispatch();
-  const hairIron = useAppSelector(state => state.reviewData).hairIron;
 
+  // 있음 버튼 선택시 dispatch
   const onPressHairIron = () => {
     if (hairIron === true) {
       dispatch(setHairIron(null));
@@ -25,6 +26,8 @@ export default function HairIronSelect() {
       dispatch(setHairIron(true));
     }
   };
+
+  // 없음 버튼 선택시 dispatch
   const onPressNoHairIron = () => {
     if (hairIron === false) {
       dispatch(setHairIron(null));
@@ -32,10 +35,11 @@ export default function HairIronSelect() {
       dispatch(setHairIron(false));
     }
   };
+
   return (
     <HairIronSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteSmallerThick>고데기</FontWhiteSmallerThick>
+        <FontWhiteNormalThin>고데기</FontWhiteNormalThin>
       </ReviewInputTitleContainer>
       <HairIronInputContainer>
         {hairIron === true ? (

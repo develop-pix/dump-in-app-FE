@@ -9,15 +9,16 @@ import {ReviewInputTitleContainer} from '../../../styles/layout/review-new/Revie
 import {
   FontBlackSmallerThick,
   FontLightGreySmallerThin,
-  FontWhiteSmallerThick,
+  FontWhiteNormalThin,
 } from '../../../styles/layout/reuse/text/Text.style';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux/store';
+import {useAppDispatch} from '../../../hooks/redux/store';
 import {setTools} from '../../../hooks/redux/ReviewData';
+import {ToolsSelectProps} from '../../../interfaces/ReviewNew.interface';
 
-export default function ToolsSelect() {
+export default function ToolsSelect({tools}: ToolsSelectProps) {
   const dispatch = useAppDispatch();
-  const tools = useAppSelector(state => state.reviewData).tools;
 
+  // 있음 버튼 선택시 dispatch
   const onPressTools = () => {
     if (tools === true) {
       dispatch(setTools(null));
@@ -25,6 +26,8 @@ export default function ToolsSelect() {
       dispatch(setTools(true));
     }
   };
+
+  // 없음 버튼 선택시 dispatch
   const onPressNoTools = () => {
     if (tools === false) {
       dispatch(setTools(null));
@@ -36,7 +39,7 @@ export default function ToolsSelect() {
   return (
     <ToolsSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteSmallerThick>소품</FontWhiteSmallerThick>
+        <FontWhiteNormalThin>소품</FontWhiteNormalThin>
       </ReviewInputTitleContainer>
       <ToolsInputContainer>
         {tools === true ? (

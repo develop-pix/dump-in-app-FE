@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 export const DateInputContainer = styled.View`
   width: 47%;
@@ -13,15 +13,16 @@ export const DateInputWrapper = styled.TouchableOpacity`
   border-radius: 10px;
   background-color: ${colors.blackgrey};
   justify-content: center;
-  padding-left: 10px;
 `;
 
-export const DateTextInput = styled.TextInput`
+export const DateTextButton = styled.TouchableOpacity<{
+  onSelected: Date | null;
+}>`
   width: 100%;
   background-color: ${colors.blackgrey};
   border-radius: 10px;
-  color: ${colors.white};
-  font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
-  line-height: 14px;
+  flex-direction: row;
+  padding-left: ${props => (props.onSelected === null ? '10' : '0')}px;
+  justify-content: ${props =>
+    props.onSelected === null ? 'flex-start' : 'center'};
 `;

@@ -113,6 +113,12 @@ export const FontWhiteGreySmallestThinWithLineHeight = styled.Text`
 `;
 
 /* lightgrey */
+export const FontLightGreyNormalThin = styled.Text`
+  color: ${colors.lightgrey};
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.thin};
+`;
+
 export const FontLightGreySmallerThick = styled.Text`
   color: ${colors.lightgrey};
   font-size: ${fontSize.smaller};
@@ -151,12 +157,17 @@ export const FontYellowSmallerThinWithLineSpacing = styled.Text`
   letter-spacing: -0.5px;
 `;
 
+export const FontYellowSmallestThin = styled.Text`
+  color: ${colors.yellow};
+  font-size: ${fontSize.smallest};
+  font-weight: ${fontWeight.thin};
+`;
+
 /* red */
-export const FontRedSmallerThickWithLineHeight = styled.Text`
+export const FontRedNormalThin = styled.Text`
   color: ${colors.red};
-  font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thick};
-  line-height: 18px;
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.thin};
 `;
 
 export const FontBlackSmallerThick = styled.Text`

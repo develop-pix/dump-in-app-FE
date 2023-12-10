@@ -7,24 +7,32 @@ import {
   FrameColorSelectContainer,
   FrameColorSelectWrapper,
 } from '../../../styles/layout/review-new/input/FrameColorSelect.style';
-import {ReviewInputTitleContainer} from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontRedSmallerThickWithLineHeight,
-  FontWhiteSmallerThick,
+  ReviewErrorContainer,
+  ReviewInputTitleContainer,
+} from '../../../styles/layout/review-new/ReviewNew.style';
+import {
+  FontRedNormalThin,
+  FontWhiteNormalThin,
+  FontYellowSmallestThin,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {frameColors} from '../../../styles/base/Variable';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux/store';
+import {useAppDispatch} from '../../../hooks/redux/store';
 import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
 import BlackCheckImage from '../../../assets/image/filter/black-check.png';
 import EtcImage from '../../../assets/image/filter/etc-color.png';
 import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
 import {setFrameColor} from '../../../hooks/redux/ReviewData';
+import {FrameColorSelectProps} from '../../../interfaces/ReviewNew.interface';
 
-export default function FrameColorSelect() {
+export default function FrameColorSelect({
+  frameColor,
+  errorData,
+}: FrameColorSelectProps) {
   const availableColors = Object.values(frameColors);
   const dispatch = useAppDispatch();
-  const frameColor = useAppSelector(state => state.reviewData).frameColor;
 
+  // 프레임색상 선택시 dispatch
   const onPressColor = (color: string) => {
     if (frameColor === color) {
       dispatch(setFrameColor(null));
@@ -36,8 +44,17 @@ export default function FrameColorSelect() {
   return (
     <FrameColorSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteSmallerThick>프레임 색상</FontWhiteSmallerThick>
-        <FontRedSmallerThickWithLineHeight>*</FontRedSmallerThickWithLineHeight>
+        <FontWhiteNormalThin>프레임 색상</FontWhiteNormalThin>
+        <FontRedNormalThin>*</FontRedNormalThin>
+        {errorData.map(data => {
+          return data.InputName === 'frameColor' ? (
+            <ReviewErrorContainer key={data.InputName}>
+              <FontYellowSmallestThin>
+                필수 입력 항목입니다.
+              </FontYellowSmallestThin>
+            </ReviewErrorContainer>
+          ) : null;
+        })}
       </ReviewInputTitleContainer>
       <FrameColorSelectWrapper>
         {availableColors.map(colors => {

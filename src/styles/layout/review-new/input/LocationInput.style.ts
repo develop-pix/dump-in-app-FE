@@ -16,9 +16,20 @@ export const LocationInputButton = styled.TouchableOpacity`
   padding-left: 10px;
 `;
 
-export const LocationTextInput = styled.TextInput`
+export const LocationTextButton = styled.TouchableOpacity`
   color: ${colors.white};
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.thin};
   line-height: 14px;
+`;
+
+export const LocationTextContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const LocationImage = styled.Image`
+  width: 16px;
+  height: 16px;
 `;

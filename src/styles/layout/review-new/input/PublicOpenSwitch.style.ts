@@ -5,7 +5,6 @@ export const PublciOpenSwitchContainer = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 30px;
-  border: 1px solid blue;
 `;
 
 export const PublicOpenToggle = styled.Switch``;

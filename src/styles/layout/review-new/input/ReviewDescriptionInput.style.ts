@@ -18,9 +18,9 @@ export const ReviewDescriptionTextInput = styled.TextInput<{
 }>`
   width: 80%;
   color: ${colors.white};
-  font-size: ${fontSize.smaller};
+  font-size: ${fontSize.normal};
   font-weight: ${fontWeight.thin};
-  line-height: 14px;
+  line-height: 16px;
   padding-top: ${props =>
     props.platform === 'ios'
       ? '15px'

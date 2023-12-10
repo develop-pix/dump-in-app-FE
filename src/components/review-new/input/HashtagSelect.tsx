@@ -4,19 +4,26 @@ import {
   HashtagSelectContainer,
   HashtagSelectWrapper,
 } from '../../../styles/layout/review-new/input/HashtagSelect.style';
-import {ReviewInputTitleContainer} from '../../../styles/layout/review-new/ReviewNew.style';
+import {
+  ReviewErrorContainer,
+  ReviewInputTitleContainer,
+} from '../../../styles/layout/review-new/ReviewNew.style';
 import {
   FontBlackSmallerThick,
   FontLightGreySmallerThin,
-  FontRedSmallerThickWithLineHeight,
-  FontWhiteSmallerThick,
+  FontRedNormalThin,
+  FontWhiteNormalThin,
+  FontYellowSmallestThin,
 } from '../../../styles/layout/reuse/text/Text.style';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux/store';
+import {useAppDispatch} from '../../../hooks/redux/store';
 import {setHashtag} from '../../../hooks/redux/ReviewData';
+import {HashtagSelectProps} from '../../../interfaces/ReviewNew.interface';
 
-export default function HashtagSelect() {
+export default function HashtagSelect({
+  hashtags,
+  errorData,
+}: HashtagSelectProps) {
   const dispatch = useAppDispatch();
-  const hashtags = useAppSelector(state => state.reviewData).hashtag;
   const availableHashtag = [
     '일상',
     '커플',
@@ -36,6 +43,7 @@ export default function HashtagSelect() {
     '기타',
   ];
 
+  // 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능
   const onPressHashtag = (tag: string) => {
     if (hashtags.includes(tag)) {
       const popHashtag = hashtags.filter(index => index !== tag);
@@ -50,8 +58,17 @@ export default function HashtagSelect() {
   return (
     <HashtagSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteSmallerThick>컨셉</FontWhiteSmallerThick>
-        <FontRedSmallerThickWithLineHeight>*</FontRedSmallerThickWithLineHeight>
+        <FontWhiteNormalThin>컨셉</FontWhiteNormalThin>
+        <FontRedNormalThin>*</FontRedNormalThin>
+        {errorData.map(data => {
+          return data.InputName === 'hashtags' ? (
+            <ReviewErrorContainer key={data.InputName}>
+              <FontYellowSmallestThin>
+                필수 입력 항목입니다.
+              </FontYellowSmallestThin>
+            </ReviewErrorContainer>
+          ) : null;
+        })}
       </ReviewInputTitleContainer>
       <HashtagSelectWrapper>
         {availableHashtag.map(hashtag => {

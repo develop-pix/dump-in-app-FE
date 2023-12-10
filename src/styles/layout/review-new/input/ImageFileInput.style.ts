@@ -6,6 +6,24 @@ export const ImageFileInputContainer = styled.View`
   aspect-ratio: 1;
   background-color: ${colors.darkgrey};
   margin-bottom: 20px;
+  align-items: center;
+`;
+
+export const NoDataImageContainer = styled.TouchableOpacity`
+  height: 100%;
+  aspect-ratio: 0.7;
+`;
+
+export const PreviewImageContainer = styled.View`
+  height: 100%;
+  aspect-ratio: 0.7;
+`;
+
+export const PreviewImage = styled.Image`
+  height: 100%;
+  width: 100%;
+  background-color: ${colors.blackgrey};
+  object-fit: cover;
 `;
 
 export const ImageUploadButtonContainer = styled.TouchableOpacity`
