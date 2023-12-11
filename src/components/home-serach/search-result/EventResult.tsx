@@ -6,20 +6,27 @@ import {
   EventListIcon,
   EventListInfo,
 } from '../../../styles/layout/home-search/search-result/EventResult.style';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {
   FontWhiteGreyNormalThin,
   FontWhiteNormalThick,
 } from '../../../styles/layout/reuse/text/Text.style';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function EventResult({searchData, data}: EventResultProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressEvent = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('EventDetail', {eventID: data.eventID});
+      navigation.push('EventDetail', {
+        eventID: data.eventID,
+        screen: currentScreen,
+      });
     }
   };
 

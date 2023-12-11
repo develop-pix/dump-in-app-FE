@@ -17,6 +17,12 @@ export const FontWhiteBiggestThickWithLineHeight = styled.Text`
   line-height: 24px;
 `;
 
+export const FontWhiteBiggerThick = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.bigger};
+  font-weight: ${fontWeight.thick};
+`;
+
 export const FontWhiteNormalThick = styled.Text`
   color: ${colors.white};
   font-size: ${fontSize.normal};
@@ -62,6 +68,12 @@ export const FontWhiteSmallestThick = styled.Text`
 `;
 
 /* whitegrey */
+export const FontWhiteGreyBiggerThick = styled.Text`
+  color: ${colors.whitegrey};
+  font-size: ${fontSize.bigger};
+  font-weight: ${fontWeight.thick};
+`;
+
 export const FontWhiteGreyNormalThick = styled.Text`
   color: ${colors.whitegrey};
   font-size: ${fontSize.normal};

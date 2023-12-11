@@ -1,5 +1,5 @@
 import React from 'react';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
@@ -8,37 +8,38 @@ import {
   NavigationBarContainer,
   ReviewNewItem,
 } from '../../../styles/layout/navigation-bar/NavigationBar.style';
-import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {useScreen} from '../../../utils/ScreenContext';
+import {
+  RootStackParam,
+  NavigationBarProps,
+} from '../../../interfaces/NavigationBar';
 import {ScreenName} from '../../../interfaces/NavigationBar';
 
-export default function NavigationBar() {
+export default function NavigationBar({currentScreen}: NavigationBarProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const isFocused = useIsFocused();
-  const {screen, setScreen} = useScreen();
 
+  // 기본 페이지로 이동할 때는 해당 screen값을 넘겨줌 Home, Location, Category, MyPage
   const handleListClick = (selectedScreen: ScreenName) => {
-    setScreen(selectedScreen);
-    // 선택한 페이지로 이동
-    navigation.navigate(selectedScreen);
+    navigation.navigate(selectedScreen, {screen: selectedScreen});
   };
 
+  // 기본 페이지가 아닌 페이지로 이동할 때는 현재 screen값을 넘겨줌
   const onPressRegistrationReview = () => {
-    if (isFocused) {
-      navigation.navigate('ReviewNew', {branchID: undefined});
-    }
+    navigation.navigate('ReviewNew', {
+      branchID: undefined,
+      screen: currentScreen,
+    });
   };
 
   return (
     <NavigationBarContainer>
       <NavigationBarListItem
         screen="Home"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
         screen="Location"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
 
@@ -48,12 +49,12 @@ export default function NavigationBar() {
 
       <NavigationBarListItem
         screen="Category"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
       <NavigationBarListItem
         screen="MyPage"
-        selectedScreen={screen}
+        selectedScreen={currentScreen}
         handleListClick={handleListClick}
       />
     </NavigationBarContainer>

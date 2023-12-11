@@ -1,4 +1,4 @@
-/* 잘안됨..  보류
+/*잘안됨..  보류
 import axios from 'axios';
 import {useAppSelector} from '../redux/store';
 import AWS from 'aws-sdk';
@@ -17,8 +17,8 @@ export const UploadImageToS3 = async () => {
   //아래 변수들은 추후 env로 이동
   const bucketName = 'api-dev.dump-in.co.kr';
   const region = 'ap-northeast-2';
-  const accessKeyID = '';
-  const secretAccessKey = '';
+  const accessKeyID = "AKIA2MDWSFM6EEDYYNMZ";
+  const secretAccessKey = "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";
 
   const formdata = new FormData();
   if (representaiveImageName) {
@@ -47,7 +47,7 @@ export const UploadImageToS3 = async () => {
   });
 
   axios
-    .post('/', formdata, {
+    .post('https://s3.ap-northeast-2.amazonaws.com/api-dev.dump-in.co.kr', formdata, {
       headers: {
         'Content-Type': 'multipart/form-data;',
       },

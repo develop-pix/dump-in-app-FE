@@ -10,17 +10,24 @@ import {
   LocationIcon,
 } from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
 import {colors} from '../../../styles/base/Variable';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function ReviewFrame({data}: ReviewFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressReview = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('ReviewDetail', {reviewID: data.reviewID});
+      navigation.push('ReviewDetail', {
+        reviewID: data.reviewID,
+        screen: currentScreen,
+      });
     }
   };
 
@@ -35,7 +42,7 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
           left: 0,
           right: 0,
           bottom: 0,
-          height: 130,
+          height: 150,
         }}
       />
 

@@ -4,9 +4,9 @@ import {
   FilterContentContainer,
   FilterTextButton,
   FilterTextButtonContent,
-} from '../../../styles/layout/reuse/filter/Filter.style';
+} from '../../../styles/layout/home/filter/Filter.style';
 import {View} from 'react-native';
-import {FontWhiteGreySmallestThick} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableParty = [1, 2, 3, 4];
 
@@ -28,7 +28,7 @@ export default function FilterParty({
 
   return (
     <View>
-      <FontWhiteGreySmallestThick>인원</FontWhiteGreySmallestThick>
+      <FontWhiteGreySmallerThick>인원</FontWhiteGreySmallerThick>
 
       <FilterContentContainer>
         {availableParty.map(partyOption => {

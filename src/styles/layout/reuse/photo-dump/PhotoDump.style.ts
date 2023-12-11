@@ -1,5 +1,6 @@
 import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
+import {colors} from '../../../base/Variable';
 
 /* PhotoDump */
 
@@ -36,4 +37,16 @@ export const Reviews = styled.View`
   align-items: center;
   margin-left: ${Dimensions.get('window').width * 0.02}px;
   margin-right: ${Dimensions.get('window').width * 0.02}px;
+`;
+
+export const CarouselScrollView = styled.ScrollView``;
+
+export const FindMoreReviewContainer = styled.TouchableOpacity`
+  border-radius: 10px;
+  width: ${Dimensions.get('window').width * 0.8}px;
+  aspect-ratio: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: ${colors.white};
 `;

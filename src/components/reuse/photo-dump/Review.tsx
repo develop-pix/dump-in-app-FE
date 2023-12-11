@@ -3,7 +3,7 @@ import {
   ReviewContainer,
   ReviewDescription,
   ReviewDescriptionContainer,
-  ReviewHastags,
+  ReviewHashtags,
   ReviewImage,
 } from '../../../styles/layout/reuse/photo-dump/Review.style';
 import {ReviewProps} from '../../../interfaces/reuse/photo-dump/Review.interface';
@@ -14,9 +14,10 @@ import {
   FontWhiteNormalThin,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function Review({
   reviewID,
@@ -26,9 +27,15 @@ export default function Review({
 }: ReviewProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressReview = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('ReviewDetail', {reviewID: reviewID});
+      navigation.push('ReviewDetail', {
+        reviewID: reviewID,
+        screen: currentScreen,
+      });
     }
   };
 
@@ -37,12 +44,12 @@ export default function Review({
       <ReviewImage source={{uri: reviewImage}} />
       <LinearGradient
         colors={['transparent', colors.black]}
-        locations={[0.1, 1]}
+        locations={[0, 1]}
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: 0,
+          bottom: -10,
           height: 130,
         }}
       />
@@ -51,13 +58,13 @@ export default function Review({
         <ReviewDescription>
           <FontWhiteNormalThin>{reviewDescription}</FontWhiteNormalThin>
         </ReviewDescription>
-        <ReviewHastags>
+        <ReviewHashtags>
           {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
             <FontYellowSmallerThinWithLineSpacing key={tag}>
               {tag}
             </FontYellowSmallerThinWithLineSpacing>
           ))}
-        </ReviewHastags>
+        </ReviewHashtags>
       </ReviewDescriptionContainer>
     </ReviewContainer>
   );

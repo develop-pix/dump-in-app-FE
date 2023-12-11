@@ -16,7 +16,7 @@ export const PhotoBoothImageContentContainer = styled.View`
 export const PhotoBoothImage = styled.ImageBackground`
   width: 100%;
   height: 500px;
-  background-color: ${colors.whitegrey};
+  background-color: ${colors.white};
 `;
 
 export const ContentsContainer = styled.View`
@@ -28,6 +28,7 @@ export const ContentsContainer = styled.View`
 export const TitleContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 export const NomalButtonContainer = styled.View`

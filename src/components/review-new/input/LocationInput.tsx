@@ -44,7 +44,10 @@ export default function LocationInput({
   // Branch 검색 페이지로 이동
   const onPressSelectLocation = () => {
     if (isFocused) {
-      navigation.push('LocationSearch', {NextPage: 'ReviewNew'});
+      navigation.push('LocationSearch', {
+        NextPage: 'ReviewNew',
+        screen: 'Location',
+      });
     }
   };
 

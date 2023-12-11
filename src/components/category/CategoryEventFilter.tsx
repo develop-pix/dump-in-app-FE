@@ -3,7 +3,7 @@ import {CategoryEventFilterProps} from '../../interfaces/Category.interface';
 import {
   FilterTextButton,
   FilterTextButtonContent,
-} from '../../styles/layout/reuse/filter/Filter.style';
+} from '../../styles/layout/home/filter/Filter.style';
 import {ScrollView} from 'react-native';
 
 const availableHashtags = [

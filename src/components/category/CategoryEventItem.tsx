@@ -19,16 +19,20 @@ import {
   FontWhiteBiggestThick,
 } from '../../styles/layout/reuse/text/Text.style';
 import {CategoryEventItemProps} from '../../interfaces/Category.interface';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressEvent = (id: number) => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('EventDetail', {eventID: id});
+      navigation.push('EventDetail', {eventID: id, screen: currentScreen});
     }
   };
 
@@ -42,13 +46,13 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
         <EventImage source={{uri: eventData.representativeImage}} />
         <LinearGradient
           colors={['transparent', colors.black]}
-          locations={[0.1, 0.7]}
+          locations={[0.1, 1]}
           style={{
             position: 'absolute',
             left: 0,
             right: 0,
             bottom: 0,
-            height: 130,
+            height: 400,
           }}
         />
 

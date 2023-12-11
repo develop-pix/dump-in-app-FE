@@ -18,6 +18,7 @@ import {
   FontLightGreySmallerThin,
   FontWhiteGreyNormalThin,
 } from '../../styles/layout/reuse/text/Text.style';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function BranchList({
   branchName,
@@ -30,12 +31,14 @@ export default function BranchList({
 
   //진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
   const onSelectLocation = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (route.params.NextPage === 'BranchDetail') {
       navigation.pop();
-      navigation.push('Branch', {branchID: branchID});
+      navigation.push('Branch', {branchID: branchID, screen: 'Location'});
     } else if (route.params.NextPage === 'ReviewNew') {
-      navigation.popToTop();
-      navigation.push('ReviewNew', {branchID: branchID});
+      navigation.pop();
+      navigation.pop();
+      navigation.push('ReviewNew', {branchID: branchID, screen: currentScreen});
     }
   };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import SearchImage from '../../../assets/image/reuse/search-grey.png';
 import {MapInputProps} from '../../../interfaces/Location.interface';
 import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search.style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {Platform} from 'react-native';
@@ -13,12 +13,19 @@ import {
   MapInputContainer,
   MapInputhWrapper,
 } from '../../../styles/layout/location/MapInput.style';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function MapInput({location}: MapInputProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route = useRoute();
   const platform = Platform.OS;
+
   const onPressLocationSearch = () => {
-    navigation.push('LocationSearch', {NextPage: 'BranchDetail'});
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    navigation.push('LocationSearch', {
+      NextPage: 'BranchDetail',
+      screen: currentScreen,
+    });
   };
 
   return (

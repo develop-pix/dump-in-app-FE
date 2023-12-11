@@ -5,11 +5,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import CloseBtnImage from '../../assets/image/reuse/close-btn.png';
 import {HomeFilterModalFormProps} from '../../interfaces/reuse/Filter.interface';
 import {FilterButton} from '../reuse/button/FilterButton';
-import FilterLocation from '../reuse/filter/FilterLocation';
-import FilterFrameColor from '../reuse/filter/FilterFrameColor';
-import FilterParty from '../reuse/filter/FilterParty';
-import FilterCameraShot from '../reuse/filter/FilterCameraShot';
-import FilterConcept from '../reuse/filter/FilterConcept';
+import FilterLocation from './filter/FilterLocation';
+import FilterFrameColor from './filter/FilterFrameColor';
+import FilterParty from './filter/FilterParty';
+import FilterCameraShot from './filter/FilterCameraShot';
+import FilterConcept from './filter/FilterConcept';
 import {
   FilterFormContainer,
   FilterFormBody,
