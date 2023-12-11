@@ -29,44 +29,63 @@ const App = () => {
             <Stack.Navigator
               initialRouteName="Home"
               screenOptions={{headerShown: false}}>
-              <Stack.Screen name="Home" component={Home} />
-              <Stack.Screen name="HomeSearch" component={HomeSearch} />
+              <Stack.Screen
+                name="Home"
+                component={Home}
+                initialParams={{screen: 'Home'}}
+              />
+              <Stack.Screen
+                name="HomeSearch"
+                component={HomeSearch}
+                initialParams={{screen: 'HomeSearch'}}
+              />
               <Stack.Screen
                 name="Location"
                 component={Location}
-                initialParams={{PhotoBoothID: null}}
+                initialParams={{screen: 'Location', PhotoBoothID: null}}
+              />
+              <Stack.Screen
+                name="Category"
+                component={Category}
+                initialParams={{screen: 'Category'}}
+              />
+              <Stack.Screen
+                name="MyPage"
+                component={MyPage}
+                initialParams={{screen: 'MyPage'}}
               />
               <Stack.Screen
                 name="LocationSearch"
                 component={LocationSearch}
-                initialParams={{NextPage: 'BranchDetail'}}
+                initialParams={{
+                  screen: 'LocationSearch',
+                  NextPage: 'BranchDetail',
+                }}
               />
-              <Stack.Screen name="Category" component={Category} />
-              <Stack.Screen name="MyPage" component={MyPage} />
               <Stack.Screen
                 name="Branch"
                 component={Branch}
-                initialParams={{branchID: 0}}
+                initialParams={{screen: 'Branch', branchID: 0}}
               />
               <Stack.Screen
                 name="ReviewDetail"
                 component={ReviewDetail}
-                initialParams={{ReviewID: 0}}
+                initialParams={{screen: 'ReviewDetail', ReviewID: 0}}
               />
               <Stack.Screen
                 name="PhotoBoothDetail"
                 component={PhotoBoothDetail}
-                initialParams={{PhotoBoothID: 0}}
+                initialParams={{screen: 'PhotoBoothDetail', PhotoBoothID: 0}}
               />
               <Stack.Screen
                 name="EventDetail"
                 component={EventDetail}
-                initialParams={{EventID: 0}}
+                initialParams={{screen: 'EventDetail', EventID: 0}}
               />
               <Stack.Screen
                 name="ReviewNew"
                 component={ReviewNew}
-                initialParams={{branchID: undefined}}
+                initialParams={{screen: 'ReviewNew', branchID: undefined}}
               />
             </Stack.Navigator>
           </NavigationContainer>

@@ -1,4 +1,8 @@
 import React, {useState} from 'react';
+
+import {useRoute} from '@react-navigation/native';
+import {PhotoBoothDetailRouteProp} from '../../interfaces/PhotoBoothDetail.interface';
+
 import {ScrollView} from 'react-native';
 import PhotoBoothImageTitle from './PhotoBoothImageTitle';
 import PhotoBoothEvent from './PhotoBoothEvent';
@@ -10,6 +14,9 @@ import {
 } from '../../styles/layout/photobooth-detail/PhotoBoothDetail.style';
 
 export default function PhotoBoothDetail() {
+  const route = useRoute<PhotoBoothDetailRouteProp>();
+  const {PhotoBoothID} = route.params;
+
   // 임시 데이터, 포토부스 아이디 값의 데이터를 서버에서 가져옴
   const [photoboothData, setPhotoboothData] = useState({
     photoboothName: '포토그레이',
@@ -22,7 +29,6 @@ export default function PhotoBoothDetail() {
       'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
       'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     ],
-    myPhotobooth: true,
     event: [
       {
         eventID: 1,

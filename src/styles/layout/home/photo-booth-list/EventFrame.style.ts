@@ -14,6 +14,7 @@ export const EventFrameContainer = styled.TouchableOpacity`
 export const EventFrameImage = styled.Image`
   width: 100%;
   height: 100%;
+  resize-mode: cover;
 `;
 
 export const TagImage = styled.Image`

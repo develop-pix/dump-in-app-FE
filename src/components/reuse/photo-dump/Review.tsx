@@ -14,9 +14,10 @@ import {
   FontWhiteNormalThin,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function Review({
   reviewID,
@@ -26,9 +27,15 @@ export default function Review({
 }: ReviewProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressReview = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('ReviewDetail', {reviewID: reviewID});
+      navigation.push('ReviewDetail', {
+        reviewID: reviewID,
+        screen: currentScreen,
+      });
     }
   };
 
