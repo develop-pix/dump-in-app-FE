@@ -5,6 +5,7 @@ export interface InputDatas {
 
 export interface ImageFileInputProps {
   representaiveImage: string | null | undefined;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ReviewDescriptionProps {
@@ -52,4 +53,8 @@ export interface HairIronSelectProps {
 
 export interface PublicOpenSwitchProps {
   publicOpen: boolean;
+}
+
+export interface ReviewNewModalProps {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }

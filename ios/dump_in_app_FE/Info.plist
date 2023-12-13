@@ -23,13 +23,13 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>서비스 동작을 위해 위치 정보가 필요합니다.</string>
+	<string>주변 포토부스 검색을 위해 위치 정보가 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-  	<string>서비스 동작을 위해 갤러리 정보가 필요합니다.</string>
+  	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
   	<key>NSCameraUsageDescription</key>
-  	<string>서비스 동작을 위해 카메라 정보가 필요합니다.</string>
+  	<string>포토부스 리뷰 작성을 위해 카메라 정보가 필요합니다.</string>
   	<key>NSPhotoLibraryAddUsageDescription</key>
-  	<string>사진 저장을 위해 갤러리 정보가 필요합니다.</string>
+  	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

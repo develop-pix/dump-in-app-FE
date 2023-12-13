@@ -26,10 +26,12 @@ import PublicOpenSwitch from './input/PublicOpenSwitch';
 import CameraShotSelect from './input/CameraShotSelect';
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 import {InputDatas} from '../../interfaces/ReviewNew.interface';
+import ReviewNewModal from './input/ReviewNewModal';
 // import AWS from 'aws-sdk';
 
 export default function ReviewNew() {
   const [errorData, setErrorData] = useState<InputDatas[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const scrollRef = useRef<any>();
   const platform = Platform.OS;
   const representaiveImage = useAppSelector(
@@ -105,14 +107,18 @@ export default function ReviewNew() {
   }, [errorData]);
 
   return (
-    <ReviewNewScrollView ref={scrollRef}>
+    <ReviewNewScrollView ref={scrollRef} scrollEnabled={!openModal}>
+      {openModal ? <ReviewNewModal setOpenModal={setOpenModal} /> : null}
       <GoBackButtonWithSubmitContainer platform={platform}>
         <GoBackButtonReview />
         <SubmitButton onPress={onPressSubmit}>
           <FontYellowBiggerThick>완료</FontYellowBiggerThick>
         </SubmitButton>
       </GoBackButtonWithSubmitContainer>
-      <ImageFileInput representaiveImage={representaiveImage} />
+      <ImageFileInput
+        representaiveImage={representaiveImage}
+        setOpenModal={setOpenModal}
+      />
       <InputContainer>
         <InputWrapper>
           <ReviewDescriptionInput
