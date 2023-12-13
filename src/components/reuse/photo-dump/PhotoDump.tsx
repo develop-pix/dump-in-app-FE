@@ -2,11 +2,21 @@ import React, {useRef, useState} from 'react';
 import {
   CarouselContainer,
   CarouselScrollView,
+  FindMoreReviewContainer,
+  FindMoreReviewWrapper,
+  NextImage,
   PhotoDumpContainer,
+  ReviewBlurImage,
   Reviews,
+  SearchImage,
+  SeeMoreButton,
   SubTitleContainer,
 } from '../../../styles/layout/reuse/photo-dump/PhotoDump.style';
-import {FontWhiteSmallerThickWithLineSpacing} from '../../../styles/layout/reuse/text/Text.style';
+import {
+  FontWhiteNormalThin,
+  FontWhiteSmallerThickWithLineSpacing,
+  FontWhiteSmallerThin,
+} from '../../../styles/layout/reuse/text/Text.style';
 import {PhotoDumpProps} from '../../../interfaces/reuse/photo-dump/PhotoDump.interface';
 import {Animated, Dimensions, NativeScrollEvent} from 'react-native';
 import Review from './Review';
@@ -19,6 +29,8 @@ import {
 } from '../../../interfaces/NavigationBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ScreenName} from '../../../interfaces/NavigationBar';
+import SearchIcon from '../../../assets/image/reuse/search.png';
+import NextIcon from '../../../assets/image/reuse/next-btn.png';
 
 export default function PhotoDump({reviewData}: PhotoDumpProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -63,6 +75,13 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
     });
   };
 
+  const onPressHomeSearch = () => {
+    const currentScreen = (
+      route.params as {branchID: number; screen: ScreenName}
+    ).screen;
+    navigation.navigate('HomeSearch', {screen: currentScreen});
+  };
+
   return (
     <PhotoDumpContainer>
       <SubTitleContainer>
@@ -99,7 +118,16 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
             {reviewData.map(item => {
               return (
                 <Reviews key={item.reviewID}>
-                  {item.reviewID === reviewData[reviewActive].reviewID ? (
+                  {reviewData[reviewActive] === undefined ? (
+                    <Animated.View style={{opacity: translateOut}}>
+                      <Review
+                        reviewID={item.reviewID}
+                        reviewImage={item.representativeImage}
+                        reviewDescription={item.description}
+                        reviewHashtags={item.hashtag}
+                      />
+                    </Animated.View>
+                  ) : item.reviewID === reviewData[reviewActive].reviewID ? (
                     <Animated.View style={{opacity: translateIn}}>
                       <Review
                         reviewID={item.reviewID}
@@ -121,6 +149,26 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
                 </Reviews>
               );
             })}
+            <Reviews>
+              <FindMoreReviewContainer>
+                <ReviewBlurImage
+                  source={{
+                    uri: reviewData[reviewData.length - 1].representativeImage,
+                  }}
+                  blurRadius={4}
+                />
+                <FindMoreReviewWrapper>
+                  <SearchImage source={SearchIcon} />
+                  <FontWhiteNormalThin>
+                    포토부스 검색으로 더 많은 리뷰 보기
+                  </FontWhiteNormalThin>
+                  <SeeMoreButton onPress={onPressHomeSearch}>
+                    <FontWhiteSmallerThin>리뷰 더보기</FontWhiteSmallerThin>
+                    <NextImage source={NextIcon} />
+                  </SeeMoreButton>
+                </FindMoreReviewWrapper>
+              </FindMoreReviewContainer>
+            </Reviews>
           </CarouselScrollView>
         </CarouselContainer>
       )}

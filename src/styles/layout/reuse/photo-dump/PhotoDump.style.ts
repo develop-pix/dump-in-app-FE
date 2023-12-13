@@ -41,12 +41,43 @@ export const Reviews = styled.View`
 
 export const CarouselScrollView = styled.ScrollView``;
 
-export const FindMoreReviewContainer = styled.TouchableOpacity`
+export const FindMoreReviewContainer = styled.View`
   border-radius: 10px;
   width: ${Dimensions.get('window').width * 0.8}px;
   aspect-ratio: 1;
   display: flex;
   gap: 10px;
   align-items: center;
-  background-color: ${colors.white};
+  background-color: ${colors.lightgrey};
+`;
+
+export const ReviewBlurImage = styled.Image`
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+`;
+
+export const FindMoreReviewWrapper = styled.View`
+  width: 130px;
+  height: 180px;
+  top: 50px;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SearchImage = styled.Image`
+  width: 50px;
+  height: 46px;
+`;
+
+export const SeeMoreButton = styled.TouchableOpacity`
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+`;
+
+export const NextImage = styled.Image`
+  width: 20px;
+  height: 20px;
 `;
