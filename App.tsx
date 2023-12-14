@@ -37,7 +37,7 @@ const App = () => {
               <Stack.Screen
                 name="HomeSearch"
                 component={HomeSearch}
-                initialParams={{screen: 'HomeSearch'}}
+                initialParams={{screen: 'HomeSearch', PhotoBoothID: null}}
               />
               <Stack.Screen
                 name="Location"

@@ -3,7 +3,7 @@ import {
   ReviewContainer,
   ReviewDescription,
   ReviewDescriptionContainer,
-  ReviewHastags,
+  ReviewHashtags,
   ReviewImage,
 } from '../../../styles/layout/reuse/photo-dump/Review.style';
 import {ReviewProps} from '../../../interfaces/reuse/photo-dump/Review.interface';
@@ -44,12 +44,12 @@ export default function Review({
       <ReviewImage source={{uri: reviewImage}} />
       <LinearGradient
         colors={['transparent', colors.black]}
-        locations={[0.1, 1]}
+        locations={[0, 1]}
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: 0,
+          bottom: -10,
           height: 130,
         }}
       />
@@ -58,13 +58,13 @@ export default function Review({
         <ReviewDescription>
           <FontWhiteNormalThin>{reviewDescription}</FontWhiteNormalThin>
         </ReviewDescription>
-        <ReviewHastags>
+        <ReviewHashtags>
           {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
             <FontYellowSmallerThinWithLineSpacing key={tag}>
               {tag}
             </FontYellowSmallerThinWithLineSpacing>
           ))}
-        </ReviewHastags>
+        </ReviewHashtags>
       </ReviewDescriptionContainer>
     </ReviewContainer>
   );

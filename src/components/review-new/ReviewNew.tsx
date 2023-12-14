@@ -26,14 +26,21 @@ import PublicOpenSwitch from './input/PublicOpenSwitch';
 import CameraShotSelect from './input/CameraShotSelect';
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 import {InputDatas} from '../../interfaces/ReviewNew.interface';
+import ReviewNewModal from './input/ReviewNewModal';
+import {UploadImageToS3} from '../../hooks/axios/ReviewNew';
+// import AWS from 'aws-sdk';
 
 export default function ReviewNew() {
   const [errorData, setErrorData] = useState<InputDatas[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const scrollRef = useRef<any>();
   const platform = Platform.OS;
   const representaiveImage = useAppSelector(
     state => state.reviewData,
   ).representativeImage;
+  const representaiveImageName = useAppSelector(
+    state => state.reviewData,
+  ).representativeImageName;
   const description = useAppSelector(state => state.reviewData).description;
   const location = useAppSelector(state => state.reviewData).branchID;
   const date = useAppSelector(state => state.reviewData).date;
@@ -84,6 +91,10 @@ export default function ReviewNew() {
     }
 
     if (errorData.length === 0) {
+      // 우선 S3 업로드만 먼저 추가
+      if (representaiveImage && representaiveImageName) {
+        UploadImageToS3(representaiveImage, representaiveImageName);
+      }
       //더이상 에러 데이터가 없을경우 submit 진행, 추후 API추가
     }
   };
@@ -95,14 +106,18 @@ export default function ReviewNew() {
   }, [errorData]);
 
   return (
-    <ReviewNewScrollView ref={scrollRef}>
+    <ReviewNewScrollView ref={scrollRef} scrollEnabled={!openModal}>
+      {openModal ? <ReviewNewModal setOpenModal={setOpenModal} /> : null}
       <GoBackButtonWithSubmitContainer platform={platform}>
         <GoBackButtonReview />
         <SubmitButton onPress={onPressSubmit}>
           <FontYellowBiggerThick>완료</FontYellowBiggerThick>
         </SubmitButton>
       </GoBackButtonWithSubmitContainer>
-      <ImageFileInput representaiveImage={representaiveImage} />
+      <ImageFileInput
+        representaiveImage={representaiveImage}
+        setOpenModal={setOpenModal}
+      />
       <InputContainer>
         <InputWrapper>
           <ReviewDescriptionInput

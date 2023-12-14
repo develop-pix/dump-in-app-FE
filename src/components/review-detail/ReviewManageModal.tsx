@@ -37,6 +37,9 @@ export default function ReviewManageModal({
       coverScreen={false}
       onBackdropPress={() => {
         setOpenModal(false);
+      }}
+      onBackButtonPress={() => {
+        setOpenModal(false);
       }}>
       <ReviewManageModalContainer platform={platform}>
         <ReviewManageModalWrapper>
