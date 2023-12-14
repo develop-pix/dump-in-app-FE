@@ -3,7 +3,7 @@ import {colors} from '../../base/Variable';
 
 export const MenuSafeContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: ${colors.black};
+  background-color: ${colors.lightblack};
 `;
 
 export const CloseModalButtonContainer = styled.View`

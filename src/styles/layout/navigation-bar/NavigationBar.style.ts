@@ -4,7 +4,7 @@ import {colors} from '../../base/Variable';
 export const NavigationBarContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  background-color: ${colors.black};
+  background-color: ${colors.lightblack};
   padding: 15px;
   width: 100%;
   position: absolute;

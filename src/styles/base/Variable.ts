@@ -9,6 +9,7 @@ export const colors = {
   darkgrey: '#2D2D2D',
   blackgrey: '#222222',
   lightblack: '#161616',
+  primaryblack: '#222222',
 };
 
 export const frameColors = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {EventResultProps} from '../../../interfaces/HomeSearch.interface';
-import SearchResultIcon from '../../../assets/image/reuse/search-result.png';
+import EventIcon from '../../../assets/image/reuse/event.png';
 import {
   EventResultContainer,
   EventListIcon,
@@ -37,7 +37,7 @@ export default function EventResult({searchData, data}: EventResultProps) {
     return (
       <EventResultContainer onPress={onPressEvent}>
         <EventListInfo>
-          <EventListIcon source={SearchResultIcon} />
+          <EventListIcon source={EventIcon} />
           <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
             {data.eventName}
           </FontWhiteGreyNormalThin>
@@ -53,7 +53,7 @@ export default function EventResult({searchData, data}: EventResultProps) {
   return (
     <EventResultContainer onPress={onPressEvent}>
       <EventListInfo>
-        <EventListIcon source={SearchResultIcon} />
+        <EventListIcon source={EventIcon} />
         <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
           {beforeEventName}
           <FontWhiteNormalThick>{searchData}</FontWhiteNormalThick>

@@ -51,7 +51,7 @@ export default function PhotoBoothImageTitle({
     <PhotoBoothImageTitleContainer>
       <PhotoBoothImage source={{uri: photoboothData.representativeImage}}>
         <LinearGradient
-          colors={['transparent', colors.black]}
+          colors={['transparent', colors.lightblack]}
           locations={[0.1, 1]}
           style={{
             position: 'absolute',

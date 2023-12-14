@@ -37,7 +37,7 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
     <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressPhotoBooth}>
       <PhotoBoothFrameImage source={{uri: data.representativeImage}} />
       <LinearGradient
-        colors={['transparent', colors.black]}
+        colors={['transparent', colors.lightblack]}
         locations={[0.1, 1]}
         style={{
           position: 'absolute',

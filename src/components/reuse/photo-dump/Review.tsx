@@ -43,7 +43,7 @@ export default function Review({
     <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
       <ReviewImage source={{uri: reviewImage}} />
       <LinearGradient
-        colors={['transparent', colors.black]}
+        colors={['transparent', colors.lightblack]}
         locations={[0.1, 1]}
         style={{
           position: 'absolute',

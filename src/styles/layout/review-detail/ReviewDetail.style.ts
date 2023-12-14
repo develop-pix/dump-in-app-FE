@@ -5,7 +5,7 @@ import {Dimensions} from 'react-native';
 export const ReviewDetailContainer = styled.SafeAreaView`
   flex: 1;
   justify-content: space-between;
-  background-color: ${colors.black};
+  background-color: ${colors.lightblack};
 `;
 
 export const TitleContainer = styled.View`

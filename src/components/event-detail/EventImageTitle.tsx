@@ -27,7 +27,7 @@ export default function ImageTitle({eventData}: EventImageTitleProps) {
     <EventImageTitleContainer>
       <EventImage source={{uri: eventData.representativeImage}}>
         <LinearGradient
-          colors={['transparent', colors.black]}
+          colors={['transparent', colors.lightblack]}
           locations={[0.1, 0.7]}
           style={{
             position: 'absolute',
