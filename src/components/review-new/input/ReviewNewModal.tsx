@@ -19,8 +19,8 @@ import {useDispatch} from 'react-redux';
 import {
   setRepresentativeImage,
   setRepresentativeImageName,
-  setRepresentativeImageType,
 } from '../../../hooks/redux/ReviewData';
+
 export default function ReviewNewModal({setOpenModal}: ReviewNewModalProps) {
   const platform = Platform.OS;
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ export default function ReviewNewModal({setOpenModal}: ReviewNewModalProps) {
           return null;
         } else if (response.assets) {
           dispatch(setRepresentativeImage(response.assets[0].uri));
-          dispatch(setRepresentativeImageType(response.assets[0].type));
           dispatch(setRepresentativeImageName(response.assets[0].fileName));
         }
       });
@@ -67,8 +66,8 @@ export default function ReviewNewModal({setOpenModal}: ReviewNewModalProps) {
           if (response.didCancel) {
             return null;
           } else if (response.assets) {
+            console.log(response.assets[0]);
             dispatch(setRepresentativeImage(response.assets[0].uri));
-            dispatch(setRepresentativeImageType(response.assets[0].type));
             dispatch(setRepresentativeImageName(response.assets[0].fileName));
           }
         },

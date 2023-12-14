@@ -27,6 +27,7 @@ import CameraShotSelect from './input/CameraShotSelect';
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 import {InputDatas} from '../../interfaces/ReviewNew.interface';
 import ReviewNewModal from './input/ReviewNewModal';
+import {UploadImageToS3} from '../../hooks/axios/ReviewNew';
 // import AWS from 'aws-sdk';
 
 export default function ReviewNew() {
@@ -37,9 +38,6 @@ export default function ReviewNew() {
   const representaiveImage = useAppSelector(
     state => state.reviewData,
   ).representativeImage;
-  const representaiveImageType = useAppSelector(
-    state => state.reviewData,
-  ).representativeImageType;
   const representaiveImageName = useAppSelector(
     state => state.reviewData,
   ).representativeImageName;
@@ -62,9 +60,6 @@ export default function ReviewNew() {
 
   const onPressSubmit = () => {
     // 기존에 있던 errorData(빈항목) 초기화
-    console.log(representaiveImage);
-    console.log(representaiveImageType);
-    console.log(representaiveImageName);
     setErrorData([]);
 
     // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
@@ -96,6 +91,10 @@ export default function ReviewNew() {
     }
 
     if (errorData.length === 0) {
+      // 우선 S3 업로드만 먼저 추가
+      if (representaiveImage && representaiveImageName) {
+        UploadImageToS3(representaiveImage, representaiveImageName);
+      }
       //더이상 에러 데이터가 없을경우 submit 진행, 추후 API추가
     }
   };
