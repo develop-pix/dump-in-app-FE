@@ -14,6 +14,7 @@ import {
   MapInputhWrapper,
 } from '../../../styles/layout/location/MapInput.style';
 import {ScreenName} from '../../../interfaces/NavigationBar';
+import {colors} from '../../../styles/base/Variable';
 
 export default function MapInput({location}: MapInputProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -31,7 +32,16 @@ export default function MapInput({location}: MapInputProps) {
   return (
     <InputWrapper platform={platform}>
       <MapInputContainer>
-        <MapInputhWrapper activeOpacity={1} onPress={onPressLocationSearch}>
+        <MapInputhWrapper
+          activeOpacity={1}
+          onPress={onPressLocationSearch}
+          platform={platform}
+          style={{
+            shadowRadius: 6,
+            shadowOffset: {height: 2, width: 0},
+            shadowColor: colors.black,
+            shadowOpacity: 0.15,
+          }}>
           <InputForm>
             <BlockInput
               value={location}

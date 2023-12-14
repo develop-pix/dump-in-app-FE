@@ -76,6 +76,7 @@ export default function DateInput({date, errorData}: DateInputProps) {
             locale="ko"
             cancelTextIOS="취소"
             confirmTextIOS="변경"
+            maximumDate={new Date()}
           />
         </DateInputWrapper>
       </ReviewDescriptionTextInputContainer>
