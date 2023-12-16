@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  Container,
-  ItemContainer,
-  Icon,
-  Text,
+  MyActivityContainer,
+  ActivityItemContainer,
+  ActivityIcon,
+  ActivityIconText,
 } from '../../../styles/layout/my-page/MyActivity/MyActivity.style';
 import {
   MyActiveProps,
@@ -18,9 +18,10 @@ import ClickLocationImage from '../../../assets/image/reuse/location_white.png';
 import EventImage from '../../../assets/image/reuse/event.png';
 import ClickImage from '../../../assets/image/my-page/click-event.png';
 
-export default function MyActive({setActiveComponent}: MyActiveProps) {
-  const [activeItem, setActiveItem] = useState('myPicture');
-
+export default function MyActive({
+  activeComponent,
+  setActiveComponent,
+}: MyActiveProps) {
   const activityComponentItem: ActivityComponentItemProps[] = [
     {
       key: 'myPicture',
@@ -52,21 +53,45 @@ export default function MyActive({setActiveComponent}: MyActiveProps) {
     },
   ];
 
+  const imageMap = {
+    MyReviewList: MyPictureImage,
+    MyPostList: FavoriteImage,
+    MyPhotoBoothList: LocationImage,
+    MyEventList: EventImage,
+    Login: '',
+  };
+
+  const activeImageMap = {
+    MyReviewList: ClickMyPictureImage,
+    MyPostList: ClickFavoriteImage,
+    MyPhotoBoothList: ClickLocationImage,
+    MyEventList: ClickImage,
+    Login: '',
+  };
+
   return (
-    <Container>
+    <MyActivityContainer
+      pointerEvents={activeComponent === 'Login' ? 'none' : 'auto'}>
       {activityComponentItem.map(item => (
-        <ItemContainer
+        <ActivityItemContainer
           key={item.key}
           onPress={() => {
-            setActiveItem(item.key);
             setActiveComponent(item.component);
-          }}>
-          {/* <Icon
-            source={activeItem === item.key ? item.activeImage : item.image}
-          /> */}
-          <Text isActive={activeItem === item.key}>{item.text}</Text>
-        </ItemContainer>
+          }}
+          isActive={activeComponent === item.component}>
+          <ActivityIcon
+            source={
+              activeComponent === item.component
+                ? activeImageMap[item.component]
+                : imageMap[item.component]
+            }
+            resizeMode="contain"
+          />
+          <ActivityIconText isActive={activeComponent === item.component}>
+            {item.text}
+          </ActivityIconText>
+        </ActivityItemContainer>
       ))}
-    </Container>
+    </MyActivityContainer>
   );
 }

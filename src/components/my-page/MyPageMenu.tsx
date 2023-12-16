@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {Modal} from 'react-native';
 import {
   MenuSafeContainer,
@@ -8,25 +8,29 @@ import {
   NextButtonIcon,
   MenuItemContainer,
   UserTextContainer,
-} from '../../styles/layout/my-page/Menu.style';
+} from '../../styles/layout/my-page/MyPageMenu.style';
 import CloseModalButton from '../reuse/button/CloseModalButton';
-import {MenuProps} from '../../interfaces/MyPage.interface';
+import {MyPageMenuProps} from '../../interfaces/MyPage.interface';
 import {
   FontWhiteBiggerThick,
   FontWhiteGreyBiggerThick,
 } from '../../styles/layout/reuse/text/Text.style';
 import NextButtonImage from '../../assets/image/reuse/next-btn.png';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
-import {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useAppSelector, useAppDispatch} from '../../hooks/redux/store';
 import {setAccessToken} from '../../hooks/redux/AccessTokenSlice';
+import {setUserID, setUserNickName} from '../../hooks/redux/UserDataSlice';
 
-export default function Menu({visible, handleCloseMenu}: MenuProps) {
+export default function MyPageMenu({visible, setMenuVisible}: MyPageMenuProps) {
   const accessToken = useAppSelector(state => state.login.token);
   const isLoggedIn = accessToken !== null;
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
+
+  const handleCloseMenu = useCallback(() => {
+    setMenuVisible(false);
+  }, [setMenuVisible]);
 
   // 다른 페이지로 이동 시 모달 닫음 처리
   useEffect(() => {
@@ -40,18 +44,18 @@ export default function Menu({visible, handleCloseMenu}: MenuProps) {
   // 테스트용 - 토큰 값 변경
   const handleLoginClick = () => {
     dispatch(setAccessToken('asdqwemalskd'));
+    dispatch(setUserID('jsee53'));
+    dispatch(setUserNickName('지나가는 오리너구리'));
   };
 
   const handleLogoutClick = () => {
     dispatch(setAccessToken(null));
+    dispatch(setUserID(null));
+    dispatch(setUserNickName(null));
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visible}
-      onRequestClose={handleCloseMenu}>
+    <Modal animationType="slide" transparent={true} visible={visible}>
       <MenuSafeContainer>
         <CloseModalButtonContainer>
           <CloseModalButton setModal={handleCloseMenu} />

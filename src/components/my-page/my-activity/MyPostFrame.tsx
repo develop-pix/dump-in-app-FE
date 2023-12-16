@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ReviewFrameProps} from '../../../interfaces/Home.interface';
 import LocationImage from '../../../assets/image/reuse/location.png';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,8 +15,10 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 import {ScreenName} from '../../../interfaces/NavigationBar';
+import FavoirteButton from '../../reuse/button/FavoritetButton';
+import {FavoirteIcon} from '../../../styles/layout/category/CategoryEventItem.style';
 
-export default function ReviewFrame({data}: ReviewFrameProps) {
+export default function MyPostFrame({data}: ReviewFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const route = useRoute();
@@ -30,6 +32,8 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
       });
     }
   };
+
+  const [favorite, setFavorite] = useState<boolean>(true);
 
   return (
     <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
@@ -45,6 +49,10 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
           height: 300,
         }}
       />
+
+      <FavoirteIcon>
+        <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
+      </FavoirteIcon>
 
       <ReviewInfo>
         <ReviewNameContainer>

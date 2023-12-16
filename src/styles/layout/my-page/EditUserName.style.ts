@@ -3,10 +3,10 @@ import {colors, fontSize, fontWeight} from '../../base/Variable';
 
 export const EditUserNameContainer = styled.View`
   flex: 1;
-  padding: 20px;
+  padding: 30px 20px;
 `;
 
-export const UserNickName = styled.View`
+export const UserNickNameWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 10px 5px;
@@ -16,6 +16,7 @@ export const EditIcon = styled.Image`
   width: 15px;
   height: 15px;
   margin-left: 20px;
+  margin-top: 5px;
 `;
 
 export const EditNickName = styled.TextInput`
@@ -27,7 +28,7 @@ export const EditNickName = styled.TextInput`
   border-radius: 7px;
 `;
 
-export const UserID = styled.View`
+export const UserIDWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 5px;

@@ -1,25 +1,20 @@
-import React, {useState} from 'react';
-import GoBackButton from '../reuse/button/GoBackButton';
-import MenuImage from '../../assets/image/reuse/menu.png';
+import React from 'react';
+import GoBackButton from '../button/GoBackButton';
+import MenuImage from '../../../assets/image/reuse/menu.png';
 import {
   ButtonContainer,
   MyPageGoBackButtonContainerWithSafeArea,
   MyPageMenuButtonContainerWithSafeArea,
   StyledImage,
-} from '../../styles/layout/my-page/Bar.style';
-import Menu from './Menu';
+} from '../../../styles/layout/reuse/header/MyPageBar.style';
 import {Platform} from 'react-native';
+import {MyPageBarProps} from '../../../interfaces/reuse/header/MyPageBar.interface';
 
-export default function Bar() {
+export default function MyPageBar({setMenuVisible}: MyPageBarProps) {
   const platform = Platform.OS;
-  const [isMenuVisible, setMenuVisible] = useState(false);
 
   const handleOpenMenu = () => {
     setMenuVisible(true);
-  };
-
-  const handleCloseMenu = () => {
-    setMenuVisible(false);
   };
 
   return (
@@ -33,8 +28,6 @@ export default function Bar() {
         onPress={handleOpenMenu}>
         <StyledImage source={MenuImage} />
       </MyPageMenuButtonContainerWithSafeArea>
-
-      <Menu visible={isMenuVisible} handleCloseMenu={handleCloseMenu} />
     </ButtonContainer>
   );
 }

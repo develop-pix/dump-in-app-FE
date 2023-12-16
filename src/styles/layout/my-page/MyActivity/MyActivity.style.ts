@@ -1,22 +1,28 @@
 import styled from 'styled-components/native';
+import {colors, fontSize, fontWeight} from '../../../base/Variable';
 
-export const Container = styled.View`
+export const MyActivityContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  padding: 0px 30px;
 `;
 
-export const ItemContainer = styled.TouchableOpacity`
+export const ActivityItemContainer = styled.TouchableOpacity<{
+  isActive: boolean;
+}>`
   align-items: center;
+  border-bottom-width: ${({isActive}) => (isActive ? '1px' : '0px')};
+  border-color: ${colors.white};
+  padding: 10px 5px;
 `;
 
-export const Icon = styled.Image`
-  width: 30px;
-  height: 30px;
+export const ActivityIcon = styled.Image`
+  height: 20px;
 `;
 
-export const Text = styled.Text<{isActive: boolean}>`
+export const ActivityIconText = styled.Text<{isActive: boolean}>`
   margin-top: 5px;
-  color: ${({isActive}) => (isActive ? 'white' : 'gray')};
-  border-bottom-width: ${({isActive}) => (isActive ? '2px' : '0px')};
-  border-color: white;
+  color: ${({isActive}) => (isActive ? colors.white : colors.whitegrey)};
+  font-size: ${fontSize.smallest};
+  font-weight: ${fontWeight.thin};
 `;
