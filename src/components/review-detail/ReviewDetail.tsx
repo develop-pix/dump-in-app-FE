@@ -226,7 +226,7 @@ export default function ReviewDetail() {
                   <ReviewImage source={{uri: data.representativeImage}} />
                   {platform === 'ios' ? (
                     <LinearGradient
-                      colors={['transparent', colors.black]}
+                      colors={['transparent', colors.lightblack]}
                       locations={[0, 1]}
                       style={{
                         position: 'absolute',
@@ -238,7 +238,7 @@ export default function ReviewDetail() {
                     />
                   ) : platform === 'android' ? (
                     <LinearGradient
-                      colors={['transparent', colors.black]}
+                      colors={['transparent', colors.lightblack]}
                       locations={[0.1, 1]}
                       style={{
                         position: 'absolute',

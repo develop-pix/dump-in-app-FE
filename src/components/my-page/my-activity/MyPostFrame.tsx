@@ -1,41 +1,43 @@
-import React from 'react';
-import {PhotoBoothFrameProps} from '../../../interfaces/Home.interface';
+import React, {useState} from 'react';
+import {ReviewFrameProps} from '../../../interfaces/Home.interface';
 import LocationImage from '../../../assets/image/reuse/location.png';
-import PickImage from '../../../assets/image/reuse/pick.png';
 import LinearGradient from 'react-native-linear-gradient';
 import {
-  PhotoBoothFrameContainer,
-  PhotoBoothFrameImage,
-  TagImage,
-  PhotoBoothInfo,
-  PhotoBoothNameContainer,
+  ReviewFrameContainer,
+  ReviewFrameImage,
+  ReviewInfo,
+  ReviewNameContainer,
   LocationIcon,
-} from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
+} from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
 import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 import {ScreenName} from '../../../interfaces/NavigationBar';
+import FavoirteButton from '../../reuse/button/FavoritetButton';
+import {FavoirteIcon} from '../../../styles/layout/category/CategoryEventItem.style';
 
-export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
+export default function MyPostFrame({data}: ReviewFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
   const route = useRoute();
 
-  const onPressPhotoBooth = () => {
+  const onPressReview = () => {
     const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('PhotoBoothDetail', {
-        PhotoBoothID: data.photoBoothID,
+      navigation.push('ReviewDetail', {
+        reviewID: data.reviewID,
         screen: currentScreen,
       });
     }
   };
 
+  const [favorite, setFavorite] = useState<boolean>(true);
+
   return (
-    <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressPhotoBooth}>
-      <PhotoBoothFrameImage source={{uri: data.representativeImage}} />
+    <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
+      <ReviewFrameImage source={{uri: data.representativeImage}} />
       <LinearGradient
         colors={['transparent', colors.lightblack]}
         locations={[0.1, 1]}
@@ -43,21 +45,23 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: 0,
-          height: 130,
+          bottom: -10,
+          height: 300,
         }}
       />
 
-      <TagImage source={PickImage} />
+      <FavoirteIcon>
+        <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
+      </FavoirteIcon>
 
-      <PhotoBoothInfo>
-        <PhotoBoothNameContainer>
+      <ReviewInfo>
+        <ReviewNameContainer>
           <LocationIcon source={LocationImage} />
           <FontWhiteGreySmallerThinWithLineHeight>
-            {data.photoboothName}
+            {data.branchName}
           </FontWhiteGreySmallerThinWithLineHeight>
-        </PhotoBoothNameContainer>
-      </PhotoBoothInfo>
-    </PhotoBoothFrameContainer>
+        </ReviewNameContainer>
+      </ReviewInfo>
+    </ReviewFrameContainer>
   );
 }

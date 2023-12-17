@@ -114,7 +114,7 @@ export default function HomeFilterModalForm({
 
           <ScrollView>
             <LinearGradient
-              colors={['transparent', colors.black]}
+              colors={['transparent', colors.lightblack]}
               locations={[0.2, 0.3]}
               style={{
                 position: 'absolute',

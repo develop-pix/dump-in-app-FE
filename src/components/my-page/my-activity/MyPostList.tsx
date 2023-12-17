@@ -1,12 +1,12 @@
 import React from 'react';
 import {ReviewProps} from '../../../interfaces/Home.interface';
-import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
 import {
-  MyReviewListContainer,
-  MyReviewImageWrapper,
-} from '../../../styles/layout/my-page/MyActivity/MyReviewList.style';
+  MyPostListContainer,
+  MyPostImageWrapper,
+} from '../../../styles/layout/my-page/MyActivity/MyPostList.style';
+import MyPostFrame from './MyPostFrame';
 
-export default function MyReviewList() {
+export default function MyPostList() {
   const reviewData: ReviewProps[] = [
     {
       reviewID: 1,
@@ -41,12 +41,12 @@ export default function MyReviewList() {
   ];
 
   return (
-    <MyReviewListContainer>
-      <MyReviewImageWrapper>
+    <MyPostListContainer>
+      <MyPostImageWrapper>
         {reviewData.map(review => (
-          <ReviewFrame key={review.reviewID} data={review} />
+          <MyPostFrame key={review.reviewID} data={review} />
         ))}
-      </MyReviewImageWrapper>
-    </MyReviewListContainer>
+      </MyPostImageWrapper>
+    </MyPostListContainer>
   );
 }

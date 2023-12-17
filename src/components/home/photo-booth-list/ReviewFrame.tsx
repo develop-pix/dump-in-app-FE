@@ -35,14 +35,14 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
     <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
       <ReviewFrameImage source={{uri: data.representativeImage}} />
       <LinearGradient
-        colors={['transparent', colors.black]}
+        colors={['transparent', colors.lightblack]}
         locations={[0.1, 1]}
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: 0,
-          height: 150,
+          bottom: -10,
+          height: 300,
         }}
       />
 

@@ -25,9 +25,6 @@ export const FavoirteIcon = styled.View`
   position: absolute;
   top: 10px;
   right: 10px;
-
-  shadow-color: ${colors.black};
-  shadow-opacity: 0.8;
 `;
 
 export const EventInfo = styled.View`

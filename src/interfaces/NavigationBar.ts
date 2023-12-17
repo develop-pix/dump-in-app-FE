@@ -14,6 +14,7 @@ export type RootStackParam = {
   PhotoBoothDetail: {PhotoBoothID: number; screen: ScreenName};
   EventDetail: {eventID: number; screen: ScreenName};
   ReviewNew: {branchID: number | undefined; screen: ScreenName};
+  Login: {screen: ScreenName};
 };
 
 export interface NavigationScreenParam {

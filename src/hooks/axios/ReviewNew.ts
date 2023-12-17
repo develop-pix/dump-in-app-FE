@@ -5,7 +5,7 @@ export const UploadImageToS3 = async (
   representativeImageName: string,
 ) => {
   const photo = {
-    uri: representativeImage.replace('file://', ''),
+    uri: representativeImage,
     type: 'image/jpeg',
     name: representativeImageName,
   };
