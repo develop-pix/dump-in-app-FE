@@ -11,8 +11,8 @@ import {
   EventTitleContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothEventFrame.style';
 import {
-  FontWhiteBiggestThick,
-  FontWhiteGreySmallerThin,
+  FontWhiteBiggestSemibold,
+  FontWhiteGreySmallerMedium,
 } from '../../styles/layout/reuse/text/Text.style';
 import {PhotoBoothEventFrameProps} from '../../interfaces/PhotoBoothDetail.interface';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
@@ -41,7 +41,7 @@ export default function PhotoBoothEventFrame({
       <EventImageWrapper>
         <EventImage source={{uri: event.representativeImage}} />
         <LinearGradient
-          colors={['transparent', colors.black]}
+          colors={['transparent', colors.lightblack]}
           locations={[0.1, 1]}
           style={{
             position: 'absolute',
@@ -58,9 +58,11 @@ export default function PhotoBoothEventFrame({
 
         <EventInfo>
           <EventTitleContainer>
-            <FontWhiteBiggestThick>{event.eventTitle}</FontWhiteBiggestThick>
+            <FontWhiteBiggestSemibold>
+              {event.eventTitle}
+            </FontWhiteBiggestSemibold>
           </EventTitleContainer>
-          <FontWhiteGreySmallerThin>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerThin>
+          <FontWhiteGreySmallerMedium>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerMedium>
         </EventInfo>
       </EventImageWrapper>
     </EventItem>

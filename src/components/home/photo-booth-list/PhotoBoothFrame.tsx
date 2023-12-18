@@ -15,7 +15,7 @@ import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerMediumWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
@@ -37,7 +37,7 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
     <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressPhotoBooth}>
       <PhotoBoothFrameImage source={{uri: data.representativeImage}} />
       <LinearGradient
-        colors={['transparent', colors.black]}
+        colors={['transparent', colors.lightblack]}
         locations={[0.1, 1]}
         style={{
           position: 'absolute',
@@ -53,9 +53,9 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
       <PhotoBoothInfo>
         <PhotoBoothNameContainer>
           <LocationIcon source={LocationImage} />
-          <FontWhiteGreySmallerThinWithLineHeight>
+          <FontWhiteGreySmallerMediumWithLineHeight>
             {data.photoboothName}
-          </FontWhiteGreySmallerThinWithLineHeight>
+          </FontWhiteGreySmallerMediumWithLineHeight>
         </PhotoBoothNameContainer>
       </PhotoBoothInfo>
     </PhotoBoothFrameContainer>

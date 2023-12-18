@@ -20,7 +20,7 @@ export const FilterButtonText = styled.Text<{
   textColor: string;
 }>`
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
   text-align: center;
   color: ${({textColor}) => textColor};
 `;

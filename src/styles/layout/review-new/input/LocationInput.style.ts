@@ -19,7 +19,7 @@ export const LocationInputButton = styled.TouchableOpacity`
 export const LocationTextButton = styled.TouchableOpacity`
   color: ${colors.white};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
   line-height: 14px;
 `;
 

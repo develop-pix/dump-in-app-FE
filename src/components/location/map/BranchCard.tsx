@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {BranchCardProps} from '../../../interfaces/Location.interface';
 import {
-  FontWhiteGreySmallerThick,
-  FontWhiteBiggestThickWithLineHeight,
-  FontWhiteGreySmallestThin,
-  FontYellowSmallerThinWithLineSpacing,
+  FontWhiteGreySmallerSemibold,
+  FontWhiteBiggestSemiboldWithLineHeight,
+  FontWhiteGreySmallestMedium,
+  FontYellowSmallerMediumWithLineSpacing,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   DistanceForm,
@@ -56,18 +56,18 @@ export default function BranchCard({
           <BranchCardLogo source={{uri: imageLogo}} />
           <BranchCardDescription>
             <BranchCardBranchNameWrapper>
-              <FontWhiteBiggestThickWithLineHeight>
+              <FontWhiteBiggestSemiboldWithLineHeight>
                 {photoboothName}
-              </FontWhiteBiggestThickWithLineHeight>
-              <FontWhiteGreySmallerThick>
+              </FontWhiteBiggestSemiboldWithLineHeight>
+              <FontWhiteGreySmallerSemibold>
                 {branchName}
-              </FontWhiteGreySmallerThick>
+              </FontWhiteGreySmallerSemibold>
             </BranchCardBranchNameWrapper>
             <BranchCardHashtag>
               {TagsArrayToHashTagArrayForm(hashtag).map(tag => (
-                <FontYellowSmallerThinWithLineSpacing key={tag}>
+                <FontYellowSmallerMediumWithLineSpacing key={tag}>
                   {tag}
-                </FontYellowSmallerThinWithLineSpacing>
+                </FontYellowSmallerMediumWithLineSpacing>
               ))}
             </BranchCardHashtag>
           </BranchCardDescription>
@@ -75,12 +75,12 @@ export default function BranchCard({
         </BranchCardTop>
         <BranchCardHorizonLine />
         <BranchCardBottom>
-          <FontWhiteGreySmallestThin>
+          <FontWhiteGreySmallestMedium>
             내 위치로부터 {`${DistanceForm(distance)}`} ·
-          </FontWhiteGreySmallestThin>
-          <FontWhiteGreySmallestThin>
+          </FontWhiteGreySmallestMedium>
+          <FontWhiteGreySmallestMedium>
             약 {elapsedTime} 소요
-          </FontWhiteGreySmallestThin>
+          </FontWhiteGreySmallestMedium>
         </BranchCardBottom>
       </CardContainer>
     </TouchableCardContainer>

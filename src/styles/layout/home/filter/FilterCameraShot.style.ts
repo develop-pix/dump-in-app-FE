@@ -31,5 +31,5 @@ export const CameraShotImageText = styled.Text<{isSelected: boolean}>`
   bottom: 5px;
   color: ${({isSelected}) => (isSelected ? colors.white : colors.whitegrey)};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;

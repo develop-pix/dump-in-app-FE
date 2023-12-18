@@ -3,8 +3,8 @@ import LocationImage from '../../assets/image/reuse/location_dark.png';
 import ClockImage from '../../assets/image/reuse/clock.png';
 import {BranchDescriptionProps} from '../../interfaces/Branch.interface';
 import {
-  FontLightGreySmallerThin,
-  FontWhiteSmallerThickWithLineSpacing,
+  FontLightGreySmallerMedium,
+  FontWhiteSmallerSemiboldWithLineSpacing,
 } from '../../styles/layout/reuse/text/Text.style';
 import {
   BranchDesc,
@@ -20,19 +20,19 @@ export default function BranchDescription({
 }: BranchDescriptionProps) {
   return (
     <BranchDescriptionContainer>
-      <FontWhiteSmallerThickWithLineSpacing>
+      <FontWhiteSmallerSemiboldWithLineSpacing>
         INFO
-      </FontWhiteSmallerThickWithLineSpacing>
+      </FontWhiteSmallerSemiboldWithLineSpacing>
       <BranchDesc>
         <DescContainer>
           <LocationIcon source={LocationImage} />
-          <FontLightGreySmallerThin>{address}</FontLightGreySmallerThin>
+          <FontLightGreySmallerMedium>{address}</FontLightGreySmallerMedium>
         </DescContainer>
         <DescContainer>
           <ClockIcon source={ClockImage} />
-          <FontLightGreySmallerThin numberOfLines={1}>
+          <FontLightGreySmallerMedium numberOfLines={1}>
             {open}
-          </FontLightGreySmallerThin>
+          </FontLightGreySmallerMedium>
         </DescContainer>
       </BranchDesc>
     </BranchDescriptionContainer>

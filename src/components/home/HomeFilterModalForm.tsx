@@ -22,7 +22,7 @@ import {
 } from '../../styles/layout/home/HomeFilterModalForm.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 import {colors} from '../../styles/base/Variable';
-import {FontWhiteGreyNormalThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreyNormalSemibold} from '../../styles/layout/reuse/text/Text.style';
 
 export default function HomeFilterModalForm({
   filterData,
@@ -100,7 +100,9 @@ export default function HomeFilterModalForm({
         <FilterFormBody>
           <FilterFormHeader>
             <FilterFormTitleContainer>
-              <FontWhiteGreyNormalThick>상세 필터</FontWhiteGreyNormalThick>
+              <FontWhiteGreyNormalSemibold>
+                상세 필터
+              </FontWhiteGreyNormalSemibold>
             </FilterFormTitleContainer>
 
             <CloseButton
@@ -114,7 +116,7 @@ export default function HomeFilterModalForm({
 
           <ScrollView>
             <LinearGradient
-              colors={['transparent', colors.black]}
+              colors={['transparent', colors.lightblack]}
               locations={[0.2, 0.3]}
               style={{
                 position: 'absolute',

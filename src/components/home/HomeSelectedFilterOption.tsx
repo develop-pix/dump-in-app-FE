@@ -5,7 +5,7 @@ import {
   ColorBox,
   FilterOptionTextBox,
 } from '../../styles/layout/home/HomeSelectedFilterOption.style';
-import {FontWhiteSmallestThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteSmallestSemibold} from '../../styles/layout/reuse/text/Text.style';
 
 export default function HomeSelectedFilterOption({
   filterData,
@@ -20,9 +20,9 @@ export default function HomeSelectedFilterOption({
         if (key === 'party' && value > 0) {
           return (
             <FilterOptionTextBox key={key}>
-              <FontWhiteSmallestThick>
+              <FontWhiteSmallestSemibold>
                 {value === 5 ? '5+' : value.toString()}
-              </FontWhiteSmallestThick>
+              </FontWhiteSmallestSemibold>
             </FilterOptionTextBox>
           );
         }
@@ -30,7 +30,7 @@ export default function HomeSelectedFilterOption({
         if (key === 'concept' && value.length > 0) {
           return (value as string[]).map((concept: string, index: number) => (
             <FilterOptionTextBox key={`${key}-${index}`}>
-              <FontWhiteSmallestThick>{concept}</FontWhiteSmallestThick>
+              <FontWhiteSmallestSemibold>{concept}</FontWhiteSmallestSemibold>
             </FilterOptionTextBox>
           ));
         }
@@ -38,7 +38,7 @@ export default function HomeSelectedFilterOption({
         if (value && value.length > 0) {
           return (
             <FilterOptionTextBox key={key}>
-              <FontWhiteSmallestThick>{value}</FontWhiteSmallestThick>
+              <FontWhiteSmallestSemibold>{value}</FontWhiteSmallestSemibold>
             </FilterOptionTextBox>
           );
         }

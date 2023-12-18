@@ -7,9 +7,9 @@ import {
 } from '../../../styles/layout/review-new/input/ToolsSelect.style';
 import {ReviewInputTitleContainer} from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontBlackSmallerThick,
-  FontLightGreySmallerThin,
-  FontWhiteNormalThin,
+  FontBlackSmallerSemibold,
+  FontLightGreySmallerMedium,
+  FontWhiteNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setTools} from '../../../hooks/redux/ReviewData';
@@ -39,25 +39,25 @@ export default function ToolsSelect({tools}: ToolsSelectProps) {
   return (
     <ToolsSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>소품</FontWhiteNormalThin>
+        <FontWhiteNormalMedium>소품</FontWhiteNormalMedium>
       </ReviewInputTitleContainer>
       <ToolsInputContainer>
         {tools === true ? (
           <ToolsButtonLeft onPress={onPressTools} toolsOption={tools}>
-            <FontBlackSmallerThick>있음</FontBlackSmallerThick>
+            <FontBlackSmallerSemibold>있음</FontBlackSmallerSemibold>
           </ToolsButtonLeft>
         ) : (
           <ToolsButtonLeft onPress={onPressTools} toolsOption={tools}>
-            <FontLightGreySmallerThin>있음</FontLightGreySmallerThin>
+            <FontLightGreySmallerMedium>있음</FontLightGreySmallerMedium>
           </ToolsButtonLeft>
         )}
         {tools === false ? (
           <ToolsButtonRight onPress={onPressNoTools} toolsOption={tools}>
-            <FontBlackSmallerThick>없음</FontBlackSmallerThick>
+            <FontBlackSmallerSemibold>없음</FontBlackSmallerSemibold>
           </ToolsButtonRight>
         ) : (
           <ToolsButtonRight onPress={onPressNoTools} toolsOption={tools}>
-            <FontLightGreySmallerThin>없음</FontLightGreySmallerThin>
+            <FontLightGreySmallerMedium>없음</FontLightGreySmallerMedium>
           </ToolsButtonRight>
         )}
       </ToolsInputContainer>

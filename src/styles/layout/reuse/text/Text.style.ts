@@ -1,189 +1,214 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
-
-// 글씨체 지정 필요함 - Montserrat
+import {colors, fontFamily, fontSize, fontWeight} from '../../../base/Variable';
 
 /* white */
-export const FontWhiteBiggestThick = styled.Text`
+export const FontWhiteBiggestSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.biggest};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteBiggestThickWithLineHeight = styled.Text`
+export const FontWhiteBiggestSemiboldWithLineHeight = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.biggest};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
   line-height: 24px;
 `;
 
-export const FontWhiteBiggerThick = styled.Text`
+export const FontWhiteBiggerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.bigger};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteNormalThick = styled.Text`
+export const FontWhiteNormalSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteNormalThin = styled.Text`
+export const FontWhiteNormalMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
-
-export const FontWhiteNormalThinWithLineHeight = styled.Text`
+export const FontWhiteNormalMediumWithLineHeight = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thin};
-  line-height: 24px;
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontWhiteSmallerThick = styled.Text`
+export const FontWhiteSmallerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteSmallerThickWithLineSpacing = styled.Text`
+export const FontWhiteSmallerSemiboldWithLineSpacing = styled.Text`
+  font-family: ${fontFamily.Montserrat};
   color: ${colors.white};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
   letter-spacing: 3px;
 `;
 
-export const FontWhiteSmallerThin = styled.Text`
+export const FontWhiteSmallerMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontWhiteSmallestThick = styled.Text`
+export const FontWhiteSmallestSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
 /* whitegrey */
-export const FontWhiteGreyBiggerThick = styled.Text`
+export const FontWhiteGreyBiggerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.bigger};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteGreyNormalThick = styled.Text`
+export const FontWhiteGreyNormalSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteGreyNormalThin = styled.Text`
+export const FontWhiteGreyNormalMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontWhiteGreySmallerThick = styled.Text`
+export const FontWhiteGreySmallerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteGreySmallerThin = styled.Text`
+export const FontWhiteGreySmallerMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontWhiteGreySmallerThinWithLineHeight = styled.Text`
+export const FontWhiteGreySmallerMediumWithLineHeight = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
   line-height: 21px;
 `;
 
-export const FontWhiteGreySmallestThick = styled.Text`
+export const FontWhiteGreySmallestSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteGreySmallestThin = styled.Text`
+export const FontWhiteGreySmallestMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontWhiteGreySmallestThinWithLineHeight = styled.Text`
+export const FontWhiteGreySmallestMediumWithLineHeight = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.whitegrey};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
   line-height: 30px;
 `;
 
 /* lightgrey */
-export const FontLightGreyNormalThin = styled.Text`
+export const FontLightGreyNormalMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.lightgrey};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontLightGreySmallerThick = styled.Text`
+export const FontLightGreySmallerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.lightgrey};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontLightGreySmallerThin = styled.Text`
+export const FontLightGreySmallerMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.lightgrey};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontLightGreySmallestThin = styled.Text`
+export const FontLightGreySmallestMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.lightgrey};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
 /* yellow */
-export const FontYellowBiggerThick = styled.Text`
+export const FontYellowBiggerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.yellow};
   font-size: ${fontSize.bigger};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;
 
-export const FontYellowSmallerThin = styled.Text`
+export const FontYellowSmallerMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.yellow};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontYellowSmallerThinWithLineSpacing = styled.Text`
+export const FontYellowSmallerMediumWithLineSpacing = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.yellow};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
   letter-spacing: -0.5px;
 `;
 
-export const FontYellowSmallestThin = styled.Text`
+export const FontYellowSmallestMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.yellow};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
 /* red */
-export const FontRedNormalThin = styled.Text`
+export const FontRedNormalMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.red};
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
 
-export const FontBlackSmallerThick = styled.Text`
+export const FontBlackSmallerSemibold = styled.Text`
+  font-family: ${fontFamily.Pretendard};
   color: ${colors.black};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
 `;

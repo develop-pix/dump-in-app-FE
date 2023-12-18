@@ -10,10 +10,10 @@ import {
   ReviewInputTitleContainer,
 } from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontLightGreySmallestThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontLightGreySmallestMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {colors} from '../../../styles/base/Variable';
 import {Platform} from 'react-native';
@@ -41,14 +41,14 @@ export default function ReviewDescriptionInput({
   return (
     <ReviewDescriptionInputContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>게시글</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>게시글</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'description' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -65,9 +65,9 @@ export default function ReviewDescriptionInput({
           textAlignVertical="top"
         />
         <ReviewDescriptionCount>
-          <FontLightGreySmallestThin>
+          <FontLightGreySmallestMedium>
             {inputCount} / 100
-          </FontLightGreySmallestThin>
+          </FontLightGreySmallestMedium>
         </ReviewDescriptionCount>
       </ReviewDescriptionTextInputContainer>
     </ReviewDescriptionInputContainer>

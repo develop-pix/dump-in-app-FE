@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export default function MyProfile() {
+export default function AppleLogin() {
   return (
     <View>
-      <Text>MyProfile 페이지</Text>
+      <Text>AppleLogin 페이지</Text>
     </View>
   );
 }

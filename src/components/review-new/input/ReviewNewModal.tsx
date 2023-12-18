@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-native-modal';
 
 import {Platform} from 'react-native';
-import {FontWhiteNormalThick} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteNormalSemibold} from '../../../styles/layout/reuse/text/Text.style';
 import {ReviewNewModalProps} from '../../../interfaces/ReviewNew.interface';
 import {
   HorizonLine,
@@ -98,11 +98,11 @@ export default function ReviewNewModal({setOpenModal}: ReviewNewModalProps) {
       <ReviewNewModalContainer platform={platform}>
         <ReviewNewModalWrapper>
           <ReviewNewTouchableOpacity onPress={onPressCameraOpen}>
-            <FontWhiteNormalThick>사진 촬영하기</FontWhiteNormalThick>
+            <FontWhiteNormalSemibold>사진 촬영하기</FontWhiteNormalSemibold>
           </ReviewNewTouchableOpacity>
           <HorizonLine />
           <ReviewNewTouchableOpacity onPress={onPressGalleryOpen}>
-            <FontWhiteNormalThick>갤러리 항목 선택</FontWhiteNormalThick>
+            <FontWhiteNormalSemibold>갤러리 항목 선택</FontWhiteNormalSemibold>
           </ReviewNewTouchableOpacity>
         </ReviewNewModalWrapper>
       </ReviewNewModalContainer>
