@@ -11,7 +11,7 @@ import {
   SubmitButton,
 } from '../../styles/layout/reuse/button/GoBackButton.style';
 import {Platform} from 'react-native';
-import {FontYellowBiggerThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontYellowBiggerSemibold} from '../../styles/layout/reuse/text/Text.style';
 import ImageFileInput from './input/ImageFileInput';
 import ReviewDescriptionInput from './input/ReviewDescriptionInput';
 import LocationInput from './input/LocationInput';
@@ -111,7 +111,7 @@ export default function ReviewNew() {
       <GoBackButtonWithSubmitContainer platform={platform}>
         <GoBackButtonReview />
         <SubmitButton onPress={onPressSubmit}>
-          <FontYellowBiggerThick>완료</FontYellowBiggerThick>
+          <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
         </SubmitButton>
       </GoBackButtonWithSubmitContainer>
       <ImageFileInput

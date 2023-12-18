@@ -29,5 +29,5 @@ export const FilterTextButtonContent = styled.Text<{isSelected: boolean}>`
   color: ${({isSelected}) => (isSelected ? colors.black : colors.lightgrey)};
   font-size: ${fontSize.smaller};
   font-weight: ${({isSelected}) =>
-    isSelected ? fontWeight.thick : fontWeight.thin};
+    isSelected ? fontWeight.semibold : fontWeight.medium};
 `;

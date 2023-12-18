@@ -36,7 +36,7 @@ export const HashtagContainer = styled.View`
 export const HashtagText = styled.Text`
   color: ${colors.yellow};
   font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
   letter-spacing: -0.5px;
   margin-right: 10px;
 `;

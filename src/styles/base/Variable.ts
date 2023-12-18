@@ -31,6 +31,11 @@ export const fontSize = {
 };
 
 export const fontWeight = {
-  thick: 600,
-  thin: 500,
+  semibold: 600,
+  medium: 500,
+};
+
+export const fontFamily = {
+  Montserrat: 'Montserrat',
+  Pretendard: 'Pretendard',
 };

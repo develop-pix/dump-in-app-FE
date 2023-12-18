@@ -16,8 +16,8 @@ import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {ScreenName} from '../../../interfaces/NavigationBar';
 import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
 import {
-  FontWhiteBiggestThickWithLineHeight,
-  FontWhiteGreySmallerThick,
+  FontWhiteBiggestSemiboldWithLineHeight,
+  FontWhiteGreySmallerSemibold,
 } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function MyPhotoBoothFrame({
@@ -47,12 +47,12 @@ export default function MyPhotoBoothFrame({
       <PhotoBoothImage source={{uri: photoBoothData.representativeImage}} />
       <InfoContainer>
         <PhotoBoothNameWrapper>
-          <FontWhiteBiggestThickWithLineHeight>
+          <FontWhiteBiggestSemiboldWithLineHeight>
             {photoBoothData.photoboothName}
-          </FontWhiteBiggestThickWithLineHeight>
-          <FontWhiteGreySmallerThick>
+          </FontWhiteBiggestSemiboldWithLineHeight>
+          <FontWhiteGreySmallerSemibold>
             {photoBoothData.branch}
-          </FontWhiteGreySmallerThick>
+          </FontWhiteGreySmallerSemibold>
         </PhotoBoothNameWrapper>
 
         <HashtagContainer>

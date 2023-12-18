@@ -12,9 +12,9 @@ import CloseBtnImage from '../../../assets/image/reuse/close-btn-sub.png';
 import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
 import {
-  FontWhiteGreyNormalThin,
-  FontWhiteGreySmallerThin,
-  FontWhiteGreySmallestThick,
+  FontWhiteGreyNormalMedium,
+  FontWhiteGreySmallerMedium,
+  FontWhiteGreySmallestSemibold,
 } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
@@ -44,7 +44,7 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
 
   return (
     <RecentSearchContainer>
-      <FontWhiteGreySmallestThick>최근 검색어</FontWhiteGreySmallestThick>
+      <FontWhiteGreySmallestSemibold>최근 검색어</FontWhiteGreySmallestSemibold>
       <RecentSearchContentContainer>
         {recentSearches.length > 0 ? (
           recentSearches.map(
@@ -52,9 +52,9 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
               <RecentSearchButton
                 key={searchItem.search}
                 onPress={() => onRecentListClick(searchItem.search)}>
-                <FontWhiteGreySmallerThin>
+                <FontWhiteGreySmallerMedium>
                   {searchItem.search}
-                </FontWhiteGreySmallerThin>
+                </FontWhiteGreySmallerMedium>
                 <CloseButton onPress={() => onDelete(index)}>
                   <CloseButtonIcon source={CloseBtnImage} />
                 </CloseButton>
@@ -63,9 +63,9 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
           )
         ) : (
           <EmptySearchMessageContainer>
-            <FontWhiteGreyNormalThin>
+            <FontWhiteGreyNormalMedium>
               최근 검색어가 없습니다.
-            </FontWhiteGreyNormalThin>
+            </FontWhiteGreyNormalMedium>
           </EmptySearchMessageContainer>
         )}
       </RecentSearchContentContainer>

@@ -14,9 +14,9 @@ import {
   EventTitleContainer,
 } from '../../styles/layout/category/CategoryEventItem.style';
 import {
-  FontWhiteSmallerThin,
-  FontWhiteGreySmallerThin,
-  FontWhiteBiggestThick,
+  FontWhiteSmallerMedium,
+  FontWhiteGreySmallerMedium,
+  FontWhiteBiggestSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
 import {CategoryEventItemProps} from '../../interfaces/Category.interface';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
@@ -63,18 +63,18 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
         <EventInfo>
           <PhotoBoothNameContainer>
             <LocationIcon source={LocationImage} />
-            <FontWhiteSmallerThin>
+            <FontWhiteSmallerMedium>
               {eventData.photoboothName}
-            </FontWhiteSmallerThin>
+            </FontWhiteSmallerMedium>
           </PhotoBoothNameContainer>
           <EventTitleContainer>
-            <FontWhiteBiggestThick>
+            <FontWhiteBiggestSemibold>
               {eventData.eventTitle}
-            </FontWhiteBiggestThick>
+            </FontWhiteBiggestSemibold>
           </EventTitleContainer>
-          <FontWhiteGreySmallerThin>
+          <FontWhiteGreySmallerMedium>
             {eventData.startDate + ' ~ ' + eventData.endDate}
-          </FontWhiteGreySmallerThin>
+          </FontWhiteGreySmallerMedium>
         </EventInfo>
       </EventImageWrapper>
     </EventItemContainer>

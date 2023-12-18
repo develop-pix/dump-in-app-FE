@@ -13,9 +13,9 @@ import {
   SubTitleContainer,
 } from '../../../styles/layout/reuse/photo-dump/PhotoDump.style';
 import {
-  FontWhiteNormalThin,
-  FontWhiteSmallerThickWithLineSpacing,
-  FontWhiteSmallerThin,
+  FontWhiteNormalMedium,
+  FontWhiteSmallerSemiboldWithLineSpacing,
+  FontWhiteSmallerMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {PhotoDumpProps} from '../../../interfaces/reuse/photo-dump/PhotoDump.interface';
 import {Animated, Dimensions, NativeScrollEvent} from 'react-native';
@@ -91,9 +91,9 @@ export default function PhotoDump({
   return (
     <PhotoDumpContainer>
       <SubTitleContainer>
-        <FontWhiteSmallerThickWithLineSpacing>
+        <FontWhiteSmallerSemiboldWithLineSpacing>
           PHOTO DUMP
-        </FontWhiteSmallerThickWithLineSpacing>
+        </FontWhiteSmallerSemiboldWithLineSpacing>
       </SubTitleContainer>
       {reviewData.length === 0 ? (
         <>
@@ -165,11 +165,11 @@ export default function PhotoDump({
                 />
                 <FindMoreReviewWrapper>
                   <SearchImage source={SearchIcon} />
-                  <FontWhiteNormalThin>
+                  <FontWhiteNormalMedium>
                     포토부스 검색으로 더 많은 리뷰 보기
-                  </FontWhiteNormalThin>
+                  </FontWhiteNormalMedium>
                   <SeeMoreButton onPress={onPressHomeSearch}>
-                    <FontWhiteSmallerThin>리뷰 더보기</FontWhiteSmallerThin>
+                    <FontWhiteSmallerMedium>리뷰 더보기</FontWhiteSmallerMedium>
                     <NextImage source={NextIcon} />
                   </SeeMoreButton>
                 </FindMoreReviewWrapper>

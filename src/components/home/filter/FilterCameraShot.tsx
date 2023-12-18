@@ -7,7 +7,7 @@ import {
   CameraShotImageText,
 } from '../../../styles/layout/home/filter/FilterCameraShot.style';
 import {View} from 'react-native';
-import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerSemibold} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableCameraShots = [
   {
@@ -46,7 +46,7 @@ export default function FilterCameraShot({
 
   return (
     <View>
-      <FontWhiteGreySmallerThick>카메라 샷</FontWhiteGreySmallerThick>
+      <FontWhiteGreySmallerSemibold>카메라 샷</FontWhiteGreySmallerSemibold>
 
       <FilterContentContainer>
         {availableCameraShots.map(cameraShotOption => {

@@ -6,8 +6,8 @@ import {
 } from '../../../styles/layout/home-search/input/RecommendSearch.style';
 import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 import {
-  FontYellowSmallerThin,
-  FontWhiteGreySmallestThick,
+  FontYellowSmallerMedium,
+  FontWhiteGreySmallestSemibold,
 } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function RecommendSearch({onRecentListClick}: HomeSearchProps) {
@@ -22,13 +22,13 @@ export default function RecommendSearch({onRecentListClick}: HomeSearchProps) {
 
   return (
     <RecommendSearchContainer>
-      <FontWhiteGreySmallestThick>추천 검색어</FontWhiteGreySmallestThick>
+      <FontWhiteGreySmallestSemibold>추천 검색어</FontWhiteGreySmallestSemibold>
       <RecommendSearchContentContainer>
         {recentSearches.map((search, index) => (
           <RecommendSearchButton
             key={index}
             onPress={() => onRecentListClick(search)}>
-            <FontYellowSmallerThin>{search}</FontYellowSmallerThin>
+            <FontYellowSmallerMedium>{search}</FontYellowSmallerMedium>
           </RecommendSearchButton>
         ))}
       </RecommendSearchContentContainer>

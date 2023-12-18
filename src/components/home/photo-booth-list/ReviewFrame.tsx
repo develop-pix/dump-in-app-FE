@@ -13,7 +13,7 @@ import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {FontWhiteGreySmallerThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerMediumWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function ReviewFrame({data}: ReviewFrameProps) {
@@ -49,9 +49,9 @@ export default function ReviewFrame({data}: ReviewFrameProps) {
       <ReviewInfo>
         <ReviewNameContainer>
           <LocationIcon source={LocationImage} />
-          <FontWhiteGreySmallerThinWithLineHeight>
+          <FontWhiteGreySmallerMediumWithLineHeight>
             {data.branchName}
-          </FontWhiteGreySmallerThinWithLineHeight>
+          </FontWhiteGreySmallerMediumWithLineHeight>
         </ReviewNameContainer>
       </ReviewInfo>
     </ReviewFrameContainer>

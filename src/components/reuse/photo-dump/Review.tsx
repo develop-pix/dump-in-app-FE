@@ -10,8 +10,8 @@ import {ReviewProps} from '../../../interfaces/reuse/photo-dump/Review.interface
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
 import {
-  FontYellowSmallerThinWithLineSpacing,
-  FontWhiteNormalThin,
+  FontYellowSmallerMediumWithLineSpacing,
+  FontWhiteNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
@@ -56,13 +56,13 @@ export default function Review({
 
       <ReviewDescriptionContainer>
         <ReviewDescription>
-          <FontWhiteNormalThin>{reviewDescription}</FontWhiteNormalThin>
+          <FontWhiteNormalMedium>{reviewDescription}</FontWhiteNormalMedium>
         </ReviewDescription>
         <ReviewHashtags>
           {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
-            <FontYellowSmallerThinWithLineSpacing key={tag}>
+            <FontYellowSmallerMediumWithLineSpacing key={tag}>
               {tag}
-            </FontYellowSmallerThinWithLineSpacing>
+            </FontYellowSmallerMediumWithLineSpacing>
           ))}
         </ReviewHashtags>
       </ReviewDescriptionContainer>

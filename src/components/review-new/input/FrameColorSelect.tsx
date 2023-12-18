@@ -12,9 +12,9 @@ import {
   ReviewInputTitleContainer,
 } from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {frameColors} from '../../../styles/base/Variable';
 import {useAppDispatch} from '../../../hooks/redux/store';
@@ -44,14 +44,14 @@ export default function FrameColorSelect({
   return (
     <FrameColorSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>프레임 색상</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>프레임 색상</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'frameColor' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
