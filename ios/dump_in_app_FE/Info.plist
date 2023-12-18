@@ -23,13 +23,28 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>주변 포토부스 검색을 위해 위치 정보가 필요합니다.</string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
-  	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
-  	<key>NSCameraUsageDescription</key>
-  	<string>포토부스 리뷰 작성을 위해 카메라 정보가 필요합니다.</string>
-  	<key>NSPhotoLibraryAddUsageDescription</key>
-  	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
+	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>포토부스 리뷰 작성을 위해 카메라 정보가 필요합니다.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard-Black.otf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-Light.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Thin.otf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,8 +58,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NMFClientId</key>
 	<string>sc9favxy2w</string>
 	<key>UILaunchStoryboardName</key>

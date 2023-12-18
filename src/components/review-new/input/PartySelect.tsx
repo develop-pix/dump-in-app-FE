@@ -4,11 +4,11 @@ import {
   ReviewInputTitleContainer,
 } from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontBlackSmallerThick,
-  FontLightGreySmallerThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontBlackSmallerSemibold,
+  FontLightGreySmallerMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   PartyButton,
@@ -35,14 +35,14 @@ export default function PartySelect({party, errorData}: PartySelectProps) {
   return (
     <PartySelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>인원</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>인원</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'party' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -56,13 +56,13 @@ export default function PartySelect({party, errorData}: PartySelectProps) {
               key={partyOption}
               onPress={() => onPressParty(partyOption)}>
               {partyOption === party ? (
-                <FontBlackSmallerThick>
+                <FontBlackSmallerSemibold>
                   {partyOption === 5 ? '5+' : partyOption}
-                </FontBlackSmallerThick>
+                </FontBlackSmallerSemibold>
               ) : (
-                <FontLightGreySmallerThin>
+                <FontLightGreySmallerMedium>
                   {partyOption === 5 ? '5+' : partyOption}
-                </FontLightGreySmallerThin>
+                </FontLightGreySmallerMedium>
               )}
             </PartyButton>
           );

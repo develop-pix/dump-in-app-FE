@@ -7,15 +7,15 @@ import {
   FrameImageWrapper,
   FrameImage,
 } from '../../styles/layout/event-detail/EventFrame.style';
-import {FontWhiteSmallerThickWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteSmallerSemiboldWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 
 export default function EventFrame({eventData}: EventFrameProps) {
   return (
     <FrameContainer>
       <SubTitleContainer>
-        <FontWhiteSmallerThickWithLineSpacing>
+        <FontWhiteSmallerSemiboldWithLineSpacing>
           FRAME
-        </FontWhiteSmallerThickWithLineSpacing>
+        </FontWhiteSmallerSemiboldWithLineSpacing>
       </SubTitleContainer>
 
       <FrameImageContainer>

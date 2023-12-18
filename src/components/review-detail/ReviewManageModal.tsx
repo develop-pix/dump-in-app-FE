@@ -8,7 +8,7 @@ import {
 } from '../../styles/layout/review-detail/ReviewManageModal.style';
 import {ReviewManageModalProps} from '../../interfaces/ReviewDetail.interface';
 import {Platform} from 'react-native';
-import {FontWhiteNormalThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteNormalSemibold} from '../../styles/layout/reuse/text/Text.style';
 export default function ReviewManageModal({
   setOpenModal,
 }: ReviewManageModalProps) {
@@ -44,11 +44,11 @@ export default function ReviewManageModal({
       <ReviewManageModalContainer platform={platform}>
         <ReviewManageModalWrapper>
           <ReviewManageTouchableOpacity onPress={onPressReviewEdit}>
-            <FontWhiteNormalThick>리뷰 수정하기</FontWhiteNormalThick>
+            <FontWhiteNormalSemibold>리뷰 수정하기</FontWhiteNormalSemibold>
           </ReviewManageTouchableOpacity>
           <HorizonLine />
           <ReviewManageTouchableOpacity onPress={onPressReviewDelete}>
-            <FontWhiteNormalThick>삭제하기</FontWhiteNormalThick>
+            <FontWhiteNormalSemibold>삭제하기</FontWhiteNormalSemibold>
           </ReviewManageTouchableOpacity>
         </ReviewManageModalWrapper>
       </ReviewManageModalContainer>

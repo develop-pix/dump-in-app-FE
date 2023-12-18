@@ -22,7 +22,7 @@ export const EditIcon = styled.Image`
 export const EditNickName = styled.TextInput`
   color: ${colors.white};
   font-size: ${fontSize.biggest};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
   background-color: ${colors.darkgrey};
   padding: 5px 10px;
   border-radius: 7px;

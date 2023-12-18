@@ -1,7 +1,7 @@
 import React from 'react';
 import GoBackButton from '../reuse/button/GoBackButton';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
-import {FontYellowSmallerThinWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
+import {FontYellowSmallerMediumWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 import {ReviewDescBottom} from '../../styles/layout/review-detail/ReviewDetail.style';
 import {PhotoBoothImageTitleProps} from '../../interfaces/PhotoBoothDetail.interface';
 import LinearGradient from 'react-native-linear-gradient';
@@ -14,7 +14,7 @@ import {
   TitleContainer,
   NomalButtonContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothImageTitle.style';
-import {FontWhiteBiggestThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteBiggestSemibold} from '../../styles/layout/reuse/text/Text.style';
 import {NormalButton} from '../reuse/button/NormalButton';
 import {
   RouteProp,
@@ -70,16 +70,16 @@ export default function PhotoBoothImageTitle({
 
         <ContentsContainer>
           <TitleContainer>
-            <FontWhiteBiggestThick>
+            <FontWhiteBiggestSemibold>
               {photoboothData.photoboothName}
-            </FontWhiteBiggestThick>
+            </FontWhiteBiggestSemibold>
           </TitleContainer>
 
           <ReviewDescBottom>
             {TagsArrayToHashTagArrayForm(photoboothData.hashtag).map(tag => (
-              <FontYellowSmallerThinWithLineSpacing key={tag}>
+              <FontYellowSmallerMediumWithLineSpacing key={tag}>
                 {tag}
-              </FontYellowSmallerThinWithLineSpacing>
+              </FontYellowSmallerMediumWithLineSpacing>
             ))}
           </ReviewDescBottom>
         </ContentsContainer>

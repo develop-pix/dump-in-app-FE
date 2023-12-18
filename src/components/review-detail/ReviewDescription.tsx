@@ -7,9 +7,9 @@ import {
   ReviewDescriptionTouchableContainer,
 } from '../../styles/layout/review-detail/ReviewDetail.style';
 import {
-  FontWhiteSmallerThin,
-  FontYellowSmallerThinWithLineSpacing,
-  FontWhiteNormalThin,
+  FontWhiteSmallerMedium,
+  FontYellowSmallerMediumWithLineSpacing,
+  FontWhiteNormalMedium,
 } from '../../styles/layout/reuse/text/Text.style';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {
@@ -40,25 +40,25 @@ export default function ReviewDescription({
   return (
     <ReviewDescriptionContainer platform={platform}>
       <ReviewDescTop>
-        <FontWhiteSmallerThin>
+        <FontWhiteSmallerMedium>
           {DateToReviewDateForm(date)}
-        </FontWhiteSmallerThin>
+        </FontWhiteSmallerMedium>
         <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
       </ReviewDescTop>
       <ReviewDescMiddle>
         <ReviewDescriptionTouchableContainer
           onPress={onPressSeeMore}
           activeOpacity={0.8}>
-          <FontWhiteNormalThin numberOfLines={numLines}>
+          <FontWhiteNormalMedium numberOfLines={numLines}>
             {description}
-          </FontWhiteNormalThin>
+          </FontWhiteNormalMedium>
         </ReviewDescriptionTouchableContainer>
       </ReviewDescMiddle>
       <ReviewDescBottom>
         {TagsArrayToHashTagArrayForm(hashtag).map(tag => (
-          <FontYellowSmallerThinWithLineSpacing key={tag}>
+          <FontYellowSmallerMediumWithLineSpacing key={tag}>
             {tag}
-          </FontYellowSmallerThinWithLineSpacing>
+          </FontYellowSmallerMediumWithLineSpacing>
         ))}
       </ReviewDescBottom>
     </ReviewDescriptionContainer>

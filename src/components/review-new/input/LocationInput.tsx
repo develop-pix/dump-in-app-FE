@@ -4,10 +4,10 @@ import {
   ReviewInputTitleContainer,
 } from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontLightGreyNormalThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontLightGreyNormalMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   LocationImage,
@@ -61,14 +61,14 @@ export default function LocationInput({
   return (
     <LocationInputContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>위치</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>위치</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'location' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -76,13 +76,13 @@ export default function LocationInput({
       <LocationInputButton onPress={onPressSelectLocation} activeOpacity={1}>
         <LocationTextButton onPress={onPressSelectLocation}>
           {location === undefined || null ? (
-            <FontLightGreyNormalThin>
+            <FontLightGreyNormalMedium>
               위치를 검색해주세요.
-            </FontLightGreyNormalThin>
+            </FontLightGreyNormalMedium>
           ) : (
             <LocationTextContainer>
               <LocationImage source={LocationIcon} />
-              <FontWhiteNormalThin>{location}</FontWhiteNormalThin>
+              <FontWhiteNormalMedium>{location}</FontWhiteNormalMedium>
             </LocationTextContainer>
           )}
         </LocationTextButton>

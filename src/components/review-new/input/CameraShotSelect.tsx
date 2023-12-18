@@ -11,11 +11,11 @@ import {
   ReviewInputTitleContainer,
 } from '../../../styles/layout/review-new/ReviewNew.style';
 import {
-  FontRedNormalThin,
-  FontWhiteGreySmallerThin,
-  FontWhiteSmallerThick,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontRedNormalMedium,
+  FontWhiteGreySmallerMedium,
+  FontWhiteSmallerSemibold,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setCameraShot} from '../../../hooks/redux/ReviewData';
@@ -56,14 +56,14 @@ export default function CameraShotSelect({
   return (
     <CameraShotSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>카메라 샷</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>카메라 샷</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'cameraShot' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -83,13 +83,13 @@ export default function CameraShotSelect({
               />
               <CameraShotTextContainer>
                 {cameraShot === cameraShotData.name ? (
-                  <FontWhiteSmallerThick>
+                  <FontWhiteSmallerSemibold>
                     {cameraShotData.name}
-                  </FontWhiteSmallerThick>
+                  </FontWhiteSmallerSemibold>
                 ) : (
-                  <FontWhiteGreySmallerThin>
+                  <FontWhiteGreySmallerMedium>
                     {cameraShotData.name}
-                  </FontWhiteGreySmallerThin>
+                  </FontWhiteGreySmallerMedium>
                 )}
               </CameraShotTextContainer>
             </CameraShotButton>

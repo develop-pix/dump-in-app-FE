@@ -4,9 +4,9 @@ import FavoirteButton from '../reuse/button/FavoritetButton';
 import {BranchTitleProps} from '../../interfaces/Branch.interface';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
 import {
-  FontWhiteGreySmallestThick,
-  FontYellowSmallerThinWithLineSpacing,
-  FontWhiteBiggestThick,
+  FontWhiteGreySmallestSemibold,
+  FontYellowSmallerMediumWithLineSpacing,
+  FontWhiteBiggestSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
 import {
   BranchHashTagsContainer,
@@ -27,14 +27,16 @@ export default function BranchTitle({
     <BranchTitleContainer>
       <TitleContainer>
         <BranchNameContainer>
-          <FontWhiteBiggestThick>{photoboothName}</FontWhiteBiggestThick>
-          <FontWhiteGreySmallestThick>{branchName}</FontWhiteGreySmallestThick>
+          <FontWhiteBiggestSemibold>{photoboothName}</FontWhiteBiggestSemibold>
+          <FontWhiteGreySmallestSemibold>
+            {branchName}
+          </FontWhiteGreySmallestSemibold>
         </BranchNameContainer>
         <BranchHashTagsContainer>
           {TagsArrayToHashTagArrayForm(branchHashtag).map(tag => (
-            <FontYellowSmallerThinWithLineSpacing key={tag}>
+            <FontYellowSmallerMediumWithLineSpacing key={tag}>
               {tag}
-            </FontYellowSmallerThinWithLineSpacing>
+            </FontYellowSmallerMediumWithLineSpacing>
           ))}
         </BranchHashTagsContainer>
       </TitleContainer>

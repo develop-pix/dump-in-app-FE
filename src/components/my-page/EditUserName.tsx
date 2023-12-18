@@ -12,9 +12,9 @@ import {
 } from '../../styles/layout/my-page/EditUserName.style';
 import EditImage from '../../assets/image/reuse/edit.png';
 import {
-  FontWhiteBiggestThick,
-  FontYellowSmallerThin,
-  FontWhiteGreyNormalThin,
+  FontWhiteBiggestSemibold,
+  FontYellowSmallerMedium,
+  FontWhiteGreyNormalMedium,
 } from '../../styles/layout/reuse/text/Text.style';
 
 export default function EditUserName() {
@@ -42,7 +42,9 @@ export default function EditUserName() {
   return (
     <EditUserNameContainer>
       {userID === null ? (
-        <FontWhiteBiggestThick>로그인이 필요합니다.</FontWhiteBiggestThick>
+        <FontWhiteBiggestSemibold>
+          로그인이 필요합니다.
+        </FontWhiteBiggestSemibold>
       ) : (
         <>
           {isEditing ? (
@@ -58,21 +60,21 @@ export default function EditUserName() {
                 selectTextOnFocus
               />
               <CompleteButton onPress={handleSaveUserName}>
-                <FontYellowSmallerThin>완료</FontYellowSmallerThin>
+                <FontYellowSmallerMedium>완료</FontYellowSmallerMedium>
               </CompleteButton>
             </UserNickNameWrapper>
           ) : (
             <UserNickNameWrapper>
-              <FontWhiteBiggestThick onPress={handleEditUserNickName}>
+              <FontWhiteBiggestSemibold onPress={handleEditUserNickName}>
                 {editedNickName}
-              </FontWhiteBiggestThick>
+              </FontWhiteBiggestSemibold>
               <TouchableOpacity onPress={handleEditUserNickName}>
                 <EditIcon source={EditImage} />
               </TouchableOpacity>
             </UserNickNameWrapper>
           )}
           <UserIDWrapper>
-            <FontWhiteGreyNormalThin>{userID}</FontWhiteGreyNormalThin>
+            <FontWhiteGreyNormalMedium>{userID}</FontWhiteGreyNormalMedium>
           </UserIDWrapper>
         </>
       )}

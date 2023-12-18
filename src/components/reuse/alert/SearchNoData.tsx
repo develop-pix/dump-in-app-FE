@@ -5,8 +5,8 @@ import {
   SearchNoDataContainer,
 } from '../../../styles/layout/reuse/alert/SearchNoData.style';
 import {
-  FontLightGreySmallerThin,
-  FontWhiteGreyNormalThin,
+  FontLightGreySmallerMedium,
+  FontWhiteGreyNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {SearchNoDataProps} from '../../../interfaces/reuse/text/SearchNoData.interface';
 import AlertIcon from '../../../assets/image/reuse/alert.png';
@@ -20,10 +20,12 @@ export default function SearchNoData({
       <NoDataContainer>
         <AlertImage source={AlertIcon} />
         {alertText ? (
-          <FontWhiteGreyNormalThin>{alertText}</FontWhiteGreyNormalThin>
+          <FontWhiteGreyNormalMedium>{alertText}</FontWhiteGreyNormalMedium>
         ) : null}
         {recommendText ? (
-          <FontLightGreySmallerThin>{recommendText}</FontLightGreySmallerThin>
+          <FontLightGreySmallerMedium>
+            {recommendText}
+          </FontLightGreySmallerMedium>
         ) : null}
       </NoDataContainer>
     </SearchNoDataContainer>

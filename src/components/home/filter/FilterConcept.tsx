@@ -6,7 +6,7 @@ import {
   FilterTextButtonContent,
 } from '../../../styles/layout/home/filter/Filter.style';
 import {View} from 'react-native';
-import {FontWhiteGreySmallerThick} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallerSemibold} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableConcepts = [
   '일상',
@@ -52,7 +52,7 @@ export default function FilterConcept({
 
   return (
     <View>
-      <FontWhiteGreySmallerThick>컨셉</FontWhiteGreySmallerThick>
+      <FontWhiteGreySmallerSemibold>컨셉</FontWhiteGreySmallerSemibold>
 
       <FilterContentContainer>
         {availableConcepts.map(conceptOption => {

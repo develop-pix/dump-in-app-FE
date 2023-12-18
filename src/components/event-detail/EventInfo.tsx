@@ -9,37 +9,37 @@ import {
   InfoDescriptionContainer,
 } from '../../styles/layout/event-detail/EventInfo.style';
 import {
-  FontLightGreySmallerThin,
-  FontWhiteGreySmallerThick,
-  FontLightGreySmallerThick,
+  FontLightGreySmallerMedium,
+  FontWhiteGreySmallerSemibold,
+  FontLightGreySmallerSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
 import CalenderImage from '../../assets/image/reuse/calender.png';
-import {FontWhiteSmallerThickWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteSmallerSemiboldWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 
 export default function EventInfo({eventData}: EventInfoProps) {
   return (
     <EventInfoContainer>
-      <FontWhiteSmallerThickWithLineSpacing>
+      <FontWhiteSmallerSemiboldWithLineSpacing>
         INFO
-      </FontWhiteSmallerThickWithLineSpacing>
+      </FontWhiteSmallerSemiboldWithLineSpacing>
 
       <InfoContainer>
         <InfoTitleContainer>
-          <FontWhiteGreySmallerThick>
+          <FontWhiteGreySmallerSemibold>
             {eventData.desciptionTitle}
-          </FontWhiteGreySmallerThick>
+          </FontWhiteGreySmallerSemibold>
         </InfoTitleContainer>
         <InfoDescriptionContainer>
-          <FontLightGreySmallerThick>
+          <FontLightGreySmallerSemibold>
             {eventData.desciption}
-          </FontLightGreySmallerThick>
+          </FontLightGreySmallerSemibold>
         </InfoDescriptionContainer>
 
         <InfoDateContainer>
           <CalenderIcon source={CalenderImage} />
-          <FontLightGreySmallerThin>
+          <FontLightGreySmallerMedium>
             {eventData.startDate} ~ {eventData.endDate}
-          </FontLightGreySmallerThin>
+          </FontLightGreySmallerMedium>
         </InfoDateContainer>
       </InfoContainer>
     </EventInfoContainer>

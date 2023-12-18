@@ -7,7 +7,7 @@ import {
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
-import {FontWhiteSmallerThin} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteSmallerMedium} from '../../styles/layout/reuse/text/Text.style';
 import {ScreenName} from '../../interfaces/NavigationBar';
 
 // 임시 포토부스 데이터
@@ -43,7 +43,7 @@ export default function CategoryPhotoBooth() {
           key={item.PhotoBoothID}
           onPress={() => onPressPhotoBooth(item.PhotoBoothID)}>
           <PhotoBoothLogo source={{uri: item.representativeImage}} />
-          <FontWhiteSmallerThin>{item.photoboothName}</FontWhiteSmallerThin>
+          <FontWhiteSmallerMedium>{item.photoboothName}</FontWhiteSmallerMedium>
         </PhotoBoothItem>
       ))}
     </CategoryPhotoBoothContainer>

@@ -7,7 +7,7 @@ import {
   PreviewImage,
   PreviewImageContainer,
 } from '../../../styles/layout/review-new/input/ImageFileInput.style';
-import {FontWhiteGreySmallestThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreySmallestMediumWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
 import ButtonAddImage from '../../../assets/image/fileInput/ButtonAdd.png';
@@ -46,11 +46,11 @@ export default function ImageFileInput({
       />
       <ImageUploadButtonContainer>
         <ImageUploadButton activeOpacity={0.7} onPress={onPressImageUpload}>
-          <FontWhiteGreySmallestThinWithLineHeight>
+          <FontWhiteGreySmallestMediumWithLineHeight>
             {representaiveImage === null
               ? '사진을 등록해주세요.'
               : '사진 수정하기'}
-          </FontWhiteGreySmallestThinWithLineHeight>
+          </FontWhiteGreySmallestMediumWithLineHeight>
         </ImageUploadButton>
       </ImageUploadButtonContainer>
     </ImageFileInputContainer>

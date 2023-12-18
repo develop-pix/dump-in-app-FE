@@ -12,8 +12,8 @@ import {
 import CloseModalButton from '../reuse/button/CloseModalButton';
 import {MyPageMenuProps} from '../../interfaces/MyPage.interface';
 import {
-  FontWhiteBiggerThick,
-  FontWhiteGreyBiggerThick,
+  FontWhiteBiggerSemibold,
+  FontWhiteGreyBiggerSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
 import NextButtonImage from '../../assets/image/reuse/next-btn.png';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
@@ -64,42 +64,54 @@ export default function MyPageMenu({visible, setMenuVisible}: MyPageMenuProps) {
         <MenuContentContainer>
           <TextContainer>
             <MenuItemContainer>
-              <FontWhiteBiggerThick>알림</FontWhiteBiggerThick>
+              <FontWhiteBiggerSemibold>알림</FontWhiteBiggerSemibold>
               <NextButtonIcon source={NextButtonImage} />
             </MenuItemContainer>
           </TextContainer>
 
           <TextContainer>
             <MenuItemContainer>
-              <FontWhiteGreyBiggerThick>문의하기</FontWhiteGreyBiggerThick>
+              <FontWhiteGreyBiggerSemibold>
+                문의하기
+              </FontWhiteGreyBiggerSemibold>
             </MenuItemContainer>
             <MenuItemContainer>
-              <FontWhiteGreyBiggerThick>이용약관</FontWhiteGreyBiggerThick>
+              <FontWhiteGreyBiggerSemibold>
+                이용약관
+              </FontWhiteGreyBiggerSemibold>
             </MenuItemContainer>
             <MenuItemContainer>
-              <FontWhiteGreyBiggerThick>
+              <FontWhiteGreyBiggerSemibold>
                 개인정보 처리방침
-              </FontWhiteGreyBiggerThick>
+              </FontWhiteGreyBiggerSemibold>
             </MenuItemContainer>
             <MenuItemContainer>
-              <FontWhiteGreyBiggerThick>버전 정보</FontWhiteGreyBiggerThick>
+              <FontWhiteGreyBiggerSemibold>
+                버전 정보
+              </FontWhiteGreyBiggerSemibold>
             </MenuItemContainer>
           </TextContainer>
 
           {isLoggedIn ? (
             <UserTextContainer>
               <MenuItemContainer onPress={handleLogoutClick}>
-                <FontWhiteGreyBiggerThick>로그아웃</FontWhiteGreyBiggerThick>
+                <FontWhiteGreyBiggerSemibold>
+                  로그아웃
+                </FontWhiteGreyBiggerSemibold>
               </MenuItemContainer>
 
               <MenuItemContainer>
-                <FontWhiteGreyBiggerThick>회원탈퇴</FontWhiteGreyBiggerThick>
+                <FontWhiteGreyBiggerSemibold>
+                  회원탈퇴
+                </FontWhiteGreyBiggerSemibold>
               </MenuItemContainer>
             </UserTextContainer>
           ) : (
             <UserTextContainer>
               <MenuItemContainer onPress={handleLoginClick}>
-                <FontWhiteGreyBiggerThick>로그인</FontWhiteGreyBiggerThick>
+                <FontWhiteGreyBiggerSemibold>
+                  로그인
+                </FontWhiteGreyBiggerSemibold>
               </MenuItemContainer>
             </UserTextContainer>
           )}

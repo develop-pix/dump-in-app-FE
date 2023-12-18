@@ -15,8 +15,8 @@ import {
   RootStackParam,
 } from '../../interfaces/NavigationBar';
 import {
-  FontLightGreySmallerThin,
-  FontWhiteGreyNormalThin,
+  FontLightGreySmallerMedium,
+  FontWhiteGreyNormalMedium,
 } from '../../styles/layout/reuse/text/Text.style';
 import {ScreenName} from '../../interfaces/NavigationBar';
 
@@ -26,7 +26,6 @@ export default function BranchList({
   branchID,
 }: BranchListProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-
   const route =
     useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
 
@@ -48,10 +47,10 @@ export default function BranchList({
       <LocationIconContainer source={LocationIcon} />
       <LocationInfo>
         <BranchNameWrapper>
-          <FontWhiteGreyNormalThin>{branchName}</FontWhiteGreyNormalThin>
+          <FontWhiteGreyNormalMedium>{branchName}</FontWhiteGreyNormalMedium>
         </BranchNameWrapper>
         <BranchDistanceWrapper>
-          <FontLightGreySmallerThin>{distance}</FontLightGreySmallerThin>
+          <FontLightGreySmallerMedium>{distance}</FontLightGreySmallerMedium>
         </BranchDistanceWrapper>
       </LocationInfo>
     </BranchListContainer>

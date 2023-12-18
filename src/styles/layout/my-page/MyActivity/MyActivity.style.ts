@@ -24,5 +24,5 @@ export const ActivityIconText = styled.Text<{isActive: boolean}>`
   margin-top: 5px;
   color: ${({isActive}) => (isActive ? colors.white : colors.whitegrey)};
   font-size: ${fontSize.smallest};
-  font-weight: ${fontWeight.thin};
+  font-weight: ${fontWeight.medium};
 `;
