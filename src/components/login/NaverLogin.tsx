@@ -1,10 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import NaverLoginImage from '../../assets/image/login/naver-login.png';
+import {
+  NaverLoginContainer,
+  NaverIconWrapper,
+  NaverIcon,
+} from '../../styles/layout/login/NaverLogin.style';
+import {FontWhiteNormalThick} from '../../styles/layout/reuse/text/Text.style';
 
 export default function NaverLogin() {
+  const loginWithNaver = async () => {};
+
   return (
-    <View>
-      <Text>NaverLogin 페이지</Text>
-    </View>
+    <NaverLoginContainer>
+      <NaverIconWrapper onPress={loginWithNaver}>
+        <NaverIcon source={NaverLoginImage} />
+        <FontWhiteNormalThick>네이버로 로그인</FontWhiteNormalThick>
+      </NaverIconWrapper>
+    </NaverLoginContainer>
   );
 }
