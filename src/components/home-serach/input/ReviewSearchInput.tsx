@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Search from '../../reuse/input/Search';
 import {
@@ -15,8 +15,14 @@ import {
   EventDataProps,
 } from '../../../interfaces/HomeSearch.interface';
 import SearchNoData from '../../reuse/alert/SearchNoData';
+import {useRoute} from '@react-navigation/native';
 
 export default function ReviewSearchInput() {
+  const route = useRoute();
+  const currentPhotoBoothName = (
+    route.params as {PhotoBoothName: string | null}
+  ).PhotoBoothName;
+
   const [search, setSearch] = useState<string>('');
   const [showSearchResult, setShowSearchResult] = useState(false);
 
@@ -75,7 +81,7 @@ export default function ReviewSearchInput() {
       },
       {
         eventID: 2,
-        eventName: '포토이즘의 가을가을 프레임',
+        eventName: '포토그레이의 가을가을 프레임',
       },
       {
         eventID: 3,
@@ -86,7 +92,7 @@ export default function ReviewSearchInput() {
         eventName: '포토이즘 X 세븐틴 컴백 기념 프레임',
       },
     ];
-    const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우를 나타냄(true로 바꾸고 alert 테스트)
+    const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우
     const tempReviewData: ReviewProps[] = [
       {
         reviewID: 1,
@@ -130,6 +136,17 @@ export default function ReviewSearchInput() {
       await getSearchData(search); // 검색 실행
     }
   };
+
+  // PhotoDump에서 포토부스 이름 받아온 경우 바로 검색 실행
+  useEffect(() => {
+    const autoSearch = async () => {
+      if (currentPhotoBoothName !== null) {
+        await getSearchData(currentPhotoBoothName);
+      }
+    };
+
+    autoSearch();
+  }, [currentPhotoBoothName]);
 
   return (
     <ReviewSearchForm>

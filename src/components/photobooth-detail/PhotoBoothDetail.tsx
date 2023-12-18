@@ -98,7 +98,10 @@ export default function PhotoBoothDetail() {
       </OfficialImagesContainer>
 
       <PhotoDumpContainer>
-        <PhotoDump reviewData={photoboothData.review} />
+        <PhotoDump
+          photoBoothName={photoboothData.photoboothName}
+          reviewData={photoboothData.review}
+        />
       </PhotoDumpContainer>
     </ScrollView>
   );
