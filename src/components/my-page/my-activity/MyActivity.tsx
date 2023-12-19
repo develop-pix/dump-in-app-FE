@@ -2,21 +2,20 @@ import React from 'react';
 import {
   MyActivityContainer,
   ActivityItemContainer,
-  ActivityIcon,
   ActivityIconText,
 } from '../../../styles/layout/my-page/MyActivity/MyActivity.style';
 import {
   MyActiveProps,
   ActivityComponentItemProps,
 } from '../../../interfaces/MyPage.interface';
-import MyPictureImage from '../../../assets/image/my-page/my-picture.png';
-import ClickMyPictureImage from '../../../assets/image/my-page/click-my-picture.png';
-import FavoriteImage from '../../../assets/image/my-page/favorite.png';
-import ClickFavoriteImage from '../../../assets/image/reuse/fillfavorite.png';
-import LocationImage from '../../../assets/image/reuse/location.png';
-import ClickLocationImage from '../../../assets/image/reuse/location_white.png';
-import EventImage from '../../../assets/image/reuse/event.png';
-import ClickImage from '../../../assets/image/my-page/click-event.png';
+import MyPictureImage from '../../../assets/image/icon/my_picture.svg';
+import ClickMyPictureImage from '../../../assets/image/icon/click_my_picture.svg';
+import FavoriteImage from '../../../assets/image/icon/favorite.svg';
+import ClickFavoriteImage from '../../../assets/image/icon/click_favorite.svg';
+import LocationImage from '../../../assets/image/icon/location.svg';
+import ClickLocationImage from '../../../assets/image/icon/click_location.svg';
+import EventImage from '../../../assets/image/icon/event.svg';
+import ClickEventImage from '../../../assets/image/icon/click_event.svg';
 
 export default function MyActive({
   activeComponent,
@@ -25,47 +24,47 @@ export default function MyActive({
   const activityComponentItem: ActivityComponentItemProps[] = [
     {
       key: 'myPicture',
-      image: MyPictureImage,
-      activeImage: ClickMyPictureImage,
+      image: <MyPictureImage />,
+      activeImage: <ClickMyPictureImage />,
       text: '내 사진',
       component: 'MyReviewList',
     },
     {
       key: 'favorite',
-      image: FavoriteImage,
-      activeImage: ClickFavoriteImage,
+      image: <FavoriteImage />,
+      activeImage: <ClickFavoriteImage />,
       text: '게시글',
       component: 'MyPostList',
     },
     {
       key: 'location',
-      image: LocationImage,
-      activeImage: ClickLocationImage,
+      image: <LocationImage />,
+      activeImage: <ClickLocationImage />,
       text: '지점',
       component: 'MyPhotoBoothList',
     },
     {
       key: 'event',
-      image: EventImage,
-      activeImage: ClickImage,
+      image: <EventImage />,
+      activeImage: <ClickEventImage />,
       text: '이벤트',
       component: 'MyEventList',
     },
   ];
 
   const imageMap = {
-    MyReviewList: MyPictureImage,
-    MyPostList: FavoriteImage,
-    MyPhotoBoothList: LocationImage,
-    MyEventList: EventImage,
+    MyReviewList: <MyPictureImage height={20} />,
+    MyPostList: <FavoriteImage height={20} />,
+    MyPhotoBoothList: <LocationImage height={20} />,
+    MyEventList: <EventImage height={20} />,
     Login: '',
   };
 
   const activeImageMap = {
-    MyReviewList: ClickMyPictureImage,
-    MyPostList: ClickFavoriteImage,
-    MyPhotoBoothList: ClickLocationImage,
-    MyEventList: ClickImage,
+    MyReviewList: <ClickMyPictureImage height={20} />,
+    MyPostList: <ClickFavoriteImage height={20} />,
+    MyPhotoBoothList: <ClickLocationImage height={20} />,
+    MyEventList: <ClickEventImage height={20} />,
     Login: '',
   };
 
@@ -79,14 +78,9 @@ export default function MyActive({
             setActiveComponent(item.component);
           }}
           isActive={activeComponent === item.component}>
-          <ActivityIcon
-            source={
-              activeComponent === item.component
-                ? activeImageMap[item.component]
-                : imageMap[item.component]
-            }
-            resizeMode="contain"
-          />
+          {activeComponent === item.component
+            ? activeImageMap[item.component]
+            : imageMap[item.component]}
           <ActivityIconText isActive={activeComponent === item.component}>
             {item.text}
           </ActivityIconText>

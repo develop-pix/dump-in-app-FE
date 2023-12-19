@@ -17,7 +17,7 @@ export const PhotoBoothFrameImage = styled.Image`
   resize-mode: cover;
 `;
 
-export const TagImage = styled.Image`
+export const TagImage = styled.View`
   position: absolute;
   left: 118px;
   width: 42px;
@@ -37,9 +37,7 @@ export const PhotoBoothNameContainer = styled.View`
   margin-bottom: 10px;
 `;
 
-export const LocationIcon = styled.Image`
-  width: 18px;
-  height: 21px;
+export const LocationIconContainer = styled.View`
   margin-right: 5px;
   margin-left: 5px;
 `;

@@ -12,19 +12,19 @@ import {FontWhiteGreySmallerSemibold} from '../../../styles/layout/reuse/text/Te
 const availableCameraShots = [
   {
     name: '클로즈업',
-    image: require('../../../assets/image/filter/filter-close-up.png'),
+    image: require('../../../assets/image/source/filter-close-up.png'),
   },
   {
     name: '상반신',
-    image: require('../../../assets/image/filter/filter-bust.png'),
+    image: require('../../../assets/image/source/filter-bust.png'),
   },
   {
     name: '무릎',
-    image: require('../../../assets/image/filter/filter-knee.png'),
+    image: require('../../../assets/image/source/filter-knee.png'),
   },
   {
     name: '전신',
-    image: require('../../../assets/image/filter/filter-whole-body.png'),
+    image: require('../../../assets/image/source/filter-whole-body.png'),
   },
 ];
 

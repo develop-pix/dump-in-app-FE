@@ -25,6 +25,7 @@ export const frameColors = {
 export const loginColors = {
   kakao: '#FEE500',
   naver: '#03C75A',
+  apple: '#FFFFFF',
 };
 
 export const fontSize = {

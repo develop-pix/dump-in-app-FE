@@ -6,8 +6,7 @@ export const KaKaoLoginContainer = styled.View`
   margin-top: 50px;
 `;
 
-// 카카오 규정 색상 #FEE500, border 12px
-export const KaKaoIconWrapper = styled.TouchableOpacity`
+export const KakaoInfoContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -15,18 +14,17 @@ export const KaKaoIconWrapper = styled.TouchableOpacity`
   height: 54px;
   background-color: ${loginColors.kakao};
   border-radius: 12px;
+  position: relative;
 `;
 
-export const KaKaoIcon = styled.Image`
-  width: 24px;
-  height: 24px;
-  resize-mode: contain;
-  margin-right: 15px;
-  margin-top: 5px;
+export const KakaoIconWrapper = styled.View`
+  position: absolute;
+  left: 30%;
 `;
 
 export const KaKaoText = styled.Text`
   font-size: ${fontSize.normal};
   font-weight: ${fontWeight.semibold};
   color: rgba(0, 0, 0, 0.85);
+  margin-left: 40px;
 `;

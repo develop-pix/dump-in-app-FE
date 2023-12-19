@@ -17,7 +17,7 @@ export const EventFrameImage = styled.Image`
   resize-mode: cover;
 `;
 
-export const TagImage = styled.Image`
+export const TagImage = styled.View`
   position: absolute;
   left: 118px;
   width: 42px;

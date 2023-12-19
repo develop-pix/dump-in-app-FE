@@ -25,8 +25,6 @@ export const InfoDateContainer = styled.View`
   align-items: center;
 `;
 
-export const CalenderIcon = styled.Image`
-  width: 16px;
-  height: 21px;
+export const CalenderIconContainer = styled.View`
   margin-right: 13px;
 `;

@@ -45,12 +45,6 @@ export const FontWhiteNormalMedium = styled.Text`
   font-size: ${fontSize.normal};
   font-weight: ${fontWeight.medium};
 `;
-export const FontWhiteNormalMediumWithLineHeight = styled.Text`
-  font-family: ${fontFamily.Pretendard};
-  color: ${colors.white};
-  font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.medium};
-`;
 
 export const FontWhiteSmallerSemibold = styled.Text`
   font-family: ${fontFamily.Pretendard};

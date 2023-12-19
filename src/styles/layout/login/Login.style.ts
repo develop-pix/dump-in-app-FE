@@ -10,12 +10,12 @@ export const LoginComponentsContainer = styled.View`
 `;
 
 export const LogoIcon = styled.Image`
-  margin-top: 100px;
+  margin-top: 80px;
   width: 140px;
   height: 140px;
   border-radius: 70px;
 `;
 export const AppDescriptionWrapper = styled.View`
-  margin-top: 30px;
+  margin-top: 20px;
   width: 50%;
 `;

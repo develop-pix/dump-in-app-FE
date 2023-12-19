@@ -1,11 +1,11 @@
 import React from 'react';
 import GoBackButton from '../button/GoBackButton';
-import MenuImage from '../../../assets/image/reuse/menu.png';
+import MenuIcon from '../../../assets/image/icon/menu.svg';
 import {
   ButtonContainer,
   MyPageGoBackButtonContainerWithSafeArea,
   MyPageMenuButtonContainerWithSafeArea,
-  StyledImage,
+  MenuIconContainer,
 } from '../../../styles/layout/reuse/header/MyPageBar.style';
 import {Platform} from 'react-native';
 import {MyPageBarProps} from '../../../interfaces/reuse/header/MyPageBar.interface';
@@ -26,7 +26,9 @@ export default function MyPageBar({setMenuVisible}: MyPageBarProps) {
       <MyPageMenuButtonContainerWithSafeArea
         platform={platform}
         onPress={handleOpenMenu}>
-        <StyledImage source={MenuImage} />
+        <MenuIconContainer>
+          <MenuIcon width={18} height={12} />
+        </MenuIconContainer>
       </MyPageMenuButtonContainerWithSafeArea>
     </ButtonContainer>
   );

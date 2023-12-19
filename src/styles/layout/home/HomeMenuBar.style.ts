@@ -9,17 +9,10 @@ export const HomeMunuBarContainer = styled.View`
   padding: 15px;
 `;
 
-export const FilterIcon = styled.Image`
-  width: 40px;
-  height: 40px;
-`;
-
 export const HomeMunuBarIconsBox = styled.View`
   flex-direction: row;
 `;
 
-export const HomeMunuBarIcon = styled.Image`
-  width: 40px;
-  height: 40px;
+export const HomeMunuBarIconContainer = styled.View`
   margin-left: 10px;
 `;

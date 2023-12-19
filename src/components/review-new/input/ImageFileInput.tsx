@@ -6,11 +6,12 @@ import {
   NoDataImageContainer,
   PreviewImage,
   PreviewImageContainer,
+  PreviewNoImage,
 } from '../../../styles/layout/review-new/input/ImageFileInput.style';
 import {FontWhiteGreySmallestMediumWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
-import ButtonAddImage from '../../../assets/image/fileInput/ButtonAdd.png';
+import ButtonAddImage from '../../../assets/image/icon/btn_add.svg';
 import {ImageFileInputProps} from '../../../interfaces/ReviewNew.interface';
 
 export default function ImageFileInput({
@@ -25,7 +26,9 @@ export default function ImageFileInput({
     <ImageFileInputContainer>
       {representaiveImage === null ? (
         <NoDataImageContainer onPress={onPressImageUpload} activeOpacity={0.8}>
-          <PreviewImage source={ButtonAddImage} />
+          <PreviewNoImage>
+            <ButtonAddImage width={17} height={17} />
+          </PreviewNoImage>
         </NoDataImageContainer>
       ) : (
         <PreviewImageContainer>

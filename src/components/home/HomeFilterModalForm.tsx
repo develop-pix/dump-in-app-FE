@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {ScrollView} from 'react-native';
 import Modal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
-import CloseBtnImage from '../../assets/image/reuse/close-btn.png';
+import CloseIcon from '../../assets/image/icon/btn_close.svg';
 import {HomeFilterModalFormProps} from '../../interfaces/reuse/Filter.interface';
 import {FilterButton} from '../reuse/button/FilterButton';
 import FilterLocation from './filter/FilterLocation';
@@ -16,7 +16,6 @@ import {
   FilterFormHeader,
   FilterOptionContainer,
   CloseButton,
-  CloseButtonImage,
   FilterButtonBox,
   FilterFormTitleContainer,
 } from '../../styles/layout/home/HomeFilterModalForm.style';
@@ -95,7 +94,7 @@ export default function HomeFilterModalForm({
       isVisible={true}
       animationIn="slideInUp"
       animationOut="slideOutDown"
-      deviceWidth={100}>
+      backdropOpacity={0.7}>
       <FilterFormContainer>
         <FilterFormBody>
           <FilterFormHeader>
@@ -110,14 +109,14 @@ export default function HomeFilterModalForm({
                 handleHideFilterModal();
                 handleFilterReset(); // 창 닫으면서 초기화
               }}>
-              <CloseButtonImage source={CloseBtnImage} />
+              <CloseIcon />
             </CloseButton>
           </FilterFormHeader>
 
           <ScrollView>
             <LinearGradient
               colors={['transparent', colors.lightblack]}
-              locations={[0.2, 0.3]}
+              locations={[0.1, 0.3]}
               style={{
                 position: 'absolute',
                 left: 0,

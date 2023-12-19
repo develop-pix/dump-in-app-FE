@@ -1,7 +1,7 @@
 import React from 'react';
 import {PhotoBoothFrameProps} from '../../../interfaces/Home.interface';
-import LocationImage from '../../../assets/image/reuse/location.png';
-import PickImage from '../../../assets/image/reuse/pick.png';
+import LocationGreyIcon from '../../../assets/image/icon/list_location.svg';
+import PickIcon from '../../../assets/image/icon/pick.svg';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   PhotoBoothFrameContainer,
@@ -9,7 +9,7 @@ import {
   TagImage,
   PhotoBoothInfo,
   PhotoBoothNameContainer,
-  LocationIcon,
+  LocationIconContainer,
 } from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
 import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
@@ -48,11 +48,15 @@ export default function PhotoBoothFrame({data}: PhotoBoothFrameProps) {
         }}
       />
 
-      <TagImage source={PickImage} />
+      <TagImage>
+        <PickIcon />
+      </TagImage>
 
       <PhotoBoothInfo>
         <PhotoBoothNameContainer>
-          <LocationIcon source={LocationImage} />
+          <LocationIconContainer>
+            <LocationGreyIcon width={18} height={21} />
+          </LocationIconContainer>
           <FontWhiteGreySmallerMediumWithLineHeight>
             {data.photoboothName}
           </FontWhiteGreySmallerMediumWithLineHeight>

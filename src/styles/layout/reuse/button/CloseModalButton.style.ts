@@ -17,8 +17,6 @@ export const CloseModalButtonContainer = styled.View<{
   margin-bottom: 10px;
 `;
 
-export const BackImage = styled.Image`
-  width: 16px;
-  height: 16px;
+export const BackImageContainer = styled.View`
   margin-left: 20px;
 `;

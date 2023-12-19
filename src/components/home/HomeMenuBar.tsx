@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import FilterImage from '../../assets/image/home-menu-bar/filter.png';
-import SearchImage from '../../assets/image/reuse/search.png';
-import NotificationImage from '../../assets/image/home-menu-bar/notification.png';
+import FilterIcon from '../../assets/image/icon/filter.svg';
+import SearchIcon from '../../assets/image/icon/search.svg';
+import NotificationIcon from '../../assets/image/icon/notification.svg';
 import {
   HomeMunuBarContainer,
-  FilterIcon,
   HomeMunuBarIconsBox,
-  HomeMunuBarIcon,
+  HomeMunuBarIconContainer,
 } from '../../styles/layout/home/HomeMenuBar.style';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
 import HomeFilterModalForm from './HomeFilterModalForm';
@@ -44,13 +43,15 @@ export default function HomeMenuBar({
   return (
     <HomeMunuBarContainer>
       <TouchableOpacity onPress={handleShowFilterModal}>
-        <FilterIcon source={FilterImage} />
+        <FilterIcon />
       </TouchableOpacity>
       <HomeMunuBarIconsBox>
         <TouchableOpacity onPress={onSearchScreen}>
-          <HomeMunuBarIcon source={SearchImage} />
+          <SearchIcon />
         </TouchableOpacity>
-        <HomeMunuBarIcon source={NotificationImage} />
+        <HomeMunuBarIconContainer>
+          <NotificationIcon />
+        </HomeMunuBarIconContainer>
       </HomeMunuBarIconsBox>
 
       {isFilterVisible && (

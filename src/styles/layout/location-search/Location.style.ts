@@ -46,9 +46,7 @@ export const BranchListContainer = styled.TouchableOpacity`
   border-bottom-width: 1px;
 `;
 
-export const LocationIconContainer = styled.Image`
-  width: 20px;
-  height: 20px;
+export const LocationDarkIconContainer = styled.View`
   margin-top: 10px;
 `;
 

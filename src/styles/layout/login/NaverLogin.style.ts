@@ -1,13 +1,12 @@
 import styled from 'styled-components/native';
-import {loginColors} from '../../base/Variable';
+import {colors, loginColors, fontSize, fontWeight} from '../../base/Variable';
 
 export const NaverLoginContainer = styled.View`
   align-items: center;
   margin-top: 10px;
 `;
 
-// 네이버 규정 색상 #03C75A
-export const NaverIconWrapper = styled.TouchableOpacity`
+export const NaverInfoContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -15,10 +14,17 @@ export const NaverIconWrapper = styled.TouchableOpacity`
   height: 54px;
   background-color: ${loginColors.naver};
   border-radius: 12px;
+  position: relative;
 `;
 
-export const NaverIcon = styled.Image`
-  width: 100%;
-  height: 100%;
-  resize-mode: contain;
+export const NaverIconWrapper = styled.View`
+  position: absolute;
+  left: 26%;
+`;
+
+export const NaverText = styled.Text`
+  color: ${colors.white};
+  font-size: ${fontSize.normal};
+  font-weight: ${fontWeight.semibold};
+  margin-left: 40px;
 `;

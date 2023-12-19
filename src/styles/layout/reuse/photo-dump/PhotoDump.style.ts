@@ -66,18 +66,8 @@ export const FindMoreReviewWrapper = styled.View`
   align-items: center;
 `;
 
-export const SearchImage = styled.Image`
-  width: 50px;
-  height: 46px;
-`;
-
 export const SeeMoreButton = styled.TouchableOpacity`
   flex-direction: row;
   gap: 10px;
   align-items: center;
-`;
-
-export const NextImage = styled.Image`
-  width: 20px;
-  height: 20px;
 `;

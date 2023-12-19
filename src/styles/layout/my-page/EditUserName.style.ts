@@ -12,9 +12,7 @@ export const UserNickNameWrapper = styled.View`
   padding: 10px 5px;
 `;
 
-export const EditIcon = styled.Image`
-  width: 15px;
-  height: 15px;
+export const EditIconContainer = styled.View`
   margin-left: 20px;
   margin-top: 5px;
 `;

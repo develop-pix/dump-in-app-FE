@@ -19,6 +19,14 @@ export const PreviewImageContainer = styled.View`
   aspect-ratio: 0.7;
 `;
 
+export const PreviewNoImage = styled.View`
+  height: 100%;
+  width: 100%;
+  background-color: ${colors.blackgrey};
+  align-items: center;
+  justify-content: center;
+`;
+
 export const PreviewImage = styled.Image`
   height: 100%;
   width: 100%;

@@ -1,30 +1,30 @@
 import React from 'react';
-import HomeImage from '../../../assets/image/navigation-bar/home.png';
-import ClickHomeImage from '../../../assets/image/navigation-bar/click-home.png';
-import LocationImage from '../../../assets/image/navigation-bar/location.png';
-import ClickLocationImage from '../../../assets/image/navigation-bar/click-location.png';
-import CategoryImage from '../../../assets/image/navigation-bar/category.png';
-import ClickCategoryImage from '../../../assets/image/navigation-bar/click-category.png';
-import MyPageImage from '../../../assets/image/navigation-bar/mypage.png';
-import ClickMyPageImage from '../../../assets/image/navigation-bar/click-mypage.png';
+import HomeImage from '../../../assets/image/icon/navigation-icon/home.svg';
+import ClickHomeImage from '../../../assets/image/icon/navigation-icon/click_home.svg';
+import LocationImage from '../../../assets/image/icon/navigation-icon/location.svg';
+import ClickLocationImage from '../../../assets/image/icon/navigation-icon/click_location.svg';
+import CategoryImage from '../../../assets/image/icon/navigation-icon/category.svg';
+import ClickCategoryImage from '../../../assets/image/icon/navigation-icon/click_category.svg';
+import MyPageImage from '../../../assets/image/icon/navigation-icon/mypage.svg';
+import ClickMyPageImage from '../../../assets/image/icon/navigation-icon/click_mypage.svg';
 import {
   NavigationBarListItemContainer,
-  NavigationImage,
+  NavigationImageContainer,
 } from '../../../styles/layout/navigation-bar/NavigationBarItem.style';
 import {NavigationBarListItemProps} from '../../../interfaces/NavigationBar';
 
-const imageMap: Record<string, HTMLImageElement> = {
-  Home: HomeImage,
-  Location: LocationImage,
-  Category: CategoryImage,
-  MyPage: MyPageImage,
+const imageMap: Record<string, React.JSX.Element> = {
+  Home: <HomeImage />,
+  Location: <LocationImage />,
+  Category: <CategoryImage />,
+  MyPage: <MyPageImage />,
 };
 
-const clickImageMap: Record<string, HTMLImageElement> = {
-  Home: ClickHomeImage,
-  Location: ClickLocationImage,
-  Category: ClickCategoryImage,
-  MyPage: ClickMyPageImage,
+const clickImageMap: Record<string, React.JSX.Element> = {
+  Home: <ClickHomeImage />,
+  Location: <ClickLocationImage />,
+  Category: <ClickCategoryImage />,
+  MyPage: <ClickMyPageImage />,
 };
 
 export default function NavigationBarListItem({
@@ -37,7 +37,7 @@ export default function NavigationBarListItem({
 
   return (
     <NavigationBarListItemContainer onPress={() => handleListClick(screen)}>
-      <NavigationImage source={imageSource} resizeMode="contain" />
+      <NavigationImageContainer>{imageSource}</NavigationImageContainer>
     </NavigationBarListItemContainer>
   );
 }

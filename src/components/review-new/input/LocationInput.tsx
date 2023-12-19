@@ -11,7 +11,6 @@ import {
   FontWhiteSmallerMediumWithLineHeight,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
-  LocationImage,
   LocationInputButton,
   LocationInputContainer,
   LocationTextContainer,
@@ -30,7 +29,7 @@ import {
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setBranchID} from '../../../hooks/redux/ReviewData';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import LocationIcon from '../../../assets/image/reuse/location.png';
+import LocationGreyIcon from '../../../assets/image/icon/location_grey.svg';
 import {LocationInputProps} from '../../../interfaces/ReviewNew.interface';
 export default function LocationInput({
   location,
@@ -81,7 +80,7 @@ export default function LocationInput({
             </FontLightGreyNormalMedium>
           ) : (
             <LocationTextContainer>
-              <LocationImage source={LocationIcon} />
+              <LocationGreyIcon width={16} height={21} />
               <FontWhiteNormalMedium>{location}</FontWhiteNormalMedium>
             </LocationTextContainer>
           )}

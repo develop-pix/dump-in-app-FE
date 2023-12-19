@@ -22,7 +22,7 @@ export const ReviewDetailFormWrapper = styled.View`
 
 export const ReviewImageContainer = styled.View`
   width: 100%;
-  height: ${Dimensions.get('window').height - 44}px;
+  height: ${Dimensions.get('window').height - 24}px;
   background-color: ${colors.white};
 `;
 

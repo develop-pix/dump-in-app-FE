@@ -30,9 +30,7 @@ export const ReviewNameContainer = styled.View`
   margin-bottom: 10px;
 `;
 
-export const LocationIcon = styled.Image`
-  width: 18px;
-  height: 21px;
+export const LocationIconContainer = styled.View`
   margin-right: 5px;
   margin-left: 5px;
 `;

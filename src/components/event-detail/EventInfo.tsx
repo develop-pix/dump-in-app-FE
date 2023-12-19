@@ -4,7 +4,7 @@ import {
   EventInfoContainer,
   InfoContainer,
   InfoDateContainer,
-  CalenderIcon,
+  CalenderIconContainer,
   InfoTitleContainer,
   InfoDescriptionContainer,
 } from '../../styles/layout/event-detail/EventInfo.style';
@@ -13,7 +13,7 @@ import {
   FontWhiteGreySmallerSemibold,
   FontLightGreySmallerSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
-import CalenderImage from '../../assets/image/reuse/calender.png';
+import CalenderIcon from '../../assets/image/icon/calendar.svg';
 import {FontWhiteSmallerSemiboldWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 
 export default function EventInfo({eventData}: EventInfoProps) {
@@ -36,7 +36,9 @@ export default function EventInfo({eventData}: EventInfoProps) {
         </InfoDescriptionContainer>
 
         <InfoDateContainer>
-          <CalenderIcon source={CalenderImage} />
+          <CalenderIconContainer>
+            <CalenderIcon width={16} height={21} />
+          </CalenderIconContainer>
           <FontLightGreySmallerMedium>
             {eventData.startDate} ~ {eventData.endDate}
           </FontLightGreySmallerMedium>

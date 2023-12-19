@@ -5,12 +5,12 @@ import {setUserNickName} from '../../hooks/redux/UserDataSlice';
 import {
   EditUserNameContainer,
   UserNickNameWrapper,
-  EditIcon,
   CompleteButton,
   EditNickName,
   UserIDWrapper,
+  EditIconContainer,
 } from '../../styles/layout/my-page/EditUserName.style';
-import EditImage from '../../assets/image/reuse/edit.png';
+import EditIcon from '../../assets/image/icon/edit.svg';
 import {
   FontWhiteBiggestSemibold,
   FontYellowSmallerMedium,
@@ -69,7 +69,9 @@ export default function EditUserName() {
                 {editedNickName}
               </FontWhiteBiggestSemibold>
               <TouchableOpacity onPress={handleEditUserNickName}>
-                <EditIcon source={EditImage} />
+                <EditIconContainer>
+                  <EditIcon />
+                </EditIconContainer>
               </TouchableOpacity>
             </UserNickNameWrapper>
           )}

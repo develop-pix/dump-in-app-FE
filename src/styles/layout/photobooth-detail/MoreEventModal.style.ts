@@ -21,8 +21,3 @@ export const CloseButtonContainer = styled.TouchableOpacity`
   position: absolute;
   right: 10px;
 `;
-
-export const CloseButtonIcon = styled.Image`
-  width: 44px;
-  height: 44px;
-`;
