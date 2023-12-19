@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {ReviewFrameProps} from '../../../interfaces/Home.interface';
-import LocationImage from '../../../assets/image/reuse/location.png';
+import LocationGreyIcon from '../../../assets/image/icon/list_location.svg';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   ReviewFrameContainer,
   ReviewFrameImage,
   ReviewInfo,
   ReviewNameContainer,
-  LocationIcon,
+  LocationIconContainer,
 } from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
 import {colors} from '../../../styles/base/Variable';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
@@ -56,7 +56,9 @@ export default function MyPostFrame({data}: ReviewFrameProps) {
 
       <ReviewInfo>
         <ReviewNameContainer>
-          <LocationIcon source={LocationImage} />
+          <LocationIconContainer>
+            <LocationGreyIcon width={18} height={21} />
+          </LocationIconContainer>
           <FontWhiteGreySmallerMediumWithLineHeight>
             {data.branchName}
           </FontWhiteGreySmallerMediumWithLineHeight>

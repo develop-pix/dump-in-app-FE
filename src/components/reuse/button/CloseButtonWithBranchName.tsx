@@ -3,16 +3,13 @@ import React from 'react';
 import {
   BranchNameContainer,
   CloseButtonWithBranchNameContainer,
-  GoBackImage,
   CloseImageContainer,
-  LocationImage,
   ReviewDescTextContainer,
   ReviewManageButtonContainer,
-  ReviewManageButton,
 } from '../../../styles/layout/reuse/button/CloseButtonWithBranchName.style';
-import ArrowBackIcon from '../../../assets/image/reuse/arrow_back.png';
-import SeeMoreIcon from '../../../assets/image/reuse/SeeMore.png';
-import LocationIcon from '../../../assets/image/reuse/location_white.png';
+import ArrowBackIcon from '../../../assets/image/icon/arrow_back_white.svg';
+import SeeMoreIcon from '../../../assets/image/icon/btn_more.svg';
+import LocationIcon from '../../../assets/image/icon/location_white.svg';
 import {FontWhiteNormalMedium} from '../../../styles/layout/reuse/text/Text.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -38,10 +35,10 @@ export default function CloseButtonWithBranchName({
   return (
     <CloseButtonWithBranchNameContainer platform={platform}>
       <CloseImageContainer onPress={onPressClose}>
-        <GoBackImage source={ArrowBackIcon} />
+        <ArrowBackIcon width={16} height={16} />
       </CloseImageContainer>
       <BranchNameContainer>
-        <LocationImage source={LocationIcon} />
+        <LocationIcon width={20} height={24} />
         <ReviewDescTextContainer>
           <FontWhiteNormalMedium>{photoboothName}</FontWhiteNormalMedium>
           <FontWhiteNormalMedium>{branchName}</FontWhiteNormalMedium>
@@ -49,7 +46,7 @@ export default function CloseButtonWithBranchName({
       </BranchNameContainer>
       {mine ? (
         <ReviewManageButtonContainer onPress={onPressOpenModal}>
-          <ReviewManageButton source={SeeMoreIcon} />
+          <SeeMoreIcon width={4} height={16} />
         </ReviewManageButtonContainer>
       ) : (
         <ReviewManageButtonContainer />

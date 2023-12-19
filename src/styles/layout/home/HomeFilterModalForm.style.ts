@@ -27,11 +27,6 @@ export const FilterFormTitleContainer = styled.View`
 
 export const CloseButton = styled.TouchableOpacity``;
 
-export const CloseButtonImage = styled.Image`
-  width: 44px;
-  height: 44px;
-`;
-
 export const FilterOptionContainer = styled.View`
   padding: 10px 20px;
 `;

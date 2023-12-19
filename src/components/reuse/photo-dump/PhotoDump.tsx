@@ -4,11 +4,9 @@ import {
   CarouselScrollView,
   FindMoreReviewContainer,
   FindMoreReviewWrapper,
-  NextImage,
   PhotoDumpContainer,
   ReviewBlurImage,
   Reviews,
-  SearchImage,
   SeeMoreButton,
   SubTitleContainer,
 } from '../../../styles/layout/reuse/photo-dump/PhotoDump.style';
@@ -29,8 +27,8 @@ import {
 } from '../../../interfaces/NavigationBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ScreenName} from '../../../interfaces/NavigationBar';
-import SearchIcon from '../../../assets/image/reuse/search.png';
-import NextIcon from '../../../assets/image/reuse/next-btn.png';
+import SearchIcon from '../../../assets/image/icon/search.svg';
+import NextIcon from '../../../assets/image/icon/btn_next.svg';
 
 export default function PhotoDump({reviewData}: PhotoDumpProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -158,13 +156,13 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
                   blurRadius={4}
                 />
                 <FindMoreReviewWrapper>
-                  <SearchImage source={SearchIcon} />
+                  <SearchIcon width={50} height={46} />
                   <FontWhiteNormalMedium>
                     포토부스 검색으로 더 많은 리뷰 보기
                   </FontWhiteNormalMedium>
                   <SeeMoreButton onPress={onPressHomeSearch}>
                     <FontWhiteSmallerMedium>리뷰 더보기</FontWhiteSmallerMedium>
-                    <NextImage source={NextIcon} />
+                    <NextIcon width={20} height={20} />
                   </SeeMoreButton>
                 </FindMoreReviewWrapper>
               </FindMoreReviewContainer>

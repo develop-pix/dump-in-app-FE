@@ -2,17 +2,15 @@ import React from 'react';
 import {View} from 'react-native';
 import {frameColors} from '../../../styles/base/Variable';
 import {FilterDataUpdateProps} from '../../../interfaces/reuse/Filter.interface';
-import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
-import BlackCheckImage from '../../../assets/image/filter/black-check.png';
 import {FilterContentContainer} from '../../../styles/layout/home/filter/Filter.style';
 import {
   FrameColorButton,
   EtcFrameColorButton,
-  FrameColorCheckIcon,
-  EtcFrameColorCheckIcon,
 } from '../../../styles/layout/home/filter/FilterFrameColor.style';
-import EtcImage from '../../../assets/image/filter/etc-color.png';
-import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
+import WhiteCheckIcon from '../../../assets/image/icon/check_white.svg';
+import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';
+import EtcImage from '../../../assets/image/icon/frame_etc.svg';
+import EtcCheckImage from '../../../assets/image/icon/check_frame_etc.svg';
 import {FontWhiteGreySmallerSemibold} from '../../../styles/layout/reuse/text/Text.style';
 
 const availableColors = Object.values(frameColors);
@@ -48,15 +46,12 @@ export default function FilterFrameColor({
               colorOption={colorOption}
               selectedColor={filterData.frameColor}
               onPress={() => handleColorToggle(colorOption)}>
-              {isSelected && (
-                <FrameColorCheckIcon
-                  source={
-                    colorOption === frameColors.white
-                      ? BlackCheckImage
-                      : WhiteCheckImage
-                  }
-                />
-              )}
+              {isSelected &&
+                (colorOption === frameColors.white ? (
+                  <BlackCheckIcon width={24} height={24} />
+                ) : (
+                  <WhiteCheckIcon width={24} height={24} />
+                ))}
             </FrameColorButton>
           );
         })}
@@ -65,9 +60,11 @@ export default function FilterFrameColor({
           isSelected={filterData.frameColor === 'etc'}
           selectedColor={filterData.frameColor}
           onPress={() => handleColorToggle('etc')}>
-          <EtcFrameColorCheckIcon
-            source={filterData.frameColor === 'etc' ? EtcCheckImage : EtcImage}
-          />
+          {filterData.frameColor === 'etc' ? (
+            <EtcCheckImage width={36} height={36} />
+          ) : (
+            <EtcImage width={36} height={36} />
+          )}
         </EtcFrameColorButton>
       </FilterContentContainer>
     </View>

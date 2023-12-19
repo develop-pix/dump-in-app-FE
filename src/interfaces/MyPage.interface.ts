@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type ActivityComponentProps =
   | 'MyReviewList'
   | 'MyPostList'
@@ -12,8 +14,8 @@ export interface MyActiveProps {
 
 export interface ActivityComponentItemProps {
   key: string;
-  image: string;
-  activeImage: string;
+  image: React.JSX.Element;
+  activeImage: React.JSX.Element;
   text: string;
   component: ActivityComponentProps;
 }

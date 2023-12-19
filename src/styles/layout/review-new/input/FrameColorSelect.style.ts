@@ -37,19 +37,7 @@ export const FrameColorButton = styled.TouchableOpacity<{
 export const EtcFrameColorButton = styled.TouchableOpacity<{
   isSelected: string | null;
 }>`
-  width: 36px;
-  height: 36px;
   justify-content: center;
   opacity: ${props =>
     props.isSelected === null ? '1' : props.isSelected === 'etc' ? '1' : '0.2'};
-`;
-
-export const FrameColorCheckIcon = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
-
-export const EtcFrameColorCheckIcon = styled.Image`
-  width: 100%;
-  height: 100%;
 `;

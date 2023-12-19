@@ -34,8 +34,6 @@ export const MyPageMenuButtonContainerWithSafeArea = styled.TouchableOpacity<{
       : null};
 `;
 
-export const StyledImage = styled.Image`
-  width: 18px;
-  height: 12px;
+export const MenuIconContainer = styled.View`
   margin-right: 20px;
 `;

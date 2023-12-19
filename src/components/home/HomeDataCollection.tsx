@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {FlatList, Image} from 'react-native';
+import {FlatList} from 'react-native';
 import PhotoBoothList from './photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
@@ -16,6 +16,7 @@ import {
   ReviewProps,
 } from '../../interfaces/Home.interface';
 import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
+import UpIcon from '../../assets/image/icon/btn_up.svg';
 
 export default function HomeDataCollection() {
   // 필터 변수
@@ -177,7 +178,7 @@ export default function HomeDataCollection() {
           />
 
           <UpScrollImageBox onPress={handleScrollToTop}>
-            <Image source={require('../../assets/image/reuse/up-scroll.png')} />
+            <UpIcon />
           </UpScrollImageBox>
         </>
       ) : (

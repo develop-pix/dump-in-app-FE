@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  BackButton,
-  BackImage,
-} from '../../../styles/layout/reuse/button/GoBackButton.style';
-import BackIcon from '../../../assets/image/reuse/arrow_back.png';
+import {BackButton} from '../../../styles/layout/reuse/button/GoBackButton.style';
+import BackIcon from '../../../assets/image/icon/arrow_back_white.svg';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
@@ -15,7 +12,7 @@ export default function GoBackButton() {
   };
   return (
     <BackButton onPress={onPressGoBack}>
-      <BackImage source={BackIcon} />
+      <BackIcon width={16} height={16} />
     </BackButton>
   );
 }

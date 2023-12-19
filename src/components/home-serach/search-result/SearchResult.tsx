@@ -12,12 +12,13 @@ import {SearchResultAlertContainer} from '../../../styles/layout/home-search/inp
 import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
 import MoreEventResult from './MoreEventResult';
 import {ReviewProps} from '../../../interfaces/Home.interface';
-import {TouchableOpacity, FlatList, Image, Modal} from 'react-native';
+import {TouchableOpacity, FlatList, Modal} from 'react-native';
 import GetMoreReview from '../../reuse/photo-dump/GetMoreReview';
 import {
   FontWhiteGreySmallerSemibold,
   FontWhiteGreyNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
+import UpIcon from '../../../assets/image/icon/btn_up.svg';
 
 export default function SearchResult({
   searchData,
@@ -152,9 +153,7 @@ export default function SearchResult({
 
       {allPhotoBoothData.length >= 6 && (
         <PhotoDumpUpScrollImageBox onPress={handleScrollToTop}>
-          <Image
-            source={require('../../../assets/image/reuse/up-scroll.png')}
-          />
+          <UpIcon />
         </PhotoDumpUpScrollImageBox>
       )}
 
