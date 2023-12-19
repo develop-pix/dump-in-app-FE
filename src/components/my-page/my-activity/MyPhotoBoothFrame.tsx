@@ -5,7 +5,6 @@ import {
   InfoContainer,
   PhotoBoothNameWrapper,
   HashtagContainer,
-  HashtagText,
   FavoirteIcon,
 } from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothFrame.style';
 import {MyPhotoBoothFrameProps} from '../../../interfaces/MyPage.interface';
@@ -18,6 +17,7 @@ import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
 import {
   FontWhiteBiggestSemiboldWithLineHeight,
   FontWhiteGreySmallerSemibold,
+  FontYellowSmallerMediumWithLineSpacingWithMargin,
 } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function MyPhotoBoothFrame({
@@ -57,7 +57,9 @@ export default function MyPhotoBoothFrame({
 
         <HashtagContainer>
           {TagsArrayToHashTagArrayForm(photoBoothData.hashtag).map(tag => (
-            <HashtagText key={tag}>{tag}</HashtagText>
+            <FontYellowSmallerMediumWithLineSpacingWithMargin key={tag}>
+              {tag}
+            </FontYellowSmallerMediumWithLineSpacingWithMargin>
           ))}
         </HashtagContainer>
       </InfoContainer>

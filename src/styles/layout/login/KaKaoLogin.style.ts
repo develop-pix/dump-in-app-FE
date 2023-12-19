@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {fontSize, fontWeight} from '../../base/Variable';
+import {fontSize, fontWeight, loginColors} from '../../base/Variable';
 
 export const KaKaoLoginContainer = styled.View`
   align-items: center;
@@ -13,7 +13,7 @@ export const KaKaoIconWrapper = styled.TouchableOpacity`
   justify-content: center;
   width: 360px;
   height: 54px;
-  background-color: #fee500;
+  background-color: ${loginColors.kakao};
   border-radius: 12px;
 `;
 

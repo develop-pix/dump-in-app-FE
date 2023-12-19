@@ -1,5 +1,4 @@
 import React from 'react';
-import KaKaoLoginImage from '../../assets/image/login/kakao-login.png';
 import {
   KaKaoLoginContainer,
   KaKaoIconWrapper,
@@ -13,7 +12,9 @@ export default function KakaoLogin() {
   return (
     <KaKaoLoginContainer>
       <KaKaoIconWrapper activeOpacity={1} onPress={loginWithKakao}>
-        <KaKaoIcon source={KaKaoLoginImage} />
+        <KaKaoIcon
+          source={require('../../assets/image/login/kakao-login.png')}
+        />
         <KaKaoText>카카오 로그인</KaKaoText>
       </KaKaoIconWrapper>
     </KaKaoLoginContainer>

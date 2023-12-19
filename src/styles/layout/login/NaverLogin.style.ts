@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {loginColors} from '../../base/Variable';
 
 export const NaverLoginContainer = styled.View`
   align-items: center;
@@ -12,7 +13,7 @@ export const NaverIconWrapper = styled.TouchableOpacity`
   justify-content: center;
   width: 360px;
   height: 54px;
-  background-color: #03c75a;
+  background-color: ${loginColors.naver};
   border-radius: 12px;
 `;
 

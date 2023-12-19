@@ -1,5 +1,4 @@
 import React from 'react';
-import NaverLoginImage from '../../assets/image/login/naver-login.png';
 import {
   NaverLoginContainer,
   NaverIconWrapper,
@@ -12,7 +11,9 @@ export default function NaverLogin() {
   return (
     <NaverLoginContainer>
       <NaverIconWrapper activeOpacity={1} onPress={loginWithNaver}>
-        <NaverIcon source={NaverLoginImage} />
+        <NaverIcon
+          source={require('../../assets/image/login/naver-login.png')}
+        />
       </NaverIconWrapper>
     </NaverLoginContainer>
   );

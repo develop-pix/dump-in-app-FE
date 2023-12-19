@@ -1,5 +1,4 @@
 import React from 'react';
-import AppleLoginImage from '../../assets/image/login/apple-login.png';
 import {
   AppleLoginContainer,
   AppleIconWrapper,
@@ -12,7 +11,9 @@ export default function AppleLogin() {
   return (
     <AppleLoginContainer>
       <AppleIconWrapper activeOpacity={1} onPress={loginWithApple}>
-        <AppleIcon source={AppleLoginImage} />
+        <AppleIcon
+          source={require('../../assets/image/login/apple-login.png')}
+        />
       </AppleIconWrapper>
     </AppleLoginContainer>
   );

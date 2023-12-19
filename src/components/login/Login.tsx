@@ -8,8 +8,8 @@ import {
   LoginComponentsContainer,
   LogoIcon,
   AppDescriptionWrapper,
-  AppDescriptionText,
 } from '../../styles/layout/login/Login.style';
+import {FontWhiteBiggerSemiboldWithTextAlign} from '../../styles/layout/reuse/text/Text.style';
 import LogoImage from '../../assets/image/dummy/img_official.png';
 import MyPageMenu from '../my-page/MyPageMenu';
 
@@ -23,9 +23,9 @@ export default function Login() {
       <LoginComponentsContainer>
         <LogoIcon source={LogoImage} resizeMode="cover" />
         <AppDescriptionWrapper>
-          <AppDescriptionText>
+          <FontWhiteBiggerSemiboldWithTextAlign>
             덤핀 서비스 설명글 간단하게 한두줄 정도
-          </AppDescriptionText>
+          </FontWhiteBiggerSemiboldWithTextAlign>
         </AppDescriptionWrapper>
         <KakaoLogin />
         <NaverLogin />

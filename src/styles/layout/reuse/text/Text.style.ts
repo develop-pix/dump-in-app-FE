@@ -24,6 +24,14 @@ export const FontWhiteBiggerSemibold = styled.Text`
   font-weight: ${fontWeight.semibold};
 `;
 
+export const FontWhiteBiggerSemiboldWithTextAlign = styled.Text`
+  font-family: ${fontFamily.Pretendard};
+  color: ${colors.white};
+  font-size: ${fontSize.bigger};
+  font-weight: ${fontWeight.semibold};
+  text-align: center;
+`;
+
 export const FontWhiteNormalSemibold = styled.Text`
   font-family: ${fontFamily.Pretendard};
   color: ${colors.white};
@@ -64,6 +72,14 @@ export const FontWhiteSmallerMedium = styled.Text`
   color: ${colors.white};
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.medium};
+`;
+
+export const FontWhiteSmallerMediumWithLineHeight = styled.TouchableOpacity`
+  font-family: ${fontFamily.Pretendard};
+  color: ${colors.white};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.medium};
+  line-height: 14px;
 `;
 
 export const FontWhiteSmallestSemibold = styled.Text`
@@ -189,6 +205,15 @@ export const FontYellowSmallerMediumWithLineSpacing = styled.Text`
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.medium};
   letter-spacing: -0.5px;
+`;
+
+export const FontYellowSmallerMediumWithLineSpacingWithMargin = styled.Text`
+  color: ${colors.yellow};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
+  letter-spacing: -0.5px;
+  margin-right: 10px;
 `;
 
 export const FontYellowSmallestMedium = styled.Text`

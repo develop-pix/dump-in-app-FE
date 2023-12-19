@@ -22,6 +22,11 @@ export const frameColors = {
   grey: '#A1A1A1',
 };
 
+export const loginColors = {
+  kakao: '#FEE500',
+  naver: '#03C75A',
+};
+
 export const fontSize = {
   biggest: '20px',
   bigger: '18px',
