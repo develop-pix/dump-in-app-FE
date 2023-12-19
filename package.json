@@ -12,7 +12,6 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.5",
     "@react-native-community/datetimepicker": "^7.6.2",
-    "@react-native-seoul/kakao-login": "^5.3.1",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "@reduxjs/toolkit": "^1.9.7",

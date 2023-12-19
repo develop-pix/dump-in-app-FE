@@ -1,26 +1,20 @@
 import React from 'react';
-import KakaoLogins from '@react-native-seoul/kakao-login';
 import KaKaoLoginImage from '../../assets/image/login/kakao-login.png';
 import {
   KaKaoLoginContainer,
   KaKaoIconWrapper,
   KaKaoIcon,
+  KaKaoText,
 } from '../../styles/layout/login/KaKaoLogin.style';
 
 export default function KakaoLogin() {
-  const loginWithKakao = async () => {
-    try {
-      const token = await KakaoLogins.login();
-      console.log('token', token);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const loginWithKakao = async () => {};
 
   return (
     <KaKaoLoginContainer>
-      <KaKaoIconWrapper onPress={loginWithKakao}>
+      <KaKaoIconWrapper activeOpacity={1} onPress={loginWithKakao}>
         <KaKaoIcon source={KaKaoLoginImage} />
+        <KaKaoText>카카오 로그인</KaKaoText>
       </KaKaoIconWrapper>
     </KaKaoLoginContainer>
   );

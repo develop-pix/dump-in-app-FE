@@ -1,10 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import AppleLoginImage from '../../assets/image/login/apple-login.png';
+import {
+  AppleLoginContainer,
+  AppleIconWrapper,
+  AppleIcon,
+} from '../../styles/layout/login/AppleLogin.style';
 
 export default function AppleLogin() {
+  const loginWithApple = async () => {};
+
   return (
-    <View>
-      <Text>AppleLogin 페이지</Text>
-    </View>
+    <AppleLoginContainer>
+      <AppleIconWrapper activeOpacity={1} onPress={loginWithApple}>
+        <AppleIcon source={AppleLoginImage} />
+      </AppleIconWrapper>
+    </AppleLoginContainer>
   );
 }

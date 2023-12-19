@@ -37,8 +37,8 @@ export default function EventResult({searchData, data}: EventResultProps) {
     return (
       <EventResultContainer onPress={onPressEvent}>
         <EventListInfo>
-          <EventListIcon source={SearchResultIcon} />
-          <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
+          <EventListIcon source={EventIcon} />
+          <FontWhiteGreyNormalMedium numberOfLines={1} ellipsizeMode="tail">
             {data.eventName}
           </FontWhiteGreyNormalMedium>
         </EventListInfo>
@@ -53,8 +53,8 @@ export default function EventResult({searchData, data}: EventResultProps) {
   return (
     <EventResultContainer onPress={onPressEvent}>
       <EventListInfo>
-        <EventListIcon source={SearchResultIcon} />
-        <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
+        <EventListIcon source={EventIcon} />
+        <FontWhiteGreyNormalMedium numberOfLines={1} ellipsizeMode="tail">
           {beforeEventName}
           <FontWhiteNormalSemibold>{searchData}</FontWhiteNormalSemibold>
           {afterEventName}
