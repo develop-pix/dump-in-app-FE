@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../base/Variable';
 
 export const EditUserNameContainer = styled.View`
   flex: 1;
@@ -23,6 +23,7 @@ export const EditNickName = styled.TextInput`
   color: ${colors.white};
   font-size: ${fontSize.biggest};
   font-weight: ${fontWeight.semibold};
+  font-family: ${fontFamily.Pretendard};
   background-color: ${colors.darkgrey};
   padding: 5px 10px;
   border-radius: 7px;

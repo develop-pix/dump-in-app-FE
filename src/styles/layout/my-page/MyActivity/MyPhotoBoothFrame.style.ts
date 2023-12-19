@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 export const MyPhotoBoothFrameContainer = styled.TouchableOpacity`
   flex-direction: row;
@@ -37,6 +37,7 @@ export const HashtagText = styled.Text`
   color: ${colors.yellow};
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
   letter-spacing: -0.5px;
   margin-right: 10px;
 `;

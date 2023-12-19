@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 export const MyActivityContainer = styled.View`
   flex-direction: row;
@@ -25,4 +25,5 @@ export const ActivityIconText = styled.Text<{isActive: boolean}>`
   color: ${({isActive}) => (isActive ? colors.white : colors.whitegrey)};
   font-size: ${fontSize.smallest};
   font-weight: ${fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
 `;

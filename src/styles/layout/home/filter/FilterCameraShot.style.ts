@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 // 카메라샷 이미지 컨테이너 스타일
 export const CameraShotImageContainer = styled.TouchableOpacity<{
@@ -32,4 +32,5 @@ export const CameraShotImageText = styled.Text<{isSelected: boolean}>`
   color: ${({isSelected}) => (isSelected ? colors.white : colors.whitegrey)};
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
 `;

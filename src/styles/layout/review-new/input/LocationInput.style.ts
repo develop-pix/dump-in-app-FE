@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 export const LocationInputContainer = styled.View`
   width: 47%;
@@ -20,6 +20,7 @@ export const LocationTextButton = styled.TouchableOpacity`
   color: ${colors.white};
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
   line-height: 14px;
 `;
 
