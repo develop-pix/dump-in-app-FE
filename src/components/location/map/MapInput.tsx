@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchImage from '../../../assets/image/reuse/search-grey.png';
+import SearchGreyIcon from '../../../assets/image/icon/search_grey.svg';
 import {MapInputProps} from '../../../interfaces/Location.interface';
-import {SearchButtonIcon} from '../../../styles/layout/reuse/input/Search.style';
+import {SearchButtonIconContainer} from '../../../styles/layout/reuse/input/Search.style';
 import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
@@ -52,7 +52,9 @@ export default function MapInput({location}: MapInputProps) {
               selectTextOnFocus={false}
               onPressIn={onPressLocationSearch}
             />
-            <SearchButtonIcon source={SearchImage} />
+            <SearchButtonIconContainer>
+              <SearchGreyIcon />
+            </SearchButtonIconContainer>
           </InputForm>
         </MapInputhWrapper>
       </MapInputContainer>

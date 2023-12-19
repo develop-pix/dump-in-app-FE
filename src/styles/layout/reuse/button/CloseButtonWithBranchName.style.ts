@@ -25,20 +25,10 @@ export const CloseImageContainer = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export const GoBackImage = styled.Image`
-  width: 16px;
-  height: 16px;
-`;
-
 export const ReviewDescTextContainer = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 3px;
-`;
-
-export const LocationImage = styled.Image`
-  width: 20px;
-  height: 24px;
 `;
 
 export const BranchNameContainer = styled.View`
@@ -51,9 +41,4 @@ export const ReviewManageButtonContainer = styled.TouchableOpacity`
   height: 44px;
   align-items: center;
   justify-content: center;
-`;
-
-export const ReviewManageButton = styled.Image`
-  width: 4px;
-  height: 16px;
 `;

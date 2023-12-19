@@ -5,10 +5,9 @@ import {
   RecentSearchContentContainer,
   RecentSearchButton,
   CloseButton,
-  CloseButtonIcon,
   EmptySearchMessageContainer,
 } from '../../../styles/layout/home-search/input/RecentSearch.style';
-import CloseBtnImage from '../../../assets/image/reuse/close-btn-sub.png';
+import CancelIcon from '../../../assets/image/icon/btn_cancel.svg';
 import {HomeSearchProps} from '../../../interfaces/HomeSearch.interface';
 import {RecentSearchItemProps} from '../../../interfaces/HomeSearch.interface';
 import {
@@ -56,7 +55,7 @@ export default function RecentSearch({onRecentListClick}: HomeSearchProps) {
                   {searchItem.search}
                 </FontWhiteGreySmallerMedium>
                 <CloseButton onPress={() => onDelete(index)}>
-                  <CloseButtonIcon source={CloseBtnImage} />
+                  <CancelIcon width={20} height={20} />
                 </CloseButton>
               </RecentSearchButton>
             ),

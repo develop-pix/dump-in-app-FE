@@ -1,10 +1,9 @@
 import React from 'react';
-import ResetLocationIcon from '../../../assets/image/map/btn_reset.png';
+import ResetLocationIcon from '../../../assets/image/icon/btn_reset.svg';
 import {ResetLocationButtonProps} from '../../../interfaces/Location.interface';
 import {
   ResetLocation,
   ResetLocationButtonContainer,
-  ResetLocationImage,
 } from '../../../styles/layout/location/ResetLocationButton.style';
 
 export default function ResetLocationButton({
@@ -20,7 +19,7 @@ export default function ResetLocationButton({
   return (
     <ResetLocationButtonContainer>
       <ResetLocation onPress={onPressResetLocation}>
-        <ResetLocationImage source={ResetLocationIcon} />
+        <ResetLocationIcon width={44} height={44} />
       </ResetLocation>
     </ResetLocationButtonContainer>
   );

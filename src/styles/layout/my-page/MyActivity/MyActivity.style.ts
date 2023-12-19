@@ -16,10 +16,6 @@ export const ActivityItemContainer = styled.TouchableOpacity<{
   padding: 10px 5px;
 `;
 
-export const ActivityIcon = styled.Image`
-  height: 20px;
-`;
-
 export const ActivityIconText = styled.Text<{isActive: boolean}>`
   margin-top: 5px;
   color: ${({isActive}) => (isActive ? colors.white : colors.whitegrey)};

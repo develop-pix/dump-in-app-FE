@@ -5,7 +5,6 @@ import {
   CloseModalButtonContainer,
   MenuContentContainer,
   TextContainer,
-  NextButtonIcon,
   MenuItemContainer,
   UserTextContainer,
 } from '../../styles/layout/my-page/MyPageMenu.style';
@@ -15,7 +14,7 @@ import {
   FontWhiteBiggerSemibold,
   FontWhiteGreyBiggerSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
-import NextButtonImage from '../../assets/image/reuse/next-btn.png';
+import NextButtonIcon from '../../assets/image/icon/btn_next_grey.svg';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
 import {useNavigation} from '@react-navigation/native';
 import {useAppSelector, useAppDispatch} from '../../hooks/redux/store';
@@ -65,7 +64,7 @@ export default function MyPageMenu({visible, setMenuVisible}: MyPageMenuProps) {
           <TextContainer>
             <MenuItemContainer>
               <FontWhiteBiggerSemibold>알림</FontWhiteBiggerSemibold>
-              <NextButtonIcon source={NextButtonImage} />
+              <NextButtonIcon width={34} height={34} />
             </MenuItemContainer>
           </TextContainer>
 

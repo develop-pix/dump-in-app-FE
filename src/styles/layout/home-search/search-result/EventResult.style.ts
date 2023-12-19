@@ -18,9 +18,7 @@ export const EventListInfo = styled.View`
   width: 300px;
 `;
 
-export const EventListIcon = styled.Image`
-  width: 24px;
-  height: 24px;
+export const EventListIconContainer = styled.View`
   margin-top: 4px;
   margin-right: 10px;
 `;

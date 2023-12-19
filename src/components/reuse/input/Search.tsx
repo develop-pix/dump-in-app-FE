@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchImage from '../../../assets/image/reuse/search-grey.png';
+import SearchGreyIcon from '../../../assets/image/icon/search_grey.svg';
 import {
-  SearchButtonIcon,
+  SearchButtonIconContainer,
   SearchInput,
   SearchWrapper,
   Wrapper,
@@ -28,7 +28,9 @@ export default function Search({
           value={search}
         />
         <TouchableOpacity onPress={SubmitSearch}>
-          <SearchButtonIcon source={SearchImage} />
+          <SearchButtonIconContainer>
+            <SearchGreyIcon />
+          </SearchButtonIconContainer>
         </TouchableOpacity>
       </SearchWrapper>
     </Wrapper>

@@ -69,5 +69,3 @@ export const BackButton = styled.TouchableOpacity`
 export const SubmitButton = styled.TouchableOpacity`
   margin-right: 20px;
 `;
-
-export const BackImage = styled.Image``;

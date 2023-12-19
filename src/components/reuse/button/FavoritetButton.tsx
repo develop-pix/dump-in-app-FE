@@ -1,12 +1,9 @@
 import {TouchableOpacity} from 'react-native';
 import React from 'react';
 import {FavortiteButtonProps} from '../../../interfaces/reuse/button/Button.interfaces';
-import {
-  HeartButtonContainer,
-  HeartImage,
-} from '../../../styles/layout/reuse/button/HeartButton.style';
-import FillFavoriteIcon from '../../../assets/image/reuse/fillfavorite.png';
-import FavoriteIcon from '../../../assets/image/reuse/favorite.png';
+import {HeartButtonContainer} from '../../../styles/layout/reuse/button/HeartButton.style';
+import FillFavoriteIcon from '../../../assets/image/icon/click_favorite.svg';
+import NoFavoriteIcon from '../../../assets/image/icon/no_favorite.svg';
 
 export default function FavoirteButton({
   favorite,
@@ -25,13 +22,13 @@ export default function FavoirteButton({
       {favorite ? (
         <TouchableOpacity onPress={onPressFavorite}>
           <HeartButtonContainer>
-            <HeartImage source={FillFavoriteIcon} />
+            <FillFavoriteIcon width={24} height={24} />
           </HeartButtonContainer>
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={onPressNoFavorite}>
           <HeartButtonContainer>
-            <HeartImage source={FavoriteIcon} />
+            <NoFavoriteIcon width={24} height={24} />
           </HeartButtonContainer>
         </TouchableOpacity>
       )}

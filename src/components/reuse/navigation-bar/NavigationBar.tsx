@@ -1,9 +1,8 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Image} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationBarListItem from './NavigationBarListItem';
-import CameraImage from '../../../assets/image/navigation-bar/camera.png';
+import AddReviewIcon from '../../../assets/image/icon/btn_add.svg';
 import {
   NavigationBarContainer,
   ReviewNewItem,
@@ -44,7 +43,7 @@ export default function NavigationBar({currentScreen}: NavigationBarProps) {
       />
 
       <ReviewNewItem onPress={onPressRegistrationReview}>
-        <Image source={CameraImage} />
+        <AddReviewIcon width={13} height={13} />
       </ReviewNewItem>
 
       <NavigationBarListItem

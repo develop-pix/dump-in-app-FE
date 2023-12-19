@@ -4,6 +4,7 @@ export const NavigationBarListItemContainer = styled.Pressable`
   padding: 5px;
 `;
 
-export const NavigationImage = styled.Image`
+export const NavigationImageContainer = styled.View`
   height: 50px;
+  justify-content: center;
 `;

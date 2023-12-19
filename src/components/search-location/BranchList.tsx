@@ -3,11 +3,11 @@ import {
   BranchDistanceWrapper,
   BranchListContainer,
   BranchNameWrapper,
-  LocationIconContainer,
+  LocationDarkIconContainer,
   LocationInfo,
 } from '../../styles/layout/location-search/Location.style';
 import {BranchListProps} from '../../interfaces/Location.interface';
-import LocationIcon from '../../assets/image/reuse/location.png';
+import LocationDarkIcon from '../../assets/image/icon/location_dark.svg';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
@@ -44,7 +44,9 @@ export default function BranchList({
 
   return (
     <BranchListContainer onPress={onSelectLocation}>
-      <LocationIconContainer source={LocationIcon} />
+      <LocationDarkIconContainer>
+        <LocationDarkIcon />
+      </LocationDarkIconContainer>
       <LocationInfo>
         <BranchNameWrapper>
           <FontWhiteGreyNormalMedium>{branchName}</FontWhiteGreyNormalMedium>

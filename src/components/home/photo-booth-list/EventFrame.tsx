@@ -1,6 +1,6 @@
 import React from 'react';
 import {EventFrameProps} from '../../../interfaces/Home.interface';
-import NewEventImage from '../../../assets/image/reuse/new.png';
+import NewEventIcon from '../../../assets/image/icon/new.svg';
 import {
   EventFrameContainer,
   EventFrameImage,
@@ -29,7 +29,9 @@ export default function EventFrame({data}: EventFrameProps) {
   return (
     <EventFrameContainer activeOpacity={0.9} onPress={onPressEvent}>
       <EventFrameImage source={{uri: data.representativeImage}} />
-      <TagImage source={NewEventImage} />
+      <TagImage>
+        <NewEventIcon />
+      </TagImage>
     </EventFrameContainer>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import {EventResultProps} from '../../../interfaces/HomeSearch.interface';
-import EventIcon from '../../../assets/image/reuse/event.png';
+import EventListIcon from '../../../assets/image/icon/result_event.svg';
 import {
   EventResultContainer,
-  EventListIcon,
+  EventListIconContainer,
   EventListInfo,
 } from '../../../styles/layout/home-search/search-result/EventResult.style';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
@@ -37,7 +37,9 @@ export default function EventResult({searchData, data}: EventResultProps) {
     return (
       <EventResultContainer onPress={onPressEvent}>
         <EventListInfo>
-          <EventListIcon source={EventIcon} />
+          <EventListIconContainer>
+            <EventListIcon width={24} height={24} />
+          </EventListIconContainer>
           <FontWhiteGreyNormalMedium numberOfLines={1} ellipsizeMode="tail">
             {data.eventName}
           </FontWhiteGreyNormalMedium>
@@ -53,7 +55,9 @@ export default function EventResult({searchData, data}: EventResultProps) {
   return (
     <EventResultContainer onPress={onPressEvent}>
       <EventListInfo>
-        <EventListIcon source={EventIcon} />
+        <EventListIconContainer>
+          <EventListIcon width={24} height={24} />
+        </EventListIconContainer>
         <FontWhiteGreyNormalMedium numberOfLines={1} ellipsizeMode="tail">
           {beforeEventName}
           <FontWhiteNormalSemibold>{searchData}</FontWhiteNormalSemibold>

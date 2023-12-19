@@ -23,13 +23,3 @@ export const DescContainer = styled.View`
   gap: 10px;
   width: 90%;
 `;
-
-export const LocationIcon = styled.Image`
-  width: 16px;
-  height: 21px;
-`;
-
-export const ClockIcon = styled.Image`
-  width: 16px;
-  height: 21px;
-`;

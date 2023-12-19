@@ -26,10 +26,5 @@ export const LocationTextButton = styled.TouchableOpacity`
 export const LocationTextContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  gap: 5px;
-`;
-
-export const LocationImage = styled.Image`
-  width: 16px;
-  height: 16px;
+  gap: 7px;
 `;

@@ -46,8 +46,6 @@ export const EventTitleContainer = styled.View`
   margin-bottom: 5px;
 `;
 
-export const LocationIcon = styled.Image`
-  width: 18px;
-  height: 21px;
+export const LocationIconContainer = styled.View`
   margin-right: 2px;
 `;

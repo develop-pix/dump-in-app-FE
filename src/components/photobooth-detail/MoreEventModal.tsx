@@ -10,9 +10,8 @@ import {
   MoreEventModalContainer,
   TitleContainer,
   CloseButtonContainer,
-  CloseButtonIcon,
 } from '../../styles/layout/photobooth-detail/MoreEventModal.style';
-import CloseButtonImage from '../../assets/image/reuse/close-btn.png';
+import CloseIcon from '../../assets/image/icon/btn_close.svg';
 import {FontWhiteGreyNormalSemibold} from '../../styles/layout/reuse/text/Text.style';
 import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
 
@@ -85,7 +84,7 @@ export default function MoreEventModal({
             이벤트 전체보기
           </FontWhiteGreyNormalSemibold>
           <CloseButtonContainer onPress={onClose}>
-            <CloseButtonIcon source={CloseButtonImage} />
+            <CloseIcon />
           </CloseButtonContainer>
         </TitleContainer>
 

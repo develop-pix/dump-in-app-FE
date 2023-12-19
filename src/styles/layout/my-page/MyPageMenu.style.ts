@@ -21,11 +21,6 @@ export const TextContainer = styled.View`
   border-bottom-color: ${colors.darkgrey};
 `;
 
-export const NextButtonIcon = styled.Image`
-  width: 34px;
-  height: 34px;
-`;
-
 export const UserTextContainer = styled.View`
   padding: 10px 0px;
 `;

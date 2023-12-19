@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../styles/base/Variable';
-import LocationImage from '../../assets/image/reuse/location_white.png';
+import LocationIcon from '../../assets/image/icon/location_white.svg';
 import {
   EventItemContainer,
   EventImage,
@@ -10,7 +10,7 @@ import {
   FavoirteIcon,
   EventInfo,
   PhotoBoothNameContainer,
-  LocationIcon,
+  LocationIconContainer,
   EventTitleContainer,
 } from '../../styles/layout/category/CategoryEventItem.style';
 import {
@@ -62,7 +62,9 @@ export default function CategoryEventItem({eventData}: CategoryEventItemProps) {
 
         <EventInfo>
           <PhotoBoothNameContainer>
-            <LocationIcon source={LocationImage} />
+            <LocationIconContainer>
+              <LocationIcon width={18} height={21} />
+            </LocationIconContainer>
             <FontWhiteSmallerMedium>
               {eventData.photoboothName}
             </FontWhiteSmallerMedium>

@@ -1,6 +1,6 @@
 import React from 'react';
-import LocationImage from '../../assets/image/reuse/location_dark.png';
-import ClockImage from '../../assets/image/reuse/clock.png';
+import LocationDarkIcon from '../../assets/image/icon/location_dark.svg';
+import ClockIcon from '../../assets/image/icon/clock.svg';
 import {BranchDescriptionProps} from '../../interfaces/Branch.interface';
 import {
   FontLightGreySmallerMedium,
@@ -9,9 +9,7 @@ import {
 import {
   BranchDesc,
   BranchDescriptionContainer,
-  ClockIcon,
   DescContainer,
-  LocationIcon,
 } from '../../styles/layout/branch/BranchDescription.style';
 
 export default function BranchDescription({
@@ -25,11 +23,11 @@ export default function BranchDescription({
       </FontWhiteSmallerSemiboldWithLineSpacing>
       <BranchDesc>
         <DescContainer>
-          <LocationIcon source={LocationImage} />
+          <LocationDarkIcon width={16} height={21} />
           <FontLightGreySmallerMedium>{address}</FontLightGreySmallerMedium>
         </DescContainer>
         <DescContainer>
-          <ClockIcon source={ClockImage} />
+          <ClockIcon width={16} height={21} />
           <FontLightGreySmallerMedium numberOfLines={1}>
             {open}
           </FontLightGreySmallerMedium>
