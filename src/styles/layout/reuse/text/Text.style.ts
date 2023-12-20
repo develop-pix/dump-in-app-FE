@@ -53,6 +53,14 @@ export const FontWhiteSmallerSemibold = styled.Text`
   font-weight: ${fontWeight.semibold};
 `;
 
+export const FontWhiteNormalSemiboldWithLineSpacing = styled.Text`
+  font-family: ${fontFamily.Montserrat};
+  color: ${colors.white};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.semibold};
+  letter-spacing: 3px;
+`;
+
 export const FontWhiteSmallerSemiboldWithLineSpacing = styled.Text`
   font-family: ${fontFamily.Montserrat};
   color: ${colors.white};
@@ -230,4 +238,12 @@ export const FontBlackSmallerSemibold = styled.Text`
   color: ${colors.black};
   font-size: ${fontSize.smaller};
   font-weight: ${fontWeight.semibold};
+`;
+
+/* grey */
+export const FontGreySmallerMedium = styled.Text`
+  font-family: ${fontFamily.Pretendard};
+  color: ${colors.grey};
+  font-size: ${fontSize.smaller};
+  font-weight: ${fontWeight.medium};
 `;

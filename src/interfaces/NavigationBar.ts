@@ -15,6 +15,7 @@ export type RootStackParam = {
   EventDetail: {eventID: number; screen: ScreenName};
   ReviewNew: {branchID: number | undefined; screen: ScreenName};
   Login: {screen: ScreenName};
+  Notification: {screen: ScreenName};
 };
 
 export interface NavigationScreenParam {

@@ -37,7 +37,15 @@ export default function HomeMenuBar({
 
   const onSearchScreen = () => {
     const currentScreen = (route.params as {screen: ScreenName}).screen;
-    navigation.navigate('HomeSearch', {screen: currentScreen});
+    navigation.navigate('HomeSearch', {
+      screen: currentScreen,
+      PhotoBoothName: null,
+    });
+  };
+
+  const onNotificationScreen = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    navigation.navigate('Notification', {screen: currentScreen});
   };
 
   return (
@@ -49,7 +57,7 @@ export default function HomeMenuBar({
         <TouchableOpacity onPress={onSearchScreen}>
           <SearchIcon />
         </TouchableOpacity>
-        <HomeMunuBarIconContainer>
+        <HomeMunuBarIconContainer onPress={onNotificationScreen}>
           <NotificationIcon />
         </HomeMunuBarIconContainer>
       </HomeMunuBarIconsBox>
