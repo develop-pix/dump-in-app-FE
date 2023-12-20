@@ -4,6 +4,7 @@ import {colors} from '../../base/Variable';
 export const FilterFormContainer = styled.View`
   flex: 1;
   justify-content: flex-end;
+  elevation: 0;
 `;
 
 export const FilterFormBody = styled.View`

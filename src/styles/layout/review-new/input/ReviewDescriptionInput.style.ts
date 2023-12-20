@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 export const ReviewDescriptionInputContainer = styled.View`
   justify-content: center;
@@ -20,6 +20,7 @@ export const ReviewDescriptionTextInput = styled.TextInput<{
   color: ${colors.white};
   font-size: ${fontSize.normal};
   font-weight: ${fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
   line-height: 16px;
   padding-top: ${props =>
     props.platform === 'ios'

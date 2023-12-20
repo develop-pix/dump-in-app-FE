@@ -26,6 +26,7 @@ export default function BranchList({
   branchID,
 }: BranchListProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+
   const route =
     useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
 

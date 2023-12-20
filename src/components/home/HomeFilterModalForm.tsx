@@ -94,7 +94,7 @@ export default function HomeFilterModalForm({
       isVisible={true}
       animationIn="slideInUp"
       animationOut="slideOutDown"
-      deviceWidth={100}>
+      backdropOpacity={0.7}>
       <FilterFormContainer>
         <FilterFormBody>
           <FilterFormHeader>
@@ -116,7 +116,7 @@ export default function HomeFilterModalForm({
           <ScrollView>
             <LinearGradient
               colors={['transparent', colors.lightblack]}
-              locations={[0.2, 0.3]}
+              locations={[0.1, 0.3]}
               style={{
                 position: 'absolute',
                 left: 0,

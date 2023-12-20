@@ -48,7 +48,7 @@ export default function FilterParty({
 
         <FilterTextButton
           isSelected={filterData.party === 5}
-          buttonWidth={44} // 피그마대로 40px를 가로로 주면 공간이 부족한 현상이 나오는데 해결해야함
+          buttonWidth={46}
           onPress={() => handlePartyToggle(5)}>
           <FilterTextButtonContent isSelected={filterData.party === 5}>
             5+

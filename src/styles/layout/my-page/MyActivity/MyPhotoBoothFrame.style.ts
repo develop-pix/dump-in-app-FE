@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors} from '../../../base/Variable';
 
 export const MyPhotoBoothFrameContainer = styled.TouchableOpacity`
   flex-direction: row;
@@ -31,14 +31,6 @@ export const HashtagContainer = styled.View`
   flex-wrap: wrap;
   width: 90%;
   margin-top: 10px;
-`;
-
-export const HashtagText = styled.Text`
-  color: ${colors.yellow};
-  font-size: ${fontSize.smaller};
-  font-weight: ${fontWeight.medium};
-  letter-spacing: -0.5px;
-  margin-right: 10px;
 `;
 
 export const FavoirteIcon = styled.View`

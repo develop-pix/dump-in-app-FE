@@ -8,11 +8,11 @@ import {
   FontRedNormalMedium,
   FontWhiteNormalMedium,
   FontYellowSmallestMedium,
+  FontWhiteSmallerMediumWithLineHeight,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   LocationInputButton,
   LocationInputContainer,
-  LocationTextButton,
   LocationTextContainer,
 } from '../../../styles/layout/review-new/input/LocationInput.style';
 
@@ -73,7 +73,7 @@ export default function LocationInput({
         })}
       </ReviewInputTitleContainer>
       <LocationInputButton onPress={onPressSelectLocation} activeOpacity={1}>
-        <LocationTextButton onPress={onPressSelectLocation}>
+        <FontWhiteSmallerMediumWithLineHeight onPress={onPressSelectLocation}>
           {location === undefined || null ? (
             <FontLightGreyNormalMedium>
               위치를 검색해주세요.
@@ -84,7 +84,7 @@ export default function LocationInput({
               <FontWhiteNormalMedium>{location}</FontWhiteNormalMedium>
             </LocationTextContainer>
           )}
-        </LocationTextButton>
+        </FontWhiteSmallerMediumWithLineHeight>
       </LocationInputButton>
     </LocationInputContainer>
   );

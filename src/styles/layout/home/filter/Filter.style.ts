@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 // 필터 내용 컨테이너 스타일
 export const FilterContentContainer = styled.View`
@@ -30,4 +30,5 @@ export const FilterTextButtonContent = styled.Text<{isSelected: boolean}>`
   font-size: ${fontSize.smaller};
   font-weight: ${({isSelected}) =>
     isSelected ? fontWeight.semibold : fontWeight.medium};
+  font-family: ${fontFamily.Pretendard};
 `;
