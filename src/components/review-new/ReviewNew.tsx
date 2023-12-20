@@ -63,6 +63,12 @@ export default function ReviewNew() {
     setErrorData([]);
 
     // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
+    if (representaiveImage === null || description === '') {
+      setErrorData(data => [
+        ...data,
+        {InputName: 'representaiveImage', height: 0},
+      ]);
+    }
     if (description === null || description === '') {
       setErrorData(data => [...data, {InputName: 'description', height: 450}]);
     }
@@ -117,6 +123,7 @@ export default function ReviewNew() {
       <ImageFileInput
         representaiveImage={representaiveImage}
         setOpenModal={setOpenModal}
+        errorData={errorData}
       />
       <InputContainer>
         <InputWrapper>

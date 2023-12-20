@@ -11,6 +11,7 @@ import LocationSearch from './src/pages/LocationSearch';
 import ReviewDetail from './src/pages/ReviewDetail';
 import PhotoBoothDetail from './src/pages/PhotoBoothDetail';
 import EventDetail from './src/pages/EventDetail';
+import OfficialImageDetail from './src/pages/OfficialImageDetail';
 import {ScreenProvider} from './src/utils/ScreenContext';
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
@@ -67,6 +68,16 @@ const App = () => {
                 name="Branch"
                 component={Branch}
                 initialParams={{screen: 'Branch', branchID: 0}}
+              />
+              <Stack.Screen
+                name="OfficialImageDetail"
+                component={OfficialImageDetail}
+                initialParams={{
+                  screen: 'OfficialImageDetail',
+                  photoBoothName: null,
+                  branchName: null,
+                  image: '',
+                }}
               />
               <Stack.Screen
                 name="ReviewDetail"

@@ -17,8 +17,8 @@ export const MapContainer = styled.View<{
   display: flex;
   height: ${props =>
     props.platform === 'ios'
-      ? Dimensions.get('window').height - 90
+      ? Dimensions.get('window').height - 70
       : props.platform === 'android'
-      ? Dimensions.get('window').height - 110
+      ? Dimensions.get('window').height - 90
       : null}px;
 `;

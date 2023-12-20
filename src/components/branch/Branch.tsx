@@ -303,7 +303,11 @@ export default function Branch() {
                 open={data.open}
                 myBranch={data.myBranch}
               />
-              <OfficialImages image={data.officialImage} />
+              <OfficialImages
+                photoBoothName={data.photoBoothName}
+                branchName={data.branchName}
+                image={data.officialImage}
+              />
               <PhotoDump
                 reviewData={data.review}
                 photoBoothName={data.photoBoothName}

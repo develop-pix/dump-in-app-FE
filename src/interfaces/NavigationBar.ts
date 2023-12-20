@@ -15,6 +15,12 @@ export type RootStackParam = {
   EventDetail: {eventID: number; screen: ScreenName};
   ReviewNew: {branchID: number | undefined; screen: ScreenName};
   Login: {screen: ScreenName};
+  OfficialImageDetail: {
+    screen: ScreenName;
+    photoBoothName: string;
+    branchName: string;
+    image: string;
+  };
 };
 
 export interface NavigationScreenParam {
@@ -69,5 +75,13 @@ export interface ScreenProviderProps {
 export type NewReviewParamList = {
   branchType: {
     branchID: number | undefined;
+  };
+};
+
+export type OfficialImageDetailParamList = {
+  imageData: {
+    photoBoothName: string | null;
+    branchName: string | null;
+    image: string;
   };
 };

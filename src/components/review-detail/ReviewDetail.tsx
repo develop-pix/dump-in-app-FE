@@ -9,7 +9,7 @@ import {
   ReviewImageContainer,
   TitleContainer,
 } from '../../styles/layout/review-detail/ReviewDetail.style';
-import CloseButtonWithBranchName from '../reuse/button/CloseButtonWithBranchName';
+import ReviewDetailHeader from '../reuse/header/ReviewDetailHeader';
 import {ReviewData} from '../../interfaces/ReviewDetail.interface';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../styles/base/Variable';
@@ -215,7 +215,7 @@ export default function ReviewDetail() {
             <ReviewDetailForm key={data.reviewID}>
               <ReviewDetailFormWrapper>
                 <TitleContainer>
-                  <CloseButtonWithBranchName
+                  <ReviewDetailHeader
                     photoboothName={data.photoboothName}
                     branchName={data.branchName}
                     mine={data.mine}

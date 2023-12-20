@@ -7,8 +7,13 @@ import {
   PreviewImage,
   PreviewImageContainer,
   PreviewNoImage,
+  ReviewErrorContainerFileInput,
 } from '../../../styles/layout/review-new/input/ImageFileInput.style';
-import {FontWhiteGreySmallestMediumWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
+import {
+  FontRedNormalMedium,
+  FontWhiteGreySmallestMediumWithLineHeight,
+  FontYellowSmallestMedium,
+} from '../../../styles/layout/reuse/text/Text.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
 import ButtonAddImage from '../../../assets/image/icon/btn_add.svg';
@@ -17,6 +22,7 @@ import {ImageFileInputProps} from '../../../interfaces/ReviewNew.interface';
 export default function ImageFileInput({
   representaiveImage,
   setOpenModal,
+  errorData,
 }: ImageFileInputProps) {
   const onPressImageUpload = () => {
     setOpenModal(true);
@@ -47,6 +53,16 @@ export default function ImageFileInput({
           height: 150,
         }}
       />
+      {errorData.map(data => {
+        return data.InputName === 'representaiveImage' ? (
+          <ReviewErrorContainerFileInput key={data.InputName}>
+            <FontRedNormalMedium>*</FontRedNormalMedium>
+            <FontYellowSmallestMedium>
+              필수 등록 항목입니다.
+            </FontYellowSmallestMedium>
+          </ReviewErrorContainerFileInput>
+        ) : null;
+      })}
       <ImageUploadButtonContainer>
         <ImageUploadButton activeOpacity={0.7} onPress={onPressImageUpload}>
           <FontWhiteGreySmallestMediumWithLineHeight>
