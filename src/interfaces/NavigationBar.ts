@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 
 export type RootStackParam = {
   Home: {screen: ScreenName};
-  HomeSearch: {screen: ScreenName};
+  HomeSearch: {screen: ScreenName; PhotoBoothName: string | null};
   Location:
     | {screen: ScreenName}
     | {PhotoBoothID: number | null; screen: ScreenName};

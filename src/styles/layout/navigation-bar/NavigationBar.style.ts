@@ -5,7 +5,7 @@ export const NavigationBarContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: ${colors.lightblack};
-  padding: 15px;
+  padding: 5px 20px;
   width: 100%;
   position: absolute;
   bottom: 0;

@@ -30,7 +30,10 @@ import {ScreenName} from '../../../interfaces/NavigationBar';
 import SearchIcon from '../../../assets/image/icon/search.svg';
 import NextIcon from '../../../assets/image/icon/btn_next.svg';
 
-export default function PhotoDump({reviewData}: PhotoDumpProps) {
+export default function PhotoDump({
+  photoBoothName,
+  reviewData,
+}: PhotoDumpProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
 
@@ -77,7 +80,10 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
     const currentScreen = (
       route.params as {branchID: number; screen: ScreenName}
     ).screen;
-    navigation.navigate('HomeSearch', {screen: currentScreen});
+    navigation.navigate('HomeSearch', {
+      screen: currentScreen,
+      PhotoBoothName: photoBoothName,
+    });
   };
 
   return (

@@ -304,7 +304,10 @@ export default function Branch() {
                 myBranch={data.myBranch}
               />
               <OfficialImages image={data.officialImage} />
-              <PhotoDump reviewData={data.review} />
+              <PhotoDump
+                reviewData={data.review}
+                photoBoothName={data.photoBoothName}
+              />
             </BranchForm>
           );
         }
