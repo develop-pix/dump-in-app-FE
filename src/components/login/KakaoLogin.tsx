@@ -16,7 +16,7 @@ export default function KakaoLogin() {
         <KakaoIconWrapper>
           <KaKaoIcon width={20} height={20} />
         </KakaoIconWrapper>
-        <KaKaoText>카카오 로그인</KaKaoText>
+        <KaKaoText>카카오로 로그인</KaKaoText>
       </KakaoInfoContainer>
     </KaKaoLoginContainer>
   );

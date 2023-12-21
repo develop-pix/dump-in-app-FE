@@ -16,7 +16,7 @@ export default function NaverLogin() {
         <NaverIconWrapper>
           <NaverIcon width={44} height={44} />
         </NaverIconWrapper>
-        <NaverText>네이버 로그인</NaverText>
+        <NaverText>네이버로 로그인</NaverText>
       </NaverInfoContainer>
     </NaverLoginContainer>
   );
