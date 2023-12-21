@@ -1,11 +1,11 @@
 import React from 'react';
-import {ReviewNewContainer} from '../styles/layout/review-new/ReviewNew.style';
+import {ReviewFormContainer} from '../styles/layout/review-form/ReviewForm.style';
 import ReviewNewForm from '../components/review-new/ReviewNewForm';
 
-export default function Reviewnew() {
+export default function ReviewNew() {
   return (
-    <ReviewNewContainer>
+    <ReviewFormContainer>
       <ReviewNewForm />
-    </ReviewNewContainer>
+    </ReviewFormContainer>
   );
 }

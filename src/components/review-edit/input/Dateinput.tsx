@@ -19,7 +19,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setDate} from '../../../hooks/redux/ReviewData';
 import {DateToReviewDateForm} from '../../../utils/FormChange';
-import {DateInputProps} from '../../../interfaces/ReviewNew.interface';
+import {DateInputProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function DateInput({date, errorData}: DateInputProps) {
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);

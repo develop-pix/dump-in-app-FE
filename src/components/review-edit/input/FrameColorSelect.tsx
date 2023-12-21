@@ -21,7 +21,7 @@ import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';
 import EtcImage from '../../../assets/image/icon/frame_etc.svg';
 import EtcCheckImage from '../../../assets/image/icon/check_frame_etc.svg';
 import {setFrameColor} from '../../../hooks/redux/ReviewData';
-import {FrameColorSelectProps} from '../../../interfaces/ReviewNew.interface';
+import {FrameColorSelectProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function FrameColorSelect({
   frameColor,

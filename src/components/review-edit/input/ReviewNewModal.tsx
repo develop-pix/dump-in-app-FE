@@ -3,7 +3,7 @@ import Modal from 'react-native-modal';
 
 import {Platform} from 'react-native';
 import {FontWhiteNormalSemibold} from '../../../styles/layout/reuse/text/Text.style';
-import {ReviewNewModalProps} from '../../../interfaces/ReviewNew.interface';
+import {ReviewNewModalProps} from '../../../interfaces/ReviewEdit.interface';
 import {
   HorizonLine,
   ReviewNewModalContainer,

@@ -17,7 +17,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
 import ButtonAddImage from '../../../assets/image/icon/btn_add.svg';
-import {ImageFileInputProps} from '../../../interfaces/ReviewNew.interface';
+import {ImageFileInputProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function ImageFileInput({
   representaiveImage,

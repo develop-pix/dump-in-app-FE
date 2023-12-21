@@ -257,7 +257,10 @@ export default function ReviewDetail() {
                 </ReviewImageContainer>
               </ReviewDetailFormWrapper>
               {openModal ? (
-                <ReviewManageModal setOpenModal={setOpenModal} />
+                <ReviewManageModal
+                  setOpenModal={setOpenModal}
+                  reviewID={route.params.reviewID}
+                />
               ) : null}
             </ReviewDetailForm>
           );

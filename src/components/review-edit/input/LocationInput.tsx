@@ -30,7 +30,7 @@ import {useAppDispatch} from '../../../hooks/redux/store';
 import {setBranchID} from '../../../hooks/redux/ReviewData';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import LocationGreyIcon from '../../../assets/image/icon/location_grey.svg';
-import {LocationInputProps} from '../../../interfaces/ReviewNew.interface';
+import {LocationInputProps} from '../../../interfaces/ReviewEdit.interface';
 export default function LocationInput({
   location,
   errorData,
