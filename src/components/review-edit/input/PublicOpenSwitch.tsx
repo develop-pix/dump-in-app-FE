@@ -8,7 +8,7 @@ import {FontWhiteNormalMedium} from '../../../styles/layout/reuse/text/Text.styl
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setPublicOpen} from '../../../hooks/redux/ReviewData';
 import {colors} from '../../../styles/base/Variable';
-import {PublicOpenSwitchProps} from '../../../interfaces/ReviewNew.interface';
+import {PublicOpenSwitchProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function PublicOpenSwitch({publicOpen}: PublicOpenSwitchProps) {
   const dispatch = useAppDispatch();

@@ -9,7 +9,7 @@ import {
   ReviewImageContainer,
   TitleContainer,
 } from '../../styles/layout/review-detail/ReviewDetail.style';
-import CloseButtonWithBranchName from '../reuse/button/CloseButtonWithBranchName';
+import ReviewDetailHeader from '../reuse/header/ReviewDetailHeader';
 import {ReviewData} from '../../interfaces/ReviewDetail.interface';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../styles/base/Variable';
@@ -19,8 +19,10 @@ import ReviewManageModal from './ReviewManageModal';
 
 export default function ReviewDetail() {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const route = useRoute<RouteProp<ReviewDetailParamList, 'reviewType'>>();
+  const route =
+    useRoute<RouteProp<ReviewDetailParamList, 'reviewDetailType'>>();
   const platform = Platform.OS;
+  console.log(route.params);
 
   /* 임시 데이터 */
   const tempData: ReviewData[] = [
@@ -215,7 +217,7 @@ export default function ReviewDetail() {
             <ReviewDetailForm key={data.reviewID}>
               <ReviewDetailFormWrapper>
                 <TitleContainer>
-                  <CloseButtonWithBranchName
+                  <ReviewDetailHeader
                     photoboothName={data.photoboothName}
                     branchName={data.branchName}
                     mine={data.mine}
@@ -257,7 +259,10 @@ export default function ReviewDetail() {
                 </ReviewImageContainer>
               </ReviewDetailFormWrapper>
               {openModal ? (
-                <ReviewManageModal setOpenModal={setOpenModal} />
+                <ReviewManageModal
+                  setOpenModal={setOpenModal}
+                  reviewID={route.params.reviewID}
+                />
               ) : null}
             </ReviewDetailForm>
           );

@@ -6,6 +6,7 @@ export interface InputDatas {
 export interface ImageFileInputProps {
   representaiveImage: string | null | undefined;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  errorData: InputDatas[];
 }
 
 export interface ReviewDescriptionProps {

@@ -17,7 +17,7 @@ import {
 } from '../../../styles/layout/review-form/input/PartySelect.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setParty} from '../../../hooks/redux/ReviewData';
-import {PartySelectProps} from '../../../interfaces/ReviewNew.interface';
+import {PartySelectProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function PartySelect({party, errorData}: PartySelectProps) {
   const availableParty: number[] = [1, 2, 3, 4, 5];

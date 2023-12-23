@@ -19,7 +19,7 @@ import {colors} from '../../../styles/base/Variable';
 import {Platform} from 'react-native';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setDescription} from '../../../hooks/redux/ReviewData';
-import {ReviewDescriptionProps} from '../../../interfaces/ReviewNew.interface';
+import {ReviewDescriptionProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function ReviewDescriptionInput({
   description,

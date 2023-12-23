@@ -16,10 +16,3 @@ export interface NormalButtonProps {
   text: string;
   onPress: () => void; // 버튼 클릭 시 실행할 함수
 }
-
-export interface CloseButtonWithBranchNameProps {
-  photoboothName: string;
-  branchName: string;
-  mine: boolean;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-}

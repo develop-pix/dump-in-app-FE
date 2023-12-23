@@ -13,7 +13,7 @@ import {
 } from '../../../styles/layout/review-form/input/HairIronSelect.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setHairIron} from '../../../hooks/redux/ReviewData';
-import {HairIronSelectProps} from '../../../interfaces/ReviewNew.interface';
+import {HairIronSelectProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function HairIronSelect({hairIron}: HairIronSelectProps) {
   const dispatch = useAppDispatch();
