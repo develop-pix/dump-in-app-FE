@@ -11,6 +11,7 @@ import LocationSearch from './src/pages/LocationSearch';
 import ReviewDetail from './src/pages/ReviewDetail';
 import PhotoBoothDetail from './src/pages/PhotoBoothDetail';
 import EventDetail from './src/pages/EventDetail';
+import OfficialImageDetail from './src/pages/OfficialImageDetail';
 import {ScreenProvider} from './src/utils/ScreenContext';
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
@@ -19,6 +20,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import ReviewNew from './src/pages/ReviewNew';
 import Login from './src/pages/Login';
 import Notification from './src/pages/Notification';
+import ReviewEdit from './src/pages/ReviewEdit';
 
 const Stack = createNativeStackNavigator();
 const persistor = persistStore(store);
@@ -70,9 +72,19 @@ const App = () => {
                 initialParams={{screen: 'Branch', branchID: 0}}
               />
               <Stack.Screen
+                name="OfficialImageDetail"
+                component={OfficialImageDetail}
+                initialParams={{
+                  screen: 'OfficialImageDetail',
+                  photoBoothName: null,
+                  image: '',
+                  index: 0,
+                }}
+              />
+              <Stack.Screen
                 name="ReviewDetail"
                 component={ReviewDetail}
-                initialParams={{screen: 'ReviewDetail', ReviewID: 0}}
+                initialParams={{screen: 'ReviewDetail', reviewID: null}}
               />
               <Stack.Screen
                 name="PhotoBoothDetail"
@@ -87,7 +99,12 @@ const App = () => {
               <Stack.Screen
                 name="ReviewNew"
                 component={ReviewNew}
-                initialParams={{screen: 'ReviewNew', branchID: undefined}}
+                initialParams={{screen: 'ReviewNew', branchID: null}}
+              />
+              <Stack.Screen
+                name="ReviewEdit"
+                component={ReviewEdit}
+                initialParams={{screen: 'ReviewEdit', ReviewID: null}}
               />
               <Stack.Screen
                 name="Login"

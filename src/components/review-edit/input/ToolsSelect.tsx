@@ -13,7 +13,7 @@ import {
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setTools} from '../../../hooks/redux/ReviewData';
-import {ToolsSelectProps} from '../../../interfaces/ReviewNew.interface';
+import {ToolsSelectProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function ToolsSelect({tools}: ToolsSelectProps) {
   const dispatch = useAppDispatch();

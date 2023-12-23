@@ -19,7 +19,7 @@ import {
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setCameraShot} from '../../../hooks/redux/ReviewData';
-import {cameraShotSelectProps} from '../../../interfaces/ReviewNew.interface';
+import {cameraShotSelectProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function CameraShotSelect({
   cameraShot,

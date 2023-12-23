@@ -1,12 +1,5 @@
 import {Platform} from 'react-native';
 import React from 'react';
-import {
-  BranchNameContainer,
-  CloseButtonWithBranchNameContainer,
-  CloseImageContainer,
-  ReviewDescTextContainer,
-  ReviewManageButtonContainer,
-} from '../../../styles/layout/reuse/button/CloseButtonWithBranchName.style';
 import ArrowBackIcon from '../../../assets/image/icon/arrow_back_white.svg';
 import SeeMoreIcon from '../../../assets/image/icon/btn_more.svg';
 import LocationIcon from '../../../assets/image/icon/location_white.svg';
@@ -14,14 +7,21 @@ import {FontWhiteNormalMedium} from '../../../styles/layout/reuse/text/Text.styl
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {CloseButtonWithBranchNameProps} from '../../../interfaces/reuse/button/Button.interfaces';
+import {ReviewDetailHeaderProps} from '../../../interfaces/reuse/header/ReviewDetailHeader.interface';
+import {
+  BranchNameContainer,
+  CloseButtonWithBranchNameContainer,
+  CloseImageContainer,
+  ReviewDescTextContainer,
+  ReviewManageButtonContainer,
+} from '../../../styles/layout/reuse/header/ReviewDetailHeader';
 
-export default function CloseButtonWithBranchName({
+export default function ReviewDetailHeader({
   photoboothName,
   branchName,
   mine,
   setOpenModal,
-}: CloseButtonWithBranchNameProps) {
+}: ReviewDetailHeaderProps) {
   const platform = Platform.OS;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const onPressClose = () => {

@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {colors} from '../../base/Variable';
 
 /* page */
-export const ReviewNewContainer = styled.SafeAreaView`
+export const ReviewFormContainer = styled.SafeAreaView`
   flex: 1;
   justify-content: space-between;
   background-color: ${colors.lightblack};
@@ -10,7 +10,7 @@ export const ReviewNewContainer = styled.SafeAreaView`
 
 /* ReviewNew */
 
-export const ReviewNewScrollView = styled.ScrollView.attrs({
+export const ReviewFormScrollView = styled.ScrollView.attrs({
   contentContainerStyle: {paddingBottom: 80},
 })`
   width: 100%;

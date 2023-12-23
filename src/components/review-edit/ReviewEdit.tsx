@@ -12,7 +12,6 @@ import {
 } from '../../styles/layout/reuse/button/GoBackButton.style';
 import {Platform} from 'react-native';
 import {FontYellowBiggerSemibold} from '../../styles/layout/reuse/text/Text.style';
-import ImageFileInput from './input/ImageFileInput';
 import ReviewDescriptionInput from './input/ReviewDescriptionInput';
 import LocationInput from './input/LocationInput';
 import Dateinput from './input/Dateinput';
@@ -28,12 +27,30 @@ import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 import {InputDatas} from '../../interfaces/ReviewNew.interface';
 import ReviewNewModal from './input/ReviewNewModal';
 import {UploadImageToS3} from '../../hooks/axios/ReviewNew';
+import ImageFileInput from './input/ImageFileInput';
+import {useDispatch} from 'react-redux';
+import {
+  setBranchID,
+  setCameraShot,
+  setDate,
+  setDescription,
+  setFrameColor,
+  setHairIron,
+  setHashtag,
+  setParty,
+  setPublicOpen,
+  setRepresentativeImage,
+  setRepresentativeImageName,
+  setTools,
+} from '../../hooks/redux/ReviewData';
 
-export default function ReviewNew() {
+export default function ReviewEdit() {
   const [errorData, setErrorData] = useState<InputDatas[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const scrollRef = useRef<any>();
   const platform = Platform.OS;
+  const dispatch = useDispatch();
+
   const representaiveImage = useAppSelector(
     state => state.reviewData,
   ).representativeImage;
@@ -51,6 +68,21 @@ export default function ReviewNew() {
   const hairIron = useAppSelector(state => state.reviewData).hairIron;
   const publicOpen = useAppSelector(state => state.reviewData).publicOpen;
 
+  const tempData = {
+    representaiveImage:
+      'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+    representaiveImageName: 'test',
+    description: 'abcd description Test',
+    location: 1,
+    date: new Date('Thu Dec 20 2023 20:37:32 GMT+0900'),
+    frameColor: '#FF2E00',
+    party: 3,
+    cameraShot: '클로즈업',
+    hashtags: ['일상', '생일'],
+    tools: true,
+    hairIron: true,
+    publicOpen: true,
+  };
   const onErrorScroll = (height: number) => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({y: height, animated: true});
@@ -113,6 +145,23 @@ export default function ReviewNew() {
       //더이상 에러 데이터가 없을경우 submit 진행, 추후 API추가
     }
   };
+
+  //API 연동 하여 초기값 미리 입력
+  useEffect(() => {
+    dispatch(setRepresentativeImage(tempData.representaiveImage));
+    dispatch(setRepresentativeImageName(tempData.representaiveImageName));
+    dispatch(setDescription(tempData.description));
+    dispatch(setBranchID(tempData.location));
+    dispatch(setDate(tempData.date));
+    dispatch(setFrameColor(tempData.frameColor));
+    dispatch(setParty(tempData.party));
+    dispatch(setCameraShot(tempData.cameraShot));
+    dispatch(setHashtag(tempData.hashtags));
+    dispatch(setTools(tempData.tools));
+    dispatch(setHairIron(tempData.hairIron));
+    dispatch(setPublicOpen(tempData.publicOpen));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (errorData[0]) {

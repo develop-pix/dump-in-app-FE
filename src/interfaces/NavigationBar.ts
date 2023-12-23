@@ -14,8 +14,15 @@ export type RootStackParam = {
   PhotoBoothDetail: {PhotoBoothID: number; screen: ScreenName};
   EventDetail: {eventID: number; screen: ScreenName};
   ReviewNew: {branchID: number | undefined; screen: ScreenName};
+  ReviewEdit: {ReviewID: number | null; screen: ScreenName};
   Login: {screen: ScreenName};
   Notification: {screen: ScreenName};
+  OfficialImageDetail: {
+    screen: ScreenName;
+    photoBoothName: string;
+    image: string[];
+    index: number;
+  };
 };
 
 export interface NavigationScreenParam {
@@ -41,10 +48,17 @@ export type BranchParamList = {
 };
 
 export type ReviewDetailParamList = {
+  reviewDetailType: {
+    reviewID: number;
+  };
+};
+
+export type ReviewEditParamList = {
   reviewType: {
     reviewID: number;
   };
 };
+
 export type LocationSearchParamList = {
   locationSearchType: {
     NextPage: 'BranchDetail' | 'ReviewNew';
@@ -70,5 +84,13 @@ export interface ScreenProviderProps {
 export type NewReviewParamList = {
   branchType: {
     branchID: number | undefined;
+  };
+};
+
+export type OfficialImageDetailParamList = {
+  imageData: {
+    photoBoothName: string | null;
+    image: string[];
+    index: number;
   };
 };

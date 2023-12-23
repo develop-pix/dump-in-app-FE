@@ -71,6 +71,8 @@ export default function HomeMenuBar({
         </TouchableOpacity>
         <HomeMunuBarIconContainer onPress={onNotificationScreen}>
           {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
+        <HomeMunuBarIconContainer>
+          <NotificationIcon />
         </HomeMunuBarIconContainer>
       </HomeMunuBarIconsBox>
 

@@ -34,6 +34,15 @@ export const PreviewImage = styled.Image`
   object-fit: cover;
 `;
 
+export const ReviewErrorContainerFileInput = styled.View`
+  position: absolute;
+  bottom: 55px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+`;
+
 export const ImageUploadButtonContainer = styled.TouchableOpacity`
   position: absolute;
   bottom: 20px;

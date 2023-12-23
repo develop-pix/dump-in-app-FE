@@ -17,7 +17,7 @@ import {
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setHashtag} from '../../../hooks/redux/ReviewData';
-import {HashtagSelectProps} from '../../../interfaces/ReviewNew.interface';
+import {HashtagSelectProps} from '../../../interfaces/ReviewEdit.interface';
 
 export default function HashtagSelect({
   hashtags,

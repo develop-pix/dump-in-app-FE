@@ -117,7 +117,7 @@ export default function Map() {
   // 카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능
   useEffect(() => {
     Animated.timing(cardMoveY, {
-      toValue: showNearBranch ? 0 : 200,
+      toValue: showNearBranch ? 20 : 200,
       duration: 330,
       useNativeDriver: true,
     }).start();
