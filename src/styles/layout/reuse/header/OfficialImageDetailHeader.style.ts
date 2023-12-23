@@ -8,7 +8,7 @@ export const OfficialImageDetailHeaderContainer = styled.View<{
   flex-direction: row;
   width: 100%;
   height: 44px;
-  gap: 90px;
+  gap: 120px;
   margin-top: ${props =>
     props.platform === 'ios'
       ? '0px'

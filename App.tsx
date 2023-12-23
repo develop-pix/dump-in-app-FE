@@ -76,14 +76,14 @@ const App = () => {
                 initialParams={{
                   screen: 'OfficialImageDetail',
                   photoBoothName: null,
-                  branchName: null,
                   image: '',
+                  index: 0,
                 }}
               />
               <Stack.Screen
                 name="ReviewDetail"
                 component={ReviewDetail}
-                initialParams={{screen: 'ReviewDetail', ReviewID: 0}}
+                initialParams={{screen: 'ReviewDetail', reviewID: null}}
               />
               <Stack.Screen
                 name="PhotoBoothDetail"
@@ -98,7 +98,7 @@ const App = () => {
               <Stack.Screen
                 name="ReviewNew"
                 component={ReviewNew}
-                initialParams={{screen: 'ReviewNew', branchID: undefined}}
+                initialParams={{screen: 'ReviewNew', branchID: null}}
               />
               <Stack.Screen
                 name="ReviewEdit"

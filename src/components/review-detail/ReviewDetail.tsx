@@ -19,8 +19,10 @@ import ReviewManageModal from './ReviewManageModal';
 
 export default function ReviewDetail() {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const route = useRoute<RouteProp<ReviewDetailParamList, 'reviewType'>>();
+  const route =
+    useRoute<RouteProp<ReviewDetailParamList, 'reviewDetailType'>>();
   const platform = Platform.OS;
+  console.log(route.params);
 
   /* 임시 데이터 */
   const tempData: ReviewData[] = [

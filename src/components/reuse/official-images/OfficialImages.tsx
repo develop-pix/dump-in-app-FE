@@ -22,14 +22,15 @@ export default function OfficialImages({
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute();
 
-  const onPressOfficialImage = (url: string) => {
+  const onPressOfficialImage = (index: number) => {
     const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
       navigation.push('OfficialImageDetail', {
         screen: currentScreen,
         photoBoothName: photoBoothName,
         branchName: branchName,
-        image: url,
+        image: image,
+        index: index,
       });
     }
   };
@@ -49,7 +50,7 @@ export default function OfficialImages({
             return (
               <OfficialImageWrapper
                 key={index}
-                onPress={() => onPressOfficialImage(url)}>
+                onPress={() => onPressOfficialImage(index)}>
                 <OfficialImage source={{uri: url}} />
               </OfficialImageWrapper>
             );

@@ -11,7 +11,7 @@ export const OfficialDetailContainer = styled.SafeAreaView`
 export const TitleContainer = styled.View`
   width: 100%;
 `;
-export const OfficialImageDetailFormContainer = styled.SafeAreaView`
+export const OfficialImageDetailFormContainer = styled.View`
   width: 100%;
   align-items: center;
 `;
@@ -20,13 +20,27 @@ export const OfficialImageDetailForm = styled.View`
   width: 100%;
 `;
 
-export const OfficialImageDetailContainer = styled.View`
-  width: 100%;
+export const OfficialImageDetailContainer = styled.ScrollView`
   background-color: ${colors.white};
 `;
 
 export const OfficialImageDetailImage = styled.Image`
   object-fit: scale-down;
-  width: 100%;
+  width: ${Dimensions.get('screen').width}px;
   height: ${Dimensions.get('screen').height - 200}px;
+`;
+
+export const ButtonContainer = styled.View`
+  position: absolute;
+  top: 300px;
+  width: 100%;
+`;
+
+export const PrevButtonContainer = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+`;
+export const NextButtonContainer = styled.TouchableOpacity`
+  position: absolute;
+  right: 0;
 `;

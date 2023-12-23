@@ -19,8 +19,8 @@ export type RootStackParam = {
   OfficialImageDetail: {
     screen: ScreenName;
     photoBoothName: string;
-    branchName: string;
-    image: string;
+    image: string[];
+    index: number;
   };
 };
 
@@ -47,7 +47,7 @@ export type BranchParamList = {
 };
 
 export type ReviewDetailParamList = {
-  reviewType: {
+  reviewDetailType: {
     reviewID: number;
   };
 };
@@ -89,7 +89,7 @@ export type NewReviewParamList = {
 export type OfficialImageDetailParamList = {
   imageData: {
     photoBoothName: string | null;
-    branchName: string | null;
-    image: string;
+    image: string[];
+    index: number;
   };
 };
