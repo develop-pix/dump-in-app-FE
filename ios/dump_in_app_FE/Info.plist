@@ -46,6 +46,11 @@
 		<string>Montserrat-Light.ttf</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+	</array>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
