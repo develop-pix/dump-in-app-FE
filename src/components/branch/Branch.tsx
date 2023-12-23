@@ -305,7 +305,6 @@ export default function Branch() {
               />
               <OfficialImages
                 photoBoothName={data.photoBoothName}
-                branchName={data.branchName}
                 image={data.officialImage}
               />
               <PhotoDump

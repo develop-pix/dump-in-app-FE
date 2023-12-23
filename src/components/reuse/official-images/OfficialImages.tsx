@@ -15,7 +15,6 @@ import {RootStackParam, ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function OfficialImages({
   photoBoothName,
-  branchName,
   image,
 }: OfficialImageProps) {
   const isFocused = useIsFocused();
@@ -28,7 +27,6 @@ export default function OfficialImages({
       navigation.push('OfficialImageDetail', {
         screen: currentScreen,
         photoBoothName: photoBoothName,
-        branchName: branchName,
         image: image,
         index: index,
       });
