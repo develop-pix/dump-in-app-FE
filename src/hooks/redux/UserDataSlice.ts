@@ -8,8 +8,8 @@ interface UserDataState {
 
 // 임시 초기값 설정
 const initialState: UserDataState = {
-  userID: 'jsee53',
-  userNickName: '지나가던 오리너구리',
+  userID: null,
+  userNickName: null,
 };
 
 const UserDataSlice = createSlice({

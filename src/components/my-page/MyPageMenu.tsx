@@ -16,7 +16,7 @@ import {
 } from '../../styles/layout/reuse/text/Text.style';
 import NextButtonIcon from '../../assets/image/icon/btn_next_grey.svg';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {useAppSelector, useAppDispatch} from '../../hooks/redux/store';
 import {setAccessToken} from '../../hooks/redux/AccessTokenSlice';
 import {setUserID, setUserNickName} from '../../hooks/redux/UserDataSlice';
@@ -32,6 +32,7 @@ export default function MyPageMenu({visible, setMenuVisible}: MyPageMenuProps) {
   const onFocusNavigation = useNavigation();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute();
+  const isFocused = useIsFocused();
   const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
 
   const handleCloseMenu = useCallback(() => {
@@ -49,9 +50,13 @@ export default function MyPageMenu({visible, setMenuVisible}: MyPageMenuProps) {
 
   // 테스트용 - 토큰 값 변경
   const handleLoginClick = () => {
-    dispatch(setAccessToken('asdqwemalskd'));
-    dispatch(setUserID('jsee53'));
-    dispatch(setUserNickName('지나가는 오리너구리'));
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    if (isFocused) {
+      navigation.push('Login', {
+        screen: currentScreen,
+      });
+    }
+    handleCloseMenu();
   };
 
   const onLogoutAlert = () => {
@@ -59,6 +64,7 @@ export default function MyPageMenu({visible, setMenuVisible}: MyPageMenuProps) {
   };
 
   const handleLogout = () => {
+    // 리덕스 토큰 -> 서버로 로그아웃 요청
     setIsAlertModalVisible(false);
     dispatch(setAccessToken(null));
     dispatch(setUserID(null));

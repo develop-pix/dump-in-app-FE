@@ -3,6 +3,7 @@ import FilterIcon from '../../assets/image/icon/filter.svg';
 import SearchIcon from '../../assets/image/icon/search.svg';
 import NotificationIcon from '../../assets/image/icon/notification.svg';
 import NewNotificationIcon from '../../assets/image/icon/new_notification.svg';
+
 import {
   HomeMunuBarContainer,
   HomeMunuBarIconsBox,
@@ -71,8 +72,6 @@ export default function HomeMenuBar({
         </TouchableOpacity>
         <HomeMunuBarIconContainer onPress={onNotificationScreen}>
           {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
-        <HomeMunuBarIconContainer>
-          <NotificationIcon />
         </HomeMunuBarIconContainer>
       </HomeMunuBarIconsBox>
 
