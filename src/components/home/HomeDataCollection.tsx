@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {FlatList} from 'react-native';
 import PhotoBoothList from './photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
@@ -15,8 +15,9 @@ import {
   EventProps,
   ReviewProps,
 } from '../../interfaces/Home.interface';
-import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
 import UpIcon from '../../assets/image/icon/btn_up.svg';
+import SkeletonGetMoreHomeData from '../reuse/skeleton/SkeletonGetMoreHomeData';
+import SkeletonHomeDataCollection from '../reuse/skeleton/SkeletonHomeDataCollection';
 
 export default function HomeDataCollection() {
   // 필터 변수
@@ -30,6 +31,7 @@ export default function HomeDataCollection() {
 
   // 무한 스크롤 페이지
   const [page, setPage] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // 포토부스, 이벤트, 리뷰 데이터 12개 임의로 생성
   const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothProps[]>([
@@ -110,6 +112,7 @@ export default function HomeDataCollection() {
         'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
     },
   ]);
+
   // 위 데이터를 담을 변수
   const [collectionData, setCollectionData] = useState<CollectionDataProps[]>([
     {
@@ -153,37 +156,57 @@ export default function HomeDataCollection() {
     <PhotoBoothList data={item} />
   );
 
+  useEffect(() => {
+    // 예시 async ~await로 정상적으로 데이터 fetch완료시 실행
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
-    <CollectionContainer>
-      <HomeMenuBar
-        filterData={filterData}
-        setFilterData={setFilterData}
-        onFilterSubmit={handleFilterSubmit}
-      />
-
-      {hasFilterOptionData && (
-        <HomeSelectedFilterOption filterData={filterData} />
-      )}
-
-      {collectionData.length > 0 ? (
-        <>
-          <FlatList
-            data={collectionData}
-            keyExtractor={(_, index) => `${page}-${index}`}
-            ref={flatListRef}
-            renderItem={renderReviewItem}
-            onEndReached={onEndReached}
-            onEndReachedThreshold={0.1}
-            ListFooterComponent={<GetMoreReview />}
+    <>
+      {!isLoading ? (
+        <CollectionContainer>
+          <HomeMenuBar
+            filterData={filterData}
+            setFilterData={setFilterData}
+            onFilterSubmit={handleFilterSubmit}
           />
 
-          <UpScrollImageBox onPress={handleScrollToTop}>
-            <UpIcon />
-          </UpScrollImageBox>
-        </>
+          {hasFilterOptionData && (
+            <HomeSelectedFilterOption filterData={filterData} />
+          )}
+
+          {collectionData.length > 0 ? (
+            <>
+              <FlatList
+                data={collectionData}
+                keyExtractor={(_, index) => `${page}-${index}`}
+                ref={flatListRef}
+                renderItem={renderReviewItem}
+                onEndReached={onEndReached}
+                onEndReachedThreshold={0.1}
+                ListFooterComponent={<SkeletonGetMoreHomeData />}
+              />
+
+              <UpScrollImageBox onPress={handleScrollToTop}>
+                <UpIcon />
+              </UpScrollImageBox>
+            </>
+          ) : (
+            <NoResultPhotoBooth filterData={filterData} />
+          )}
+        </CollectionContainer>
       ) : (
-        <NoResultPhotoBooth filterData={filterData} />
+        <CollectionContainer>
+          <HomeMenuBar
+            filterData={filterData}
+            setFilterData={setFilterData}
+            onFilterSubmit={handleFilterSubmit}
+          />
+          <SkeletonHomeDataCollection />
+        </CollectionContainer>
       )}
-    </CollectionContainer>
+    </>
   );
 }
