@@ -29,6 +29,7 @@ export default function ReviewDetail() {
   const route =
     useRoute<RouteProp<ReviewDetailParamList, 'reviewDetailType'>>();
   const platform = Platform.OS;
+  console.log(route.params);
 
   const onPressPrevButton = () => {
     setCarouselActive(prev => prev - 1);
