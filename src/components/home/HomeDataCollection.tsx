@@ -164,49 +164,42 @@ export default function HomeDataCollection() {
   }, []);
 
   return (
-    <>
+    <CollectionContainer>
+      <HomeMenuBar
+        filterData={filterData}
+        setFilterData={setFilterData}
+        onFilterSubmit={handleFilterSubmit}
+      />
       {!isLoading ? (
-        <CollectionContainer>
-          <HomeMenuBar
-            filterData={filterData}
-            setFilterData={setFilterData}
-            onFilterSubmit={handleFilterSubmit}
-          />
-
+        <>
           {hasFilterOptionData && (
             <HomeSelectedFilterOption filterData={filterData} />
           )}
+          <>
+            {collectionData.length > 0 ? (
+              <>
+                <FlatList
+                  data={collectionData}
+                  keyExtractor={(_, index) => `${page}-${index}`}
+                  ref={flatListRef}
+                  renderItem={renderReviewItem}
+                  onEndReached={onEndReached}
+                  onEndReachedThreshold={0.1}
+                  ListFooterComponent={<SkeletonGetMoreHomeData />}
+                />
 
-          {collectionData.length > 0 ? (
-            <>
-              <FlatList
-                data={collectionData}
-                keyExtractor={(_, index) => `${page}-${index}`}
-                ref={flatListRef}
-                renderItem={renderReviewItem}
-                onEndReached={onEndReached}
-                onEndReachedThreshold={0.1}
-                ListFooterComponent={<SkeletonGetMoreHomeData />}
-              />
-
-              <UpScrollImageBox onPress={handleScrollToTop}>
-                <UpIcon />
-              </UpScrollImageBox>
-            </>
-          ) : (
-            <NoResultPhotoBooth filterData={filterData} />
-          )}
-        </CollectionContainer>
+                <UpScrollImageBox onPress={handleScrollToTop}>
+                  <UpIcon />
+                </UpScrollImageBox>
+              </>
+            ) : (
+              <NoResultPhotoBooth filterData={filterData} />
+            )}
+          </>
+        </>
       ) : (
-        <CollectionContainer>
-          <HomeMenuBar
-            filterData={filterData}
-            setFilterData={setFilterData}
-            onFilterSubmit={handleFilterSubmit}
-          />
-          <SkeletonHomeDataCollection />
-        </CollectionContainer>
+        <SkeletonHomeDataCollection />
       )}
-    </>
+    </CollectionContainer>
   );
 }

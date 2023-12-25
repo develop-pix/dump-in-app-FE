@@ -27,6 +27,10 @@ jest.mock(
   () => 'react-native-skeleton-placeholder',
 );
 
+jest.mock('../src/components/reuse/skeleton/SkeletonHomeDataCollection', () => {
+  return () => null;
+});
+
 it('renders correctly', () => {
   renderer.create(<App />);
 });
