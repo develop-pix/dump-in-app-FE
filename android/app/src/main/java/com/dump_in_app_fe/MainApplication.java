@@ -61,5 +61,8 @@ public class MainApplication extends Application implements ReactApplication {
       DefaultNewArchitectureEntryPoint.load();
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+    // Kakao SDK 초기화
+    KakaoSdk.init(this, "81ac20430ef63055c81961c0b3f8d2b0");
   }
 }
