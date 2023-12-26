@@ -1,4 +1,5 @@
 export interface PhotoDumpProps {
+  photoBoothName: string;
   reviewData: ReviewData[];
 }
 

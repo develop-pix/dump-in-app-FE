@@ -6,8 +6,3 @@ export const HeartButtonContainer = styled.View`
   width: 100%;
   margin-bottom: 10px;
 `;
-
-export const HeartImage = styled.Image`
-  width: 30px;
-  height: 30px;
-`;

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {fontSize, fontWeight} from '../../../base/Variable';
+import {fontSize, fontWeight, fontFamily} from '../../../base/Variable';
 
 export const FilterButtonContainer = styled.TouchableOpacity<{
   backgroundColor: string;
@@ -20,7 +20,8 @@ export const FilterButtonText = styled.Text<{
   textColor: string;
 }>`
   font-size: ${fontSize.normal};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
+  font-family: ${fontFamily.Pretendard};
   text-align: center;
   color: ${({textColor}) => textColor};
 `;

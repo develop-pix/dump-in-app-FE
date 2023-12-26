@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {ReviewFormContainer} from '../styles/layout/review-form/ReviewForm.style';
+import ReviewEditForm from '../components/review-edit/ReviewEditForm';
 
 export default function ReviewEdit() {
   return (
-    <View>
-      <Text>ReviewEdit 페이지</Text>
-    </View>
+    <ReviewFormContainer>
+      <ReviewEditForm />
+    </ReviewFormContainer>
   );
 }

@@ -15,8 +15,3 @@ export const NoDataContainer = styled.View`
   align-items: center;
   gap: 10px;
 `;
-
-export const AlertImage = styled.Image`
-  width: 24px;
-  height: 24px;
-`;

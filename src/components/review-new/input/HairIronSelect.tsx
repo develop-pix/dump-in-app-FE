@@ -1,16 +1,16 @@
 import React from 'react';
-import {ReviewInputTitleContainer} from '../../../styles/layout/review-new/ReviewNew.style';
+import {ReviewInputTitleContainer} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontBlackSmallerThick,
-  FontLightGreySmallerThin,
-  FontWhiteNormalThin,
+  FontBlackSmallerSemibold,
+  FontLightGreySmallerMedium,
+  FontWhiteNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   HairIronButtonLeft,
   HairIronButtonRight,
   HairIronInputContainer,
   HairIronSelectContainer,
-} from '../../../styles/layout/review-new/input/HairIronSelect.style';
+} from '../../../styles/layout/review-form/input/HairIronSelect.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setHairIron} from '../../../hooks/redux/ReviewData';
 import {HairIronSelectProps} from '../../../interfaces/ReviewNew.interface';
@@ -39,29 +39,29 @@ export default function HairIronSelect({hairIron}: HairIronSelectProps) {
   return (
     <HairIronSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>고데기</FontWhiteNormalThin>
+        <FontWhiteNormalMedium>고데기</FontWhiteNormalMedium>
       </ReviewInputTitleContainer>
       <HairIronInputContainer>
         {hairIron === true ? (
           <HairIronButtonLeft onPress={onPressHairIron} toolsOption={hairIron}>
-            <FontBlackSmallerThick>있음</FontBlackSmallerThick>
+            <FontBlackSmallerSemibold>있음</FontBlackSmallerSemibold>
           </HairIronButtonLeft>
         ) : (
           <HairIronButtonLeft onPress={onPressHairIron} toolsOption={hairIron}>
-            <FontLightGreySmallerThin>있음</FontLightGreySmallerThin>
+            <FontLightGreySmallerMedium>있음</FontLightGreySmallerMedium>
           </HairIronButtonLeft>
         )}
         {hairIron === false ? (
           <HairIronButtonRight
             onPress={onPressNoHairIron}
             toolsOption={hairIron}>
-            <FontBlackSmallerThick>없음</FontBlackSmallerThick>
+            <FontBlackSmallerSemibold>없음</FontBlackSmallerSemibold>
           </HairIronButtonRight>
         ) : (
           <HairIronButtonRight
             onPress={onPressNoHairIron}
             toolsOption={hairIron}>
-            <FontLightGreySmallerThin>없음</FontLightGreySmallerThin>
+            <FontLightGreySmallerMedium>없음</FontLightGreySmallerMedium>
           </HairIronButtonRight>
         )}
       </HairIronInputContainer>

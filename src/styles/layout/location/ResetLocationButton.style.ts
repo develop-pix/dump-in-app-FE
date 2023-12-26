@@ -11,8 +11,3 @@ export const ResetLocation = styled.TouchableOpacity`
   width: 44px;
   height: 44px;
 `;
-
-export const ResetLocationImage = styled.Image`
-  width: 44px;
-  height: 44px;
-`;

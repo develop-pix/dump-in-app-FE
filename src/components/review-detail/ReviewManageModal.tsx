@@ -8,14 +8,28 @@ import {
 } from '../../styles/layout/review-detail/ReviewManageModal.style';
 import {ReviewManageModalProps} from '../../interfaces/ReviewDetail.interface';
 import {Platform} from 'react-native';
-import {FontWhiteNormalThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteNormalSemibold} from '../../styles/layout/reuse/text/Text.style';
+import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam, ScreenName} from '../../interfaces/NavigationBar';
 export default function ReviewManageModal({
   setOpenModal,
+  reviewID,
 }: ReviewManageModalProps) {
   const platform = Platform.OS;
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const isFocused = useIsFocused();
+  const route = useRoute();
 
   const onPressReviewEdit = () => {
     setOpenModal(false);
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    if (isFocused) {
+      navigation.push('ReviewEdit', {
+        ReviewID: reviewID,
+        screen: currentScreen,
+      });
+    }
     //추후 ReviewEdit 페이지 추가후 이동
   };
 
@@ -37,15 +51,18 @@ export default function ReviewManageModal({
       coverScreen={false}
       onBackdropPress={() => {
         setOpenModal(false);
+      }}
+      onBackButtonPress={() => {
+        setOpenModal(false);
       }}>
       <ReviewManageModalContainer platform={platform}>
         <ReviewManageModalWrapper>
           <ReviewManageTouchableOpacity onPress={onPressReviewEdit}>
-            <FontWhiteNormalThick>리뷰 수정하기</FontWhiteNormalThick>
+            <FontWhiteNormalSemibold>리뷰 수정하기</FontWhiteNormalSemibold>
           </ReviewManageTouchableOpacity>
           <HorizonLine />
           <ReviewManageTouchableOpacity onPress={onPressReviewDelete}>
-            <FontWhiteNormalThick>삭제하기</FontWhiteNormalThick>
+            <FontWhiteNormalSemibold>삭제하기</FontWhiteNormalSemibold>
           </ReviewManageTouchableOpacity>
         </ReviewManageModalWrapper>
       </ReviewManageModalContainer>

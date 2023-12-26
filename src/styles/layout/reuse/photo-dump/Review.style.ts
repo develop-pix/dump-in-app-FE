@@ -29,7 +29,7 @@ export const ReviewDescriptionContainer = styled.View`
 
 export const ReviewDescription = styled.View``;
 
-export const ReviewHastags = styled.View`
+export const ReviewHashtags = styled.View`
   display: flex;
   flex-direction: row;
   gap: 10px;

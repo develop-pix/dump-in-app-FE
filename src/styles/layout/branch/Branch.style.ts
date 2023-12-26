@@ -5,7 +5,7 @@ import {colors} from '../../base/Variable';
 export const BranchContainer = styled.View`
   flex: 1;
   justify-content: space-between;
-  background-color: ${colors.black};
+  background-color: ${colors.lightblack};
 `;
 
 export const BranchScrollView = styled.ScrollView.attrs({

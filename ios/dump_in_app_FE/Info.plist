@@ -22,15 +22,59 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+
+	<key>CFBundleURLTypes</key>
+	<array>
+	<dict>
+	<key>CFBundleTypeRole</key>
+	<string>Editor</string>
+	<key>CFBundleURLSchemes</key>
+	<array>
+	<string>kakao81ac20430ef63055c81961c0b3f8d2b0</string>
+	</array>
+	</dict>
+	</array>
+	
+	<key>KAKAO_APP_KEY</key>
+	<string>81ac20430ef63055c81961c0b3f8d2b0</string>
+	<key>KAKAO_APP_SCHEME</key> <!-- // 선택 사항 멀티 플랫폼 앱 구현 시에만 추가하면 됩니다 -->
+	<!-- <string>{카카오 앱 스킴을 적어주세요}</string> //선택 사항 -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	<string>kakaokompassauth</string>
+	<string>storykompassauth</string>
+	<string>kakaolink</string>
+	</array>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>서비스 동작을 위해 위치 정보가 필요합니다.</string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
-  	<string>서비스 동작을 위해 갤러리 정보가 필요합니다.</string>
-  	<key>NSCameraUsageDescription</key>
-  	<string>서비스 동작을 위해 카메라 정보가 필요합니다.</string>
-  	<key>NSPhotoLibraryAddUsageDescription</key>
-  	<string>사진 저장을 위해 갤러리 정보가 필요합니다.</string>
+	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>포토부스 리뷰 작성을 위해 카메라 정보가 필요합니다.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard-Black.otf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-Light.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Thin.otf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+	</array>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -43,8 +87,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NMFClientId</key>
 	<string>sc9favxy2w</string>
 	<key>UILaunchStoryboardName</key>

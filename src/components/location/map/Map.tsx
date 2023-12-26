@@ -1,10 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {MapContainer} from '../../../styles/layout/location/Map.style';
 import MapInput from './MapInput';
 import NaverMapView, {Marker} from 'react-native-nmap';
 import {MyLocation} from '../../../interfaces/Location.interface';
 import Geolocation from 'react-native-geolocation-service';
-import {Platform, PermissionsAndroid} from 'react-native';
+import {Platform, PermissionsAndroid, Animated} from 'react-native';
 import {getAddressFromNaverGeocoding} from '../../../hooks/axios/Location';
 import ResetLocationButton from './ResetLocationButton';
 import BranchCarousel from './BranchCarousel';
@@ -25,6 +25,8 @@ export default function Map() {
   });
   const [zoom, setZoom] = useState<number>(18);
   const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
+  const cardMoveY = useRef(new Animated.Value(0)).current;
+
   // 초기 위치 설정
   const GetLocation = () => {
     const watchID = Geolocation.watchPosition(
@@ -112,6 +114,15 @@ export default function Map() {
     }
   }, [myPosition.latitude, myPosition.longitude]);
 
+  // 카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능
+  useEffect(() => {
+    Animated.timing(cardMoveY, {
+      toValue: showNearBranch ? 20 : 200,
+      duration: 330,
+      useNativeDriver: true,
+    }).start();
+  }, [showNearBranch, cardMoveY]);
+
   return (
     <MapContainer platform={platform}>
       <NaverMapView
@@ -137,12 +148,14 @@ export default function Map() {
         <Marker coordinate={pinPosition} pinColor="red" />
       </NaverMapView>
       <MapInput location={location} />
-      <ResetLocationButton
-        myPosition={myPosition}
-        setPinPosition={setPinPosition}
-        setZoom={setZoom}
-      />
-      <BranchCarousel showNearBranch={showNearBranch} />
+      <Animated.View style={{transform: [{translateY: cardMoveY}]}}>
+        <ResetLocationButton
+          myPosition={myPosition}
+          setPinPosition={setPinPosition}
+          setZoom={setZoom}
+        />
+        <BranchCarousel showNearBranch={showNearBranch} />
+      </Animated.View>
     </MapContainer>
   );
 }

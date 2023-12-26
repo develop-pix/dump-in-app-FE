@@ -36,7 +36,6 @@ export interface PhotoBoothProps {
   photoBoothID: number;
   photoboothName: string;
   representativeImage: string;
-  myPhotobooth: boolean;
 }
 
 export interface EventProps {

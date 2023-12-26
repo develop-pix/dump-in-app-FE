@@ -27,9 +27,7 @@ export const SearchInput = styled.TextInput.attrs({
   color: ${colors.white};
 `;
 
-export const SearchButtonIcon = styled.Image`
-  width: 18px;
-  height: 18px;
+export const SearchButtonIconContainer = styled.View`
   margin-left: 10px;
   margin-right: 10px;
 `;

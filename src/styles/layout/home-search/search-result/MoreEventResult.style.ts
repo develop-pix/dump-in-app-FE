@@ -3,7 +3,7 @@ import {colors} from '../../../base/Variable';
 
 export const ModalContainer = styled.View`
   flex: 1;
-  background-color: ${colors.black};
+  background-color: ${colors.lightblack};
 `;
 
 export const EventTitleContainer = styled.View`

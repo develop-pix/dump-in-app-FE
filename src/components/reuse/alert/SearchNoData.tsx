@@ -1,15 +1,14 @@
 import React from 'react';
 import {
-  AlertImage,
   NoDataContainer,
   SearchNoDataContainer,
 } from '../../../styles/layout/reuse/alert/SearchNoData.style';
 import {
-  FontLightGreySmallerThin,
-  FontWhiteGreyNormalThin,
+  FontLightGreySmallerMedium,
+  FontWhiteGreyNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {SearchNoDataProps} from '../../../interfaces/reuse/text/SearchNoData.interface';
-import AlertIcon from '../../../assets/image/reuse/alert.png';
+import AlertIcon from '../../../assets/image/icon/alert.svg';
 
 export default function SearchNoData({
   alertText,
@@ -18,12 +17,14 @@ export default function SearchNoData({
   return (
     <SearchNoDataContainer>
       <NoDataContainer>
-        <AlertImage source={AlertIcon} />
+        <AlertIcon width={24} height={24} />
         {alertText ? (
-          <FontWhiteGreyNormalThin>{alertText}</FontWhiteGreyNormalThin>
+          <FontWhiteGreyNormalMedium>{alertText}</FontWhiteGreyNormalMedium>
         ) : null}
         {recommendText ? (
-          <FontLightGreySmallerThin>{recommendText}</FontLightGreySmallerThin>
+          <FontLightGreySmallerMedium>
+            {recommendText}
+          </FontLightGreySmallerMedium>
         ) : null}
       </NoDataContainer>
     </SearchNoDataContainer>

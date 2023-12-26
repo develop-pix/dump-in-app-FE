@@ -6,7 +6,7 @@ export default function HomeForm() {
   return (
     <>
       <HomeDataCollection />
-      <NavigationBar />
+      <NavigationBar currentScreen="Home" />
     </>
   );
 }

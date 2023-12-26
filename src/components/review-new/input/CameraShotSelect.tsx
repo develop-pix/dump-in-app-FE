@@ -5,17 +5,17 @@ import {
   CameraShotSelectContainer,
   CameraShotSelectWrapper,
   CameraShotTextContainer,
-} from '../../../styles/layout/review-new/input/CameraShot.style';
+} from '../../../styles/layout/review-form/input/CameraShot.style';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontRedNormalThin,
-  FontWhiteGreySmallerThin,
-  FontWhiteSmallerThick,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontRedNormalMedium,
+  FontWhiteGreySmallerMedium,
+  FontWhiteSmallerSemibold,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setCameraShot} from '../../../hooks/redux/ReviewData';
@@ -29,19 +29,19 @@ export default function CameraShotSelect({
   const availableCameraShot = [
     {
       name: '클로즈업',
-      image: require('../../../assets/image/filter/filter-close-up.png'),
+      image: require('../../../assets/image/source/filter-close-up.png'),
     },
     {
       name: '상반신',
-      image: require('../../../assets/image/filter/filter-bust.png'),
+      image: require('../../../assets/image/source/filter-bust.png'),
     },
     {
       name: '무릎',
-      image: require('../../../assets/image/filter/filter-knee.png'),
+      image: require('../../../assets/image/source/filter-knee.png'),
     },
     {
       name: '전신',
-      image: require('../../../assets/image/filter/filter-whole-body.png'),
+      image: require('../../../assets/image/source/filter-whole-body.png'),
     },
   ];
 
@@ -56,14 +56,14 @@ export default function CameraShotSelect({
   return (
     <CameraShotSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>카메라 샷</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>카메라 샷</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'cameraShot' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -83,13 +83,13 @@ export default function CameraShotSelect({
               />
               <CameraShotTextContainer>
                 {cameraShot === cameraShotData.name ? (
-                  <FontWhiteSmallerThick>
+                  <FontWhiteSmallerSemibold>
                     {cameraShotData.name}
-                  </FontWhiteSmallerThick>
+                  </FontWhiteSmallerSemibold>
                 ) : (
-                  <FontWhiteGreySmallerThin>
+                  <FontWhiteGreySmallerMedium>
                     {cameraShotData.name}
-                  </FontWhiteGreySmallerThin>
+                  </FontWhiteGreySmallerMedium>
                 )}
               </CameraShotTextContainer>
             </CameraShotButton>

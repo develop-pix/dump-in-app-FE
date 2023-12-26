@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import LoginForm from '../components/login/LoginForm';
+import {LoginSafeContainer} from '../styles/layout/Login.style';
 
 export default function Login() {
   return (
-    <View>
-      <Text>Login 페이지</Text>
-    </View>
+    <LoginSafeContainer>
+      <LoginForm />
+    </LoginSafeContainer>
   );
 }

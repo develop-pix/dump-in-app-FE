@@ -12,12 +12,13 @@ import {SearchResultAlertContainer} from '../../../styles/layout/home-search/inp
 import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
 import MoreEventResult from './MoreEventResult';
 import {ReviewProps} from '../../../interfaces/Home.interface';
-import {TouchableOpacity, FlatList, Image, Modal} from 'react-native';
+import {TouchableOpacity, FlatList, Modal} from 'react-native';
 import GetMoreReview from '../../reuse/photo-dump/GetMoreReview';
 import {
-  FontWhiteGreySmallerThick,
-  FontWhiteGreyNormalThin,
+  FontWhiteGreySmallerSemibold,
+  FontWhiteGreyNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
+import UpIcon from '../../../assets/image/icon/btn_up.svg';
 
 export default function SearchResult({
   searchData,
@@ -91,9 +92,9 @@ export default function SearchResult({
           {photoDumpData.length > 0 && (
             <>
               <PhotoDumpTitleContainer>
-                <FontWhiteGreySmallerThick>
+                <FontWhiteGreySmallerSemibold>
                   PHOTO DUMP
-                </FontWhiteGreySmallerThick>
+                </FontWhiteGreySmallerSemibold>
               </PhotoDumpTitleContainer>
               <FlatList
                 data={allPhotoBoothData}
@@ -112,10 +113,10 @@ export default function SearchResult({
       ) : (
         <>
           <EventTitleContainer>
-            <FontWhiteGreySmallerThick>Event</FontWhiteGreySmallerThick>
+            <FontWhiteGreySmallerSemibold>Event</FontWhiteGreySmallerSemibold>
             {eventList.length > 3 && (
               <TouchableOpacity onPress={() => setShowMoreEventModal(true)}>
-                <FontWhiteGreyNormalThin>더보기</FontWhiteGreyNormalThin>
+                <FontWhiteGreyNormalMedium>더보기</FontWhiteGreyNormalMedium>
               </TouchableOpacity>
             )}
           </EventTitleContainer>
@@ -130,9 +131,9 @@ export default function SearchResult({
           {photoDumpData.length > 0 && (
             <>
               <PhotoDumpTitleContainer>
-                <FontWhiteGreySmallerThick>
+                <FontWhiteGreySmallerSemibold>
                   PHOTO DUMP
-                </FontWhiteGreySmallerThick>
+                </FontWhiteGreySmallerSemibold>
               </PhotoDumpTitleContainer>
               <FlatList
                 data={allPhotoBoothData}
@@ -152,9 +153,7 @@ export default function SearchResult({
 
       {allPhotoBoothData.length >= 6 && (
         <PhotoDumpUpScrollImageBox onPress={handleScrollToTop}>
-          <Image
-            source={require('../../../assets/image/reuse/up-scroll.png')}
-          />
+          <UpIcon />
         </PhotoDumpUpScrollImageBox>
       )}
 

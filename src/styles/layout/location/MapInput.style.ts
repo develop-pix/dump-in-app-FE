@@ -12,17 +12,22 @@ export const InputWrapper = styled.View<{
   top: ${props =>
     props.platform === 'ios' ? 70 : props.platform === 'android' ? 40 : null}px;
 `;
+
 export const MapInputContainer = styled.View`
   width: 90%;
 `;
 
-export const MapInputhWrapper = styled.TouchableOpacity`
+export const MapInputhWrapper = styled.TouchableOpacity<{
+  platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
+}>`
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 46px;
   background-color: ${colors.white};
   border-radius: 10px;
+  border: ${props =>
+    props.platform === 'android' ? `1px solid ${colors.whitegrey}` : 0};
 `;
 
 export const InputForm = styled.View`
