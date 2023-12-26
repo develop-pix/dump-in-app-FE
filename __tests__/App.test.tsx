@@ -4,7 +4,6 @@ import App from '../App';
 import 'jest';
 // Note: import explicitly to use the types shiped with jest.
 import {it} from '@jest/globals';
-
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -24,13 +23,22 @@ jest.mock(
 );
 jest.mock('react-native-image-picker', () => 'react-native-image-picker');
 jest.mock(
-  '@react-native-seoul/kakao-login',
-  () => '@react-native-seoul/kakao-login',
+  'react-native-skeleton-placeholder',
+  () => 'react-native-skeleton-placeholder',
 );
+
+jest.mock('../src/components/reuse/skeleton/SkeletonHomeDataCollection', () => {
+  return () => null;
+});
+
 jest.mock(
-  '@react-native-seoul/naver-login',
-  () => '@react-native-seoul/naver-login',
-);
+    '@react-native-seoul/kakao-login',
+    () => '@react-native-seoul/kakao-login',
+  );
+  jest.mock(
+    '@react-native-seoul/naver-login',
+    () => '@react-native-seoul/naver-login',
+  );
 
 it('renders correctly', () => {
   renderer.create(<App />);
