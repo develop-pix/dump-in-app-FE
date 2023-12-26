@@ -83,7 +83,9 @@ export default function Notification() {
         <FontWhiteNormalSemiboldWithLineSpacing>
           NOTICE
         </FontWhiteNormalSemiboldWithLineSpacing>
-        <DeleteContainer onPress={onDeleteAlert}>
+        <DeleteContainer
+          onPress={onDeleteAlert}
+          disabled={!notifications || notifications.length === 0}>
           <FontLightGreySmallerMedium>전체 삭제</FontLightGreySmallerMedium>
           <DeleteIconWrapper>
             <DeleteIcon width={16} height={16} />
