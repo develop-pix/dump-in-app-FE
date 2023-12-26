@@ -9,5 +9,4 @@ export const PhotoBoothListContainer = styled.View`
 export const PhotoBoothListColumnContainer = styled.View`
   flex-direction: column;
   align-items: center;
-  margin-top: 16px;
 `;
