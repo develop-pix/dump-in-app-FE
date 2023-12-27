@@ -22,7 +22,7 @@ const naverKeys: NaverLoginRequest = {
   consumerKey: 'ji5vu5qZOVy8WaXAoJSP',
   consumerSecret: 'rxarsLeCXz',
   appName: 'dump-in',
-  serviceUrlScheme: '', // iOS 용 스키마 등록
+  serviceUrlScheme: 'org.reactjs.native.example.dump-in-app-FE', // iOS 용 스키마 등록
 };
 
 export default function NaverLogin() {
