@@ -16,6 +16,7 @@ export type RootStackParam = {
   ReviewNew: {branchID: number | undefined; screen: ScreenName};
   ReviewEdit: {ReviewID: number | null; screen: ScreenName};
   Login: {screen: ScreenName};
+  Notification: {screen: ScreenName};
   OfficialImageDetail: {
     screen: ScreenName;
     photoBoothName: string;

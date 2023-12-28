@@ -31,6 +31,15 @@ jest.mock('../src/components/reuse/skeleton/SkeletonHomeDataCollection', () => {
   return () => null;
 });
 
+jest.mock(
+  '@react-native-seoul/kakao-login',
+  () => '@react-native-seoul/kakao-login',
+);
+jest.mock(
+  '@react-native-seoul/naver-login',
+  () => '@react-native-seoul/naver-login',
+);
+
 it('renders correctly', () => {
   renderer.create(<App />);
 });

@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FilterIcon from '../../assets/image/icon/filter.svg';
 import SearchIcon from '../../assets/image/icon/search.svg';
 import NotificationIcon from '../../assets/image/icon/notification.svg';
+import NewNotificationIcon from '../../assets/image/icon/alert_notification.svg';
 import {
   HomeMunuBarContainer,
   HomeMunuBarIconsBox,
@@ -35,9 +36,28 @@ export default function HomeMenuBar({
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute();
 
+  const [hasNotification, setHasNotification] = useState(false);
+
+  useEffect(() => {
+    checkNotification();
+  }, []);
+
+  // 알림 유무 확인 로직 추가
+  const checkNotification = async () => {
+    setHasNotification(true);
+  };
+
   const onSearchScreen = () => {
     const currentScreen = (route.params as {screen: ScreenName}).screen;
-    navigation.navigate('HomeSearch', {screen: currentScreen});
+    navigation.navigate('HomeSearch', {
+      screen: currentScreen,
+      PhotoBoothName: null,
+    });
+  };
+
+  const onNotificationScreen = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    navigation.navigate('Notification', {screen: currentScreen});
   };
 
   return (
@@ -49,8 +69,8 @@ export default function HomeMenuBar({
         <TouchableOpacity onPress={onSearchScreen}>
           <SearchIcon />
         </TouchableOpacity>
-        <HomeMunuBarIconContainer>
-          <NotificationIcon />
+        <HomeMunuBarIconContainer onPress={onNotificationScreen}>
+          {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
         </HomeMunuBarIconContainer>
       </HomeMunuBarIconsBox>
 

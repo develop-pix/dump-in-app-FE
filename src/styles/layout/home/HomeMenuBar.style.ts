@@ -13,6 +13,6 @@ export const HomeMunuBarIconsBox = styled.View`
   flex-direction: row;
 `;
 
-export const HomeMunuBarIconContainer = styled.View`
+export const HomeMunuBarIconContainer = styled.TouchableOpacity`
   margin-left: 10px;
 `;
