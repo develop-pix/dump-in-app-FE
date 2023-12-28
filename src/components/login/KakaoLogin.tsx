@@ -1,4 +1,5 @@
 import React from 'react';
+import {login, KakaoOAuthToken} from '@react-native-seoul/kakao-login';
 import {
   KaKaoLoginContainer,
   KakaoInfoContainer,
@@ -13,7 +14,6 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
 import {ScreenName} from '../../interfaces/NavigationBar';
-import {Linking} from 'react-native';
 
 export default function KakaoLogin() {
   const dispatch = useAppDispatch();
@@ -21,16 +21,9 @@ export default function KakaoLogin() {
   const route = useRoute();
 
   const loginWithKakao = async (): Promise<void> => {
-    try {
-      // 임시 리다이렉트 URL
-      const redirectUrl =
-        'https://api-dev.dump-in.co.kr/app/api/auth/kakao/redirect';
-
-      await Linking.openURL(redirectUrl);
-    } catch (error) {
-      console.error('Error during Kakao login:', error);
-    }
-
+    const token: KakaoOAuthToken = await login();
+    console.log('카카오 AccessToken: ', token.accessToken);
+    // 서버에 accessToken 토큰 전송하고 JWT토큰, userID, userNickName 받아서 리덕스에 저장
     dispatch(setAccessToken('asdqwemalskd'));
     dispatch(setUserID('jsee53'));
     dispatch(setUserNickName('지나가는 오리너구리'));
@@ -40,7 +33,6 @@ export default function KakaoLogin() {
       screen: currentScreen,
     });
   };
-
   return (
     <KaKaoLoginContainer>
       <KakaoInfoContainer activeOpacity={1} onPress={loginWithKakao}>
