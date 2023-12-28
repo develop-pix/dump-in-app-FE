@@ -1,25 +1,32 @@
 import React from 'react';
 import {EventResultProps} from '../../../interfaces/HomeSearch.interface';
-import SearchResultIcon from '../../../assets/image/reuse/search-result.png';
+import EventListIcon from '../../../assets/image/icon/result_event.svg';
 import {
   EventResultContainer,
-  EventListIcon,
+  EventListIconContainer,
   EventListInfo,
 } from '../../../styles/layout/home-search/search-result/EventResult.style';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../../interfaces/NavigationBar';
 import {
-  FontWhiteGreyNormalThin,
-  FontWhiteNormalThick,
+  FontWhiteGreyNormalMedium,
+  FontWhiteNormalSemibold,
 } from '../../../styles/layout/reuse/text/Text.style';
+import {ScreenName} from '../../../interfaces/NavigationBar';
 
 export default function EventResult({searchData, data}: EventResultProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressEvent = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('EventDetail', {eventID: data.eventID});
+      navigation.push('EventDetail', {
+        eventID: data.eventID,
+        screen: currentScreen,
+      });
     }
   };
 
@@ -30,10 +37,12 @@ export default function EventResult({searchData, data}: EventResultProps) {
     return (
       <EventResultContainer onPress={onPressEvent}>
         <EventListInfo>
-          <EventListIcon source={SearchResultIcon} />
-          <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
+          <EventListIconContainer>
+            <EventListIcon width={24} height={24} />
+          </EventListIconContainer>
+          <FontWhiteGreyNormalMedium numberOfLines={1} ellipsizeMode="tail">
             {data.eventName}
-          </FontWhiteGreyNormalThin>
+          </FontWhiteGreyNormalMedium>
         </EventListInfo>
       </EventResultContainer>
     );
@@ -46,12 +55,14 @@ export default function EventResult({searchData, data}: EventResultProps) {
   return (
     <EventResultContainer onPress={onPressEvent}>
       <EventListInfo>
-        <EventListIcon source={SearchResultIcon} />
-        <FontWhiteGreyNormalThin numberOfLines={1} ellipsizeMode="tail">
+        <EventListIconContainer>
+          <EventListIcon width={24} height={24} />
+        </EventListIconContainer>
+        <FontWhiteGreyNormalMedium numberOfLines={1} ellipsizeMode="tail">
           {beforeEventName}
-          <FontWhiteNormalThick>{searchData}</FontWhiteNormalThick>
+          <FontWhiteNormalSemibold>{searchData}</FontWhiteNormalSemibold>
           {afterEventName}
-        </FontWhiteGreyNormalThin>
+        </FontWhiteGreyNormalMedium>
       </EventListInfo>
     </EventResultContainer>
   );

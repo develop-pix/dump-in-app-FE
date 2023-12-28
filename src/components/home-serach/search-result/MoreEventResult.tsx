@@ -8,8 +8,8 @@ import {
 } from '../../../styles/layout/home-search/search-result/MoreEventResult.style';
 import {ScrollView} from 'react-native';
 import {
-  FontWhiteGreySmallestThick,
-  FontWhiteGreySmallerThick,
+  FontWhiteGreySmallestSemibold,
+  FontWhiteGreySmallerSemibold,
 } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function MoreEventResult({
@@ -22,10 +22,10 @@ export default function MoreEventResult({
       <ScrollView>
         <CloseModalButton setModal={closeMoreEventModal} />
         <EventTitleContainer>
-          <FontWhiteGreySmallerThick>Event</FontWhiteGreySmallerThick>
-          <FontWhiteGreySmallestThick>
+          <FontWhiteGreySmallerSemibold>Event</FontWhiteGreySmallerSemibold>
+          <FontWhiteGreySmallestSemibold>
             검색 결과 {eventData.length}개
-          </FontWhiteGreySmallestThick>
+          </FontWhiteGreySmallestSemibold>
         </EventTitleContainer>
         {eventData.map(data => (
           <EventResult searchData={searchData} key={data.eventID} data={data} />

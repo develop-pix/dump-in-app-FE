@@ -1,19 +1,20 @@
-import React, {useState} from 'react';
-import FilterImage from '../../assets/image/home-menu-bar/filter.png';
-import SearchImage from '../../assets/image/reuse/search.png';
-import NotificationImage from '../../assets/image/home-menu-bar/notification.png';
+import React, {useState, useEffect} from 'react';
+import FilterIcon from '../../assets/image/icon/filter.svg';
+import SearchIcon from '../../assets/image/icon/search.svg';
+import NotificationIcon from '../../assets/image/icon/notification.svg';
+import NewNotificationIcon from '../../assets/image/icon/alert_notification.svg';
 import {
   HomeMunuBarContainer,
-  FilterIcon,
   HomeMunuBarIconsBox,
-  HomeMunuBarIcon,
+  HomeMunuBarIconContainer,
 } from '../../styles/layout/home/HomeMenuBar.style';
 import {HomeMenuBarProps} from '../../interfaces/Home.interface';
 import HomeFilterModalForm from './HomeFilterModalForm';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function HomeMenuBar({
   filterData,
@@ -33,21 +34,44 @@ export default function HomeMenuBar({
   };
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route = useRoute();
+
+  const [hasNotification, setHasNotification] = useState(false);
+
+  useEffect(() => {
+    checkNotification();
+  }, []);
+
+  // 알림 유무 확인 로직 추가
+  const checkNotification = async () => {
+    setHasNotification(true);
+  };
 
   const onSearchScreen = () => {
-    navigation.navigate('HomeSearch');
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    navigation.navigate('HomeSearch', {
+      screen: currentScreen,
+      PhotoBoothName: null,
+    });
+  };
+
+  const onNotificationScreen = () => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    navigation.navigate('Notification', {screen: currentScreen});
   };
 
   return (
     <HomeMunuBarContainer>
       <TouchableOpacity onPress={handleShowFilterModal}>
-        <FilterIcon source={FilterImage} />
+        <FilterIcon />
       </TouchableOpacity>
       <HomeMunuBarIconsBox>
         <TouchableOpacity onPress={onSearchScreen}>
-          <HomeMunuBarIcon source={SearchImage} />
+          <SearchIcon />
         </TouchableOpacity>
-        <HomeMunuBarIcon source={NotificationImage} />
+        <HomeMunuBarIconContainer onPress={onNotificationScreen}>
+          {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
+        </HomeMunuBarIconContainer>
       </HomeMunuBarIconsBox>
 
       {isFilterVisible && (

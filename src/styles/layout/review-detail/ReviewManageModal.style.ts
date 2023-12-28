@@ -15,7 +15,7 @@ export const ReviewManageModalContainer = styled.View<{
   height: 134px;
   bottom: ${props =>
     props.platform === 'ios'
-      ? '150px'
+      ? '130px'
       : props.platform === 'android'
       ? '30px'
       : null};

@@ -1,27 +1,25 @@
 import React from 'react';
 import {
   EtcFrameColorButton,
-  EtcFrameColorCheckIcon,
   FrameColorButton,
-  FrameColorCheckIcon,
   FrameColorSelectContainer,
   FrameColorSelectWrapper,
-} from '../../../styles/layout/review-new/input/FrameColorSelect.style';
+} from '../../../styles/layout/review-form/input/FrameColorSelect.style';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {frameColors} from '../../../styles/base/Variable';
 import {useAppDispatch} from '../../../hooks/redux/store';
-import WhiteCheckImage from '../../../assets/image/filter/white-check.png';
-import BlackCheckImage from '../../../assets/image/filter/black-check.png';
-import EtcImage from '../../../assets/image/filter/etc-color.png';
-import EtcCheckImage from '../../../assets/image/filter/etc-check-color.png';
+import WhiteCheckIcon from '../../../assets/image/icon/check_white.svg';
+import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';
+import EtcImage from '../../../assets/image/icon/frame_etc.svg';
+import EtcCheckImage from '../../../assets/image/icon/check_frame_etc.svg';
 import {setFrameColor} from '../../../hooks/redux/ReviewData';
 import {FrameColorSelectProps} from '../../../interfaces/ReviewNew.interface';
 
@@ -44,14 +42,14 @@ export default function FrameColorSelect({
   return (
     <FrameColorSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>프레임 색상</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>프레임 색상</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'frameColor' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -65,11 +63,11 @@ export default function FrameColorSelect({
               isSelected={frameColor}
               onPress={() => onPressColor(colors)}>
               {frameColor === colors ? (
-                <FrameColorCheckIcon
-                  source={
-                    frameColor === '#FFFFFF' ? BlackCheckImage : WhiteCheckImage
-                  }
-                />
+                frameColor === '#FFFFFF' ? (
+                  <BlackCheckIcon width={24} height={24} />
+                ) : (
+                  <WhiteCheckIcon width={24} height={24} />
+                )
               ) : null}
             </FrameColorButton>
           );
@@ -78,9 +76,11 @@ export default function FrameColorSelect({
           <EtcFrameColorButton
             isSelected={frameColor}
             onPress={() => onPressColor('etc')}>
-            <EtcFrameColorCheckIcon
-              source={frameColor === 'etc' ? EtcCheckImage : EtcImage}
-            />
+            {frameColor === 'etc' ? (
+              <EtcCheckImage width={36} height={36} />
+            ) : (
+              <EtcImage width={36} height={36} />
+            )}
           </EtcFrameColorButton>
         }
       </FrameColorSelectWrapper>

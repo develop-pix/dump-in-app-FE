@@ -3,8 +3,8 @@ import GoBackButton from '../reuse/button/GoBackButton';
 import FavoirteButton from '../reuse/button/FavoritetButton';
 import {TagsArrayToHashTagArrayForm} from '../../utils/FormChange';
 import {
-  FontWhiteBiggestThick,
-  FontYellowSmallerThinWithLineSpacing,
+  FontWhiteBiggestSemibold,
+  FontYellowSmallerMediumWithLineSpacing,
 } from '../../styles/layout/reuse/text/Text.style';
 import {ReviewDescBottom} from '../../styles/layout/review-detail/ReviewDetail.style';
 import {EventImageTitleProps} from '../../interfaces/EventDetail.interface';
@@ -27,8 +27,8 @@ export default function ImageTitle({eventData}: EventImageTitleProps) {
     <EventImageTitleContainer>
       <EventImage source={{uri: eventData.representativeImage}}>
         <LinearGradient
-          colors={['transparent', colors.black]}
-          locations={[0.1, 1]}
+          colors={['transparent', colors.lightblack]}
+          locations={[0.1, 0.7]}
           style={{
             position: 'absolute',
             left: 0,
@@ -46,17 +46,17 @@ export default function ImageTitle({eventData}: EventImageTitleProps) {
 
         <ContentsContainer>
           <TitleContainer>
-            <FontWhiteBiggestThick>
+            <FontWhiteBiggestSemibold>
               {eventData.eventTitle}
-            </FontWhiteBiggestThick>
+            </FontWhiteBiggestSemibold>
             <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
           </TitleContainer>
 
           <ReviewDescBottom>
             {TagsArrayToHashTagArrayForm(eventData.hashtag).map(tag => (
-              <FontYellowSmallerThinWithLineSpacing key={tag}>
+              <FontYellowSmallerMediumWithLineSpacing key={tag}>
                 {tag}
-              </FontYellowSmallerThinWithLineSpacing>
+              </FontYellowSmallerMediumWithLineSpacing>
             ))}
           </ReviewDescBottom>
         </ContentsContainer>

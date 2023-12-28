@@ -6,46 +6,35 @@ import {
   NoDataImageContainer,
   PreviewImage,
   PreviewImageContainer,
-} from '../../../styles/layout/review-new/input/ImageFileInput.style';
-import {FontWhiteGreySmallestThinWithLineHeight} from '../../../styles/layout/reuse/text/Text.style';
+  PreviewNoImage,
+  ReviewErrorContainerFileInput,
+} from '../../../styles/layout/review-form/input/ImageFileInput.style';
+import {
+  FontRedNormalMedium,
+  FontWhiteGreySmallestMediumWithLineHeight,
+  FontYellowSmallestMedium,
+} from '../../../styles/layout/reuse/text/Text.style';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../../../styles/base/Variable';
-import {useAppDispatch} from '../../../hooks/redux/store';
-import {setRepresentativeImage} from '../../../hooks/redux/ReviewData';
-import ButtonAddImage from '../../../assets/image/fileInput/ButtonAdd.png';
+import ButtonAddImage from '../../../assets/image/icon/btn_add.svg';
 import {ImageFileInputProps} from '../../../interfaces/ReviewNew.interface';
-import {launchImageLibrary} from 'react-native-image-picker';
 
 export default function ImageFileInput({
   representaiveImage,
+  setOpenModal,
+  errorData,
 }: ImageFileInputProps) {
-  const dispatch = useAppDispatch();
-
-  const onPressImageUpload = async () => {
-    //아래 maxWidth,maxHeight,quality 조절하여 용량 조절
-    await launchImageLibrary(
-      {
-        mediaType: 'photo',
-        maxWidth: 450,
-        maxHeight: 600,
-        quality: 1,
-        includeBase64: false,
-      },
-      response => {
-        if (response.didCancel) {
-          return null;
-        } else if (response.assets) {
-          dispatch(setRepresentativeImage(response.assets[0].uri));
-        }
-      },
-    );
+  const onPressImageUpload = () => {
+    setOpenModal(true);
   };
 
   return (
     <ImageFileInputContainer>
       {representaiveImage === null ? (
         <NoDataImageContainer onPress={onPressImageUpload} activeOpacity={0.8}>
-          <PreviewImage source={ButtonAddImage} />
+          <PreviewNoImage>
+            <ButtonAddImage width={17} height={17} />
+          </PreviewNoImage>
         </NoDataImageContainer>
       ) : (
         <PreviewImageContainer>
@@ -64,13 +53,23 @@ export default function ImageFileInput({
           height: 150,
         }}
       />
+      {errorData.map(data => {
+        return data.InputName === 'representaiveImage' ? (
+          <ReviewErrorContainerFileInput key={data.InputName}>
+            <FontRedNormalMedium>*</FontRedNormalMedium>
+            <FontYellowSmallestMedium>
+              필수 등록 항목입니다.
+            </FontYellowSmallestMedium>
+          </ReviewErrorContainerFileInput>
+        ) : null;
+      })}
       <ImageUploadButtonContainer>
         <ImageUploadButton activeOpacity={0.7} onPress={onPressImageUpload}>
-          <FontWhiteGreySmallestThinWithLineHeight>
+          <FontWhiteGreySmallestMediumWithLineHeight>
             {representaiveImage === null
               ? '사진을 등록해주세요.'
               : '사진 수정하기'}
-          </FontWhiteGreySmallestThinWithLineHeight>
+          </FontWhiteGreySmallestMediumWithLineHeight>
         </ImageUploadButton>
       </ImageUploadButtonContainer>
     </ImageFileInputContainer>

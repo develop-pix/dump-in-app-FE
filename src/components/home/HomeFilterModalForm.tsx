@@ -2,27 +2,26 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {ScrollView} from 'react-native';
 import Modal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
-import CloseBtnImage from '../../assets/image/reuse/close-btn.png';
+import CloseIcon from '../../assets/image/icon/btn_close.svg';
 import {HomeFilterModalFormProps} from '../../interfaces/reuse/Filter.interface';
 import {FilterButton} from '../reuse/button/FilterButton';
-import FilterLocation from '../reuse/filter/FilterLocation';
-import FilterFrameColor from '../reuse/filter/FilterFrameColor';
-import FilterParty from '../reuse/filter/FilterParty';
-import FilterCameraShot from '../reuse/filter/FilterCameraShot';
-import FilterConcept from '../reuse/filter/FilterConcept';
+import FilterLocation from './filter/FilterLocation';
+import FilterFrameColor from './filter/FilterFrameColor';
+import FilterParty from './filter/FilterParty';
+import FilterCameraShot from './filter/FilterCameraShot';
+import FilterConcept from './filter/FilterConcept';
 import {
   FilterFormContainer,
   FilterFormBody,
   FilterFormHeader,
   FilterOptionContainer,
   CloseButton,
-  CloseButtonImage,
   FilterButtonBox,
   FilterFormTitleContainer,
 } from '../../styles/layout/home/HomeFilterModalForm.style';
 import {FilterProps} from '../../interfaces/reuse/Filter.interface';
 import {colors} from '../../styles/base/Variable';
-import {FontWhiteGreyNormalThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontWhiteGreyNormalSemibold} from '../../styles/layout/reuse/text/Text.style';
 
 export default function HomeFilterModalForm({
   filterData,
@@ -95,12 +94,14 @@ export default function HomeFilterModalForm({
       isVisible={true}
       animationIn="slideInUp"
       animationOut="slideOutDown"
-      deviceWidth={100}>
+      backdropOpacity={0.7}>
       <FilterFormContainer>
         <FilterFormBody>
           <FilterFormHeader>
             <FilterFormTitleContainer>
-              <FontWhiteGreyNormalThick>상세 필터</FontWhiteGreyNormalThick>
+              <FontWhiteGreyNormalSemibold>
+                상세 필터
+              </FontWhiteGreyNormalSemibold>
             </FilterFormTitleContainer>
 
             <CloseButton
@@ -108,14 +109,14 @@ export default function HomeFilterModalForm({
                 handleHideFilterModal();
                 handleFilterReset(); // 창 닫으면서 초기화
               }}>
-              <CloseButtonImage source={CloseBtnImage} />
+              <CloseIcon />
             </CloseButton>
           </FilterFormHeader>
 
           <ScrollView>
             <LinearGradient
-              colors={['transparent', colors.black]}
-              locations={[0.2, 0.3]}
+              colors={['transparent', colors.lightblack]}
+              locations={[0.1, 0.3]}
               style={{
                 position: 'absolute',
                 left: 0,

@@ -2,19 +2,19 @@ import React from 'react';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontBlackSmallerThick,
-  FontLightGreySmallerThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontBlackSmallerSemibold,
+  FontLightGreySmallerMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   PartyButton,
   PartySelectContainer,
   PartySelectWrapper,
-} from '../../../styles/layout/review-new/input/PartySelect.style';
+} from '../../../styles/layout/review-form/input/PartySelect.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setParty} from '../../../hooks/redux/ReviewData';
 import {PartySelectProps} from '../../../interfaces/ReviewNew.interface';
@@ -35,14 +35,14 @@ export default function PartySelect({party, errorData}: PartySelectProps) {
   return (
     <PartySelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>인원</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>인원</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'party' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -56,13 +56,13 @@ export default function PartySelect({party, errorData}: PartySelectProps) {
               key={partyOption}
               onPress={() => onPressParty(partyOption)}>
               {partyOption === party ? (
-                <FontBlackSmallerThick>
+                <FontBlackSmallerSemibold>
                   {partyOption === 5 ? '5+' : partyOption}
-                </FontBlackSmallerThick>
+                </FontBlackSmallerSemibold>
               ) : (
-                <FontLightGreySmallerThin>
+                <FontLightGreySmallerMedium>
                   {partyOption === 5 ? '5+' : partyOption}
-                </FontLightGreySmallerThin>
+                </FontLightGreySmallerMedium>
               )}
             </PartyButton>
           );

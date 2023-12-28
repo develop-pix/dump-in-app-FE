@@ -11,22 +11,26 @@ import {
   EventTitleContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothEventFrame.style';
 import {
-  FontWhiteBiggestThick,
-  FontWhiteGreySmallerThin,
+  FontWhiteBiggestSemibold,
+  FontWhiteGreySmallerMedium,
 } from '../../styles/layout/reuse/text/Text.style';
 import {PhotoBoothEventFrameProps} from '../../interfaces/PhotoBoothDetail.interface';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParam} from '../../interfaces/NavigationBar';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function PhotoBoothEventFrame({
   event,
 }: PhotoBoothEventFrameProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const isFocused = useIsFocused();
+  const route = useRoute();
+
   const onPressEvent = (id: number) => {
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (isFocused) {
-      navigation.push('EventDetail', {eventID: id});
+      navigation.push('EventDetail', {eventID: id, screen: currentScreen});
     }
   };
 
@@ -37,7 +41,7 @@ export default function PhotoBoothEventFrame({
       <EventImageWrapper>
         <EventImage source={{uri: event.representativeImage}} />
         <LinearGradient
-          colors={['transparent', colors.black]}
+          colors={['transparent', colors.lightblack]}
           locations={[0.1, 1]}
           style={{
             position: 'absolute',
@@ -51,11 +55,14 @@ export default function PhotoBoothEventFrame({
         <FavoirteIcon>
           <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
         </FavoirteIcon>
+
         <EventInfo>
           <EventTitleContainer>
-            <FontWhiteBiggestThick>{event.eventTitle}</FontWhiteBiggestThick>
+            <FontWhiteBiggestSemibold>
+              {event.eventTitle}
+            </FontWhiteBiggestSemibold>
           </EventTitleContainer>
-          <FontWhiteGreySmallerThin>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerThin>
+          <FontWhiteGreySmallerMedium>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerMedium>
         </EventInfo>
       </EventImageWrapper>
     </EventItem>

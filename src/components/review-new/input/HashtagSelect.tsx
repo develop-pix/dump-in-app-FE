@@ -3,17 +3,17 @@ import {
   HashtagButton,
   HashtagSelectContainer,
   HashtagSelectWrapper,
-} from '../../../styles/layout/review-new/input/HashtagSelect.style';
+} from '../../../styles/layout/review-form/input/HashtagSelect.style';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontBlackSmallerThick,
-  FontLightGreySmallerThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontBlackSmallerSemibold,
+  FontLightGreySmallerMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setHashtag} from '../../../hooks/redux/ReviewData';
@@ -58,14 +58,14 @@ export default function HashtagSelect({
   return (
     <HashtagSelectContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>컨셉</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>컨셉</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'hashtags' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -79,9 +79,11 @@ export default function HashtagSelect({
               isSelected={hashtags}
               onPress={() => onPressHashtag(hashtag)}>
               {hashtags.includes(hashtag) ? (
-                <FontBlackSmallerThick>{hashtag}</FontBlackSmallerThick>
+                <FontBlackSmallerSemibold>{hashtag}</FontBlackSmallerSemibold>
               ) : (
-                <FontLightGreySmallerThin>{hashtag}</FontLightGreySmallerThin>
+                <FontLightGreySmallerMedium>
+                  {hashtag}
+                </FontLightGreySmallerMedium>
               )}
             </HashtagButton>
           );

@@ -2,20 +2,19 @@ import React, {useEffect} from 'react';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontLightGreyNormalThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontLightGreyNormalMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
+  FontWhiteSmallerMediumWithLineHeight,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
-  LocationImage,
   LocationInputButton,
   LocationInputContainer,
-  LocationTextButton,
   LocationTextContainer,
-} from '../../../styles/layout/review-new/input/LocationInput.style';
+} from '../../../styles/layout/review-form/input/LocationInput.style';
 
 import {
   RouteProp,
@@ -30,7 +29,7 @@ import {
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setBranchID} from '../../../hooks/redux/ReviewData';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import LocationIcon from '../../../assets/image/reuse/location.png';
+import LocationGreyIcon from '../../../assets/image/icon/location_grey.svg';
 import {LocationInputProps} from '../../../interfaces/ReviewNew.interface';
 export default function LocationInput({
   location,
@@ -44,7 +43,10 @@ export default function LocationInput({
   // Branch 검색 페이지로 이동
   const onPressSelectLocation = () => {
     if (isFocused) {
-      navigation.push('LocationSearch', {NextPage: 'ReviewNew'});
+      navigation.push('LocationSearch', {
+        NextPage: 'ReviewNew',
+        screen: 'Location',
+      });
     }
   };
 
@@ -58,31 +60,31 @@ export default function LocationInput({
   return (
     <LocationInputContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>위치</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>위치</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'location' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
       </ReviewInputTitleContainer>
       <LocationInputButton onPress={onPressSelectLocation} activeOpacity={1}>
-        <LocationTextButton onPress={onPressSelectLocation}>
+        <FontWhiteSmallerMediumWithLineHeight onPress={onPressSelectLocation}>
           {location === undefined || null ? (
-            <FontLightGreyNormalThin>
+            <FontLightGreyNormalMedium>
               위치를 검색해주세요.
-            </FontLightGreyNormalThin>
+            </FontLightGreyNormalMedium>
           ) : (
             <LocationTextContainer>
-              <LocationImage source={LocationIcon} />
-              <FontWhiteNormalThin>{location}</FontWhiteNormalThin>
+              <LocationGreyIcon width={16} height={21} />
+              <FontWhiteNormalMedium>{location}</FontWhiteNormalMedium>
             </LocationTextContainer>
           )}
-        </LocationTextButton>
+        </FontWhiteSmallerMediumWithLineHeight>
       </LocationInputButton>
     </LocationInputContainer>
   );

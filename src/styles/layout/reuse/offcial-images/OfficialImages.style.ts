@@ -23,7 +23,7 @@ export const OfficialImagesContainer = styled.View`
   flex-wrap: wrap;
 `;
 
-export const OfficialImageWrapper = styled.View`
+export const OfficialImageWrapper = styled.TouchableOpacity`
   width: 48%;
 `;
 

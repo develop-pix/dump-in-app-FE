@@ -1,24 +1,23 @@
 import React, {useRef, useState} from 'react';
 import {
   CarouselContainer,
+  CarouselScrollView,
+  FindMoreReviewContainer,
+  FindMoreReviewWrapper,
   PhotoDumpContainer,
+  ReviewBlurImage,
   Reviews,
+  SeeMoreButton,
   SubTitleContainer,
 } from '../../../styles/layout/reuse/photo-dump/PhotoDump.style';
-import {FontWhiteSmallerThickWithLineSpacing} from '../../../styles/layout/reuse/text/Text.style';
 import {
-  PhotoDumpProps,
-  ReviewData,
-} from '../../../interfaces/reuse/photo-dump/PhotoDump.interface';
-import {
-  Animated,
-  Dimensions,
-  FlatList,
-  ListRenderItem,
-  NativeScrollEvent,
-} from 'react-native';
+  FontWhiteNormalMedium,
+  FontWhiteSmallerSemiboldWithLineSpacing,
+  FontWhiteSmallerMedium,
+} from '../../../styles/layout/reuse/text/Text.style';
+import {PhotoDumpProps} from '../../../interfaces/reuse/photo-dump/PhotoDump.interface';
+import {Animated, Dimensions, NativeScrollEvent} from 'react-native';
 import Review from './Review';
-import GetMoreReview from './GetMoreReview';
 import SearchNoData from '../alert/SearchNoData';
 import {NormalButton} from '../button/NormalButton';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
@@ -27,10 +26,17 @@ import {
   RootStackParam,
 } from '../../../interfaces/NavigationBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ScreenName} from '../../../interfaces/NavigationBar';
+import SearchIcon from '../../../assets/image/icon/search.svg';
+import NextIcon from '../../../assets/image/icon/btn_next.svg';
 
-export default function PhotoDump({reviewData}: PhotoDumpProps) {
+export default function PhotoDump({
+  photoBoothName,
+  reviewData,
+}: PhotoDumpProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
   const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
+
   const pageWidth = Dimensions.get('window').width * 0.8;
   const gap = Dimensions.get('window').width * 0.04;
   const offset = Dimensions.get('window').width * 0.06;
@@ -60,52 +66,32 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
     }
   };
 
-  /* 스크롤 끝에 도착했을때, 데이터 Get 해야함, API 필요*/
-  const onEndReached = () => {
-    //const reviewData = await fetchData();
-
-    console.log('get');
-  };
-
   const onPressRegistrationReview = () => {
-    navigation.push('ReviewNew', {branchID: route.params.branchID});
+    const currentScreen = (
+      route.params as {branchID: number; screen: ScreenName}
+    ).screen;
+    navigation.push('ReviewNew', {
+      branchID: route.params.branchID,
+      screen: currentScreen,
+    });
   };
 
-  /* renderItem 안에서 선언해줄경우 TypeError 발생 (타입명시를 위해 따로 선언) */
-  const renderItems: ListRenderItem<ReviewData> = ({
-    item,
-  }: {
-    item: ReviewData;
-  }) => (
-    <Reviews key={item.reviewID}>
-      {item.reviewID === reviewData[reviewActive].reviewID ? (
-        <Animated.View style={{opacity: translateIn}}>
-          <Review
-            reviewID={item.reviewID}
-            reviewImage={item.representativeImage}
-            reviewDescription={item.description}
-            reviewHashtags={item.hashtag}
-          />
-        </Animated.View>
-      ) : (
-        <Animated.View style={{opacity: translateOut}}>
-          <Review
-            reviewID={item.reviewID}
-            reviewImage={item.representativeImage}
-            reviewDescription={item.description}
-            reviewHashtags={item.hashtag}
-          />
-        </Animated.View>
-      )}
-    </Reviews>
-  );
+  const onPressHomeSearch = () => {
+    const currentScreen = (
+      route.params as {branchID: number; screen: ScreenName}
+    ).screen;
+    navigation.navigate('HomeSearch', {
+      screen: currentScreen,
+      PhotoBoothName: photoBoothName,
+    });
+  };
 
   return (
     <PhotoDumpContainer>
       <SubTitleContainer>
-        <FontWhiteSmallerThickWithLineSpacing>
+        <FontWhiteSmallerSemiboldWithLineSpacing>
           PHOTO DUMP
-        </FontWhiteSmallerThickWithLineSpacing>
+        </FontWhiteSmallerSemiboldWithLineSpacing>
       </SubTitleContainer>
       {reviewData.length === 0 ? (
         <>
@@ -120,26 +106,74 @@ export default function PhotoDump({reviewData}: PhotoDumpProps) {
         </>
       ) : (
         <CarouselContainer>
-          <FlatList
-            data={reviewData}
-            keyExtractor={item => item.reviewID.toString()}
+          <CarouselScrollView
             onScroll={({nativeEvent}) => onCarouselScroll(nativeEvent)}
             scrollEventThrottle={0}
             showsHorizontalScrollIndicator={false}
             pagingEnabled
             horizontal
-            renderItem={renderItems}
-            onEndReached={onEndReached}
-            onEndReachedThreshold={1}
-            ListFooterComponent={<GetMoreReview />}
             automaticallyAdjustContentInsets={false}
             snapToAlignment="start"
             decelerationRate="fast"
             snapToInterval={pageWidth + gap}
             contentContainerStyle={{
               paddingHorizontal: offset + gap / 2,
-            }}
-          />
+            }}>
+            {reviewData.map(item => {
+              return (
+                <Reviews key={item.reviewID}>
+                  {reviewData[reviewActive] === undefined ? (
+                    <Animated.View style={{opacity: translateOut}}>
+                      <Review
+                        reviewID={item.reviewID}
+                        reviewImage={item.representativeImage}
+                        reviewDescription={item.description}
+                        reviewHashtags={item.hashtag}
+                      />
+                    </Animated.View>
+                  ) : item.reviewID === reviewData[reviewActive].reviewID ? (
+                    <Animated.View style={{opacity: translateIn}}>
+                      <Review
+                        reviewID={item.reviewID}
+                        reviewImage={item.representativeImage}
+                        reviewDescription={item.description}
+                        reviewHashtags={item.hashtag}
+                      />
+                    </Animated.View>
+                  ) : (
+                    <Animated.View style={{opacity: translateOut}}>
+                      <Review
+                        reviewID={item.reviewID}
+                        reviewImage={item.representativeImage}
+                        reviewDescription={item.description}
+                        reviewHashtags={item.hashtag}
+                      />
+                    </Animated.View>
+                  )}
+                </Reviews>
+              );
+            })}
+            <Reviews>
+              <FindMoreReviewContainer>
+                <ReviewBlurImage
+                  source={{
+                    uri: reviewData[reviewData.length - 1].representativeImage,
+                  }}
+                  blurRadius={4}
+                />
+                <FindMoreReviewWrapper>
+                  <SearchIcon width={50} height={46} />
+                  <FontWhiteNormalMedium>
+                    포토부스 검색으로 더 많은 리뷰 보기
+                  </FontWhiteNormalMedium>
+                  <SeeMoreButton onPress={onPressHomeSearch}>
+                    <FontWhiteSmallerMedium>리뷰 더보기</FontWhiteSmallerMedium>
+                    <NextIcon width={20} height={20} />
+                  </SeeMoreButton>
+                </FindMoreReviewWrapper>
+              </FindMoreReviewContainer>
+            </Reviews>
+          </CarouselScrollView>
         </CarouselContainer>
       )}
     </PhotoDumpContainer>

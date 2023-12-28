@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
-import {ReviewDescriptionTextInputContainer} from '../../../styles/layout/review-new/input/ReviewDescriptionInput.style';
+import {ReviewDescriptionTextInputContainer} from '../../../styles/layout/review-form/input/ReviewDescriptionInput.style';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontLightGreyNormalThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontLightGreyNormalMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {
   DateInputContainer,
   DateInputWrapper,
   DateTextButton,
-} from '../../../styles/layout/review-new/input/DateInput.style';
+} from '../../../styles/layout/review-form/input/DateInput.style';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {useAppDispatch} from '../../../hooks/redux/store';
 import {setDate} from '../../../hooks/redux/ReviewData';
@@ -43,14 +43,14 @@ export default function DateInput({date, errorData}: DateInputProps) {
   return (
     <DateInputContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>날짜</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>날짜</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'date' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -59,13 +59,13 @@ export default function DateInput({date, errorData}: DateInputProps) {
         <DateInputWrapper onPress={onPressDatePickerOpen}>
           <DateTextButton onSelected={date} onPress={onPressDatePickerOpen}>
             {date ? (
-              <FontWhiteNormalThin>
+              <FontWhiteNormalMedium>
                 {DateToReviewDateForm(date)}
-              </FontWhiteNormalThin>
+              </FontWhiteNormalMedium>
             ) : (
-              <FontLightGreyNormalThin>
+              <FontLightGreyNormalMedium>
                 날짜를 선택해주세요.
-              </FontLightGreyNormalThin>
+              </FontLightGreyNormalMedium>
             )}
           </DateTextButton>
           <DateTimePickerModal
@@ -76,6 +76,7 @@ export default function DateInput({date, errorData}: DateInputProps) {
             locale="ko"
             cancelTextIOS="취소"
             confirmTextIOS="변경"
+            maximumDate={new Date()}
           />
         </DateInputWrapper>
       </ReviewDescriptionTextInputContainer>

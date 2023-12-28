@@ -4,7 +4,7 @@ import {colors} from '../../../base/Variable';
 
 export const ReviewFrameContainer = styled.TouchableOpacity`
   width: ${Dimensions.get('window').width * 0.45}px;
-  aspect-ratio: 1;
+  aspect-ratio: 3/4;
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 15px;
@@ -14,6 +14,7 @@ export const ReviewFrameContainer = styled.TouchableOpacity`
 export const ReviewFrameImage = styled.Image`
   width: 100%;
   height: 100%;
+  resize-mode: cover;
 `;
 
 export const ReviewInfo = styled.View`
@@ -29,9 +30,7 @@ export const ReviewNameContainer = styled.View`
   margin-bottom: 10px;
 `;
 
-export const LocationIcon = styled.Image`
-  width: 18px;
-  height: 21px;
+export const LocationIconContainer = styled.View`
   margin-right: 5px;
   margin-left: 5px;
 `;

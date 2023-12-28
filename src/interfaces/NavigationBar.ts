@@ -1,23 +1,42 @@
 import {ReactNode} from 'react';
 
 export type RootStackParam = {
-  Home: undefined;
-  HomeSearch: undefined;
-  Location: undefined | {PhotoBoothID: number | null};
-  LocationSearch: {NextPage: 'BranchDetail' | 'ReviewNew'};
-  Category: undefined;
-  MyPage: undefined;
-  Branch: {branchID: number};
-  ReviewDetail: {reviewID: number};
-  PhotoBoothDetail: {PhotoBoothID: number};
-  EventDetail: {eventID: number};
-  ReviewNew: {branchID: number | undefined};
+  Home: {screen: ScreenName};
+  HomeSearch: {screen: ScreenName; PhotoBoothName: string | null};
+  Location:
+    | {screen: ScreenName}
+    | {PhotoBoothID: number | null; screen: ScreenName};
+  LocationSearch: {NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName};
+  Category: {screen: ScreenName};
+  MyPage: {screen: ScreenName};
+  Branch: {branchID: number; screen: ScreenName};
+  ReviewDetail: {reviewID: number; screen: ScreenName};
+  PhotoBoothDetail: {PhotoBoothID: number; screen: ScreenName};
+  EventDetail: {eventID: number; screen: ScreenName};
+  ReviewNew: {branchID: number | undefined; screen: ScreenName};
+  ReviewEdit: {ReviewID: number | null; screen: ScreenName};
+  Login: {screen: ScreenName};
+  Notification: {screen: ScreenName};
+  OfficialImageDetail: {
+    screen: ScreenName;
+    photoBoothName: string;
+    image: string[];
+    index: number;
+  };
 };
+
+export interface NavigationScreenParam {
+  screen: ScreenName;
+}
 
 export interface NavigationBarListItemProps {
   screen: ScreenName;
-  selectedScreen: string;
+  selectedScreen: ScreenName;
   handleListClick: (screen: ScreenName) => void;
+}
+
+export interface NavigationBarProps {
+  currentScreen: ScreenName;
 }
 
 export type ScreenName = 'Home' | 'Location' | 'Category' | 'MyPage';
@@ -29,13 +48,21 @@ export type BranchParamList = {
 };
 
 export type ReviewDetailParamList = {
+  reviewDetailType: {
+    reviewID: number;
+  };
+};
+
+export type ReviewEditParamList = {
   reviewType: {
     reviewID: number;
   };
 };
+
 export type LocationSearchParamList = {
   locationSearchType: {
     NextPage: 'BranchDetail' | 'ReviewNew';
+    screen: ScreenName;
   };
 };
 
@@ -57,5 +84,13 @@ export interface ScreenProviderProps {
 export type NewReviewParamList = {
   branchType: {
     branchID: number | undefined;
+  };
+};
+
+export type OfficialImageDetailParamList = {
+  imageData: {
+    photoBoothName: string | null;
+    image: string[];
+    index: number;
   };
 };

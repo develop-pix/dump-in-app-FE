@@ -46,6 +46,7 @@ target 'dump_in_app_FE' do
   )
 
   pod 'NMapsMap','3.15.0'
+  pod 'naveridlogin-sdk-ios'
 
   target 'dump_in_app_FETests' do
     inherit! :complete

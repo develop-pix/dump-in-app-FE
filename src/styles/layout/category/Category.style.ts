@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {colors, fontSize, fontWeight} from '../../base/Variable';
+import {colors, fontSize, fontWeight, fontFamily} from '../../base/Variable';
 
 export const CategoryContainer = styled.View`
   flex: 1;
@@ -18,5 +18,6 @@ export const PageBarText = styled.Text<{selected: boolean}>`
   margin-right: 20px;
   color: ${props => (props.selected ? colors.white : colors.lightgrey)};
   font-size: ${fontSize.bigger};
-  font-weight: ${fontWeight.thick};
+  font-weight: ${fontWeight.semibold};
+  font-family: ${fontFamily.Pretendard};
 `;

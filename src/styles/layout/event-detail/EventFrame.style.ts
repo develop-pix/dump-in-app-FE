@@ -3,19 +3,33 @@ import {colors} from '../../base/Variable';
 
 export const FrameContainer = styled.View`
   padding-bottom: 120px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+export const SubTitleContainer = styled.View`
+  width: 90%;
 `;
 
 export const FrameImageContainer = styled.View`
-  margin-top: 10px;
+  width: 90%;
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 11px;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+`;
+
+export const FrameImageWrapper = styled.View`
+  width: 48%;
 `;
 
 export const FrameImage = styled.Image`
-  width: 45%;
-  height: 215px;
   background-color: ${colors.white};
-  margin-top: 8px;
+  object-fit: contain;
+  width: 100%;
+  aspect-ratio: 0.8;
   border-radius: 10px;
 `;

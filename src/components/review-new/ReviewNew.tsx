@@ -4,14 +4,14 @@ import {
   InputContainer,
   InputWrapper,
   LocationAndDateContainer,
-  ReviewNewScrollView,
-} from '../../styles/layout/review-new/ReviewNew.style';
+  ReviewFormScrollView,
+} from '../../styles/layout/review-form/ReviewForm.style';
 import {
   GoBackButtonWithSubmitContainer,
   SubmitButton,
 } from '../../styles/layout/reuse/button/GoBackButton.style';
 import {Platform} from 'react-native';
-import {FontYellowBiggerThick} from '../../styles/layout/reuse/text/Text.style';
+import {FontYellowBiggerSemibold} from '../../styles/layout/reuse/text/Text.style';
 import ImageFileInput from './input/ImageFileInput';
 import ReviewDescriptionInput from './input/ReviewDescriptionInput';
 import LocationInput from './input/LocationInput';
@@ -26,14 +26,20 @@ import PublicOpenSwitch from './input/PublicOpenSwitch';
 import CameraShotSelect from './input/CameraShotSelect';
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 import {InputDatas} from '../../interfaces/ReviewNew.interface';
+import ReviewNewModal from './input/ReviewNewModal';
+import {UploadImageToS3} from '../../hooks/axios/ReviewNew';
 
 export default function ReviewNew() {
   const [errorData, setErrorData] = useState<InputDatas[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const scrollRef = useRef<any>();
   const platform = Platform.OS;
   const representaiveImage = useAppSelector(
     state => state.reviewData,
   ).representativeImage;
+  const representaiveImageName = useAppSelector(
+    state => state.reviewData,
+  ).representativeImageName;
   const description = useAppSelector(state => state.reviewData).description;
   const location = useAppSelector(state => state.reviewData).branchID;
   const date = useAppSelector(state => state.reviewData).date;
@@ -56,6 +62,12 @@ export default function ReviewNew() {
     setErrorData([]);
 
     // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
+    if (representaiveImage === null || description === '') {
+      setErrorData(data => [
+        ...data,
+        {InputName: 'representaiveImage', height: 0},
+      ]);
+    }
     if (description === null || description === '') {
       setErrorData(data => [...data, {InputName: 'description', height: 450}]);
     }
@@ -84,6 +96,20 @@ export default function ReviewNew() {
     }
 
     if (errorData.length === 0) {
+      // 우선 S3 업로드만 먼저 추가
+      if (representaiveImage && representaiveImageName) {
+        UploadImageToS3(representaiveImage, representaiveImageName);
+        console.log('게시글' + description);
+        console.log('위치' + location);
+        console.log('날짜' + date);
+        console.log('프레임색상' + frameColor);
+        console.log('인원' + party);
+        console.log('카메라샷' + cameraShot);
+        console.log('컨셉' + hashtags);
+        console.log('소품' + tools);
+        console.log('고데기' + hairIron);
+        console.log('공개여부' + publicOpen);
+      }
       //더이상 에러 데이터가 없을경우 submit 진행, 추후 API추가
     }
   };
@@ -95,14 +121,19 @@ export default function ReviewNew() {
   }, [errorData]);
 
   return (
-    <ReviewNewScrollView ref={scrollRef}>
+    <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openModal}>
+      {openModal ? <ReviewNewModal setOpenModal={setOpenModal} /> : null}
       <GoBackButtonWithSubmitContainer platform={platform}>
         <GoBackButtonReview />
         <SubmitButton onPress={onPressSubmit}>
-          <FontYellowBiggerThick>완료</FontYellowBiggerThick>
+          <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
         </SubmitButton>
       </GoBackButtonWithSubmitContainer>
-      <ImageFileInput representaiveImage={representaiveImage} />
+      <ImageFileInput
+        representaiveImage={representaiveImage}
+        setOpenModal={setOpenModal}
+        errorData={errorData}
+      />
       <InputContainer>
         <InputWrapper>
           <ReviewDescriptionInput
@@ -124,6 +155,6 @@ export default function ReviewNew() {
           <PublicOpenSwitch publicOpen={publicOpen} />
         </InputWrapper>
       </InputContainer>
-    </ReviewNewScrollView>
+    </ReviewFormScrollView>
   );
 }

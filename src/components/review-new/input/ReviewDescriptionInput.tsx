@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ReviewDescriptionCount,
   ReviewDescriptionInputContainer,
   ReviewDescriptionTextInput,
   ReviewDescriptionTextInputContainer,
-} from '../../../styles/layout/review-new/input/ReviewDescriptionInput.style';
+} from '../../../styles/layout/review-form/input/ReviewDescriptionInput.style';
 import {
   ReviewErrorContainer,
   ReviewInputTitleContainer,
-} from '../../../styles/layout/review-new/ReviewNew.style';
+} from '../../../styles/layout/review-form/ReviewForm.style';
 import {
-  FontLightGreySmallestThin,
-  FontRedNormalThin,
-  FontWhiteNormalThin,
-  FontYellowSmallestThin,
+  FontLightGreySmallestMedium,
+  FontRedNormalMedium,
+  FontWhiteNormalMedium,
+  FontYellowSmallestMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
 import {colors} from '../../../styles/base/Variable';
 import {Platform} from 'react-native';
@@ -26,29 +26,32 @@ export default function ReviewDescriptionInput({
   errorData,
 }: ReviewDescriptionProps) {
   // 위치 선택 후 돌아왔을때 게시글 길이를 유지하기 위함
-  const [inputCount, setInputCount] = useState<number>(
-    description === null ? 0 : description.length,
-  );
+  const [inputCount, setInputCount] = useState<number>(0);
   const platform = Platform.OS;
   const dispatch = useAppDispatch();
 
   // 게시글이 변경 될때 글자길이 count 및 문자열 dispatch
   const onChangeText = (e: string) => {
-    setInputCount(e.length);
     dispatch(setDescription(e));
   };
+
+  useEffect(() => {
+    if (description) {
+      setInputCount(description.length);
+    }
+  }, [description]);
 
   return (
     <ReviewDescriptionInputContainer>
       <ReviewInputTitleContainer>
-        <FontWhiteNormalThin>게시글</FontWhiteNormalThin>
-        <FontRedNormalThin>*</FontRedNormalThin>
+        <FontWhiteNormalMedium>게시글</FontWhiteNormalMedium>
+        <FontRedNormalMedium>*</FontRedNormalMedium>
         {errorData.map(data => {
           return data.InputName === 'description' ? (
             <ReviewErrorContainer key={data.InputName}>
-              <FontYellowSmallestThin>
+              <FontYellowSmallestMedium>
                 필수 입력 항목입니다.
-              </FontYellowSmallestThin>
+              </FontYellowSmallestMedium>
             </ReviewErrorContainer>
           ) : null;
         })}
@@ -65,9 +68,9 @@ export default function ReviewDescriptionInput({
           textAlignVertical="top"
         />
         <ReviewDescriptionCount>
-          <FontLightGreySmallestThin>
+          <FontLightGreySmallestMedium>
             {inputCount} / 100
-          </FontLightGreySmallestThin>
+          </FontLightGreySmallestMedium>
         </ReviewDescriptionCount>
       </ReviewDescriptionTextInputContainer>
     </ReviewDescriptionInputContainer>

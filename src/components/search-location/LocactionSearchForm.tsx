@@ -16,6 +16,7 @@ import {
   RootStackParam,
 } from '../../interfaces/NavigationBar';
 import SearchNoData from '../reuse/alert/SearchNoData';
+import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function LocactionSearchForm() {
   const platform = Platform.OS;
@@ -83,13 +84,20 @@ export default function LocactionSearchForm() {
   //진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
   const SearchBranch = () => {
     // 나중에 API 연결
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
     if (search !== '' && resultData.length !== 0) {
       if (route.params.NextPage === 'BranchDetail') {
         navigation.pop();
-        navigation.push('Branch', {branchID: resultData[0].branchID});
+        navigation.push('Branch', {
+          branchID: resultData[0].branchID,
+          screen: 'Location',
+        });
       } else if (route.params.NextPage === 'ReviewNew') {
-        navigation.popToTop();
-        navigation.push('ReviewNew', {branchID: resultData[0].branchID});
+        navigation.pop();
+        navigation.push('ReviewNew', {
+          branchID: resultData[0].branchID,
+          screen: currentScreen,
+        });
       }
     }
   };

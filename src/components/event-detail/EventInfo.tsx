@@ -4,42 +4,44 @@ import {
   EventInfoContainer,
   InfoContainer,
   InfoDateContainer,
-  CalenderIcon,
+  CalenderIconContainer,
   InfoTitleContainer,
   InfoDescriptionContainer,
 } from '../../styles/layout/event-detail/EventInfo.style';
 import {
-  FontLightGreySmallerThin,
-  FontWhiteGreySmallerThick,
-  FontLightGreySmallerThick,
+  FontLightGreySmallerMedium,
+  FontWhiteGreySmallerSemibold,
+  FontLightGreySmallerSemibold,
 } from '../../styles/layout/reuse/text/Text.style';
-import CalenderImage from '../../assets/image/reuse/calender.png';
-import {FontWhiteSmallerThickWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
+import CalenderIcon from '../../assets/image/icon/calendar.svg';
+import {FontWhiteSmallerSemiboldWithLineSpacing} from '../../styles/layout/reuse/text/Text.style';
 
 export default function EventInfo({eventData}: EventInfoProps) {
   return (
     <EventInfoContainer>
-      <FontWhiteSmallerThickWithLineSpacing>
+      <FontWhiteSmallerSemiboldWithLineSpacing>
         INFO
-      </FontWhiteSmallerThickWithLineSpacing>
+      </FontWhiteSmallerSemiboldWithLineSpacing>
 
       <InfoContainer>
         <InfoTitleContainer>
-          <FontWhiteGreySmallerThick>
+          <FontWhiteGreySmallerSemibold>
             {eventData.desciptionTitle}
-          </FontWhiteGreySmallerThick>
+          </FontWhiteGreySmallerSemibold>
         </InfoTitleContainer>
         <InfoDescriptionContainer>
-          <FontLightGreySmallerThick>
+          <FontLightGreySmallerSemibold>
             {eventData.desciption}
-          </FontLightGreySmallerThick>
+          </FontLightGreySmallerSemibold>
         </InfoDescriptionContainer>
 
         <InfoDateContainer>
-          <CalenderIcon source={CalenderImage} />
-          <FontLightGreySmallerThin>
+          <CalenderIconContainer>
+            <CalenderIcon width={16} height={21} />
+          </CalenderIconContainer>
+          <FontLightGreySmallerMedium>
             {eventData.startDate} ~ {eventData.endDate}
-          </FontLightGreySmallerThin>
+          </FontLightGreySmallerMedium>
         </InfoDateContainer>
       </InfoContainer>
     </EventInfoContainer>

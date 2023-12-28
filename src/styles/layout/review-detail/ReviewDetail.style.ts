@@ -5,7 +5,7 @@ import {Dimensions} from 'react-native';
 export const ReviewDetailContainer = styled.SafeAreaView`
   flex: 1;
   justify-content: space-between;
-  background-color: ${colors.black};
+  background-color: ${colors.lightblack};
 `;
 
 export const TitleContainer = styled.View`
@@ -20,12 +20,15 @@ export const ReviewDetailFormWrapper = styled.View`
   width: 100%;
 `;
 
-export const ReviewImageContainer = styled.View`
-  width: 100%;
-  height: ${Dimensions.get('window').height - 44}px;
+export const ReviewDetailCarousel = styled.ScrollView`
   background-color: ${colors.white};
 `;
 
+export const ReviewImageContainer = styled.View`
+  object-fit: scale-down;
+  width: ${Dimensions.get('screen').width}px;
+  height: ${Dimensions.get('window').height - 24}px;
+`;
 export const ReviewImage = styled.Image`
   object-fit: scale-down;
   width: 100%;
@@ -71,4 +74,19 @@ export const ReviewDescBottom = styled.View`
 export const ReviewDetailForm = styled.View`
   width: 100%;
   height: ${Dimensions.get('window').height}px;
+`;
+
+export const ButtonContainer = styled.View`
+  position: absolute;
+  top: 300px;
+  width: 100%;
+`;
+
+export const PrevButtonContainer = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+`;
+export const NextButtonContainer = styled.TouchableOpacity`
+  position: absolute;
+  right: 0;
 `;
