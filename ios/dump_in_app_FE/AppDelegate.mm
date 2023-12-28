@@ -2,20 +2,6 @@
 
 #import <React/RCTBundleURLProvider.h>
 
-// for naver login
-#import <NaverThirdPartyLogin/NaverThirdPartyLoginConnection.h>
-
-- (BOOL)application:(UIApplication *)application
-     openURL:(NSURL *)url
-     options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options 
-  {
-     // for naver login
-    if ([url.scheme isEqualToString:@"your_apps_urlscheme"]) {
-      return [[NaverThirdPartyLoginConnection getSharedInstance] application:application openURL:url options:options];
-    }
-     return YES;
-  }
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
