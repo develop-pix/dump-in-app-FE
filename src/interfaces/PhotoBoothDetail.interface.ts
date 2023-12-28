@@ -6,10 +6,31 @@ export type PhotoBoothDetailRouteProp = RouteProp<
   'PhotoBoothDetail'
 >;
 
-export interface PhotoBoothImageTitleProps {
-  photoboothData: {
+export interface PhotoBoothDataType {
+  photoBoothName: string;
+  hashtag: string[];
+  representativeImage: string;
+  officialImage: string[];
+  event: {
+    eventID: number;
     representativeImage: string;
-    photoboothName: string;
+    eventTitle: string;
+    startDate: string;
+    endDate: string;
+    myEvent: boolean;
+  }[];
+  review: {
+    reviewID: number;
+    representativeImage: string;
+    description: string;
+    hashtag: string[];
+  }[];
+}
+
+export interface PhotoBoothImageTitleProps {
+  photoBoothData: {
+    representativeImage: string;
+    photoBoothName: string;
     hashtag: string[];
   };
 }

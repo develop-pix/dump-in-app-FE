@@ -31,7 +31,7 @@ import {GoBackButtonContainer} from '../../styles/layout/reuse/button/GoBackButt
 import {Platform} from 'react-native';
 
 export default function PhotoBoothImageTitle({
-  photoboothData,
+  photoBoothData,
 }: PhotoBoothImageTitleProps) {
   const platform = Platform.OS;
   const route = useRoute<RouteProp<PhotoBoothParamList, 'photoboothType'>>();
@@ -49,7 +49,7 @@ export default function PhotoBoothImageTitle({
 
   return (
     <PhotoBoothImageTitleContainer>
-      <PhotoBoothImage source={{uri: photoboothData.representativeImage}}>
+      <PhotoBoothImage source={{uri: photoBoothData.representativeImage}}>
         <LinearGradient
           colors={['transparent', colors.lightblack]}
           locations={[0.1, 1]}
@@ -71,12 +71,12 @@ export default function PhotoBoothImageTitle({
         <ContentsContainer>
           <TitleContainer>
             <FontWhiteBiggestSemibold>
-              {photoboothData.photoboothName}
+              {photoBoothData.photoBoothName}
             </FontWhiteBiggestSemibold>
           </TitleContainer>
 
           <ReviewDescBottom>
-            {TagsArrayToHashTagArrayForm(photoboothData.hashtag).map(tag => (
+            {TagsArrayToHashTagArrayForm(photoBoothData.hashtag).map(tag => (
               <FontYellowSmallerMediumWithLineSpacing key={tag}>
                 {tag}
               </FontYellowSmallerMediumWithLineSpacing>
