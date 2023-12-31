@@ -48,7 +48,7 @@ export default function MyPhotoBoothFrame({
       <InfoContainer>
         <PhotoBoothNameWrapper>
           <FontWhiteBiggestSemiboldWithLineHeight>
-            {photoBoothData.photoboothName}
+            {photoBoothData.photoBoothName}
           </FontWhiteBiggestSemiboldWithLineHeight>
           <FontWhiteGreySmallerSemibold>
             {photoBoothData.branch}

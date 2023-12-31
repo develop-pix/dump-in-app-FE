@@ -8,10 +8,10 @@ import MyPhotoBoothList from './my-activity/MyPhotoBoothList';
 import MyEventList from './my-activity/MyEventList';
 import Login from './my-activity/LoginButton';
 import {ActivityContainer} from '../../styles/layout/my-page/MyPage.style';
-import {ScrollView} from 'react-native';
 import {useAppSelector} from '../../hooks/redux/store';
 import {ActivityComponentProps} from '../../interfaces/MyPage.interface';
 import MyPageMenu from './MyPageMenu';
+import {ScrollView} from 'react-native';
 
 export default function MyPage() {
   const accessToken = useAppSelector(state => state.login.token);
@@ -34,7 +34,7 @@ export default function MyPage() {
   };
 
   return (
-    <ScrollView>
+    <>
       <ActivityContainer>
         <MyPageBar setMenuVisible={setMenuVisible} />
         <EditUserName />
@@ -46,6 +46,6 @@ export default function MyPage() {
       {activeComponentMap[activeComponent]}
 
       <MyPageMenu visible={isMenuVisible} setMenuVisible={setMenuVisible} />
-    </ScrollView>
+    </>
   );
 }

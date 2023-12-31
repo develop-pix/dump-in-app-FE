@@ -21,14 +21,16 @@ export interface ActivityComponentItemProps {
 }
 
 export interface MyPhotoBoothFrameProps {
-  photoBoothData: {
-    photoBoothID: number;
-    photoboothName: string;
-    branch: string;
-    representativeImage: string;
-    hashtag: string[];
-    myPhotoBooth: boolean;
-  };
+  photoBoothData: MyPhotoBoothFrameType;
+}
+
+export interface MyPhotoBoothFrameType {
+  photoBoothID: number;
+  photoBoothName: string;
+  branch: string;
+  representativeImage: string;
+  hashtag: string[];
+  myPhotoBooth: boolean;
 }
 
 export interface MyPageMenuProps {
