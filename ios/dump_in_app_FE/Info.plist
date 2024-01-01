@@ -53,6 +53,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
 	<key>NMFClientId</key>
 	<string>sc9favxy2w</string>
 	<key>NSAppTransportSecurity</key>
