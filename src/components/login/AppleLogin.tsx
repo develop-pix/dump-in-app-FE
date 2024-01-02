@@ -13,11 +13,20 @@ import {
 import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 import {Platform} from 'react-native';
+import {useAppDispatch} from '../../hooks/redux/store';
+import {setAccessToken} from '../../hooks/redux/AccessTokenSlice';
+import {setUserID, setUserNickName} from '../../hooks/redux/UserDataSlice';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParam, ScreenName} from '../../interfaces/NavigationBar';
 export default function AppleLogin() {
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+  const route = useRoute();
   const platform = Platform.OS;
 
   //ios 에서 Apple Login
-  const loginWithApple = async () => {
+  const LoginWithApple = async () => {
     const appleAuthRequestResponse = await appleAuth.performRequest({
       requestedOperation: appleAuth.Operation.LOGIN,
       requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
@@ -26,18 +35,17 @@ export default function AppleLogin() {
       appleAuthRequestResponse.user,
     );
     if (credentialState === appleAuth.State.AUTHORIZED) {
-      //아래로 토큰 반환됨
       console.log(appleAuthRequestResponse.identityToken);
+      GetTokenLogin(appleAuthRequestResponse.identityToken);
     }
   };
 
   //android 에서 Apple Login (오류 발생)
-  const loginWithAppleWebView = async () => {
-    console.log('안드로이드에서 선택됨');
+  const LoginWithAppleWebView = async () => {
     const rawNonce = uuid();
     const state = uuid();
     appleAuthAndroid.configure({
-      clientId: 'dump-in.co.kr',
+      clientId: 'com.dump_in_app_fe',
       redirectUri: 'https://api-dev.dump-in.co.kr/app/api/auth/apple/login',
       responseType: appleAuthAndroid.ResponseType.ALL,
       scope: appleAuthAndroid.Scope.ALL,
@@ -46,14 +54,32 @@ export default function AppleLogin() {
     });
 
     const appleAuthRequestResponse = await appleAuthAndroid.signIn();
-    console.log(appleAuthRequestResponse);
+    if (appleAuthRequestResponse) {
+      console.log(appleAuthRequestResponse.id_token);
+      GetTokenLogin(appleAuthRequestResponse.id_token);
+    }
+  };
+
+  const GetTokenLogin = (accessToken: string | null | undefined) => {
+    if (accessToken) {
+      // Login API 연동
+
+      dispatch(setAccessToken('asdqwemalskd'));
+      dispatch(setUserID('jsee53'));
+      dispatch(setUserNickName('지나가는 오리너구리'));
+    }
+
+    const currentScreen = (route.params as {screen: ScreenName}).screen;
+    navigation.push('MyPage', {
+      screen: currentScreen,
+    });
   };
 
   return (
     <AppleLoginContainer>
       <AppleInfoContainer
         activeOpacity={1}
-        onPress={platform === 'ios' ? loginWithApple : loginWithAppleWebView}>
+        onPress={platform === 'ios' ? LoginWithApple : LoginWithAppleWebView}>
         <AppleIconWrapper>
           <AppleIcon width={24} height={24} />
         </AppleIconWrapper>
