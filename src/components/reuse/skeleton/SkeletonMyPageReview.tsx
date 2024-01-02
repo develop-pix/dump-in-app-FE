@@ -12,28 +12,38 @@ export default function SkeletonMyPageReview() {
         width={Dimensions.get('window').width}
         flexDirection="column"
         justifyContent="center"
-        alignItems="center"
-        gap={10}>
-        {Array(2)
-          .fill(0)
-          .map((_, index) => (
-            <SkeletonPlaceholder.Item
-              key={index}
-              flexDirection="row"
-              alignItems="center"
-              gap={10}>
-              <SkeletonPlaceholder.Item
-                width={Dimensions.get('window').width * 0.45}
-                aspectRatio={0.75}
-                borderRadius={10}
-              />
-              <SkeletonPlaceholder.Item
-                width={Dimensions.get('window').width * 0.45}
-                aspectRatio={0.75}
-                borderRadius={10}
-              />
-            </SkeletonPlaceholder.Item>
-          ))}
+        alignItems="center">
+        <SkeletonPlaceholder.Item
+          flexDirection="row"
+          alignItems="center"
+          gap={10}
+          marginBottom={10}>
+          <SkeletonPlaceholder.Item
+            width={Dimensions.get('window').width * 0.45}
+            aspectRatio={0.75}
+            borderRadius={20}
+          />
+          <SkeletonPlaceholder.Item
+            width={Dimensions.get('window').width * 0.45}
+            aspectRatio={0.75}
+            borderRadius={20}
+          />
+        </SkeletonPlaceholder.Item>
+        <SkeletonPlaceholder.Item
+          flexDirection="row"
+          alignItems="center"
+          gap={10}>
+          <SkeletonPlaceholder.Item
+            width={Dimensions.get('window').width * 0.45}
+            aspectRatio={0.75}
+            borderRadius={20}
+          />
+          <SkeletonPlaceholder.Item
+            width={Dimensions.get('window').width * 0.45}
+            aspectRatio={0.75}
+            borderRadius={20}
+          />
+        </SkeletonPlaceholder.Item>
       </SkeletonPlaceholder.Item>
     </SkeletonPlaceholder>
   );

@@ -4,5 +4,6 @@ export const MyPostListContainer = styled.View`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 25px;
 `;
+
+export const SkeletonMyPostContainer = styled.View``;

@@ -1,17 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import MyPageBar from '../reuse/header/MyPageBar';
-import EditUserName from './EditUserName';
-import MyActive from './my-activity/MyActivity';
 import MyReviewList from './my-activity/MyReviewList';
 import MyPostList from './my-activity/MyPostList';
 import MyPhotoBoothList from './my-activity/MyPhotoBoothList';
 import MyEventList from './my-activity/MyEventList';
-import Login from './my-activity/LoginButton';
-import {ActivityContainer} from '../../styles/layout/my-page/MyPage.style';
+import MyPageLogin from './my-activity/MyPageLogin';
 import {useAppSelector} from '../../hooks/redux/store';
 import {ActivityComponentProps} from '../../interfaces/MyPage.interface';
 import MyPageMenu from './MyPageMenu';
-import {ScrollView} from 'react-native';
 
 export default function MyPage() {
   const accessToken = useAppSelector(state => state.login.token);
@@ -25,26 +20,46 @@ export default function MyPage() {
   const [activeComponent, setActiveComponent] =
     useState<ActivityComponentProps>('Login');
 
+  const updateActiveComponent = (newComponent: ActivityComponentProps) => {
+    setActiveComponent(newComponent);
+  };
+
   const activeComponentMap = {
-    MyReviewList: <MyReviewList />,
-    MyPostList: <MyPostList />,
-    MyPhotoBoothList: <MyPhotoBoothList />,
-    MyEventList: <MyEventList />,
-    Login: <Login />,
+    MyReviewList: (
+      <MyReviewList
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    ),
+    MyPostList: (
+      <MyPostList
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    ),
+    MyPhotoBoothList: (
+      <MyPhotoBoothList
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    ),
+    MyEventList: (
+      <MyEventList
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    ),
+    Login: (
+      <MyPageLogin
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    ),
   };
 
   return (
     <>
-      <ActivityContainer>
-        <MyPageBar setMenuVisible={setMenuVisible} />
-        <EditUserName />
-        <MyActive
-          activeComponent={activeComponent}
-          setActiveComponent={setActiveComponent}
-        />
-      </ActivityContainer>
       {activeComponentMap[activeComponent]}
-
       <MyPageMenu visible={isMenuVisible} setMenuVisible={setMenuVisible} />
     </>
   );

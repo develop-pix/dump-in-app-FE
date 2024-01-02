@@ -20,12 +20,12 @@ export default function SkeletonGetMoreMyPageReview() {
           <SkeletonPlaceholder.Item
             width={Dimensions.get('window').width * 0.45}
             aspectRatio={0.75}
-            borderRadius={10}
+            borderRadius={20}
           />
           <SkeletonPlaceholder.Item
             width={Dimensions.get('window').width * 0.45}
             aspectRatio={0.75}
-            borderRadius={10}
+            borderRadius={20}
           />
         </SkeletonPlaceholder.Item>
       </SkeletonPlaceholder.Item>

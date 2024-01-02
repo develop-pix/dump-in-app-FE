@@ -1,16 +1,35 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {ReviewProps} from '../../../interfaces/Home.interface';
 import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
-import {MyReviewListContainer} from '../../../styles/layout/my-page/MyActivity/MyReviewList.style';
+import {
+  MyReviewListContainer,
+  SkeletonMyReviewContainer,
+} from '../../../styles/layout/my-page/MyActivity/MyReviewList.style';
 import SkeletonMyPageReview from '../../reuse/skeleton/SkeletonMyPageReview';
 import SkeletonGetMoreMyPageReview from '../../reuse/skeleton/SkeletonGetMoreMyPageReview';
-import {FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
+import {MyPageUserDataProps} from '../../../interfaces/MyPage.interface';
+import MyPageUserData from '../MyPageUserData';
+import {UpScrollButton} from '../../reuse/button/UpScrollButton';
 
-export default function MyReviewList() {
+export default function MyReviewList({
+  activeComponent,
+  updateActiveComponent,
+}: MyPageUserDataProps) {
   // 무한 스크롤 페이지
   const [page, setPage] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
+  const flatListRef = useRef<FlatList>(null);
+
+  const renderHeader = () => {
+    return (
+      <MyPageUserData
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    );
+  };
 
   const onEndReached = () => {
     const newPage = page + 1;
@@ -71,24 +90,35 @@ export default function MyReviewList() {
         },
       ]);
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
     <MyReviewListContainer>
       {!isLoading ? (
-        <FlatList
-          data={reviewData}
-          keyExtractor={item => item.reviewID.toString()}
-          renderItem={renderReviewItem}
-          numColumns={2}
-          columnWrapperStyle={{justifyContent: 'space-evenly'}}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={0.1}
-          ListFooterComponent={SkeletonGetMoreMyPageReview}
-        />
+        <>
+          <FlatList
+            data={reviewData}
+            keyExtractor={item => item.reviewID.toString()}
+            ref={flatListRef}
+            ListHeaderComponent={renderHeader}
+            renderItem={renderReviewItem}
+            numColumns={2}
+            columnWrapperStyle={{justifyContent: 'space-evenly'}}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={SkeletonGetMoreMyPageReview}
+          />
+          <UpScrollButton top="88%" flatListRef={flatListRef} />
+        </>
       ) : (
-        <SkeletonMyPageReview />
+        <SkeletonMyReviewContainer>
+          <MyPageUserData
+            activeComponent={activeComponent}
+            updateActiveComponent={updateActiveComponent}
+          />
+          <SkeletonMyPageReview />
+        </SkeletonMyReviewContainer>
       )}
     </MyReviewListContainer>
   );

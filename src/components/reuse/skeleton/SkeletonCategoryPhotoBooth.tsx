@@ -13,7 +13,7 @@ export default function SkeletonCategoryPhotoBooth() {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        gap={10}>
+        marginTop={20}>
         {Array(5)
           .fill(0)
           .map((_, index) => (
@@ -21,7 +21,9 @@ export default function SkeletonCategoryPhotoBooth() {
               key={index}
               flexDirection="row"
               alignItems="center"
-              gap={10}>
+              justifyContent="space-evenly"
+              width={Dimensions.get('window').width}
+              marginBottom={10}>
               <SkeletonPlaceholder.Item
                 width={Dimensions.get('window').width * 0.44}
                 height={113}

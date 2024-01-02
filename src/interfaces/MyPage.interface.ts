@@ -9,7 +9,7 @@ export type ActivityComponentProps =
 
 export interface MyActiveProps {
   activeComponent: ActivityComponentProps;
-  setActiveComponent: (activeComponent: ActivityComponentProps) => void;
+  updateActiveComponent: (activeComponent: ActivityComponentProps) => void;
 }
 
 export interface ActivityComponentItemProps {
@@ -31,6 +31,11 @@ export interface MyPhotoBoothFrameType {
   representativeImage: string;
   hashtag: string[];
   myPhotoBooth: boolean;
+}
+
+export interface MyPageUserDataProps {
+  activeComponent: ActivityComponentProps;
+  updateActiveComponent: (newComponent: ActivityComponentProps) => void;
 }
 
 export interface MyPageMenuProps {

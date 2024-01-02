@@ -1,18 +1,38 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import MyPhotoBoothFrame from './MyPhotoBoothFrame';
-import {MyPhotoBoothListContainer} from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothList.style';
+import {
+  MyPhotoBoothListContainer,
+  MyPhotoBoothFrameContainer,
+  SkeletonPhotoBoothContainer,
+} from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothList.style';
 import {MyPhotoBoothFrameType} from '../../../interfaces/MyPage.interface';
 import SkeletonMyPagePhotoBooth from '../../reuse/skeleton/SkeletonMyPagePhotoBooth';
 import SkeletonGetMoreMyPagePhotoBooth from '../../reuse/skeleton/SkeletonGetMoreMyPagePhotoBooth';
 import {FlatList} from 'react-native';
+import {MyPageUserDataProps} from '../../../interfaces/MyPage.interface';
+import MyPageUserData from '../MyPageUserData';
+import {UpScrollButton} from '../../reuse/button/UpScrollButton';
 
-export default function MyPhotoBoothList() {
+export default function MyPhotoBoothList({
+  activeComponent,
+  updateActiveComponent,
+}: MyPageUserDataProps) {
   // 무한 스크롤 페이지
   const [page, setPage] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [photoBoothData, setPhotoBoothData] = useState<MyPhotoBoothFrameType[]>(
     [],
   );
+  const flatListRef = useRef<FlatList>(null);
+
+  const renderHeader = () => {
+    return (
+      <MyPageUserData
+        activeComponent={activeComponent}
+        updateActiveComponent={updateActiveComponent}
+      />
+    );
+  };
 
   const onEndReached = () => {
     const newPage = page + 1;
@@ -29,7 +49,9 @@ export default function MyPhotoBoothList() {
   };
 
   const renderReviewItem = ({item}: {item: MyPhotoBoothFrameType}) => (
-    <MyPhotoBoothFrame photoBoothData={item} />
+    <MyPhotoBoothFrameContainer>
+      <MyPhotoBoothFrame photoBoothData={item} />
+    </MyPhotoBoothFrameContainer>
   );
 
   useEffect(() => {
@@ -48,22 +70,33 @@ export default function MyPhotoBoothList() {
 
       setPhotoBoothData(photoBoothTmepData);
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
     <MyPhotoBoothListContainer>
       {!isLoading ? (
-        <FlatList
-          data={photoBoothData}
-          keyExtractor={item => item.photoBoothID.toString()}
-          renderItem={renderReviewItem}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={0.1}
-          ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}
-        />
+        <>
+          <FlatList
+            data={photoBoothData}
+            keyExtractor={item => item.photoBoothID.toString()}
+            ref={flatListRef}
+            ListHeaderComponent={renderHeader}
+            renderItem={renderReviewItem}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}
+          />
+          <UpScrollButton top="88%" flatListRef={flatListRef} />
+        </>
       ) : (
-        <SkeletonMyPagePhotoBooth />
+        <SkeletonPhotoBoothContainer>
+          <MyPageUserData
+            activeComponent={activeComponent}
+            updateActiveComponent={updateActiveComponent}
+          />
+          <SkeletonMyPagePhotoBooth />
+        </SkeletonPhotoBoothContainer>
       )}
     </MyPhotoBoothListContainer>
   );

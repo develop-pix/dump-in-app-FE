@@ -1,8 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  CategoryEventContainer,
-  CategoryEventUpScrollImageBox,
-} from '../../styles/layout/category/CategoryEvent.style';
+import {CategoryEventContainer} from '../../styles/layout/category/CategoryEvent.style';
 import CategoryEventFilter from './CategoryEventFilter';
 import SearchNoData from '../reuse/alert/SearchNoData';
 import CategoryEventItem from './CategoryEventItem';
@@ -10,7 +7,7 @@ import SkeletonCategoryEvent from '../reuse/skeleton/SkeletonCategoryEvent';
 import SkeletonGetMoreCategoryEventData from '../reuse/skeleton/SkeletonGetMoreCategoryEventData';
 import {FlatList} from 'react-native';
 import {CategoryEventProps} from '../../interfaces/Category.interface';
-import UpIcon from '../../assets/image/icon/btn_up.svg';
+import {UpScrollButton} from '../reuse/button/UpScrollButton';
 
 export default function CategoryEvent() {
   // 무한 스크롤 페이지
@@ -18,6 +15,7 @@ export default function CategoryEvent() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // 필터 데이터
   const [hashtags, setHashtags] = useState<string[]>([]);
+  const flatListRef = useRef<FlatList>(null);
 
   // 필터 옵션 선택시 호출되는 함수
   const filterOptionSelect = () => {
@@ -29,11 +27,6 @@ export default function CategoryEvent() {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-  };
-
-  const flatListRef = useRef<FlatList>(null);
-  const handleScrollToTop = () => {
-    flatListRef.current?.scrollToOffset({offset: 0, animated: true});
   };
 
   // 임시 이벤트 데이터
@@ -98,9 +91,7 @@ export default function CategoryEvent() {
                 onEndReachedThreshold={0.1}
                 ListFooterComponent={SkeletonGetMoreCategoryEventData}
               />
-              <CategoryEventUpScrollImageBox onPress={handleScrollToTop}>
-                <UpIcon />
-              </CategoryEventUpScrollImageBox>
+              <UpScrollButton top="90%" flatListRef={flatListRef} />
             </>
           ) : (
             <SearchNoData

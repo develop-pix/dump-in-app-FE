@@ -9,13 +9,13 @@ export default function SkeletonGetMoreMyPagePhotoBooth() {
       backgroundColor={colors.blackgrey}
       highlightColor={colors.lightgrey}>
       <SkeletonPlaceholder.Item
-        width={Dimensions.get('window').width - 20}
+        width={Dimensions.get('window').width}
         flexDirection="column"
         justifyContent="center"
         alignItems="center">
         <SkeletonPlaceholder.Item
-          width={Dimensions.get('window').width}
-          height={145}
+          width={Dimensions.get('window').width - 20}
+          height={120}
           borderRadius={10}
         />
       </SkeletonPlaceholder.Item>

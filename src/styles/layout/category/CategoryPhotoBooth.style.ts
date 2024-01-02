@@ -2,6 +2,8 @@ import styled from 'styled-components/native';
 import {colors} from '../../base/Variable';
 
 export const CategoryPhotoBoothContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 20px;
   padding-bottom: 100px;

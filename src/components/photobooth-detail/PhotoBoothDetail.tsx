@@ -13,7 +13,6 @@ import {
   OfficialImagesContainer,
   PhotoDumpContainer,
 } from '../../styles/layout/photobooth-detail/PhotoBoothDetail.style';
-import SkeletonPhotoBoothDetail from '../reuse/skeleton/SkeletonPhotoBoothDetail';
 
 export default function PhotoBoothDetail() {
   const route = useRoute<PhotoBoothDetailRouteProp>();
@@ -127,7 +126,7 @@ export default function PhotoBoothDetail() {
           </PhotoDumpContainer>
         </ScrollView>
       ) : (
-        <SkeletonPhotoBoothDetail />
+        <></>
       )}
     </>
   );

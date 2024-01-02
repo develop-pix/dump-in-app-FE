@@ -4,5 +4,6 @@ export const MyReviewListContainer = styled.View`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 25px;
 `;
+
+export const SkeletonMyReviewContainer = styled.View``;
