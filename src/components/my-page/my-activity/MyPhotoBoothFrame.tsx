@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MyPhotoBoothFrameProps } from '../../../interfaces/MyPage.interface';
 import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
 import {
-    FavoirteIcon,
+    FavoriteIcon,
     HashtagContainer,
     InfoContainer,
     MyPhotoBoothFrameContainer,
@@ -18,7 +18,7 @@ import {
     FontYellowSmallerMediumWithLineSpacingWithMargin,
 } from '../../../styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from '../../../utils/FormChange';
-import FavoirteButton from '../../reuse/button/FavoritetButton';
+import FavoriteButton from '../../reuse/button/FavoriteButton';
 
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -43,7 +43,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
             <InfoContainer>
                 <PhotoBoothNameWrapper>
                     <FontWhiteBiggestSemiboldWithLineHeight>
-                        {photoBoothData.photoboothName}
+                        {photoBoothData.photoBoothName}
                     </FontWhiteBiggestSemiboldWithLineHeight>
                     <FontWhiteGreySmallerSemibold>{photoBoothData.branch}</FontWhiteGreySmallerSemibold>
                 </PhotoBoothNameWrapper>
@@ -57,9 +57,9 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
                 </HashtagContainer>
             </InfoContainer>
 
-            <FavoirteIcon>
-                <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
-            </FavoirteIcon>
+            <FavoriteIcon>
+                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+            </FavoriteIcon>
         </MyPhotoBoothFrameContainer>
     );
 }

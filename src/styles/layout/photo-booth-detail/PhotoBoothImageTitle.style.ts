@@ -32,7 +32,7 @@ export const TitleContainer = styled.View`
     margin-bottom: 10px;
 `;
 
-export const NomalButtonContainer = styled.View`
+export const NormalButtonContainer = styled.View`
     align-items: center;
     justify-content: center;
     padding-bottom: 20px;

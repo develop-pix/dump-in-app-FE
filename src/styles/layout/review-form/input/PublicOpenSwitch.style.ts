@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const PublciOpenSwitchContainer = styled.View`
+export const PublicOpenSwitchContainer = styled.View`
     width: 100%;
     flex-direction: row;
     align-items: center;

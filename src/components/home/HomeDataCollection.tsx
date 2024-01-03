@@ -31,12 +31,12 @@ export default function HomeDataCollection() {
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothProps[]>([
         {
             photoBoothID: 1,
-            photoboothName: '포토랩',
+            photoBoothName: '포토랩',
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         },
         {
             photoBoothID: 2,
-            photoboothName: '인생네컷',
+            photoBoothName: '인생네컷',
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         },
     ]);

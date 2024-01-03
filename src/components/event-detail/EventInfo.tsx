@@ -22,10 +22,10 @@ export default function EventInfo({ eventData }: EventInfoProps) {
 
             <InfoContainer>
                 <InfoTitleContainer>
-                    <FontWhiteGreySmallerSemibold>{eventData.desciptionTitle}</FontWhiteGreySmallerSemibold>
+                    <FontWhiteGreySmallerSemibold>{eventData.descriptionTitle}</FontWhiteGreySmallerSemibold>
                 </InfoTitleContainer>
                 <InfoDescriptionContainer>
-                    <FontLightGreySmallerSemibold>{eventData.desciption}</FontLightGreySmallerSemibold>
+                    <FontLightGreySmallerSemibold>{eventData.description}</FontLightGreySmallerSemibold>
                 </InfoDescriptionContainer>
 
                 <InfoDateContainer>

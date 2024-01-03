@@ -33,7 +33,7 @@ export interface ResetLocationButtonProps {
 export interface BranchCardData {
     branchID: number;
     imageLogo: string;
-    photoboothName: string;
+    photoBoothName: string;
     branchName: string;
     hashtag: string[];
     myBranch: boolean;
@@ -48,7 +48,7 @@ export interface BranchCarouselProps {
 export interface BranchCardProps {
     branchID: number;
     imageLogo: string;
-    photoboothName: string;
+    photoBoothName: string;
     branchName: string;
     hashtag: string[];
     myBranch: boolean;

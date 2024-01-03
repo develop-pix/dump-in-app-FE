@@ -32,7 +32,7 @@ export const BranchCardLogo = styled.Image`
 `;
 
 export const BranchCardDescription = styled.View`
-    diplay: flex;
+    display: flex;
     width: 70%;
 `;
 

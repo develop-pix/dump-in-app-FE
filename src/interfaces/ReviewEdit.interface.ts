@@ -1,47 +1,47 @@
-export interface InputDatas {
+export interface InputData {
     InputName: string;
     height: number;
 }
 
 export interface ImageFileInputProps {
-    representaiveImage: string | null | undefined;
+    representativeImage: string | null | undefined;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface ReviewDescriptionProps {
     description: string | null;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface LocationInputProps {
     location: number | null | undefined;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface DateInputProps {
     date: Date | null;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface FrameColorSelectProps {
     frameColor: string | null;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface PartySelectProps {
     party: number | null;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface cameraShotSelectProps {
     cameraShot: string | null;
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface HashtagSelectProps {
     hashtags: string[];
-    errorData: InputDatas[];
+    errorData: InputData[];
 }
 
 export interface ToolsSelectProps {

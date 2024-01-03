@@ -13,16 +13,16 @@ import {
     FontYellowSmallerMediumWithLineSpacing,
 } from '../../styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import FavoirteButton from '../reuse/button/FavoritetButton';
+import FavoriteButton from '../reuse/button/FavoriteButton';
 
-export default function BranchTitle({ photoboothName, branchName, branchHashtag, myBranch }: BranchTitleProps) {
+export default function BranchTitle({ photoBoothName, branchName, branchHashtag, myBranch }: BranchTitleProps) {
     const [favorite, setFavorite] = useState<boolean>(myBranch);
 
     return (
         <BranchTitleContainer>
             <TitleContainer>
                 <BranchNameContainer>
-                    <FontWhiteBiggestSemibold>{photoboothName}</FontWhiteBiggestSemibold>
+                    <FontWhiteBiggestSemibold>{photoBoothName}</FontWhiteBiggestSemibold>
                     <FontWhiteGreySmallestSemibold>{branchName}</FontWhiteGreySmallestSemibold>
                 </BranchNameContainer>
                 <BranchHashTagsContainer>
@@ -31,7 +31,7 @@ export default function BranchTitle({ photoboothName, branchName, branchHashtag,
                     ))}
                 </BranchHashTagsContainer>
             </TitleContainer>
-            <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
+            <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
         </BranchTitleContainer>
     );
 }

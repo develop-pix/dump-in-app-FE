@@ -56,8 +56,8 @@ export default function Map() {
     //branchData 데이터 얻기 호출
     /*
   const GetBranchData = async (latitude: number, longitude: number) => {
-    const photoboothData = await GetPhotoBoothData(latitude, longitude);
-    setPhotoboothData(photoboothData);
+    const photoBoothData = await GetPhotoBoothData(latitude, longitude);
+    setPhotoBoothData(photoBoothData);
   };
   */
 

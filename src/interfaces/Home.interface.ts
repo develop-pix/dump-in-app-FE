@@ -34,7 +34,7 @@ export interface ReviewFrameProps {
 
 export interface PhotoBoothProps {
     photoBoothID: number;
-    photoboothName: string;
+    photoBoothName: string;
     representativeImage: string;
 }
 

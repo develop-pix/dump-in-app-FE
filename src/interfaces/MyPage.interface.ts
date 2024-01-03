@@ -16,7 +16,7 @@ export interface ActivityComponentItemProps {
 export interface MyPhotoBoothFrameProps {
     photoBoothData: {
         photoBoothID: number;
-        photoboothName: string;
+        photoBoothName: string;
         branch: string;
         representativeImage: string;
         hashtag: string[];

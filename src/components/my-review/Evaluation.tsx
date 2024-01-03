@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 
-export default function Evalution() {
+export default function Evaluation() {
     return (
         <View>
-            <Text>Evalution 페이지</Text>
+            <Text>Evaluation 페이지</Text>
         </View>
     );
 }

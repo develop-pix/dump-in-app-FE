@@ -16,7 +16,7 @@ const photoBoothData = Array(12)
         PhotoBoothID: index + 1,
 
         representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        photoboothName: '포토그레이',
+        photoBoothName: '포토그레이',
     }));
 
 export default function CategoryPhotoBooth() {
@@ -39,7 +39,7 @@ export default function CategoryPhotoBooth() {
             {photoBoothData.map(item => (
                 <PhotoBoothItem key={item.PhotoBoothID} onPress={() => onPressPhotoBooth(item.PhotoBoothID)}>
                     <PhotoBoothLogo source={{ uri: item.representativeImage }} />
-                    <FontWhiteSmallerMedium>{item.photoboothName}</FontWhiteSmallerMedium>
+                    <FontWhiteSmallerMedium>{item.photoBoothName}</FontWhiteSmallerMedium>
                 </PhotoBoothItem>
             ))}
         </CategoryPhotoBoothContainer>

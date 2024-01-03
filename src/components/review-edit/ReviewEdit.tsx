@@ -18,7 +18,7 @@ import {
     setTools,
 } from '../../hooks/redux/ReviewData';
 import { useAppSelector } from '../../hooks/redux/store';
-import { InputDatas } from '../../interfaces/ReviewNew.interface';
+import { InputData } from '../../interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer, SubmitButton } from '../../styles/layout/reuse/button/GoBackButton.style';
 import { FontYellowBiggerSemibold } from '../../styles/layout/reuse/text/Text.style';
 import {
@@ -31,7 +31,7 @@ import {
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 
 import CameraShotSelect from './input/CameraShotSelect';
-import Dateinput from './input/Dateinput';
+import DateInput from './input/DateInput';
 import FrameColorSelect from './input/FrameColorSelect';
 import HairIronSelect from './input/HairIronSelect';
 import HashtagSelect from './input/HashtagSelect';
@@ -44,14 +44,14 @@ import ReviewNewModal from './input/ReviewNewModal';
 import ToolsSelect from './input/ToolsSelect';
 
 export default function ReviewEdit() {
-    const [errorData, setErrorData] = useState<InputDatas[]>([]);
+    const [errorData, setErrorData] = useState<InputData[]>([]);
     const [openModal, setOpenModal] = useState<boolean>(false);
     const scrollRef = useRef<any>();
     const platform = Platform.OS;
     const dispatch = useDispatch();
 
-    const representaiveImage = useAppSelector(state => state.reviewData).representativeImage;
-    const representaiveImageName = useAppSelector(state => state.reviewData).representativeImageName;
+    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
+    const representativeImageName = useAppSelector(state => state.reviewData).representativeImageName;
     const description = useAppSelector(state => state.reviewData).description;
     const location = useAppSelector(state => state.reviewData).branchID;
     const date = useAppSelector(state => state.reviewData).date;
@@ -64,8 +64,8 @@ export default function ReviewEdit() {
     const publicOpen = useAppSelector(state => state.reviewData).publicOpen;
 
     const tempData = {
-        representaiveImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        representaiveImageName: 'test',
+        representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+        representativeImageName: 'test',
         description: 'abcd description Test',
         location: 1,
         date: new Date('Thu Dec 20 2023 20:37:32 GMT+0900'),
@@ -88,8 +88,8 @@ export default function ReviewEdit() {
         setErrorData([]);
 
         // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
-        if (representaiveImage === null || description === '') {
-            setErrorData(data => [...data, { InputName: 'representaiveImage', height: 0 }]);
+        if (representativeImage === null || description === '') {
+            setErrorData(data => [...data, { InputName: 'representativeImage', height: 0 }]);
         }
         if (description === null || description === '') {
             setErrorData(data => [...data, { InputName: 'description', height: 450 }]);
@@ -120,8 +120,8 @@ export default function ReviewEdit() {
 
         if (errorData.length === 0) {
             // 우선 S3 업로드만 먼저 추가
-            if (representaiveImage && representaiveImageName) {
-                UploadImageToS3(representaiveImage, representaiveImageName);
+            if (representativeImage && representativeImageName) {
+                UploadImageToS3(representativeImage, representativeImageName);
                 console.log('게시글' + description);
                 console.log('위치' + location);
                 console.log('날짜' + date);
@@ -139,8 +139,8 @@ export default function ReviewEdit() {
 
     //API 연동 하여 초기값 미리 입력
     useEffect(() => {
-        dispatch(setRepresentativeImage(tempData.representaiveImage));
-        dispatch(setRepresentativeImageName(tempData.representaiveImageName));
+        dispatch(setRepresentativeImage(tempData.representativeImage));
+        dispatch(setRepresentativeImageName(tempData.representativeImageName));
         dispatch(setDescription(tempData.description));
         dispatch(setBranchID(tempData.location));
         dispatch(setDate(tempData.date));
@@ -169,13 +169,17 @@ export default function ReviewEdit() {
                     <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
                 </SubmitButton>
             </GoBackButtonWithSubmitContainer>
-            <ImageFileInput representaiveImage={representaiveImage} setOpenModal={setOpenModal} errorData={errorData} />
+            <ImageFileInput
+                representativeImage={representativeImage}
+                setOpenModal={setOpenModal}
+                errorData={errorData}
+            />
             <InputContainer>
                 <InputWrapper>
                     <ReviewDescriptionInput description={description} errorData={errorData} />
                     <LocationAndDateContainer>
                         <LocationInput location={location} errorData={errorData} />
-                        <Dateinput date={date} errorData={errorData} />
+                        <DateInput date={date} errorData={errorData} />
                     </LocationAndDateContainer>
                     <FrameColorSelect frameColor={frameColor} errorData={errorData} />
                     <PartySelect party={party} errorData={errorData} />

@@ -5,7 +5,7 @@ import BranchDescription from './BranchDescription';
 import BranchTitle from './BranchTitle';
 
 export default function BranchInfo({
-    photoboothName,
+    photoBoothName,
     branchName,
     branchHashtag,
     address,
@@ -15,7 +15,7 @@ export default function BranchInfo({
     return (
         <BranchInfoContainer>
             <BranchTitle
-                photoboothName={photoboothName}
+                photoBoothName={photoBoothName}
                 branchName={branchName}
                 branchHashtag={branchHashtag}
                 myBranch={myBranch}

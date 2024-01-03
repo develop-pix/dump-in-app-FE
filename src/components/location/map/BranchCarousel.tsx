@@ -18,7 +18,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
         {
             branchID: 1,
             imageLogo: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             hashtag: ['레드프레임', '컨셉사진진', '레드레드레', '레드컨셉트'],
             myBranch: true,
@@ -28,7 +28,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
         {
             branchID: 2,
             imageLogo: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             hashtag: ['레드프레임', '컨셉사진진', '연예인', '레드컨셉트'],
             myBranch: false,
@@ -38,7 +38,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
         {
             branchID: 3,
             imageLogo: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             hashtag: ['레드프레임', '컨셉사진진', '연예인', '레드컨셉트'],
             myBranch: true,
@@ -48,7 +48,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
         {
             branchID: 4,
             imageLogo: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             hashtag: ['레드프레임', '컨셉사진진', '연예인', '레드컨셉트'],
             myBranch: false,
@@ -58,7 +58,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
         {
             branchID: 5,
             imageLogo: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             hashtag: ['레드프레임', '컨셉사진진', '연예인', '레드컨셉트'],
             myBranch: true,
@@ -98,7 +98,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
                                 <BranchCard
                                     branchID={data.branchID}
                                     imageLogo={data.imageLogo}
-                                    photoboothName={data.photoboothName}
+                                    photoBoothName={data.photoBoothName}
                                     branchName={data.branchName}
                                     hashtag={data.hashtag}
                                     myBranch={data.myBranch}

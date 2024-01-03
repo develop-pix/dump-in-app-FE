@@ -57,7 +57,7 @@ export default function PhotoBoothFrame({ data }: PhotoBoothFrameProps) {
                         <LocationGreyIcon width={18} height={21} />
                     </LocationIconContainer>
                     <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.photoboothName}
+                        {data.photoBoothName}
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </PhotoBoothNameContainer>
             </PhotoBoothInfo>

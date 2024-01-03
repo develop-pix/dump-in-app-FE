@@ -17,7 +17,7 @@ export const MapInputContainer = styled.View`
     width: 90%;
 `;
 
-export const MapInputhWrapper = styled.TouchableOpacity<{
+export const MapInputWrapper = styled.TouchableOpacity<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
     display: flex;

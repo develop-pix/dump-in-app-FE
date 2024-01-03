@@ -5,9 +5,9 @@ import { RootStackParam } from './NavigationBar';
 export type PhotoBoothDetailRouteProp = RouteProp<RootStackParam, 'PhotoBoothDetail'>;
 
 export interface PhotoBoothImageTitleProps {
-    photoboothData: {
+    photoBoothData: {
         representativeImage: string;
-        photoboothName: string;
+        photoBoothName: string;
         hashtag: string[];
     };
 }

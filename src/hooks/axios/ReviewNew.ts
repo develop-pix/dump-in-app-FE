@@ -1,4 +1,4 @@
-import AWS from 'aws-sdk';
+import AWS, { config } from 'aws-sdk';
 
 export const UploadImageToS3 = async (representativeImage: string, representativeImageName: string) => {
     const photo = {
@@ -16,7 +16,7 @@ export const UploadImageToS3 = async (representativeImage: string, representativ
     };
 
     // AWS Config
-    AWS.config.update({
+    config.update({
         accessKeyId: S3Data.accessKeyID,
         secretAccessKey: S3Data.secretAccessKey,
     });

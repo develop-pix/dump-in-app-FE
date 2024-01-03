@@ -18,7 +18,7 @@ import {
 } from '../../styles/layout/reuse/text/Text.style';
 import { ReviewDescBottom } from '../../styles/layout/review-detail/ReviewDetail.style';
 import { TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import FavoirteButton from '../reuse/button/FavoritetButton';
+import FavoriteButton from '../reuse/button/FavoriteButton';
 import GoBackButton from '../reuse/button/GoBackButton';
 
 export default function ImageTitle({ eventData }: EventImageTitleProps) {
@@ -48,7 +48,7 @@ export default function ImageTitle({ eventData }: EventImageTitleProps) {
                 <ContentsContainer>
                     <TitleContainer>
                         <FontWhiteBiggestSemibold>{eventData.eventTitle}</FontWhiteBiggestSemibold>
-                        <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
+                        <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
                     </TitleContainer>
 
                     <ReviewDescBottom>

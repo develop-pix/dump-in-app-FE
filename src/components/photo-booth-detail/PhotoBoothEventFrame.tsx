@@ -12,10 +12,10 @@ import {
     EventInfo,
     EventItem,
     EventTitleContainer,
-    FavoirteIcon,
-} from '../../styles/layout/photobooth-detail/PhotoBoothEventFrame.style';
+    FavoriteIcon,
+} from '../../styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
 import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from '../../styles/layout/reuse/text/Text.style';
-import FavoirteButton from '../reuse/button/FavoritetButton';
+import FavoriteButton from '../reuse/button/FavoriteButton';
 
 export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -47,9 +47,9 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
                     }}
                 />
 
-                <FavoirteIcon>
-                    <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
-                </FavoirteIcon>
+                <FavoriteIcon>
+                    <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                </FavoriteIcon>
 
                 <EventInfo>
                     <EventTitleContainer>

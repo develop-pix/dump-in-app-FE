@@ -22,12 +22,12 @@ import {
     FontYellowSmallerMediumWithLineSpacing,
 } from '../../../styles/layout/reuse/text/Text.style';
 import { DistanceForm, TagsArrayToHashTagArrayForm } from '../../../utils/FormChange';
-import FavoirteButton from '../../reuse/button/FavoritetButton';
+import FavoriteButton from '../../reuse/button/FavoriteButton';
 
 export default function BranchCard({
     branchID,
     imageLogo,
-    photoboothName,
+    photoBoothName,
     branchName,
     hashtag,
     myBranch,
@@ -54,7 +54,7 @@ export default function BranchCard({
                     <BranchCardDescription>
                         <BranchCardBranchNameWrapper>
                             <FontWhiteBiggestSemiboldWithLineHeight>
-                                {photoboothName}
+                                {photoBoothName}
                             </FontWhiteBiggestSemiboldWithLineHeight>
                             <FontWhiteGreySmallerSemibold>{branchName}</FontWhiteGreySmallerSemibold>
                         </BranchCardBranchNameWrapper>
@@ -66,7 +66,7 @@ export default function BranchCard({
                             ))}
                         </BranchCardHashtag>
                     </BranchCardDescription>
-                    <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
+                    <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
                 </BranchCardTop>
                 <BranchCardHorizonLine />
                 <BranchCardBottom>

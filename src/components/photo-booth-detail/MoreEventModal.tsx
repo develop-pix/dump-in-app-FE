@@ -8,7 +8,7 @@ import {
     CloseButtonContainer,
     MoreEventModalContainer,
     TitleContainer,
-} from '../../styles/layout/photobooth-detail/MoreEventModal.style';
+} from '../../styles/layout/photo-booth-detail/MoreEventModal.style';
 import { FontWhiteGreyNormalSemibold } from '../../styles/layout/reuse/text/Text.style';
 import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
 

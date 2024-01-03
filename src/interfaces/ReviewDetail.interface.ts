@@ -7,7 +7,7 @@ export interface ReviewData {
     date: Date;
     my_review: boolean;
     mine: boolean;
-    photoboothName: string;
+    photoBoothName: string;
     branchName: string;
 }
 

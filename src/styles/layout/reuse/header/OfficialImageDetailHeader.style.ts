@@ -20,7 +20,7 @@ export const CloseImageContainer = styled.TouchableOpacity`
     justify-content: center;
 `;
 
-export const BrnachNameTextContainer = styled.View`
+export const BranchNameTextContainer = styled.View`
     flex-direction: row;
     align-items: center;
     gap: 3px;

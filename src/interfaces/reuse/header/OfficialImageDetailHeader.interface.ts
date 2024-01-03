@@ -1,3 +1,3 @@
 export interface OfficialImageDetailHeaderProps {
-    photoboothName: string | null;
+    photoBoothName: string | null;
 }

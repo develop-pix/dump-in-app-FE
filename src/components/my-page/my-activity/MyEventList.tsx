@@ -1,8 +1,8 @@
 import { MyEventListContainer } from '../../../styles/layout/my-page/MyActivity/MyEventList.style';
-import PhotoBoothEventFrame from '../../photobooth-detail/PhotoBoothEventFrame';
+import PhotoBoothEventFrame from '../../photo-booth-detail/PhotoBoothEventFrame';
 
 export default function MyEventList() {
-    const eventTmepData = Array(5)
+    const eventTempData = Array(5)
         .fill(null)
         .map((_, index) => ({
             eventID: index + 1,
@@ -10,13 +10,13 @@ export default function MyEventList() {
             eventTitle: '화사의 ‘I Love My Body’ 프레임',
             startDate: '2023.09.07',
             endDate: '2023.10.31',
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             myEvent: true,
         }));
 
     return (
         <MyEventListContainer>
-            {eventTmepData.map(eventData => (
+            {eventTempData.map(eventData => (
                 <PhotoBoothEventFrame key={eventData.eventID} event={eventData} />
             ))}
         </MyEventListContainer>

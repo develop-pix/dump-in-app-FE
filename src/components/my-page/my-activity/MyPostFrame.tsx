@@ -7,7 +7,7 @@ import LocationGreyIcon from '../../../assets/image/icon/list_location.svg';
 import { ReviewFrameProps } from '../../../interfaces/Home.interface';
 import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
 import { colors } from '../../../styles/base/Variable';
-import { FavoirteIcon } from '../../../styles/layout/category/CategoryEventItem.style';
+import { FavoriteIcon } from '../../../styles/layout/category/CategoryEventItem.style';
 import {
     LocationIconContainer,
     ReviewFrameContainer,
@@ -16,7 +16,7 @@ import {
     ReviewNameContainer,
 } from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
 import { FontWhiteGreySmallerMediumWithLineHeight } from '../../../styles/layout/reuse/text/Text.style';
-import FavoirteButton from '../../reuse/button/FavoritetButton';
+import FavoriteButton from '../../reuse/button/FavoriteButton';
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -50,9 +50,9 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
                 }}
             />
 
-            <FavoirteIcon>
-                <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
-            </FavoirteIcon>
+            <FavoriteIcon>
+                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+            </FavoriteIcon>
 
             <ReviewInfo>
                 <ReviewNameContainer>

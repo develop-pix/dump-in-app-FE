@@ -8,12 +8,12 @@ import { PhotoBoothImageTitleProps } from '../../interfaces/PhotoBoothDetail.int
 import { colors } from '../../styles/base/Variable';
 import {
     ContentsContainer,
-    NomalButtonContainer,
+    NormalButtonContainer,
     PhotoBoothImage,
     PhotoBoothImageContentContainer,
     PhotoBoothImageTitleContainer,
     TitleContainer,
-} from '../../styles/layout/photobooth-detail/PhotoBoothImageTitle.style';
+} from '../../styles/layout/photo-booth-detail/PhotoBoothImageTitle.style';
 import { GoBackButtonContainer } from '../../styles/layout/reuse/button/GoBackButton.style';
 import {
     FontWhiteBiggestSemibold,
@@ -24,9 +24,9 @@ import { TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
 import GoBackButton from '../reuse/button/GoBackButton';
 import { NormalButton } from '../reuse/button/NormalButton';
 
-export default function PhotoBoothImageTitle({ photoboothData }: PhotoBoothImageTitleProps) {
+export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
     const platform = Platform.OS;
-    const route = useRoute<RouteProp<PhotoBoothParamList, 'photoboothType'>>();
+    const route = useRoute<RouteProp<PhotoBoothParamList, 'photoBoothType'>>();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
 
@@ -41,7 +41,7 @@ export default function PhotoBoothImageTitle({ photoboothData }: PhotoBoothImage
 
     return (
         <PhotoBoothImageTitleContainer>
-            <PhotoBoothImage source={{ uri: photoboothData.representativeImage }}>
+            <PhotoBoothImage source={{ uri: photoBoothData.representativeImage }}>
                 <LinearGradient
                     colors={['transparent', colors.lightblack]}
                     locations={[0.1, 1]}
@@ -62,11 +62,11 @@ export default function PhotoBoothImageTitle({ photoboothData }: PhotoBoothImage
 
                 <ContentsContainer>
                     <TitleContainer>
-                        <FontWhiteBiggestSemibold>{photoboothData.photoboothName}</FontWhiteBiggestSemibold>
+                        <FontWhiteBiggestSemibold>{photoBoothData.photoBoothName}</FontWhiteBiggestSemibold>
                     </TitleContainer>
 
                     <ReviewDescBottom>
-                        {TagsArrayToHashTagArrayForm(photoboothData.hashtag).map(tag => (
+                        {TagsArrayToHashTagArrayForm(photoBoothData.hashtag).map(tag => (
                             <FontYellowSmallerMediumWithLineSpacing key={tag}>
                                 {tag}
                             </FontYellowSmallerMediumWithLineSpacing>
@@ -74,9 +74,9 @@ export default function PhotoBoothImageTitle({ photoboothData }: PhotoBoothImage
                     </ReviewDescBottom>
                 </ContentsContainer>
 
-                <NomalButtonContainer>
+                <NormalButtonContainer>
                     <NormalButton text="내 주변 포토부스 보러가기" onPress={onPressButton} />
-                </NomalButtonContainer>
+                </NormalButtonContainer>
             </PhotoBoothImageContentContainer>
         </PhotoBoothImageTitleContainer>
     );

@@ -11,6 +11,7 @@ module.exports = {
         'plugin:import/typescript',
         'plugin:import/errors',
         'plugin:import/warnings',
+        'plugin:@cspell/recommended',
     ],
     parser: '@typescript-eslint/parser',
     plugins: ['react', 'react-hooks', '@typescript-eslint', 'import'],

@@ -34,7 +34,7 @@ export const HashtagContainer = styled.View`
     margin-top: 10px;
 `;
 
-export const FavoirteIcon = styled.View`
+export const FavoriteIcon = styled.View`
     position: absolute;
     top: 10px;
     right: 10px;

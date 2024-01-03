@@ -6,7 +6,7 @@ import { PhotoBoothDetailRouteProp } from '../../interfaces/PhotoBoothDetail.int
 import {
     OfficialImagesContainer,
     PhotoDumpContainer,
-} from '../../styles/layout/photobooth-detail/PhotoBoothDetail.style';
+} from '../../styles/layout/photo-booth-detail/PhotoBoothDetail.style';
 import OfficialImages from '../reuse/official-images/OfficialImages';
 import PhotoDump from '../reuse/photo-dump/PhotoDump';
 
@@ -18,8 +18,8 @@ export default function PhotoBoothDetail() {
     const { PhotoBoothID } = route.params;
 
     // 임시 데이터, 포토부스 아이디 값의 데이터를 서버에서 가져옴
-    const [photoboothData, setPhotoboothData] = useState({
-        photoboothName: '포토그레이',
+    const [photoBoothData, setPhotoBoothData] = useState({
+        photoBoothName: '포토그레이',
         hashtag: ['레드프레임', '컨셉사진', '레드'],
         representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
         officialImage: [
@@ -80,20 +80,20 @@ export default function PhotoBoothDetail() {
 
     return (
         <ScrollView>
-            <PhotoBoothImageTitle photoboothData={photoboothData} />
+            <PhotoBoothImageTitle photoBoothData={photoBoothData} />
 
-            <PhotoBoothEvent eventData={photoboothData.event} />
+            <PhotoBoothEvent eventData={photoBoothData.event} />
 
             <OfficialImagesContainer>
                 <OfficialImages
-                    image={photoboothData.officialImage}
-                    photoBoothName={photoboothData.photoboothName}
+                    image={photoBoothData.officialImage}
+                    photoBoothName={photoBoothData.photoBoothName}
                     branchName=""
                 />
             </OfficialImagesContainer>
 
             <PhotoDumpContainer>
-                <PhotoDump photoBoothName={photoboothData.photoboothName} reviewData={photoboothData.review} />
+                <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} />
             </PhotoDumpContainer>
         </ScrollView>
     );

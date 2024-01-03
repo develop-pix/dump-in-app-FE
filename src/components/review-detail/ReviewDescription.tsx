@@ -15,7 +15,7 @@ import {
     ReviewDescTop,
 } from '../../styles/layout/review-detail/ReviewDetail.style';
 import { DateToReviewDateForm, TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import FavoirteButton from '../reuse/button/FavoritetButton';
+import FavoriteButton from '../reuse/button/FavoriteButton';
 
 export default function ReviewDescription({ date, description, hashtag }: ReviewDescriptionProps) {
     const [favorite, setFavorite] = useState<boolean>(false);
@@ -35,7 +35,7 @@ export default function ReviewDescription({ date, description, hashtag }: Review
         <ReviewDescriptionContainer platform={platform}>
             <ReviewDescTop>
                 <FontWhiteSmallerMedium>{DateToReviewDateForm(date)}</FontWhiteSmallerMedium>
-                <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
+                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
             </ReviewDescTop>
             <ReviewDescMiddle>
                 <ReviewDescriptionTouchableContainer onPress={onPressSeeMore} activeOpacity={0.8}>

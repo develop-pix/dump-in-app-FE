@@ -43,7 +43,7 @@ export default function ReviewDetail() {
     /* 임시 데이터 */
     const tempData: ReviewData[] = [
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 1,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -64,7 +64,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 2,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -81,7 +81,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 3,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -107,7 +107,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 4,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -136,7 +136,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 5,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -165,7 +165,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 6,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -194,7 +194,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '인생네컷',
+            photoBoothName: '인생네컷',
             branchName: '광교중앙점',
             reviewID: 7,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -224,7 +224,7 @@ export default function ReviewDetail() {
             my_review: false,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 8,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -253,7 +253,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 9,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -282,7 +282,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 10,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -311,7 +311,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 11,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -340,7 +340,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 12,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -369,7 +369,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 13,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -399,7 +399,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
         {
-            photoboothName: '포토그레이',
+            photoBoothName: '포토그레이',
             branchName: '연희중앙점',
             reviewID: 14,
             representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
@@ -438,7 +438,7 @@ export default function ReviewDetail() {
                             <ReviewDetailFormWrapper>
                                 <TitleContainer>
                                     <ReviewDetailHeader
-                                        photoboothName={data.photoboothName}
+                                        photoBoothName={data.photoBoothName}
                                         branchName={data.branchName}
                                         mine={data.mine}
                                         setOpenModal={setOpenModal}

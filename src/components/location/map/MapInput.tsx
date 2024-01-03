@@ -11,7 +11,7 @@ import {
     InputForm,
     InputWrapper,
     MapInputContainer,
-    MapInputhWrapper,
+    MapInputWrapper,
 } from '../../../styles/layout/location/MapInput.style';
 import { SearchButtonIconContainer } from '../../../styles/layout/reuse/input/Search.style';
 
@@ -34,7 +34,7 @@ export default function MapInput({ location }: MapInputProps) {
     return (
         <InputWrapper platform={platform}>
             <MapInputContainer>
-                <MapInputhWrapper
+                <MapInputWrapper
                     activeOpacity={1}
                     onPress={onPressLocationSearch}
                     platform={platform}
@@ -55,7 +55,7 @@ export default function MapInput({ location }: MapInputProps) {
                             <SearchGreyIcon />
                         </SearchButtonIconContainer>
                     </InputForm>
-                </MapInputhWrapper>
+                </MapInputWrapper>
             </MapInputContainer>
         </InputWrapper>
     );

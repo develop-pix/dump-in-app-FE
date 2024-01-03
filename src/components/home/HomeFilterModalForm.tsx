@@ -40,7 +40,7 @@ export default function HomeFilterModalForm({
     const [activateResetButton, setActivateResetButton] = useState<boolean>(false);
 
     // 필터 옵션 적용 결과 데이터 수
-    const [resultNumber, setRresultNumber] = useState<number>(0);
+    const [resultNumber, setResultNumber] = useState<number>(0);
 
     // 필터 옵션 선택 시 실행(제출x)
     const filterOptionSelect = useCallback(() => {
@@ -82,7 +82,7 @@ export default function HomeFilterModalForm({
         if (isFilterOptionSelected) {
             // 서버에서 선택된 필터들(제출한 필터 x) 제출하고 결과데이터 수 받는 로직 추가
             const resultDataNumber = Math.round(Math.random() * 100);
-            setRresultNumber(resultDataNumber);
+            setResultNumber(resultDataNumber);
         }
     }, [filterModalFilterData, filterOptionSelect]);
 

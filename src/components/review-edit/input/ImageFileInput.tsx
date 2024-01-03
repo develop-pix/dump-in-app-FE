@@ -19,14 +19,14 @@ import {
     ReviewErrorContainerFileInput,
 } from '../../../styles/layout/review-form/input/ImageFileInput.style';
 
-export default function ImageFileInput({ representaiveImage, setOpenModal, errorData }: ImageFileInputProps) {
+export default function ImageFileInput({ representativeImage, setOpenModal, errorData }: ImageFileInputProps) {
     const onPressImageUpload = () => {
         setOpenModal(true);
     };
 
     return (
         <ImageFileInputContainer>
-            {representaiveImage === null ? (
+            {representativeImage === null ? (
                 <NoDataImageContainer onPress={onPressImageUpload} activeOpacity={0.8}>
                     <PreviewNoImage>
                         <ButtonAddImage width={17} height={17} />
@@ -34,7 +34,7 @@ export default function ImageFileInput({ representaiveImage, setOpenModal, error
                 </NoDataImageContainer>
             ) : (
                 <PreviewImageContainer>
-                    <PreviewImage source={{ uri: representaiveImage }} />
+                    <PreviewImage source={{ uri: representativeImage }} />
                 </PreviewImageContainer>
             )}
 
@@ -50,7 +50,7 @@ export default function ImageFileInput({ representaiveImage, setOpenModal, error
                 }}
             />
             {errorData.map(data => {
-                return data.InputName === 'representaiveImage' ? (
+                return data.InputName === 'representativeImage' ? (
                     <ReviewErrorContainerFileInput key={data.InputName}>
                         <FontRedNormalMedium>*</FontRedNormalMedium>
                         <FontYellowSmallestMedium>필수 등록 항목입니다.</FontYellowSmallestMedium>
@@ -60,7 +60,7 @@ export default function ImageFileInput({ representaiveImage, setOpenModal, error
             <ImageUploadButtonContainer>
                 <ImageUploadButton activeOpacity={0.7} onPress={onPressImageUpload}>
                     <FontWhiteGreySmallestMediumWithLineHeight>
-                        {representaiveImage === null ? '사진을 등록해주세요.' : '사진 수정하기'}
+                        {representativeImage === null ? '사진을 등록해주세요.' : '사진 수정하기'}
                     </FontWhiteGreySmallestMediumWithLineHeight>
                 </ImageUploadButton>
             </ImageUploadButtonContainer>

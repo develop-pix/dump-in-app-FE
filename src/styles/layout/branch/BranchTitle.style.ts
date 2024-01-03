@@ -9,7 +9,7 @@ export const BranchTitleContainer = styled.View`
 
 export const TitleContainer = styled.View`
     display: flex;
-    flex-direciton: column;
+    flex-direction: column;
     justify-content: flex-end;
     gap: 10px;
 `;

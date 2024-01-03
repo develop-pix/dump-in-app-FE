@@ -21,7 +21,7 @@ const reducers = combineReducers({
 const logger = createLogger();
 const initialState = {};
 
-//redux를 localstorage에 저장해 새로 고침시 redux 상태가 증발하는것을 방지
+//redux를 localStorage에 저장해 새로 고침시 redux 상태가 증발하는것을 방지
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,

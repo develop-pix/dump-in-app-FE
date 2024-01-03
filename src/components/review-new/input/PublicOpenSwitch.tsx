@@ -4,7 +4,7 @@ import { PublicOpenSwitchProps } from '../../../interfaces/ReviewNew.interface';
 import { colors } from '../../../styles/base/Variable';
 import { FontWhiteNormalMedium } from '../../../styles/layout/reuse/text/Text.style';
 import {
-    PublciOpenSwitchContainer,
+    PublicOpenSwitchContainer,
     PublicOpenToggle,
 } from '../../../styles/layout/review-form/input/PublicOpenSwitch.style';
 import { ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
@@ -16,7 +16,7 @@ export default function PublicOpenSwitch({ publicOpen }: PublicOpenSwitchProps) 
         dispatch(setPublicOpen(!publicOpen));
     };
     return (
-        <PublciOpenSwitchContainer>
+        <PublicOpenSwitchContainer>
             <ReviewInputTitleContainer>
                 <FontWhiteNormalMedium>공개허용</FontWhiteNormalMedium>
             </ReviewInputTitleContainer>
@@ -27,6 +27,6 @@ export default function PublicOpenSwitch({ publicOpen }: PublicOpenSwitchProps) 
                 onValueChange={onToggleSwitch}
                 value={publicOpen}
             />
-        </PublciOpenSwitchContainer>
+        </PublicOpenSwitchContainer>
     );
 }

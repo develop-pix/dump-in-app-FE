@@ -7,13 +7,13 @@ import { RootStackParam } from '../../../interfaces/NavigationBar';
 import { OfficialImageDetailHeaderProps } from '../../../interfaces/reuse/header/OfficialImageDetailHeader.interface';
 import {
     BranchNameContainer,
-    BrnachNameTextContainer,
+    BranchNameTextContainer,
     CloseImageContainer,
     OfficialImageDetailHeaderContainer,
 } from '../../../styles/layout/reuse/header/OfficialImageDetailHeader.style';
 import { FontWhiteNormalMedium } from '../../../styles/layout/reuse/text/Text.style';
 
-export default function OfficialImageDetailHeader({ photoboothName }: OfficialImageDetailHeaderProps) {
+export default function OfficialImageDetailHeader({ photoBoothName }: OfficialImageDetailHeaderProps) {
     const platform = Platform.OS;
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const onPressClose = () => {
@@ -26,9 +26,9 @@ export default function OfficialImageDetailHeader({ photoboothName }: OfficialIm
                 <ArrowBackIcon width={16} height={16} />
             </CloseImageContainer>
             <BranchNameContainer>
-                <BrnachNameTextContainer>
-                    <FontWhiteNormalMedium>{photoboothName}</FontWhiteNormalMedium>
-                </BrnachNameTextContainer>
+                <BranchNameTextContainer>
+                    <FontWhiteNormalMedium>{photoBoothName}</FontWhiteNormalMedium>
+                </BranchNameTextContainer>
             </BranchNameContainer>
         </OfficialImageDetailHeaderContainer>
     );

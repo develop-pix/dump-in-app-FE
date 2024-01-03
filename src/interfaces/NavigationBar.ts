@@ -65,7 +65,7 @@ export type LocationSearchParamList = {
 };
 
 export type PhotoBoothParamList = {
-    photoboothType: {
+    photoBoothType: {
         PhotoBoothID: number | null;
     };
 };

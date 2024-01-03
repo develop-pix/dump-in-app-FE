@@ -1,4 +1,4 @@
-// Note: import explicitly to use the types shiped with jest.
+// Note: import explicitly to use the types shipped with jest.
 import { it } from '@jest/globals';
 import 'jest';
 // Note: test renderer must be required after react-native.

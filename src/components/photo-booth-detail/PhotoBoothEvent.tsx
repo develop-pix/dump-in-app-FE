@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { PhotoBoothEventProps } from '../../interfaces/PhotoBoothDetail.interface';
-import { PhotoBoothEventContainer, TitleContainer } from '../../styles/layout/photobooth-detail/PhotoBoothEvent.style';
+import { PhotoBoothEventContainer, TitleContainer } from '../../styles/layout/photo-booth-detail/PhotoBoothEvent.style';
 import {
     FontWhiteGreySmallerMedium,
     FontWhiteSmallerSemiboldWithLineSpacing,

@@ -10,9 +10,9 @@ import SearchIcon from '../../assets/image/icon/search.svg';
 import { HomeMenuBarProps } from '../../interfaces/Home.interface';
 import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
 import {
-    HomeMunuBarContainer,
-    HomeMunuBarIconContainer,
-    HomeMunuBarIconsBox,
+    HomeMenuBarContainer,
+    HomeMenuBarIconContainer,
+    HomeMenuBarIconsBox,
 } from '../../styles/layout/home/HomeMenuBar.style';
 
 import HomeFilterModalForm from './HomeFilterModalForm';
@@ -58,18 +58,18 @@ export default function HomeMenuBar({ filterData, setFilterData, onFilterSubmit 
     };
 
     return (
-        <HomeMunuBarContainer>
+        <HomeMenuBarContainer>
             <TouchableOpacity onPress={handleShowFilterModal}>
                 <FilterIcon />
             </TouchableOpacity>
-            <HomeMunuBarIconsBox>
+            <HomeMenuBarIconsBox>
                 <TouchableOpacity onPress={onSearchScreen}>
                     <SearchIcon />
                 </TouchableOpacity>
-                <HomeMunuBarIconContainer onPress={onNotificationScreen}>
+                <HomeMenuBarIconContainer onPress={onNotificationScreen}>
                     {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
-                </HomeMunuBarIconContainer>
-            </HomeMunuBarIconsBox>
+                </HomeMenuBarIconContainer>
+            </HomeMenuBarIconsBox>
 
             {isFilterVisible && (
                 <HomeFilterModalForm
@@ -79,6 +79,6 @@ export default function HomeMenuBar({ filterData, setFilterData, onFilterSubmit 
                     onFilterSubmit={onFilterSubmit}
                 />
             )}
-        </HomeMunuBarContainer>
+        </HomeMenuBarContainer>
     );
 }

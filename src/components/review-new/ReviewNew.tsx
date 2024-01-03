@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 
 import { UploadImageToS3 } from '../../hooks/axios/ReviewNew';
 import { useAppSelector } from '../../hooks/redux/store';
-import { InputDatas } from '../../interfaces/ReviewNew.interface';
+import { InputData } from '../../interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer, SubmitButton } from '../../styles/layout/reuse/button/GoBackButton.style';
 import { FontYellowBiggerSemibold } from '../../styles/layout/reuse/text/Text.style';
 import {
@@ -16,7 +16,7 @@ import {
 import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
 
 import CameraShotSelect from './input/CameraShotSelect';
-import Dateinput from './input/Dateinput';
+import DateInput from './input/DateInput';
 import FrameColorSelect from './input/FrameColorSelect';
 import HairIronSelect from './input/HairIronSelect';
 import HashtagSelect from './input/HashtagSelect';
@@ -29,12 +29,12 @@ import ReviewNewModal from './input/ReviewNewModal';
 import ToolsSelect from './input/ToolsSelect';
 
 export default function ReviewNew() {
-    const [errorData, setErrorData] = useState<InputDatas[]>([]);
+    const [errorData, setErrorData] = useState<InputData[]>([]);
     const [openModal, setOpenModal] = useState<boolean>(false);
     const scrollRef = useRef<any>();
     const platform = Platform.OS;
-    const representaiveImage = useAppSelector(state => state.reviewData).representativeImage;
-    const representaiveImageName = useAppSelector(state => state.reviewData).representativeImageName;
+    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
+    const representativeImageName = useAppSelector(state => state.reviewData).representativeImageName;
     const description = useAppSelector(state => state.reviewData).description;
     const location = useAppSelector(state => state.reviewData).branchID;
     const date = useAppSelector(state => state.reviewData).date;
@@ -57,8 +57,8 @@ export default function ReviewNew() {
         setErrorData([]);
 
         // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
-        if (representaiveImage === null || description === '') {
-            setErrorData(data => [...data, { InputName: 'representaiveImage', height: 0 }]);
+        if (representativeImage === null || description === '') {
+            setErrorData(data => [...data, { InputName: 'representativeImage', height: 0 }]);
         }
         if (description === null || description === '') {
             setErrorData(data => [...data, { InputName: 'description', height: 450 }]);
@@ -89,8 +89,8 @@ export default function ReviewNew() {
 
         if (errorData.length === 0) {
             // 우선 S3 업로드만 먼저 추가
-            if (representaiveImage && representaiveImageName) {
-                UploadImageToS3(representaiveImage, representaiveImageName);
+            if (representativeImage && representativeImageName) {
+                UploadImageToS3(representativeImage, representativeImageName);
                 console.log('게시글' + description);
                 console.log('위치' + location);
                 console.log('날짜' + date);
@@ -121,13 +121,17 @@ export default function ReviewNew() {
                     <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
                 </SubmitButton>
             </GoBackButtonWithSubmitContainer>
-            <ImageFileInput representaiveImage={representaiveImage} setOpenModal={setOpenModal} errorData={errorData} />
+            <ImageFileInput
+                representativeImage={representativeImage}
+                setOpenModal={setOpenModal}
+                errorData={errorData}
+            />
             <InputContainer>
                 <InputWrapper>
                     <ReviewDescriptionInput description={description} errorData={errorData} />
                     <LocationAndDateContainer>
                         <LocationInput location={location} errorData={errorData} />
-                        <Dateinput date={date} errorData={errorData} />
+                        <DateInput date={date} errorData={errorData} />
                     </LocationAndDateContainer>
                     <FrameColorSelect frameColor={frameColor} errorData={errorData} />
                     <PartySelect party={party} errorData={errorData} />

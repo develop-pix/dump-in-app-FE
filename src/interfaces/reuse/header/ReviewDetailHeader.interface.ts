@@ -1,5 +1,5 @@
 export interface ReviewDetailHeaderProps {
-    photoboothName: string;
+    photoBoothName: string;
     branchName: string;
     mine: boolean;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;

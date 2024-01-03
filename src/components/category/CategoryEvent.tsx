@@ -18,7 +18,7 @@ export default function CategoryEvent() {
     };
 
     // 임시 이벤트 데이터
-    const [eventTmepData, setEventTempData] = useState(() =>
+    const [eventTempData, setEventTempData] = useState(() =>
         Array(5)
             .fill(null)
             .map((_, index) => ({
@@ -27,7 +27,7 @@ export default function CategoryEvent() {
                 eventTitle: '화사의 ‘I Love My Body’ 프레임',
                 startDate: '2023.09.07',
                 endDate: '2023.10.31',
-                photoboothName: '포토그레이',
+                photoBoothName: '포토그레이',
                 myEvent: true,
             })),
     );
@@ -40,8 +40,8 @@ export default function CategoryEvent() {
                 filterOptionSelect={filterOptionSelect}
             />
 
-            {eventTmepData.length > 0 ? (
-                eventTmepData.map(eventData => <CategoryEventItem key={eventData.eventID} eventData={eventData} />)
+            {eventTempData.length > 0 ? (
+                eventTempData.map(eventData => <CategoryEventItem key={eventData.eventID} eventData={eventData} />)
             ) : (
                 <SearchNoData
                     alertText="아직 등록된 이벤트가 없습니다."

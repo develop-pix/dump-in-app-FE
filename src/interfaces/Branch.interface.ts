@@ -25,7 +25,7 @@ export interface BranchLocationProps {
 }
 
 export interface BranchInfoProps {
-    photoboothName: string;
+    photoBoothName: string;
     branchName: string;
     branchHashtag: string[];
     address: string;
@@ -34,7 +34,7 @@ export interface BranchInfoProps {
 }
 
 export interface BranchTitleProps {
-    photoboothName: string;
+    photoBoothName: string;
     branchName: string;
     branchHashtag: string[];
     myBranch: boolean;

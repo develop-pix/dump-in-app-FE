@@ -13,7 +13,7 @@ import Search from '../reuse/input/Search';
 
 import SearchBranchList from './SearchBranchList';
 
-export default function LocactionSearchForm() {
+export default function LocationSearchForm() {
     const platform = Platform.OS;
     const [search, setSearch] = useState<string>('');
     const [resultData, setResultData] = useState<BranchData[] | []>([]);

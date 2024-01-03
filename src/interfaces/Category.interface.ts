@@ -11,7 +11,7 @@ export interface CategoryEventItemProps {
         eventTitle: string;
         startDate: string;
         endDate: string;
-        photoboothName: string;
+        photoBoothName: string;
         myEvent: boolean;
     };
 }

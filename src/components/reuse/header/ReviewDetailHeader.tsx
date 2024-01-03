@@ -17,7 +17,7 @@ import {
 import { FontWhiteNormalMedium } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function ReviewDetailHeader({
-    photoboothName,
+    photoBoothName,
     branchName,
     mine,
     setOpenModal,
@@ -40,7 +40,7 @@ export default function ReviewDetailHeader({
             <BranchNameContainer>
                 <LocationIcon width={20} height={24} />
                 <ReviewDescTextContainer>
-                    <FontWhiteNormalMedium>{photoboothName}</FontWhiteNormalMedium>
+                    <FontWhiteNormalMedium>{photoBoothName}</FontWhiteNormalMedium>
                     <FontWhiteNormalMedium>{branchName}</FontWhiteNormalMedium>
                 </ReviewDescTextContainer>
             </BranchNameContainer>

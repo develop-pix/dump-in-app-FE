@@ -8,5 +8,5 @@ export const GetMoreReviewContainer = styled.View`
     height: ${Dimensions.get('window').width * 0.8}px;
     border-radius: 10px;
     background-color: ${colors.lightgrey};
-    jsutify-content: center;
+    justify-content: center;
 `;

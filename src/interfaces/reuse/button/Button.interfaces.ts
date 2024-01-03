@@ -7,7 +7,7 @@ export interface FilterButtonProps {
     disabled: boolean;
 }
 
-export interface FavortiteButtonProps {
+export interface FavoriteButtonProps {
     favorite: boolean;
     setFavorite: React.Dispatch<React.SetStateAction<boolean>>;
 }

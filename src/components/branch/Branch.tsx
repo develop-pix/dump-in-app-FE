@@ -280,7 +280,7 @@ export default function Branch() {
                         <BranchForm key={data.branchID}>
                             <BranchLocation geolocation={data.geolocation} distance={data.distance} />
                             <BranchInfo
-                                photoboothName={data.photoBoothName}
+                                photoBoothName={data.photoBoothName}
                                 branchName={data.branchName}
                                 branchHashtag={data.branchHashtag}
                                 address={data.address}

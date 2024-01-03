@@ -22,7 +22,7 @@ export const EventImage = styled.Image`
     height: 100%;
 `;
 
-export const FavoirteIcon = styled.View`
+export const FavoriteIcon = styled.View`
     position: absolute;
     top: 10px;
     right: 10px;

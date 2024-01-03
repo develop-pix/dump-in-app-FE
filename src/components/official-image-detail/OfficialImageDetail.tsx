@@ -37,7 +37,7 @@ export default function OfficialImageDetail() {
     return (
         <OfficialImageDetailFormContainer>
             <TitleContainer>
-                <OfficialImageDetailHeader photoboothName={route.params.photoBoothName} />
+                <OfficialImageDetailHeader photoBoothName={route.params.photoBoothName} />
             </TitleContainer>
             <OfficialImageDetailForm>
                 <OfficialImageDetailContainer

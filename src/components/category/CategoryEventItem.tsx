@@ -13,7 +13,7 @@ import {
     EventInfo,
     EventItemContainer,
     EventTitleContainer,
-    FavoirteIcon,
+    FavoriteIcon,
     LocationIconContainer,
     PhotoBoothNameContainer,
 } from '../../styles/layout/category/CategoryEventItem.style';
@@ -22,7 +22,7 @@ import {
     FontWhiteGreySmallerMedium,
     FontWhiteSmallerMedium,
 } from '../../styles/layout/reuse/text/Text.style';
-import FavoirteButton from '../reuse/button/FavoritetButton';
+import FavoriteButton from '../reuse/button/FavoriteButton';
 
 export default function CategoryEventItem({ eventData }: CategoryEventItemProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
@@ -54,16 +54,16 @@ export default function CategoryEventItem({ eventData }: CategoryEventItemProps)
                     }}
                 />
 
-                <FavoirteIcon>
-                    <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
-                </FavoirteIcon>
+                <FavoriteIcon>
+                    <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                </FavoriteIcon>
 
                 <EventInfo>
                     <PhotoBoothNameContainer>
                         <LocationIconContainer>
                             <LocationIcon width={18} height={21} />
                         </LocationIconContainer>
-                        <FontWhiteSmallerMedium>{eventData.photoboothName}</FontWhiteSmallerMedium>
+                        <FontWhiteSmallerMedium>{eventData.photoBoothName}</FontWhiteSmallerMedium>
                     </PhotoBoothNameContainer>
                     <EventTitleContainer>
                         <FontWhiteBiggestSemibold>{eventData.eventTitle}</FontWhiteBiggestSemibold>
