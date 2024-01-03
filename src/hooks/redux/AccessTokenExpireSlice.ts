@@ -1,22 +1,23 @@
-import {createSlice} from '@reduxjs/toolkit';
-import type {PayloadAction} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+import type { PayloadAction } from '@reduxjs/toolkit';
 interface ExpireState {
-  expire: Date | null;
+    expire: Date | null;
 }
 
 const initialState: ExpireState = {
-  expire: null,
+    expire: null,
 };
 
 export const AccessTokenExpireSlice = createSlice({
-  name: 'accessTokenExpire',
-  initialState,
-  reducers: {
-    setAccessTokenExpire(state, action: PayloadAction<Date | null>) {
-      state.expire = action.payload;
+    name: 'accessTokenExpire',
+    initialState,
+    reducers: {
+        setAccessTokenExpire(state, action: PayloadAction<Date | null>) {
+            state.expire = action.payload;
+        },
     },
-  },
 });
 
-export const {setAccessTokenExpire} = AccessTokenExpireSlice.actions;
+export const { setAccessTokenExpire } = AccessTokenExpireSlice.actions;
 export default AccessTokenExpireSlice;

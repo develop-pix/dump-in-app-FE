@@ -1,61 +1,40 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import NavigationBarListItem from './NavigationBarListItem';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import AddReviewIcon from '../../../assets/image/icon/btn_add.svg';
-import {
-  NavigationBarContainer,
-  ReviewNewItem,
-} from '../../../styles/layout/navigation-bar/NavigationBar.style';
-import {
-  RootStackParam,
-  NavigationBarProps,
-} from '../../../interfaces/NavigationBar';
-import {ScreenName} from '../../../interfaces/NavigationBar';
+import { NavigationBarProps, RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
+import { NavigationBarContainer, ReviewNewItem } from '../../../styles/layout/navigation-bar/NavigationBar.style';
 
-export default function NavigationBar({currentScreen}: NavigationBarProps) {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+import NavigationBarListItem from './NavigationBarListItem';
 
-  // 기본 페이지로 이동할 때는 해당 screen값을 넘겨줌 Home, Location, Category, MyPage
-  const handleListClick = (selectedScreen: ScreenName) => {
-    navigation.navigate(selectedScreen, {screen: selectedScreen});
-  };
+export default function NavigationBar({ currentScreen }: NavigationBarProps) {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
-  // 기본 페이지가 아닌 페이지로 이동할 때는 현재 screen값을 넘겨줌
-  const onPressRegistrationReview = () => {
-    navigation.navigate('ReviewNew', {
-      branchID: undefined,
-      screen: currentScreen,
-    });
-  };
+    // 기본 페이지로 이동할 때는 해당 screen값을 넘겨줌 Home, Location, Category, MyPage
+    const handleListClick = (selectedScreen: ScreenName) => {
+        navigation.navigate(selectedScreen, { screen: selectedScreen });
+    };
 
-  return (
-    <NavigationBarContainer>
-      <NavigationBarListItem
-        screen="Home"
-        selectedScreen={currentScreen}
-        handleListClick={handleListClick}
-      />
-      <NavigationBarListItem
-        screen="Location"
-        selectedScreen={currentScreen}
-        handleListClick={handleListClick}
-      />
+    // 기본 페이지가 아닌 페이지로 이동할 때는 현재 screen값을 넘겨줌
+    const onPressRegistrationReview = () => {
+        navigation.navigate('ReviewNew', {
+            branchID: undefined,
+            screen: currentScreen,
+        });
+    };
 
-      <ReviewNewItem onPress={onPressRegistrationReview}>
-        <AddReviewIcon width={13} height={13} />
-      </ReviewNewItem>
+    return (
+        <NavigationBarContainer>
+            <NavigationBarListItem screen="Home" selectedScreen={currentScreen} handleListClick={handleListClick} />
+            <NavigationBarListItem screen="Location" selectedScreen={currentScreen} handleListClick={handleListClick} />
 
-      <NavigationBarListItem
-        screen="Category"
-        selectedScreen={currentScreen}
-        handleListClick={handleListClick}
-      />
-      <NavigationBarListItem
-        screen="MyPage"
-        selectedScreen={currentScreen}
-        handleListClick={handleListClick}
-      />
-    </NavigationBarContainer>
-  );
+            <ReviewNewItem onPress={onPressRegistrationReview}>
+                <AddReviewIcon width={13} height={13} />
+            </ReviewNewItem>
+
+            <NavigationBarListItem screen="Category" selectedScreen={currentScreen} handleListClick={handleListClick} />
+            <NavigationBarListItem screen="MyPage" selectedScreen={currentScreen} handleListClick={handleListClick} />
+        </NavigationBarContainer>
+    );
 }

@@ -29,6 +29,7 @@ module.exports = {
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         'react-hooks/rules-of-hooks': 'error',
+        'import/no-named-as-default': 0,
         semi: ['error', 'always'],
         'import/order': [
             'error',

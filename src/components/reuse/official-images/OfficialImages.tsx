@@ -1,60 +1,54 @@
 import React from 'react';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
+import { OfficialImageProps } from '../../../interfaces/reuse/official-image/OfficialImage.interface';
 import {
-  OfficialContainer,
-  SubTitleContainer,
-  OfficialImage,
-  OfficialImageWrapper,
-  OfficialImagesContainer,
+    OfficialContainer,
+    OfficialImage,
+    OfficialImagesContainer,
+    OfficialImageWrapper,
+    SubTitleContainer,
 } from '../../../styles/layout/reuse/offcial-images/OfficialImages.style';
-import {FontWhiteSmallerSemiboldWithLineSpacing} from '../../../styles/layout/reuse/text/Text.style';
-import {OfficialImageProps} from '../../../interfaces/reuse/official-image/OfficialImage.interface';
+import { FontWhiteSmallerSemiboldWithLineSpacing } from '../../../styles/layout/reuse/text/Text.style';
 import SearchNoData from '../alert/SearchNoData';
-import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParam, ScreenName} from '../../../interfaces/NavigationBar';
 
-export default function OfficialImages({
-  photoBoothName,
-  image,
-}: OfficialImageProps) {
-  const isFocused = useIsFocused();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const route = useRoute();
+export default function OfficialImages({ photoBoothName, image }: OfficialImageProps) {
+    const isFocused = useIsFocused();
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const route = useRoute();
 
-  const onPressOfficialImage = (index: number) => {
-    const currentScreen = (route.params as {screen: ScreenName}).screen;
-    if (isFocused) {
-      navigation.push('OfficialImageDetail', {
-        screen: currentScreen,
-        photoBoothName: photoBoothName,
-        image: image,
-        index: index,
-      });
-    }
-  };
+    const onPressOfficialImage = (index: number) => {
+        const currentScreen = (route.params as { screen: ScreenName }).screen;
+        if (isFocused) {
+            navigation.push('OfficialImageDetail', {
+                screen: currentScreen,
+                photoBoothName,
+                image,
+                index,
+            });
+        }
+    };
 
-  return (
-    <OfficialContainer>
-      <SubTitleContainer>
-        <FontWhiteSmallerSemiboldWithLineSpacing>
-          OFFICIAL
-        </FontWhiteSmallerSemiboldWithLineSpacing>
-      </SubTitleContainer>
-      {image.length === 0 ? (
-        <SearchNoData alertText="등록된 이미지가 없습니다." recommendText="" />
-      ) : (
-        <OfficialImagesContainer>
-          {image.map((url, index) => {
-            return (
-              <OfficialImageWrapper
-                key={index}
-                onPress={() => onPressOfficialImage(index)}>
-                <OfficialImage source={{uri: url}} />
-              </OfficialImageWrapper>
-            );
-          })}
-        </OfficialImagesContainer>
-      )}
-    </OfficialContainer>
-  );
+    return (
+        <OfficialContainer>
+            <SubTitleContainer>
+                <FontWhiteSmallerSemiboldWithLineSpacing>OFFICIAL</FontWhiteSmallerSemiboldWithLineSpacing>
+            </SubTitleContainer>
+            {image.length === 0 ? (
+                <SearchNoData alertText="등록된 이미지가 없습니다." recommendText="" />
+            ) : (
+                <OfficialImagesContainer>
+                    {image.map((url, index) => {
+                        return (
+                            <OfficialImageWrapper key={index} onPress={() => onPressOfficialImage(index)}>
+                                <OfficialImage source={{ uri: url }} />
+                            </OfficialImageWrapper>
+                        );
+                    })}
+                </OfficialImagesContainer>
+            )}
+        </OfficialContainer>
+    );
 }

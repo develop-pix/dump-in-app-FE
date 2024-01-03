@@ -1,17 +1,19 @@
 import React from 'react';
-import Branch from './Branch';
+import { useRoute } from '@react-navigation/native';
+
+import { ScreenName } from '../../interfaces/NavigationBar';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
-import {useRoute} from '@react-navigation/native';
-import {ScreenName} from '../../interfaces/NavigationBar';
+
+import Branch from './Branch';
 
 export default function BranchForm() {
-  const route = useRoute();
-  const currentScreen = (route.params as {screen: ScreenName}).screen;
+    const route = useRoute();
+    const currentScreen = (route.params as { screen: ScreenName }).screen;
 
-  return (
-    <>
-      <Branch />
-      <NavigationBar currentScreen={currentScreen} />
-    </>
-  );
+    return (
+        <>
+            <Branch />
+            <NavigationBar currentScreen={currentScreen} />
+        </>
+    );
 }

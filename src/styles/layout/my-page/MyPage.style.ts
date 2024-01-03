@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
-import {colors} from '../../base/Variable';
+
+import { colors } from '../../base/Variable';
 
 export const ActivityContainer = styled.View`
-  height: 250px;
-  background-color: ${colors.blackgrey};
+    height: 250px;
+    background-color: ${colors.blackgrey};
 `;

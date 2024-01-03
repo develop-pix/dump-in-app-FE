@@ -1,63 +1,63 @@
 import React from 'react';
+import { Platform } from 'react-native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import SearchGreyIcon from '../../../assets/image/icon/search_grey.svg';
-import {MapInputProps} from '../../../interfaces/Location.interface';
-import {SearchButtonIconContainer} from '../../../styles/layout/reuse/input/Search.style';
-import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {Platform} from 'react-native';
+import { MapInputProps } from '../../../interfaces/Location.interface';
+import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
+import { colors } from '../../../styles/base/Variable';
 import {
-  BlockInput,
-  InputForm,
-  InputWrapper,
-  MapInputContainer,
-  MapInputhWrapper,
+    BlockInput,
+    InputForm,
+    InputWrapper,
+    MapInputContainer,
+    MapInputhWrapper,
 } from '../../../styles/layout/location/MapInput.style';
-import {ScreenName} from '../../../interfaces/NavigationBar';
-import {colors} from '../../../styles/base/Variable';
+import { SearchButtonIconContainer } from '../../../styles/layout/reuse/input/Search.style';
 
-export default function MapInput({location}: MapInputProps) {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const isFocused = useIsFocused();
-  const route = useRoute();
-  const platform = Platform.OS;
+export default function MapInput({ location }: MapInputProps) {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const isFocused = useIsFocused();
+    const route = useRoute();
+    const platform = Platform.OS;
 
-  const onPressLocationSearch = () => {
-    const currentScreen = (route.params as {screen: ScreenName}).screen;
-    if (isFocused) {
-      navigation.push('LocationSearch', {
-        NextPage: 'BranchDetail',
-        screen: currentScreen,
-      });
-    }
-  };
+    const onPressLocationSearch = () => {
+        const currentScreen = (route.params as { screen: ScreenName }).screen;
+        if (isFocused) {
+            navigation.push('LocationSearch', {
+                NextPage: 'BranchDetail',
+                screen: currentScreen,
+            });
+        }
+    };
 
-  return (
-    <InputWrapper platform={platform}>
-      <MapInputContainer>
-        <MapInputhWrapper
-          activeOpacity={1}
-          onPress={onPressLocationSearch}
-          platform={platform}
-          style={{
-            shadowRadius: 6,
-            shadowOffset: {height: 2, width: 0},
-            shadowColor: colors.black,
-            shadowOpacity: 0.15,
-          }}>
-          <InputForm>
-            <BlockInput
-              value={location}
-              editable={false}
-              selectTextOnFocus={false}
-              onPressIn={onPressLocationSearch}
-            />
-            <SearchButtonIconContainer>
-              <SearchGreyIcon />
-            </SearchButtonIconContainer>
-          </InputForm>
-        </MapInputhWrapper>
-      </MapInputContainer>
-    </InputWrapper>
-  );
+    return (
+        <InputWrapper platform={platform}>
+            <MapInputContainer>
+                <MapInputhWrapper
+                    activeOpacity={1}
+                    onPress={onPressLocationSearch}
+                    platform={platform}
+                    style={{
+                        shadowRadius: 6,
+                        shadowOffset: { height: 2, width: 0 },
+                        shadowColor: colors.black,
+                        shadowOpacity: 0.15,
+                    }}>
+                    <InputForm>
+                        <BlockInput
+                            value={location}
+                            editable={false}
+                            selectTextOnFocus={false}
+                            onPressIn={onPressLocationSearch}
+                        />
+                        <SearchButtonIconContainer>
+                            <SearchGreyIcon />
+                        </SearchButtonIconContainer>
+                    </InputForm>
+                </MapInputhWrapper>
+            </MapInputContainer>
+        </InputWrapper>
+    );
 }

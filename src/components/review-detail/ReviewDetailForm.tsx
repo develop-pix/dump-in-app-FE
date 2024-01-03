@@ -1,17 +1,19 @@
 import React from 'react';
+import { useRoute } from '@react-navigation/native';
+
+import { ScreenName } from '../../interfaces/NavigationBar';
 import NavigationBar from '../reuse/navigation-bar/NavigationBar';
+
 import ReviewDetail from './ReviewDetail';
-import {useRoute} from '@react-navigation/native';
-import {ScreenName} from '../../interfaces/NavigationBar';
 
 export default function ReviewDetailForm() {
-  const route = useRoute();
-  const currentScreen = (route.params as {screen: ScreenName}).screen;
+    const route = useRoute();
+    const currentScreen = (route.params as { screen: ScreenName }).screen;
 
-  return (
-    <>
-      <ReviewDetail />
-      <NavigationBar currentScreen={currentScreen} />
-    </>
-  );
+    return (
+        <>
+            <ReviewDetail />
+            <NavigationBar currentScreen={currentScreen} />
+        </>
+    );
 }

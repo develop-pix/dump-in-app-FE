@@ -1,11 +1,12 @@
 import React from 'react';
+
 import LoginForm from '../components/login/LoginForm';
-import {LoginSafeContainer} from '../styles/layout/Login.style';
+import { LoginSafeContainer } from '../styles/layout/Login.style';
 
 export default function Login() {
-  return (
-    <LoginSafeContainer>
-      <LoginForm />
-    </LoginSafeContainer>
-  );
+    return (
+        <LoginSafeContainer>
+            <LoginForm />
+        </LoginSafeContainer>
+    );
 }

@@ -1,42 +1,40 @@
 import React from 'react';
-import {Modal} from 'react-native';
+import { Modal } from 'react-native';
+
+import { ConfirmationAlertModalProps } from '../../../interfaces/reuse/modal/ConfirmationAlertModal.interface';
 import {
-  ConfirmationAlertModalContainer,
-  ModalWrapper,
-  CustomButton,
-  ButtonContainer,
+    ButtonContainer,
+    ConfirmationAlertModalContainer,
+    CustomButton,
+    ModalWrapper,
 } from '../../../styles/layout/reuse/modal/ConfirmationAlertModal.style';
-import {
-  FontWhiteNormalSemibold,
-  FontWhiteNormalMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
-import {ConfirmationAlertModalProps} from '../../../interfaces/reuse/modal/ConfirmationAlertModal.interface';
+import { FontWhiteNormalMedium, FontWhiteNormalSemibold } from '../../../styles/layout/reuse/text/Text.style';
 
 export default function ConfirmationAlertModal({
-  isVisible,
-  title,
-  agreeMessage,
-  disagreeMessage,
-  onAgree,
-  onDisagree,
+    isVisible,
+    title,
+    agreeMessage,
+    disagreeMessage,
+    onAgree,
+    onDisagree,
 }: ConfirmationAlertModalProps) {
-  return (
-    <Modal visible={isVisible} transparent animationType="slide">
-      <ConfirmationAlertModalContainer>
-        <ModalWrapper>
-          <FontWhiteNormalSemibold>{title}</FontWhiteNormalSemibold>
+    return (
+        <Modal visible={isVisible} transparent animationType="slide">
+            <ConfirmationAlertModalContainer>
+                <ModalWrapper>
+                    <FontWhiteNormalSemibold>{title}</FontWhiteNormalSemibold>
 
-          <ButtonContainer>
-            <CustomButton onPress={onDisagree}>
-              <FontWhiteNormalMedium>{disagreeMessage}</FontWhiteNormalMedium>
-            </CustomButton>
+                    <ButtonContainer>
+                        <CustomButton onPress={onDisagree}>
+                            <FontWhiteNormalMedium>{disagreeMessage}</FontWhiteNormalMedium>
+                        </CustomButton>
 
-            <CustomButton onPress={onAgree}>
-              <FontWhiteNormalMedium>{agreeMessage}</FontWhiteNormalMedium>
-            </CustomButton>
-          </ButtonContainer>
-        </ModalWrapper>
-      </ConfirmationAlertModalContainer>
-    </Modal>
-  );
+                        <CustomButton onPress={onAgree}>
+                            <FontWhiteNormalMedium>{agreeMessage}</FontWhiteNormalMedium>
+                        </CustomButton>
+                    </ButtonContainer>
+                </ModalWrapper>
+            </ConfirmationAlertModalContainer>
+        </Modal>
+    );
 }

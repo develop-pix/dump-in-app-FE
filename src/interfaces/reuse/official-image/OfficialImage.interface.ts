@@ -1,4 +1,4 @@
 export interface OfficialImageProps {
-  photoBoothName: string;
-  image: string[];
+    photoBoothName: string;
+    image: string[];
 }
