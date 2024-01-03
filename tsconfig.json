@@ -1,23 +1,22 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "jsx": "react-native",
-    "outDir": "./dist",
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "lib": ["es6", "dom"],
-    "types": ["jest", "node"]
-  },
-  "include": ["src", "declarationSVG.d.ts"],
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "jsx": "react-native",
+        "outDir": "./dist",
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "lib": ["es6", "dom"],
+        "types": ["jest", "node"],
+        "baseUrl": ".",
+        "paths": {
+            "*": ["src/*"]
+        }
+    },
+    "include": ["src", "declarationSVG.d.ts"],
+    "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
