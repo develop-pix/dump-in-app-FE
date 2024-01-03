@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { CategoryEventContainer } from '../../styles/layout/category/CategoryEvent.style';
 import SearchNoData from '../reuse/alert/SearchNoData';

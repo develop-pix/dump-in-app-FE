@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 
 import { CategoryContainer, PageBar, PageBarText } from '../../styles/layout/category/Category.style';

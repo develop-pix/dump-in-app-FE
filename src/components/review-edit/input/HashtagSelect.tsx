@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setHashtag } from '../../../hooks/redux/ReviewData';
 import { useAppDispatch } from '../../../hooks/redux/store';
 import { HashtagSelectProps } from '../../../interfaces/ReviewEdit.interface';

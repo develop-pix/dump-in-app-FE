@@ -1,4 +1,3 @@
-import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
 import ButtonAddImage from '../../../assets/image/icon/btn_add.svg';

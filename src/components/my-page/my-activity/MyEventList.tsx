@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MyEventListContainer } from '../../../styles/layout/my-page/MyActivity/MyEventList.style';
 import PhotoBoothEventFrame from '../../photobooth-detail/PhotoBoothEventFrame';
 

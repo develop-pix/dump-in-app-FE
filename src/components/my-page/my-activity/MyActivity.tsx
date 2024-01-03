@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ClickEventImage from '../../../assets/image/icon/click_event.svg';
 import ClickFavoriteImage from '../../../assets/image/icon/click_favorite.svg';
 import ClickLocationImage from '../../../assets/image/icon/click_location.svg';

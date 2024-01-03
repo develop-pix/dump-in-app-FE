@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dimensions, Platform } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';

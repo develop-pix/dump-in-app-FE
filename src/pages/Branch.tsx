@@ -1,5 +1,3 @@
-import React from 'react';
-
 import BranchForm from '../components/branch/BranchForm';
 import { BranchContainer } from '../styles/layout/branch/Branch.style';
 

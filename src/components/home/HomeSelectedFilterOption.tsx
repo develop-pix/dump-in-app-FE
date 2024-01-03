@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { HomeSelectedFilterOptionProps } from '../../interfaces/Home.interface';
 import {
     ColorBox,

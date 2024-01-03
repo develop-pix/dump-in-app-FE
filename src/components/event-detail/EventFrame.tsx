@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EventFrameProps } from '../../interfaces/EventDetail.interface';
 import {
     FrameContainer,

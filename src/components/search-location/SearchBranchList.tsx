@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SearchBranchListProps } from '../../interfaces/Location.interface';
 import {
     ListContainer,

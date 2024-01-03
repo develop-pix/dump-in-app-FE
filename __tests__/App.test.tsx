@@ -1,12 +1,10 @@
-import 'react-native';
-import React from 'react';
-
-import App from '../App';
-import 'jest';
 // Note: import explicitly to use the types shiped with jest.
 import { it } from '@jest/globals';
+import 'jest';
 // Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import { create } from 'react-test-renderer';
+
+import App from '../App';
 
 jest.mock('react-native-modal', () => 'react-native-modal');
 jest.mock('react-native-linear-gradient', () => 'react-native-linear-gradient');
@@ -27,5 +25,5 @@ jest.mock('@react-native-seoul/kakao-login', () => '@react-native-seoul/kakao-lo
 jest.mock('@react-native-seoul/naver-login', () => '@react-native-seoul/naver-login');
 
 it('renders correctly', () => {
-    renderer.create(<App />);
+    create(<App />);
 });

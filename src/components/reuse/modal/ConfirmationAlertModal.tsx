@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal } from 'react-native';
 
 import { ConfirmationAlertModalProps } from '../../../interfaces/reuse/modal/ConfirmationAlertModal.interface';

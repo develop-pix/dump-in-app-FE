@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FilterButtonProps } from '../../../interfaces/reuse/button/Button.interfaces';
 import { FilterButtonContainer, FilterButtonText } from '../../../styles/layout/reuse/button/FilterButton.style';
 

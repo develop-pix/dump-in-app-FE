@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ClockIcon from '../../assets/image/icon/clock.svg';
 import LocationDarkIcon from '../../assets/image/icon/location_dark.svg';
 import { BranchDescriptionProps } from '../../interfaces/Branch.interface';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BranchInfoProps } from '../../interfaces/Branch.interface';
 import { BranchInfoContainer } from '../../styles/layout/branch/BranchInfo.style';
 

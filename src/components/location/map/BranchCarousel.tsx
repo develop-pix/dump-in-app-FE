@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions, NativeScrollEvent } from 'react-native';
 
 import { BranchCardData, BranchCarouselProps } from '../../../interfaces/Location.interface';

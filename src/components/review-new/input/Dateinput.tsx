@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import { setDate } from '../../../hooks/redux/ReviewData';

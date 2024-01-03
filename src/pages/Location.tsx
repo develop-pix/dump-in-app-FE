@@ -1,5 +1,3 @@
-import React from 'react';
-
 import LocationForm from '../components/location/LocationForm';
 import { LocationContainer } from '../styles/layout/location/Map.style';
 

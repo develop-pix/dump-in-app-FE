@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setPublicOpen } from '../../../hooks/redux/ReviewData';
 import { useAppDispatch } from '../../../hooks/redux/store';
 import { PublicOpenSwitchProps } from '../../../interfaces/ReviewNew.interface';

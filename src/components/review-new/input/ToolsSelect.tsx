@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setTools } from '../../../hooks/redux/ReviewData';
 import { useAppDispatch } from '../../../hooks/redux/store';
 import { ToolsSelectProps } from '../../../interfaces/ReviewNew.interface';

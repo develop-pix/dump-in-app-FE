@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ReviewProps } from '../../../interfaces/Home.interface';
 import { MyPostImageWrapper, MyPostListContainer } from '../../../styles/layout/my-page/MyActivity/MyPostList.style';
 

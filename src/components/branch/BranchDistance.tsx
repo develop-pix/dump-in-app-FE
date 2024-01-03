@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BranchDistanceProps } from '../../interfaces/Branch.interface';
 import { BranchDistanceContainer, BranchDistanceForm } from '../../styles/layout/branch/BranchDistance.style';
 import { FontWhiteSmallerMedium } from '../../styles/layout/reuse/text/Text.style';

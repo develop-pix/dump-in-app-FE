@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type ActivityComponentProps = 'MyReviewList' | 'MyPostList' | 'MyPhotoBoothList' | 'MyEventList' | 'Login';
 
 export interface MyActiveProps {

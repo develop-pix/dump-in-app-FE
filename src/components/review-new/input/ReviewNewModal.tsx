@@ -1,4 +1,3 @@
-import React from 'react';
 import { Platform } from 'react-native';
 import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Modal from 'react-native-modal';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AppleIcon from '../../assets/image/icon/apple_login.svg';
 import {
     AppleIconWrapper,

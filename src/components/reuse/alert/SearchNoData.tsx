@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AlertIcon from '../../../assets/image/icon/alert.svg';
 import { SearchNoDataProps } from '../../../interfaces/reuse/text/SearchNoData.interface';
 import { NoDataContainer, SearchNoDataContainer } from '../../../styles/layout/reuse/alert/SearchNoData.style';

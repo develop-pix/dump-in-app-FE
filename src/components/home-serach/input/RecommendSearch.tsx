@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { HomeSearchProps } from '../../../interfaces/HomeSearch.interface';
 import {
     RecommendSearchButton,

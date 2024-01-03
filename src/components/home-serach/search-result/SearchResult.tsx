@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { FlatList, Modal, TouchableOpacity } from 'react-native';
 
 import UpIcon from '../../../assets/image/icon/btn_up.svg';

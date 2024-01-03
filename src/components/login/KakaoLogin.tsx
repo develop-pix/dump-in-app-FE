@@ -1,4 +1,3 @@
-import React from 'react';
 import { KakaoOAuthToken, login } from '@react-native-seoul/kakao-login';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';

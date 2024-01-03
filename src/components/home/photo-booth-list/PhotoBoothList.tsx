@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EventProps, PhotoBoothListProps, PhotoBoothProps, ReviewProps } from '../../../interfaces/Home.interface';
 import {
     PhotoBoothListColumnContainer,

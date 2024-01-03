@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
@@ -25,6 +24,7 @@ import { ScreenProvider } from './src/utils/ScreenContext';
 
 const Stack = createNativeStackNavigator();
 const persistor = persistStore(store);
+
 const App = () => {
     return (
         <Provider store={store}>

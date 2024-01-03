@@ -1,4 +1,3 @@
-import React from 'react';
 import { View } from 'react-native';
 
 import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';

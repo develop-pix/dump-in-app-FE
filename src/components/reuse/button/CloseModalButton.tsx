@@ -1,4 +1,3 @@
-import React from 'react';
 import { Platform, TouchableOpacity } from 'react-native';
 
 import BackIcon from '../../../assets/image/icon/arrow_back_white.svg';

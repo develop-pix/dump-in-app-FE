@@ -1,5 +1,3 @@
-import React from 'react';
-
 import LocactionSearchForm from '../components/search-location/LocactionSearchForm';
 import { LocationSearchContainer } from '../styles/layout/location-search/Location.style';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CalenderIcon from '../../assets/image/icon/calendar.svg';
 import { EventInfoProps } from '../../interfaces/EventDetail.interface';
 import {

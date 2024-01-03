@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setHairIron } from '../../../hooks/redux/ReviewData';
 import { useAppDispatch } from '../../../hooks/redux/store';
 import { HairIronSelectProps } from '../../../interfaces/ReviewNew.interface';

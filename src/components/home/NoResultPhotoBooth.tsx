@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { HomeSelectedFilterOptionProps } from '../../interfaces/Home.interface';
 import { NoResultPhotoBoothContainer } from '../../styles/layout/home/NoResultPhotoBooth.style';
 import SearchNoData from '../reuse/alert/SearchNoData';

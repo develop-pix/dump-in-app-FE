@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ReviewProps } from '../../../interfaces/Home.interface';
 import {
     MyReviewImageWrapper,

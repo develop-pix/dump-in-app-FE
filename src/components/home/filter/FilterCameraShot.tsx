@@ -1,4 +1,3 @@
-import React from 'react';
 import { View } from 'react-native';
 
 import { FilterDataUpdateProps } from '../../../interfaces/reuse/Filter.interface';

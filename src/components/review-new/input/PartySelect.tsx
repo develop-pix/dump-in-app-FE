@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setParty } from '../../../hooks/redux/ReviewData';
 import { useAppDispatch } from '../../../hooks/redux/store';
 import { PartySelectProps } from '../../../interfaces/ReviewNew.interface';

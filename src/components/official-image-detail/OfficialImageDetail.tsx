@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 

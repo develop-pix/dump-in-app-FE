@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { PhotoBoothEventProps } from '../../interfaces/PhotoBoothDetail.interface';

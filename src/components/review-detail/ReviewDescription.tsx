@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Platform } from 'react-native';
 
 import { ReviewDescriptionProps } from '../../interfaces/ReviewDetail.interface';

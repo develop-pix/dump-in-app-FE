@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 import { BranchData } from '../../interfaces/Branch.interface';

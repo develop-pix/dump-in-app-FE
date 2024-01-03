@@ -1,4 +1,3 @@
-import React from 'react';
 import { Platform } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';

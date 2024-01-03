@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setCameraShot } from '../../../hooks/redux/ReviewData';
 import { useAppDispatch } from '../../../hooks/redux/store';
 import { cameraShotSelectProps } from '../../../interfaces/ReviewNew.interface';

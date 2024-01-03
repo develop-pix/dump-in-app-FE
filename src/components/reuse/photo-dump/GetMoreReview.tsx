@@ -1,4 +1,3 @@
-import React from 'react';
 import { Text } from 'react-native';
 
 import { GetMoreReviewContainer } from '../../../styles/layout/reuse/photo-dump/GetMoreReview.style';

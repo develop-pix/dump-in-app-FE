@@ -1,4 +1,3 @@
-import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import FillFavoriteIcon from '../../../assets/image/icon/click_favorite.svg';

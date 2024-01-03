@@ -1,5 +1,3 @@
-import React from 'react';
-
 import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';
 import EtcCheckImage from '../../../assets/image/icon/check_frame_etc.svg';
 import WhiteCheckIcon from '../../../assets/image/icon/check_white.svg';

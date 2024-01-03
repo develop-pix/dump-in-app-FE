@@ -1,5 +1,3 @@
-import React from 'react';
-
 import EventDetailForm from '../components/event-detail/EventDetailForm';
 import { EventDetailContainer } from '../styles/layout/EventDetail.style';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MyPhotoBoothListContainer } from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothList.style';
 
 import MyPhotoBoothFrame from './MyPhotoBoothFrame';

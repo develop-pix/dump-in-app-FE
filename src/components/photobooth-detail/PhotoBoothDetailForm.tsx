@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRoute } from '@react-navigation/native';
 
 import { ScreenName } from '../../interfaces/NavigationBar';

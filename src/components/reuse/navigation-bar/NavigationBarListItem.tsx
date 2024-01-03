@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CategoryImage from '../../../assets/image/icon/navigation-icon/category.svg';
 import ClickCategoryImage from '../../../assets/image/icon/navigation-icon/click_category.svg';
 import ClickHomeImage from '../../../assets/image/icon/navigation-icon/click_home.svg';

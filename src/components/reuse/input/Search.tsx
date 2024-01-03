@@ -1,4 +1,3 @@
-import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import SearchGreyIcon from '../../../assets/image/icon/search_grey.svg';

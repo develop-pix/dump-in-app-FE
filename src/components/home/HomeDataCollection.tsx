@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 
 import UpIcon from '../../assets/image/icon/btn_up.svg';
