@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
-    //소수점 7자리 명시
+    // 소수점 7자리 명시
     const str_latitude: string = latitude.toFixed(7);
     const str_longitude: string = longitude.toFixed(7);
     const URL =
@@ -14,7 +14,7 @@ export const getAddressFromNaverGeocoding = async (latitude: number, longitude: 
     return await axios
         .get(URL, {
             headers: {
-                //배포 및 깃허브에 ID와 Secret key가 드러나면 안됨 -> 나중에 env 파일로 수정
+                // TODO: 배포 및 깃허브에 ID와 Secret key가 드러나면 안됨 -> 나중에 env 파일로 수정
                 'X-NCP-APIGW-API-KEY-ID': 'sc9favxy2w',
                 'X-NCP-APIGW-API-KEY': '34Pab6RRd33rPCqGq4lcXcrkUKE7ogsx9nlAzFfo',
             },

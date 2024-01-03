@@ -59,8 +59,7 @@ export default function ReviewSearchInput() {
 
         await AsyncStorage.setItem('searches', JSON.stringify(newSearches));
 
-        // 나중에 API 연결
-        // 임시 데이터
+        /** 임시 데이터 TODO: 나중에 API 연결 */
         const tempEventData: EventDataProps[] = [
             {
                 eventID: 1,

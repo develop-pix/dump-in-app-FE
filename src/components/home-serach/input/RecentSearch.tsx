@@ -31,7 +31,7 @@ export default function RecentSearch({ onRecentListClick }: HomeSearchProps) {
         loadSearches();
     }, []);
 
-    // 삭제 버튼 클릭 시 실행
+    /** 삭제 버튼 클릭 시 실행 */
     const onDelete = (index: number) => {
         const newSearches = [...recentSearches];
         newSearches.splice(index, 1);

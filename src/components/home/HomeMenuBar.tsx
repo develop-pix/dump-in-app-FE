@@ -20,12 +20,12 @@ import HomeFilterModalForm from './HomeFilterModalForm';
 export default function HomeMenuBar({ filterData, setFilterData, onFilterSubmit }: HomeMenuBarProps) {
     const [isFilterVisible, setFilterVisible] = useState(false);
 
-    // 필터 모달창 여는 함수
+    /** 필터 모달창 여는 함수 */
     const handleShowFilterModal = () => {
         setFilterVisible(true);
     };
 
-    // 필터 모달창 닫는 함수
+    /** 필터 모달창 닫는 함수 */
     const handleHideFilterModal = () => {
         setFilterVisible(false);
     };
@@ -39,7 +39,7 @@ export default function HomeMenuBar({ filterData, setFilterData, onFilterSubmit 
         checkNotification();
     }, []);
 
-    // 알림 유무 확인 로직 추가
+    /** TODO: 알림 유무 확인 로직 추가 */
     const checkNotification = async () => {
         setHasNotification(true);
     };

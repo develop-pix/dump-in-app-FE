@@ -19,7 +19,7 @@ export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
 
     const onPressCameraOpen = async () => {
         setOpenModal(false);
-        //ios emulator 에서는 카메라를 지원하지 않으므로 오류 발생
+        // ios emulator 에서는 카메라를 지원하지 않으므로 오류 발생
         try {
             const cameraOption: CameraOptions = {
                 mediaType: 'photo',

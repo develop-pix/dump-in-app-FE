@@ -10,7 +10,7 @@ export default function CategoryEvent() {
     // 필터 데이터
     const [hashtags, setHashtags] = useState<string[]>([]);
 
-    // 필터 옵션 선택시 호출되는 함수
+    /** 필터 옵션 선택시 호출되는 함수 */
     const filterOptionSelect = () => {
         // 서버에서 필터 적용한 데이터 가져와야함
         // 임시로 빈 데이터로 초기화

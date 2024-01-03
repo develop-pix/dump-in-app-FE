@@ -102,7 +102,7 @@ export default function ReviewNew() {
                 console.log('고데기' + hairIron);
                 console.log('공개여부' + publicOpen);
             }
-            //더이상 에러 데이터가 없을경우 submit 진행, 추후 API추가
+            // 더 이상 에러 데이터가 없을 경우 submit 진행, TODO: 추후 API 추가
         }
     };
 

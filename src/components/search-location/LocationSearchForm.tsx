@@ -75,7 +75,7 @@ export default function LocationSearchForm() {
         );
     };
 
-    //진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
+    // 진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
     const SearchBranch = () => {
         // 나중에 API 연결
         const currentScreen = (route.params as { screen: ScreenName }).screen;

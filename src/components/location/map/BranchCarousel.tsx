@@ -13,7 +13,7 @@ export default function BranchCarousel({ showNearBranch }: BranchCarouselProps) 
     const [branchData, setBranchData] = useState<BranchCardData[]>([]);
     const [carouselActive, setCarouselActive] = useState<number>(0);
 
-    // 지도 zoom 레벨에따라 tempData 호출 막아야함
+    // TODO: 지도 zoom 레벨에따라 tempData 호출 막아야함
     const tempData: BranchCardData[] = [
         {
             branchID: 1,

@@ -3,7 +3,7 @@ import { NoResultPhotoBoothContainer } from '../../styles/layout/home/NoResultPh
 import SearchNoData from '../reuse/alert/SearchNoData';
 import { NormalButton } from '../reuse/button/NormalButton';
 
-// 결과 없는 화면은 따로 컴포넌트화 시켜는 방식으로 수정 예정
+// TODO: 결과 없는 화면은 따로 컴포넌트화 시켜는 방식으로 수정 예정
 export default function NoResultPhotoBooth({ filterData }: HomeSelectedFilterOptionProps) {
     const onPressButton = () => {
         // filterData 데이터 넘겨주고 리뷰 등록 페이지 구현 후 이동하도록 추가

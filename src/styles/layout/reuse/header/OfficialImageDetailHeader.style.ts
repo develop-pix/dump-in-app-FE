@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-//platform이 ios일 경우, android일 경우, 나머지 일경우 분리
+// platform이 ios일 경우, android일 경우, 나머지일 경우 분리
 export const OfficialImageDetailHeaderContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`

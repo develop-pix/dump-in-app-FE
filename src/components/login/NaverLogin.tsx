@@ -14,7 +14,7 @@ import {
     NaverText,
 } from '../../styles/layout/login/NaverLogin.style';
 
-// 추후 env 파일에서 관리
+// TODO: 추후 env 파일에서 관리
 const naverKeys: NaverLoginRequest = {
     consumerKey: 'ji5vu5qZOVy8WaXAoJSP',
     consumerSecret: 'rxarsLeCXz',

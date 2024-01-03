@@ -10,7 +10,7 @@ import AccessTokenSlice from './AccessTokenSlice';
 import ReviewDataSlice from './ReviewData';
 import UserDataSlice from './UserDataSlice';
 
-//상태추가 할것 추가
+// 상태 추가 할 것 추가
 const reducers = combineReducers({
     login: AccessTokenSlice.reducer,
     expire: AccessTokenExpireSlice.reducer,
@@ -21,7 +21,7 @@ const reducers = combineReducers({
 const logger = createLogger();
 const initialState = {};
 
-//redux를 localStorage에 저장해 새로 고침시 redux 상태가 증발하는것을 방지
+// redux를 localStorage에 저장해 새로 고침시 redux 상태가 증발하는것을 방지
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,

@@ -12,10 +12,10 @@ import MapInput from './MapInput';
 import ResetLocationButton from './ResetLocationButton';
 
 export default function Map() {
-    //대한민국 북,동,남,서 끝단의 위도 or 경도
+    /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
     const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
     const platform = Platform.OS;
-    //photoBoothID로 주변 포토부스 호출 null일시 모든 포토부스에 대하여 탐색
+    // photoBoothID로 주변 포토부스 호출 null일시 모든 포토부스에 대하여 탐색
     const [location, setLocation] = useState<string>('주소 입력');
     const [myPosition, setMyPosition] = useState<MyLocation>({
         latitude: 37.564362,
@@ -29,7 +29,7 @@ export default function Map() {
     const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
     const cardMoveY = useRef(new Animated.Value(0)).current;
 
-    // 초기 위치 설정
+    /** 초기 위치 설정 */
     const GetLocation = () => {
         const watchID = Geolocation.watchPosition(
             position => {
@@ -47,21 +47,20 @@ export default function Map() {
         return watchID;
     };
 
-    // ReverseGeolocation 호출
     const GetAddressData = async (latitude: number, longitude: number) => {
+        // ReverseGeolocation 호출
         const addressData = await getAddressFromNaverGeocoding(latitude, longitude);
         setLocation(addressData);
     };
 
-    //branchData 데이터 얻기 호출
-    /*
-  const GetBranchData = async (latitude: number, longitude: number) => {
-    const photoBoothData = await GetPhotoBoothData(latitude, longitude);
-    setPhotoBoothData(photoBoothData);
-  };
-  */
+    // branchData 데이터 얻기 호출
 
-    //대한민국 첫 끝단 넘어가면 카메라를 서울로 전환
+    // const GetBranchData = async (latitude: number, longitude: number) => {
+    //     const photoBoothData = await GetPhotoBoothData(latitude, longitude);
+    //     setPhotoBoothData(photoBoothData);
+    // };
+
+    // 대한민국 첫 끝단 넘어가면 카메라를 서울로 전환
     const ResetCameraPosition = useCallback(
         (latitude: number, longitude: number) => {
             if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
@@ -97,7 +96,7 @@ export default function Map() {
             }
         });
 
-        //unMount시 위치 연결 해제
+        // unmount시 위치 연결 해제
         return () => {
             if (watch === 0) {
                 Geolocation.clearWatch(watch);

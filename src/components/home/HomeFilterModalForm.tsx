@@ -80,7 +80,7 @@ export default function HomeFilterModalForm({
             val => val !== '' && val !== 0 && val.length !== 0,
         );
         if (isFilterOptionSelected) {
-            // 서버에서 선택된 필터들(제출한 필터 x) 제출하고 결과데이터 수 받는 로직 추가
+            // TODO: 서버에서 선택된 필터들(제출한 필터 x) 제출하고 결과데이터 수 받는 로직 추가
             const resultDataNumber = Math.round(Math.random() * 100);
             setResultNumber(resultDataNumber);
         }

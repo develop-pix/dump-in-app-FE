@@ -133,11 +133,11 @@ export default function ReviewEdit() {
                 console.log('고데기' + hairIron);
                 console.log('공개여부' + publicOpen);
             }
-            //더이상 에러 데이터가 없을경우 submit 진행, 추후 API추가
+            // 더이상 에러 데이터가 없을 경우 submit 진행, 추후 API추가
         }
     };
 
-    //API 연동 하여 초기값 미리 입력
+    // API 연동 하여 초기값 미리 입력
     useEffect(() => {
         dispatch(setRepresentativeImage(tempData.representativeImage));
         dispatch(setRepresentativeImageName(tempData.representativeImageName));

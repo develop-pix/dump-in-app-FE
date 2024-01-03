@@ -9,7 +9,7 @@ import {
 } from '../../styles/layout/category/CategoryPhotoBooth.style';
 import { FontWhiteSmallerMedium } from '../../styles/layout/reuse/text/Text.style';
 
-// 임시 포토부스 데이터
+/** 임시 포토부스 데이터 */
 const photoBoothData = Array(12)
     .fill(null)
     .map((_, index) => ({

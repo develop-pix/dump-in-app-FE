@@ -7,7 +7,7 @@ export const UploadImageToS3 = async (representativeImage: string, representativ
         name: representativeImageName,
     };
 
-    //아래 S3Data 변수들은 추후 env로 이동
+    // TODO: 아래 S3Data 변수들은 추후 env로 이동
     const S3Data = {
         bucketName: 'api-dev.dump-in.co.kr',
         region: 'ap-northeast-2',
@@ -34,7 +34,7 @@ export const UploadImageToS3 = async (representativeImage: string, representativ
 
     const file = await GetFileFromPath();
 
-    //Key는 경로, 파일 이름인데 중복 이름일경우 덮어씌우기가 되므로 유니크한 아이디가 필요함. 임시로 날짜를 추가해서 저장
+    // Key는 경로, 파일 이름인데 중복 이름일경우 덮어씌우기가 되므로 유니크한 아이디가 필요함. 임시로 날짜를 추가해서 저장
     const param = {
         ContentType: photo.type,
         Body: file,

@@ -27,12 +27,12 @@ export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewMana
                 screen: currentScreen,
             });
         }
-        //추후 ReviewEdit 페이지 추가후 이동
+        // TODO: 추후 ReviewEdit 페이지 추가후 이동
     };
 
     const onPressReviewDelete = () => {
         setOpenModal(false);
-        //추후 ReviewDelete 페이지 추가후 이동
+        // TODO: 추후 ReviewDelete 페이지 추가후 이동
     };
 
     return (

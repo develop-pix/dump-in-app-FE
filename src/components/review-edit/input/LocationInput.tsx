@@ -36,7 +36,7 @@ export default function LocationInput({ location, errorData }: LocationInputProp
         }
     };
 
-    //페이지 진입시 params로 위치정보 dispatch
+    // 페이지 진입시 params로 위치정보 dispatch
     useEffect(() => {
         dispatch(setBranchID(route.params.branchID));
         // BranchID로 photoBoothName + branchName 얻어오는 API 추가
