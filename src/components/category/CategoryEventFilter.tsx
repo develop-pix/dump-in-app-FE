@@ -5,6 +5,7 @@ import {
   FilterTextButtonContent,
 } from '../../styles/layout/home/filter/Filter.style';
 import {ScrollView} from 'react-native';
+import {CategoryEventFilterContainer} from '../../styles/layout/category/CategoryEventFilter.style';
 
 const availableHashtags = [
   '전체',
@@ -19,7 +20,7 @@ const availableHashtags = [
   '계절2',
 ];
 
-export default function FilterHashtag({
+export default function CategoryEventFilter({
   hashtags,
   setHashtags,
   filterOptionSelect,
@@ -39,7 +40,7 @@ export default function FilterHashtag({
   };
 
   return (
-    <>
+    <CategoryEventFilterContainer>
       <ScrollView horizontal>
         {availableHashtags.map(hashtagOption => {
           const isSelected = hashtags.includes(hashtagOption);
@@ -55,6 +56,6 @@ export default function FilterHashtag({
           );
         })}
       </ScrollView>
-    </>
+    </CategoryEventFilterContainer>
   );
 }

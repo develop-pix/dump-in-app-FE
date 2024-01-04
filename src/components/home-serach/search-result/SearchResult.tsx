@@ -1,10 +1,9 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import {SearchResultProps} from '../../../interfaces/HomeSearch.interface';
 import EventResult from './EventResult';
 import {
   SearchResultContainer,
   EventTitleContainer,
-  PhotoDumpUpScrollImageBox,
   PhotoDumpTitleContainer,
 } from '../../../styles/layout/home-search/search-result/SearchResult.style';
 import SearchNoData from '../../reuse/alert/SearchNoData';
@@ -18,7 +17,7 @@ import {
   FontWhiteGreySmallerSemibold,
   FontWhiteGreyNormalMedium,
 } from '../../../styles/layout/reuse/text/Text.style';
-import UpIcon from '../../../assets/image/icon/btn_up.svg';
+import {UpScrollButton} from '../../reuse/button/UpScrollButton';
 
 export default function SearchResult({
   searchData,
@@ -32,13 +31,8 @@ export default function SearchResult({
   const closeMoreEventModal = () => {
     setShowMoreEventModal(false);
   };
-
   const {eventData: eventList, finishedEvent} = eventData;
-
   const flatListRef = useRef<FlatList>(null);
-  const handleScrollToTop = () => {
-    flatListRef.current?.scrollToOffset({offset: 0, animated: true});
-  };
 
   const onEndReached = () => {
     // 스크롤 시 새로운 임시 데이터
@@ -75,9 +69,9 @@ export default function SearchResult({
     setAllPhotoBoothData(prevData => [...prevData, ...newReviewData]);
   };
 
-  const renderReviewItem = ({item}: {item: ReviewProps}) => (
-    <ReviewFrame key={item.reviewID} data={item} />
-  );
+  const renderReviewItem = useCallback(({item}: {item: ReviewProps}) => {
+    return <ReviewFrame key={item.reviewID} data={item} />;
+  }, []);
 
   return (
     <SearchResultContainer>
@@ -152,9 +146,7 @@ export default function SearchResult({
       )}
 
       {allPhotoBoothData.length >= 6 && (
-        <PhotoDumpUpScrollImageBox onPress={handleScrollToTop}>
-          <UpIcon />
-        </PhotoDumpUpScrollImageBox>
+        <UpScrollButton top="50%" flatListRef={flatListRef} />
       )}
 
       <Modal

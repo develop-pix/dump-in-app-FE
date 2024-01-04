@@ -15,6 +15,7 @@ export const TitleContainer = styled.View`
   justify-content: center;
   align-items: center;
   height: 50px;
+  margin-bottom: 10px;
 `;
 
 export const CloseButtonContainer = styled.TouchableOpacity`

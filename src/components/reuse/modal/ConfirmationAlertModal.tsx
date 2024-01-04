@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal} from 'react-native';
+import Modal from 'react-native-modal';
 import {
   ConfirmationAlertModalContainer,
   ModalWrapper,
@@ -21,7 +21,12 @@ export default function ConfirmationAlertModal({
   onDisagree,
 }: ConfirmationAlertModalProps) {
   return (
-    <Modal visible={isVisible} transparent animationType="slide">
+    <Modal
+      isVisible={isVisible}
+      animationIn="slideInUp"
+      animationOut="slideOutDown"
+      backdropOpacity={0.5}
+      useNativeDriver={true}>
       <ConfirmationAlertModalContainer>
         <ModalWrapper>
           <FontWhiteNormalSemibold>{title}</FontWhiteNormalSemibold>

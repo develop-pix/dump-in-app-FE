@@ -5,13 +5,21 @@ export interface CategoryEventFilterProps {
 }
 
 export interface CategoryEventItemProps {
-  eventData: {
-    eventID: number;
-    representativeImage: string;
-    eventTitle: string;
-    startDate: string;
-    endDate: string;
-    photoboothName: string;
-    myEvent: boolean;
-  };
+  eventData: CategoryEventProps;
+}
+
+export interface CategoryEventProps {
+  eventID: number;
+  representativeImage: string;
+  eventTitle: string;
+  startDate: string;
+  endDate: string;
+  photoboothName: string;
+  myEvent: boolean;
+}
+
+export interface CategoryPhotoBoothProps {
+  photoBoothID: number;
+  representativeImage: string;
+  photoboothName: string;
 }

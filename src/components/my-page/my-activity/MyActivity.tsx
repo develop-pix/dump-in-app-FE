@@ -19,7 +19,7 @@ import ClickEventImage from '../../../assets/image/icon/click_event.svg';
 
 export default function MyActive({
   activeComponent,
-  setActiveComponent,
+  updateActiveComponent,
 }: MyActiveProps) {
   const activityComponentItem: ActivityComponentItemProps[] = [
     {
@@ -75,7 +75,7 @@ export default function MyActive({
         <ActivityItemContainer
           key={item.key}
           onPress={() => {
-            setActiveComponent(item.component);
+            updateActiveComponent(item.component);
           }}
           isActive={activeComponent === item.component}>
           {activeComponent === item.component
