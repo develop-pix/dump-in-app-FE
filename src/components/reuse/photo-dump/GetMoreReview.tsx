@@ -1,6 +1,6 @@
 import { Text } from 'react-native';
 
-import { GetMoreReviewContainer } from '../../../styles/layout/reuse/photo-dump/GetMoreReview.style';
+import { GetMoreReviewContainer } from 'styles/layout/reuse/photo-dump/GetMoreReview.style';
 
 export default function GetMoreReview() {
     return (

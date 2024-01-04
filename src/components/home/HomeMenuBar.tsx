@@ -3,17 +3,17 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import NewNotificationIcon from '../../assets/image/icon/alert_notification.svg';
-import FilterIcon from '../../assets/image/icon/filter.svg';
-import NotificationIcon from '../../assets/image/icon/notification.svg';
-import SearchIcon from '../../assets/image/icon/search.svg';
-import { HomeMenuBarProps } from '../../interfaces/Home.interface';
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
+import NewNotificationIcon from 'assets/image/icon/alert_notification.svg';
+import FilterIcon from 'assets/image/icon/filter.svg';
+import NotificationIcon from 'assets/image/icon/notification.svg';
+import SearchIcon from 'assets/image/icon/search.svg';
+import { HomeMenuBarProps } from 'interfaces/Home.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     HomeMenuBarContainer,
     HomeMenuBarIconContainer,
     HomeMenuBarIconsBox,
-} from '../../styles/layout/home/HomeMenuBar.style';
+} from 'styles/layout/home/HomeMenuBar.style';
 
 import HomeFilterModalForm from './HomeFilterModalForm';
 

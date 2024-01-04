@@ -3,9 +3,10 @@ import { ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
 
-import CloseIcon from '../../assets/image/icon/btn_close.svg';
-import { FilterProps, HomeFilterModalFormProps } from '../../interfaces/reuse/Filter.interface';
-import { colors } from '../../styles/base/Variable';
+import CloseIcon from 'assets/image/icon/btn_close.svg';
+import { FilterButton } from 'components/reuse/button/FilterButton';
+import { FilterProps, HomeFilterModalFormProps } from 'interfaces/reuse/Filter.interface';
+import { colors } from 'styles/base/Variable';
 import {
     CloseButton,
     FilterButtonBox,
@@ -14,9 +15,8 @@ import {
     FilterFormHeader,
     FilterFormTitleContainer,
     FilterOptionContainer,
-} from '../../styles/layout/home/HomeFilterModalForm.style';
-import { FontWhiteGreyNormalSemibold } from '../../styles/layout/reuse/text/Text.style';
-import { FilterButton } from '../reuse/button/FilterButton';
+} from 'styles/layout/home/HomeFilterModalForm.style';
+import { FontWhiteGreyNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 
 import FilterCameraShot from './filter/FilterCameraShot';
 import FilterConcept from './filter/FilterConcept';

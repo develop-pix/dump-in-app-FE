@@ -3,15 +3,16 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Modal from 'react-native-modal';
 
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
-import { ReviewManageModalProps } from '../../interfaces/ReviewDetail.interface';
-import { FontWhiteNormalSemibold } from '../../styles/layout/reuse/text/Text.style';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { ReviewManageModalProps } from 'interfaces/ReviewDetail.interface';
+import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
     HorizonLine,
     ReviewManageModalContainer,
     ReviewManageModalWrapper,
     ReviewManageTouchableOpacity,
-} from '../../styles/layout/review-detail/ReviewManageModal.style';
+} from 'styles/layout/review-detail/ReviewManageModal.style';
+
 export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewManageModalProps) {
     const platform = Platform.OS;
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

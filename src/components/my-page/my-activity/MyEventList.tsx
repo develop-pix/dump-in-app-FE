@@ -1,5 +1,5 @@
-import { MyEventListContainer } from '../../../styles/layout/my-page/MyActivity/MyEventList.style';
-import PhotoBoothEventFrame from '../../photo-booth-detail/PhotoBoothEventFrame';
+import PhotoBoothEventFrame from 'components/photo-booth-detail/PhotoBoothEventFrame';
+import { MyEventListContainer } from 'styles/layout/my-page/MyActivity/MyEventList.style';
 
 export default function MyEventList() {
     const eventTempData = Array(5)

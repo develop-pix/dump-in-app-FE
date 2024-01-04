@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { frameColors } from '../../../base/Variable';
+import { frameColors } from 'styles/base/Variable';
 
 // 프레임 색상 버튼 스타일
 export const FrameColorButton = styled.TouchableOpacity<{

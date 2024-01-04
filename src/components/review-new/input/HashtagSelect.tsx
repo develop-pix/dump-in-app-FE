@@ -1,19 +1,19 @@
-import { setHashtag } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { HashtagSelectProps } from '../../../interfaces/ReviewNew.interface';
+import { setHashtag } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { HashtagSelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontBlackSmallerSemibold,
     FontLightGreySmallerMedium,
     FontRedNormalMedium,
     FontWhiteNormalMedium,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     HashtagButton,
     HashtagSelectContainer,
     HashtagSelectWrapper,
-} from '../../../styles/layout/review-form/input/HashtagSelect.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/HashtagSelect.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProps) {
     const dispatch = useAppDispatch();

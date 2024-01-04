@@ -3,9 +3,11 @@ import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigat
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { PhotoBoothParamList, RootStackParam } from '../../interfaces/NavigationBar';
-import { PhotoBoothImageTitleProps } from '../../interfaces/PhotoBoothDetail.interface';
-import { colors } from '../../styles/base/Variable';
+import GoBackButton from 'components/reuse/button/GoBackButton';
+import { NormalButton } from 'components/reuse/button/NormalButton';
+import { PhotoBoothParamList, RootStackParam } from 'interfaces/NavigationBar';
+import { PhotoBoothImageTitleProps } from 'interfaces/PhotoBoothDetail.interface';
+import { colors } from 'styles/base/Variable';
 import {
     ContentsContainer,
     NormalButtonContainer,
@@ -13,16 +15,11 @@ import {
     PhotoBoothImageContentContainer,
     PhotoBoothImageTitleContainer,
     TitleContainer,
-} from '../../styles/layout/photo-booth-detail/PhotoBoothImageTitle.style';
-import { GoBackButtonContainer } from '../../styles/layout/reuse/button/GoBackButton.style';
-import {
-    FontWhiteBiggestSemibold,
-    FontYellowSmallerMediumWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
-import { ReviewDescBottom } from '../../styles/layout/review-detail/ReviewDetail.style';
-import { TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import GoBackButton from '../reuse/button/GoBackButton';
-import { NormalButton } from '../reuse/button/NormalButton';
+} from 'styles/layout/photo-booth-detail/PhotoBoothImageTitle.style';
+import { GoBackButtonContainer } from 'styles/layout/reuse/button/GoBackButton.style';
+import { FontWhiteBiggestSemibold, FontYellowSmallerMediumWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
+import { ReviewDescBottom } from 'styles/layout/review-detail/ReviewDetail.style';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
     const platform = Platform.OS;

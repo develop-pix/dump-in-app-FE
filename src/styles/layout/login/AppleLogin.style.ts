@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors, fontSize, fontWeight, loginColors } from '../../base/Variable';
+import { colors, fontSize, fontWeight, loginColors } from 'styles/base/Variable';
 
 export const AppleLoginContainer = styled.View`
     align-items: center;

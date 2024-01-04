@@ -1,4 +1,4 @@
-import { MyPhotoBoothListContainer } from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothList.style';
+import { MyPhotoBoothListContainer } from 'styles/layout/my-page/MyActivity/MyPhotoBoothList.style';
 
 import MyPhotoBoothFrame from './MyPhotoBoothFrame';
 

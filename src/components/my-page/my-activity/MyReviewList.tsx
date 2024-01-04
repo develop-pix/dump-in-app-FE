@@ -1,9 +1,6 @@
-import { ReviewProps } from '../../../interfaces/Home.interface';
-import {
-    MyReviewImageWrapper,
-    MyReviewListContainer,
-} from '../../../styles/layout/my-page/MyActivity/MyReviewList.style';
-import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
+import ReviewFrame from 'components/home/photo-booth-list/ReviewFrame';
+import { ReviewProps } from 'interfaces/Home.interface';
+import { MyReviewImageWrapper, MyReviewListContainer } from 'styles/layout/my-page/MyActivity/MyReviewList.style';
 
 export default function MyReviewList() {
     const reviewData: ReviewProps[] = [

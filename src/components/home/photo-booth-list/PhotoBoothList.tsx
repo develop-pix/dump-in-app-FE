@@ -1,8 +1,8 @@
-import { EventProps, PhotoBoothListProps, PhotoBoothProps, ReviewProps } from '../../../interfaces/Home.interface';
+import { EventProps, PhotoBoothListProps, PhotoBoothProps, ReviewProps } from 'interfaces/Home.interface';
 import {
     PhotoBoothListColumnContainer,
     PhotoBoothListContainer,
-} from '../../../styles/layout/home/photo-booth-list/PhotoBoothList.style';
+} from 'styles/layout/home/photo-booth-list/PhotoBoothList.style';
 
 import EventFrame from './EventFrame';
 import PhotoBoothFrame from './PhotoBoothFrame';

@@ -1,17 +1,17 @@
-import ClickEventImage from '../../../assets/image/icon/click_event.svg';
-import ClickFavoriteImage from '../../../assets/image/icon/click_favorite.svg';
-import ClickLocationImage from '../../../assets/image/icon/click_location.svg';
-import ClickMyPictureImage from '../../../assets/image/icon/click_my_picture.svg';
-import EventImage from '../../../assets/image/icon/event.svg';
-import FavoriteImage from '../../../assets/image/icon/favorite.svg';
-import LocationImage from '../../../assets/image/icon/location.svg';
-import MyPictureImage from '../../../assets/image/icon/my_picture.svg';
-import { ActivityComponentItemProps, MyActiveProps } from '../../../interfaces/MyPage.interface';
+import ClickEventImage from 'assets/image/icon/click_event.svg';
+import ClickFavoriteImage from 'assets/image/icon/click_favorite.svg';
+import ClickLocationImage from 'assets/image/icon/click_location.svg';
+import ClickMyPictureImage from 'assets/image/icon/click_my_picture.svg';
+import EventImage from 'assets/image/icon/event.svg';
+import FavoriteImage from 'assets/image/icon/favorite.svg';
+import LocationImage from 'assets/image/icon/location.svg';
+import MyPictureImage from 'assets/image/icon/my_picture.svg';
+import { ActivityComponentItemProps, MyActiveProps } from 'interfaces/MyPage.interface';
 import {
     ActivityIconText,
     ActivityItemContainer,
     MyActivityContainer,
-} from '../../../styles/layout/my-page/MyActivity/MyActivity.style';
+} from 'styles/layout/my-page/MyActivity/MyActivity.style';
 
 export default function MyActive({ activeComponent, setActiveComponent }: MyActiveProps) {
     const activityComponentItem: ActivityComponentItemProps[] = [

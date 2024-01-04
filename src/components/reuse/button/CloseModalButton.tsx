@@ -1,11 +1,8 @@
 import { Platform, TouchableOpacity } from 'react-native';
 
-import BackIcon from '../../../assets/image/icon/arrow_back_white.svg';
-import { BackModalProps } from '../../../interfaces/reuse/modal/BackModal.interface';
-import {
-    BackImageContainer,
-    CloseModalButtonContainer,
-} from '../../../styles/layout/reuse/button/CloseModalButton.style';
+import BackIcon from 'assets/image/icon/arrow_back_white.svg';
+import { BackModalProps } from 'interfaces/reuse/modal/BackModal.interface';
+import { BackImageContainer, CloseModalButtonContainer } from 'styles/layout/reuse/button/CloseModalButton.style';
 
 export default function CloseModalButton({ setModal }: BackModalProps) {
     const platform = Platform.OS;

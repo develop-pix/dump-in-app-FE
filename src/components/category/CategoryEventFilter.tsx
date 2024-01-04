@@ -1,7 +1,7 @@
 import { ScrollView } from 'react-native';
 
-import { CategoryEventFilterProps } from '../../interfaces/Category.interface';
-import { FilterTextButton, FilterTextButtonContent } from '../../styles/layout/home/filter/Filter.style';
+import { CategoryEventFilterProps } from 'interfaces/Category.interface';
+import { FilterTextButton, FilterTextButtonContent } from 'styles/layout/home/filter/Filter.style';
 
 const availableHashtags = [
     '전체',

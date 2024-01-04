@@ -1,10 +1,10 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 
-import { BranchData } from '../../interfaces/Branch.interface';
-import { BranchParamList } from '../../interfaces/NavigationBar';
-import { BranchForm, BranchScrollView } from '../../styles/layout/branch/Branch.style';
-import OfficialImages from '../reuse/official-images/OfficialImages';
-import PhotoDump from '../reuse/photo-dump/PhotoDump';
+import OfficialImages from 'components/reuse/official-images/OfficialImages';
+import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
+import { BranchData } from 'interfaces/Branch.interface';
+import { BranchParamList } from 'interfaces/NavigationBar';
+import { BranchForm, BranchScrollView } from 'styles/layout/branch/Branch.style';
 
 import BranchInfo from './BranchInfo';
 import BranchLocation from './BranchLocation';

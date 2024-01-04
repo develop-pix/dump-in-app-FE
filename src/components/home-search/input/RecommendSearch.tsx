@@ -1,10 +1,10 @@
-import { HomeSearchProps } from '../../../interfaces/HomeSearch.interface';
+import { HomeSearchProps } from 'interfaces/HomeSearch.interface';
 import {
     RecommendSearchButton,
     RecommendSearchContainer,
     RecommendSearchContentContainer,
-} from '../../../styles/layout/home-search/input/RecommendSearch.style';
-import { FontWhiteGreySmallestSemibold, FontYellowSmallerMedium } from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/home-search/input/RecommendSearch.style';
+import { FontWhiteGreySmallestSemibold, FontYellowSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function RecommendSearch({ onRecentListClick }: HomeSearchProps) {
     const recentSearches: string[] = ['원조네컷', '컨셉사진', '스튜디오', '앵글', '클래식', '이벤트'];

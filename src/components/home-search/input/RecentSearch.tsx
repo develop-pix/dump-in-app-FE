@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import CancelIcon from '../../../assets/image/icon/btn_cancel.svg';
-import { HomeSearchProps, RecentSearchItemProps } from '../../../interfaces/HomeSearch.interface';
+import CancelIcon from 'assets/image/icon/btn_cancel.svg';
+import { HomeSearchProps, RecentSearchItemProps } from 'interfaces/HomeSearch.interface';
 import {
     CloseButton,
     EmptySearchMessageContainer,
     RecentSearchButton,
     RecentSearchContainer,
     RecentSearchContentContainer,
-} from '../../../styles/layout/home-search/input/RecentSearch.style';
+} from 'styles/layout/home-search/input/RecentSearch.style';
 import {
     FontWhiteGreyNormalMedium,
     FontWhiteGreySmallerMedium,
     FontWhiteGreySmallestSemibold,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 
 export default function RecentSearch({ onRecentListClick }: HomeSearchProps) {
     const [recentSearches, setRecentSearches] = useState<RecentSearchItemProps[]>([]);

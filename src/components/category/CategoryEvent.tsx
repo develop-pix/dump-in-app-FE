@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { CategoryEventContainer } from '../../styles/layout/category/CategoryEvent.style';
-import SearchNoData from '../reuse/alert/SearchNoData';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { CategoryEventContainer } from 'styles/layout/category/CategoryEvent.style';
 
 import CategoryEventFilter from './CategoryEventFilter';
 import CategoryEventItem from './CategoryEventItem';

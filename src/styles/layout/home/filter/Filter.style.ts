@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors, fontFamily, fontSize, fontWeight } from '../../../base/Variable';
+import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
 // 필터 내용 컨테이너 스타일
 export const FilterContentContainer = styled.View`

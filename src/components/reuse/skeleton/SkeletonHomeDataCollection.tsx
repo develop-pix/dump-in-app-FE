@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
-import { colors } from '../../../styles/base/Variable';
+import { colors } from 'styles/base/Variable';
 
 export default function SkeletonHomeDataCollection() {
     return (

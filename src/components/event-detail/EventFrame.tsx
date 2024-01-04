@@ -1,12 +1,12 @@
-import { EventFrameProps } from '../../interfaces/EventDetail.interface';
+import { EventFrameProps } from 'interfaces/EventDetail.interface';
 import {
     FrameContainer,
     FrameImage,
     FrameImageContainer,
     FrameImageWrapper,
     SubTitleContainer,
-} from '../../styles/layout/event-detail/EventFrame.style';
-import { FontWhiteSmallerSemiboldWithLineSpacing } from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/event-detail/EventFrame.style';
+import { FontWhiteSmallerSemiboldWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
 
 export default function EventFrame({ eventData }: EventFrameProps) {
     return (

@@ -1,18 +1,18 @@
-import { setHairIron } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { HairIronSelectProps } from '../../../interfaces/ReviewEdit.interface';
+import { setHairIron } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { HairIronSelectProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontBlackSmallerSemibold,
     FontLightGreySmallerMedium,
     FontWhiteNormalMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     HairIronButtonLeft,
     HairIronButtonRight,
     HairIronInputContainer,
     HairIronSelectContainer,
-} from '../../../styles/layout/review-form/input/HairIronSelect.style';
-import { ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/HairIronSelect.style';
+import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function HairIronSelect({ hairIron }: HairIronSelectProps) {
     const dispatch = useAppDispatch();

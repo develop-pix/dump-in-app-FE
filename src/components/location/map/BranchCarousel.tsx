@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Dimensions, NativeScrollEvent } from 'react-native';
 
-import { BranchCardData, BranchCarouselProps } from '../../../interfaces/Location.interface';
-import { BranchCardContainer, Card, CarouselContainer } from '../../../styles/layout/location/BranchCarousel.style';
+import { BranchCardData, BranchCarouselProps } from 'interfaces/Location.interface';
+import { BranchCardContainer, Card, CarouselContainer } from 'styles/layout/location/BranchCarousel.style';
 
 import BranchCard from './BranchCard';
 

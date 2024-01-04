@@ -2,21 +2,18 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { ReviewProps } from '../../../interfaces/reuse/photo-dump/Review.interface';
-import { colors } from '../../../styles/base/Variable';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { ReviewProps } from 'interfaces/reuse/photo-dump/Review.interface';
+import { colors } from 'styles/base/Variable';
 import {
     ReviewContainer,
     ReviewDescription,
     ReviewDescriptionContainer,
     ReviewHashtags,
     ReviewImage,
-} from '../../../styles/layout/reuse/photo-dump/Review.style';
-import {
-    FontWhiteNormalMedium,
-    FontYellowSmallerMediumWithLineSpacing,
-} from '../../../styles/layout/reuse/text/Text.style';
-import { TagsArrayToHashTagArrayForm } from '../../../utils/FormChange';
+} from 'styles/layout/reuse/photo-dump/Review.style';
+import { FontWhiteNormalMedium, FontYellowSmallerMediumWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function Review({ reviewID, reviewImage, reviewDescription, reviewHashtags }: ReviewProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

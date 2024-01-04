@@ -1,5 +1,5 @@
-import CalenderIcon from '../../assets/image/icon/calendar.svg';
-import { EventInfoProps } from '../../interfaces/EventDetail.interface';
+import CalenderIcon from 'assets/image/icon/calendar.svg';
+import { EventInfoProps } from 'interfaces/EventDetail.interface';
 import {
     CalenderIconContainer,
     EventInfoContainer,
@@ -7,13 +7,13 @@ import {
     InfoDateContainer,
     InfoDescriptionContainer,
     InfoTitleContainer,
-} from '../../styles/layout/event-detail/EventInfo.style';
+} from 'styles/layout/event-detail/EventInfo.style';
 import {
     FontLightGreySmallerMedium,
     FontLightGreySmallerSemibold,
     FontWhiteGreySmallerSemibold,
     FontWhiteSmallerSemiboldWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 
 export default function EventInfo({ eventData }: EventInfoProps) {
     return (

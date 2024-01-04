@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-import { BranchTitleProps } from '../../interfaces/Branch.interface';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { BranchTitleProps } from 'interfaces/Branch.interface';
 import {
     BranchHashTagsContainer,
     BranchNameContainer,
     BranchTitleContainer,
     TitleContainer,
-} from '../../styles/layout/branch/BranchTitle.style';
+} from 'styles/layout/branch/BranchTitle.style';
 import {
     FontWhiteBiggestSemibold,
     FontWhiteGreySmallestSemibold,
     FontYellowSmallerMediumWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
-import { TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import FavoriteButton from '../reuse/button/FavoriteButton';
+} from 'styles/layout/reuse/text/Text.style';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function BranchTitle({ photoBoothName, branchName, branchHashtag, myBranch }: BranchTitleProps) {
     const [favorite, setFavorite] = useState<boolean>(myBranch);

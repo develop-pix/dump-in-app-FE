@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 
-import UpIcon from '../../assets/image/icon/btn_up.svg';
-import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from '../../interfaces/Home.interface';
-import { FilterProps } from '../../interfaces/reuse/Filter.interface';
-import { CollectionContainer, UpScrollImageBox } from '../../styles/layout/home/HomeDataCollection.style';
-import SkeletonGetMoreHomeData from '../reuse/skeleton/SkeletonGetMoreHomeData';
-import SkeletonHomeDataCollection from '../reuse/skeleton/SkeletonHomeDataCollection';
+import UpIcon from 'assets/image/icon/btn_up.svg';
+import SkeletonGetMoreHomeData from 'components/reuse/skeleton/SkeletonGetMoreHomeData';
+import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDataCollection';
+import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from 'interfaces/Home.interface';
+import { FilterProps } from 'interfaces/reuse/Filter.interface';
+import { CollectionContainer, UpScrollImageBox } from 'styles/layout/home/HomeDataCollection.style';
 
 import HomeMenuBar from './HomeMenuBar';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';

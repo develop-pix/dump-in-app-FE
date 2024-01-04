@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { Platform } from 'react-native';
 
-import { ReviewDescriptionProps } from '../../interfaces/ReviewDetail.interface';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { ReviewDescriptionProps } from 'interfaces/ReviewDetail.interface';
 import {
     FontWhiteNormalMedium,
     FontWhiteSmallerMedium,
     FontYellowSmallerMediumWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     ReviewDescBottom,
     ReviewDescMiddle,
     ReviewDescriptionContainer,
     ReviewDescriptionTouchableContainer,
     ReviewDescTop,
-} from '../../styles/layout/review-detail/ReviewDetail.style';
-import { DateToReviewDateForm, TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import FavoriteButton from '../reuse/button/FavoriteButton';
+} from 'styles/layout/review-detail/ReviewDetail.style';
+import { DateToReviewDateForm, TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription({ date, description, hashtag }: ReviewDescriptionProps) {
     const [favorite, setFavorite] = useState<boolean>(false);

@@ -3,10 +3,12 @@ import { Animated, Dimensions, NativeScrollEvent } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import NextIcon from '../../../assets/image/icon/btn_next.svg';
-import SearchIcon from '../../../assets/image/icon/search.svg';
-import { NewReviewParamList, RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { PhotoDumpProps } from '../../../interfaces/reuse/photo-dump/PhotoDump.interface';
+import NextIcon from 'assets/image/icon/btn_next.svg';
+import SearchIcon from 'assets/image/icon/search.svg';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
+import { NewReviewParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
 import {
     CarouselContainer,
     CarouselScrollView,
@@ -17,14 +19,12 @@ import {
     Reviews,
     SeeMoreButton,
     SubTitleContainer,
-} from '../../../styles/layout/reuse/photo-dump/PhotoDump.style';
+} from 'styles/layout/reuse/photo-dump/PhotoDump.style';
 import {
     FontWhiteNormalMedium,
     FontWhiteSmallerMedium,
     FontWhiteSmallerSemiboldWithLineSpacing,
-} from '../../../styles/layout/reuse/text/Text.style';
-import SearchNoData from '../alert/SearchNoData';
-import { NormalButton } from '../button/NormalButton';
+} from 'styles/layout/reuse/text/Text.style';
 
 import Review from './Review';
 

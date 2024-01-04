@@ -1,4 +1,4 @@
-import NavigationBar from '../reuse/navigation-bar/NavigationBar';
+import NavigationBar from 'components/reuse/navigation-bar/NavigationBar';
 
 import Category from './Category';
 

@@ -1,5 +1,5 @@
-import { FilterButtonProps } from '../../../interfaces/reuse/button/Button.interfaces';
-import { FilterButtonContainer, FilterButtonText } from '../../../styles/layout/reuse/button/FilterButton.style';
+import { FilterButtonProps } from 'interfaces/reuse/button/Button.interfaces';
+import { FilterButtonContainer, FilterButtonText } from 'styles/layout/reuse/button/FilterButton.style';
 
 export const FilterButton = ({
     onPress,

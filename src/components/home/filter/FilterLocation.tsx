@@ -1,12 +1,12 @@
 import { View } from 'react-native';
 
-import { FilterDataUpdateProps } from '../../../interfaces/reuse/Filter.interface';
+import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
 import {
     FilterContentContainer,
     FilterTextButton,
     FilterTextButtonContent,
-} from '../../../styles/layout/home/filter/Filter.style';
-import { FontWhiteGreySmallerSemibold } from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/home/filter/Filter.style';
+import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.style';
 
 const availableLocations = [
     '서울',

@@ -1,13 +1,13 @@
 import LinearGradient from 'react-native-linear-gradient';
 
-import ButtonAddImage from '../../../assets/image/icon/btn_add.svg';
-import { ImageFileInputProps } from '../../../interfaces/ReviewEdit.interface';
-import { colors } from '../../../styles/base/Variable';
+import ButtonAddImage from 'assets/image/icon/btn_add.svg';
+import { ImageFileInputProps } from 'interfaces/ReviewEdit.interface';
+import { colors } from 'styles/base/Variable';
 import {
     FontRedNormalMedium,
     FontWhiteGreySmallestMediumWithLineHeight,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     ImageFileInputContainer,
     ImageUploadButton,
@@ -17,7 +17,7 @@ import {
     PreviewImageContainer,
     PreviewNoImage,
     ReviewErrorContainerFileInput,
-} from '../../../styles/layout/review-form/input/ImageFileInput.style';
+} from 'styles/layout/review-form/input/ImageFileInput.style';
 
 export default function ImageFileInput({ representativeImage, setOpenModal, errorData }: ImageFileInputProps) {
     const onPressImageUpload = () => {

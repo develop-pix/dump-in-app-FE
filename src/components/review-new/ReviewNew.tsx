@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { UploadImageToS3 } from '../../hooks/axios/ReviewNew';
-import { useAppSelector } from '../../hooks/redux/store';
-import { InputData } from '../../interfaces/ReviewNew.interface';
-import { GoBackButtonWithSubmitContainer, SubmitButton } from '../../styles/layout/reuse/button/GoBackButton.style';
-import { FontYellowBiggerSemibold } from '../../styles/layout/reuse/text/Text.style';
+import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
+import { UploadImageToS3 } from 'hooks/axios/ReviewNew';
+import { useAppSelector } from 'hooks/redux/store';
+import { InputData } from 'interfaces/ReviewNew.interface';
+import { GoBackButtonWithSubmitContainer, SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';
+import { FontYellowBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
     EquipmentContainer,
     InputContainer,
     InputWrapper,
     LocationAndDateContainer,
     ReviewFormScrollView,
-} from '../../styles/layout/review-form/ReviewForm.style';
-import GoBackButtonReview from '../reuse/button/GoBackButtonReview';
+} from 'styles/layout/review-form/ReviewForm.style';
 
 import CameraShotSelect from './input/CameraShotSelect';
 import DateInput from './input/DateInput';

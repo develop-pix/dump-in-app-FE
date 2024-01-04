@@ -2,24 +2,24 @@ import { useEffect } from 'react';
 import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import LocationGreyIcon from '../../../assets/image/icon/location_grey.svg';
-import { setBranchID } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { NewReviewParamList, RootStackParam } from '../../../interfaces/NavigationBar';
-import { LocationInputProps } from '../../../interfaces/ReviewNew.interface';
+import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
+import { setBranchID } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { NewReviewParamList, RootStackParam } from 'interfaces/NavigationBar';
+import { LocationInputProps } from 'interfaces/ReviewNew.interface';
 import {
     FontLightGreyNormalMedium,
     FontRedNormalMedium,
     FontWhiteNormalMedium,
     FontWhiteSmallerMediumWithLineHeight,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     LocationInputButton,
     LocationInputContainer,
     LocationTextContainer,
-} from '../../../styles/layout/review-form/input/LocationInput.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/LocationInput.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 export default function LocationInput({ location, errorData }: LocationInputProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();

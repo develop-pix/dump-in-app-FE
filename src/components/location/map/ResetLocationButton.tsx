@@ -1,6 +1,6 @@
-import ResetLocationIcon from '../../../assets/image/icon/btn_reset.svg';
-import { ResetLocationButtonProps } from '../../../interfaces/Location.interface';
-import { ResetLocation, ResetLocationButtonContainer } from '../../../styles/layout/location/ResetLocationButton.style';
+import ResetLocationIcon from 'assets/image/icon/btn_reset.svg';
+import { ResetLocationButtonProps } from 'interfaces/Location.interface';
+import { ResetLocation, ResetLocationButtonContainer } from 'styles/layout/location/ResetLocationButton.style';
 
 export default function ResetLocationButton({ myPosition, setPinPosition, setZoom }: ResetLocationButtonProps) {
     const onPressResetLocation = () => {

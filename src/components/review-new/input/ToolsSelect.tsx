@@ -1,18 +1,18 @@
-import { setTools } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { ToolsSelectProps } from '../../../interfaces/ReviewNew.interface';
+import { setTools } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { ToolsSelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontBlackSmallerSemibold,
     FontLightGreySmallerMedium,
     FontWhiteNormalMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     ToolsButtonLeft,
     ToolsButtonRight,
     ToolsInputContainer,
     ToolsSelectContainer,
-} from '../../../styles/layout/review-form/input/ToolsSelect.style';
-import { ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/ToolsSelect.style';
+import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function ToolsSelect({ tools }: ToolsSelectProps) {
     const dispatch = useAppDispatch();

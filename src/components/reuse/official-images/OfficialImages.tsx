@@ -1,17 +1,17 @@
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { OfficialImageProps } from '../../../interfaces/reuse/official-image/OfficialImage.interface';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { OfficialImageProps } from 'interfaces/reuse/official-image/OfficialImage.interface';
 import {
     OfficialContainer,
     OfficialImage,
     OfficialImagesContainer,
     OfficialImageWrapper,
     SubTitleContainer,
-} from '../../../styles/layout/reuse/offcial-images/OfficialImages.style';
-import { FontWhiteSmallerSemiboldWithLineSpacing } from '../../../styles/layout/reuse/text/Text.style';
-import SearchNoData from '../alert/SearchNoData';
+} from 'styles/layout/reuse/official-images/OfficialImages.style';
+import { FontWhiteSmallerSemiboldWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
 
 export default function OfficialImages({ photoBoothName, image }: OfficialImageProps) {
     const isFocused = useIsFocused();

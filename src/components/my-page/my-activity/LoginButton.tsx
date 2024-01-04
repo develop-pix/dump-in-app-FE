@@ -1,9 +1,9 @@
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { LoginButtonContainer } from '../../../styles/layout/my-page/MyActivity/LoginButton.style';
-import { NormalButton } from '../../reuse/button/NormalButton';
+import { NormalButton } from 'components/reuse/button/NormalButton';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { LoginButtonContainer } from 'styles/layout/my-page/MyActivity/LoginButton.style';
 
 export default function Login() {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

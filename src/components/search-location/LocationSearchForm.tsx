@@ -3,13 +3,13 @@ import { Platform } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { BranchData } from '../../interfaces/Location.interface';
-import { LocationSearchParamList, RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
-import { SearchContainer, SearchForm } from '../../styles/layout/location-search/Location.style';
-import { GoBackButtonContainerWithSafeArea } from '../../styles/layout/reuse/button/GoBackButton.style';
-import SearchNoData from '../reuse/alert/SearchNoData';
-import GoBackButton from '../reuse/button/GoBackButton';
-import Search from '../reuse/input/Search';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import GoBackButton from 'components/reuse/button/GoBackButton';
+import Search from 'components/reuse/input/Search';
+import { BranchData } from 'interfaces/Location.interface';
+import { LocationSearchParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { SearchContainer, SearchForm } from 'styles/layout/location-search/Location.style';
+import { GoBackButtonContainerWithSafeArea } from 'styles/layout/reuse/button/GoBackButton.style';
 
 import SearchBranchList from './SearchBranchList';
 

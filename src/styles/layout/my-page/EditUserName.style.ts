@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors, fontFamily, fontSize, fontWeight } from '../../base/Variable';
+import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
 export const EditUserNameContainer = styled.View`
     flex: 1;

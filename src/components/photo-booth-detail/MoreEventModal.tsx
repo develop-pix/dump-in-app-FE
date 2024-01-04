@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { FlatList } from 'react-native';
 import Modal from 'react-native-modal';
 
-import CloseIcon from '../../assets/image/icon/btn_close.svg';
-import { EventDataType, MoreEventModalProps } from '../../interfaces/PhotoBoothDetail.interface';
+import CloseIcon from 'assets/image/icon/btn_close.svg';
+import GetMoreReview from 'components/reuse/photo-dump/GetMoreReview';
+import { EventDataType, MoreEventModalProps } from 'interfaces/PhotoBoothDetail.interface';
 import {
     CloseButtonContainer,
     MoreEventModalContainer,
     TitleContainer,
-} from '../../styles/layout/photo-booth-detail/MoreEventModal.style';
-import { FontWhiteGreyNormalSemibold } from '../../styles/layout/reuse/text/Text.style';
-import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
+} from 'styles/layout/photo-booth-detail/MoreEventModal.style';
+import { FontWhiteGreyNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 

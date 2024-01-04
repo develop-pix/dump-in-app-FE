@@ -2,17 +2,17 @@ import NaverLoginModule, { NaverLoginRequest } from '@react-native-seoul/naver-l
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import NaverIcon from '../../assets/image/icon/naver_login.svg';
-import { setAccessToken } from '../../hooks/redux/AccessTokenSlice';
-import { useAppDispatch } from '../../hooks/redux/store';
-import { setUserID, setUserNickName } from '../../hooks/redux/UserDataSlice';
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
+import NaverIcon from 'assets/image/icon/naver_login.svg';
+import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
+import { useAppDispatch } from 'hooks/redux/store';
+import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     NaverIconWrapper,
     NaverInfoContainer,
     NaverLoginContainer,
     NaverText,
-} from '../../styles/layout/login/NaverLogin.style';
+} from 'styles/layout/login/NaverLogin.style';
 
 // TODO: 추후 env 파일에서 관리
 const naverKeys: NaverLoginRequest = {

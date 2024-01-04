@@ -1,13 +1,13 @@
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     CategoryPhotoBoothContainer,
     PhotoBoothItem,
     PhotoBoothLogo,
-} from '../../styles/layout/category/CategoryPhotoBooth.style';
-import { FontWhiteSmallerMedium } from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/category/CategoryPhotoBooth.style';
+import { FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
 /** 임시 포토부스 데이터 */
 const photoBoothData = Array(12)

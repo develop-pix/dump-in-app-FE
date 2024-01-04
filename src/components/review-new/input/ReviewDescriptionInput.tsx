@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { setDescription } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { ReviewDescriptionProps } from '../../../interfaces/ReviewNew.interface';
-import { colors } from '../../../styles/base/Variable';
+import { setDescription } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { ReviewDescriptionProps } from 'interfaces/ReviewNew.interface';
+import { colors } from 'styles/base/Variable';
 import {
     FontLightGreySmallestMedium,
     FontRedNormalMedium,
     FontWhiteNormalMedium,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     ReviewDescriptionCount,
     ReviewDescriptionInputContainer,
     ReviewDescriptionTextInput,
     ReviewDescriptionTextInputContainer,
-} from '../../../styles/layout/review-form/input/ReviewDescriptionInput.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/ReviewDescriptionInput.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function ReviewDescriptionInput({ description, errorData }: ReviewDescriptionProps) {
     // 위치 선택 후 돌아왔을때 게시글 길이를 유지하기 위함

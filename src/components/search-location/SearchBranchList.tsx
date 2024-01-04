@@ -1,9 +1,9 @@
-import { SearchBranchListProps } from '../../interfaces/Location.interface';
+import { SearchBranchListProps } from 'interfaces/Location.interface';
 import {
     ListContainer,
     SearchBranchContainer,
     SearchBranchScrollView,
-} from '../../styles/layout/location-search/Location.style';
+} from 'styles/layout/location-search/Location.style';
 
 import BranchList from './BranchList';
 

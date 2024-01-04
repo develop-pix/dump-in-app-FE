@@ -1,8 +1,8 @@
 import { Platform } from 'react-native';
 
-import { HomeSearchSafeContainer } from '../../styles/layout/home-search/HomeSearch.style';
-import { GoBackButtonContainerWithSafeArea } from '../../styles/layout/reuse/button/GoBackButton.style';
-import GoBackButton from '../reuse/button/GoBackButton';
+import GoBackButton from 'components/reuse/button/GoBackButton';
+import { HomeSearchSafeContainer } from 'styles/layout/home-search/HomeSearch.style';
+import { GoBackButtonContainerWithSafeArea } from 'styles/layout/reuse/button/GoBackButton.style';
 
 import ReviewSearchInput from './input/ReviewSearchInput';
 

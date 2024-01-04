@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { MyPhotoBoothFrameProps } from '../../../interfaces/MyPage.interface';
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     FavoriteIcon,
     HashtagContainer,
@@ -11,14 +12,13 @@ import {
     MyPhotoBoothFrameContainer,
     PhotoBoothImage,
     PhotoBoothNameWrapper,
-} from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothFrame.style';
+} from 'styles/layout/my-page/MyActivity/MyPhotoBoothFrame.style';
 import {
     FontWhiteBiggestSemiboldWithLineHeight,
     FontWhiteGreySmallerSemibold,
     FontYellowSmallerMediumWithLineSpacingWithMargin,
-} from '../../../styles/layout/reuse/text/Text.style';
-import { TagsArrayToHashTagArrayForm } from '../../../utils/FormChange';
-import FavoriteButton from '../../reuse/button/FavoriteButton';
+} from 'styles/layout/reuse/text/Text.style';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

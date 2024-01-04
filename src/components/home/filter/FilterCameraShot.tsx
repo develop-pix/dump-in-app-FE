@@ -1,30 +1,30 @@
 import { View } from 'react-native';
 
-import { FilterDataUpdateProps } from '../../../interfaces/reuse/Filter.interface';
-import { FilterContentContainer } from '../../../styles/layout/home/filter/Filter.style';
+import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
+import { FilterContentContainer } from 'styles/layout/home/filter/Filter.style';
 import {
     CameraShotImage,
     CameraShotImageContainer,
     CameraShotImageText,
-} from '../../../styles/layout/home/filter/FilterCameraShot.style';
-import { FontWhiteGreySmallerSemibold } from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/home/filter/FilterCameraShot.style';
+import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.style';
 
 const availableCameraShots = [
     {
         name: '클로즈업',
-        image: require('../../../assets/image/source/filter-close-up.png'),
+        image: require('assets/image/source/filter-close-up.png'),
     },
     {
         name: '상반신',
-        image: require('../../../assets/image/source/filter-bust.png'),
+        image: require('assets/image/source/filter-bust.png'),
     },
     {
         name: '무릎',
-        image: require('../../../assets/image/source/filter-knee.png'),
+        image: require('assets/image/source/filter-knee.png'),
     },
     {
         name: '전신',
-        image: require('../../../assets/image/source/filter-whole-body.png'),
+        image: require('assets/image/source/filter-whole-body.png'),
     },
 ];
 

@@ -1,10 +1,10 @@
-import AppleIcon from '../../assets/image/icon/apple_login.svg';
+import AppleIcon from 'assets/image/icon/apple_login.svg';
 import {
     AppleIconWrapper,
     AppleInfoContainer,
     AppleLoginContainer,
     AppleText,
-} from '../../styles/layout/login/AppleLogin.style';
+} from 'styles/layout/login/AppleLogin.style';
 
 export default function AppleLogin() {
     const loginWithApple = async () => {};

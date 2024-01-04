@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import { EventDetailRouteProp } from '../../interfaces/EventDetail.interface';
+import { EventDetailRouteProp } from 'interfaces/EventDetail.interface';
 
 import EventFrame from './EventFrame';
 import EventImageTitle from './EventImageTitle';

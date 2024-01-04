@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { fontFamily, fontSize, fontWeight } from '../../../base/Variable';
+import { fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
 export const FilterButtonContainer = styled.TouchableOpacity<{
     backgroundColor: string;

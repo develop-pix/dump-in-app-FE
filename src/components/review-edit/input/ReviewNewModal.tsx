@@ -3,15 +3,15 @@ import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-im
 import Modal from 'react-native-modal';
 import { useDispatch } from 'react-redux';
 
-import { setRepresentativeImage, setRepresentativeImageName } from '../../../hooks/redux/ReviewData';
-import { ReviewNewModalProps } from '../../../interfaces/ReviewEdit.interface';
-import { FontWhiteNormalSemibold } from '../../../styles/layout/reuse/text/Text.style';
+import { setRepresentativeImage, setRepresentativeImageName } from 'hooks/redux/ReviewData';
+import { ReviewNewModalProps } from 'interfaces/ReviewEdit.interface';
+import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
     HorizonLine,
     ReviewNewModalContainer,
     ReviewNewModalWrapper,
     ReviewNewTouchableOpacity,
-} from '../../../styles/layout/review-form/input/ReviewNewModal.style';
+} from 'styles/layout/review-form/input/ReviewNewModal.style';
 
 export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
     const platform = Platform.OS;

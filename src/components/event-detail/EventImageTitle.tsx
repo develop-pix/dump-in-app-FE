@@ -2,24 +2,21 @@ import { useState } from 'react';
 import { Platform } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { EventImageTitleProps } from '../../interfaces/EventDetail.interface';
-import { colors } from '../../styles/base/Variable';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import GoBackButton from 'components/reuse/button/GoBackButton';
+import { EventImageTitleProps } from 'interfaces/EventDetail.interface';
+import { colors } from 'styles/base/Variable';
 import {
     ContentsContainer,
     EventImage,
     EventImageContentContainer,
     EventImageTitleContainer,
     TitleContainer,
-} from '../../styles/layout/event-detail/EventImageTitle.style';
-import { GoBackButtonContainer } from '../../styles/layout/reuse/button/GoBackButton.style';
-import {
-    FontWhiteBiggestSemibold,
-    FontYellowSmallerMediumWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
-import { ReviewDescBottom } from '../../styles/layout/review-detail/ReviewDetail.style';
-import { TagsArrayToHashTagArrayForm } from '../../utils/FormChange';
-import FavoriteButton from '../reuse/button/FavoriteButton';
-import GoBackButton from '../reuse/button/GoBackButton';
+} from 'styles/layout/event-detail/EventImageTitle.style';
+import { GoBackButtonContainer } from 'styles/layout/reuse/button/GoBackButton.style';
+import { FontWhiteBiggestSemibold, FontYellowSmallerMediumWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
+import { ReviewDescBottom } from 'styles/layout/review-detail/ReviewDetail.style';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ImageTitle({ eventData }: EventImageTitleProps) {
     const [favorite, setFavorite] = useState<boolean>(eventData.myEvent);

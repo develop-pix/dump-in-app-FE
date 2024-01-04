@@ -1,14 +1,14 @@
 import { Platform } from 'react-native';
 
-import MenuIcon from '../../../assets/image/icon/menu.svg';
-import { MyPageBarProps } from '../../../interfaces/reuse/header/MyPageBar.interface';
+import MenuIcon from 'assets/image/icon/menu.svg';
+import GoBackButton from 'components/reuse/button/GoBackButton';
+import { MyPageBarProps } from 'interfaces/reuse/header/MyPageBar.interface';
 import {
     ButtonContainer,
     MenuIconContainer,
     MyPageGoBackButtonContainerWithSafeArea,
     MyPageMenuButtonContainerWithSafeArea,
-} from '../../../styles/layout/reuse/header/MyPageBar.style';
-import GoBackButton from '../button/GoBackButton';
+} from 'styles/layout/reuse/header/MyPageBar.style';
 
 export default function MyPageBar({ setMenuVisible }: MyPageBarProps) {
     const platform = Platform.OS;

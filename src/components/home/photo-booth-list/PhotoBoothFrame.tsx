@@ -2,11 +2,11 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import LocationGreyIcon from '../../../assets/image/icon/list_location.svg';
-import PickIcon from '../../../assets/image/icon/pick.svg';
-import { PhotoBoothFrameProps } from '../../../interfaces/Home.interface';
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { colors } from '../../../styles/base/Variable';
+import LocationGreyIcon from 'assets/image/icon/list_location.svg';
+import PickIcon from 'assets/image/icon/pick.svg';
+import { PhotoBoothFrameProps } from 'interfaces/Home.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { colors } from 'styles/base/Variable';
 import {
     LocationIconContainer,
     PhotoBoothFrameContainer,
@@ -14,8 +14,8 @@ import {
     PhotoBoothInfo,
     PhotoBoothNameContainer,
     TagImage,
-} from '../../../styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
-import { FontWhiteGreySmallerMediumWithLineHeight } from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/home/photo-booth-list/PhotoBoothFrame.style';
+import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
 export default function PhotoBoothFrame({ data }: PhotoBoothFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

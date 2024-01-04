@@ -2,17 +2,17 @@ import { KakaoOAuthToken, login } from '@react-native-seoul/kakao-login';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import KaKaoIcon from '../../assets/image/icon/kakao_login.svg';
-import { setAccessToken } from '../../hooks/redux/AccessTokenSlice';
-import { useAppDispatch } from '../../hooks/redux/store';
-import { setUserID, setUserNickName } from '../../hooks/redux/UserDataSlice';
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
+import KaKaoIcon from 'assets/image/icon/kakao_login.svg';
+import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
+import { useAppDispatch } from 'hooks/redux/store';
+import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     KakaoIconWrapper,
     KakaoInfoContainer,
     KaKaoLoginContainer,
     KaKaoText,
-} from '../../styles/layout/login/KaKaoLogin.style';
+} from 'styles/layout/login/KaKaoLogin.style';
 
 export default function KakaoLogin() {
     const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
-import { colors } from '../../../base/Variable';
+import { colors } from 'styles/base/Variable';
 
 export const PhotoBoothFrameContainer = styled.TouchableOpacity`
     width: ${Dimensions.get('window').width * 0.45}px;

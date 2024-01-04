@@ -1,13 +1,13 @@
 import { Modal } from 'react-native';
 
-import { ConfirmationAlertModalProps } from '../../../interfaces/reuse/modal/ConfirmationAlertModal.interface';
+import { ConfirmationAlertModalProps } from 'interfaces/reuse/modal/ConfirmationAlertModal.interface';
 import {
     ButtonContainer,
     ConfirmationAlertModalContainer,
     CustomButton,
     ModalWrapper,
-} from '../../../styles/layout/reuse/modal/ConfirmationAlertModal.style';
-import { FontWhiteNormalMedium, FontWhiteNormalSemibold } from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/modal/ConfirmationAlertModal.style';
+import { FontWhiteNormalMedium, FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 
 export default function ConfirmationAlertModal({
     isVisible,

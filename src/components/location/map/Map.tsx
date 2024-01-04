@@ -3,9 +3,9 @@ import { Animated, PermissionsAndroid, Platform } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import NaverMapView, { Marker } from 'react-native-nmap';
 
-import { getAddressFromNaverGeocoding } from '../../../hooks/axios/Location';
-import { MyLocation } from '../../../interfaces/Location.interface';
-import { MapContainer } from '../../../styles/layout/location/Map.style';
+import { getAddressFromNaverGeocoding } from 'hooks/axios/Location';
+import { MyLocation } from 'interfaces/Location.interface';
+import { MapContainer } from 'styles/layout/location/Map.style';
 
 import BranchCarousel from './BranchCarousel';
 import MapInput from './MapInput';

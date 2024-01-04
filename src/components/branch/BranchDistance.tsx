@@ -1,7 +1,7 @@
-import { BranchDistanceProps } from '../../interfaces/Branch.interface';
-import { BranchDistanceContainer, BranchDistanceForm } from '../../styles/layout/branch/BranchDistance.style';
-import { FontWhiteSmallerMedium } from '../../styles/layout/reuse/text/Text.style';
-import { DistanceForm } from '../../utils/FormChange';
+import { BranchDistanceProps } from 'interfaces/Branch.interface';
+import { BranchDistanceContainer, BranchDistanceForm } from 'styles/layout/branch/BranchDistance.style';
+import { FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
+import { DistanceForm } from 'utils/FormChange';
 
 export default function BranchDistance({ distance }: BranchDistanceProps) {
     return (

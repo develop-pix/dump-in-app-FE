@@ -1,19 +1,19 @@
-import { setParty } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { PartySelectProps } from '../../../interfaces/ReviewNew.interface';
+import { setParty } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { PartySelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontBlackSmallerSemibold,
     FontLightGreySmallerMedium,
     FontRedNormalMedium,
     FontWhiteNormalMedium,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     PartyButton,
     PartySelectContainer,
     PartySelectWrapper,
-} from '../../../styles/layout/review-form/input/PartySelect.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/PartySelect.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function PartySelect({ party, errorData }: PartySelectProps) {
     const availableParty: number[] = [1, 2, 3, 4, 5];

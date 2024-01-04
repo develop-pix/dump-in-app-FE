@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import EditIcon from '../../assets/image/icon/edit.svg';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux/store';
-import { setUserNickName } from '../../hooks/redux/UserDataSlice';
+import EditIcon from 'assets/image/icon/edit.svg';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
+import { setUserNickName } from 'hooks/redux/UserDataSlice';
 import {
     CompleteButton,
     EditIconContainer,
@@ -11,12 +11,12 @@ import {
     EditUserNameContainer,
     UserIDWrapper,
     UserNickNameWrapper,
-} from '../../styles/layout/my-page/EditUserName.style';
+} from 'styles/layout/my-page/EditUserName.style';
 import {
     FontWhiteBiggestSemibold,
     FontWhiteGreyNormalMedium,
     FontYellowSmallerMedium,
-} from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 
 export default function EditUserName() {
     const dispatch = useAppDispatch();

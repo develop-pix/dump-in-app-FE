@@ -1,23 +1,23 @@
-import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';
-import EtcCheckImage from '../../../assets/image/icon/check_frame_etc.svg';
-import WhiteCheckIcon from '../../../assets/image/icon/check_white.svg';
-import EtcImage from '../../../assets/image/icon/frame_etc.svg';
-import { setFrameColor } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { FrameColorSelectProps } from '../../../interfaces/ReviewEdit.interface';
-import { frameColors } from '../../../styles/base/Variable';
+import BlackCheckIcon from 'assets/image/icon/check_black.svg';
+import EtcCheckImage from 'assets/image/icon/check_frame_etc.svg';
+import WhiteCheckIcon from 'assets/image/icon/check_white.svg';
+import EtcImage from 'assets/image/icon/frame_etc.svg';
+import { setFrameColor } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { FrameColorSelectProps } from 'interfaces/ReviewEdit.interface';
+import { frameColors } from 'styles/base/Variable';
 import {
     FontRedNormalMedium,
     FontWhiteNormalMedium,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     EtcFrameColorButton,
     FrameColorButton,
     FrameColorSelectContainer,
     FrameColorSelectWrapper,
-} from '../../../styles/layout/review-form/input/FrameColorSelect.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/FrameColorSelect.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function FrameColorSelect({ frameColor, errorData }: FrameColorSelectProps) {
     const availableColors = Object.values(frameColors);

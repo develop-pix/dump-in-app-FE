@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import AddReviewIcon from '../../../assets/image/icon/btn_add.svg';
-import { NavigationBarProps, RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { NavigationBarContainer, ReviewNewItem } from '../../../styles/layout/navigation-bar/NavigationBar.style';
+import AddReviewIcon from 'assets/image/icon/btn_add.svg';
+import { NavigationBarProps, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { NavigationBarContainer, ReviewNewItem } from 'styles/layout/navigation-bar/NavigationBar.style';
 
 import NavigationBarListItem from './NavigationBarListItem';
 

@@ -1,20 +1,20 @@
 import { useRef, useState } from 'react';
 import { FlatList, Modal, TouchableOpacity } from 'react-native';
 
-import UpIcon from '../../../assets/image/icon/btn_up.svg';
-import { ReviewProps } from '../../../interfaces/Home.interface';
-import { SearchResultProps } from '../../../interfaces/HomeSearch.interface';
-import { SearchResultAlertContainer } from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
+import UpIcon from 'assets/image/icon/btn_up.svg';
+import ReviewFrame from 'components/home/photo-booth-list/ReviewFrame';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import GetMoreReview from 'components/reuse/photo-dump/GetMoreReview';
+import { ReviewProps } from 'interfaces/Home.interface';
+import { SearchResultProps } from 'interfaces/HomeSearch.interface';
+import { SearchResultAlertContainer } from 'styles/layout/home-search/input/ReviewSearchInput.style';
 import {
     EventTitleContainer,
     PhotoDumpTitleContainer,
     PhotoDumpUpScrollImageBox,
     SearchResultContainer,
-} from '../../../styles/layout/home-search/search-result/SearchResult.style';
-import { FontWhiteGreyNormalMedium, FontWhiteGreySmallerSemibold } from '../../../styles/layout/reuse/text/Text.style';
-import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
-import SearchNoData from '../../reuse/alert/SearchNoData';
-import GetMoreReview from '../../reuse/photo-dump/GetMoreReview';
+} from 'styles/layout/home-search/search-result/SearchResult.style';
+import { FontWhiteGreyNormalMedium, FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.style';
 
 import EventResult from './EventResult';
 import MoreEventResult from './MoreEventResult';

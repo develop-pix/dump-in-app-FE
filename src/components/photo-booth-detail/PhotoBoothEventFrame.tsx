@@ -3,9 +3,10 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
-import { PhotoBoothEventFrameProps } from '../../interfaces/PhotoBoothDetail.interface';
-import { colors } from '../../styles/base/Variable';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
+import { colors } from 'styles/base/Variable';
 import {
     EventImage,
     EventImageWrapper,
@@ -13,9 +14,8 @@ import {
     EventItem,
     EventTitleContainer,
     FavoriteIcon,
-} from '../../styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
-import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from '../../styles/layout/reuse/text/Text.style';
-import FavoriteButton from '../reuse/button/FavoriteButton';
+} from 'styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
+import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { PhotoBoothEventProps } from '../../interfaces/PhotoBoothDetail.interface';
-import { PhotoBoothEventContainer, TitleContainer } from '../../styles/layout/photo-booth-detail/PhotoBoothEvent.style';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
+import { PhotoBoothEventProps } from 'interfaces/PhotoBoothDetail.interface';
+import { PhotoBoothEventContainer, TitleContainer } from 'styles/layout/photo-booth-detail/PhotoBoothEvent.style';
 import {
     FontWhiteGreySmallerMedium,
     FontWhiteSmallerSemiboldWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
-import SearchNoData from '../reuse/alert/SearchNoData';
-import { NormalButton } from '../reuse/button/NormalButton';
+} from 'styles/layout/reuse/text/Text.style';
 
 import MoreEventModal from './MoreEventModal';
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';

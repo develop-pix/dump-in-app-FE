@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { fontSize, fontWeight, loginColors } from '../../base/Variable';
+import { fontSize, fontWeight, loginColors } from 'styles/base/Variable';
 
 export const KaKaoLoginContainer = styled.View`
     align-items: center;

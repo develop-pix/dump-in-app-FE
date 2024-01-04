@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors } from '../../base/Variable';
+import { colors } from 'styles/base/Variable';
 
 export const ReviewManageModalContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';

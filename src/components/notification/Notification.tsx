@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Platform, ScrollView } from 'react-native';
 
-import DeleteIcon from '../../assets/image/icon/delete.svg';
-import EventListIcon from '../../assets/image/icon/result_event.svg';
-import { NotificationItemProps } from '../../interfaces/Notification.interface';
+import DeleteIcon from 'assets/image/icon/delete.svg';
+import EventListIcon from 'assets/image/icon/result_event.svg';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import GoBackButton from 'components/reuse/button/GoBackButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
+import { NotificationItemProps } from 'interfaces/Notification.interface';
 import {
     DeleteContainer,
     DeleteIconWrapper,
@@ -11,18 +14,15 @@ import {
     NoticeContainer,
     NotificationContentContainer,
     NotificationItemContainer,
-} from '../../styles/layout/notification/Notification.style';
-import { GoBackButtonContainerWithSafeArea } from '../../styles/layout/reuse/button/GoBackButton.style';
+} from 'styles/layout/notification/Notification.style';
+import { GoBackButtonContainerWithSafeArea } from 'styles/layout/reuse/button/GoBackButton.style';
 import {
     FontGreySmallerMedium,
     FontLightGreySmallerMedium,
     FontWhiteGreyNormalMedium,
     FontWhiteNormalSemiboldWithLineSpacing,
-} from '../../styles/layout/reuse/text/Text.style';
-import { DateToReviewDateForm } from '../../utils/FormChange';
-import SearchNoData from '../reuse/alert/SearchNoData';
-import GoBackButton from '../reuse/button/GoBackButton';
-import ConfirmationAlertModal from '../reuse/modal/ConfirmationAlertModal';
+} from 'styles/layout/reuse/text/Text.style';
+import { DateToReviewDateForm } from 'utils/FormChange';
 
 export default function Notification() {
     const platform = Platform.OS;

@@ -1,14 +1,14 @@
 import { View } from 'react-native';
 
-import BlackCheckIcon from '../../../assets/image/icon/check_black.svg';
-import EtcCheckImage from '../../../assets/image/icon/check_frame_etc.svg';
-import WhiteCheckIcon from '../../../assets/image/icon/check_white.svg';
-import EtcImage from '../../../assets/image/icon/frame_etc.svg';
-import { FilterDataUpdateProps } from '../../../interfaces/reuse/Filter.interface';
-import { frameColors } from '../../../styles/base/Variable';
-import { FilterContentContainer } from '../../../styles/layout/home/filter/Filter.style';
-import { EtcFrameColorButton, FrameColorButton } from '../../../styles/layout/home/filter/FilterFrameColor.style';
-import { FontWhiteGreySmallerSemibold } from '../../../styles/layout/reuse/text/Text.style';
+import BlackCheckIcon from 'assets/image/icon/check_black.svg';
+import EtcCheckImage from 'assets/image/icon/check_frame_etc.svg';
+import WhiteCheckIcon from 'assets/image/icon/check_white.svg';
+import EtcImage from 'assets/image/icon/frame_etc.svg';
+import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
+import { frameColors } from 'styles/base/Variable';
+import { FilterContentContainer } from 'styles/layout/home/filter/Filter.style';
+import { EtcFrameColorButton, FrameColorButton } from 'styles/layout/home/filter/FilterFrameColor.style';
+import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.style';
 
 const availableColors = Object.values(frameColors);
 

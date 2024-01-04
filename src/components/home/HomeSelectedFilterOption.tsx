@@ -1,10 +1,10 @@
-import { HomeSelectedFilterOptionProps } from '../../interfaces/Home.interface';
+import { HomeSelectedFilterOptionProps } from 'interfaces/Home.interface';
 import {
     ColorBox,
     FilterOptionContainer,
     FilterOptionTextBox,
-} from '../../styles/layout/home/HomeSelectedFilterOption.style';
-import { FontWhiteSmallestSemibold } from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/home/HomeSelectedFilterOption.style';
+import { FontWhiteSmallestSemibold } from 'styles/layout/reuse/text/Text.style';
 
 export default function HomeSelectedFilterOption({ filterData }: HomeSelectedFilterOptionProps) {
     return (

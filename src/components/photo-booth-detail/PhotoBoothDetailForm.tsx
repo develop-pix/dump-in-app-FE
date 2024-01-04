@@ -1,7 +1,7 @@
 import { useRoute } from '@react-navigation/native';
 
-import { ScreenName } from '../../interfaces/NavigationBar';
-import NavigationBar from '../reuse/navigation-bar/NavigationBar';
+import NavigationBar from 'components/reuse/navigation-bar/NavigationBar';
+import { ScreenName } from 'interfaces/NavigationBar';
 
 import PhotoBoothDetail from './PhotoBoothDetail';
 

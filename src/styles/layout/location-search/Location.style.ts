@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors } from '../../base/Variable';
+import { colors } from 'styles/base/Variable';
 /* LocationSearchContainer*/
 export const LocationSearchContainer = styled.View`
     flex: 1;

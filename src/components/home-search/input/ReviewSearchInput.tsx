@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from '@react-navigation/native';
 
-import { ReviewProps } from '../../../interfaces/Home.interface';
-import { EventDataProps, RecentSearchItemProps } from '../../../interfaces/HomeSearch.interface';
+import SearchResult from 'components/home-search/search-result/SearchResult';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import Search from 'components/reuse/input/Search';
+import { ReviewProps } from 'interfaces/Home.interface';
+import { EventDataProps, RecentSearchItemProps } from 'interfaces/HomeSearch.interface';
 import {
     ReviewSearchContainer,
     ReviewSearchForm,
     SearchResultAlertContainer,
-} from '../../../styles/layout/home-search/input/ReviewSearchInput.style';
-import SearchNoData from '../../reuse/alert/SearchNoData';
-import Search from '../../reuse/input/Search';
-import SearchResult from '../search-result/SearchResult';
+} from 'styles/layout/home-search/input/ReviewSearchInput.style';
 
 import RecentSearch from './RecentSearch';
 import RecommendSearch from './RecommendSearch';

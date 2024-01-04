@@ -1,23 +1,19 @@
 import { useState } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-import { setDate } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { DateInputProps } from '../../../interfaces/ReviewEdit.interface';
+import { setDate } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { DateInputProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontLightGreyNormalMedium,
     FontRedNormalMedium,
     FontWhiteNormalMedium,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
-import {
-    DateInputContainer,
-    DateInputWrapper,
-    DateTextButton,
-} from '../../../styles/layout/review-form/input/DateInput.style';
-import { ReviewDescriptionTextInputContainer } from '../../../styles/layout/review-form/input/ReviewDescriptionInput.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
-import { DateToReviewDateForm } from '../../../utils/FormChange';
+} from 'styles/layout/reuse/text/Text.style';
+import { DateInputContainer, DateInputWrapper, DateTextButton } from 'styles/layout/review-form/input/DateInput.style';
+import { ReviewDescriptionTextInputContainer } from 'styles/layout/review-form/input/ReviewDescriptionInput.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
+import { DateToReviewDateForm } from 'utils/FormChange';
 
 export default function DateInput({ date, errorData }: DateInputProps) {
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);

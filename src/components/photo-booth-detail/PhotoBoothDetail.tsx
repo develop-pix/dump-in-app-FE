@@ -2,13 +2,10 @@ import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import { PhotoBoothDetailRouteProp } from '../../interfaces/PhotoBoothDetail.interface';
-import {
-    OfficialImagesContainer,
-    PhotoDumpContainer,
-} from '../../styles/layout/photo-booth-detail/PhotoBoothDetail.style';
-import OfficialImages from '../reuse/official-images/OfficialImages';
-import PhotoDump from '../reuse/photo-dump/PhotoDump';
+import OfficialImages from 'components/reuse/official-images/OfficialImages';
+import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
+import { PhotoBoothDetailRouteProp } from 'interfaces/PhotoBoothDetail.interface';
+import { OfficialImagesContainer, PhotoDumpContainer } from 'styles/layout/photo-booth-detail/PhotoBoothDetail.style';
 
 import PhotoBoothEvent from './PhotoBoothEvent';
 import PhotoBoothImageTitle from './PhotoBoothImageTitle';

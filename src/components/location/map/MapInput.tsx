@@ -2,18 +2,18 @@ import { Platform } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import SearchGreyIcon from '../../../assets/image/icon/search_grey.svg';
-import { MapInputProps } from '../../../interfaces/Location.interface';
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { colors } from '../../../styles/base/Variable';
+import SearchGreyIcon from 'assets/image/icon/search_grey.svg';
+import { MapInputProps } from 'interfaces/Location.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { colors } from 'styles/base/Variable';
 import {
     BlockInput,
     InputForm,
     InputWrapper,
     MapInputContainer,
     MapInputWrapper,
-} from '../../../styles/layout/location/MapInput.style';
-import { SearchButtonIconContainer } from '../../../styles/layout/reuse/input/Search.style';
+} from 'styles/layout/location/MapInput.style';
+import { SearchButtonIconContainer } from 'styles/layout/reuse/input/Search.style';
 
 export default function MapInput({ location }: MapInputProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

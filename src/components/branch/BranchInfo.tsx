@@ -1,5 +1,5 @@
-import { BranchInfoProps } from '../../interfaces/Branch.interface';
-import { BranchInfoContainer } from '../../styles/layout/branch/BranchInfo.style';
+import { BranchInfoProps } from 'interfaces/Branch.interface';
+import { BranchInfoContainer } from 'styles/layout/branch/BranchInfo.style';
 
 import BranchDescription from './BranchDescription';
 import BranchTitle from './BranchTitle';

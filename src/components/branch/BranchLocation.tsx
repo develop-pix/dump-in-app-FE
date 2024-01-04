@@ -1,10 +1,10 @@
 import { Platform } from 'react-native';
 import NaverMapView, { Marker } from 'react-native-nmap';
 
-import { BranchLocationProps } from '../../interfaces/Branch.interface';
-import { BranchLocationContainer } from '../../styles/layout/branch/BranchLocation.style';
-import { GoBackButtonFloatContainer } from '../../styles/layout/reuse/button/GoBackButton.style';
-import GoBackButtonBlack from '../reuse/button/GoBackButtonBlack';
+import GoBackButtonBlack from 'components/reuse/button/GoBackButtonBlack';
+import { BranchLocationProps } from 'interfaces/Branch.interface';
+import { BranchLocationContainer } from 'styles/layout/branch/BranchLocation.style';
+import { GoBackButtonFloatContainer } from 'styles/layout/reuse/button/GoBackButton.style';
 
 import BranchDistance from './BranchDistance';
 

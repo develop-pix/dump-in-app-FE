@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors, fontFamily, fontSize, fontWeight } from '../../../base/Variable';
+import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
 // 카메라샷 이미지 컨테이너 스타일
 export const CameraShotImageContainer = styled.TouchableOpacity<{

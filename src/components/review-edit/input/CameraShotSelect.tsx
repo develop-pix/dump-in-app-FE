@@ -1,40 +1,40 @@
-import { setCameraShot } from '../../../hooks/redux/ReviewData';
-import { useAppDispatch } from '../../../hooks/redux/store';
-import { cameraShotSelectProps } from '../../../interfaces/ReviewEdit.interface';
+import { setCameraShot } from 'hooks/redux/ReviewData';
+import { useAppDispatch } from 'hooks/redux/store';
+import { cameraShotSelectProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontRedNormalMedium,
     FontWhiteGreySmallerMedium,
     FontWhiteNormalMedium,
     FontWhiteSmallerSemibold,
     FontYellowSmallestMedium,
-} from '../../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/reuse/text/Text.style';
 import {
     CameraShotButton,
     CameraShotImage,
     CameraShotSelectContainer,
     CameraShotSelectWrapper,
     CameraShotTextContainer,
-} from '../../../styles/layout/review-form/input/CameraShot.style';
-import { ReviewErrorContainer, ReviewInputTitleContainer } from '../../../styles/layout/review-form/ReviewForm.style';
+} from 'styles/layout/review-form/input/CameraShot.style';
+import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function CameraShotSelect({ cameraShot, errorData }: cameraShotSelectProps) {
     const dispatch = useAppDispatch();
     const availableCameraShot = [
         {
             name: '클로즈업',
-            image: require('../../../assets/image/source/filter-close-up.png'),
+            image: require('assets/image/source/filter-close-up.png'),
         },
         {
             name: '상반신',
-            image: require('../../../assets/image/source/filter-bust.png'),
+            image: require('assets/image/source/filter-bust.png'),
         },
         {
             name: '무릎',
-            image: require('../../../assets/image/source/filter-knee.png'),
+            image: require('assets/image/source/filter-knee.png'),
         },
         {
             name: '전신',
-            image: require('../../../assets/image/source/filter-whole-body.png'),
+            image: require('assets/image/source/filter-whole-body.png'),
         },
     ];
 

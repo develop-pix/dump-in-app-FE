@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 
-import { useAppSelector } from '../../hooks/redux/store';
-import { ActivityComponentProps } from '../../interfaces/MyPage.interface';
-import { ActivityContainer } from '../../styles/layout/my-page/MyPage.style';
-import MyPageBar from '../reuse/header/MyPageBar';
+import MyPageBar from 'components/reuse/header/MyPageBar';
+import { useAppSelector } from 'hooks/redux/store';
+import { ActivityComponentProps } from 'interfaces/MyPage.interface';
+import { ActivityContainer } from 'styles/layout/my-page/MyPage.style';
 
 import EditUserName from './EditUserName';
 import Login from './my-activity/LoginButton';

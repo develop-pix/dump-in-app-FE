@@ -3,12 +3,15 @@ import { Modal } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import NextButtonIcon from '../../assets/image/icon/btn_next_grey.svg';
-import { setAccessToken } from '../../hooks/redux/AccessTokenSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux/store';
-import { setUserID, setUserNickName } from '../../hooks/redux/UserDataSlice';
-import { MyPageMenuProps } from '../../interfaces/MyPage.interface';
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
+import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
+import CloseModalButton from 'components/reuse/button/CloseModalButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
+import NavigationBar from 'components/reuse/navigation-bar/NavigationBar';
+import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
+import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
+import { MyPageMenuProps } from 'interfaces/MyPage.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     CloseModalButtonContainer,
     MenuContentContainer,
@@ -16,11 +19,8 @@ import {
     MenuSafeContainer,
     TextContainer,
     UserTextContainer,
-} from '../../styles/layout/my-page/MyPageMenu.style';
-import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from '../../styles/layout/reuse/text/Text.style';
-import CloseModalButton from '../reuse/button/CloseModalButton';
-import ConfirmationAlertModal from '../reuse/modal/ConfirmationAlertModal';
-import NavigationBar from '../reuse/navigation-bar/NavigationBar';
+} from 'styles/layout/my-page/MyPageMenu.style';
+import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 
 export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps) {
     const accessToken = useAppSelector(state => state.login.token);

@@ -1,17 +1,17 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import LocationDarkIcon from '../../assets/image/icon/location_dark.svg';
-import { BranchListProps } from '../../interfaces/Location.interface';
-import { LocationSearchParamList, RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
+import LocationDarkIcon from 'assets/image/icon/location_dark.svg';
+import { BranchListProps } from 'interfaces/Location.interface';
+import { LocationSearchParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
     BranchDistanceWrapper,
     BranchListContainer,
     BranchNameWrapper,
     LocationDarkIconContainer,
     LocationInfo,
-} from '../../styles/layout/location-search/Location.style';
-import { FontLightGreySmallerMedium, FontWhiteGreyNormalMedium } from '../../styles/layout/reuse/text/Text.style';
+} from 'styles/layout/location-search/Location.style';
+import { FontLightGreySmallerMedium, FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function BranchList({ branchName, distance, branchID }: BranchListProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

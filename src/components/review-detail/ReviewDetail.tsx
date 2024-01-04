@@ -3,11 +3,12 @@ import { Dimensions, Platform } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import NextIcon from '../../assets/image/icon/btn_next.svg';
-import PrevIcon from '../../assets/image/icon/btn_prev.svg';
-import { ReviewDetailParamList } from '../../interfaces/NavigationBar';
-import { ReviewData } from '../../interfaces/ReviewDetail.interface';
-import { colors } from '../../styles/base/Variable';
+import NextIcon from 'assets/image/icon/btn_next.svg';
+import PrevIcon from 'assets/image/icon/btn_prev.svg';
+import ReviewDetailHeader from 'components/reuse/header/ReviewDetailHeader';
+import { ReviewDetailParamList } from 'interfaces/NavigationBar';
+import { ReviewData } from 'interfaces/ReviewDetail.interface';
+import { colors } from 'styles/base/Variable';
 import {
     ButtonContainer,
     NextButtonContainer,
@@ -19,8 +20,7 @@ import {
     ReviewImage,
     ReviewImageContainer,
     TitleContainer,
-} from '../../styles/layout/review-detail/ReviewDetail.style';
-import ReviewDetailHeader from '../reuse/header/ReviewDetailHeader';
+} from 'styles/layout/review-detail/ReviewDetail.style';
 
 import ReviewDescription from './ReviewDescription';
 import ReviewManageModal from './ReviewManageModal';

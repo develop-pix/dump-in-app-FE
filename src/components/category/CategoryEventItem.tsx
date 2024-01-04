@@ -3,10 +3,11 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import LocationIcon from '../../assets/image/icon/location_white.svg';
-import { CategoryEventItemProps } from '../../interfaces/Category.interface';
-import { RootStackParam, ScreenName } from '../../interfaces/NavigationBar';
-import { colors } from '../../styles/base/Variable';
+import LocationIcon from 'assets/image/icon/location_white.svg';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { CategoryEventItemProps } from 'interfaces/Category.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { colors } from 'styles/base/Variable';
 import {
     EventImage,
     EventImageWrapper,
@@ -16,13 +17,12 @@ import {
     FavoriteIcon,
     LocationIconContainer,
     PhotoBoothNameContainer,
-} from '../../styles/layout/category/CategoryEventItem.style';
+} from 'styles/layout/category/CategoryEventItem.style';
 import {
     FontWhiteBiggestSemibold,
     FontWhiteGreySmallerMedium,
     FontWhiteSmallerMedium,
-} from '../../styles/layout/reuse/text/Text.style';
-import FavoriteButton from '../reuse/button/FavoriteButton';
+} from 'styles/layout/reuse/text/Text.style';
 
 export default function CategoryEventItem({ eventData }: CategoryEventItemProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

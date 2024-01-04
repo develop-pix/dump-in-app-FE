@@ -3,20 +3,20 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import LocationGreyIcon from '../../../assets/image/icon/list_location.svg';
-import { ReviewFrameProps } from '../../../interfaces/Home.interface';
-import { RootStackParam, ScreenName } from '../../../interfaces/NavigationBar';
-import { colors } from '../../../styles/base/Variable';
-import { FavoriteIcon } from '../../../styles/layout/category/CategoryEventItem.style';
+import LocationGreyIcon from 'assets/image/icon/list_location.svg';
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { ReviewFrameProps } from 'interfaces/Home.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { colors } from 'styles/base/Variable';
+import { FavoriteIcon } from 'styles/layout/category/CategoryEventItem.style';
 import {
     LocationIconContainer,
     ReviewFrameContainer,
     ReviewFrameImage,
     ReviewInfo,
     ReviewNameContainer,
-} from '../../../styles/layout/home/photo-booth-list/ReviewFrame.style';
-import { FontWhiteGreySmallerMediumWithLineHeight } from '../../../styles/layout/reuse/text/Text.style';
-import FavoriteButton from '../../reuse/button/FavoriteButton';
+} from 'styles/layout/home/photo-booth-list/ReviewFrame.style';
+import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();

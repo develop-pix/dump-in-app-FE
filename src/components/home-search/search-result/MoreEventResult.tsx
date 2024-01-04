@@ -1,15 +1,9 @@
 import { ScrollView } from 'react-native';
 
-import { MoreEventResultProps } from '../../../interfaces/HomeSearch.interface';
-import {
-    EventTitleContainer,
-    ModalContainer,
-} from '../../../styles/layout/home-search/search-result/MoreEventResult.style';
-import {
-    FontWhiteGreySmallerSemibold,
-    FontWhiteGreySmallestSemibold,
-} from '../../../styles/layout/reuse/text/Text.style';
-import CloseModalButton from '../../reuse/button/CloseModalButton';
+import CloseModalButton from 'components/reuse/button/CloseModalButton';
+import { MoreEventResultProps } from 'interfaces/HomeSearch.interface';
+import { EventTitleContainer, ModalContainer } from 'styles/layout/home-search/search-result/MoreEventResult.style';
+import { FontWhiteGreySmallerSemibold, FontWhiteGreySmallestSemibold } from 'styles/layout/reuse/text/Text.style';
 
 import EventResult from './EventResult';
 

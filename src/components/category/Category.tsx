@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 
-import { CategoryContainer, PageBar, PageBarText } from '../../styles/layout/category/Category.style';
+import { CategoryContainer, PageBar, PageBarText } from 'styles/layout/category/Category.style';
 
 import CategoryEvent from './CategoryEvent';
 import CategoryPhotoBooth from './CategoryPhotoBooth';

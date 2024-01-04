@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
-import NextIcon from '../../assets/image/icon/btn_next.svg';
-import PrevIcon from '../../assets/image/icon/btn_prev.svg';
-import { OfficialImageDetailParamList } from '../../interfaces/NavigationBar';
+import NextIcon from 'assets/image/icon/btn_next.svg';
+import PrevIcon from 'assets/image/icon/btn_prev.svg';
+import OfficialImageDetailHeader from 'components/reuse/header/OfficialImageDetailHeader';
+import { OfficialImageDetailParamList } from 'interfaces/NavigationBar';
 import {
     ButtonContainer,
     NextButtonContainer,
@@ -14,8 +15,7 @@ import {
     OfficialImageDetailImage,
     PrevButtonContainer,
     TitleContainer,
-} from '../../styles/layout/official-image-detail/OfficialImageDetail.style';
-import OfficialImageDetailHeader from '../reuse/header/OfficialImageDetailHeader';
+} from 'styles/layout/official-image-detail/OfficialImageDetail.style';
 
 export default function OfficialImageDetail() {
     const [carouselActive, setCarouselActive] = useState<number>(0);

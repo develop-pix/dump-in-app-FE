@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { colors } from '../../../base/Variable';
+import { colors } from 'styles/base/Variable';
 
 export const RecommendSearchContainer = styled.View`
     padding: 24px 20px 0px 20px;
