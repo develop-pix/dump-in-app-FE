@@ -35,12 +35,11 @@ export default function AppleLogin() {
       appleAuthRequestResponse.user,
     );
     if (credentialState === appleAuth.State.AUTHORIZED) {
-      console.log(appleAuthRequestResponse.identityToken);
       GetTokenLogin(appleAuthRequestResponse.identityToken);
     }
   };
 
-  //android 에서 Apple Login (오류 발생)
+  //android 에서 Apple Login
   const LoginWithAppleWebView = async () => {
     const rawNonce = uuid();
     const state = uuid();
@@ -55,7 +54,6 @@ export default function AppleLogin() {
 
     const appleAuthRequestResponse = await appleAuthAndroid.signIn();
     if (appleAuthRequestResponse) {
-      console.log(appleAuthRequestResponse.id_token);
       GetTokenLogin(appleAuthRequestResponse.id_token);
     }
   };
