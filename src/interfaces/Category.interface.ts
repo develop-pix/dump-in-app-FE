@@ -1,25 +1,25 @@
 export interface CategoryEventFilterProps {
-  hashtags: string[];
-  setHashtags: React.Dispatch<React.SetStateAction<string[]>>;
-  filterOptionSelect: () => void;
+    hashtags: string[];
+    setHashtags: React.Dispatch<React.SetStateAction<string[]>>;
+    filterOptionSelect: () => void;
 }
 
 export interface CategoryEventItemProps {
-  eventData: CategoryEventProps;
+    eventData: CategoryEventProps;
 }
 
 export interface CategoryEventProps {
-  eventID: number;
-  representativeImage: string;
-  eventTitle: string;
-  startDate: string;
-  endDate: string;
-  photoboothName: string;
-  myEvent: boolean;
+    eventID: number;
+    representativeImage: string;
+    eventTitle: string;
+    startDate: string;
+    endDate: string;
+    photoBoothName: string;
+    myEvent: boolean;
 }
 
 export interface CategoryPhotoBoothProps {
-  photoBoothID: number;
-  representativeImage: string;
-  photoboothName: string;
+    photoBoothID: number;
+    representativeImage: string;
+    photoBoothName: string;
 }

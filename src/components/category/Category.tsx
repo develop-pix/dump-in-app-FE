@@ -1,36 +1,26 @@
-import React, {useState} from 'react';
-import {
-  CategoryContainer,
-  PageBar,
-  PageBarText,
-} from '../../styles/layout/category/Category.style';
-import {TouchableOpacity} from 'react-native';
-import CategoryPhotoBooth from './CategoryPhotoBooth';
+import { useState } from 'react';
+import { TouchableOpacity } from 'react-native';
+
+import { CategoryContainer, PageBar, PageBarText } from 'styles/layout/category/Category.style';
+
 import CategoryEvent from './CategoryEvent';
+import CategoryPhotoBooth from './CategoryPhotoBooth';
 
 export default function Category() {
-  const [categoryPage, setCategoryPage] = useState<'photoBooth' | 'event'>(
-    'photoBooth',
-  );
+    const [categoryPage, setCategoryPage] = useState<'photoBooth' | 'event'>('photoBooth');
 
-  return (
-    <CategoryContainer>
-      <PageBar>
-        <TouchableOpacity onPress={() => setCategoryPage('photoBooth')}>
-          <PageBarText selected={categoryPage === 'photoBooth'}>
-            포토부스
-          </PageBarText>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setCategoryPage('event')}>
-          <PageBarText selected={categoryPage === 'event'}>이벤트</PageBarText>
-        </TouchableOpacity>
-      </PageBar>
+    return (
+        <CategoryContainer>
+            <PageBar>
+                <TouchableOpacity onPress={() => setCategoryPage('photoBooth')}>
+                    <PageBarText selected={categoryPage === 'photoBooth'}>포토부스</PageBarText>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setCategoryPage('event')}>
+                    <PageBarText selected={categoryPage === 'event'}>이벤트</PageBarText>
+                </TouchableOpacity>
+            </PageBar>
 
-      {categoryPage === 'photoBooth' ? (
-        <CategoryPhotoBooth />
-      ) : (
-        <CategoryEvent />
-      )}
-    </CategoryContainer>
-  );
+            {categoryPage === 'photoBooth' ? <CategoryPhotoBooth /> : <CategoryEvent />}
+        </CategoryContainer>
+    );
 }

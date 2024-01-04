@@ -1,10 +1,9 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import { Text, View } from 'react-native';
 
 export default function Loading() {
-  return (
-    <View>
-      <Text>Loading 페이지</Text>
-    </View>
-  );
+    return (
+        <View>
+            <Text>Loading 페이지</Text>
+        </View>
+    );
 }

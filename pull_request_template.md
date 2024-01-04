@@ -8,11 +8,11 @@
 
 ### PR type
 
-- [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, local variables)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Build related changes
-- [ ] CI related changes
-- [ ] Documentation content changes
-- [ ] Other (설명):
+-   [ ] Bugfix
+-   [ ] Feature
+-   [ ] Code style update (formatting, local variables)
+-   [ ] Refactoring (no functional changes, no api changes)
+-   [ ] Build related changes
+-   [ ] CI related changes
+-   [ ] Documentation content changes
+-   [ ] Other (설명):

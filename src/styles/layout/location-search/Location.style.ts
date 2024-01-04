@@ -1,70 +1,71 @@
 import styled from 'styled-components/native';
-import {colors} from '../../base/Variable';
+
+import { colors } from 'styles/base/Variable';
 /* LocationSearchContainer*/
 export const LocationSearchContainer = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  background-color: ${colors.blackgrey};
+    flex: 1;
+    justify-content: space-between;
+    background-color: ${colors.blackgrey};
 `;
 
 /* LocationSearchForm */
 export const SearchForm = styled.SafeAreaView`
-  flex: 1;
+    flex: 1;
 `;
 
 export const SearchContainer = styled.View`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
 `;
 /* SearchBranchList */
 
 export const SearchBranchScrollView = styled.ScrollView.attrs({
-  contentContainerStyle: {paddingBottom: 100},
+    contentContainerStyle: { paddingBottom: 100 },
 })`
-  width: 100%;
+    width: 100%;
 `;
 
 export const SearchBranchContainer = styled.View`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 `;
 
 export const ListContainer = styled.View`
-  width: 90%;
+    width: 90%;
 `;
 
 /* BranchList */
 
 export const BranchListContainer = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 44px;
-  border-bottom-width: 1px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 44px;
+    border-bottom-width: 1px;
 `;
 
 export const LocationDarkIconContainer = styled.View`
-  margin-top: 10px;
+    margin-top: 10px;
 `;
 
 export const LocationInfo = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
 `;
 export const BranchNameWrapper = styled.View`
-  margin-left: 10px;
-  margin-right: 30px;
-  display: flex;
-  align-items: center;
+    margin-left: 10px;
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
 `;
 
 export const BranchDistanceWrapper = styled.View`
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 `;

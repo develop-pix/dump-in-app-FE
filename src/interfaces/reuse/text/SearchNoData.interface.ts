@@ -1,4 +1,4 @@
 export interface SearchNoDataProps {
-  alertText: string;
-  recommendText: string;
+    alertText: string;
+    recommendText: string;
 }

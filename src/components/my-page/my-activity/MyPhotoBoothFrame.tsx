@@ -1,72 +1,65 @@
-import React, {useState} from 'react';
+import { useState } from 'react';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
+import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import {
-  MyPhotoBoothFrameContainer,
-  PhotoBoothImage,
-  InfoContainer,
-  PhotoBoothNameWrapper,
-  HashtagContainer,
-  FavoirteIcon,
-} from '../../../styles/layout/my-page/MyActivity/MyPhotoBoothFrame.style';
-import {MyPhotoBoothFrameProps} from '../../../interfaces/MyPage.interface';
-import FavoirteButton from '../../reuse/button/FavoritetButton';
-import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParam} from '../../../interfaces/NavigationBar';
-import {ScreenName} from '../../../interfaces/NavigationBar';
-import {TagsArrayToHashTagArrayForm} from '../../../utils/FormChange';
+    FavoriteIcon,
+    HashtagContainer,
+    InfoContainer,
+    MyPhotoBoothFrameContainer,
+    PhotoBoothImage,
+    PhotoBoothNameWrapper,
+} from 'styles/layout/my-page/MyActivity/MyPhotoBoothFrame.style';
 import {
-  FontWhiteBiggestSemiboldWithLineHeight,
-  FontWhiteGreySmallerSemibold,
-  FontYellowSmallerMediumWithLineSpacingWithMargin,
-} from '../../../styles/layout/reuse/text/Text.style';
+    FontWhiteBiggestSemiboldWithLineHeight,
+    FontWhiteGreySmallerSemibold,
+    FontYellowSmallerMediumWithLineSpacingWithMargin,
+} from 'styles/layout/reuse/text/Text.style';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
-export default function MyPhotoBoothFrame({
-  photoBoothData,
-}: MyPhotoBoothFrameProps) {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-  const isFocused = useIsFocused();
-  const route = useRoute();
+export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const isFocused = useIsFocused();
+    const route = useRoute();
 
-  const onPressPhotoBooth = (id: number) => {
-    const currentScreen = (route.params as {screen: ScreenName}).screen;
-    if (isFocused) {
-      navigation.push('PhotoBoothDetail', {
-        PhotoBoothID: id,
-        screen: currentScreen,
-      });
-    }
-  };
+    const onPressPhotoBooth = (id: number) => {
+        const currentScreen = (route.params as { screen: ScreenName }).screen;
+        if (isFocused) {
+            navigation.push('PhotoBoothDetail', {
+                PhotoBoothID: id,
+                screen: currentScreen,
+            });
+        }
+    };
 
-  const [favorite, setFavorite] = useState<boolean>(
-    photoBoothData.myPhotoBooth,
-  );
+    const [favorite, setFavorite] = useState<boolean>(photoBoothData.myPhotoBooth);
 
-  return (
-    <MyPhotoBoothFrameContainer
-      onPress={() => onPressPhotoBooth(photoBoothData.photoBoothID)}>
-      <PhotoBoothImage source={{uri: photoBoothData.representativeImage}} />
-      <InfoContainer>
-        <PhotoBoothNameWrapper>
-          <FontWhiteBiggestSemiboldWithLineHeight>
-            {photoBoothData.photoBoothName}
-          </FontWhiteBiggestSemiboldWithLineHeight>
-          <FontWhiteGreySmallerSemibold>
-            {photoBoothData.branch}
-          </FontWhiteGreySmallerSemibold>
-        </PhotoBoothNameWrapper>
+    return (
+        <MyPhotoBoothFrameContainer onPress={() => onPressPhotoBooth(photoBoothData.photoBoothID)}>
+            <PhotoBoothImage source={{ uri: photoBoothData.representativeImage }} />
+            <InfoContainer>
+                <PhotoBoothNameWrapper>
+                    <FontWhiteBiggestSemiboldWithLineHeight>
+                        {photoBoothData.photoBoothName}
+                    </FontWhiteBiggestSemiboldWithLineHeight>
+                    <FontWhiteGreySmallerSemibold>{photoBoothData.branch}</FontWhiteGreySmallerSemibold>
+                </PhotoBoothNameWrapper>
 
-        <HashtagContainer>
-          {TagsArrayToHashTagArrayForm(photoBoothData.hashtag).map(tag => (
-            <FontYellowSmallerMediumWithLineSpacingWithMargin key={tag}>
-              {tag}
-            </FontYellowSmallerMediumWithLineSpacingWithMargin>
-          ))}
-        </HashtagContainer>
-      </InfoContainer>
+                <HashtagContainer>
+                    {TagsArrayToHashTagArrayForm(photoBoothData.hashtag).map(tag => (
+                        <FontYellowSmallerMediumWithLineSpacingWithMargin key={tag}>
+                            {tag}
+                        </FontYellowSmallerMediumWithLineSpacingWithMargin>
+                    ))}
+                </HashtagContainer>
+            </InfoContainer>
 
-      <FavoirteIcon>
-        <FavoirteButton favorite={favorite} setFavorite={setFavorite} />
-      </FavoirteIcon>
-    </MyPhotoBoothFrameContainer>
-  );
+            <FavoriteIcon>
+                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+            </FavoriteIcon>
+        </MyPhotoBoothFrameContainer>
+    );
 }

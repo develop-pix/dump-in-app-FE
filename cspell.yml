@@ -1,0 +1,27 @@
+words:
+    # 서비스명
+
+    # 팀내 용어
+    # 색상 이름
+    - whitegrey
+    - darkgrey
+    - blackgrey
+    - lightblack
+    # 폰트 이름
+    - Pretendard
+    # 약속된 축약 명칭
+
+    # 축약 (http://cspell.org/docs/dictionaries-custom/#words-list-syntax)
+    - accum*
+ignoreWords:
+    # 모듈
+    - nmap
+    - kakao
+    - naver
+    - reduxjs
+    # 파일명
+
+    # 기본 속성
+    - persistor
+ignorePaths:
+    - '**/node_modules/**'

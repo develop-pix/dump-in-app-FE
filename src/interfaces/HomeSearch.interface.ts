@@ -1,41 +1,41 @@
-import {ReviewProps} from './Home.interface';
+import { ReviewProps } from './Home.interface';
 
 export interface HomeSearchProps {
-  onRecentListClick: (search: string) => void;
+    onRecentListClick: (search: string) => void;
 }
 
 export interface ReviewSearchEtcProps {
-  data: string;
+    data: string;
 }
 
 export interface SearchResultProps {
-  searchData: string;
-  eventData: {
-    eventData: EventDataProps[];
-    finishedEvent: boolean;
-  };
-  photoDumpData: ReviewProps[];
+    searchData: string;
+    eventData: {
+        eventData: EventDataProps[];
+        finishedEvent: boolean;
+    };
+    photoDumpData: ReviewProps[];
 }
 
 // 홈-검색 이벤트 데이터 타입
 export interface EventDataProps {
-  eventID: number;
-  eventName: string;
+    eventID: number;
+    eventName: string;
 }
 
 export interface EventResultProps {
-  searchData: string;
-  data: EventDataProps;
+    searchData: string;
+    data: EventDataProps;
 }
 
 export interface RecentSearchItemProps {
-  search: string;
-  order: number;
+    search: string;
+    order: number;
 }
 
 // 이벤트 더보기 모달 데이터 타입
 export interface MoreEventResultProps {
-  eventData: EventDataProps[];
-  searchData: string;
-  closeMoreEventModal: () => void;
+    eventData: EventDataProps[];
+    searchData: string;
+    closeMoreEventModal: () => void;
 }

@@ -1,26 +1,26 @@
-import React from 'react';
-import BranchTitle from './BranchTitle';
+import { BranchInfoProps } from 'interfaces/Branch.interface';
+import { BranchInfoContainer } from 'styles/layout/branch/BranchInfo.style';
+
 import BranchDescription from './BranchDescription';
-import {BranchInfoProps} from '../../interfaces/Branch.interface';
-import {BranchInfoContainer} from '../../styles/layout/branch/BranchInfo.style';
+import BranchTitle from './BranchTitle';
 
 export default function BranchInfo({
-  photoboothName,
-  branchName,
-  branchHashtag,
-  address,
-  open,
-  myBranch,
+    photoBoothName,
+    branchName,
+    branchHashtag,
+    address,
+    open,
+    myBranch,
 }: BranchInfoProps) {
-  return (
-    <BranchInfoContainer>
-      <BranchTitle
-        photoboothName={photoboothName}
-        branchName={branchName}
-        branchHashtag={branchHashtag}
-        myBranch={myBranch}
-      />
-      <BranchDescription address={address} open={open} />
-    </BranchInfoContainer>
-  );
+    return (
+        <BranchInfoContainer>
+            <BranchTitle
+                photoBoothName={photoBoothName}
+                branchName={branchName}
+                branchHashtag={branchHashtag}
+                myBranch={myBranch}
+            />
+            <BranchDescription address={address} open={open} />
+        </BranchInfoContainer>
+    );
 }

@@ -1,11 +1,10 @@
-import React from 'react';
-import {LocationSearchContainer} from '../styles/layout/location-search/Location.style';
-import LocactionSearchForm from '../components/search-location/LocactionSearchForm';
+import LocationSearchForm from 'components/search-location/LocationSearchForm';
+import { LocationSearchContainer } from 'styles/layout/location-search/Location.style';
 
 export default function LocationSearch() {
-  return (
-    <LocationSearchContainer>
-      <LocactionSearchForm />
-    </LocationSearchContainer>
-  );
+    return (
+        <LocationSearchContainer>
+            <LocationSearchForm />
+        </LocationSearchContainer>
+    );
 }

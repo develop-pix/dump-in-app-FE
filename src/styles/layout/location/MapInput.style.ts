@@ -1,45 +1,44 @@
 import styled from 'styled-components/native';
-import {colors} from '../../base/Variable';
+
+import { colors } from 'styles/base/Variable';
 
 export const InputWrapper = styled.View<{
-  platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
+    platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  position: absolute;
-  top: ${props =>
-    props.platform === 'ios' ? 70 : props.platform === 'android' ? 40 : null}px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: ${props => (props.platform === 'ios' ? 70 : props.platform === 'android' ? 40 : null)}px;
 `;
 
 export const MapInputContainer = styled.View`
-  width: 90%;
+    width: 90%;
 `;
 
-export const MapInputhWrapper = styled.TouchableOpacity<{
-  platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
+export const MapInputWrapper = styled.TouchableOpacity<{
+    platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 46px;
-  background-color: ${colors.white};
-  border-radius: 10px;
-  border: ${props =>
-    props.platform === 'android' ? `1px solid ${colors.whitegrey}` : 0};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 46px;
+    background-color: ${colors.white};
+    border-radius: 10px;
+    border: ${props => (props.platform === 'android' ? `1px solid ${colors.whitegrey}` : 0)};
 `;
 
 export const InputForm = styled.View`
-  display: flex;
-  height: 46px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+    display: flex;
+    height: 46px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 export const BlockInput = styled.TextInput`
-  margin-left: 10px;
-  color: ${colors.lightgrey};
+    margin-left: 10px;
+    color: ${colors.lightgrey};
 `;
