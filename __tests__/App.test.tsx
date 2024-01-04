@@ -24,6 +24,8 @@ jest.mock('../src/components/reuse/skeleton/SkeletonHomeDataCollection', () => {
 jest.mock('@react-native-seoul/kakao-login', () => '@react-native-seoul/kakao-login');
 jest.mock('@react-native-seoul/naver-login', () => '@react-native-seoul/naver-login');
 
+jest.mock('@invertase/react-native-apple-authentication', () => '@invertase/react-native-apple-authentication');
+
 it('renders correctly', () => {
     create(<App />);
 });

@@ -15,14 +15,3 @@ export const EventTitleContainer = styled.View`
     padding: 0 20px;
     margin-bottom: 10px;
 `;
-
-export const PhotoDumpUpScrollImageBox = styled.TouchableOpacity`
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50px);
-    z-index: 999;
-    elevation: 999;
-`;

@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { FlatList, Modal, TouchableOpacity } from 'react-native';
 
-import UpIcon from 'assets/image/icon/btn_up.svg';
 import ReviewFrame from 'components/home/photo-booth-list/ReviewFrame';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import GetMoreReview from 'components/reuse/photo-dump/GetMoreReview';
 import { ReviewProps } from 'interfaces/Home.interface';
 import { SearchResultProps } from 'interfaces/HomeSearch.interface';
@@ -11,7 +11,6 @@ import { SearchResultAlertContainer } from 'styles/layout/home-search/input/Revi
 import {
     EventTitleContainer,
     PhotoDumpTitleContainer,
-    PhotoDumpUpScrollImageBox,
     SearchResultContainer,
 } from 'styles/layout/home-search/search-result/SearchResult.style';
 import { FontWhiteGreyNormalMedium, FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.style';
@@ -27,13 +26,8 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
     const closeMoreEventModal = () => {
         setShowMoreEventModal(false);
     };
-
     const { eventData: eventList, finishedEvent } = eventData;
-
     const flatListRef = useRef<FlatList>(null);
-    const handleScrollToTop = () => {
-        flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-    };
 
     const onEndReached = () => {
         // 스크롤 시 새로운 임시 데이터
@@ -65,7 +59,9 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
         setAllPhotoBoothData(prevData => [...prevData, ...newReviewData]);
     };
 
-    const renderReviewItem = ({ item }: { item: ReviewProps }) => <ReviewFrame key={item.reviewID} data={item} />;
+    const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
+        return <ReviewFrame key={item.reviewID} data={item} />;
+    }, []);
 
     return (
         <SearchResultContainer>
@@ -131,11 +127,7 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
                 </>
             )}
 
-            {allPhotoBoothData.length >= 6 && (
-                <PhotoDumpUpScrollImageBox onPress={handleScrollToTop}>
-                    <UpIcon />
-                </PhotoDumpUpScrollImageBox>
-            )}
+            {allPhotoBoothData.length >= 6 && <UpScrollButton top="50%" flatListRef={flatListRef} />}
 
             <Modal
                 animationType="slide"

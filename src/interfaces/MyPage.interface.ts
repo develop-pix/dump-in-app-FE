@@ -2,7 +2,7 @@ export type ActivityComponentProps = 'MyReviewList' | 'MyPostList' | 'MyPhotoBoo
 
 export interface MyActiveProps {
     activeComponent: ActivityComponentProps;
-    setActiveComponent: (activeComponent: ActivityComponentProps) => void;
+    updateActiveComponent: (activeComponent: ActivityComponentProps) => void;
 }
 
 export interface ActivityComponentItemProps {
@@ -14,14 +14,21 @@ export interface ActivityComponentItemProps {
 }
 
 export interface MyPhotoBoothFrameProps {
-    photoBoothData: {
-        photoBoothID: number;
-        photoBoothName: string;
-        branch: string;
-        representativeImage: string;
-        hashtag: string[];
-        myPhotoBooth: boolean;
-    };
+    photoBoothData: MyPhotoBoothFrameType;
+}
+
+export interface MyPhotoBoothFrameType {
+    photoBoothID: number;
+    photoBoothName: string;
+    branch: string;
+    representativeImage: string;
+    hashtag: string[];
+    myPhotoBooth: boolean;
+}
+
+export interface MyPageUserDataProps {
+    activeComponent: ActivityComponentProps;
+    updateActiveComponent: (newComponent: ActivityComponentProps) => void;
 }
 
 export interface MyPageMenuProps {

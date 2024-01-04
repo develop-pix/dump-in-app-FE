@@ -1,6 +1,7 @@
 import { ScrollView } from 'react-native';
 
 import { CategoryEventFilterProps } from 'interfaces/Category.interface';
+import { CategoryEventFilterContainer } from 'styles/layout/category/CategoryEventFilter.style';
 import { FilterTextButton, FilterTextButtonContent } from 'styles/layout/home/filter/Filter.style';
 
 const availableHashtags = [
@@ -16,7 +17,7 @@ const availableHashtags = [
     '계절2',
 ];
 
-export default function FilterHashtag({ hashtags, setHashtags, filterOptionSelect }: CategoryEventFilterProps) {
+export default function CategoryEventFilter({ hashtags, setHashtags, filterOptionSelect }: CategoryEventFilterProps) {
     const handleHashtagToggle = (hashtag: string) => {
         const isSelected = hashtags.includes(hashtag);
         let hashtagArray: string[];
@@ -32,7 +33,7 @@ export default function FilterHashtag({ hashtags, setHashtags, filterOptionSelec
     };
 
     return (
-        <>
+        <CategoryEventFilterContainer>
             <ScrollView horizontal>
                 {availableHashtags.map(hashtagOption => {
                     const isSelected = hashtags.includes(hashtagOption);
@@ -46,6 +47,6 @@ export default function FilterHashtag({ hashtags, setHashtags, filterOptionSelec
                     );
                 })}
             </ScrollView>
-        </>
+        </CategoryEventFilterContainer>
     );
 }

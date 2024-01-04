@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 
-import UpIcon from 'assets/image/icon/btn_up.svg';
+import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreHomeData from 'components/reuse/skeleton/SkeletonGetMoreHomeData';
 import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDataCollection';
 import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from 'interfaces/Home.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
-import { CollectionContainer, UpScrollImageBox } from 'styles/layout/home/HomeDataCollection.style';
+import { CollectionContainer } from 'styles/layout/home/HomeDataCollection.style';
 
 import HomeMenuBar from './HomeMenuBar';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
@@ -26,6 +26,7 @@ export default function HomeDataCollection() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const flatListRef = useRef<FlatList>(null);
 
     // 포토부스, 이벤트, 리뷰 데이터 12개 임의로 생성
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothProps[]>([
@@ -104,11 +105,6 @@ export default function HomeDataCollection() {
         },
     ]);
 
-    const flatListRef = useRef<FlatList>(null);
-    const handleScrollToTop = () => {
-        flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-    };
-
     // 필터 존재 여부 확인 변수
     const hasFilterOptionData = Object.values(filterData).some(
         value => value && (Array.isArray(value) ? value.length > 0 : true),
@@ -134,7 +130,9 @@ export default function HomeDataCollection() {
         setCollectionData(prevData => [...prevData, moreData]);
     };
 
-    const renderReviewItem = ({ item }: { item: CollectionDataProps }) => <PhotoBoothList data={item} />;
+    const renderReviewItem = useCallback(({ item }: { item: CollectionDataProps }) => {
+        return <PhotoBoothList data={item} />;
+    }, []);
 
     useEffect(() => {
         // 예시 async ~await로 정상적으로 데이터 fetch완료시 실행
@@ -161,10 +159,7 @@ export default function HomeDataCollection() {
                                     onEndReachedThreshold={0.1}
                                     ListFooterComponent={<SkeletonGetMoreHomeData />}
                                 />
-
-                                <UpScrollImageBox onPress={handleScrollToTop}>
-                                    <UpIcon />
-                                </UpScrollImageBox>
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
                             </>
                         ) : (
                             <NoResultPhotoBooth filterData={filterData} />

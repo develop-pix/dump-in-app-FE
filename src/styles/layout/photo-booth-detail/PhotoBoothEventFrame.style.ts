@@ -7,7 +7,7 @@ export const EventItem = styled.TouchableOpacity`
     height: 145px;
     border-radius: 10px;
     overflow: hidden;
-    margin-top: 10px;
+    margin-bottom: 10px;
 `;
 
 export const EventImageWrapper = styled.View`

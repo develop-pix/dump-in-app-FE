@@ -13,7 +13,7 @@ import {
     MyActivityContainer,
 } from 'styles/layout/my-page/MyActivity/MyActivity.style';
 
-export default function MyActive({ activeComponent, setActiveComponent }: MyActiveProps) {
+export default function MyActive({ activeComponent, updateActiveComponent }: MyActiveProps) {
     const activityComponentItem: ActivityComponentItemProps[] = [
         {
             key: 'myPicture',
@@ -67,7 +67,7 @@ export default function MyActive({ activeComponent, setActiveComponent }: MyActi
                 <ActivityItemContainer
                     key={item.key}
                     onPress={() => {
-                        setActiveComponent(item.component);
+                        updateActiveComponent(item.component);
                     }}
                     isActive={activeComponent === item.component}>
                     {activeComponent === item.component ? activeImageMap[item.component] : imageMap[item.component]}

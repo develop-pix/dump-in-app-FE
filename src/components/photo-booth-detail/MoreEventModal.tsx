@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FlatList } from 'react-native';
 import Modal from 'react-native-modal';
 
 import CloseIcon from 'assets/image/icon/btn_close.svg';
-import GetMoreReview from 'components/reuse/photo-dump/GetMoreReview';
 import { EventDataType, MoreEventModalProps } from 'interfaces/PhotoBoothDetail.interface';
 import {
     CloseButtonContainer,
@@ -11,6 +10,8 @@ import {
     TitleContainer,
 } from 'styles/layout/photo-booth-detail/MoreEventModal.style';
 import { FontWhiteGreyNormalSemibold } from 'styles/layout/reuse/text/Text.style';
+
+import GetMoreReview from '../reuse/photo-dump/GetMoreReview';
 
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 
@@ -59,7 +60,9 @@ export default function MoreEventModal({ visible, onClose, eventData }: MoreEven
         setAllEventData(prevData => [...prevData, ...newEventData]);
     };
 
-    const renderEventItem = ({ item }: { item: EventDataType }) => <PhotoBoothEventFrame event={item} />;
+    const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
+        return <PhotoBoothEventFrame event={item} />;
+    }, []);
 
     return (
         <Modal
