@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {ReviewProps} from '../../../interfaces/Home.interface';
 import {
   MyPostListContainer,
@@ -7,7 +7,7 @@ import {
 import MyPostFrame from './MyPostFrame';
 import SkeletonMyPageReview from '../../reuse/skeleton/SkeletonMyPageReview';
 import SkeletonGetMoreMyPageReview from '../../reuse/skeleton/SkeletonGetMoreMyPageReview';
-import {View, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {MyPageUserDataProps} from '../../../interfaces/MyPage.interface';
 import MyPageUserData from '../MyPageUserData';
 import {UpScrollButton} from '../../reuse/button/UpScrollButton';
@@ -22,14 +22,14 @@ export default function MyPostList({
   const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
   const flatListRef = useRef<FlatList>(null);
 
-  const renderHeader = () => {
+  const renderHeader = useCallback(() => {
     return (
       <MyPageUserData
         activeComponent={activeComponent}
         updateActiveComponent={updateActiveComponent}
       />
     );
-  };
+  }, [activeComponent, updateActiveComponent]);
 
   const onEndReached = () => {
     const newPage = page + 1;
@@ -45,9 +45,9 @@ export default function MyPostList({
     setReviewData(prevData => [...prevData, ...moreData]);
   };
 
-  const renderReviewItem = ({item}: {item: ReviewProps}) => (
-    <MyPostFrame data={item} />
-  );
+  const renderReviewItem = useCallback(({item}: {item: ReviewProps}) => {
+    return <MyPostFrame data={item} />;
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {

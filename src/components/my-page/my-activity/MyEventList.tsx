@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import PhotoBoothEventFrame from '../../photobooth-detail/PhotoBoothEventFrame';
 import {
   MyEventListContainer,
@@ -23,14 +23,14 @@ export default function MyEventList({
   const [eventData, setEventData] = useState<EventDataType[]>([]);
   const flatListRef = useRef<FlatList>(null);
 
-  const renderHeader = () => {
+  const renderHeader = useCallback(() => {
     return (
       <MyPageUserData
         activeComponent={activeComponent}
         updateActiveComponent={updateActiveComponent}
       />
     );
-  };
+  }, [activeComponent, updateActiveComponent]);
 
   const onEndReached = () => {
     const newPage = page + 1;
@@ -46,11 +46,13 @@ export default function MyEventList({
     setEventData(prevData => [...prevData, ...moreData]);
   };
 
-  const renderReviewItem = ({item}: {item: EventDataType}) => (
-    <PhotoBoothEventFrameContainer>
-      <PhotoBoothEventFrame event={item} />
-    </PhotoBoothEventFrameContainer>
-  );
+  const renderEventItem = useCallback(({item}: {item: EventDataType}) => {
+    return (
+      <PhotoBoothEventFrameContainer>
+        <PhotoBoothEventFrame event={item} />
+      </PhotoBoothEventFrameContainer>
+    );
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -81,7 +83,7 @@ export default function MyEventList({
             keyExtractor={item => item.eventID.toString()}
             ref={flatListRef}
             ListHeaderComponent={renderHeader}
-            renderItem={renderReviewItem}
+            renderItem={renderEventItem}
             onEndReached={onEndReached}
             onEndReachedThreshold={0.1}
             ListFooterComponent={SkeletonGetMoreMyPageEvent}

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import {SearchResultProps} from '../../../interfaces/HomeSearch.interface';
 import EventResult from './EventResult';
 import {
@@ -69,9 +69,9 @@ export default function SearchResult({
     setAllPhotoBoothData(prevData => [...prevData, ...newReviewData]);
   };
 
-  const renderReviewItem = ({item}: {item: ReviewProps}) => (
-    <ReviewFrame key={item.reviewID} data={item} />
-  );
+  const renderReviewItem = useCallback(({item}: {item: ReviewProps}) => {
+    return <ReviewFrame key={item.reviewID} data={item} />;
+  }, []);
 
   return (
     <SearchResultContainer>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import MyPhotoBoothFrame from './MyPhotoBoothFrame';
 import {
   MyPhotoBoothListContainer,
@@ -25,14 +25,14 @@ export default function MyPhotoBoothList({
   );
   const flatListRef = useRef<FlatList>(null);
 
-  const renderHeader = () => {
+  const renderHeader = useCallback(() => {
     return (
       <MyPageUserData
         activeComponent={activeComponent}
         updateActiveComponent={updateActiveComponent}
       />
     );
-  };
+  }, [activeComponent, updateActiveComponent]);
 
   const onEndReached = () => {
     const newPage = page + 1;
@@ -48,10 +48,15 @@ export default function MyPhotoBoothList({
     setPhotoBoothData(prevData => [...prevData, ...moreData]);
   };
 
-  const renderReviewItem = ({item}: {item: MyPhotoBoothFrameType}) => (
-    <MyPhotoBoothFrameContainer>
-      <MyPhotoBoothFrame photoBoothData={item} />
-    </MyPhotoBoothFrameContainer>
+  const renderPhotoBoothItem = useCallback(
+    ({item}: {item: MyPhotoBoothFrameType}) => {
+      return (
+        <MyPhotoBoothFrameContainer>
+          <MyPhotoBoothFrame photoBoothData={item} />
+        </MyPhotoBoothFrameContainer>
+      );
+    },
+    [],
   );
 
   useEffect(() => {
@@ -82,7 +87,7 @@ export default function MyPhotoBoothList({
             keyExtractor={item => item.photoBoothID.toString()}
             ref={flatListRef}
             ListHeaderComponent={renderHeader}
-            renderItem={renderReviewItem}
+            renderItem={renderPhotoBoothItem}
             onEndReached={onEndReached}
             onEndReachedThreshold={0.1}
             ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}

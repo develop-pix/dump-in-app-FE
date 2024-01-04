@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {ReviewProps} from '../../../interfaces/Home.interface';
 import ReviewFrame from '../../home/photo-booth-list/ReviewFrame';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../../styles/layout/my-page/MyActivity/MyReviewList.style';
 import SkeletonMyPageReview from '../../reuse/skeleton/SkeletonMyPageReview';
 import SkeletonGetMoreMyPageReview from '../../reuse/skeleton/SkeletonGetMoreMyPageReview';
-import {View, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {MyPageUserDataProps} from '../../../interfaces/MyPage.interface';
 import MyPageUserData from '../MyPageUserData';
 import {UpScrollButton} from '../../reuse/button/UpScrollButton';
@@ -22,14 +22,14 @@ export default function MyReviewList({
   const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
   const flatListRef = useRef<FlatList>(null);
 
-  const renderHeader = () => {
+  const renderHeader = useCallback(() => {
     return (
       <MyPageUserData
         activeComponent={activeComponent}
         updateActiveComponent={updateActiveComponent}
       />
     );
-  };
+  }, [activeComponent, updateActiveComponent]);
 
   const onEndReached = () => {
     const newPage = page + 1;
@@ -45,9 +45,9 @@ export default function MyReviewList({
     setReviewData(prevData => [...prevData, ...moreData]);
   };
 
-  const renderReviewItem = ({item}: {item: ReviewProps}) => (
-    <ReviewFrame data={item} />
-  );
+  const renderReviewItem = useCallback(({item}: {item: ReviewProps}) => {
+    return <ReviewFrame data={item} />;
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {

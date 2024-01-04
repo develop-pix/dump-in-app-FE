@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {FlatList} from 'react-native';
 import Modal from 'react-native-modal';
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
@@ -68,9 +68,9 @@ export default function MoreEventModal({
     setAllEventData(prevData => [...prevData, ...newEventData]);
   };
 
-  const renderEventItem = ({item}: {item: EventDataType}) => (
-    <PhotoBoothEventFrame event={item} />
-  );
+  const renderEventItem = useCallback(({item}: {item: EventDataType}) => {
+    return <PhotoBoothEventFrame event={item} />;
+  }, []);
 
   return (
     <Modal

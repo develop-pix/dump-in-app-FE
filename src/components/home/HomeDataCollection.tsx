@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {FlatList} from 'react-native';
 import PhotoBoothList from './photo-booth-list/PhotoBoothList';
 import HomeMenuBar from './HomeMenuBar';
@@ -145,8 +145,11 @@ export default function HomeDataCollection() {
     setCollectionData(prevData => [...prevData, moreData]);
   };
 
-  const renderReviewItem = ({item}: {item: CollectionDataProps}) => (
-    <PhotoBoothList data={item} />
+  const renderReviewItem = useCallback(
+    ({item}: {item: CollectionDataProps}) => {
+      return <PhotoBoothList data={item} />;
+    },
+    [],
   );
 
   useEffect(() => {

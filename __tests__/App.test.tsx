@@ -40,6 +40,11 @@ jest.mock(
   () => '@react-native-seoul/naver-login',
 );
 
+jest.mock(
+  '@invertase/react-native-apple-authentication',
+  () => '@invertase/react-native-apple-authentication',
+);
+
 it('renders correctly', () => {
   renderer.create(<App />);
 });

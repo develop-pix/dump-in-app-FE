@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {CategoryEventContainer} from '../../styles/layout/category/CategoryEvent.style';
 import CategoryEventFilter from './CategoryEventFilter';
 import SearchNoData from '../reuse/alert/SearchNoData';
@@ -59,9 +59,9 @@ export default function CategoryEvent() {
     setEventTempData(prevData => [...prevData, ...moreData]);
   };
 
-  const renderEventItem = ({item}: {item: CategoryEventProps}) => (
-    <CategoryEventItem eventData={item} />
-  );
+  const renderEventItem = useCallback(({item}: {item: CategoryEventProps}) => {
+    return <CategoryEventItem eventData={item} />;
+  }, []);
 
   useEffect(() => {
     // 예시 async ~await로 정상적으로 데이터 fetch완료시 실행
