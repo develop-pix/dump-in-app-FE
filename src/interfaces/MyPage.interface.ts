@@ -1,37 +1,37 @@
-import React from 'react';
-
-export type ActivityComponentProps =
-  | 'MyReviewList'
-  | 'MyPostList'
-  | 'MyPhotoBoothList'
-  | 'MyEventList'
-  | 'Login';
+export type ActivityComponentProps = 'MyReviewList' | 'MyPostList' | 'MyPhotoBoothList' | 'MyEventList' | 'Login';
 
 export interface MyActiveProps {
-  activeComponent: ActivityComponentProps;
-  setActiveComponent: (activeComponent: ActivityComponentProps) => void;
+    activeComponent: ActivityComponentProps;
+    updateActiveComponent: (activeComponent: ActivityComponentProps) => void;
 }
 
 export interface ActivityComponentItemProps {
-  key: string;
-  image: React.JSX.Element;
-  activeImage: React.JSX.Element;
-  text: string;
-  component: ActivityComponentProps;
+    key: string;
+    image: React.JSX.Element;
+    activeImage: React.JSX.Element;
+    text: string;
+    component: ActivityComponentProps;
 }
 
 export interface MyPhotoBoothFrameProps {
-  photoBoothData: {
+    photoBoothData: MyPhotoBoothFrameType;
+}
+
+export interface MyPhotoBoothFrameType {
     photoBoothID: number;
-    photoboothName: string;
+    photoBoothName: string;
     branch: string;
     representativeImage: string;
     hashtag: string[];
     myPhotoBooth: boolean;
-  };
+}
+
+export interface MyPageUserDataProps {
+    activeComponent: ActivityComponentProps;
+    updateActiveComponent: (newComponent: ActivityComponentProps) => void;
 }
 
 export interface MyPageMenuProps {
-  visible: boolean;
-  setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    visible: boolean;
+    setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }

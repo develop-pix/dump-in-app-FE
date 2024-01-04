@@ -1,96 +1,94 @@
-import {ReactNode} from 'react';
+import { ReactNode } from 'react';
 
 export type RootStackParam = {
-  Home: {screen: ScreenName};
-  HomeSearch: {screen: ScreenName; PhotoBoothName: string | null};
-  Location:
-    | {screen: ScreenName}
-    | {PhotoBoothID: number | null; screen: ScreenName};
-  LocationSearch: {NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName};
-  Category: {screen: ScreenName};
-  MyPage: {screen: ScreenName};
-  Branch: {branchID: number; screen: ScreenName};
-  ReviewDetail: {reviewID: number; screen: ScreenName};
-  PhotoBoothDetail: {PhotoBoothID: number; screen: ScreenName};
-  EventDetail: {eventID: number; screen: ScreenName};
-  ReviewNew: {branchID: number | undefined; screen: ScreenName};
-  ReviewEdit: {ReviewID: number | null; screen: ScreenName};
-  Login: {screen: ScreenName};
-  Notification: {screen: ScreenName};
-  OfficialImageDetail: {
-    screen: ScreenName;
-    photoBoothName: string;
-    image: string[];
-    index: number;
-  };
+    Home: { screen: ScreenName };
+    HomeSearch: { screen: ScreenName; PhotoBoothName: string | null };
+    Location: { screen: ScreenName } | { PhotoBoothID: number | null; screen: ScreenName };
+    LocationSearch: { NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName };
+    Category: { screen: ScreenName };
+    MyPage: { screen: ScreenName };
+    Branch: { branchID: number; screen: ScreenName };
+    ReviewDetail: { reviewID: number; screen: ScreenName };
+    PhotoBoothDetail: { PhotoBoothID: number; screen: ScreenName };
+    EventDetail: { eventID: number; screen: ScreenName };
+    ReviewNew: { branchID: number | undefined; screen: ScreenName };
+    ReviewEdit: { ReviewID: number | null; screen: ScreenName };
+    Login: { screen: ScreenName };
+    Notification: { screen: ScreenName };
+    OfficialImageDetail: {
+        screen: ScreenName;
+        photoBoothName: string;
+        image: string[];
+        index: number;
+    };
 };
 
 export interface NavigationScreenParam {
-  screen: ScreenName;
+    screen: ScreenName;
 }
 
 export interface NavigationBarListItemProps {
-  screen: ScreenName;
-  selectedScreen: ScreenName;
-  handleListClick: (screen: ScreenName) => void;
+    screen: ScreenName;
+    selectedScreen: ScreenName;
+    handleListClick: (screen: ScreenName) => void;
 }
 
 export interface NavigationBarProps {
-  currentScreen: ScreenName;
+    currentScreen: ScreenName;
 }
 
 export type ScreenName = 'Home' | 'Location' | 'Category' | 'MyPage';
 
 export type BranchParamList = {
-  branchType: {
-    branchID: number;
-  };
+    branchType: {
+        branchID: number;
+    };
 };
 
 export type ReviewDetailParamList = {
-  reviewDetailType: {
-    reviewID: number;
-  };
+    reviewDetailType: {
+        reviewID: number;
+    };
 };
 
 export type ReviewEditParamList = {
-  reviewType: {
-    reviewID: number;
-  };
+    reviewType: {
+        reviewID: number;
+    };
 };
 
 export type LocationSearchParamList = {
-  locationSearchType: {
-    NextPage: 'BranchDetail' | 'ReviewNew';
-    screen: ScreenName;
-  };
+    locationSearchType: {
+        NextPage: 'BranchDetail' | 'ReviewNew';
+        screen: ScreenName;
+    };
 };
 
 export type PhotoBoothParamList = {
-  photoboothType: {
-    PhotoBoothID: number | null;
-  };
+    photoBoothType: {
+        PhotoBoothID: number | null;
+    };
 };
 
 export type ScreenContextType = {
-  screen: string;
-  setScreen: React.Dispatch<React.SetStateAction<string>>;
+    screen: string;
+    setScreen: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export interface ScreenProviderProps {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 export type NewReviewParamList = {
-  branchType: {
-    branchID: number | undefined;
-  };
+    branchType: {
+        branchID: number | undefined;
+    };
 };
 
 export type OfficialImageDetailParamList = {
-  imageData: {
-    photoBoothName: string | null;
-    image: string[];
-    index: number;
-  };
+    imageData: {
+        photoBoothName: string | null;
+        image: string[];
+        index: number;
+    };
 };

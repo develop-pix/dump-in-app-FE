@@ -1,11 +1,10 @@
-import React from 'react';
-import {OfficialDetailContainer} from '../styles/layout/official-image-detail/OfficialImageDetail.style';
-import OfficialImageDetailForm from '../components/official-image-detail/OfficialImageDetailForm';
+import OfficialImageDetailForm from 'components/official-image-detail/OfficialImageDetailForm';
+import { OfficialDetailContainer } from 'styles/layout/official-image-detail/OfficialImageDetail.style';
 
 export default function OfficialImageDetail() {
-  return (
-    <OfficialDetailContainer>
-      <OfficialImageDetailForm />
-    </OfficialDetailContainer>
-  );
+    return (
+        <OfficialDetailContainer>
+            <OfficialImageDetailForm />
+        </OfficialDetailContainer>
+    );
 }

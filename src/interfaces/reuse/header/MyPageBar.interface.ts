@@ -1,3 +1,3 @@
 export interface MyPageBarProps {
-  setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }

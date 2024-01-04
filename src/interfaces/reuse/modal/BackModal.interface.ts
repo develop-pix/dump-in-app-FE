@@ -1,3 +1,3 @@
 export interface BackModalProps {
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }

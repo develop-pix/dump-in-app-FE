@@ -1,50 +1,50 @@
-import {FilterProps} from './reuse/Filter.interface';
+import { FilterProps } from './reuse/Filter.interface';
 
 export interface HomeMenuBarProps {
-  filterData: FilterProps;
-  setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
-  onFilterSubmit: (newFilterData: FilterProps) => void;
+    filterData: FilterProps;
+    setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
+    onFilterSubmit: (newFilterData: FilterProps) => void;
 }
 
 export interface HomeSelectedFilterOptionProps {
-  filterData: FilterProps;
+    filterData: FilterProps;
 }
 
 export interface CollectionDataProps {
-  photoBoothData: PhotoBoothProps[];
-  eventData: EventProps[];
-  reviewData: ReviewProps[];
+    photoBoothData: PhotoBoothProps[];
+    eventData: EventProps[];
+    reviewData: ReviewProps[];
 }
 
 export interface PhotoBoothListProps {
-  data: CollectionDataProps;
+    data: CollectionDataProps;
 }
 
 export interface PhotoBoothFrameProps {
-  data: PhotoBoothProps;
+    data: PhotoBoothProps;
 }
 
 export interface EventFrameProps {
-  data: EventProps;
+    data: EventProps;
 }
 
 export interface ReviewFrameProps {
-  data: ReviewProps;
+    data: ReviewProps;
 }
 
 export interface PhotoBoothProps {
-  photoBoothID: number;
-  photoboothName: string;
-  representativeImage: string;
+    photoBoothID: number;
+    photoBoothName: string;
+    representativeImage: string;
 }
 
 export interface EventProps {
-  eventID: number;
-  representativeImage: string;
+    eventID: number;
+    representativeImage: string;
 }
 
 export interface ReviewProps {
-  reviewID: number;
-  branchName: string;
-  representativeImage: string;
+    reviewID: number;
+    branchName: string;
+    representativeImage: string;
 }
