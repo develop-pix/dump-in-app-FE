@@ -1,3 +1,4 @@
+import { NAVER_MAP_API_ID, NAVER_MAP_API_KEY } from '@env';
 import axios from 'axios';
 
 export const getAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
@@ -14,9 +15,8 @@ export const getAddressFromNaverGeocoding = async (latitude: number, longitude: 
     return await axios
         .get(URL, {
             headers: {
-                // TODO: 배포 및 깃허브에 ID와 Secret key가 드러나면 안됨 -> 나중에 env 파일로 수정
-                'X-NCP-APIGW-API-KEY-ID': 'sc9favxy2w',
-                'X-NCP-APIGW-API-KEY': '34Pab6RRd33rPCqGq4lcXcrkUKE7ogsx9nlAzFfo',
+                'X-NCP-APIGW-API-KEY-ID': NAVER_MAP_API_ID,
+                'X-NCP-APIGW-API-KEY': NAVER_MAP_API_KEY,
             },
             withCredentials: true,
         })

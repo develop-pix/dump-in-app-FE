@@ -1,3 +1,4 @@
+import { S3_ACCESSKEY_ID, S3_BUCKET_NAME, S3_SECRET_ACCESSKEY } from '@env';
 import AWS, { config } from 'aws-sdk';
 
 export const UploadImageToS3 = async (representativeImage: string, representativeImageName: string) => {
@@ -7,12 +8,12 @@ export const UploadImageToS3 = async (representativeImage: string, representativ
         name: representativeImageName,
     };
 
-    // TODO: 아래 S3Data 변수들은 추후 env로 이동
+    // S3경로 및 secretKey Setting
     const S3Data = {
-        bucketName: 'api-dev.dump-in.co.kr',
+        bucketName: S3_BUCKET_NAME,
         region: 'ap-northeast-2',
-        accessKeyID: 'AKIA2MDWSFM6EEDYYNMZ',
-        secretAccessKey: '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',
+        accessKeyID: S3_ACCESSKEY_ID,
+        secretAccessKey: S3_SECRET_ACCESSKEY,
     };
 
     // AWS Config
