@@ -13,6 +13,7 @@ export default function Branch() {
     const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
 
     /* 임시 데이터, myBranch는 앱 로그인 할때 전부 저장? */
+    // TODO: 해시태그 떄문에 에러발생, Type문제로 추정.
     const tempData: BranchData[] = [
         {
             branchID: 1,

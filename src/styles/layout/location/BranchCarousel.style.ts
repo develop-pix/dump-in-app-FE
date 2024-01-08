@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 export const BranchCardContainer = styled.View`
     position: absolute;
-    bottom: 50px;
+    bottom: -170px;
     width: 100%;
     display: flex;
     gap: 10px;

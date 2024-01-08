@@ -1,7 +1,9 @@
-export const TagsArrayToHashTagArrayForm = (hashtags: string[]) => {
+import { HashtagData } from 'interfaces/Location.interface';
+
+export const TagsArrayToHashTagArrayForm = (hashtags: HashtagData[]) => {
     const newForm: string[] = [];
     hashtags.map(hashtag => {
-        newForm.push('# '.concat('', hashtag));
+        newForm.push('# '.concat('', hashtag.name));
     });
     return newForm;
 };

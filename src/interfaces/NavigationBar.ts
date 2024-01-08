@@ -7,7 +7,7 @@ export type RootStackParam = {
     LocationSearch: { NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName };
     Category: { screen: ScreenName };
     MyPage: { screen: ScreenName };
-    Branch: { branchID: number; screen: ScreenName };
+    Branch: { branchID: string; screen: ScreenName };
     ReviewDetail: { reviewID: number; screen: ScreenName };
     PhotoBoothDetail: { PhotoBoothID: number; screen: ScreenName };
     EventDetail: { eventID: number; screen: ScreenName };

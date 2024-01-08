@@ -4,7 +4,7 @@ import Geolocation from 'react-native-geolocation-service';
 import NaverMapView, { Marker } from 'react-native-nmap';
 
 import { GetAddressFromNaverGeocoding, GetPhotoBoothData } from 'hooks/axios/Location';
-import { LocationData } from 'interfaces/Location.interface';
+import { BranchCardData, LocationData } from 'interfaces/Location.interface';
 import { MapContainer } from 'styles/layout/location/Map.style';
 
 import BranchCarousel from './BranchCarousel';
@@ -27,10 +27,51 @@ export default function Map() {
         latitude: 37.564362,
         longitude: 126.977011,
     });
-    const [pinPosition, setPinPosition] = useState<LocationData[]>([]);
+    const [branchData, setBranchData] = useState<BranchCardData[]>([]);
     const [zoom, setZoom] = useState<number>(18);
     const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
     const cardMoveY = useRef(new Animated.Value(0)).current;
+
+    const GetAddressData = async (latitude: number, longitude: number) => {
+        // ReverseGeolocation 호출
+        const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
+        setLocation(addressData);
+    };
+
+    // branchData 데이터 얻기 호출
+    const GetBranchData = async (latitude: number, longitude: number) => {
+        const radius = 1.0;
+        const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
+        console.log(photoBoothData.data);
+        setBranchData(photoBoothData.data);
+    };
+
+    // 대한민국 첫 끝단 넘어가면 카메라를 서울로 전환
+    const ResetCameraPosition = useCallback(
+        (latitude: number, longitude: number) => {
+            if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
+                setCurrentPosition(myPosition);
+            } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
+                setCurrentPosition(myPosition);
+            }
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
+    );
+
+    const GetAuthorization = async () => {
+        try {
+            switch (platform) {
+                case 'ios':
+                    return await Geolocation.requestAuthorization('whenInUse');
+                case 'android':
+                    return await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
+                default:
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     /** 초기 위치 설정 */
     const GetLocation = () => {
@@ -54,55 +95,19 @@ export default function Map() {
         return watchID;
     };
 
-    const GetAddressData = async (latitude: number, longitude: number) => {
-        // ReverseGeolocation 호출
-        const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
-        setLocation(addressData);
-    };
-
-    // branchData 데이터 얻기 호출
-    const GetBranchData = async (latitude: number, longitude: number) => {
-        const radius = 1.0;
-        const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
-        console.log(photoBoothData);
-        setPinPosition([]);
-    };
-
-    // 대한민국 첫 끝단 넘어가면 카메라를 서울로 전환
-    const ResetCameraPosition = useCallback(
-        (latitude: number, longitude: number) => {
-            if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
-                setMyPosition(myPosition);
-            } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
-                setMyPosition(myPosition);
-            }
-        },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
-    );
-
-    const GetAuthorization = async () => {
-        try {
-            switch (platform) {
-                case 'ios':
-                    return await Geolocation.requestAuthorization('whenInUse');
-                case 'android':
-                    return await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
-                default:
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
     // 처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출
+    // TODO: 권한 거절 할시 어떻게 처리할지 고민 해야함
     useEffect(() => {
         let watch = -1;
-        GetAuthorization().then(result => {
-            if (result === 'granted') {
-                watch = GetLocation();
-            }
-        });
+        GetAuthorization()
+            .then(result => {
+                if (result === 'granted') {
+                    watch = GetLocation();
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            });
 
         // unmount시 위치 연결 해제
         return () => {
@@ -113,22 +118,30 @@ export default function Map() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // 처음 렌더링시 지도 위치 할당 완료시 위치 획득
+    // 현재 화면위치 바뀔때마다 데이터 Branch 데이터 Get
     useEffect(() => {
         if (myPosition.latitude && myPosition.longitude) {
-            GetAddressData(myPosition.latitude, myPosition.longitude);
             GetBranchData(myPosition.latitude, myPosition.longitude);
         }
     }, [myPosition.latitude, myPosition.longitude]);
 
+    // 처음 렌더링시 지도 위치 할당 완료시 위치 획득
+    useEffect(() => {
+        if (currentPosition.latitude && currentPosition.longitude) {
+            GetAddressData(currentPosition.latitude, currentPosition.longitude);
+        }
+    }, [currentPosition.latitude, currentPosition.longitude]);
+
     // 카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능
     useEffect(() => {
-        Animated.timing(cardMoveY, {
-            toValue: showNearBranch ? 20 : 200,
-            duration: 330,
-            useNativeDriver: true,
-        }).start();
-    }, [showNearBranch, cardMoveY]);
+        if (branchData.length > 0) {
+            Animated.timing(cardMoveY, {
+                toValue: showNearBranch ? -180 : -10,
+                duration: 330,
+                useNativeDriver: true,
+            }).start();
+        }
+    }, [showNearBranch, cardMoveY, branchData]);
 
     return (
         <MapContainer platform={platform}>
@@ -152,15 +165,16 @@ export default function Map() {
                 rotateGesturesEnabled={false}
                 tiltGesturesEnabled={false}>
                 <Marker coordinate={currentPosition} />
-                <Marker coordinate={myPosition} pinColor="yellow" />
-                {pinPosition.map(branchPosition => {
-                    <Marker coordinate={branchPosition} pinColor="red" />;
-                })}
+                {branchData.length > 0
+                    ? branchData.map(position => {
+                          <Marker coordinate={position} pinColor="red" />;
+                      })
+                    : null}
             </NaverMapView>
             <MapInput location={location} />
             <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
                 <ResetLocationButton GetAuthorization={GetAuthorization} GetLocation={GetLocation} setZoom={setZoom} />
-                <BranchCarousel showNearBranch={showNearBranch} />
+                <BranchCarousel branchData={branchData} />
             </Animated.View>
         </MapContainer>
     );

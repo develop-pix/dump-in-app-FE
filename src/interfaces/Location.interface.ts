@@ -35,27 +35,36 @@ export interface ResetLocationButtonProps {
 }
 
 export interface BranchCardData {
-    branchID: number;
-    imageLogo: string;
-    photoBoothName: string;
+    branchID: string;
     branchName: string;
-    hashtag: string[];
-    myBranch: boolean;
-    distance: number;
-    elapsedTime: string;
+    latitude: number;
+    longitude: number;
+    isLiked: boolean;
+    distance: string;
+    photoBoothBrand: BranchCardPhotoBoothData;
+}
+
+interface BranchCardPhotoBoothData {
+    photoBoothName: string;
+    logoImageURL: string;
+    hashtag: HashtagData[];
+}
+
+export interface HashtagData {
+    hashtagID: number;
+    name: string;
 }
 
 export interface BranchCarouselProps {
-    showNearBranch: boolean;
+    branchData: BranchCardData[];
 }
 
 export interface BranchCardProps {
-    branchID: number;
+    branchID: string;
     imageLogo: string;
     photoBoothName: string;
     branchName: string;
-    hashtag: string[];
+    hashtag: HashtagData[];
     myBranch: boolean;
-    distance: number;
-    elapsedTime: string;
+    distance: string;
 }

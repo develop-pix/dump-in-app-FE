@@ -44,14 +44,14 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
         });
 };
 
+//TODO: BACKEND API 수정됨에 따라 토큰 제거 or 로그인 시 토큰 헤더에 담도록 수정 (현재 미정)
 export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/location`,
+        url: `${BACKEND_API_URL}/photo-booths/locations`,
         headers: {
             Authorization:
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
-            'Content-Type': 'application/json',
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
         },
         params: {
             latitude: latitude,
@@ -60,9 +60,10 @@ export const GetPhotoBoothData = async (latitude: number, longitude: number, rad
         },
     })
         .then(res => {
-            console.log(res);
+            return res.data;
         })
         .catch(error => {
             console.log(error);
+            return [];
         });
 };

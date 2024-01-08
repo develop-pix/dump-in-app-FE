@@ -56,7 +56,7 @@ const App = () => {
                             <Stack.Screen
                                 name="Branch"
                                 component={Branch}
-                                initialParams={{ screen: 'Branch', branchID: 0 }}
+                                initialParams={{ screen: 'Branch', branchID: '0' }}
                             />
                             <Stack.Screen
                                 name="OfficialImageDetail"
