@@ -3,8 +3,8 @@ import { Animated, PermissionsAndroid, Platform } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import NaverMapView, { Marker } from 'react-native-nmap';
 
-import { getAddressFromNaverGeocoding } from 'hooks/axios/Location';
-import { MyLocation } from 'interfaces/Location.interface';
+import { GetAddressFromNaverGeocoding, GetPhotoBoothData } from 'hooks/axios/Location';
+import { LocationData } from 'interfaces/Location.interface';
 import { MapContainer } from 'styles/layout/location/Map.style';
 
 import BranchCarousel from './BranchCarousel';
@@ -17,14 +17,17 @@ export default function Map() {
     const platform = Platform.OS;
     // photoBoothID로 주변 포토부스 호출 null일시 모든 포토부스에 대하여 탐색
     const [location, setLocation] = useState<string>('주소 입력');
-    const [myPosition, setMyPosition] = useState<MyLocation>({
+    // 현재 내가 보고있는 지도의 center
+    const [myPosition, setMyPosition] = useState<LocationData>({
         latitude: 37.564362,
         longitude: 126.977011,
     });
-    const [pinPosition, setPinPosition] = useState<MyLocation>({
+    // 현재 내위치
+    const [currentPosition, setCurrentPosition] = useState<LocationData>({
         latitude: 37.564362,
         longitude: 126.977011,
     });
+    const [pinPosition, setPinPosition] = useState<LocationData[]>([]);
     const [zoom, setZoom] = useState<number>(18);
     const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
     const cardMoveY = useRef(new Animated.Value(0)).current;
@@ -33,6 +36,10 @@ export default function Map() {
     const GetLocation = () => {
         const watchID = Geolocation.watchPosition(
             position => {
+                setCurrentPosition({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
                 setMyPosition({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
@@ -49,24 +56,25 @@ export default function Map() {
 
     const GetAddressData = async (latitude: number, longitude: number) => {
         // ReverseGeolocation 호출
-        const addressData = await getAddressFromNaverGeocoding(latitude, longitude);
+        const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
         setLocation(addressData);
     };
 
     // branchData 데이터 얻기 호출
-
-    // const GetBranchData = async (latitude: number, longitude: number) => {
-    //     const photoBoothData = await GetPhotoBoothData(latitude, longitude);
-    //     setPhotoBoothData(photoBoothData);
-    // };
+    const GetBranchData = async (latitude: number, longitude: number) => {
+        const radius = 1.0;
+        const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
+        console.log(photoBoothData);
+        setPinPosition([]);
+    };
 
     // 대한민국 첫 끝단 넘어가면 카메라를 서울로 전환
     const ResetCameraPosition = useCallback(
         (latitude: number, longitude: number) => {
             if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
-                setPinPosition(myPosition);
+                setMyPosition(myPosition);
             } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
-                setPinPosition(myPosition);
+                setMyPosition(myPosition);
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -109,6 +117,7 @@ export default function Map() {
     useEffect(() => {
         if (myPosition.latitude && myPosition.longitude) {
             GetAddressData(myPosition.latitude, myPosition.longitude);
+            GetBranchData(myPosition.latitude, myPosition.longitude);
         }
     }, [myPosition.latitude, myPosition.longitude]);
 
@@ -125,10 +134,10 @@ export default function Map() {
         <MapContainer platform={platform}>
             <NaverMapView
                 style={{ width: '100%', height: '100%' }}
-                center={{ ...pinPosition, zoom }}
+                center={{ ...myPosition, zoom }}
                 onCameraChange={e => {
                     setZoom(e.zoom);
-                    setPinPosition({ latitude: e.latitude, longitude: e.longitude });
+                    setMyPosition({ latitude: e.latitude, longitude: e.longitude });
                     ResetCameraPosition(e.latitude, e.longitude);
                     setShowNearBranch(false);
                 }}
@@ -142,12 +151,15 @@ export default function Map() {
                 minZoomLevel={8}
                 rotateGesturesEnabled={false}
                 tiltGesturesEnabled={false}>
-                <Marker coordinate={myPosition} />
-                <Marker coordinate={pinPosition} pinColor="red" />
+                <Marker coordinate={currentPosition} />
+                <Marker coordinate={myPosition} pinColor="yellow" />
+                {pinPosition.map(branchPosition => {
+                    <Marker coordinate={branchPosition} pinColor="red" />;
+                })}
             </NaverMapView>
             <MapInput location={location} />
             <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
-                <ResetLocationButton myPosition={myPosition} setPinPosition={setPinPosition} setZoom={setZoom} />
+                <ResetLocationButton GetAuthorization={GetAuthorization} GetLocation={GetLocation} setZoom={setZoom} />
                 <BranchCarousel showNearBranch={showNearBranch} />
             </Animated.View>
         </MapContainer>

@@ -19,14 +19,18 @@ export interface BranchListProps {
     branchID: number;
 }
 
-export interface MyLocation {
+export interface LocationData {
     latitude: number;
     longitude: number;
 }
 
+export interface BranchLocationData {
+    branchLocation: LocationData[];
+}
+
 export interface ResetLocationButtonProps {
-    myPosition: MyLocation;
-    setPinPosition: React.Dispatch<React.SetStateAction<MyLocation>>;
+    GetAuthorization: () => Promise<'disabled' | 'granted' | 'denied' | 'restricted' | 'never_ask_again' | undefined>;
+    GetLocation: () => number;
     setZoom: React.Dispatch<React.SetStateAction<number>>;
 }
 

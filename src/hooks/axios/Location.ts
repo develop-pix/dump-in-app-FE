@@ -1,7 +1,7 @@
-import { NAVER_MAP_API_ID, NAVER_MAP_API_KEY } from '@env';
+import { BACKEND_API_URL, NAVER_MAP_API_ID, NAVER_MAP_API_KEY } from '@env';
 import axios from 'axios';
 
-export const getAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
+export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
     // 소수점 7자리 명시
     const str_latitude: string = latitude.toFixed(7);
     const str_longitude: string = longitude.toFixed(7);
@@ -41,5 +41,28 @@ export const getAddressFromNaverGeocoding = async (latitude: number, longitude: 
         .catch(error => {
             console.log(error);
             return '';
+        });
+};
+
+export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
+    return await axios({
+        method: 'get',
+        url: `${BACKEND_API_URL}/photo-booths/location`,
+        headers: {
+            Authorization:
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
+            'Content-Type': 'application/json',
+        },
+        params: {
+            latitude: latitude,
+            longitude: longitude,
+            radius: radius,
+        },
+    })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(error => {
+            console.log(error);
         });
 };

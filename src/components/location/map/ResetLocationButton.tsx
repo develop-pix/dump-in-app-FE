@@ -2,10 +2,15 @@ import ResetLocationIcon from 'assets/image/icon/btn_reset.svg';
 import { ResetLocationButtonProps } from 'interfaces/Location.interface';
 import { ResetLocation, ResetLocationButtonContainer } from 'styles/layout/location/ResetLocationButton.style';
 
-export default function ResetLocationButton({ myPosition, setPinPosition, setZoom }: ResetLocationButtonProps) {
+export default function ResetLocationButton({ GetAuthorization, GetLocation, setZoom }: ResetLocationButtonProps) {
     const onPressResetLocation = () => {
         setZoom(18);
-        setPinPosition(myPosition);
+        GetAuthorization().then(result => {
+            if (result === 'granted') {
+                GetLocation();
+            }
+            //TODO: 지도 권한 없을때 경고문 추가 할지 고민 해보아야함
+        });
     };
 
     return (
