@@ -1,11 +1,12 @@
 import ResetLocationIcon from 'assets/image/icon/btn_reset.svg';
 import { ResetLocationButtonProps } from 'interfaces/Location.interface';
 import { ResetLocation, ResetLocationButtonContainer } from 'styles/layout/location/ResetLocationButton.style';
+import { GetLocationAuthorization } from 'utils/GetAuthorization';
 
-export default function ResetLocationButton({ GetAuthorization, GetLocation, setZoom }: ResetLocationButtonProps) {
+export default function ResetLocationButton({ GetLocation, setZoom }: ResetLocationButtonProps) {
     const onPressResetLocation = () => {
         setZoom(18);
-        GetAuthorization().then(result => {
+        GetLocationAuthorization().then(result => {
             if (result === 'granted') {
                 GetLocation();
             }

@@ -1,5 +1,5 @@
 export interface BranchData {
-    branchID: number;
+    branchID: string;
     branchName: string;
     branchHashtag: string[];
     photoBoothName: string;

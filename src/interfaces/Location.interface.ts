@@ -7,10 +7,9 @@ export interface SearchBranchListProps {
 }
 
 export interface BranchData {
-    branchID: number;
+    branchID: string;
     branchName: string;
     distance: string;
-    address: string;
 }
 
 export interface BranchListProps {
@@ -29,7 +28,6 @@ export interface BranchLocationData {
 }
 
 export interface ResetLocationButtonProps {
-    GetAuthorization: () => Promise<'disabled' | 'granted' | 'denied' | 'restricted' | 'never_ask_again' | undefined>;
     GetLocation: () => number;
     setZoom: React.Dispatch<React.SetStateAction<number>>;
 }

@@ -44,7 +44,7 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
         });
 };
 
-//TODO: BACKEND API 수정됨에 따라 토큰 제거 or 로그인 시 토큰 헤더에 담도록 수정 (현재 미정)
+//TODO: BACKEND API 수정됨에 따라 토큰 제거 or 로그인 시 토큰 헤더에 담도록 수정
 export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
     return await axios({
         method: 'get',

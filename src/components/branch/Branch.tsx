@@ -16,7 +16,7 @@ export default function Branch() {
     // TODO: 해시태그 떄문에 에러발생, Type문제로 추정.
     const tempData: BranchData[] = [
         {
-            branchID: 1,
+            branchID: '1',
             branchName: '동대문 현대아울렛점',
             branchHashtag: ['일상', '가족', '우정샷'],
             photoBoothName: '인생네컷',
@@ -59,7 +59,7 @@ export default function Branch() {
             ],
         },
         {
-            branchID: 2,
+            branchID: '2',
             branchName: '한양대점',
             branchHashtag: ['일상', '가족', '우정샷'],
             photoBoothName: '인생네컷',
@@ -103,7 +103,7 @@ export default function Branch() {
             ],
         },
         {
-            branchID: 3,
+            branchID: '3',
             branchName: '혜화로터리점',
             branchHashtag: ['일상', '가족', '우정샷'],
             photoBoothName: '인생네컷',
@@ -133,7 +133,7 @@ export default function Branch() {
             ],
         },
         {
-            branchID: 4,
+            branchID: '4',
             branchName: '영등포 타임스퀘어점',
             branchHashtag: ['일상', '가족', '우정샷'],
             photoBoothName: '인생네컷',
@@ -162,7 +162,7 @@ export default function Branch() {
             ],
         },
         {
-            branchID: 5,
+            branchID: '5',
             branchName: '광화문교보문고점',
             branchHashtag: ['일상', '가족', '우정샷'],
             photoBoothName: '인생네컷',
@@ -178,7 +178,7 @@ export default function Branch() {
             review: [],
         },
         {
-            branchID: 6,
+            branchID: '6',
             branchName: 'abc점',
             branchHashtag: ['일상', '가족', '우정샷', '기타'],
             photoBoothName: 'Test',
@@ -228,7 +228,7 @@ export default function Branch() {
             ],
         },
         {
-            branchID: 7,
+            branchID: '7',
             branchName: '1234점',
             branchHashtag: ['일상'],
             photoBoothName: 'Test2',
