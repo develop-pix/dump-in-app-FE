@@ -1,10 +1,10 @@
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import { colors } from 'styles/base/Variable';
 import {
     LocationIconContainer,
@@ -18,14 +18,11 @@ import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/te
 export default function ReviewFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressReview = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
             navigation.push('ReviewDetail', {
                 reviewID: data.reviewID,
-                screen: currentScreen,
             });
         }
     };

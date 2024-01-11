@@ -1,39 +1,30 @@
 import { ReactNode } from 'react';
 
 export type RootStackParam = {
-    Home: { screen: ScreenName };
-    HomeSearch: { screen: ScreenName; PhotoBoothName: string | null };
-    Location: { screen: ScreenName } | { PhotoBoothID: number | null; screen: ScreenName };
-    LocationSearch: { NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName };
-    Category: { screen: ScreenName };
-    MyPage: { screen: ScreenName };
-    Branch: { branchID: number; screen: ScreenName };
-    ReviewDetail: { reviewID: number; screen: ScreenName };
-    PhotoBoothDetail: { PhotoBoothID: number; screen: ScreenName };
-    EventDetail: { eventID: number; screen: ScreenName };
-    ReviewNew: { branchID: number | undefined; screen: ScreenName };
-    ReviewEdit: { ReviewID: number | null; screen: ScreenName };
-    Login: { screen: ScreenName };
-    Notification: { screen: ScreenName };
+    Home: undefined;
+    HomeSearch: { PhotoBoothName: string | null };
+    Location: undefined | { PhotoBoothID: number | null };
+    LocationSearch: { NextPage: 'BranchDetail' | 'ReviewNew' };
+    Category: undefined;
+    MyPage: undefined;
+    Branch: { branchID: number };
+    ReviewDetail: { reviewID: number };
+    PhotoBoothDetail: { PhotoBoothID: number };
+    EventDetail: { eventID: number };
+    ReviewNew: { branchID: number | undefined };
+    ReviewEdit: { ReviewID: number | null };
+    Login: undefined;
+    Notification: undefined;
     OfficialImageDetail: {
-        screen: ScreenName;
         photoBoothName: string;
         image: string[];
         index: number;
     };
 };
 
-export interface NavigationScreenParam {
-    screen: ScreenName;
-}
-
 export interface NavigationBarListItemProps {
     label: ScreenName;
     isFocused: boolean;
-}
-
-export interface NavigationBarProps {
-    currentScreen: ScreenName;
 }
 
 export type ScreenName = 'HomeTab' | 'LocationTab' | 'CategoryTab' | 'MyPageTab';
@@ -59,7 +50,6 @@ export type ReviewEditParamList = {
 export type LocationSearchParamList = {
     locationSearchType: {
         NextPage: 'BranchDetail' | 'ReviewNew';
-        screen: ScreenName;
     };
 };
 

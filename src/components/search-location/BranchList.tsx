@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import LocationDarkIcon from 'assets/image/icon/location_dark.svg';
 import { BranchListProps } from 'interfaces/Location.interface';
-import { LocationSearchParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { LocationSearchParamList, RootStackParam } from 'interfaces/NavigationBar';
 import {
     BranchDistanceWrapper,
     BranchListContainer,
@@ -20,14 +20,13 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
 
     // 진입한 페이지가 지도 검색일 경우 BranchDetail로, ReviewNew일 경우 ReviewNew로 돌아감
     const onSelectLocation = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (route.params.NextPage === 'BranchDetail') {
             navigation.pop();
-            navigation.push('Branch', { branchID, screen: 'Location' });
+            navigation.push('Branch', { branchID });
         } else if (route.params.NextPage === 'ReviewNew') {
             navigation.pop();
             navigation.pop();
-            navigation.push('ReviewNew', { branchID, screen: currentScreen });
+            navigation.push('ReviewNew', { branchID });
         }
     };
 

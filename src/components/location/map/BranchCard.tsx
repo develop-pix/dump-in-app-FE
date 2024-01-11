@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { BranchCardProps } from 'interfaces/Location.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import {
     BranchCardBottom,
     BranchCardBranchNameWrapper,
@@ -37,12 +37,10 @@ export default function BranchCard({
     const [favorite, setFavorite] = useState<boolean>(myBranch);
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressBranchCard = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
-            navigation.push('Branch', { branchID, screen: currentScreen });
+            navigation.push('Branch', { branchID });
         }
     };
 

@@ -1,9 +1,9 @@
 import { Platform } from 'react-native';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Modal from 'react-native-modal';
 
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import { ReviewManageModalProps } from 'interfaces/ReviewDetail.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
@@ -17,15 +17,13 @@ export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewMana
     const platform = Platform.OS;
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressReviewEdit = () => {
         setOpenModal(false);
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
+
         if (isFocused) {
             navigation.push('ReviewEdit', {
                 ReviewID: reviewID,
-                screen: currentScreen,
             });
         }
         // TODO: 추후 ReviewEdit 페이지 추가후 이동

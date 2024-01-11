@@ -1,12 +1,12 @@
 import { KakaoOAuthToken, login } from '@react-native-seoul/kakao-login';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import KaKaoIcon from 'assets/image/icon/kakao_login.svg';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import {
     KakaoIconWrapper,
     KakaoInfoContainer,
@@ -17,7 +17,6 @@ import {
 export default function KakaoLogin() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute();
 
     const loginWithKakao = async (): Promise<void> => {
         const token: KakaoOAuthToken = await login();
@@ -27,10 +26,7 @@ export default function KakaoLogin() {
         dispatch(setUserID('jsee53'));
         dispatch(setUserNickName('지나가는 오리너구리'));
 
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
-        navigation.push('MyPage', {
-            screen: currentScreen,
-        });
+        navigation.push('MyPage');
     };
     return (
         <KaKaoLoginContainer>

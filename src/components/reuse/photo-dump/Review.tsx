@@ -1,8 +1,8 @@
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import { ReviewProps } from 'interfaces/reuse/photo-dump/Review.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -18,14 +18,11 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function Review({ reviewID, reviewImage, reviewDescription, reviewHashtags }: ReviewProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressReview = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
             navigation.push('ReviewDetail', {
                 reviewID,
-                screen: currentScreen,
             });
         }
     };

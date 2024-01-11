@@ -10,7 +10,7 @@ import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
 import { MyPageMenuProps } from 'interfaces/MyPage.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import {
     CloseModalButtonContainer,
     MenuContentContainer,
@@ -27,7 +27,6 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
     const dispatch = useAppDispatch();
     const onFocusNavigation = useNavigation();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute();
     const isFocused = useIsFocused();
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
 
@@ -46,11 +45,8 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
 
     // 테스트용 - 토큰 값 변경
     const handleLoginClick = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
-            navigation.push('Login', {
-                screen: currentScreen,
-            });
+            navigation.push('Login');
         }
         handleCloseMenu();
     };
@@ -68,8 +64,7 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
     };
 
     const onNotificationScreen = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
-        navigation.navigate('Notification', { screen: currentScreen });
+        navigation.navigate('Notification');
     };
 
     return (

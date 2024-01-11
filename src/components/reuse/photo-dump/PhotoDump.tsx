@@ -7,7 +7,7 @@ import NextIcon from 'assets/image/icon/btn_next.svg';
 import SearchIcon from 'assets/image/icon/search.svg';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import { NewReviewParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { NewReviewParamList, RootStackParam } from 'interfaces/NavigationBar';
 import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
 import {
     CarouselContainer,
@@ -60,17 +60,13 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     };
 
     const onPressRegistrationReview = () => {
-        const currentScreen = (route.params as { branchID: number; screen: ScreenName }).screen;
         navigation.push('ReviewNew', {
             branchID: route.params.branchID,
-            screen: currentScreen,
         });
     };
 
     const onPressHomeSearch = () => {
-        const currentScreen = (route.params as { branchID: number; screen: ScreenName }).screen;
         navigation.navigate('HomeSearch', {
-            screen: currentScreen,
             PhotoBoothName: photoBoothName,
         });
     };

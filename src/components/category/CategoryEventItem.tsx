@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
 import LocationIcon from 'assets/image/icon/location_white.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { CategoryEventItemProps } from 'interfaces/Category.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import { colors } from 'styles/base/Variable';
 import {
     EventImage,
@@ -27,12 +27,10 @@ import {
 export default function CategoryEventItem({ eventData }: CategoryEventItemProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressEvent = (id: number) => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
-            navigation.push('EventDetail', { eventID: id, screen: currentScreen });
+            navigation.push('EventDetail', { eventID: id });
         }
     };
 

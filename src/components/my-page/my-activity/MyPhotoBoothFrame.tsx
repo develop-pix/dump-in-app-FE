@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import {
     FavoriteIcon,
     HashtagContainer,
@@ -23,14 +23,11 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressPhotoBooth = (id: number) => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
             navigation.push('PhotoBoothDetail', {
                 PhotoBoothID: id,
-                screen: currentScreen,
             });
         }
     };

@@ -9,7 +9,7 @@ import AppleIcon from 'assets/image/icon/apple_login.svg';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackParam } from 'interfaces/NavigationBar';
 import {
     AppleIconWrapper,
     AppleInfoContainer,
@@ -62,10 +62,7 @@ export default function AppleLogin() {
             dispatch(setUserNickName('지나가는 오리너구리'));
         }
 
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
-        navigation.push('MyPage', {
-            screen: currentScreen,
-        });
+        navigation.push('MyPage');
     };
 
     return (
