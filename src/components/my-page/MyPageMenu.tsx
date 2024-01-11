@@ -6,7 +6,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import CloseModalButton from 'components/reuse/button/CloseModalButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
-import NavigationBar from 'components/reuse/navigation-bar/NavigationBar';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
@@ -132,8 +131,6 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
                     onDisagree={() => setIsAlertModalVisible(false)}
                 />
             </MenuSafeContainer>
-
-            <NavigationBar currentScreen="MyPage" />
         </Modal>
     );
 }
