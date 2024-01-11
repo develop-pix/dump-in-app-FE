@@ -1,18 +1,34 @@
 export interface BranchData {
     branchID: string;
     branchName: string;
-    branchHashtag: string[];
-    photoBoothName: string;
-    geolocation: Geolocation;
-    open: string;
-    distance: number;
-    address: string;
-    officialImage: string[];
-    myBranch: boolean;
-    review: ReviewData[];
+    latitude: number;
+    longitude: number;
+    streetAddress: string;
+    roadAddress: string;
+    operationTime: string;
+    isLiked: boolean;
+    photoBooth: PhotoBoothBrandData;
+    distance: string;
 }
 
-interface ReviewData {
+interface PhotoBoothBrandData {
+    name: string;
+    image: PhotoBoothImageData[];
+    hashtag: BranchHashtagData[];
+}
+
+interface PhotoBoothImageData {
+    id: number;
+    imageUrl: string;
+}
+
+interface BranchHashtagData {
+    hashtagID: number;
+    name: string;
+}
+
+//TODO:Branch.tsx 에서 사용 check
+export interface ReviewData {
     reviewID: number;
     representativeImage: string;
     hashtag: string[];
@@ -20,28 +36,31 @@ interface ReviewData {
 }
 
 export interface BranchLocationProps {
-    geolocation: Geolocation;
-    distance: number;
+    latitude: number;
+    longitude: number;
+    distance: string | undefined;
 }
 
 export interface BranchInfoProps {
     photoBoothName: string;
     branchName: string;
-    branchHashtag: string[];
-    address: string;
-    open: string;
-    myBranch: boolean;
+    branchHashtag: BranchHashtagData[];
+    loadAddress: string;
+    streetAddress: string;
+    operationTime: string;
+    isLiked: boolean;
 }
 
 export interface BranchTitleProps {
     photoBoothName: string;
     branchName: string;
-    branchHashtag: string[];
+    branchHashtag: BranchHashtagData[];
     myBranch: boolean;
 }
 
 export interface BranchDescriptionProps {
-    address: string;
+    loadAddress: string;
+    streetAddress: string;
     open: string;
 }
 
@@ -51,5 +70,5 @@ export interface Geolocation {
 }
 
 export interface BranchDistanceProps {
-    distance: number;
+    distance: string | undefined;
 }

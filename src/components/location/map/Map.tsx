@@ -9,15 +9,15 @@ import { setCurrentLocation } from 'hooks/redux/Location';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchCardData, LocationData } from 'interfaces/Location.interface';
 import { MapContainer } from 'styles/layout/location/Map.style';
-import { GetLocationAuthorization } from 'utils/GetAuthorization';
+import { GetLocationAuthorization } from 'utils/GetLocation';
 
 import BranchCarousel from './BranchCarousel';
 import MapInput from './MapInput';
 import ResetLocationButton from './ResetLocationButton';
 
 export default function Map() {
-    const dispatch = useDispatch();
     const currentLocation = useAppSelector(state => state.location);
+    const dispatch = useDispatch();
 
     /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
     const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
@@ -47,30 +47,13 @@ export default function Map() {
         setBranchData(photoBoothData.data);
     };
 
-    /**  대한민국 첫 끝단 넘어가면 카메라를 서울로 전환 */
-    const ResetCameraPosition = useCallback(
-        (latitude: number, longitude: number) => {
-            if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
-                setMyPosition(currentLocation);
-            } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
-                setMyPosition(currentLocation);
-            }
-        },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
-    );
-
     /** 초기 위치 설정 */
-    const GetLocation = () => {
+    const GetCurrentLocation = () => {
         const watchID = Geolocation.watchPosition(
             position => {
                 dispatch(
                     setCurrentLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
                 );
-                setMyPosition({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                });
             },
             error => {
                 console.log(error.code, error.message);
@@ -81,19 +64,40 @@ export default function Map() {
         return watchID;
     };
 
-    // 처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출
+    /**  대한민국 첫 끝단 넘어가면 카메라를 서울로 전환 */
+    const ResetCameraPosition = useCallback(
+        (latitude: number, longitude: number) => {
+            if (currentLocation.latitude && currentLocation.longitude) {
+                if (longitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
+                    currentLocation.latitude && currentLocation.longitude
+                        ? setMyPosition({
+                              latitude: currentLocation.latitude,
+                              longitude: currentLocation.longitude,
+                          })
+                        : setMyPosition({ latitude: 37.564362, longitude: 126.977011 });
+                } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
+                    currentLocation.latitude && currentLocation.longitude
+                        ? setMyPosition({
+                              latitude: currentLocation.latitude,
+                              longitude: currentLocation.longitude,
+                          })
+                        : setMyPosition({ latitude: 37.564362, longitude: 126.977011 });
+                }
+            }
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
+    );
+
+    /**  처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출 */
     // TODO: 권한 거절 할시 어떻게 처리할지 고민 해야함
     useEffect(() => {
         let watch = -1;
-        GetLocationAuthorization()
-            .then(result => {
-                if (result === 'granted') {
-                    watch = GetLocation();
-                }
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        GetLocationAuthorization().then(result => {
+            if (result === 'granted') {
+                watch = GetCurrentLocation();
+            }
+        });
 
         // unmount시 위치 연결 해제
         return () => {
@@ -101,9 +105,10 @@ export default function Map() {
                 Geolocation.clearWatch(watch);
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // 현재 화면위치 바뀔때마다 데이터 Branch 데이터 Get
+    /**  현재 화면위치 바뀔때마다 데이터 Branch 데이터 Get */
     useEffect(() => {
         if (myPosition.latitude && myPosition.longitude) {
             GetBranchData(myPosition.latitude, myPosition.longitude);
@@ -149,7 +154,10 @@ export default function Map() {
                 minZoomLevel={8}
                 rotateGesturesEnabled={false}
                 tiltGesturesEnabled={false}>
-                <Marker coordinate={currentLocation} />
+                {currentLocation.latitude !== null && currentLocation.longitude !== null ? (
+                    <Marker coordinate={currentLocation} />
+                ) : null}
+
                 {branchData.length > 0
                     ? branchData.map(position => {
                           <Marker coordinate={position} pinColor="red" />;
@@ -158,7 +166,11 @@ export default function Map() {
             </NaverMapView>
             <MapInput location={location} />
             <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
-                <ResetLocationButton GetLocation={GetLocation} setZoom={setZoom} />
+                <ResetLocationButton
+                    GetCurrentLocation={GetCurrentLocation}
+                    setMyPosition={setMyPosition}
+                    setZoom={setZoom}
+                />
                 <BranchCarousel branchData={branchData} />
             </Animated.View>
         </MapContainer>

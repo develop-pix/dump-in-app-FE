@@ -8,9 +8,10 @@ export default function BranchInfo({
     photoBoothName,
     branchName,
     branchHashtag,
-    address,
-    open,
-    myBranch,
+    loadAddress,
+    streetAddress,
+    operationTime,
+    isLiked,
 }: BranchInfoProps) {
     return (
         <BranchInfoContainer>
@@ -18,9 +19,9 @@ export default function BranchInfo({
                 photoBoothName={photoBoothName}
                 branchName={branchName}
                 branchHashtag={branchHashtag}
-                myBranch={myBranch}
+                myBranch={isLiked}
             />
-            <BranchDescription address={address} open={open} />
+            <BranchDescription loadAddress={loadAddress} streetAddress={streetAddress} open={operationTime} />
         </BranchInfoContainer>
     );
 }

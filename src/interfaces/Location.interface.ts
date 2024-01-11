@@ -28,7 +28,8 @@ export interface BranchLocationData {
 }
 
 export interface ResetLocationButtonProps {
-    GetLocation: () => number;
+    GetCurrentLocation: () => number;
+    setMyPosition: React.Dispatch<React.SetStateAction<LocationData>>;
     setZoom: React.Dispatch<React.SetStateAction<number>>;
 }
 

@@ -19,12 +19,16 @@ export default function OfficialImages({ photoBoothName, image }: OfficialImageP
     const route = useRoute();
 
     const onPressOfficialImage = (index: number) => {
+        const images = image.map(url => {
+            return url.imageUrl;
+        });
+        console.log(images);
         const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
             navigation.push('OfficialImageDetail', {
                 screen: currentScreen,
                 photoBoothName,
-                image,
+                image: images,
                 index,
             });
         }
@@ -42,7 +46,7 @@ export default function OfficialImages({ photoBoothName, image }: OfficialImageP
                     {image.map((url, index) => {
                         return (
                             <OfficialImageWrapper key={index} onPress={() => onPressOfficialImage(index)}>
-                                <OfficialImage source={{ uri: url }} />
+                                <OfficialImage source={{ uri: url.imageUrl }} />
                             </OfficialImageWrapper>
                         );
                     })}
