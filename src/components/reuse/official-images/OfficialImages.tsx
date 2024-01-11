@@ -19,7 +19,7 @@ export default function OfficialImages({ photoBoothName, image }: OfficialImageP
 
     const onPressOfficialImage = (index: number) => {
         if (isFocused) {
-            navigation.push('OfficialImageDetail', {
+            navigation.navigate('OfficialImageDetail', {
                 photoBoothName,
                 image,
                 index,

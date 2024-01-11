@@ -22,11 +22,11 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
     const onSelectLocation = () => {
         if (route.params.NextPage === 'BranchDetail') {
             navigation.pop();
-            navigation.push('Branch', { branchID });
+            navigation.navigate('Branch', { branchID });
         } else if (route.params.NextPage === 'ReviewNew') {
             navigation.pop();
             navigation.pop();
-            navigation.push('ReviewNew', { branchID });
+            navigation.navigate('ReviewNew', { branchID });
         }
     };
 

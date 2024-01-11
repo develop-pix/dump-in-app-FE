@@ -21,7 +21,7 @@ export default function CategoryPhotoBooth() {
 
     const onPressPhotoBooth = (id: number) => {
         if (isFocused) {
-            navigation.push('PhotoBoothDetail', {
+            navigation.navigate('PhotoBoothDetail', {
                 PhotoBoothID: id,
             });
         }

@@ -40,7 +40,7 @@ export default function BranchCard({
 
     const onPressBranchCard = () => {
         if (isFocused) {
-            navigation.push('Branch', { branchID });
+            navigation.navigate('Branch', { branchID });
         }
     };
 

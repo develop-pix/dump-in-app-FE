@@ -24,14 +24,14 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
     const platform = Platform.OS;
     const route = useRoute<RouteProp<PhotoBoothParamList, 'photoBoothType'>>();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation();
     const isFocused = useIsFocused();
 
     const onPressButton = () => {
         if (isFocused) {
-            navigation.push('Location', {
-                PhotoBoothID: route.params.PhotoBoothID,
+            navigation.navigate('LocationTab', {
                 screen: 'Location',
+                params: { PhotoBoothID: route.params.PhotoBoothID },
             });
         }
     };

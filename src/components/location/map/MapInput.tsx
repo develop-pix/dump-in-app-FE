@@ -23,7 +23,7 @@ export default function MapInput({ location }: MapInputProps) {
 
     const onPressLocationSearch = () => {
         if (isFocused) {
-            navigation.push('LocationSearch', {
+            navigation.navigate('LocationSearch', {
                 NextPage: 'BranchDetail',
             });
         }

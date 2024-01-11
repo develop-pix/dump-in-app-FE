@@ -17,7 +17,7 @@ export default function EventResult({ searchData, data }: EventResultProps) {
 
     const onPressEvent = () => {
         if (isFocused) {
-            navigation.push('EventDetail', {
+            navigation.navigate('EventDetail', {
                 eventID: data.eventID,
             });
         }

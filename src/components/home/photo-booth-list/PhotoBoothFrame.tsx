@@ -23,7 +23,7 @@ export default function PhotoBoothFrame({ data }: PhotoBoothFrameProps) {
 
     const onPressPhotoBooth = () => {
         if (isFocused) {
-            navigation.push('PhotoBoothDetail', {
+            navigation.navigate('PhotoBoothDetail', {
                 PhotoBoothID: data.photoBoothID,
             });
         }

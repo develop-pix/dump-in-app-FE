@@ -62,7 +62,7 @@ export default function AppleLogin() {
             dispatch(setUserNickName('지나가는 오리너구리'));
         }
 
-        navigation.push('MyPage');
+        navigation.navigate('MyPage');
     };
 
     return (

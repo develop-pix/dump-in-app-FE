@@ -26,7 +26,7 @@ export default function KakaoLogin() {
         dispatch(setUserID('jsee53'));
         dispatch(setUserNickName('지나가는 오리너구리'));
 
-        navigation.push('MyPage');
+        navigation.navigate('MyPage');
     };
     return (
         <KaKaoLoginContainer>

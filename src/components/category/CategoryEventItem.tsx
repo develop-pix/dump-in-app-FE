@@ -30,7 +30,7 @@ export default function CategoryEventItem({ eventData }: CategoryEventItemProps)
 
     const onPressEvent = (id: number) => {
         if (isFocused) {
-            navigation.push('EventDetail', { eventID: id });
+            navigation.navigate('EventDetail', { eventID: id });
         }
     };
 

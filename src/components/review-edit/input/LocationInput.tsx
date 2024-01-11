@@ -29,9 +29,8 @@ export default function LocationInput({ location, errorData }: LocationInputProp
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {
         if (isFocused) {
-            navigation.push('LocationSearch', {
+            navigation.navigate('LocationSearch', {
                 NextPage: 'ReviewNew',
-                screen: 'Location',
             });
         }
     };

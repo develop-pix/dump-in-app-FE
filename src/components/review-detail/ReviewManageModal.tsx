@@ -22,7 +22,7 @@ export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewMana
         setOpenModal(false);
 
         if (isFocused) {
-            navigation.push('ReviewEdit', {
+            navigation.navigate('ReviewEdit', {
                 ReviewID: reviewID,
             });
         }

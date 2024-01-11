@@ -46,7 +46,7 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
     // 테스트용 - 토큰 값 변경
     const handleLoginClick = () => {
         if (isFocused) {
-            navigation.push('Login');
+            navigation.navigate('Login');
         }
         handleCloseMenu();
     };

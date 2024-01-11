@@ -12,7 +12,7 @@ export default function EventFrame({ data }: EventFrameProps) {
 
     const onPressEvent = () => {
         if (isFocused) {
-            navigation.push('EventDetail', {
+            navigation.navigate('EventDetail', {
                 eventID: data.eventID,
             });
         }

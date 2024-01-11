@@ -82,12 +82,12 @@ export default function LocationSearchForm() {
         if (search !== '' && resultData.length !== 0) {
             if (route.params.NextPage === 'BranchDetail') {
                 navigation.pop();
-                navigation.push('Branch', {
+                navigation.navigate('Branch', {
                     branchID: resultData[0].branchID,
                 });
             } else if (route.params.NextPage === 'ReviewNew') {
                 navigation.pop();
-                navigation.push('ReviewNew', {
+                navigation.navigate('ReviewNew', {
                     branchID: resultData[0].branchID,
                 });
             }

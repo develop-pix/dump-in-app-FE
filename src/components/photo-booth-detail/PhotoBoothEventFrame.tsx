@@ -23,7 +23,7 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
 
     const onPressEvent = (id: number) => {
         if (isFocused) {
-            navigation.push('EventDetail', { eventID: id });
+            navigation.navigate('EventDetail', { eventID: id });
         }
     };
 

@@ -60,7 +60,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     };
 
     const onPressRegistrationReview = () => {
-        navigation.push('ReviewNew', {
+        navigation.navigate('ReviewNew', {
             branchID: route.params.branchID,
         });
     };

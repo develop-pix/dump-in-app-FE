@@ -36,8 +36,9 @@ export default function GoBackButtonReview() {
         dispatch(setTools(null));
         dispatch(setHairIron(null));
         dispatch(setPublicOpen(true));
-        navigation.pop();
+        navigation.goBack();
     };
+
     return (
         <BackButton onPress={onPressGoHome}>
             <BackIcon width={16} height={16} />

@@ -38,7 +38,7 @@ export default function NaverLogin() {
                 dispatch(setUserID('jsee53'));
                 dispatch(setUserNickName('지나가는 오리너구리'));
 
-                navigation.push('MyPage');
+                navigation.navigate('MyPage');
             }
         } catch (error) {
             console.error('Naver Login Error:', error);

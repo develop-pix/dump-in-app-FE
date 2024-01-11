@@ -21,7 +21,7 @@ export default function ReviewFrame({ data }: ReviewFrameProps) {
 
     const onPressReview = () => {
         if (isFocused) {
-            navigation.push('ReviewDetail', {
+            navigation.navigate('ReviewDetail', {
                 reviewID: data.reviewID,
             });
         }
