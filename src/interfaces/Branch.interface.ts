@@ -1,13 +1,13 @@
 export interface BranchData {
-    branchID: string;
-    branchName: string;
+    id: string;
+    name: string;
     latitude: number;
     longitude: number;
     streetAddress: string;
     roadAddress: string;
     operationTime: string;
     isLiked: boolean;
-    photoBooth: PhotoBoothBrandData;
+    photoBoothBrand: PhotoBoothBrandData;
     distance: string;
 }
 
@@ -29,10 +29,20 @@ interface BranchHashtagData {
 
 //TODO:Branch.tsx 에서 사용 check
 export interface ReviewData {
-    reviewID: number;
-    representativeImage: string;
-    hashtag: string[];
-    description: string;
+    id: number;
+    mainThumbnailImageUrl: string;
+    content: string;
+    frameColor: string;
+    participants: number;
+    cameraShot: string;
+    goodsAmount: boolean;
+    curlAmount: boolean;
+    concept: ConceptData[];
+}
+
+interface ConceptData {
+    hashtagID: number;
+    name: string;
 }
 
 export interface BranchLocationProps {

@@ -3,9 +3,19 @@ export interface PhotoDumpProps {
     reviewData: ReviewData[];
 }
 
-export interface ReviewData {
-    reviewID: number;
-    representativeImage: string;
-    hashtag: string[];
-    description: string;
+interface ReviewData {
+    id: number;
+    mainThumbnailImageUrl: string;
+    content: string;
+    frameColor: string;
+    cameraShot: string;
+    participants: number;
+    goodsAmount: boolean;
+    curlAmount: boolean;
+    concept: ConceptData[];
+}
+
+interface ConceptData {
+    hashtagID: number;
+    name: string;
 }

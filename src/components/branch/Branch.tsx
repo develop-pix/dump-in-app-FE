@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux';
 
 import OfficialImages from 'components/reuse/official-images/OfficialImages';
 import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
-import { GetBranchData } from 'hooks/axios/Branch';
+import { GetBranchData, GetBranchReviewData } from 'hooks/axios/Branch';
 import { setCurrentLocation } from 'hooks/redux/Location';
 import { useAppSelector } from 'hooks/redux/store';
-import { BranchData } from 'interfaces/Branch.interface';
+import { BranchData, ReviewData } from 'interfaces/Branch.interface';
 import { BranchParamList } from 'interfaces/NavigationBar';
 import { BranchForm, BranchScrollView } from 'styles/layout/branch/Branch.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
@@ -36,6 +36,7 @@ export default function Branch() {
             hashtag: [],
         },
     });
+    const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
     /** 초기 위치 설정 */
     const GetCurrentLocation = () => {
@@ -54,13 +55,16 @@ export default function Branch() {
         return watchID;
     };
 
-    /**  처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출 */
     // TODO: 권한 거절 할시 어떻게 처리할지 고민 해야함
     const GetBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
-        const fetchData = await GetBranchData(latitude, longitude, branchID);
-        setBranchData(fetchData.data);
+        const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
+        const fetchReviewData = await GetBranchReviewData(route.params.branchID);
+        setBranchData(fetchBranchData.data);
+        setReviewData(fetchReviewData.data);
+        console.log(fetchReviewData.data);
     };
 
+    /**  처음 Location 페이지로 이동시 권한 획득 */
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization()
@@ -68,7 +72,6 @@ export default function Branch() {
                 if (result === 'granted') {
                     watch = GetCurrentLocation();
                 }
-                //TODO: DataGet 로직 추가
                 GetBranchDetailData(currentLocation.latitude, currentLocation.longitude, route.params.branchID);
             })
             .catch(e => {
@@ -105,7 +108,7 @@ export default function Branch() {
                     photoBoothName={branchData.photoBoothBrand.name}
                     image={branchData.photoBoothBrand.image}
                 />
-                {/* <PhotoDump reviewData={data.review} photoBoothName={data.photoBoothName} /> */}
+                <PhotoDump reviewData={reviewData} photoBoothName={branchData?.photoBoothBrand.name} />
             </BranchForm>
         </BranchScrollView>
     );

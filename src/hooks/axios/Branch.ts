@@ -1,6 +1,8 @@
 import { BACKEND_API_URL } from '@env';
 import axios from 'axios';
 
+//TODO: 안쓰는 데이터 수정되면, 추가 및 정리
+
 export const GetBranchData = async (latitude: number | null, longitude: number | null, branchID: string) => {
     return await axios({
         method: 'get',

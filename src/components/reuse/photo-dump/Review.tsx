@@ -9,13 +9,15 @@ import {
     ReviewContainer,
     ReviewDescription,
     ReviewDescriptionContainer,
+    ReviewFrameColor,
+    ReviewFrameContainer,
     ReviewHashtags,
     ReviewImage,
 } from 'styles/layout/reuse/photo-dump/Review.style';
 import { FontWhiteNormalMedium, FontYellowSmallerMediumWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
-export default function Review({ reviewID, reviewImage, reviewDescription, reviewHashtags }: ReviewProps) {
+export default function Review({ reviewItem }: ReviewProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
     const route = useRoute();
@@ -24,7 +26,7 @@ export default function Review({ reviewID, reviewImage, reviewDescription, revie
         const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
             navigation.push('ReviewDetail', {
-                reviewID,
+                reviewID: reviewItem.id,
                 screen: currentScreen,
             });
         }
@@ -32,7 +34,7 @@ export default function Review({ reviewID, reviewImage, reviewDescription, revie
 
     return (
         <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
-            <ReviewImage source={{ uri: reviewImage }} />
+            <ReviewImage source={{ uri: reviewItem.mainThumbnailImageUrl }} />
             <LinearGradient
                 colors={['transparent', colors.lightblack]}
                 locations={[0.1, 1]}
@@ -41,18 +43,36 @@ export default function Review({ reviewID, reviewImage, reviewDescription, revie
                     left: 0,
                     right: 0,
                     bottom: -10,
-                    height: 130,
+                    height: 200,
                 }}
             />
 
             <ReviewDescriptionContainer>
                 <ReviewDescription>
-                    <FontWhiteNormalMedium>{reviewDescription}</FontWhiteNormalMedium>
+                    <FontWhiteNormalMedium>{reviewItem.content}</FontWhiteNormalMedium>
                 </ReviewDescription>
                 <ReviewHashtags>
-                    {TagsArrayToHashTagArrayForm(reviewHashtags).map(tag => (
+                    <ReviewFrameContainer>
+                        <FontYellowSmallerMediumWithLineSpacing>#</FontYellowSmallerMediumWithLineSpacing>
+                        <ReviewFrameColor colorOption={reviewItem.frameColor} />
+                    </ReviewFrameContainer>
+                    <FontYellowSmallerMediumWithLineSpacing>
+                        # {reviewItem.participants}
+                    </FontYellowSmallerMediumWithLineSpacing>
+                    <FontYellowSmallerMediumWithLineSpacing>
+                        # {reviewItem.cameraShot}
+                    </FontYellowSmallerMediumWithLineSpacing>
+                    {TagsArrayToHashTagArrayForm(reviewItem.concept).map(tag => (
                         <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                     ))}
+                    {reviewItem.curlAmount ? (
+                        <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
+                    ) : (
+                        <FontYellowSmallerMediumWithLineSpacing># 고데기 없음</FontYellowSmallerMediumWithLineSpacing>
+                    )}
+                    {reviewItem.goodsAmount ? (
+                        <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>
+                    ) : null}
                 </ReviewHashtags>
             </ReviewDescriptionContainer>
         </ReviewContainer>
