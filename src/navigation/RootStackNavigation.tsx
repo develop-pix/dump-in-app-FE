@@ -1,7 +1,10 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import HomeSearch from 'screens/HomeSearch';
+import LocationSearch from 'screens/LocationSearch';
 import Notification from 'screens/Notification';
+import OfficialImageDetail from 'screens/OfficialImageDetail';
+import ReviewEdit from 'screens/ReviewEdit';
 import ReviewNew from 'screens/ReviewNew';
 
 import MainTabNavigation from './MainTabNavigation';
@@ -32,6 +35,29 @@ export default function RootStackNavigation() {
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
                 }}
+            />
+            <Stack.Screen
+                name="LocationSearch"
+                component={LocationSearch}
+                initialParams={{ NextPage: 'BranchDetail' }}
+                options={{
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                }}
+            />
+            <Stack.Screen
+                name="OfficialImageDetail"
+                component={OfficialImageDetail}
+                initialParams={{
+                    photoBoothName: null,
+                    image: '',
+                    index: 0,
+                }}
+            />
+            <Stack.Screen
+                name="ReviewEdit"
+                component={ReviewEdit}
+                initialParams={{ ReviewID: null }}
+                options={{ presentation: 'modal' }}
             />
         </Stack.Navigator>
     );

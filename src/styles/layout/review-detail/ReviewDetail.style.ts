@@ -28,15 +28,16 @@ export const ReviewDetailCarousel = styled.ScrollView`
 export const ReviewImageContainer = styled.View`
     object-fit: scale-down;
     width: ${Dimensions.get('screen').width}px;
-    height: ${Dimensions.get('window').height - 24}px;
+    height: ${Dimensions.get('window').height}px;
 `;
+
 export const ReviewImage = styled.Image`
     object-fit: scale-down;
     width: 100%;
     height: ${Dimensions.get('window').height - 88}px;
 `;
 
-/* left: ReviewContainer width의 1/2 */
+/** left: ReviewContainer width의 1/2 */
 export const ReviewDescriptionContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`

@@ -25,6 +25,7 @@ import {
 import ReviewDescription from './ReviewDescription';
 import ReviewManageModal from './ReviewManageModal';
 
+// FIXME: style이 이상하게 적용되어 있음 재구성 필요
 export default function ReviewDetail() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [carouselActive, setCarouselActive] = useState<number>(0);
@@ -479,7 +480,7 @@ export default function ReviewDetail() {
                                                     position: 'absolute',
                                                     left: 0,
                                                     right: 0,
-                                                    bottom: 130,
+                                                    bottom: 120,
                                                     height: 300,
                                                 }}
                                             />
@@ -509,7 +510,7 @@ export default function ReviewDetail() {
                                                             position: 'absolute',
                                                             left: 0,
                                                             right: 0,
-                                                            bottom: 130,
+                                                            bottom: 120,
                                                             height: 300,
                                                         }}
                                                     />
