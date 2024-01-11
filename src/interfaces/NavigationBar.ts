@@ -36,7 +36,7 @@ export interface NavigationBarProps {
     currentScreen: ScreenName;
 }
 
-export type ScreenName = 'Home' | 'Location' | 'Category' | 'MyPage';
+export type ScreenName = 'HomeTab' | 'LocationTab' | 'CategoryTab' | 'MyPageTab';
 
 export type BranchParamList = {
     branchType: {

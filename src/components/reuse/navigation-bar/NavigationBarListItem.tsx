@@ -13,17 +13,17 @@ import {
 } from 'styles/layout/navigation-bar/NavigationBarItem.style';
 
 const imageMap: Record<string, React.JSX.Element> = {
-    Home: <HomeImage />,
-    Location: <LocationImage />,
-    Category: <CategoryImage />,
-    MyPage: <MyPageImage />,
+    HomeTab: <HomeImage />,
+    LocationTab: <LocationImage />,
+    CategoryTab: <CategoryImage />,
+    MyPageTab: <MyPageImage />,
 };
 
 const clickImageMap: Record<string, React.JSX.Element> = {
-    Home: <ClickHomeImage />,
-    Location: <ClickLocationImage />,
-    Category: <ClickCategoryImage />,
-    MyPage: <ClickMyPageImage />,
+    HomeTab: <ClickHomeImage />,
+    LocationTab: <ClickLocationImage />,
+    CategoryTab: <ClickCategoryImage />,
+    MyPageTab: <ClickMyPageImage />,
 };
 
 export default function NavigationBarListItem({ label, isFocused }: NavigationBarListItemProps) {
