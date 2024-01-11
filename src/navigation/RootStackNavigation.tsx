@@ -1,5 +1,6 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
+import HomeSearch from 'screens/HomeSearch';
 import ReviewNew from 'screens/ReviewNew';
 
 import MainTabNavigation from './MainTabNavigation';
@@ -15,6 +16,14 @@ export default function RootStackNavigation() {
                 component={ReviewNew}
                 initialParams={{ branchID: null }}
                 options={{ presentation: 'modal' }}
+            />
+            <Stack.Screen
+                name="HomeSearch"
+                component={HomeSearch}
+                initialParams={{ PhotoBoothName: null }}
+                options={{
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                }}
             />
         </Stack.Navigator>
     );
