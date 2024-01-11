@@ -9,10 +9,13 @@ import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
 import { NewReviewParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
+import { colors } from 'styles/base/Variable';
 import {
     CarouselContainer,
     CarouselScrollView,
     FindMoreReviewContainer,
+    FindMoreReviewTextContainer,
+    FindMoreReviewTextWrapper,
     FindMoreReviewWrapper,
     PhotoDumpContainer,
     ReviewBlurImage,
@@ -131,11 +134,16 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
                                     blurRadius={4}
                                 />
                                 <FindMoreReviewWrapper>
-                                    <SearchIcon width={50} height={46} />
-                                    <FontWhiteNormalMedium>포토부스 검색으로 더 많은 리뷰 보기</FontWhiteNormalMedium>
+                                    <FindMoreReviewTextContainer>
+                                        <SearchIcon width={50} height={46} />
+                                        <FindMoreReviewTextWrapper>
+                                            <FontWhiteNormalMedium>포토부스 검색으로</FontWhiteNormalMedium>
+                                            <FontWhiteNormalMedium>더 많은 리뷰 보기</FontWhiteNormalMedium>
+                                        </FindMoreReviewTextWrapper>
+                                    </FindMoreReviewTextContainer>
                                     <SeeMoreButton onPress={onPressHomeSearch}>
                                         <FontWhiteSmallerMedium>리뷰 더보기</FontWhiteSmallerMedium>
-                                        <NextIcon width={20} height={20} />
+                                        <NextIcon width={20} height={20} color={colors.white} />
                                     </SeeMoreButton>
                                 </FindMoreReviewWrapper>
                             </FindMoreReviewContainer>
