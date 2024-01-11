@@ -74,6 +74,7 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
     };
 
     return (
+        // FIXME: Modal이 아닌 Screen으로 변경
         <Modal animationType="slide" transparent={true} visible={visible}>
             <MenuSafeContainer>
                 <CloseModalButtonContainer>

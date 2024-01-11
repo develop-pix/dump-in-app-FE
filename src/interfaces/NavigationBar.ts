@@ -28,9 +28,8 @@ export interface NavigationScreenParam {
 }
 
 export interface NavigationBarListItemProps {
-    screen: ScreenName;
-    selectedScreen: ScreenName;
-    handleListClick: (screen: ScreenName) => void;
+    label: ScreenName;
+    isFocused: boolean;
 }
 
 export interface NavigationBarProps {

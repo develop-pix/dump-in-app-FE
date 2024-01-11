@@ -26,11 +26,11 @@ const clickImageMap: Record<string, React.JSX.Element> = {
     MyPage: <ClickMyPageImage />,
 };
 
-export default function NavigationBarListItem({ screen, selectedScreen, handleListClick }: NavigationBarListItemProps) {
-    const imageSource = screen === selectedScreen ? clickImageMap[screen] : imageMap[screen];
+export default function NavigationBarListItem({ label, isFocused }: NavigationBarListItemProps) {
+    const imageSource = isFocused ? clickImageMap[label] : imageMap[label];
 
     return (
-        <NavigationBarListItemContainer onPress={() => handleListClick(screen)}>
+        <NavigationBarListItemContainer>
             <NavigationImageContainer>{imageSource}</NavigationImageContainer>
         </NavigationBarListItemContainer>
     );

@@ -12,7 +12,7 @@ import BranchLocation from './BranchLocation';
 export default function Branch() {
     const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
 
-    /* 임시 데이터, myBranch는 앱 로그인 할때 전부 저장? */
+    /** 임시 데이터, myBranch는 앱 로그인 할때 전부 저장? */
     const tempData: BranchData[] = [
         {
             branchID: 1,

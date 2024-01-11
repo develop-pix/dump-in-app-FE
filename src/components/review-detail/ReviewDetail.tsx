@@ -30,7 +30,6 @@ export default function ReviewDetail() {
     const [carouselActive, setCarouselActive] = useState<number>(0);
     const route = useRoute<RouteProp<ReviewDetailParamList, 'reviewDetailType'>>();
     const platform = Platform.OS;
-    console.log(route.params);
 
     const onPressPrevButton = () => {
         setCarouselActive(prev => prev - 1);
@@ -40,7 +39,7 @@ export default function ReviewDetail() {
         setCarouselActive(prev => prev + 1);
     };
 
-    /* 임시 데이터 */
+    /** 임시 데이터 */
     const tempData: ReviewData[] = [
         {
             photoBoothName: '포토그레이',
@@ -429,6 +428,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
     ];
+
     return (
         <ReviewDetailFormContainer>
             {tempData.map(data => {

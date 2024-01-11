@@ -101,16 +101,13 @@ export default function PhotoBoothDetail() {
             {!isLoading ? (
                 <ScrollView>
                     <PhotoBoothImageTitle photoBoothData={photoBoothData} />
-
                     <PhotoBoothEvent eventData={photoBoothData.event} />
-
                     <OfficialImagesContainer>
                         <OfficialImages
                             image={photoBoothData.officialImage}
                             photoBoothName={photoBoothData.photoBoothName}
                         />
                     </OfficialImagesContainer>
-
                     <PhotoDumpContainer>
                         <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} />
                     </PhotoDumpContainer>

@@ -51,7 +51,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
         extrapolate: 'clamp',
     });
 
-    /* 현재 review Set */
+    /** 현재 review Set */
     const onCarouselScroll = (nativeEvent: NativeScrollEvent) => {
         if (nativeEvent) {
             const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
