@@ -89,15 +89,12 @@ export default function Map() {
         [],
     );
 
-    /** LocationSearch 페이지로 이동시 위치 권한 및 관련 정보 획득 */
+    /** LocationSearch 페이지로 이동시 위치 권한 획득 */
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization().then(result => {
             if (result === 'granted') {
                 watch = GetCurrentLocation();
-                if (currentLocation.latitude && currentLocation.longitude) {
-                    GetAddressData(currentLocation.latitude, currentLocation.longitude);
-                }
             }
         });
 
@@ -114,6 +111,7 @@ export default function Map() {
         if (myPosition.latitude && myPosition.longitude) {
             GetBranchCardData(myPosition.latitude, myPosition.longitude);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [myPosition.latitude, myPosition.longitude]);
 
     /**  카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능 */
@@ -126,6 +124,13 @@ export default function Map() {
             }).start();
         }
     }, [showNearBranch, cardMoveY, branchData]);
+
+    /** 내 위치가 바뀔때마다. ReverseGeolocation 호출 */
+    useEffect(() => {
+        if (currentLocation.latitude && currentLocation.longitude) {
+            GetAddressData(currentLocation.latitude, currentLocation.longitude);
+        }
+    }, [currentLocation.latitude, currentLocation.longitude]);
 
     return (
         <MapContainer platform={platform}>
@@ -149,12 +154,15 @@ export default function Map() {
                 rotateGesturesEnabled={false}
                 tiltGesturesEnabled={false}>
                 {currentLocation.latitude !== null && currentLocation.longitude !== null ? (
-                    <Marker coordinate={currentLocation} />
+                    <Marker coordinate={{ latitude: currentLocation.latitude, longitude: currentLocation.longitude }} />
                 ) : null}
 
                 {branchData.length > 0
                     ? branchData.map(position => {
-                          <Marker coordinate={position} pinColor="red" />;
+                          <Marker
+                              coordinate={{ latitude: position.latitude, longitude: position.longitude }}
+                              pinColor="red"
+                          />;
                       })
                     : null}
             </NaverMapView>

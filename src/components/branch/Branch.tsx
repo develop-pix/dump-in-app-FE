@@ -42,6 +42,7 @@ export default function Branch() {
     const GetBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
         const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
         const fetchReviewData = await GetBranchReviewData(route.params.branchID);
+        console.log(fetchReviewData.data);
         setBranchData(fetchBranchData.data);
         setReviewData(fetchReviewData.data);
     };

@@ -17,10 +17,10 @@ export default function SearchBranchList({ data }: SearchBranchListProps) {
                         {data.map(branch => {
                             return (
                                 <BranchList
-                                    key={branch.branchID}
+                                    key={branch.id}
                                     branchName={branch.branchName}
                                     distance={branch.distance}
-                                    branchID={branch.branchID}
+                                    branchID={branch.id}
                                 />
                             );
                         })}

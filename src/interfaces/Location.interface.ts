@@ -7,7 +7,7 @@ export interface SearchBranchListProps {
 }
 
 export interface BranchData {
-    branchID: string;
+    id: string;
     branchName: string;
     distance: string;
 }

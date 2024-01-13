@@ -1,6 +1,7 @@
 import { BACKEND_API_URL } from '@env';
 import axios from 'axios';
 
+//TODO: latitude, longitude, radius 가 backend에서 수정될 예정, 추후 변경
 export const GetLocationSearchData = async (
     branchName: string | null,
     latitude: number | null,
@@ -10,15 +11,12 @@ export const GetLocationSearchData = async (
     return await axios({
         method: 'get',
         url: `${BACKEND_API_URL}/photo-booths/locations/search`,
-        headers: {
-            Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
-        },
+
         params: {
             photo_booth_brand_name: branchName,
-            latitude,
-            longitude,
-            radius,
+            latitude: 36.8101473283,
+            longitude: 127.1470316068,
+            radius: 1.5,
         },
     })
         .then(res => {
