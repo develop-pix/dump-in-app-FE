@@ -10,6 +10,7 @@ import { GetLocationAuthorization } from 'utils/GetLocation';
 export default function ResetLocationButton({ GetCurrentLocation, setMyPosition, setZoom }: ResetLocationButtonProps) {
     const currentLocation = useAppSelector(state => state.location);
 
+    /** 지도 zoom 변경 및, 화면을 내 위치로 전환 */
     const onPressResetLocation = () => {
         GetLocationAuthorization().then(result => {
             if (result === 'granted') {
@@ -25,7 +26,6 @@ export default function ResetLocationButton({ GetCurrentLocation, setMyPosition,
     };
 
     /**  처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출 */
-    // TODO: 권한 거절 할시 어떻게 처리할지 고민 해야함
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization().then(result => {
@@ -34,7 +34,6 @@ export default function ResetLocationButton({ GetCurrentLocation, setMyPosition,
             }
         });
 
-        // unmount시 위치 연결 해제
         return () => {
             if (watch === 0) {
                 Geolocation.clearWatch(watch);

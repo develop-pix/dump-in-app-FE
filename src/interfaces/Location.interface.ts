@@ -15,7 +15,7 @@ export interface BranchData {
 export interface BranchListProps {
     branchName: string;
     distance: string;
-    branchID: number;
+    branchID: string;
 }
 
 export interface LocationData {

@@ -38,6 +38,7 @@ export default function BranchCard({
     const isFocused = useIsFocused();
     const route = useRoute();
 
+    /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
         const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {

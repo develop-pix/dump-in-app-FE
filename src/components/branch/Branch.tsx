@@ -38,6 +38,14 @@ export default function Branch() {
     });
     const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
+    /** Branch 정보 및 PhotoDump 리뷰 정보 획득 */
+    const GetBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
+        const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
+        const fetchReviewData = await GetBranchReviewData(route.params.branchID);
+        setBranchData(fetchBranchData.data);
+        setReviewData(fetchReviewData.data);
+    };
+
     /** 초기 위치 설정 */
     const GetCurrentLocation = () => {
         const watchID = Geolocation.watchPosition(
@@ -55,16 +63,7 @@ export default function Branch() {
         return watchID;
     };
 
-    // TODO: 권한 거절 할시 어떻게 처리할지 고민 해야함
-    const GetBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
-        const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
-        const fetchReviewData = await GetBranchReviewData(route.params.branchID);
-        setBranchData(fetchBranchData.data);
-        setReviewData(fetchReviewData.data);
-        console.log(fetchReviewData.data);
-    };
-
-    /**  처음 Location 페이지로 이동시 권한 획득 */
+    /** Branch 페이지로 이동시 위치 권한 획득 */
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization()
@@ -78,7 +77,6 @@ export default function Branch() {
                 console.log(e);
             });
 
-        // unmount시 위치 연결 해제
         return () => {
             if (watch === 0) {
                 Geolocation.clearWatch(watch);

@@ -12,6 +12,7 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
     const offset = Dimensions.get('window').width * 0.03;
     const [carouselActive, setCarouselActive] = useState<number>(0);
 
+    //TODO: 추후 필요 없을 시 제거
     const onCarouselScroll = (nativeEvent: NativeScrollEvent) => {
         if (nativeEvent) {
             const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
