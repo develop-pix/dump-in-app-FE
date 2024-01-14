@@ -33,7 +33,7 @@ export default function LocationSearchForm() {
             branchName,
             currentLocation.latitude,
             currentLocation.longitude,
-            1.0,
+            1.5,
         );
         setResultData(searchData.data);
     };
