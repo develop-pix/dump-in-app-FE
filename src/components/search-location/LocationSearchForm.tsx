@@ -47,13 +47,13 @@ export default function LocationSearchForm() {
             if (route.params.NextPage === 'BranchDetail') {
                 navigation.pop();
                 navigation.push('Branch', {
-                    branchID: resultData[0].branchID,
+                    branchID: resultData[0].id,
                     screen: 'Location',
                 });
             } else if (route.params.NextPage === 'ReviewNew') {
                 navigation.pop();
                 navigation.push('ReviewNew', {
-                    branchID: resultData[0].branchID,
+                    branchID: resultData[0].id,
                     screen: currentScreen,
                 });
             }

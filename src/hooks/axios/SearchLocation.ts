@@ -2,6 +2,13 @@ import { BACKEND_API_URL } from '@env';
 import axios from 'axios';
 
 //TODO: latitude, longitude, radius 가 backend에서 수정될 예정, 추후 변경
+
+/**
+ * Test
+ * branchName: string
+ * latitude: 36.8101475281
+ * longitude: 127.1470316068
+ * */
 export const GetLocationSearchData = async (
     branchName: string | null,
     latitude: number | null,
@@ -14,9 +21,9 @@ export const GetLocationSearchData = async (
 
         params: {
             photo_booth_brand_name: branchName,
-            latitude: 36.8101473283,
-            longitude: 127.1470316068,
-            radius: 1.5,
+            latitude: longitude,
+            longitude: latitude,
+            radius,
         },
     })
         .then(res => {
@@ -24,6 +31,5 @@ export const GetLocationSearchData = async (
         })
         .catch(error => {
             console.log(error);
-            return [];
         });
 };

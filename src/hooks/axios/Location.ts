@@ -2,7 +2,6 @@ import { BACKEND_API_URL, NAVER_MAP_API_ID, NAVER_MAP_API_KEY } from '@env';
 import axios from 'axios';
 
 export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
-    // 소수점 7자리 명시
     const str_latitude: string = latitude.toFixed(7);
     const str_longitude: string = longitude.toFixed(7);
     const URL =
@@ -44,13 +43,18 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
         });
 };
 
+/**
+ * Test
+ * latitude: 36.8101475281
+ *  longitude: 127.1470316068
+ * */
 export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
     return await axios({
         method: 'get',
         url: `${BACKEND_API_URL}/photo-booths/locations`,
         params: {
-            latitude: 36.8101475281,
-            longitude: 127.1470316068,
+            latitude: latitude,
+            longitude: longitude,
             radius,
         },
     })
@@ -59,6 +63,5 @@ export const GetPhotoBoothData = async (latitude: number, longitude: number, rad
         })
         .catch(error => {
             console.log(error);
-            return [];
         });
 };

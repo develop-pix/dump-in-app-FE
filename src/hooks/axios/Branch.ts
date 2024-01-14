@@ -2,13 +2,20 @@ import { BACKEND_API_URL } from '@env';
 import axios from 'axios';
 
 //TODO: latitude, longitude, url -> branchID 수정
+
+/**
+ * Test
+ * latitude: 36.8101475281
+ * longitude: 127.1470316068
+ * branchID: 994ef416-92fa-46f3-b0be-eb8c1445a506
+ * */
 export const GetBranchData = async (latitude: number | null, longitude: number | null, branchID: string) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/994ef416-92fa-46f3-b0be-eb8c1445a506`,
+        url: `${BACKEND_API_URL}/photo-booths/${branchID}`,
         params: {
-            latitude: 36.8101475281,
-            longitude: 127.1470316068,
+            latitude: latitude,
+            longitude: longitude,
         },
     })
         .then(res => {
@@ -20,10 +27,15 @@ export const GetBranchData = async (latitude: number | null, longitude: number |
 };
 
 //TODO: url -> branchID 수정
+
+/**
+ * Test
+ * branchID: 994ef416-92fa-46f3-b0be-eb8c1445a506
+ * */
 export const GetBranchReviewData = async (branchID: string) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/994ef416-92fa-46f3-b0be-eb8c1445a506/reviews`,
+        url: `${BACKEND_API_URL}/photo-booths/${branchID}/reviews`,
         params: {
             limit: 15,
         },
