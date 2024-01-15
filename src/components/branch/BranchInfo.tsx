@@ -19,7 +19,7 @@ export default function BranchInfo({
                 photoBoothName={photoBoothName}
                 branchName={branchName}
                 branchHashtag={branchHashtag}
-                myBranch={isLiked}
+                isLiked={isLiked}
             />
             <BranchDescription loadAddress={loadAddress} streetAddress={streetAddress} open={operationTime} />
         </BranchInfoContainer>

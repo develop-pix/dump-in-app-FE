@@ -64,6 +64,6 @@ export interface BranchCardProps {
     photoBoothName: string;
     branchName: string;
     hashtag: HashtagData[];
-    myBranch: boolean;
+    isLiked: boolean;
     distance: string;
 }

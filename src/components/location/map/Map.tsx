@@ -118,7 +118,6 @@ export default function Map() {
         if (myPosition.latitude && myPosition.longitude) {
             GetBranchCardData(myPosition.latitude, myPosition.longitude);
         }
-        console.log(branchData);
         if (Object.keys(branchData).length === 0) {
             setToastVisible(true);
         }

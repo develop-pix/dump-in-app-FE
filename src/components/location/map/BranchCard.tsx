@@ -30,10 +30,10 @@ export default function BranchCard({
     photoBoothName,
     branchName,
     hashtag,
-    myBranch,
+    isLiked,
     distance,
 }: BranchCardProps) {
-    const [favorite, setFavorite] = useState<boolean>(myBranch);
+    const [favorite, setFavorite] = useState<boolean>(isLiked);
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
     const route = useRoute();

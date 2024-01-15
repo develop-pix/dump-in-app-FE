@@ -65,7 +65,7 @@ export interface BranchTitleProps {
     photoBoothName: string;
     branchName: string;
     branchHashtag: BranchHashtagData[];
-    myBranch: boolean;
+    isLiked: boolean;
 }
 
 export interface BranchDescriptionProps {
