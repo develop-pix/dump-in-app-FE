@@ -8,7 +8,9 @@ import { GetAddressFromNaverGeocoding, GetPhotoBoothData } from 'hooks/axios/Loc
 import { setCurrentLocation } from 'hooks/redux/Location';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchCardData, LocationData } from 'interfaces/Location.interface';
+import { NoBranchContainer, NoBranchToastContainer } from 'styles/layout/location/BranchCarousel.style';
 import { MapContainer } from 'styles/layout/location/Map.style';
+import { FontWhiteSmallerSemibold } from 'styles/layout/reuse/text/Text.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
 import BranchCarousel from './BranchCarousel';
@@ -25,6 +27,7 @@ export default function Map() {
     const [branchData, setBranchData] = useState<BranchCardData[]>([]);
     const [zoom, setZoom] = useState<number>(18);
     const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
+    const [toastVisible, setToastVisible] = useState<boolean>(false);
 
     /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
     const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
@@ -45,6 +48,10 @@ export default function Map() {
         const radius = 1.0;
         const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
         setBranchData(photoBoothData.data);
+    };
+
+    const ChangePosition = (latitude: number, longitude: number) => {
+        setMyPosition({ ...myPosition, latitude, longitude });
     };
 
     /** 위치 권한 획득 시 redux store에 저장 */
@@ -111,6 +118,14 @@ export default function Map() {
         if (myPosition.latitude && myPosition.longitude) {
             GetBranchCardData(myPosition.latitude, myPosition.longitude);
         }
+        console.log(branchData);
+        if (Object.keys(branchData).length === 0) {
+            setToastVisible(true);
+        }
+        const toastTime = setTimeout(() => {
+            setToastVisible(false);
+        }, 2000);
+        return () => clearTimeout(toastTime);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [myPosition.latitude, myPosition.longitude]);
 
@@ -139,7 +154,7 @@ export default function Map() {
                 center={{ ...myPosition, zoom }}
                 onCameraChange={e => {
                     setZoom(e.zoom);
-                    setMyPosition({ latitude: e.latitude, longitude: e.longitude });
+                    ChangePosition(e.latitude, e.longitude);
                     ResetCameraPosition(e.latitude, e.longitude);
                     setShowNearBranch(false);
                 }}
@@ -167,14 +182,29 @@ export default function Map() {
                     : null}
             </NaverMapView>
             <MapInput location={location} />
-            <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
-                <ResetLocationButton
-                    GetCurrentLocation={GetCurrentLocation}
-                    setMyPosition={setMyPosition}
-                    setZoom={setZoom}
-                />
-                <BranchCarousel branchData={branchData} />
-            </Animated.View>
+            {branchData.length > 0 ? (
+                <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
+                    <ResetLocationButton
+                        GetCurrentLocation={GetCurrentLocation}
+                        setMyPosition={setMyPosition}
+                        setZoom={setZoom}
+                    />
+                    <BranchCarousel branchData={branchData} />
+                </Animated.View>
+            ) : (
+                <NoBranchContainer>
+                    {toastVisible && (
+                        <NoBranchToastContainer>
+                            <FontWhiteSmallerSemibold>내 주변 검색 결과가 없습니다.</FontWhiteSmallerSemibold>
+                        </NoBranchToastContainer>
+                    )}
+                    <ResetLocationButton
+                        GetCurrentLocation={GetCurrentLocation}
+                        setMyPosition={setMyPosition}
+                        setZoom={setZoom}
+                    />
+                </NoBranchContainer>
+            )}
         </MapContainer>
     );
 }

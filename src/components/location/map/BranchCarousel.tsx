@@ -22,34 +22,32 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
 
     return (
         <BranchCardContainer>
-            {branchData.length > 0 ? (
-                <CarouselContainer
-                    onScroll={({ nativeEvent }) => onCarouselScroll(nativeEvent)}
-                    horizontal
-                    pagingEnabled
-                    snapToInterval={pageWidth + gap}
-                    contentContainerStyle={{ paddingHorizontal: offset + gap / 2 }}
-                    scrollEventThrottle={0}
-                    showsHorizontalScrollIndicator={false}
-                    snapToAlignment="start"
-                    decelerationRate="fast">
-                    {branchData.map((data, index) => {
-                        return (
-                            <Card key={index}>
-                                <BranchCard
-                                    branchID={data.branchID}
-                                    imageLogo={data.photoBoothBrand.logoImageURL}
-                                    photoBoothName={data.photoBoothBrand.photoBoothName}
-                                    branchName={data.branchName}
-                                    hashtag={data.photoBoothBrand.hashtag}
-                                    myBranch={data.isLiked}
-                                    distance={data.distance}
-                                />
-                            </Card>
-                        );
-                    })}
-                </CarouselContainer>
-            ) : null}
+            <CarouselContainer
+                onScroll={({ nativeEvent }) => onCarouselScroll(nativeEvent)}
+                horizontal
+                pagingEnabled
+                snapToInterval={pageWidth + gap}
+                contentContainerStyle={{ paddingHorizontal: offset + gap / 2 }}
+                scrollEventThrottle={0}
+                showsHorizontalScrollIndicator={false}
+                snapToAlignment="start"
+                decelerationRate="fast">
+                {branchData.map((data, index) => {
+                    return (
+                        <Card key={index}>
+                            <BranchCard
+                                branchID={data.branchID}
+                                imageLogo={data.photoBoothBrand.logoImageURL}
+                                photoBoothName={data.photoBoothBrand.photoBoothName}
+                                branchName={data.branchName}
+                                hashtag={data.photoBoothBrand.hashtag}
+                                myBranch={data.isLiked}
+                                distance={data.distance}
+                            />
+                        </Card>
+                    );
+                })}
+            </CarouselContainer>
         </BranchCardContainer>
     );
 }
