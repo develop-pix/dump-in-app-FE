@@ -77,7 +77,7 @@ export default function LocationSearchForm() {
         return watchID;
     };
 
-    /** LocationSearch 페이지로 이동시 위치 권한 획득 */
+    // LocationSearch 페이지로 이동시 위치 권한 획득
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization()
@@ -98,7 +98,7 @@ export default function LocationSearchForm() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    /** 검색어 입력시 0.2s Debounce */
+    // 검색어 입력시 0.2초 Debounce
     useEffect(() => {
         if (search !== '') {
             const debounce = setTimeout(() => {

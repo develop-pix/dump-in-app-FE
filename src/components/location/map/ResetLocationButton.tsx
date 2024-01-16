@@ -25,7 +25,7 @@ export default function ResetLocationButton({ GetCurrentLocation, setMyPosition,
         });
     };
 
-    /**  처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출 */
+    //  처음 Location페이지로 이동시 권한 획득 , ReverseGeolocation 호출
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization().then(result => {

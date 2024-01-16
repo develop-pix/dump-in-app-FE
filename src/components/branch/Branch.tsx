@@ -63,7 +63,7 @@ export default function Branch() {
         return watchID;
     };
 
-    /** Branch 페이지로 이동시 위치 권한 획득 */
+    // Branch 페이지로 이동시 위치 권한 획득
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization()

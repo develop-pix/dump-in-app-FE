@@ -41,7 +41,7 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
                                 photoBoothName={data.photoBoothBrand.photoBoothName}
                                 branchName={data.branchName}
                                 hashtag={data.photoBoothBrand.hashtag}
-                                myBranch={data.isLiked}
+                                isLiked={data.isLiked}
                                 distance={data.distance}
                             />
                         </Card>

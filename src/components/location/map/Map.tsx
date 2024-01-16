@@ -96,7 +96,7 @@ export default function Map() {
         [],
     );
 
-    /** LocationSearch 페이지로 이동시 위치 권한 획득 */
+    // LocationSearch 페이지로 이동시 위치 권한 획득
     useEffect(() => {
         let watch = -1;
         GetLocationAuthorization().then(result => {
@@ -113,7 +113,7 @@ export default function Map() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    /** 현재 화면위치 바뀔때마다 지점 데이터 Get */
+    // 현재 화면위치 바뀔때마다 지점 데이터 Get
     useEffect(() => {
         if (myPosition.latitude && myPosition.longitude) {
             GetBranchCardData(myPosition.latitude, myPosition.longitude);
@@ -128,7 +128,7 @@ export default function Map() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [myPosition.latitude, myPosition.longitude]);
 
-    /**  카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능 */
+    //  카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능
     useEffect(() => {
         if (branchData.length > 0) {
             Animated.timing(cardMoveY, {
@@ -139,7 +139,7 @@ export default function Map() {
         }
     }, [showNearBranch, cardMoveY, branchData]);
 
-    /** 내 위치가 바뀔때마다. ReverseGeolocation 호출 */
+    // 내 위치가 바뀔때마다. ReverseGeolocation 호출
     useEffect(() => {
         if (currentLocation.latitude && currentLocation.longitude) {
             GetAddressData(currentLocation.latitude, currentLocation.longitude);
