@@ -1,5 +1,5 @@
-import { BACKEND_API_URL } from '@env';
 import axios from 'axios';
+import Config from 'react-native-config';
 
 //TODO: latitude, longitude, radius 가 backend에서 수정될 예정, 추후 변경
 
@@ -17,7 +17,7 @@ export const GetLocationSearchData = async (
 ) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/locations/search`,
+        url: `${Config.BACKEND_API_URL}/photo-booths/locations/search`,
 
         params: {
             photo_booth_brand_name: branchName,

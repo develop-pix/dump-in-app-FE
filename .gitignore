@@ -67,3 +67,6 @@ yarn-error.log
 
 # dotenv environment variable files
 .env
+.env.development
+.env.production
+.env.stage

@@ -1,5 +1,5 @@
-import { BACKEND_API_URL } from '@env';
 import axios from 'axios';
+import Config from 'react-native-config';
 
 //TODO: latitude, longitude, url -> branchID 수정
 
@@ -12,7 +12,7 @@ import axios from 'axios';
 export const GetBranchData = async (latitude: number | null, longitude: number | null, branchID: string) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/${branchID}`,
+        url: `${Config.BACKEND_API_URL}/photo-booths/${branchID}`,
         params: {
             latitude: latitude,
             longitude: longitude,
@@ -35,7 +35,7 @@ export const GetBranchData = async (latitude: number | null, longitude: number |
 export const GetBranchReviewData = async (branchID: string) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/${branchID}/reviews`,
+        url: `${Config.BACKEND_API_URL}/photo-booths/${branchID}/reviews`,
         params: {
             limit: 15,
         },

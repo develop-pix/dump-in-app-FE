@@ -1,5 +1,5 @@
-import { BACKEND_API_URL, NAVER_MAP_API_ID, NAVER_MAP_API_KEY } from '@env';
 import axios from 'axios';
+import Config from 'react-native-config';
 
 export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
     const str_latitude: string = latitude.toFixed(7);
@@ -14,8 +14,8 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
     return await axios
         .get(URL, {
             headers: {
-                'X-NCP-APIGW-API-KEY-ID': NAVER_MAP_API_ID,
-                'X-NCP-APIGW-API-KEY': NAVER_MAP_API_KEY,
+                'X-NCP-APIGW-API-KEY-ID': Config.NAVER_MAP_API_ID,
+                'X-NCP-APIGW-API-KEY': Config.NAVER_MAP_API_KEY,
             },
             withCredentials: true,
         })
@@ -51,7 +51,7 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
 export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
     return await axios({
         method: 'get',
-        url: `${BACKEND_API_URL}/photo-booths/locations`,
+        url: `${Config.BACKEND_API_URL}/photo-booths/locations`,
         params: {
             latitude: latitude,
             longitude: longitude,
