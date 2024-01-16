@@ -27,15 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: .env setting
-    - run: |
-          echo "BACKEND_API_URL=${{ secrets.BACKEND_API_URL }}" >> .env
-          echo "NAVER_CONSUMER_SECRET=${{ secrets.NAVER_CONSUMER_SECRET }}" >> .env
-          echo "NAVER_LOGIN_CONSUMER_KEY=${{ secrets.NAVER_LOGIN_CONSUMER_KEY }}" >> .env
-          echo "NAVER_MAP_API_ID=${{ secrets.NAVER_MAP_API_ID }}" >> .env
-          echo "NAVER_MAP_API_KEY=${{ secrets.NAVER_MAP_API_KEY }}" >> .env
-          echo "S3_ACCESSKEY_ID=${{ secrets.S3_ACCESSKEY_ID }}" >> .env
-          echo "S3_BUCKET_NAME=${{ secrets.S3_BUCKET_NAME }}" >> .env
-          echo "S3_SECRET_ACCESSKEY=${{ secrets.S3_SECRET_ACCESSKEY }}" >> .env
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
