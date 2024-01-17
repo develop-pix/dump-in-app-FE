@@ -2,80 +2,44 @@ import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import Geolocation from 'react-native-geolocation-service';
+import { useDispatch } from 'react-redux';
 
-import SearchNoData from 'components/reuse/alert/SearchNoData';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import Search from 'components/reuse/input/Search';
+import { GetLocationSearchData } from 'hooks/axios/SearchLocation';
+import { setCurrentLocation } from 'hooks/redux/Location';
+import { useAppSelector } from 'hooks/redux/store';
 import { BranchData } from 'interfaces/Location.interface';
 import { LocationSearchParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import { SearchContainer, SearchForm } from 'styles/layout/location-search/Location.style';
 import { GoBackButtonContainerWithSafeArea } from 'styles/layout/reuse/button/GoBackButton.style';
+import { GetLocationAuthorization } from 'utils/GetLocation';
 
 import SearchBranchList from './SearchBranchList';
 
 export default function LocationSearchForm() {
+    const dispatch = useDispatch();
+    const currentLocation = useAppSelector(state => state.location);
     const platform = Platform.OS;
     const [search, setSearch] = useState<string>('');
     const [resultData, setResultData] = useState<BranchData[] | []>([]);
     const route = useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
 
-    const tempData: BranchData[] = [
-        {
-            branchID: 1,
-            branchName: '인생네컷 동대문 현대아울렛점',
-            distance: '300m',
-            address: '서울 중구 장충단로13길 20 1층',
-        },
-        {
-            branchID: 2,
-            branchName: '인생네컷 한양대점',
-            distance: '450m',
-            address: '서울 성동구 마조로 25',
-        },
-        {
-            branchID: 3,
-            branchName: '인생네컷 혜화로터리점',
-            distance: '880m',
-            address: '서울 종로구 대명길 42 1층 인생네컷',
-        },
-        {
-            branchID: 4,
-            branchName: '인생네컷 영등포 타임스퀘어점',
-            distance: '999m',
-            address: '서울 영등포구 영중로4길 17 1, 2층',
-        },
-        {
-            branchID: 5,
-            branchName: '인생네컷 광화문교보문고점',
-            distance: '1.2km',
-            address: '서울 종로구 자하문로2길 17-2 1층 인생네컷',
-        },
-        {
-            branchID: 6,
-            branchName: 'Test',
-            distance: '999.9m',
-            address: '서울 용산구 청파로45길 24',
-        },
-        {
-            branchID: 7,
-            branchName: 'Test2',
-            distance: '119.9m',
-            address: '서울 용산구 청파로47길 11',
-        },
-    ];
-
-    const getSearchData = async (searchData: string) => {
-        // 나중에 API 연결
-        // const result = await getLocationData(search);
-        setResultData(
-            tempData.filter(data => {
-                return data.branchName.indexOf(searchData) === 0;
-            }),
+    /** TODO: 자동 검색 , backend 수정후 API 수정 필요함 */
+    const getSearchData = async (branchName: string) => {
+        const searchData = await GetLocationSearchData(
+            branchName,
+            currentLocation.latitude,
+            currentLocation.longitude,
+            1.5,
         );
+        setResultData(searchData.data);
     };
 
-    // 진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
+    /**  검색 버튼 클릭, 진입한 페이지가 Map일경우 Branch, ReviewNew or ReviewEdit일경우 해당 페이지로 돌아감 */
+    //TODO: ReviewEdit 진입시 ReviewNew로 돌아가는것 같은데 추후 확인 필요
     const SearchBranch = () => {
         // 나중에 API 연결
         const currentScreen = (route.params as { screen: ScreenName }).screen;
@@ -83,23 +47,69 @@ export default function LocationSearchForm() {
             if (route.params.NextPage === 'BranchDetail') {
                 navigation.pop();
                 navigation.push('Branch', {
-                    branchID: resultData[0].branchID,
+                    branchID: resultData[0].id,
                     screen: 'Location',
                 });
             } else if (route.params.NextPage === 'ReviewNew') {
                 navigation.pop();
                 navigation.push('ReviewNew', {
-                    branchID: resultData[0].branchID,
+                    branchID: resultData[0].id,
                     screen: currentScreen,
                 });
             }
         }
     };
 
+    /** 위치 권한 획득 시 redux store에 저장 */
+    const GetCurrentLocation = () => {
+        const watchID = Geolocation.watchPosition(
+            position => {
+                dispatch(
+                    setCurrentLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
+                );
+            },
+            error => {
+                console.log(error.code, error.message);
+            },
+            { enableHighAccuracy: true },
+        );
+
+        return watchID;
+    };
+
+    // LocationSearch 페이지로 이동시 위치 권한 획득
+    useEffect(() => {
+        let watch = -1;
+        GetLocationAuthorization()
+            .then(result => {
+                if (result === 'granted') {
+                    watch = GetCurrentLocation();
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
+        return () => {
+            if (watch === 0) {
+                Geolocation.clearWatch(watch);
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // 검색어 입력시 0.2초 Debounce
     useEffect(() => {
         if (search !== '') {
-            getSearchData(search);
+            const debounce = setTimeout(() => {
+                getSearchData(search);
+            }, 200);
+
+            return () => {
+                clearTimeout(debounce);
+            };
         }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search]);
 
@@ -115,11 +125,7 @@ export default function LocationSearchForm() {
                     setSearch={setSearch}
                     SubmitSearch={SearchBranch}
                 />
-                {search === '' ? null : resultData.length !== 0 ? (
-                    <SearchBranchList data={resultData} />
-                ) : (
-                    <SearchNoData alertText="검색 결과가 없습니다." recommendText="" />
-                )}
+                {search === '' ? null : <SearchBranchList data={resultData} />}
             </SearchContainer>
         </SearchForm>
     );

@@ -25,6 +25,7 @@ jest.mock('@react-native-seoul/kakao-login', () => '@react-native-seoul/kakao-lo
 jest.mock('@react-native-seoul/naver-login', () => '@react-native-seoul/naver-login');
 
 jest.mock('@invertase/react-native-apple-authentication', () => '@invertase/react-native-apple-authentication');
+jest.mock('react-native-config', () => 'react-native-config');
 
 it('renders correctly', () => {
     create(<App />);

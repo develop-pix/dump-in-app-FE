@@ -7,14 +7,18 @@ import {
     FontWhiteSmallerSemiboldWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 
-export default function BranchDescription({ address, open }: BranchDescriptionProps) {
+export default function BranchDescription({ loadAddress, streetAddress, open }: BranchDescriptionProps) {
     return (
         <BranchDescriptionContainer>
             <FontWhiteSmallerSemiboldWithLineSpacing>INFO</FontWhiteSmallerSemiboldWithLineSpacing>
             <BranchDesc>
                 <DescContainer>
                     <LocationDarkIcon width={16} height={21} />
-                    <FontLightGreySmallerMedium>{address}</FontLightGreySmallerMedium>
+                    {loadAddress === '' ? (
+                        <FontLightGreySmallerMedium>{loadAddress}</FontLightGreySmallerMedium>
+                    ) : (
+                        <FontLightGreySmallerMedium>{streetAddress}</FontLightGreySmallerMedium>
+                    )}
                 </DescContainer>
                 <DescContainer>
                     <ClockIcon width={16} height={21} />

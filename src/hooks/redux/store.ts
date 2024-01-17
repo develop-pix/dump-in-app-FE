@@ -7,6 +7,7 @@ import { persistReducer } from 'redux-persist';
 
 import AccessTokenExpireSlice from './AccessTokenExpireSlice';
 import AccessTokenSlice from './AccessTokenSlice';
+import CurrentLocationSlice from './Location';
 import ReviewDataSlice from './ReviewData';
 import UserDataSlice from './UserDataSlice';
 
@@ -16,6 +17,7 @@ const reducers = combineReducers({
     expire: AccessTokenExpireSlice.reducer,
     reviewData: ReviewDataSlice.reducer,
     userData: UserDataSlice.reducer,
+    location: CurrentLocationSlice.reducer,
 });
 
 const logger = createLogger();

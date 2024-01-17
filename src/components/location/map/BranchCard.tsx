@@ -22,7 +22,7 @@ import {
     FontWhiteGreySmallestMedium,
     FontYellowSmallerMediumWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
-import { DistanceForm, TagsArrayToHashTagArrayForm } from 'utils/FormChange';
+import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function BranchCard({
     branchID,
@@ -30,15 +30,15 @@ export default function BranchCard({
     photoBoothName,
     branchName,
     hashtag,
-    myBranch,
+    isLiked,
     distance,
-    elapsedTime,
 }: BranchCardProps) {
-    const [favorite, setFavorite] = useState<boolean>(myBranch);
+    const [favorite, setFavorite] = useState<boolean>(isLiked);
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
     const isFocused = useIsFocused();
     const route = useRoute();
 
+    /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
         const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
@@ -70,10 +70,8 @@ export default function BranchCard({
                 </BranchCardTop>
                 <BranchCardHorizonLine />
                 <BranchCardBottom>
-                    <FontWhiteGreySmallestMedium>
-                        내 위치로부터 {`${DistanceForm(distance)}`} ·
-                    </FontWhiteGreySmallestMedium>
-                    <FontWhiteGreySmallestMedium>약 {elapsedTime} 소요</FontWhiteGreySmallestMedium>
+                    <FontWhiteGreySmallestMedium>내 위치로부터 {distance} ·</FontWhiteGreySmallestMedium>
+                    <FontWhiteGreySmallestMedium>방문하기</FontWhiteGreySmallestMedium>
                 </BranchCardBottom>
             </CardContainer>
         </TouchableCardContainer>

@@ -1,3 +1,4 @@
+import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { SearchBranchListProps } from 'interfaces/Location.interface';
 import {
     ListContainer,
@@ -11,18 +12,22 @@ export default function SearchBranchList({ data }: SearchBranchListProps) {
     return (
         <SearchBranchScrollView>
             <SearchBranchContainer>
-                <ListContainer>
-                    {data.map(branch => {
-                        return (
-                            <BranchList
-                                key={branch.branchID}
-                                branchName={branch.branchName}
-                                distance={branch.distance}
-                                branchID={branch.branchID}
-                            />
-                        );
-                    })}
-                </ListContainer>
+                {Object.keys(data).length !== 0 ? (
+                    <ListContainer>
+                        {data.map(branch => {
+                            return (
+                                <BranchList
+                                    key={branch.id}
+                                    branchName={branch.branchName}
+                                    distance={branch.distance}
+                                    branchID={branch.id}
+                                />
+                            );
+                        })}
+                    </ListContainer>
+                ) : (
+                    <SearchNoData alertText="검색 결과가 없습니다." recommendText="" />
+                )}
             </SearchBranchContainer>
         </SearchBranchScrollView>
     );

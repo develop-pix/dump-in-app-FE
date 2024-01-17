@@ -1,4 +1,5 @@
 import AWS, { config } from 'aws-sdk';
+import Config from 'react-native-config';
 
 export const UploadImageToS3 = async (representativeImage: string, representativeImageName: string) => {
     const photo = {
@@ -7,12 +8,12 @@ export const UploadImageToS3 = async (representativeImage: string, representativ
         name: representativeImageName,
     };
 
-    // TODO: 아래 S3Data 변수들은 추후 env로 이동
+    // S3경로 및 secretKey Setting
     const S3Data = {
-        bucketName: 'api-dev.dump-in.co.kr',
+        bucketName: Config.S3_BUCKET_NAME,
         region: 'ap-northeast-2',
-        accessKeyID: 'AKIA2MDWSFM6EEDYYNMZ',
-        secretAccessKey: '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',
+        accessKeyID: Config.S3_ACCESSKEY_ID,
+        secretAccessKey: Config.S3_SECRET_ACCESSKEY,
     };
 
     // AWS Config

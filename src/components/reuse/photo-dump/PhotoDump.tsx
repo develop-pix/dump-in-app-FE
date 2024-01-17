@@ -9,10 +9,13 @@ import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
 import { NewReviewParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
 import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
+import { colors } from 'styles/base/Variable';
 import {
     CarouselContainer,
     CarouselScrollView,
     FindMoreReviewContainer,
+    FindMoreReviewTextContainer,
+    FindMoreReviewTextWrapper,
     FindMoreReviewWrapper,
     PhotoDumpContainer,
     ReviewBlurImage,
@@ -60,7 +63,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     };
 
     const onPressRegistrationReview = () => {
-        const currentScreen = (route.params as { branchID: number; screen: ScreenName }).screen;
+        const currentScreen = (route.params as { branchID: string; screen: ScreenName }).screen;
         navigation.push('ReviewNew', {
             branchID: route.params.branchID,
             screen: currentScreen,
@@ -68,7 +71,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     };
 
     const onPressHomeSearch = () => {
-        const currentScreen = (route.params as { branchID: number; screen: ScreenName }).screen;
+        const currentScreen = (route.params as { branchID: string; screen: ScreenName }).screen;
         navigation.navigate('HomeSearch', {
             screen: currentScreen,
             PhotoBoothName: photoBoothName,
@@ -103,35 +106,20 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
                         contentContainerStyle={{
                             paddingHorizontal: offset + gap / 2,
                         }}>
-                        {reviewData.map(item => {
+                        {reviewData.map(reviewItem => {
                             return (
-                                <Reviews key={item.reviewID}>
+                                <Reviews key={reviewItem.id}>
                                     {reviewData[reviewActive] === undefined ? (
                                         <Animated.View style={{ opacity: translateOut }}>
-                                            <Review
-                                                reviewID={item.reviewID}
-                                                reviewImage={item.representativeImage}
-                                                reviewDescription={item.description}
-                                                reviewHashtags={item.hashtag}
-                                            />
+                                            <Review reviewItem={reviewItem} />
                                         </Animated.View>
-                                    ) : item.reviewID === reviewData[reviewActive].reviewID ? (
+                                    ) : reviewItem.id === reviewData[reviewActive].id ? (
                                         <Animated.View style={{ opacity: translateIn }}>
-                                            <Review
-                                                reviewID={item.reviewID}
-                                                reviewImage={item.representativeImage}
-                                                reviewDescription={item.description}
-                                                reviewHashtags={item.hashtag}
-                                            />
+                                            <Review reviewItem={reviewItem} />
                                         </Animated.View>
                                     ) : (
                                         <Animated.View style={{ opacity: translateOut }}>
-                                            <Review
-                                                reviewID={item.reviewID}
-                                                reviewImage={item.representativeImage}
-                                                reviewDescription={item.description}
-                                                reviewHashtags={item.hashtag}
-                                            />
+                                            <Review reviewItem={reviewItem} />
                                         </Animated.View>
                                     )}
                                 </Reviews>
@@ -141,16 +129,21 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
                             <FindMoreReviewContainer>
                                 <ReviewBlurImage
                                     source={{
-                                        uri: reviewData[reviewData.length - 1].representativeImage,
+                                        uri: reviewData[reviewData.length - 1].mainThumbnailImageUrl,
                                     }}
                                     blurRadius={4}
                                 />
                                 <FindMoreReviewWrapper>
-                                    <SearchIcon width={50} height={46} />
-                                    <FontWhiteNormalMedium>포토부스 검색으로 더 많은 리뷰 보기</FontWhiteNormalMedium>
+                                    <FindMoreReviewTextContainer>
+                                        <SearchIcon width={50} height={46} />
+                                        <FindMoreReviewTextWrapper>
+                                            <FontWhiteNormalMedium>포토부스 검색으로</FontWhiteNormalMedium>
+                                            <FontWhiteNormalMedium>더 많은 리뷰 보기</FontWhiteNormalMedium>
+                                        </FindMoreReviewTextWrapper>
+                                    </FindMoreReviewTextContainer>
                                     <SeeMoreButton onPress={onPressHomeSearch}>
                                         <FontWhiteSmallerMedium>리뷰 더보기</FontWhiteSmallerMedium>
-                                        <NextIcon width={20} height={20} />
+                                        <NextIcon width={20} height={20} color={colors.white} />
                                     </SeeMoreButton>
                                 </FindMoreReviewWrapper>
                             </FindMoreReviewContainer>

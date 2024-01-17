@@ -7,11 +7,11 @@ export type RootStackParam = {
     LocationSearch: { NextPage: 'BranchDetail' | 'ReviewNew'; screen: ScreenName };
     Category: { screen: ScreenName };
     MyPage: { screen: ScreenName };
-    Branch: { branchID: number; screen: ScreenName };
+    Branch: { branchID: string; screen: ScreenName };
     ReviewDetail: { reviewID: number; screen: ScreenName };
     PhotoBoothDetail: { PhotoBoothID: number; screen: ScreenName };
     EventDetail: { eventID: number; screen: ScreenName };
-    ReviewNew: { branchID: number | undefined; screen: ScreenName };
+    ReviewNew: { branchID: string | undefined | null; screen: ScreenName };
     ReviewEdit: { ReviewID: number | null; screen: ScreenName };
     Login: { screen: ScreenName };
     Notification: { screen: ScreenName };
@@ -41,7 +41,7 @@ export type ScreenName = 'Home' | 'Location' | 'Category' | 'MyPage';
 
 export type BranchParamList = {
     branchType: {
-        branchID: number;
+        branchID: string;
     };
 };
 
@@ -81,7 +81,7 @@ export interface ScreenProviderProps {
 
 export type NewReviewParamList = {
     branchType: {
-        branchID: number | undefined;
+        branchID: string | undefined;
     };
 };
 

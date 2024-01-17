@@ -15,8 +15,8 @@ import {
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
-export default function BranchTitle({ photoBoothName, branchName, branchHashtag, myBranch }: BranchTitleProps) {
-    const [favorite, setFavorite] = useState<boolean>(myBranch);
+export default function BranchTitle({ photoBoothName, branchName, branchHashtag, isLiked }: BranchTitleProps) {
+    const [favorite, setFavorite] = useState<boolean>(isLiked);
 
     return (
         <BranchTitleContainer>

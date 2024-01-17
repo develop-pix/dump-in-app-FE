@@ -18,7 +18,8 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
 
     const route = useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
 
-    // 진입한 페이지가 지도 검색일 경우 BranchDetail로, ReviewNew일 경우 ReviewNew로 돌아감
+    /**  검색된 지점 클릭, 진입한 페이지가 Map일경우 Branch, ReviewNew or ReviewEdit일경우 해당 페이지로 돌아감 */
+    //TODO: ReviewEdit에서 진입시 ReviewNew로 돌아가는것 같은데 추후 확인 필요
     const onSelectLocation = () => {
         const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (route.params.NextPage === 'BranchDetail') {
