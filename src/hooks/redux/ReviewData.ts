@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-
+interface ImageData {
+    imageURL: string | undefined;
+    imageName: string | undefined;
+}
 interface ReviewDataState {
-    representativeImage: string | null | undefined;
-    representativeImageName: string | null | undefined;
+    representativeImage: ImageData;
+    image: ImageData[];
     description: string | null;
     branchID: number | null | undefined;
     date: Date | null;
@@ -18,8 +21,8 @@ interface ReviewDataState {
 }
 
 const initialState: ReviewDataState = {
-    representativeImage: null,
-    representativeImageName: null,
+    representativeImage: { imageURL: undefined, imageName: undefined },
+    image: [],
     description: null,
     branchID: undefined,
     date: null,
@@ -36,11 +39,12 @@ export const ReviewDataSlice = createSlice({
     name: 'reviewData',
     initialState,
     reducers: {
-        setRepresentativeImage(state, action: PayloadAction<string | null | undefined>) {
-            state.representativeImage = action.payload;
+        setRepresentativeImage(state, action: PayloadAction<ImageData>) {
+            state.representativeImage.imageURL = action.payload.imageURL;
+            state.representativeImage.imageName = action.payload.imageName;
         },
-        setRepresentativeImageName(state, action: PayloadAction<string | null | undefined>) {
-            state.representativeImageName = action.payload;
+        setImage(state, action: PayloadAction<ImageData[]>) {
+            state.image = [...state.image, ...action.payload];
         },
         setDescription(state, action: PayloadAction<string | null>) {
             state.description = action.payload;
@@ -76,7 +80,7 @@ export const ReviewDataSlice = createSlice({
 });
 
 export const { setRepresentativeImage } = ReviewDataSlice.actions;
-export const { setRepresentativeImageName } = ReviewDataSlice.actions;
+export const { setImage } = ReviewDataSlice.actions;
 export const { setDescription } = ReviewDataSlice.actions;
 export const { setBranchID } = ReviewDataSlice.actions;
 export const { setDate } = ReviewDataSlice.actions;

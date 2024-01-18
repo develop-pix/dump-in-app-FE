@@ -1,6 +1,7 @@
 import LinearGradient from 'react-native-linear-gradient';
 
 import ButtonAddImage from 'assets/image/icon/btn_add.svg';
+import { useAppSelector } from 'hooks/redux/store';
 import { ImageFileInputProps } from 'interfaces/ReviewNew.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -19,7 +20,8 @@ import {
     ReviewErrorContainerFileInput,
 } from 'styles/layout/review-form/input/ImageFileInput.style';
 
-export default function ImageFileInput({ representativeImage, setOpenModal, errorData }: ImageFileInputProps) {
+export default function ImageFileInput({ setOpenModal, errorData }: ImageFileInputProps) {
+    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
     const onPressImageUpload = () => {
         setOpenModal(true);
     };
@@ -34,7 +36,7 @@ export default function ImageFileInput({ representativeImage, setOpenModal, erro
                 </NoDataImageContainer>
             ) : (
                 <PreviewImageContainer>
-                    <PreviewImage source={{ uri: representativeImage }} />
+                    <PreviewImage source={{ uri: representativeImage.imageURL }} />
                 </PreviewImageContainer>
             )}
 
@@ -60,7 +62,7 @@ export default function ImageFileInput({ representativeImage, setOpenModal, erro
             <ImageUploadButtonContainer>
                 <ImageUploadButton activeOpacity={0.7} onPress={onPressImageUpload}>
                     <FontWhiteGreySmallestMediumWithLineHeight>
-                        {representativeImage === null ? '사진을 등록해주세요.' : '사진 수정하기'}
+                        {representativeImage === null ? '사진을 등록해주세요.' : '대표이미지로 설정'}
                     </FontWhiteGreySmallestMediumWithLineHeight>
                 </ImageUploadButton>
             </ImageUploadButtonContainer>

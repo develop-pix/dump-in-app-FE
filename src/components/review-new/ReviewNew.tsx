@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Platform } from 'react-native';
+import { Platform, ScrollView } from 'react-native';
 
 import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
 import { UploadImageToS3 } from 'hooks/axios/ReviewNew';
@@ -31,10 +31,10 @@ import ToolsSelect from './input/ToolsSelect';
 export default function ReviewNew() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const scrollRef = useRef<any>();
+    const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
-    const representativeImageName = useAppSelector(state => state.reviewData).representativeImageName;
+    const image = useAppSelector(state => state.reviewData).image;
     const description = useAppSelector(state => state.reviewData).description;
     const location = useAppSelector(state => state.reviewData).branchID;
     const date = useAppSelector(state => state.reviewData).date;
@@ -55,6 +55,10 @@ export default function ReviewNew() {
     const onPressSubmit = () => {
         // 기존에 있던 errorData(빈항목) 초기화
         setErrorData([]);
+        console.log('대표사진');
+        console.log(representativeImage);
+        console.log('이미지들');
+        console.log(image);
 
         // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
         if (representativeImage === null || description === '') {
@@ -89,8 +93,9 @@ export default function ReviewNew() {
 
         if (errorData.length === 0) {
             // 우선 S3 업로드만 먼저 추가
-            if (representativeImage && representativeImageName) {
-                UploadImageToS3(representativeImage, representativeImageName);
+            if (representativeImage.imageURL && representativeImage.imageName) {
+                UploadImageToS3(representativeImage.imageURL, representativeImage.imageName);
+                //TODO: 이미지들도 같이 업로드 하도록 수정
                 console.log('게시글' + description);
                 console.log('위치' + location);
                 console.log('날짜' + date);
@@ -121,11 +126,7 @@ export default function ReviewNew() {
                     <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
                 </SubmitButton>
             </GoBackButtonWithSubmitContainer>
-            <ImageFileInput
-                representativeImage={representativeImage}
-                setOpenModal={setOpenModal}
-                errorData={errorData}
-            />
+            <ImageFileInput setOpenModal={setOpenModal} errorData={errorData} />
             <InputContainer>
                 <InputWrapper>
                     <ReviewDescriptionInput description={description} errorData={errorData} />

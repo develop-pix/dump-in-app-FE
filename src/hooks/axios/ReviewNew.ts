@@ -1,11 +1,11 @@
 import AWS, { config } from 'aws-sdk';
 import Config from 'react-native-config';
 
-export const UploadImageToS3 = async (representativeImage: string, representativeImageName: string) => {
+export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
     const photo = {
-        uri: representativeImage,
+        uri: imageURL,
         type: 'image/jpeg',
-        name: representativeImageName,
+        name: ImageName,
     };
 
     // S3경로 및 secretKey Setting

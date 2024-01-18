@@ -4,7 +4,6 @@ export interface InputData {
 }
 
 export interface ImageFileInputProps {
-    representativeImage: string | null | undefined;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
     errorData: InputData[];
 }
