@@ -46,6 +46,12 @@ export const ReviewDataSlice = createSlice({
         setImage(state, action: PayloadAction<ImageData[]>) {
             state.image = [...state.image, ...action.payload];
         },
+        setRemoveImage(state, action: PayloadAction<ImageData>) {
+            state.image = state.image.filter(imageData => imageData.imageURL !== action.payload.imageURL);
+        },
+        setImageClear(state) {
+            state.image = [];
+        },
         setDescription(state, action: PayloadAction<string | null>) {
             state.description = action.payload;
         },
@@ -80,6 +86,8 @@ export const ReviewDataSlice = createSlice({
 });
 
 export const { setRepresentativeImage } = ReviewDataSlice.actions;
+export const { setImageClear } = ReviewDataSlice.actions;
+export const { setRemoveImage } = ReviewDataSlice.actions;
 export const { setImage } = ReviewDataSlice.actions;
 export const { setDescription } = ReviewDataSlice.actions;
 export const { setBranchID } = ReviewDataSlice.actions;

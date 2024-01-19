@@ -14,10 +14,16 @@ import {
     ReviewNewTouchableOpacity,
 } from 'styles/layout/review-form/input/ReviewNewModal.style';
 
-export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
+export default function ReviewNewModal({
+    setEnlargedImage,
+    setOpenModal,
+    limitImage,
+    setLimitImage,
+}: ReviewNewModalProps) {
     const dispatch = useDispatch();
     const platform = Platform.OS;
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
+    const image = useAppSelector(state => state.reviewData).image;
 
     /** 카메라 작동 */
     const onPressCameraOpen = async () => {
@@ -41,6 +47,7 @@ export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
                         dispatch(
                             setImage([{ imageURL: response.assets[0].uri, imageName: response.assets[0].fileName }]),
                         );
+                        setLimitImage(prev => prev - 1);
                     } else {
                         dispatch(
                             setRepresentativeImage({
@@ -48,6 +55,8 @@ export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
                                 imageName: response.assets[0].fileName,
                             }),
                         );
+                        setEnlargedImage({ imageURL: response.assets[0].uri, imageName: response.assets[0].fileName });
+                        setLimitImage(prev => prev - 1);
                     }
                 }
             });
@@ -67,23 +76,47 @@ export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
                     maxHeight: 600,
                     quality: 1,
                     includeBase64: false,
-                    selectionLimit: 5,
+                    selectionLimit: limitImage,
                 },
                 response => {
                     if (response.didCancel) {
                         return null;
                     } else if (response.assets) {
-                        dispatch(
-                            setRepresentativeImage({
+                        /** 중복된 이미지 제거 */
+                        //FIXME: ios 시뮬레이터에서는 fileName이 변경되므로 추후 수정이 필요할듯함.
+                        //FIXME: 또한 현재 기준 두 플랫폼 모두 파일이름 기준으로 중복 체크 할 시 우연히 두 파일 이름이 같을수 있으므로 수정이 필요하다고 생각됨.
+                        const deduplicatedAssets = response.assets?.filter(asset => {
+                            if (
+                                representativeImage.imageName !== asset.fileName &&
+                                image.every(imageData => imageData.imageName !== asset.fileName)
+                            ) {
+                                return asset;
+                            }
+                        });
+                        if (representativeImage.imageURL === undefined && representativeImage.imageName === undefined) {
+                            dispatch(
+                                setRepresentativeImage({
+                                    imageURL: response.assets[0].uri,
+                                    imageName: response.assets[0].fileName,
+                                }),
+                            );
+                            setLimitImage(prev => prev - 1);
+                            setEnlargedImage({
                                 imageURL: response.assets[0].uri,
                                 imageName: response.assets[0].fileName,
-                            }),
-                        );
+                            });
 
-                        if (response.assets.length > 1) {
-                            response.assets.map(data => {
+                            deduplicatedAssets.map((data, index) => {
+                                if (data.fileName !== undefined && data.uri !== undefined && index !== 0) {
+                                    dispatch(setImage([{ imageURL: data.uri, imageName: data.fileName }]));
+                                    setLimitImage(prev => prev - 1);
+                                }
+                            });
+                        } else {
+                            deduplicatedAssets.map(data => {
                                 if (data.fileName !== undefined && data.uri !== undefined) {
                                     dispatch(setImage([{ imageURL: data.uri, imageName: data.fileName }]));
+                                    setLimitImage(prev => prev - 1);
                                 }
                             });
                         }

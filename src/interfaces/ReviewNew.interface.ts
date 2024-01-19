@@ -5,7 +5,10 @@ export interface InputData {
 
 export interface ImageFileInputProps {
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+    enlargedImage: ImageData;
+    setEnlargedImage: React.Dispatch<React.SetStateAction<ImageData>>;
     errorData: InputData[];
+    setLimitImage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ReviewDescriptionProps {
@@ -56,5 +59,13 @@ export interface PublicOpenSwitchProps {
 }
 
 export interface ReviewNewModalProps {
+    setEnlargedImage: React.Dispatch<React.SetStateAction<ImageData>>;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+    limitImage: number;
+    setLimitImage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface ImageData {
+    imageName: string | undefined;
+    imageURL: string | undefined;
 }

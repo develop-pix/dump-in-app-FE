@@ -10,7 +10,7 @@ import {
     setFrameColor,
     setHairIron,
     setHashtag,
-    setImage,
+    setImageClear,
     setParty,
     setPublicOpen,
     setRepresentativeImage,
@@ -27,7 +27,7 @@ export default function GoBackButtonReview() {
     // BackButton 클릭시 redux 내용 초기화
     const onPressGoHome = () => {
         dispatch(setRepresentativeImage({ imageURL: undefined, imageName: undefined }));
-        dispatch(setImage([]));
+        dispatch(setImageClear());
         dispatch(setDescription(null));
         dispatch(setBranchID(null));
         dispatch(setDate(null));

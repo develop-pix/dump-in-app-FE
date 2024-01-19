@@ -4,7 +4,7 @@ import { Platform, ScrollView } from 'react-native';
 import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
 import { UploadImageToS3 } from 'hooks/axios/ReviewNew';
 import { useAppSelector } from 'hooks/redux/store';
-import { InputData } from 'interfaces/ReviewNew.interface';
+import { ImageData, InputData } from 'interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer, SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';
 import { FontYellowBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
@@ -31,6 +31,9 @@ import ToolsSelect from './input/ToolsSelect';
 export default function ReviewNew() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const [enlargedImage, setEnlargedImage] = useState<ImageData>({ imageName: undefined, imageURL: undefined });
+    const [limitImage, setLimitImage] = useState<number>(5);
+
     const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
@@ -55,26 +58,21 @@ export default function ReviewNew() {
     const onPressSubmit = () => {
         // 기존에 있던 errorData(빈항목) 초기화
         setErrorData([]);
-        console.log('대표사진');
-        console.log(representativeImage);
-        console.log('이미지들');
-        console.log(image);
-
         // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
         if (representativeImage === null || description === '') {
             setErrorData(data => [...data, { InputName: 'representativeImage', height: 0 }]);
         }
         if (description === null || description === '') {
-            setErrorData(data => [...data, { InputName: 'description', height: 450 }]);
+            setErrorData(data => [...data, { InputName: 'description', height: 510 }]);
         }
         if (location === null || location === undefined) {
-            setErrorData(data => [...data, { InputName: 'location', height: 570 }]);
+            setErrorData(data => [...data, { InputName: 'location', height: 630 }]);
         }
         if (date === null) {
-            setErrorData(data => [...data, { InputName: 'date', height: 570 }]);
+            setErrorData(data => [...data, { InputName: 'date', height: 630 }]);
         }
         if (frameColor === null) {
-            setErrorData(data => [...data, { InputName: 'frameColor', height: 680 }]);
+            setErrorData(data => [...data, { InputName: 'frameColor', height: 740 }]);
         }
         if (party === null) {
             setErrorData(data => [...data, { InputName: 'party', height: 880 }]);
@@ -96,6 +94,10 @@ export default function ReviewNew() {
             if (representativeImage.imageURL && representativeImage.imageName) {
                 UploadImageToS3(representativeImage.imageURL, representativeImage.imageName);
                 //TODO: 이미지들도 같이 업로드 하도록 수정
+                console.log('대표사진');
+                console.log(representativeImage);
+                console.log('이미지들');
+                console.log(image);
                 console.log('게시글' + description);
                 console.log('위치' + location);
                 console.log('날짜' + date);
@@ -119,14 +121,27 @@ export default function ReviewNew() {
 
     return (
         <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openModal}>
-            {openModal ? <ReviewNewModal setOpenModal={setOpenModal} /> : null}
+            {openModal ? (
+                <ReviewNewModal
+                    setEnlargedImage={setEnlargedImage}
+                    setOpenModal={setOpenModal}
+                    limitImage={limitImage}
+                    setLimitImage={setLimitImage}
+                />
+            ) : null}
             <GoBackButtonWithSubmitContainer platform={platform}>
                 <GoBackButtonReview />
                 <SubmitButton onPress={onPressSubmit}>
                     <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
                 </SubmitButton>
             </GoBackButtonWithSubmitContainer>
-            <ImageFileInput setOpenModal={setOpenModal} errorData={errorData} />
+            <ImageFileInput
+                setOpenModal={setOpenModal}
+                enlargedImage={enlargedImage}
+                setEnlargedImage={setEnlargedImage}
+                errorData={errorData}
+                setLimitImage={setLimitImage}
+            />
             <InputContainer>
                 <InputWrapper>
                     <ReviewDescriptionInput description={description} errorData={errorData} />

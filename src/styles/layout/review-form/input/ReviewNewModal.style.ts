@@ -14,7 +14,7 @@ export const ReviewNewModalContainer = styled.View<{
     width: 100%;
     height: 134px;
     position: absolute;
-    bottom: ${props => (props.platform === 'ios' ? 805 : 830)}px;
+    bottom: ${props => (props.platform === 'ios' ? 875 : 900)}px;
 `;
 
 export const ReviewNewModalWrapper = styled.View`
