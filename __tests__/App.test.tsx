@@ -1,10 +1,16 @@
 // Note: import explicitly to use the types shipped with jest.
 import { it } from '@jest/globals';
 import 'jest';
+// include this line for mocking react-native-gesture-handler
+import 'react-native-gesture-handler/jestSetup';
 // Note: test renderer must be required after react-native.
 import { create } from 'react-test-renderer';
+import 'setimmediate';
 
 import App from '../App';
+/*
+ * @jest-environment node
+ */
 
 jest.mock('react-native-modal', () => 'react-native-modal');
 jest.mock('react-native-linear-gradient', () => 'react-native-linear-gradient');
@@ -26,6 +32,33 @@ jest.mock('@react-native-seoul/naver-login', () => '@react-native-seoul/naver-lo
 
 jest.mock('@invertase/react-native-apple-authentication', () => '@invertase/react-native-apple-authentication');
 jest.mock('react-native-config', () => 'react-native-config');
+
+// include this section and the NativeAnimatedHelper section for mocking react-native-reanimated
+jest.mock('react-native-reanimated', () => {
+    const Reanimated = require('react-native-reanimated/mock');
+
+    // The mock for `call` immediately calls the callback which is incorrect
+    // So we override it with a no-op
+    Reanimated.default.call = () => {};
+
+    return Reanimated;
+});
+
+// Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
+export const mockedNavigate = jest.fn();
+export const mockedSetOptions = jest.fn();
+
+jest.mock('@react-navigation/native', () => ({
+    ...jest.requireActual('@react-navigation/native'),
+    useNavigation: () => ({
+        setOptions: mockedSetOptions,
+        navigate: mockedNavigate,
+    }),
+    useRoute: () => jest.fn(),
+    useIsFocused: () => jest.fn(() => true),
+}));
 
 it('renders correctly', () => {
     create(<App />);
