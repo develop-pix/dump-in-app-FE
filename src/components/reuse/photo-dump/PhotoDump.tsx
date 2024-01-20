@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
 import { Animated, Dimensions, NativeScrollEvent } from 'react-native';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import SearchIcon from 'assets/image/icon/search.svg';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import { NewReviewParamList } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
 import {
     CarouselContainer,
@@ -28,8 +28,8 @@ import {
 import Review from './Review';
 
 export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps) {
-    const navigation = useNavigation();
-    const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
+    const navigation = useNavigation<LocationStackScreenProps<'Branch'>['navigation']>();
+    const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
 
     const pageWidth = Dimensions.get('window').width * 0.8;
     const gap = Dimensions.get('window').width * 0.04;

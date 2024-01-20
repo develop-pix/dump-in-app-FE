@@ -13,7 +13,7 @@ export type RootStackParamList = {
         image: string[];
         index: number;
     };
-    ReviewEdit: { reviewID: number | null };
+    ReviewEdit: { reviewID: number | null; branchID?: number };
 };
 
 export type RootStackScreenProps<RouteName extends keyof RootStackParamList> = StackScreenProps<

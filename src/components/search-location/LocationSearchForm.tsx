@@ -20,10 +20,12 @@ export default function LocationSearchForm() {
     const routes = navigation.getState().routes;
     const previousRouteName = routes[routes.length - 2].name;
 
-    // 진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
+    // FIXME: ReviewEdit 예외처리 되어있지 않음, 전체적으로 param 보다 전역 상태 관리로 하는 것이 깔끔해 보임
     const searchBranch = () => {
+        // 진입한 페이지가 지도검색일경우 BranchDetail로 ReviewNew일경우 ReviewNew로 돌아감
         // 나중에 API 연결
         if (search !== '' && resultData.length !== 0) {
+            console.log(previousRouteName);
             if (previousRouteName === 'MainTab') {
                 navigation.navigate('MainTab', {
                     screen: 'LocationTab',
@@ -31,6 +33,8 @@ export default function LocationSearchForm() {
                 });
             } else if (previousRouteName === 'AddReviewModal') {
                 navigation.navigate('AddReviewModal', { branchID: resultData[0].branchID });
+            } else if (previousRouteName === 'ReviewEdit') {
+                navigation.goBack();
             }
         }
     };

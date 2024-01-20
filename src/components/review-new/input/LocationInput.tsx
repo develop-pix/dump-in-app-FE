@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { setBranchID } from 'hooks/redux/ReviewData';
 import { useAppDispatch } from 'hooks/redux/store';
-import { NewReviewParamList } from 'interfaces/NavigationBar';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { LocationInputProps } from 'interfaces/ReviewNew.interface';
 import {
     FontLightGreyNormalMedium,
@@ -19,9 +19,10 @@ import {
     LocationTextContainer,
 } from 'styles/layout/review-form/input/LocationInput.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
+
 export default function LocationInput({ location, errorData }: LocationInputProps) {
     const navigation = useNavigation();
-    const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
+    const route = useRoute<RootStackScreenProps<'AddReviewModal'>['route']>();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
 

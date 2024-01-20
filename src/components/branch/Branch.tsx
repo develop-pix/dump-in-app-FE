@@ -1,16 +1,16 @@
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 
 import OfficialImages from 'components/reuse/official-images/OfficialImages';
 import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
 import { BranchData } from 'interfaces/Branch.interface';
-import { BranchParamList } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { BranchForm, BranchScrollView } from 'styles/layout/branch/Branch.style';
 
 import BranchInfo from './BranchInfo';
 import BranchLocation from './BranchLocation';
 
 export default function Branch() {
-    const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
+    const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
 
     /** 임시 데이터, myBranch는 앱 로그인 할때 전부 저장? */
     const tempData: BranchData[] = [

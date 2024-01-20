@@ -137,7 +137,7 @@ export default function ReviewSearchInput() {
                     placeholder="지역, 포토부스, 키워드로 검색"
                     search={search}
                     setSearch={setSearch}
-                    SubmitSearch={onSearchClick}
+                    submitSearch={onSearchClick}
                 />
 
                 {showSearchResult ? (

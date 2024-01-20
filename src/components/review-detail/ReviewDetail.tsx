@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import ReviewDetailHeader from 'components/reuse/header/ReviewDetailHeader';
-import { ReviewDetailParamList } from 'interfaces/NavigationBar';
+import {
+    HomeStackScreenProps,
+    LocationStackScreenProps,
+    MyPageStackScreenProps,
+} from 'interfaces/Navigation.interface';
 import { ReviewData } from 'interfaces/ReviewDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -29,7 +33,11 @@ import ReviewManageModal from './ReviewManageModal';
 export default function ReviewDetail() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [carouselActive, setCarouselActive] = useState<number>(0);
-    const route = useRoute<RouteProp<ReviewDetailParamList, 'reviewDetailType'>>();
+    const route = useRoute<
+        | HomeStackScreenProps<'ReviewDetail'>['route']
+        | LocationStackScreenProps<'ReviewDetail'>['route']
+        | MyPageStackScreenProps<'ReviewDetail'>['route']
+    >();
     const platform = Platform.OS;
 
     const onPressPrevButton = () => {

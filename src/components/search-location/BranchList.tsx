@@ -17,9 +17,9 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
     const routes = navigation.getState().routes;
     const previousRouteName = routes[routes.length - 2].name;
 
-    // 진입한 페이지가 지도 검색일 경우 BranchDetail로, ReviewNew일 경우 ReviewNew로 돌아감
+    // FIXME: ReviewEdit 예외처리 되어있지 않음, 전체적으로 param 보다 전역 상태 관리로 하는 것이 깔끔해 보임
     const onSelectLocation = () => {
-        console.log(previousRouteName);
+        // 진입한 페이지가 지도 검색일 경우 BranchDetail로, ReviewNew일 경우 ReviewNew로 돌아감
         if (previousRouteName === 'MainTab') {
             navigation.navigate('MainTab', {
                 screen: 'LocationTab',
@@ -27,6 +27,8 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
             });
         } else if (previousRouteName === 'AddReviewModal') {
             navigation.navigate('AddReviewModal', { branchID });
+        } else if (previousRouteName === 'ReviewEdit') {
+            navigation.goBack();
         }
     };
 

@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
@@ -9,7 +9,6 @@ import {
     HomeStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
-import { PhotoBoothParamList } from 'interfaces/NavigationBar';
 import { PhotoBoothImageTitleProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -27,7 +26,11 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
     const platform = Platform.OS;
-    const route = useRoute<RouteProp<PhotoBoothParamList, 'photoBoothType'>>();
+    const route = useRoute<
+        | HomeStackScreenProps<'PhotoBoothDetail'>['route']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
+        | MyPageStackScreenProps<'PhotoBoothDetail'>['route']
+    >();
     const navigation = useNavigation<
         | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
@@ -43,7 +46,7 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
                         screen: 'LocationTab',
                         params: {
                             screen: 'Location',
-                            params: { photoBoothID: route.params.PhotoBoothID },
+                            params: { photoBoothID: route.params.photoBoothID },
                         },
                     });
                     break;
@@ -52,7 +55,7 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
                         screen: 'LocationTab',
                         params: {
                             screen: 'Location',
-                            params: { photoBoothID: route.params.PhotoBoothID },
+                            params: { photoBoothID: route.params.photoBoothID },
                         },
                     });
                     break;
@@ -61,7 +64,7 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
                         screen: 'LocationTab',
                         params: {
                             screen: 'Location',
-                            params: { photoBoothID: route.params.PhotoBoothID },
+                            params: { photoBoothID: route.params.photoBoothID },
                         },
                     });
                     break;
