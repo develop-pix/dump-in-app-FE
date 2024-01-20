@@ -10,10 +10,9 @@ import { setCurrentLocation } from 'hooks/redux/Location';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchData, ReviewData } from 'interfaces/Branch.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
-import { BranchScrollView } from 'styles/layout/branch/Branch.style';
+import { BranchForm, BranchScrollView } from 'styles/layout/branch/Branch.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
-import BranchForm from './BranchForm';
 import BranchInfo from './BranchInfo';
 import BranchLocation from './BranchLocation';
 
@@ -40,7 +39,7 @@ export default function Branch() {
     const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
     /** Branch 정보 및 PhotoDump 리뷰 정보 획득 */
-    const GetBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
+    const getBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
         const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
         const fetchReviewData = await GetBranchReviewData(route.params.branchID);
         setBranchData(fetchBranchData.data);
@@ -48,7 +47,7 @@ export default function Branch() {
     };
 
     /** 초기 위치 설정 */
-    const GetCurrentLocation = () => {
+    const getCurrentLocation = () => {
         const watchID = Geolocation.watchPosition(
             position => {
                 dispatch(
@@ -70,9 +69,9 @@ export default function Branch() {
         GetLocationAuthorization()
             .then(result => {
                 if (result === 'granted') {
-                    watch = GetCurrentLocation();
+                    watch = getCurrentLocation();
                 }
-                GetBranchDetailData(currentLocation.latitude, currentLocation.longitude, route.params.branchID);
+                getBranchDetailData(currentLocation.latitude, currentLocation.longitude, route.params.branchID);
             })
             .catch(e => {
                 console.log(e);
