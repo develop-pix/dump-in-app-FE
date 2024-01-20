@@ -1,5 +1,6 @@
 import NaverLoginModule, { NaverLoginRequest } from '@react-native-seoul/naver-login';
 import { useNavigation } from '@react-navigation/native';
+import Config from 'react-native-config';
 
 import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
@@ -13,10 +14,9 @@ import {
     NaverText,
 } from 'styles/layout/login/NaverLogin.style';
 
-// TODO: 추후 env 파일에서 관리
 const naverKeys: NaverLoginRequest = {
-    consumerKey: 'ji5vu5qZOVy8WaXAoJSP',
-    consumerSecret: 'rxarsLeCXz',
+    consumerKey: Config.NAVER_LOGIN_CONSUMER_KEY,
+    consumerSecret: Config.NAVER_CONSUMER_SECRET,
     appName: 'dump-in',
     serviceUrlScheme: 'org.reactjs.native.example.dump-in-app-FE', // iOS 용 스키마 등록
 };

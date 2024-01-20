@@ -1,7 +1,7 @@
 import axios from 'axios';
+import Config from 'react-native-config';
 
-export const getAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
-    // 소수점 7자리 명시
+export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
     const str_latitude: string = latitude.toFixed(7);
     const str_longitude: string = longitude.toFixed(7);
     const URL =
@@ -14,9 +14,8 @@ export const getAddressFromNaverGeocoding = async (latitude: number, longitude: 
     return await axios
         .get(URL, {
             headers: {
-                // TODO: 배포 및 깃허브에 ID와 Secret key가 드러나면 안됨 -> 나중에 env 파일로 수정
-                'X-NCP-APIGW-API-KEY-ID': 'sc9favxy2w',
-                'X-NCP-APIGW-API-KEY': '34Pab6RRd33rPCqGq4lcXcrkUKE7ogsx9nlAzFfo',
+                'X-NCP-APIGW-API-KEY-ID': Config.NAVER_MAP_API_ID,
+                'X-NCP-APIGW-API-KEY': Config.NAVER_MAP_API_KEY,
             },
             withCredentials: true,
         })
@@ -41,5 +40,28 @@ export const getAddressFromNaverGeocoding = async (latitude: number, longitude: 
         .catch(error => {
             console.log(error);
             return '';
+        });
+};
+
+/**
+ * Test
+ * latitude: 36.8101475281
+ *  longitude: 127.1470316068
+ * */
+export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
+    return await axios({
+        method: 'get',
+        url: `${Config.BACKEND_API_URL}/photo-booths/locations`,
+        params: {
+            latitude: latitude,
+            longitude: longitude,
+            radius,
+        },
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
         });
 };

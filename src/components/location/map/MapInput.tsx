@@ -20,6 +20,7 @@ export default function MapInput({ location }: MapInputProps) {
 
     const platform = Platform.OS;
 
+    /** 지점검색 페이지로 이동 */
     const onPressLocationSearch = () => {
         if (isFocused) {
             navigation.navigate('LocationSearch');

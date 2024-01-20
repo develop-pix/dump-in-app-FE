@@ -59,16 +59,25 @@ export const ReviewBlurImage = styled.Image`
 `;
 
 export const FindMoreReviewWrapper = styled.View`
-    width: 130px;
-    height: 180px;
+    width: 100%;
+    height: 100%;
     top: 50px;
     position: absolute;
-    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+`;
+
+export const FindMoreReviewTextContainer = styled.View`
+    align-items: center;
+    gap: 20px;
+`;
+
+export const FindMoreReviewTextWrapper = styled.View`
+    justify-content: center;
     align-items: center;
 `;
 
 export const SeeMoreButton = styled.TouchableOpacity`
     flex-direction: row;
-    gap: 10px;
     align-items: center;
 `;

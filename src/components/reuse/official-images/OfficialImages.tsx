@@ -16,10 +16,14 @@ export default function OfficialImages({ photoBoothName, image }: OfficialImageP
     const navigation = useNavigation();
 
     const onPressOfficialImage = (index: number) => {
+        const images = image.map(url => {
+            return url.imageUrl;
+        });
+
         if (isFocused) {
             navigation.navigate('OfficialImageDetail', {
                 photoBoothName,
-                image,
+                image: images,
                 index,
             });
         }
@@ -37,7 +41,7 @@ export default function OfficialImages({ photoBoothName, image }: OfficialImageP
                     {image.map((url, index) => {
                         return (
                             <OfficialImageWrapper key={index} onPress={() => onPressOfficialImage(index)}>
-                                <OfficialImage source={{ uri: url }} />
+                                <OfficialImage source={{ uri: url.imageUrl }} />
                             </OfficialImageWrapper>
                         );
                     })}

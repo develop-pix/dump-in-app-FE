@@ -8,8 +8,9 @@ import { GoBackButtonFloatContainer } from 'styles/layout/reuse/button/GoBackBut
 
 import BranchDistance from './BranchDistance';
 
-export default function BranchLocation({ geolocation, distance }: BranchLocationProps) {
+export default function BranchLocation({ latitude, longitude, distance }: BranchLocationProps) {
     const platform = Platform.OS;
+    const geolocation = { latitude, longitude };
     return (
         <BranchLocationContainer>
             <NaverMapView

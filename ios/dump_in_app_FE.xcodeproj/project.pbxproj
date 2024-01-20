@@ -65,6 +65,7 @@
 		DA26463D2B147319002D11A0 /* dump_in_app_FE-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dump_in_app_FE-Bridging-Header.h"; sourceTree = "<group>"; };
 		DA26463E2B147319002D11A0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		DA49FBEA2B3DEB73002C17A6 /* dump_in_app_FE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dump_in_app_FE.entitlements; path = dump_in_app_FE/dump_in_app_FE.entitlements; sourceTree = "<group>"; };
+		DAE840282B56624500B6426B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DC8CCC1FEF16456304D2530A /* Pods-dump_in_app_FE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dump_in_app_FE.release.xcconfig"; path = "Target Support Files/Pods-dump_in_app_FE/Pods-dump_in_app_FE.release.xcconfig"; sourceTree = "<group>"; };
 		E33240C4BFF34D8A9CC0F72F /* Pretendard-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Light.otf"; path = "../src/assets/fonts/Pretendard-Light.otf"; sourceTree = "<group>"; };
 		E48CA6D7235D435FBA69B76E /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				DAE840282B56624500B6426B /* Config.xcconfig */,
 				13B07FAE1A68108700A75B9A /* dump_in_app_FE */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* dump_in_app_FETests */,
@@ -607,6 +609,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAE840282B56624500B6426B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -686,6 +689,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAE840282B56624500B6426B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

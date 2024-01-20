@@ -7,51 +7,63 @@ export interface SearchBranchListProps {
 }
 
 export interface BranchData {
-    branchID: number;
+    id: string;
     branchName: string;
     distance: string;
-    address: string;
 }
 
 export interface BranchListProps {
     branchName: string;
     distance: string;
-    branchID: number;
+    branchID: string;
 }
 
-export interface MyLocation {
+export interface LocationData {
     latitude: number;
     longitude: number;
 }
 
+export interface BranchLocationData {
+    branchLocation: LocationData[];
+}
+
 export interface ResetLocationButtonProps {
-    myPosition: MyLocation;
-    setPinPosition: React.Dispatch<React.SetStateAction<MyLocation>>;
+    GetCurrentLocation: () => number;
+    setMyPosition: React.Dispatch<React.SetStateAction<LocationData>>;
     setZoom: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface BranchCardData {
-    branchID: number;
-    imageLogo: string;
-    photoBoothName: string;
+    branchID: string;
     branchName: string;
-    hashtag: string[];
-    myBranch: boolean;
-    distance: number;
-    elapsedTime: string;
+    latitude: number;
+    longitude: number;
+    isLiked: boolean;
+    distance: string;
+    photoBoothBrand: BranchCardPhotoBoothData;
+}
+
+interface BranchCardPhotoBoothData {
+    photoBoothName: string;
+    logoImageURL: string;
+    hashtag: HashtagData[];
+}
+
+export interface HashtagData {
+    hashtagID: number;
+    name: string;
 }
 
 export interface BranchCarouselProps {
-    showNearBranch: boolean;
+    branchData: BranchCardData[];
 }
 
 export interface BranchCardProps {
-    branchID: number;
+    branchID: string;
     imageLogo: string;
     photoBoothName: string;
     branchName: string;
-    hashtag: string[];
-    myBranch: boolean;
-    distance: number;
-    elapsedTime: string;
+    hashtag: HashtagData[];
+    isLiked: boolean;
+    distance: string;
 }

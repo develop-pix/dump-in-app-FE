@@ -34,4 +34,21 @@ export const ReviewHashtags = styled.View`
     display: flex;
     flex-direction: row;
     gap: 10px;
+    flex-wrap: wrap;
+`;
+
+export const ReviewFrameContainer = styled.View`
+    flex-direction: row;
+    gap: 3px;
+`;
+
+export const ReviewFrameColor = styled.View<{
+    colorOption: string;
+}>`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: ${props => props.colorOption};
 `;
