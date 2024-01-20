@@ -2,7 +2,6 @@ import { TouchableOpacity } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import AddReviewIcon from 'assets/image/icon/btn_add.svg';
-import { ScreenName } from 'interfaces/NavigationBar';
 import { NavigationBarContainer, ReviewNewItem } from 'styles/layout/navigation-bar/NavigationBar.style';
 
 import NavigationBarListItem from './NavigationBarListItem';
@@ -60,7 +59,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
                                 <AddReviewIcon width={13} height={13} />
                             </ReviewNewItem>
                         ) : (
-                            <NavigationBarListItem label={label as ScreenName} isFocused={isFocused} />
+                            <NavigationBarListItem label={label} isFocused={isFocused} />
                         )}
                     </TouchableOpacity>
                 );

@@ -6,7 +6,7 @@ import ClickMyPageImage from 'assets/image/icon/navigation-icon/click_mypage.svg
 import HomeImage from 'assets/image/icon/navigation-icon/home.svg';
 import LocationImage from 'assets/image/icon/navigation-icon/location.svg';
 import MyPageImage from 'assets/image/icon/navigation-icon/mypage.svg';
-import { NavigationBarListItemProps } from 'interfaces/NavigationBar';
+import { NavigationBarListItemProps } from 'interfaces/NavigationBar.interface';
 import {
     NavigationBarListItemContainer,
     NavigationImageContainer,
