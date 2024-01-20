@@ -1,9 +1,8 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import EventListIcon from 'assets/image/icon/result_event.svg';
 import { EventResultProps } from 'interfaces/HomeSearch.interface';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     EventListIconContainer,
     EventListInfo,
@@ -12,13 +11,14 @@ import {
 import { FontWhiteGreyNormalMedium, FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 
 export default function EventResult({ searchData, data }: EventResultProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<RootStackScreenProps<'HomeSearch'>['navigation']>();
     const isFocused = useIsFocused();
 
     const onPressEvent = () => {
         if (isFocused) {
-            navigation.navigate('EventDetail', {
-                eventID: data.eventID,
+            navigation.navigate('MainTab', {
+                screen: 'HomeTab',
+                params: { screen: 'EventDetail', params: { eventID: data.eventID } },
             });
         }
     };

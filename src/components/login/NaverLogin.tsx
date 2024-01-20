@@ -1,12 +1,11 @@
 import NaverLoginModule, { NaverLoginRequest } from '@react-native-seoul/naver-login';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     NaverIconWrapper,
     NaverInfoContainer,
@@ -24,8 +23,7 @@ const naverKeys: NaverLoginRequest = {
 
 export default function NaverLogin() {
     const dispatch = useAppDispatch();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute();
+    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
 
     const loginWithNaver = async () => {
         try {

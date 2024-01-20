@@ -1,10 +1,9 @@
 import { Platform } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import SearchGreyIcon from 'assets/image/icon/search_grey.svg';
 import { MapInputProps } from 'interfaces/Location.interface';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import {
     BlockInput,
@@ -16,16 +15,14 @@ import {
 import { SearchButtonIconContainer } from 'styles/layout/reuse/input/Search.style';
 
 export default function MapInput({ location }: MapInputProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
     const isFocused = useIsFocused();
 
     const platform = Platform.OS;
 
     const onPressLocationSearch = () => {
         if (isFocused) {
-            navigation.navigate('LocationSearch', {
-                NextPage: 'BranchDetail',
-            });
+            navigation.navigate('LocationSearch');
         }
     };
 

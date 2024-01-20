@@ -1,8 +1,6 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import SearchNoData from 'components/reuse/alert/SearchNoData';
-import { RootStackParam } from 'interfaces/NavigationBar';
 import { OfficialImageProps } from 'interfaces/reuse/official-image/OfficialImage.interface';
 import {
     OfficialContainer,
@@ -15,7 +13,7 @@ import { FontWhiteSmallerSemiboldWithLineSpacing } from 'styles/layout/reuse/tex
 
 export default function OfficialImages({ photoBoothName, image }: OfficialImageProps) {
     const isFocused = useIsFocused();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation();
 
     const onPressOfficialImage = (index: number) => {
         if (isFocused) {

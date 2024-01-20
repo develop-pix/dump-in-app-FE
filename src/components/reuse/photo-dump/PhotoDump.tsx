@@ -1,13 +1,12 @@
 import { useRef, useState } from 'react';
 import { Animated, Dimensions, NativeScrollEvent } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import SearchIcon from 'assets/image/icon/search.svg';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import { NewReviewParamList, RootStackParam } from 'interfaces/NavigationBar';
+import { NewReviewParamList } from 'interfaces/NavigationBar';
 import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
 import {
     CarouselContainer,
@@ -29,7 +28,7 @@ import {
 import Review from './Review';
 
 export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation();
     const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
 
     const pageWidth = Dimensions.get('window').width * 0.8;
@@ -60,14 +59,14 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     };
 
     const onPressRegistrationReview = () => {
-        navigation.navigate('ReviewNew', {
+        navigation.navigate('AddReviewModal', {
             branchID: route.params.branchID,
         });
     };
 
     const onPressHomeSearch = () => {
         navigation.navigate('HomeSearch', {
-            PhotoBoothName: photoBoothName,
+            photoBoothName,
         });
     };
 

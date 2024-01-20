@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -18,12 +17,26 @@ import {
 import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+    >();
     const isFocused = useIsFocused();
 
     const onPressEvent = (id: number) => {
         if (isFocused) {
-            navigation.navigate('EventDetail', { eventID: id });
+            switch (navigation.getId()) {
+                case 'HomeStack':
+                    (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('EventDetail', {
+                        eventID: id,
+                    });
+                    break;
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('EventDetail', {
+                        eventID: id,
+                    });
+                    break;
+            }
         }
     };
 

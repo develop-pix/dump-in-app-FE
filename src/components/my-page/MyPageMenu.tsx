@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Modal } from 'react-native';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import CloseModalButton from 'components/reuse/button/CloseModalButton';
@@ -10,7 +9,7 @@ import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
 import { MyPageMenuProps } from 'interfaces/MyPage.interface';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     CloseModalButtonContainer,
     MenuContentContainer,
@@ -26,7 +25,8 @@ export default function MyPageMenu({ visible, setMenuVisible }: MyPageMenuProps)
     const isLoggedIn = accessToken !== null;
     const dispatch = useAppDispatch();
     const onFocusNavigation = useNavigation();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+
     const isFocused = useIsFocused();
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
 

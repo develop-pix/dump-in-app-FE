@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
 import LocationIcon from 'assets/image/icon/location_white.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { CategoryEventItemProps } from 'interfaces/Category.interface';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { CategoryStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import {
     EventImage,
@@ -25,7 +24,7 @@ import {
 } from 'styles/layout/reuse/text/Text.style';
 
 export default function CategoryEventItem({ eventData }: CategoryEventItemProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<CategoryStackScreenProps<'Category'>['navigation']>();
     const isFocused = useIsFocused();
 
     const onPressEvent = (id: number) => {

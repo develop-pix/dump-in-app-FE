@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { setBranchID } from 'hooks/redux/ReviewData';
 import { useAppDispatch } from 'hooks/redux/store';
-import { NewReviewParamList, RootStackParam } from 'interfaces/NavigationBar';
+import { NewReviewParamList } from 'interfaces/NavigationBar';
 import { LocationInputProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontLightGreyNormalMedium,
@@ -21,7 +20,7 @@ import {
 } from 'styles/layout/review-form/input/LocationInput.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 export default function LocationInput({ location, errorData }: LocationInputProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation();
     const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
@@ -29,9 +28,7 @@ export default function LocationInput({ location, errorData }: LocationInputProp
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {
         if (isFocused) {
-            navigation.navigate('LocationSearch', {
-                NextPage: 'ReviewNew',
-            });
+            navigation.navigate('LocationSearch');
         }
     };
 

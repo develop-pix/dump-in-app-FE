@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import SkeletonCategoryPhotoBooth from 'components/reuse/skeleton/SkeletonCategoryPhotoBooth';
-import { RootStackParam } from 'interfaces/NavigationBar';
+import { CategoryStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     CategoryPhotoBoothContainer,
     PhotoBoothItem,
@@ -14,7 +13,7 @@ import {
 import { FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function CategoryPhotoBooth() {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<CategoryStackScreenProps<'Category'>['navigation']>();
     const isFocused = useIsFocused();
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -22,7 +21,7 @@ export default function CategoryPhotoBooth() {
     const onPressPhotoBooth = (id: number) => {
         if (isFocused) {
             navigation.navigate('PhotoBoothDetail', {
-                PhotoBoothID: id,
+                photoBoothID: id,
             });
         }
     };

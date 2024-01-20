@@ -24,7 +24,7 @@ export default function RootStackNavigation() {
             <Stack.Screen
                 name="HomeSearch"
                 component={HomeSearch}
-                initialParams={{ PhotoBoothName: null }}
+                initialParams={{ photoBoothName: null }}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
                 }}
@@ -39,7 +39,6 @@ export default function RootStackNavigation() {
             <Stack.Screen
                 name="LocationSearch"
                 component={LocationSearch}
-                initialParams={{ NextPage: 'BranchDetail' }}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
                 }}
@@ -56,7 +55,7 @@ export default function RootStackNavigation() {
             <Stack.Screen
                 name="ReviewEdit"
                 component={ReviewEdit}
-                initialParams={{ ReviewID: null }}
+                initialParams={{ reviewID: null }}
                 options={{ presentation: 'modal' }}
             />
         </Stack.Navigator>

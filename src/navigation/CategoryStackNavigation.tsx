@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 export default function CategoryStackNavigation() {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator id="CategoryStack" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Category" component={Category} />
             <Stack.Screen name="PhotoBoothDetail" component={PhotoBoothDetail} initialParams={{ PhotoBoothID: 0 }} />
             <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />

@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import NewNotificationIcon from 'assets/image/icon/alert_notification.svg';
 import FilterIcon from 'assets/image/icon/filter.svg';
 import NotificationIcon from 'assets/image/icon/notification.svg';
 import SearchIcon from 'assets/image/icon/search.svg';
 import { HomeMenuBarProps } from 'interfaces/Home.interface';
-import { RootStackParam } from 'interfaces/NavigationBar';
 import {
     HomeMenuBarContainer,
     HomeMenuBarIconContainer,
@@ -30,7 +28,7 @@ export default function HomeMenuBar({ filterData, setFilterData, onFilterSubmit 
         setFilterVisible(false);
     };
 
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation();
 
     const [hasNotification, setHasNotification] = useState(false);
 
@@ -45,7 +43,7 @@ export default function HomeMenuBar({ filterData, setFilterData, onFilterSubmit 
 
     const onSearchScreen = () => {
         navigation.navigate('HomeSearch', {
-            PhotoBoothName: null,
+            photoBoothName: null,
         });
     };
 
