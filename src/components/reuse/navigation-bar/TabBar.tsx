@@ -59,7 +59,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
                                 <AddReviewIcon width={13} height={13} />
                             </ReviewNewItem>
                         ) : (
-                            <NavigationBarListItem label={label} isFocused={isFocused} />
+                            <NavigationBarListItem label={label as string} isFocused={isFocused} />
                         )}
                     </TouchableOpacity>
                 );
