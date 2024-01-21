@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Platform, ScrollView } from 'react-native';
 
 import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
-import { UploadImageToS3 } from 'hooks/axios/ReviewNew';
+import { UploadImageToS3, UploadNewReview } from 'hooks/axios/ReviewNew';
 import { useAppSelector } from 'hooks/redux/store';
 import { ImageData, InputData } from 'interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer, SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';
@@ -33,6 +33,8 @@ export default function ReviewNew() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [enlargedImage, setEnlargedImage] = useState<ImageData>({ imageName: undefined, imageURL: undefined });
     const [limitImage, setLimitImage] = useState<number>(5);
+    const [imageUrls, setImageUrls] = useState<string[]>([]);
+    const [mainThumbnailImageUrl, setMainThumbnailImageUrl] = useState<string | undefined>(undefined);
 
     const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;
@@ -55,11 +57,11 @@ export default function ReviewNew() {
         }
     };
 
-    const onPressSubmit = () => {
+    const onPressSubmit = async () => {
         // 기존에 있던 errorData(빈항목) 초기화
         setErrorData([]);
         // 각각의 Input요소가 빈 항목일 경우 errorData에 추가
-        if (representativeImage === null || description === '') {
+        if (representativeImage.imageURL === undefined) {
             setErrorData(data => [...data, { InputName: 'representativeImage', height: 0 }]);
         }
         if (description === null || description === '') {
@@ -89,28 +91,61 @@ export default function ReviewNew() {
             onErrorScroll(errorData[0].height);
         }
 
-        if (errorData.length === 0) {
-            // 우선 S3 업로드만 먼저 추가
-            if (representativeImage.imageURL && representativeImage.imageName) {
-                UploadImageToS3(representativeImage.imageURL, representativeImage.imageName);
-                //TODO: 이미지들도 같이 업로드 하도록 수정
-                console.log('대표사진');
-                console.log(representativeImage);
-                console.log('이미지들');
-                console.log(image);
-                console.log('게시글' + description);
-                console.log('위치' + location);
-                console.log('날짜' + date);
-                console.log('프레임색상' + frameColor);
-                console.log('인원' + party);
-                console.log('카메라샷' + cameraShot);
-                console.log('컨셉' + hashtags);
-                console.log('소품' + tools);
-                console.log('고데기' + hairIron);
-                console.log('공개여부' + publicOpen);
+        // const errorCheck =
+        //     mainThumbnailImageUrl &&
+        //     description &&
+        //     location &&
+        //     date &&
+        //     frameColor &&
+        //     party &&
+        //     cameraShot &&
+        //     hashtags.length > 0 &&
+        //     tools !== null &&
+        //     hairIron !== null;
+
+        // 우선 S3 업로드만 먼저 추가
+        try {
+            if (errorData.length === 0) {
+                if (representativeImage.imageURL && representativeImage.imageName) {
+                    const RepresentativeURLData = await UploadImageToS3(
+                        representativeImage.imageURL,
+                        representativeImage.imageName,
+                    );
+                    setMainThumbnailImageUrl(RepresentativeURLData);
+
+                    if (image.length > 0) {
+                        image.map(async imageData => {
+                            if (imageData.imageURL && imageData.imageName) {
+                                const URLData = await UploadImageToS3(imageData.imageURL, imageData.imageName);
+                                if (URLData !== undefined) {
+                                    setImageUrls(prev => [...prev, URLData]);
+                                }
+                            }
+                        });
+                    }
+                }
+
+                const response = await UploadNewReview(
+                    mainThumbnailImageUrl,
+                    imageUrls,
+                    description,
+                    location?.toString(),
+                    date,
+                    frameColor,
+                    party,
+                    cameraShot,
+                    hashtags,
+                    tools,
+                    hairIron,
+                    publicOpen,
+                );
+
+                console.log(response);
             }
-            // 더 이상 에러 데이터가 없을 경우 submit 진행, TODO: 추후 API 추가
+        } catch (e) {
+            console.log(e);
         }
+        // 더 이상 에러 데이터가 없을 경우 submit 진행, TODO: 추후 API 추가
     };
 
     useEffect(() => {
