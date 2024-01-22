@@ -6,31 +6,31 @@ import ClickMyPageImage from 'assets/image/icon/navigation-icon/click_mypage.svg
 import HomeImage from 'assets/image/icon/navigation-icon/home.svg';
 import LocationImage from 'assets/image/icon/navigation-icon/location.svg';
 import MyPageImage from 'assets/image/icon/navigation-icon/mypage.svg';
-import { NavigationBarListItemProps } from 'interfaces/NavigationBar';
+import { NavigationBarListItemProps } from 'interfaces/NavigationBar.interface';
 import {
     NavigationBarListItemContainer,
     NavigationImageContainer,
 } from 'styles/layout/navigation-bar/NavigationBarItem.style';
 
 const imageMap: Record<string, React.JSX.Element> = {
-    Home: <HomeImage />,
-    Location: <LocationImage />,
-    Category: <CategoryImage />,
-    MyPage: <MyPageImage />,
+    HomeTab: <HomeImage />,
+    LocationTab: <LocationImage />,
+    CategoryTab: <CategoryImage />,
+    MyPageTab: <MyPageImage />,
 };
 
 const clickImageMap: Record<string, React.JSX.Element> = {
-    Home: <ClickHomeImage />,
-    Location: <ClickLocationImage />,
-    Category: <ClickCategoryImage />,
-    MyPage: <ClickMyPageImage />,
+    HomeTab: <ClickHomeImage />,
+    LocationTab: <ClickLocationImage />,
+    CategoryTab: <ClickCategoryImage />,
+    MyPageTab: <ClickMyPageImage />,
 };
 
-export default function NavigationBarListItem({ screen, selectedScreen, handleListClick }: NavigationBarListItemProps) {
-    const imageSource = screen === selectedScreen ? clickImageMap[screen] : imageMap[screen];
+export default function NavigationBarListItem({ label, isFocused }: NavigationBarListItemProps) {
+    const imageSource = isFocused ? clickImageMap[label] : imageMap[label];
 
     return (
-        <NavigationBarListItemContainer onPress={() => handleListClick(screen)}>
+        <NavigationBarListItemContainer>
             <NavigationImageContainer>{imageSource}</NavigationImageContainer>
         </NavigationBarListItemContainer>
     );

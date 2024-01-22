@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import OfficialImageDetailHeader from 'components/reuse/header/OfficialImageDetailHeader';
-import { OfficialImageDetailParamList } from 'interfaces/NavigationBar';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     ButtonContainer,
     NextButtonContainer,
@@ -18,8 +18,8 @@ import {
 } from 'styles/layout/official-image-detail/OfficialImageDetail.style';
 
 export default function OfficialImageDetail() {
+    const route = useRoute<RootStackScreenProps<'OfficialImageDetail'>['route']>();
     const [carouselActive, setCarouselActive] = useState<number>(0);
-    const route = useRoute<RouteProp<OfficialImageDetailParamList, 'imageData'>>();
 
     const onPressPrevButton = () => {
         setCarouselActive(prev => prev - 1);
@@ -31,8 +31,7 @@ export default function OfficialImageDetail() {
 
     useEffect(() => {
         setCarouselActive(route.params.index);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [route.params.index]);
 
     return (
         <OfficialImageDetailFormContainer>

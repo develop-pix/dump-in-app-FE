@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
 
 import OfficialImages from 'components/reuse/official-images/OfficialImages';
 import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
-import { PhotoBoothDataType, PhotoBoothDetailRouteProp } from 'interfaces/PhotoBoothDetail.interface';
+import { PhotoBoothDataType } from 'interfaces/PhotoBoothDetail.interface';
 import { OfficialImagesContainer, PhotoDumpContainer } from 'styles/layout/photo-booth-detail/PhotoBoothDetail.style';
 
 import PhotoBoothEvent from './PhotoBoothEvent';
 import PhotoBoothImageTitle from './PhotoBoothImageTitle';
 
 export default function PhotoBoothDetail() {
-    const route = useRoute<PhotoBoothDetailRouteProp>();
-    const { PhotoBoothID } = route.params;
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothDataType>({
@@ -101,16 +98,13 @@ export default function PhotoBoothDetail() {
             {!isLoading ? (
                 <ScrollView>
                     <PhotoBoothImageTitle photoBoothData={photoBoothData} />
-
                     <PhotoBoothEvent eventData={photoBoothData.event} />
-
                     <OfficialImagesContainer>
                         <OfficialImages
                             image={photoBoothData.officialImage}
                             photoBoothName={photoBoothData.photoBoothName}
                         />
                     </OfficialImagesContainer>
-
                     <PhotoDumpContainer>
                         <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} />
                     </PhotoDumpContainer>

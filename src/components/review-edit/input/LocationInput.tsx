@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { setBranchID } from 'hooks/redux/ReviewData';
 import { useAppDispatch } from 'hooks/redux/store';
-import { NewReviewParamList, RootStackParam } from 'interfaces/NavigationBar';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { LocationInputProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontLightGreyNormalMedium,
@@ -20,19 +19,17 @@ import {
     LocationTextContainer,
 } from 'styles/layout/review-form/input/LocationInput.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
+
 export default function LocationInput({ location, errorData }: LocationInputProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
+    const navigation = useNavigation();
+    const route = useRoute<RootStackScreenProps<'ReviewEdit'>['route']>();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
 
-    // Branch 검색 페이지로 이동
+    /** Branch 검색 페이지로 이동 */
     const onPressSelectLocation = () => {
         if (isFocused) {
-            navigation.push('LocationSearch', {
-                NextPage: 'ReviewNew',
-                screen: 'Location',
-            });
+            navigation.navigate('LocationSearch');
         }
     };
 
@@ -40,8 +37,7 @@ export default function LocationInput({ location, errorData }: LocationInputProp
     useEffect(() => {
         dispatch(setBranchID(route.params.branchID));
         // BranchID로 photoBoothName + branchName 얻어오는 API 추가
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch, route.params.branchID]);
 
     return (
         <LocationInputContainer>

@@ -1,11 +1,14 @@
 import { Platform } from 'react-native';
-import { RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import { PhotoBoothParamList, RootStackParam } from 'interfaces/NavigationBar';
+import {
+    CategoryStackScreenProps,
+    HomeStackScreenProps,
+    MyPageStackScreenProps,
+} from 'interfaces/Navigation.interface';
 import { PhotoBoothImageTitleProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -23,16 +26,49 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
     const platform = Platform.OS;
-    const route = useRoute<RouteProp<PhotoBoothParamList, 'photoBoothType'>>();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const route = useRoute<
+        | HomeStackScreenProps<'PhotoBoothDetail'>['route']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
+        | MyPageStackScreenProps<'PhotoBoothDetail'>['route']
+    >();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']
+    >();
     const isFocused = useIsFocused();
 
     const onPressButton = () => {
         if (isFocused) {
-            navigation.push('Location', {
-                PhotoBoothID: route.params.PhotoBoothID,
-                screen: 'Location',
-            });
+            switch (navigation.getId()) {
+                case 'HomeStack':
+                    (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('MainTab', {
+                        screen: 'LocationTab',
+                        params: {
+                            screen: 'Location',
+                            params: { photoBoothID: route.params.photoBoothID },
+                        },
+                    });
+                    break;
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('MainTab', {
+                        screen: 'LocationTab',
+                        params: {
+                            screen: 'Location',
+                            params: { photoBoothID: route.params.photoBoothID },
+                        },
+                    });
+                    break;
+                case 'MyPageStack':
+                    (navigation as MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('MainTab', {
+                        screen: 'LocationTab',
+                        params: {
+                            screen: 'Location',
+                            params: { photoBoothID: route.params.photoBoothID },
+                        },
+                    });
+                    break;
+            }
         }
     };
 

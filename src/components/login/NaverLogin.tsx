@@ -1,13 +1,12 @@
 import NaverLoginModule, { NaverLoginRequest } from '@react-native-seoul/naver-login';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import Config from 'react-native-config';
 
 import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     NaverIconWrapper,
     NaverInfoContainer,
@@ -24,8 +23,7 @@ const naverKeys: NaverLoginRequest = {
 
 export default function NaverLogin() {
     const dispatch = useAppDispatch();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute();
+    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
 
     const loginWithNaver = async () => {
         try {
@@ -38,10 +36,7 @@ export default function NaverLogin() {
                 dispatch(setUserID('jsee53'));
                 dispatch(setUserNickName('지나가는 오리너구리'));
 
-                const currentScreen = (route.params as { screen: ScreenName }).screen;
-                navigation.push('MyPage', {
-                    screen: currentScreen,
-                });
+                navigation.navigate('MyPage');
             }
         } catch (error) {
             console.error('Naver Login Error:', error);
