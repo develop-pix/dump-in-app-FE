@@ -1,6 +1,7 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import EtcImage from 'assets/image/icon/frame_etc.svg';
 import {
     HomeStackScreenProps,
     LocationStackScreenProps,
@@ -14,6 +15,7 @@ import {
     ReviewDescriptionContainer,
     ReviewFrameColor,
     ReviewFrameContainer,
+    ReviewFrameGradient,
     ReviewHashtags,
     ReviewImage,
 } from 'styles/layout/reuse/photo-dump/Review.style';
@@ -72,7 +74,13 @@ export default function Review({ reviewItem }: ReviewProps) {
                 <ReviewHashtags>
                     <ReviewFrameContainer>
                         <FontYellowSmallerMediumWithLineSpacing>#</FontYellowSmallerMediumWithLineSpacing>
-                        <ReviewFrameColor colorOption={reviewItem.frameColor} />
+                        {reviewItem.frameColor === 'gradient' ? (
+                            <ReviewFrameGradient>
+                                <EtcImage width={16} height={16} />
+                            </ReviewFrameGradient>
+                        ) : (
+                            <ReviewFrameColor colorOption={reviewItem.frameColor} />
+                        )}
                     </ReviewFrameContainer>
                     <FontYellowSmallerMediumWithLineSpacing>
                         # {reviewItem.participants}

@@ -3,7 +3,7 @@ import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-im
 import Modal from 'react-native-modal';
 import { useDispatch } from 'react-redux';
 
-import { setImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
+import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewNewModalProps } from 'interfaces/ReviewNew.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
@@ -14,12 +14,7 @@ import {
     ReviewNewTouchableOpacity,
 } from 'styles/layout/review-form/input/ReviewNewModal.style';
 
-export default function ReviewNewModal({
-    setEnlargedImage,
-    setOpenModal,
-    limitImage,
-    setLimitImage,
-}: ReviewNewModalProps) {
+export default function ReviewNewModal({ setOpenModal, limitImage, setLimitImage }: ReviewNewModalProps) {
     const dispatch = useDispatch();
     const platform = Platform.OS;
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
@@ -55,7 +50,12 @@ export default function ReviewNewModal({
                                 imageName: response.assets[0].fileName,
                             }),
                         );
-                        setEnlargedImage({ imageURL: response.assets[0].uri, imageName: response.assets[0].fileName });
+                        dispatch(
+                            setEnlargedImage({
+                                imageURL: response.assets[0].uri,
+                                imageName: response.assets[0].fileName,
+                            }),
+                        );
                         setLimitImage(prev => prev - 1);
                     }
                 }
@@ -101,10 +101,12 @@ export default function ReviewNewModal({
                                 }),
                             );
                             setLimitImage(prev => prev - 1);
-                            setEnlargedImage({
-                                imageURL: response.assets[0].uri,
-                                imageName: response.assets[0].fileName,
-                            });
+                            dispatch(
+                                setEnlargedImage({
+                                    imageURL: response.assets[0].uri,
+                                    imageName: response.assets[0].fileName,
+                                }),
+                            );
 
                             deduplicatedAssets.map((data, index) => {
                                 if (data.fileName !== undefined && data.uri !== undefined && index !== 0) {

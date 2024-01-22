@@ -21,8 +21,8 @@ export const GetLocationSearchData = async (
 
         params: {
             photo_booth_brand_name: branchName,
-            latitude: latitude,
-            longitude: longitude,
+            latitude: 36.8101475281,
+            longitude: 127.1470316068,
             radius,
         },
     })

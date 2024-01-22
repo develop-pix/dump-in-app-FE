@@ -8,8 +8,9 @@ interface ImageData {
 interface ReviewDataState {
     representativeImage: ImageData;
     image: ImageData[];
+    enlargedImage: ImageData;
     description: string | null;
-    branchID: number | null | undefined;
+    branchID: string | undefined;
     date: Date | null;
     frameColor: string | null;
     party: number | null;
@@ -23,6 +24,7 @@ interface ReviewDataState {
 const initialState: ReviewDataState = {
     representativeImage: { imageURL: undefined, imageName: undefined },
     image: [],
+    enlargedImage: { imageURL: undefined, imageName: undefined },
     description: null,
     branchID: undefined,
     date: null,
@@ -52,10 +54,14 @@ export const ReviewDataSlice = createSlice({
         setImageClear(state) {
             state.image = [];
         },
+        setEnlargedImage(state, action: PayloadAction<ImageData>) {
+            state.enlargedImage.imageURL = action.payload.imageURL;
+            state.enlargedImage.imageName = action.payload.imageName;
+        },
         setDescription(state, action: PayloadAction<string | null>) {
             state.description = action.payload;
         },
-        setBranchID(state, action: PayloadAction<number | null | undefined>) {
+        setBranchID(state, action: PayloadAction<string | undefined>) {
             state.branchID = action.payload;
         },
         setDate(state, action: PayloadAction<Date | null>) {
@@ -89,6 +95,7 @@ export const { setRepresentativeImage } = ReviewDataSlice.actions;
 export const { setImageClear } = ReviewDataSlice.actions;
 export const { setRemoveImage } = ReviewDataSlice.actions;
 export const { setImage } = ReviewDataSlice.actions;
+export const { setEnlargedImage } = ReviewDataSlice.actions;
 export const { setDescription } = ReviewDataSlice.actions;
 export const { setBranchID } = ReviewDataSlice.actions;
 export const { setDate } = ReviewDataSlice.actions;

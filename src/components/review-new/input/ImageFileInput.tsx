@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import ButtonAddImage from 'assets/image/icon/btn_add.svg';
 import TrashIcon from 'assets/image/icon/btn_trash.svg';
-import { setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
+import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
 import { useAppSelector } from 'hooks/redux/store';
 import { ImageFileInputProps } from 'interfaces/ReviewNew.interface';
 import { colors } from 'styles/base/Variable';
@@ -35,16 +35,12 @@ import {
     TrashButtonContainer,
 } from 'styles/layout/review-form/input/ImageFileInput.style';
 
-export default function ImageFileInput({
-    setOpenModal,
-    enlargedImage,
-    setEnlargedImage,
-    errorData,
-    setLimitImage,
-}: ImageFileInputProps) {
+export default function ImageFileInput({ setOpenModal, errorData, setLimitImage }: ImageFileInputProps) {
     const dispatch = useDispatch();
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
     const image = useAppSelector(state => state.reviewData).image;
+    const enlargedImage = useAppSelector(state => state.reviewData).enlargedImage;
+
     /** 카메라, 앨범 에서 선택 모달 Open */
     const onPressImageUpload = () => {
         setOpenModal(true);
@@ -60,12 +56,14 @@ export default function ImageFileInput({
     /** 이미지 삭제 */
     const onPressDeleteImage = (imageURL: string | undefined, imageName: string | undefined) => {
         dispatch(setRemoveImage({ imageURL, imageName }));
-        setEnlargedImage({ imageURL: representativeImage.imageURL, imageName: representativeImage.imageName });
+        dispatch(
+            setEnlargedImage({ imageURL: representativeImage.imageURL, imageName: representativeImage.imageName }),
+        );
         setLimitImage(prev => prev + 1);
     };
 
     const onPressEnlargeImage = (imageURL: string | undefined, imageName: string | undefined) => {
-        setEnlargedImage({ imageURL, imageName });
+        dispatch(setEnlargedImage({ imageURL, imageName }));
     };
 
     return (

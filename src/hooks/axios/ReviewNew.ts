@@ -63,7 +63,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
  * */
 export const UploadNewReview = async (
     mainThumbnailImageUrl: string | undefined,
-    imageUrls: string[],
+    imageUrls: (string | undefined)[],
     content: string | null,
     photoBoothId: string | null | undefined,
     date: Date | null,
@@ -75,6 +75,7 @@ export const UploadNewReview = async (
     curlAmount: boolean | null,
     isPublic: boolean,
 ) => {
+    console.log('데이터 확인');
     console.log('mainThumbnailImageUrl');
     console.log(mainThumbnailImageUrl);
     console.log('imageUrls');
@@ -112,7 +113,7 @@ export const UploadNewReview = async (
             imageUrls,
             content,
             photoBoothId,
-            date: '2024-01-19',
+            date,
             frameColor,
             participants,
             cameraShot,

@@ -4,7 +4,7 @@ import { Platform, ScrollView } from 'react-native';
 import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
 import { UploadImageToS3, UploadNewReview } from 'hooks/axios/ReviewNew';
 import { useAppSelector } from 'hooks/redux/store';
-import { ImageData, InputData } from 'interfaces/ReviewNew.interface';
+import { InputData } from 'interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer, SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';
 import { FontYellowBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
@@ -31,10 +31,7 @@ import ToolsSelect from './input/ToolsSelect';
 export default function ReviewNew() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [enlargedImage, setEnlargedImage] = useState<ImageData>({ imageName: undefined, imageURL: undefined });
     const [limitImage, setLimitImage] = useState<number>(5);
-    const [imageUrls, setImageUrls] = useState<string[]>([]);
-    const [mainThumbnailImageUrl, setMainThumbnailImageUrl] = useState<string | undefined>(undefined);
 
     const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;
@@ -51,12 +48,14 @@ export default function ReviewNew() {
     const hairIron = useAppSelector(state => state.reviewData).hairIron;
     const publicOpen = useAppSelector(state => state.reviewData).publicOpen;
 
+    /** 완료 버튼 클릭시 입력하지 않은 부분 스크롤 이동 */
     const onErrorScroll = (height: number) => {
         if (scrollRef.current) {
             scrollRef.current.scrollTo({ y: height, animated: true });
         }
     };
 
+    /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 업로드 */
     const onPressSubmit = async () => {
         // 기존에 있던 errorData(빈항목) 초기화
         setErrorData([]);
@@ -86,66 +85,69 @@ export default function ReviewNew() {
             setErrorData(data => [...data, { InputName: 'hashtags', height: 880 }]);
         }
 
-        // errorData 중 제일 상단 항목으로 이동
         if (errorData.length > 0) {
             onErrorScroll(errorData[0].height);
         }
 
-        // const errorCheck =
-        //     mainThumbnailImageUrl &&
-        //     description &&
-        //     location &&
-        //     date &&
-        //     frameColor &&
-        //     party &&
-        //     cameraShot &&
-        //     hashtags.length > 0 &&
-        //     tools !== null &&
-        //     hairIron !== null;
-
-        // 우선 S3 업로드만 먼저 추가
         try {
-            if (errorData.length === 0) {
-                if (representativeImage.imageURL && representativeImage.imageName) {
-                    const RepresentativeURLData = await UploadImageToS3(
-                        representativeImage.imageURL,
-                        representativeImage.imageName,
-                    );
-                    setMainThumbnailImageUrl(RepresentativeURLData);
+            let mainThumbnailImageUrl: string | undefined;
+            let imageUrls: (string | undefined)[] = [];
 
-                    if (image.length > 0) {
-                        image.map(async imageData => {
-                            if (imageData.imageURL && imageData.imageName) {
-                                const URLData = await UploadImageToS3(imageData.imageURL, imageData.imageName);
-                                if (URLData !== undefined) {
-                                    setImageUrls(prev => [...prev, URLData]);
+            const ImageUpload = async () => {
+                if (errorData.length === 0) {
+                    if (representativeImage.imageURL && representativeImage.imageName) {
+                        mainThumbnailImageUrl = await UploadImageToS3(
+                            representativeImage.imageURL,
+                            representativeImage.imageName,
+                        );
+
+                        if (image.length > 0) {
+                            const imageUploadPromises = image.map(async imageData => {
+                                if (imageData.imageURL && imageData.imageName) {
+                                    return await UploadImageToS3(imageData.imageURL, imageData.imageName);
                                 }
-                            }
-                        });
+                            });
+                            const updatedImageUrls = await Promise.all(imageUploadPromises);
+                            imageUrls = updatedImageUrls.filter(url => url !== undefined);
+                        }
                     }
                 }
+            };
 
-                const response = await UploadNewReview(
-                    mainThumbnailImageUrl,
-                    imageUrls,
-                    description,
-                    location?.toString(),
-                    date,
-                    frameColor,
-                    party,
-                    cameraShot,
-                    hashtags,
-                    tools,
-                    hairIron,
-                    publicOpen,
-                );
+            await ImageUpload().then(async () => {
+                const errorCheck =
+                    mainThumbnailImageUrl &&
+                    description &&
+                    location &&
+                    date &&
+                    frameColor &&
+                    party &&
+                    cameraShot &&
+                    hashtags.length > 0 &&
+                    tools !== null &&
+                    hairIron !== null;
 
-                console.log(response);
-            }
+                if (errorCheck) {
+                    await UploadNewReview(
+                        mainThumbnailImageUrl,
+                        imageUrls,
+                        description,
+                        location,
+                        date,
+                        frameColor,
+                        party,
+                        cameraShot,
+                        hashtags,
+                        tools,
+                        hairIron,
+                        publicOpen,
+                    );
+                }
+            });
         } catch (e) {
             console.log(e);
         }
-        // 더 이상 에러 데이터가 없을 경우 submit 진행, TODO: 추후 API 추가
+        // TODO: 리뷰 모달 클로즈 , 아래 뒤로가기 버튼 클릭시 닫겠습니까 모달 출력
     };
 
     useEffect(() => {
@@ -157,12 +159,7 @@ export default function ReviewNew() {
     return (
         <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openModal}>
             {openModal ? (
-                <ReviewNewModal
-                    setEnlargedImage={setEnlargedImage}
-                    setOpenModal={setOpenModal}
-                    limitImage={limitImage}
-                    setLimitImage={setLimitImage}
-                />
+                <ReviewNewModal setOpenModal={setOpenModal} limitImage={limitImage} setLimitImage={setLimitImage} />
             ) : null}
             <GoBackButtonWithSubmitContainer platform={platform}>
                 <GoBackButtonReview />
@@ -170,18 +167,12 @@ export default function ReviewNew() {
                     <FontYellowBiggerSemibold>완료</FontYellowBiggerSemibold>
                 </SubmitButton>
             </GoBackButtonWithSubmitContainer>
-            <ImageFileInput
-                setOpenModal={setOpenModal}
-                enlargedImage={enlargedImage}
-                setEnlargedImage={setEnlargedImage}
-                errorData={errorData}
-                setLimitImage={setLimitImage}
-            />
+            <ImageFileInput setOpenModal={setOpenModal} errorData={errorData} setLimitImage={setLimitImage} />
             <InputContainer>
                 <InputWrapper>
                     <ReviewDescriptionInput description={description} errorData={errorData} />
                     <LocationAndDateContainer>
-                        <LocationInput location={location} errorData={errorData} />
+                        <LocationInput errorData={errorData} />
                         <DateInput date={date} errorData={errorData} />
                     </LocationAndDateContainer>
                     <FrameColorSelect frameColor={frameColor} errorData={errorData} />

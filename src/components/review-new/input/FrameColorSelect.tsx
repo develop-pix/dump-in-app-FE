@@ -63,8 +63,8 @@ export default function FrameColorSelect({ frameColor, errorData }: FrameColorSe
                         </FrameColorButton>
                     );
                 })}
-                <EtcFrameColorButton isSelected={frameColor} onPress={() => onPressColor('etc')}>
-                    {frameColor === 'etc' ? (
+                <EtcFrameColorButton isSelected={frameColor} onPress={() => onPressColor('gradient')}>
+                    {frameColor === 'gradient' ? (
                         <EtcCheckImage width={36} height={36} />
                     ) : (
                         <EtcImage width={36} height={36} />
