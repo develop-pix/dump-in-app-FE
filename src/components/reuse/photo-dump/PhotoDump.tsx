@@ -1,13 +1,12 @@
 import { useRef, useState } from 'react';
 import { Animated, Dimensions, NativeScrollEvent } from 'react-native';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import SearchIcon from 'assets/image/icon/search.svg';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import { NewReviewParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoDumpProps } from 'interfaces/reuse/photo-dump/PhotoDump.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -32,8 +31,8 @@ import {
 import Review from './Review';
 
 export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute<RouteProp<NewReviewParamList, 'branchType'>>();
+    const navigation = useNavigation<LocationStackScreenProps<'Branch'>['navigation']>();
+    const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
 
     const pageWidth = Dimensions.get('window').width * 0.8;
     const gap = Dimensions.get('window').width * 0.04;
@@ -54,7 +53,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
         extrapolate: 'clamp',
     });
 
-    /* 현재 review Set */
+    /** 현재 review Set */
     const onCarouselScroll = (nativeEvent: NativeScrollEvent) => {
         if (nativeEvent) {
             const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
@@ -63,18 +62,14 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     };
 
     const onPressRegistrationReview = () => {
-        const currentScreen = (route.params as { branchID: string; screen: ScreenName }).screen;
-        navigation.push('ReviewNew', {
+        navigation.navigate('AddReviewModal', {
             branchID: route.params.branchID,
-            screen: currentScreen,
         });
     };
 
     const onPressHomeSearch = () => {
-        const currentScreen = (route.params as { branchID: string; screen: ScreenName }).screen;
         navigation.navigate('HomeSearch', {
-            screen: currentScreen,
-            PhotoBoothName: photoBoothName,
+            photoBoothName,
         });
     };
 

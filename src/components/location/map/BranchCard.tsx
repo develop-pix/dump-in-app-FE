@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { BranchCardProps } from 'interfaces/Location.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     BranchCardBottom,
     BranchCardBranchNameWrapper,
@@ -34,15 +33,13 @@ export default function BranchCard({
     distance,
 }: BranchCardProps) {
     const [favorite, setFavorite] = useState<boolean>(isLiked);
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
-            navigation.push('Branch', { branchID, screen: currentScreen });
+            navigation.navigate('Branch', { branchID });
         }
     };
 

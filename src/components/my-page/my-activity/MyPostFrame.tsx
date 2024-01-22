@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import { FavoriteIcon } from 'styles/layout/category/CategoryEventItem.style';
 import {
@@ -19,16 +18,14 @@ import {
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+
     const isFocused = useIsFocused();
-    const route = useRoute();
 
     const onPressReview = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
-            navigation.push('ReviewDetail', {
+            navigation.navigate('ReviewDetail', {
                 reviewID: data.reviewID,
-                screen: currentScreen,
             });
         }
     };

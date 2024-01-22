@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
-import { ScreenContextType, ScreenProviderProps } from 'interfaces/NavigationBar';
+import { ScreenContextType, ScreenProviderProps } from 'interfaces/ScreenContext.interface';
 
 const ScreenContext = createContext<ScreenContextType | undefined>(undefined);
 

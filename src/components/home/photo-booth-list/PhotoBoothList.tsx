@@ -43,7 +43,6 @@ export default function PhotoBoothList({ data }: PhotoBoothListProps) {
                     }
                 })}
             </PhotoBoothListColumnContainer>
-
             <PhotoBoothListColumnContainer>
                 {allData.slice(6, 12).map((item, index) => {
                     if ('photoBoothID' in item) {

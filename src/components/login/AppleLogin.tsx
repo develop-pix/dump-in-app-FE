@@ -1,7 +1,6 @@
 import { Platform } from 'react-native';
 import { appleAuth, appleAuthAndroid } from '@invertase/react-native-apple-authentication';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
@@ -9,7 +8,7 @@ import AppleIcon from 'assets/image/icon/apple_login.svg';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     AppleIconWrapper,
     AppleInfoContainer,
@@ -19,8 +18,7 @@ import {
 
 export default function AppleLogin() {
     const dispatch = useAppDispatch();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
-    const route = useRoute();
+    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
     const platform = Platform.OS;
 
     // ios 에서 Apple Login
@@ -62,10 +60,7 @@ export default function AppleLogin() {
             dispatch(setUserNickName('지나가는 오리너구리'));
         }
 
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
-        navigation.push('MyPage', {
-            screen: currentScreen,
-        });
+        navigation.navigate('MyPage');
     };
 
     return (

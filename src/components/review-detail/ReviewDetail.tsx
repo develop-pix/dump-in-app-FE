@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import ReviewDetailHeader from 'components/reuse/header/ReviewDetailHeader';
-import { ReviewDetailParamList } from 'interfaces/NavigationBar';
+import {
+    HomeStackScreenProps,
+    LocationStackScreenProps,
+    MyPageStackScreenProps,
+} from 'interfaces/Navigation.interface';
 import { ReviewData } from 'interfaces/ReviewDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -25,12 +29,16 @@ import {
 import ReviewDescription from './ReviewDescription';
 import ReviewManageModal from './ReviewManageModal';
 
+// FIXME: style이 이상하게 적용되어 있음 재구성 필요
 export default function ReviewDetail() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [carouselActive, setCarouselActive] = useState<number>(0);
-    const route = useRoute<RouteProp<ReviewDetailParamList, 'reviewDetailType'>>();
+    const route = useRoute<
+        | HomeStackScreenProps<'ReviewDetail'>['route']
+        | LocationStackScreenProps<'ReviewDetail'>['route']
+        | MyPageStackScreenProps<'ReviewDetail'>['route']
+    >();
     const platform = Platform.OS;
-    console.log(route.params);
 
     const onPressPrevButton = () => {
         setCarouselActive(prev => prev - 1);
@@ -40,7 +48,7 @@ export default function ReviewDetail() {
         setCarouselActive(prev => prev + 1);
     };
 
-    /* 임시 데이터 */
+    /** 임시 데이터 */
     const tempData: ReviewData[] = [
         {
             photoBoothName: '포토그레이',
@@ -429,6 +437,7 @@ export default function ReviewDetail() {
             my_review: true,
         },
     ];
+
     return (
         <ReviewDetailFormContainer>
             {tempData.map(data => {
@@ -479,7 +488,7 @@ export default function ReviewDetail() {
                                                     position: 'absolute',
                                                     left: 0,
                                                     right: 0,
-                                                    bottom: 130,
+                                                    bottom: 120,
                                                     height: 300,
                                                 }}
                                             />
@@ -509,7 +518,7 @@ export default function ReviewDetail() {
                                                             position: 'absolute',
                                                             left: 0,
                                                             right: 0,
-                                                            bottom: 130,
+                                                            bottom: 120,
                                                             height: 300,
                                                         }}
                                                     />

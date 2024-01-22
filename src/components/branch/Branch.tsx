@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch } from 'react-redux';
 
@@ -9,7 +9,7 @@ import { GetBranchData, GetBranchReviewData } from 'hooks/axios/Branch';
 import { setCurrentLocation } from 'hooks/redux/Location';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchData, ReviewData } from 'interfaces/Branch.interface';
-import { BranchParamList } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { BranchForm, BranchScrollView } from 'styles/layout/branch/Branch.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
@@ -19,7 +19,7 @@ import BranchLocation from './BranchLocation';
 export default function Branch() {
     const dispatch = useDispatch();
     const currentLocation = useAppSelector(state => state.location);
-    const route = useRoute<RouteProp<BranchParamList, 'branchType'>>();
+    const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
     const [branchData, setBranchData] = useState<BranchData>({
         id: '',
         name: '',
@@ -39,7 +39,7 @@ export default function Branch() {
     const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
     /** Branch 정보 및 PhotoDump 리뷰 정보 획득 */
-    const GetBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
+    const getBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
         const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
         const fetchReviewData = await GetBranchReviewData(route.params.branchID);
         setBranchData(fetchBranchData.data);
@@ -47,7 +47,7 @@ export default function Branch() {
     };
 
     /** 초기 위치 설정 */
-    const GetCurrentLocation = () => {
+    const getCurrentLocation = () => {
         const watchID = Geolocation.watchPosition(
             position => {
                 dispatch(
@@ -69,9 +69,9 @@ export default function Branch() {
         GetLocationAuthorization()
             .then(result => {
                 if (result === 'granted') {
-                    watch = GetCurrentLocation();
+                    watch = getCurrentLocation();
                 }
-                GetBranchDetailData(currentLocation.latitude, currentLocation.longitude, route.params.branchID);
+                getBranchDetailData(currentLocation.latitude, currentLocation.longitude, route.params.branchID);
             })
             .catch(e => {
                 console.log(e);

@@ -1,10 +1,9 @@
 import { Platform } from 'react-native';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import SearchGreyIcon from 'assets/image/icon/search_grey.svg';
 import { MapInputProps } from 'interfaces/Location.interface';
-import { RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import {
     BlockInput,
@@ -16,19 +15,15 @@ import {
 import { SearchButtonIconContainer } from 'styles/layout/reuse/input/Search.style';
 
 export default function MapInput({ location }: MapInputProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
     const isFocused = useIsFocused();
-    const route = useRoute();
+
     const platform = Platform.OS;
 
     /** 지점검색 페이지로 이동 */
     const onPressLocationSearch = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
         if (isFocused) {
-            navigation.push('LocationSearch', {
-                NextPage: 'BranchDetail',
-                screen: currentScreen,
-            });
+            navigation.navigate('LocationSearch');
         }
     };
 

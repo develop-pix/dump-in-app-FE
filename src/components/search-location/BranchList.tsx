@@ -1,9 +1,8 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 import LocationDarkIcon from 'assets/image/icon/location_dark.svg';
 import { BranchListProps } from 'interfaces/Location.interface';
-import { LocationSearchParamList, RootStackParam, ScreenName } from 'interfaces/NavigationBar';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     BranchDistanceWrapper,
     BranchListContainer,
@@ -14,21 +13,22 @@ import {
 import { FontLightGreySmallerMedium, FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function BranchList({ branchName, distance, branchID }: BranchListProps) {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+    const navigation = useNavigation<RootStackScreenProps<'LocationSearch'>['navigation']>();
+    const routes = navigation.getState().routes;
+    const previousRouteName = routes[routes.length - 2].name;
 
-    const route = useRoute<RouteProp<LocationSearchParamList, 'locationSearchType'>>();
-
-    /**  검색된 지점 클릭, 진입한 페이지가 Map일경우 Branch, ReviewNew or ReviewEdit일경우 해당 페이지로 돌아감 */
-    //TODO: ReviewEdit에서 진입시 ReviewNew로 돌아가는것 같은데 추후 확인 필요
     const onSelectLocation = () => {
-        const currentScreen = (route.params as { screen: ScreenName }).screen;
-        if (route.params.NextPage === 'BranchDetail') {
-            navigation.pop();
-            navigation.push('Branch', { branchID, screen: 'Location' });
-        } else if (route.params.NextPage === 'ReviewNew') {
-            navigation.pop();
-            navigation.pop();
-            navigation.push('ReviewNew', { branchID, screen: currentScreen });
+        // FIXME: ReviewEdit 예외처리 되어있지 않음, 전체적으로 param 보다 전역 상태 관리로 하는 것이 깔끔해 보임
+        // 검색된 지점 클릭, 진입한 페이지가 Map일 경우 Branch, ReviewNew or ReviewEdit일 경우 해당 페이지로 돌아감
+        if (previousRouteName === 'MainTab') {
+            navigation.navigate('MainTab', {
+                screen: 'LocationTab',
+                params: { screen: 'Branch', params: { branchID } },
+            });
+        } else if (previousRouteName === 'AddReviewModal') {
+            navigation.navigate('AddReviewModal', { branchID });
+        } else if (previousRouteName === 'ReviewEdit') {
+            navigation.goBack();
         }
     };
 

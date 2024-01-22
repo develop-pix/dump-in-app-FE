@@ -1,17 +1,11 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
-
-import { EventDetailRouteProp } from 'interfaces/EventDetail.interface';
 
 import EventFrame from './EventFrame';
 import EventImageTitle from './EventImageTitle';
 import EventInfo from './EventInfo';
 
 export default function EventDetail() {
-    const route = useRoute<EventDetailRouteProp>();
-    const { eventID } = route.params;
-
     // 임시 데이터, 이벤트 아이디 값의 데이터를 서버에서 가져옴
     const [eventData, setEventData] = useState({
         representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
