@@ -1,5 +1,5 @@
 import { setCameraShot } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { cameraShotSelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontRedNormalMedium,
@@ -17,8 +17,9 @@ import {
 } from 'styles/layout/review-form/input/CameraShot.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function CameraShotSelect({ cameraShot, errorData }: cameraShotSelectProps) {
+export default function CameraShotSelect({ errorData }: cameraShotSelectProps) {
     const dispatch = useAppDispatch();
+    const cameraShot = useAppSelector(state => state.reviewData).cameraShot;
     const availableCameraShot = [
         {
             name: '클로즈업',
@@ -38,7 +39,7 @@ export default function CameraShotSelect({ cameraShot, errorData }: cameraShotSe
         },
     ];
 
-    // 카메라샷 선택시 dispatch
+    /** 카메라샷 선택시 dispatch */
     const onPressCameraShotImage = (cameraShotName: string) => {
         if (cameraShotName === cameraShot) {
             dispatch(setCameraShot(null));

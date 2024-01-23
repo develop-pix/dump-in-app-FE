@@ -14,7 +14,7 @@ import {
     ReviewNewTouchableOpacity,
 } from 'styles/layout/review-form/input/ReviewNewModal.style';
 
-export default function ReviewNewModal({ setOpenModal, limitImage, setLimitImage }: ReviewNewModalProps) {
+export default function ReviewNewModal({ setOpenImageModal, limitImage, setLimitImage }: ReviewNewModalProps) {
     const dispatch = useDispatch();
     const platform = Platform.OS;
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
@@ -22,7 +22,7 @@ export default function ReviewNewModal({ setOpenModal, limitImage, setLimitImage
 
     /** 카메라 작동 */
     const onPressCameraOpen = async () => {
-        setOpenModal(false);
+        setOpenImageModal(false);
         //ios emulator 에서는 카메라를 지원하지 않으므로 오류 발생
         try {
             const cameraOption: CameraOptions = {
@@ -67,7 +67,7 @@ export default function ReviewNewModal({ setOpenModal, limitImage, setLimitImage
 
     /** 앨범에서 선택 */
     const onPressGalleryOpen = async () => {
-        setOpenModal(false);
+        setOpenImageModal(false);
         try {
             await launchImageLibrary(
                 {
@@ -83,8 +83,7 @@ export default function ReviewNewModal({ setOpenModal, limitImage, setLimitImage
                         return null;
                     } else if (response.assets) {
                         /** 중복된 이미지 제거 */
-                        //FIXME: ios 시뮬레이터에서는 fileName이 변경되므로 추후 수정이 필요할듯함.
-                        //FIXME: 또한 현재 기준 두 플랫폼 모두 파일이름 기준으로 중복 체크 할 시 우연히 두 파일 이름이 같을수 있으므로 수정이 필요하다고 생각됨.
+                        //FIXME: ios 시뮬레이터에서는 fileName과 fileURL이 변경되므로 테스트가 어려움. 따라서 파일이름으로 중복체크를 하였는데, 파일이름 기준으로 중복 체크 할 시 우연히 두 파일 이름이 같을수 있으므로 수정필요.
                         const deduplicatedAssets = response.assets?.filter(asset => {
                             if (
                                 representativeImage.imageName !== asset.fileName &&
@@ -142,11 +141,12 @@ export default function ReviewNewModal({ setOpenModal, limitImage, setLimitImage
             backdropOpacity={0.7}
             coverScreen={false}
             propagateSwipe={false}
+            useNativeDriver={true}
             onBackdropPress={() => {
-                setOpenModal(false);
+                setOpenImageModal(false);
             }}
             onBackButtonPress={() => {
-                setOpenModal(false);
+                setOpenImageModal(false);
             }}>
             <ReviewNewModalContainer platform={platform}>
                 <ReviewNewModalWrapper>

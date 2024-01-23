@@ -35,7 +35,12 @@ import {
     TrashButtonContainer,
 } from 'styles/layout/review-form/input/ImageFileInput.style';
 
-export default function ImageFileInput({ setOpenModal, errorData, setLimitImage }: ImageFileInputProps) {
+export default function ImageFileInput({
+    setOpenImageModal,
+    errorData,
+    setLimitImage,
+    scrollRef,
+}: ImageFileInputProps) {
     const dispatch = useDispatch();
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
     const image = useAppSelector(state => state.reviewData).image;
@@ -43,7 +48,8 @@ export default function ImageFileInput({ setOpenModal, errorData, setLimitImage 
 
     /** 카메라, 앨범 에서 선택 모달 Open */
     const onPressImageUpload = () => {
-        setOpenModal(true);
+        scrollRef.current?.scrollTo({ y: 0, animated: false });
+        setOpenImageModal(true);
     };
 
     /** 대표사진 교체 */

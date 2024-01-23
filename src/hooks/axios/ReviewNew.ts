@@ -10,7 +10,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
         name: ImageName,
     };
 
-    // S3경로 및 secretKey Setting
+    /** S3경로 및 secretKey Setting */
     const S3Data = {
         bucketName: Config.S3_BUCKET_NAME,
         region: 'ap-northeast-2',
@@ -18,7 +18,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
         secretAccessKey: Config.S3_SECRET_ACCESSKEY,
     };
 
-    // AWS Config
+    /** AWS Config */
     config.update({
         accessKeyId: S3Data.accessKeyID,
         secretAccessKey: S3Data.secretAccessKey,
@@ -29,7 +29,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
         region: S3Data.region,
     });
 
-    // URL로 사진 데이터 Get
+    /** URL로 사진 데이터 Get */
     const GetFileFromPath = async () => {
         const result = await fetch(photo.uri);
         return await result.blob();
@@ -37,7 +37,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
 
     const file = await GetFileFromPath();
 
-    // Key는 경로, 파일 이름인데 중복 이름일경우 덮어씌우기가 되므로 유니크한 아이디가 필요함. 임시로 날짜를 추가해서 저장
+    //FIXME: Key는 경로, 파일 이름인데 중복 이름일경우 덮어씌우기가 되므로 유니크한 아이디가 필요함. 임시로 날짜를 추가해서 저장
     const param = {
         ContentType: photo.type,
         Body: file,
@@ -45,7 +45,6 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
         Key: 'reviews/test/' + Date.now() + '-' + photo.name,
     };
 
-    // myBucket.putObject(param).send();
     try {
         await myBucket.putObject(param).promise();
         const objectUrl = `https://s3.${S3Data.region}.amazonaws.com/${S3Data.bucketName}/${param.Key}`;
@@ -59,7 +58,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
  * Test
  * photoBoothId: 994ef416-92fa-46f3-b0be-eb8c1445a506
  * AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k
-
+ * date: '2024-01-11'
  * */
 export const UploadNewReview = async (
     mainThumbnailImageUrl: string | undefined,
@@ -75,32 +74,6 @@ export const UploadNewReview = async (
     curlAmount: boolean | null,
     isPublic: boolean,
 ) => {
-    console.log('데이터 확인');
-    console.log('mainThumbnailImageUrl');
-    console.log(mainThumbnailImageUrl);
-    console.log('imageUrls');
-    console.log(imageUrls);
-    console.log('content');
-    console.log(content);
-    console.log('photoBoothId');
-    console.log(photoBoothId);
-    console.log('date');
-    console.log(date);
-    console.log('frameColor');
-    console.log(frameColor);
-    console.log('participants');
-    console.log(participants);
-    console.log('cameraShot');
-    console.log(cameraShot);
-    console.log('concept');
-    console.log(concept);
-    console.log('goodsAmount');
-    console.log(goodsAmount);
-    console.log('curlAmount');
-    console.log(curlAmount);
-    console.log('isPublic');
-    console.log(isPublic);
-
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/reviews/`,
@@ -113,7 +86,7 @@ export const UploadNewReview = async (
             imageUrls,
             content,
             photoBoothId,
-            date,
+            date: '2024-01-11', //TODO: Date 형식으로 입력받을수 있도록 수정될 예정, 임시로 'yyyy-mm-dd' string으로 받도록 고정
             frameColor,
             participants,
             cameraShot,

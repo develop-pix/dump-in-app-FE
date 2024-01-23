@@ -1,5 +1,5 @@
 import { setHashtag } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { HashtagSelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontBlackSmallerSemibold,
@@ -15,8 +15,9 @@ import {
 } from 'styles/layout/review-form/input/HashtagSelect.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProps) {
+export default function HashtagSelect({ errorData }: HashtagSelectProps) {
     const dispatch = useAppDispatch();
+    const hashtags = useAppSelector(state => state.reviewData).hashtag;
     const availableHashtag = [
         '일상',
         '커플',
@@ -36,7 +37,7 @@ export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProp
         '기타',
     ];
 
-    // 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능
+    /** 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능 */
     const onPressHashtag = (tag: string) => {
         if (hashtags.includes(tag)) {
             const popHashtag = hashtags.filter(index => index !== tag);
