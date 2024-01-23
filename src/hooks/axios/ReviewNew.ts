@@ -86,7 +86,7 @@ export const UploadNewReview = async (
             imageUrls,
             content,
             photoBoothId,
-            date: '2024-01-11', //TODO: Date 형식으로 입력받을수 있도록 수정될 예정, 임시로 'yyyy-mm-dd' string으로 받도록 고정
+            date: '2024-01-11', //TODO: Date 형식으로 입력받을수 있도록 수정될 예정 임시로 'yyyy-mm-dd' string으로 받도록 고정
             frameColor,
             participants,
             cameraShot,

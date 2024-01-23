@@ -128,9 +128,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                     frameColor &&
                     party &&
                     cameraShot &&
-                    hashtags.length > 0 &&
-                    tools !== null &&
-                    hairIron !== null;
+                    hashtags.length > 0;
 
                 if (errorCheck) {
                     await UploadNewReview(
@@ -154,7 +152,6 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         } catch (e) {
             console.log(e);
         }
-        // TODO: 리뷰 모달 클로즈 , 아래 뒤로가기 버튼 클릭시 닫겠습니까 모달 출력
     };
 
     /** 완료 버튼 클릭시 입력하지 않은 부분 스크롤 이동 */

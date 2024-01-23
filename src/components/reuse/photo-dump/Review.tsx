@@ -52,6 +52,7 @@ export default function Review({ reviewItem }: ReviewProps) {
         }
     };
 
+    //FIXME: 고데기, 소품은 true, false, null 3가지 값이 있음. 수정 필요함
     return (
         <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
             <ReviewImage source={{ uri: reviewItem.mainThumbnailImageUrl }} />
@@ -91,7 +92,7 @@ export default function Review({ reviewItem }: ReviewProps) {
                     {TagsArrayToHashTagArrayForm(reviewItem.concept).map(tag => (
                         <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                     ))}
-                    {reviewItem.curlAmount ? (
+                    {reviewItem.curlAmount === false ? (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
                     ) : (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 없음</FontYellowSmallerMediumWithLineSpacing>
