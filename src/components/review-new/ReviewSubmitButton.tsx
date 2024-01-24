@@ -125,7 +125,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                 const errorCheck =
                     mainThumbnailImageUrl &&
                     description &&
-                    location &&
+                    branchID &&
                     date &&
                     frameColor &&
                     party &&
@@ -167,7 +167,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     );
 
     useEffect(() => {
-        if (errorData[0].height) {
+        if (errorData[0]?.height) {
             onErrorScroll(errorData[0].height);
         }
     }, [errorData, onErrorScroll]);
