@@ -66,7 +66,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
                 <FontWhiteNormalMedium>위치</FontWhiteNormalMedium>
                 <FontRedNormalMedium>*</FontRedNormalMedium>
                 {errorData.map(data => {
-                    return data.InputName === 'location' ? (
+                    return data.InputName === 'branchID' ? (
                         <ReviewErrorContainer key={data.InputName}>
                             <FontYellowSmallestMedium>필수 입력 항목입니다.</FontYellowSmallestMedium>
                         </ReviewErrorContainer>

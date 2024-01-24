@@ -1,6 +1,6 @@
 import { setCameraShot } from 'hooks/redux/ReviewData';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { cameraShotSelectProps } from 'interfaces/ReviewNew.interface';
+import { CameraShotSelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontRedNormalMedium,
     FontWhiteGreySmallerMedium,
@@ -17,7 +17,7 @@ import {
 } from 'styles/layout/review-form/input/CameraShot.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function CameraShotSelect({ errorData }: cameraShotSelectProps) {
+export default function CameraShotSelect({ errorData }: CameraShotSelectProps) {
     const dispatch = useAppDispatch();
     const cameraShot = useAppSelector(state => state.reviewData).cameraShot;
     const availableCameraShot = [

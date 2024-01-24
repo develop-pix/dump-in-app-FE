@@ -17,7 +17,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 
 export default function HashtagSelect({ errorData }: HashtagSelectProps) {
     const dispatch = useAppDispatch();
-    const hashtags = useAppSelector(state => state.reviewData).hashtag;
+    const concept = useAppSelector(state => state.reviewData).concept;
     const availableHashtag = [
         '일상',
         '커플',
@@ -39,13 +39,13 @@ export default function HashtagSelect({ errorData }: HashtagSelectProps) {
 
     /** 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능 */
     const onPressHashtag = (tag: string) => {
-        if (hashtags.includes(tag)) {
-            const popHashtag = hashtags.filter(index => index !== tag);
+        if (concept.includes(tag)) {
+            const popHashtag = concept.filter(index => index !== tag);
             dispatch(setHashtag(popHashtag));
             return;
         }
-        if (hashtags.length < 5) {
-            dispatch(setHashtag([...hashtags, tag]));
+        if (concept.length < 5) {
+            dispatch(setHashtag([...concept, tag]));
         }
     };
 
@@ -55,7 +55,7 @@ export default function HashtagSelect({ errorData }: HashtagSelectProps) {
                 <FontWhiteNormalMedium>컨셉</FontWhiteNormalMedium>
                 <FontRedNormalMedium>*</FontRedNormalMedium>
                 {errorData.map(data => {
-                    return data.InputName === 'hashtags' ? (
+                    return data.InputName === 'concept' ? (
                         <ReviewErrorContainer key={data.InputName}>
                             <FontYellowSmallestMedium>필수 입력 항목입니다.</FontYellowSmallestMedium>
                         </ReviewErrorContainer>
@@ -68,9 +68,9 @@ export default function HashtagSelect({ errorData }: HashtagSelectProps) {
                         <HashtagButton
                             key={hashtag}
                             hashtagOption={hashtag}
-                            isSelected={hashtags}
+                            isSelected={concept}
                             onPress={() => onPressHashtag(hashtag)}>
-                            {hashtags.includes(hashtag) ? (
+                            {concept.includes(hashtag) ? (
                                 <FontBlackSmallerSemibold>{hashtag}</FontBlackSmallerSemibold>
                             ) : (
                                 <FontLightGreySmallerMedium>{hashtag}</FontLightGreySmallerMedium>

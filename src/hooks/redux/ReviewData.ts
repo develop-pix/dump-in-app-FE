@@ -15,7 +15,7 @@ interface ReviewDataState {
     frameColor: string | null;
     party: number | null;
     cameraShot: string | null;
-    hashtag: string[];
+    concept: string[];
     tools: boolean | null;
     hairIron: boolean | null;
     publicOpen: boolean;
@@ -31,7 +31,7 @@ const initialState: ReviewDataState = {
     frameColor: null,
     party: null,
     cameraShot: null,
-    hashtag: [],
+    concept: [],
     tools: null,
     hairIron: null,
     publicOpen: true,
@@ -77,7 +77,7 @@ export const ReviewDataSlice = createSlice({
             state.cameraShot = action.payload;
         },
         setHashtag(state, action: PayloadAction<string[]>) {
-            state.hashtag = action.payload;
+            state.concept = action.payload;
         },
         setTools(state, action: PayloadAction<boolean | null>) {
             state.tools = action.payload;

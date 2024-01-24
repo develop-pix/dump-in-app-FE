@@ -53,14 +53,14 @@ export default function ImageFileInput({
     };
 
     /** 대표사진 교체 */
-    const onPressSetRepresentativeImage = (imageURL: string | undefined, imageName: string | undefined) => {
+    const onPressSetRepresentativeImage = (imageURL?: string, imageName?: string) => {
         dispatch(setImage([{ imageURL: representativeImage.imageURL, imageName: representativeImage.imageName }]));
         dispatch(setRepresentativeImage({ imageURL, imageName }));
         dispatch(setRemoveImage({ imageURL, imageName }));
     };
 
     /** 이미지 삭제 */
-    const onPressDeleteImage = (imageURL: string | undefined, imageName: string | undefined) => {
+    const onPressDeleteImage = (imageURL?: string, imageName?: string) => {
         dispatch(setRemoveImage({ imageURL, imageName }));
         dispatch(
             setEnlargedImage({ imageURL: representativeImage.imageURL, imageName: representativeImage.imageName }),
@@ -68,7 +68,7 @@ export default function ImageFileInput({
         setLimitImage(prev => prev + 1);
     };
 
-    const onPressEnlargeImage = (imageURL: string | undefined, imageName: string | undefined) => {
+    const onPressEnlargeImage = (imageURL?: string, imageName?: string) => {
         dispatch(setEnlargedImage({ imageURL, imageName }));
     };
 

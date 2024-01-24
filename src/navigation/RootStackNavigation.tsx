@@ -18,7 +18,7 @@ export default function RootStackNavigation() {
             <Stack.Screen
                 name="AddReviewModal"
                 component={ReviewNew}
-                initialParams={{ branchID: null }}
+                initialParams={{ branchID: undefined }}
                 options={{ presentation: 'modal' }}
             />
             <Stack.Screen

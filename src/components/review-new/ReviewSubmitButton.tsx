@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
@@ -25,18 +25,20 @@ import { FontYellowBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef }: ReviewSubmitButtonProps) {
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
-    const image = useAppSelector(state => state.reviewData).image;
-    const description = useAppSelector(state => state.reviewData).description;
-    const location = useAppSelector(state => state.reviewData).branchID;
-    const date = useAppSelector(state => state.reviewData).date;
-    const frameColor = useAppSelector(state => state.reviewData).frameColor;
-    const party = useAppSelector(state => state.reviewData).party;
-    const cameraShot = useAppSelector(state => state.reviewData).cameraShot;
-    const hashtags = useAppSelector(state => state.reviewData).hashtag;
-    const tools = useAppSelector(state => state.reviewData).tools;
-    const hairIron = useAppSelector(state => state.reviewData).hairIron;
-    const publicOpen = useAppSelector(state => state.reviewData).publicOpen;
+    const {
+        representativeImage,
+        image,
+        description,
+        branchID,
+        date,
+        frameColor,
+        party,
+        cameraShot,
+        concept,
+        tools,
+        hairIron,
+        publicOpen,
+    } = useAppSelector(state => state.reviewData);
 
     /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {
@@ -57,7 +59,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     };
 
     /** 기존 errorData 초기화 및 errorData가 있을경우 추가 */
-    const CheckErrorData = () => {
+    const checkErrorData = () => {
         setErrorData([]);
 
         if (representativeImage.imageURL === undefined) {
@@ -66,8 +68,8 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         if (description === null || description === '') {
             setErrorData(data => [...data, { InputName: 'description', height: 510 }]);
         }
-        if (location === null || location === undefined) {
-            setErrorData(data => [...data, { InputName: 'location', height: 630 }]);
+        if (branchID === undefined) {
+            setErrorData(data => [...data, { InputName: 'branchID', height: 630 }]);
         }
         if (date === null) {
             setErrorData(data => [...data, { InputName: 'date', height: 630 }]);
@@ -81,8 +83,8 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         if (cameraShot === null) {
             setErrorData(data => [...data, { InputName: 'cameraShot', height: 880 }]);
         }
-        if (hashtags.length === 0) {
-            setErrorData(data => [...data, { InputName: 'hashtags', height: 880 }]);
+        if (concept.length === 0) {
+            setErrorData(data => [...data, { InputName: 'concept', height: 880 }]);
         }
 
         if (errorData.length > 0) {
@@ -92,13 +94,13 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
 
     /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 업로드 */
     const onPressSubmit = async () => {
-        CheckErrorData();
+        checkErrorData();
 
         try {
             let mainThumbnailImageUrl: string | undefined;
             let imageUrls: (string | undefined)[] = [];
 
-            const ImageUpload = async () => {
+            const imageUpload = async () => {
                 if (errorData.length === 0) {
                     if (representativeImage.imageURL && representativeImage.imageName) {
                         mainThumbnailImageUrl = await UploadImageToS3(
@@ -119,7 +121,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                 }
             };
 
-            await ImageUpload().then(async () => {
+            await imageUpload().then(async () => {
                 const errorCheck =
                     mainThumbnailImageUrl &&
                     description &&
@@ -128,19 +130,19 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                     frameColor &&
                     party &&
                     cameraShot &&
-                    hashtags.length > 0;
+                    concept.length > 0;
 
                 if (errorCheck) {
                     await UploadNewReview(
                         mainThumbnailImageUrl,
                         imageUrls,
                         description,
-                        location,
+                        branchID,
                         date,
                         frameColor,
                         party,
                         cameraShot,
-                        hashtags,
+                        concept,
                         tools,
                         hairIron,
                         publicOpen,
@@ -154,19 +156,21 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         }
     };
 
-    /** 완료 버튼 클릭시 입력하지 않은 부분 스크롤 이동 */
-    const onErrorScroll = (height: number) => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollTo({ y: height, animated: true });
-        }
-    };
+    /** 완료 버튼 클릭시 입력하지 않은  스크롤 이동 */
+    const onErrorScroll = useCallback(
+        (height: number) => {
+            if (scrollRef.current) {
+                scrollRef.current.scrollTo({ y: height, animated: true });
+            }
+        },
+        [scrollRef],
+    );
 
     useEffect(() => {
-        if (errorData[0]) {
+        if (errorData[0].height) {
             onErrorScroll(errorData[0].height);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [errorData[0]]);
+    }, [errorData, onErrorScroll]);
 
     return (
         <SubmitButton onPress={onPressSubmit}>

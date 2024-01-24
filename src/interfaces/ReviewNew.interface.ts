@@ -39,7 +39,7 @@ export interface PartySelectProps {
     errorData: InputData[];
 }
 
-export interface cameraShotSelectProps {
+export interface CameraShotSelectProps {
     errorData: InputData[];
 }
 

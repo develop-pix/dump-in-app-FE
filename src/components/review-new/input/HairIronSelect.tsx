@@ -26,7 +26,7 @@ export default function HairIronSelect() {
         }
     };
 
-    //** 없음 버튼 선택시 dispatch */
+    /** 없음 버튼 선택시 dispatch */
     const onPressNoHairIron = () => {
         if (hairIron === false) {
             dispatch(setHairIron(null));
