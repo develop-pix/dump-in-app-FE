@@ -34,6 +34,7 @@ export const fontSize = {
     normal: '16px',
     smaller: '14px',
     smallest: '12px',
+    mini: '10px',
 };
 
 export const fontWeight = {

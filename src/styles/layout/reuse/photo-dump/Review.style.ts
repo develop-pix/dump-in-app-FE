@@ -52,3 +52,11 @@ export const ReviewFrameColor = styled.View<{
     height: 16px;
     background-color: ${props => props.colorOption};
 `;
+
+export const ReviewFrameGradient = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+`;

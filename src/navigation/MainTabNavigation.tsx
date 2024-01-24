@@ -20,7 +20,7 @@ export default function MainTabNavigation() {
         <Tab.Navigator tabBar={tabBar} screenOptions={{ headerShown: false }}>
             <Tab.Screen name="HomeTab" component={HomeStackNavigation} />
             <Tab.Screen name="LocationTab" component={LocationStackNavigation} />
-            <Tab.Screen name="AddReview" component={ReviewNew} initialParams={{ branchID: null }} />
+            <Tab.Screen name="AddReview" component={ReviewNew} initialParams={{ branchID: undefined }} />
             <Tab.Screen name="CategoryTab" component={CategoryStackNavigation} />
             <Tab.Screen name="MyPageTab" component={MyPageStackNavigation} />
         </Tab.Navigator>

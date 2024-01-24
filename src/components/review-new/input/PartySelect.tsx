@@ -1,5 +1,5 @@
 import { setParty } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { PartySelectProps } from 'interfaces/ReviewNew.interface';
 import {
     FontBlackSmallerSemibold,
@@ -15,11 +15,12 @@ import {
 } from 'styles/layout/review-form/input/PartySelect.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function PartySelect({ party, errorData }: PartySelectProps) {
+export default function PartySelect({ errorData }: PartySelectProps) {
     const availableParty: number[] = [1, 2, 3, 4, 5];
     const dispatch = useAppDispatch();
+    const party = useAppSelector(state => state.reviewData).party;
 
-    // 인원 선택시 dispatch
+    /** 인원 선택시 dispatch */
     const onPressParty = (partyNumber: number) => {
         if (party === partyNumber) {
             dispatch(setParty(null));

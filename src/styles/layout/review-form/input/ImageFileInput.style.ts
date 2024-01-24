@@ -4,9 +4,11 @@ import { colors } from 'styles/base/Variable';
 
 export const ImageFileInputContainer = styled.View`
     width: 100%;
+`;
+
+export const EnlargedImageContainer = styled.View`
     aspect-ratio: 1;
     background-color: ${colors.darkgrey};
-    margin-bottom: 20px;
     align-items: center;
 `;
 
@@ -15,10 +17,18 @@ export const NoDataImageContainer = styled.TouchableOpacity`
     aspect-ratio: 0.7;
 `;
 
-export const PreviewImageContainer = styled.View`
+export const EnlargedPreviewImageContainer = styled.View`
     height: 100%;
     aspect-ratio: 0.7;
 `;
+
+export const TrashButtonContainer = styled.View`
+    position: absolute;
+    top: 10px;
+    left: 10px;
+`;
+
+export const TrashButton = styled.TouchableOpacity``;
 
 export const PreviewNoImage = styled.View`
     height: 100%;
@@ -28,11 +38,23 @@ export const PreviewNoImage = styled.View`
     justify-content: center;
 `;
 
-export const PreviewImage = styled.Image`
+export const EnlargedPreviewImage = styled.Image`
     height: 100%;
     width: 100%;
     background-color: ${colors.blackgrey};
     object-fit: cover;
+`;
+
+export const EnlargedRepresentativeTitleContainer = styled.View`
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: ${colors.blackgrey};
+    border-radius: 5px;
+    width: 38px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const ReviewErrorContainerFileInput = styled.View`
@@ -60,4 +82,53 @@ export const ImageUploadButton = styled.TouchableOpacity`
     background-color: ${colors.black};
     opacity: 0.6;
     border-radius: 8px;
+`;
+
+export const ImagesContainer = styled.View`
+    align-items: center;
+`;
+
+export const PreviewImagesContainer = styled.View`
+    width: 90%;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+`;
+
+export const PreviewImageButton = styled.TouchableOpacity`
+    justify-content: center;
+    align-items: center;
+`;
+
+export const PreviewRepresentativeImage = styled.Image`
+    position: absolute;
+    width: 48px;
+    height: 72px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const PreviewImage = styled.Image`
+    width: 48px;
+    height: 72px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const RepresentativeTitleContainer = styled.View`
+    background-color: ${colors.blackgrey};
+    border-radius: 5px;
+    width: 38px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const AddImageContainer = styled.TouchableOpacity`
+    background-color: ${colors.darkgrey};
+    width: 48px;
+    height: 72px;
+    align-items: center;
+    justify-content: center;
 `;
