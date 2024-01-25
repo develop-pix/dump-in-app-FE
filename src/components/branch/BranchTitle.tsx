@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeBranch } from 'hooks/axios/Branch';
 import { BranchTitleProps } from 'interfaces/Branch.interface';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     BranchHashTagsContainer,
     BranchNameContainer,
@@ -18,6 +21,16 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function BranchTitle({ photoBoothName, branchName, branchHashtag, isLiked }: BranchTitleProps) {
     const [favorite, setFavorite] = useState<boolean>(isLiked);
 
+    const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
+
+    /** 하트 버튼 클릭시 */
+    const onPressBranchLikeButton = async () => {
+        const press_result = await LikeBranch(route.params.branchID);
+        if (press_result.success) {
+            setFavorite(!favorite);
+        }
+    };
+
     return (
         <BranchTitleContainer>
             <TitleContainer>
@@ -31,7 +44,7 @@ export default function BranchTitle({ photoBoothName, branchName, branchHashtag,
                     ))}
                 </BranchHashTagsContainer>
             </TitleContainer>
-            <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+            <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
         </BranchTitleContainer>
     );
 }

@@ -5,25 +5,17 @@ import NoFavoriteIcon from 'assets/image/icon/no_favorite.svg';
 import { FavoriteButtonProps } from 'interfaces/reuse/button/Button.interfaces';
 import { HeartButtonContainer } from 'styles/layout/reuse/button/HeartButton.style';
 
-export default function FavoriteButton({ favorite, setFavorite }: FavoriteButtonProps) {
-    const onPressFavorite = () => {
-        setFavorite(false);
-    };
-
-    const onPressNoFavorite = () => {
-        setFavorite(true);
-    };
-
+export default function FavoriteButton({ favorite, onPress }: FavoriteButtonProps) {
     return (
         <>
             {favorite ? (
-                <TouchableOpacity onPress={onPressFavorite}>
+                <TouchableOpacity onPress={onPress}>
                     <HeartButtonContainer>
                         <FillFavoriteIcon width={24} height={24} />
                     </HeartButtonContainer>
                 </TouchableOpacity>
             ) : (
-                <TouchableOpacity onPress={onPressNoFavorite}>
+                <TouchableOpacity onPress={onPress}>
                     <HeartButtonContainer>
                         <NoFavoriteIcon width={24} height={24} />
                     </HeartButtonContainer>
