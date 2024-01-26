@@ -1,17 +1,30 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+import GoBackButton from 'components/reuse/button/GoBackButton';
 import OfficialImages from 'components/reuse/official-images/OfficialImages';
 import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
+import {
+    CategoryStackScreenProps,
+    HomeStackScreenProps,
+    MyPageStackScreenProps,
+} from 'interfaces/Navigation.interface';
 import { PhotoBoothDataType } from 'interfaces/PhotoBoothDetail.interface';
 import { OfficialImagesContainer, PhotoDumpContainer } from 'styles/layout/photo-booth-detail/PhotoBoothDetail.style';
+import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 
 import PhotoBoothEvent from './PhotoBoothEvent';
 import PhotoBoothImageTitle from './PhotoBoothImageTitle';
 
 export default function PhotoBoothDetail() {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']
+    >();
 
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothDataType>({
         photoBoothName: '',
         hashtag: [],
@@ -20,6 +33,18 @@ export default function PhotoBoothDetail() {
         event: [],
         review: [],
     });
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => {
+                return (
+                    <HeaderLeftContainer>
+                        <GoBackButton />
+                    </HeaderLeftContainer>
+                );
+            },
+        });
+    }, [navigation]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -100,13 +125,14 @@ export default function PhotoBoothDetail() {
                     <PhotoBoothImageTitle photoBoothData={photoBoothData} />
                     <PhotoBoothEvent eventData={photoBoothData.event} />
                     <OfficialImagesContainer>
-                        <OfficialImages
+                        {/* FIXME: 임시 데이터 타입 오류 */}
+                        {/* <OfficialImages
                             image={photoBoothData.officialImage}
                             photoBoothName={photoBoothData.photoBoothName}
-                        />
+                        /> */}
                     </OfficialImagesContainer>
                     <PhotoDumpContainer>
-                        <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} />
+                        {/* <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} /> */}
                     </PhotoDumpContainer>
                 </ScrollView>
             ) : (
