@@ -13,7 +13,12 @@ import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from 'i
 import { HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
 import { CollectionContainer } from 'styles/layout/home/HomeDataCollection.style';
-import { HeaderIconContainer, RowContainer } from 'styles/layout/reuse/header/Header.style';
+import {
+    HeaderIconContainer,
+    HeaderLeftContainer,
+    HeaderRightContainer,
+    RowContainer,
+} from 'styles/layout/reuse/header/Header.style';
 
 import HomeFilterModalForm from './HomeFilterModalForm';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
@@ -168,21 +173,25 @@ export default function HomeDataCollection() {
         navigation.setOptions({
             headerLeft: () => {
                 return (
-                    <HeaderIconContainer onPress={handleShowFilterModal}>
-                        <FilterIcon />
-                    </HeaderIconContainer>
+                    <HeaderLeftContainer>
+                        <HeaderIconContainer onPress={handleShowFilterModal}>
+                            <FilterIcon />
+                        </HeaderIconContainer>
+                    </HeaderLeftContainer>
                 );
             },
             headerRight: () => {
                 return (
-                    <RowContainer>
-                        <HeaderIconContainer onPress={navigateToSearchScreen}>
-                            <SearchIcon />
-                        </HeaderIconContainer>
-                        <HeaderIconContainer onPress={navigateToNotificationScreen}>
-                            {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
-                        </HeaderIconContainer>
-                    </RowContainer>
+                    <HeaderRightContainer>
+                        <RowContainer>
+                            <HeaderIconContainer onPress={navigateToSearchScreen}>
+                                <SearchIcon />
+                            </HeaderIconContainer>
+                            <HeaderIconContainer onPress={navigateToNotificationScreen}>
+                                {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
+                            </HeaderIconContainer>
+                        </RowContainer>
+                    </HeaderRightContainer>
                 );
             },
         });

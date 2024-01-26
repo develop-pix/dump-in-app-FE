@@ -445,14 +445,14 @@ export default function ReviewDetail() {
                     return (
                         <ReviewDetailForm key={data.reviewID}>
                             <ReviewDetailFormWrapper>
-                                <TitleContainer>
+                                {/* <TitleContainer>
                                     <ReviewDetailHeader
                                         photoBoothName={data.photoBoothName}
                                         branchName={data.branchName}
                                         mine={data.mine}
                                         setOpenModal={setOpenModal}
                                     />
-                                </TitleContainer>
+                                </TitleContainer> */}
                                 <ReviewDetailCarousel
                                     scrollEnabled={false}
                                     contentOffset={{

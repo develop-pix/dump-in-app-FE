@@ -18,8 +18,6 @@ export default function HomeStackNavigation() {
                     backgroundColor: colors.lightblack,
                 },
                 headerShadowVisible: false,
-                headerLeftContainerStyle: { marginLeft: 10 },
-                headerRightContainerStyle: { marginRight: 10 },
             }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="PhotoBoothDetail" component={PhotoBoothDetail} initialParams={{ PhotoBoothID: 0 }} />

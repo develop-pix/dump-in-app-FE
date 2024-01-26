@@ -1,5 +1,13 @@
 import styled from 'styled-components/native';
 
+export const HeaderLeftContainer = styled.View`
+    margin-left: 10px;
+`;
+
+export const HeaderRightContainer = styled.View`
+    margin-right: 10px;
+`;
+
 export const RowContainer = styled.View`
     flex-direction: row;
 `;

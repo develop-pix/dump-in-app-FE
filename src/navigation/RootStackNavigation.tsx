@@ -18,8 +18,6 @@ export default function RootStackNavigation() {
             initialRouteName="Home"
             screenOptions={{
                 headerShown: false,
-                headerLeftContainerStyle: { marginLeft: 10 },
-                headerRightContainerStyle: { marginRight: 10 },
                 title: '',
                 headerStyle: {
                     backgroundColor: colors.lightblack,
@@ -47,6 +45,7 @@ export default function RootStackNavigation() {
                 component={Notification}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
                 }}
             />
             <Stack.Screen

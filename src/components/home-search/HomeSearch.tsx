@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { HomeSearchSafeContainer } from 'styles/layout/home-search/HomeSearch.style';
+import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 
 import ReviewSearchInput from './input/ReviewSearchInput';
 
@@ -13,7 +14,11 @@ export default function HomeSearch() {
     useEffect(() => {
         navigation.setOptions({
             headerLeft: () => {
-                return <GoBackButton />;
+                return (
+                    <HeaderLeftContainer>
+                        <GoBackButton />
+                    </HeaderLeftContainer>
+                );
             },
         });
     }, [navigation]);
