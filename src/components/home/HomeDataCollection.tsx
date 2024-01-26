@@ -13,7 +13,7 @@ import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from 'i
 import { HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
 import { CollectionContainer } from 'styles/layout/home/HomeDataCollection.style';
-import { HomeHeaderIconContainer, RowContainer } from 'styles/layout/home/HomeHeader.style';
+import { HeaderIconContainer, RowContainer } from 'styles/layout/reuse/header/Header.style';
 
 import HomeFilterModalForm from './HomeFilterModalForm';
 import HomeSelectedFilterOption from './HomeSelectedFilterOption';
@@ -168,25 +168,23 @@ export default function HomeDataCollection() {
         navigation.setOptions({
             headerLeft: () => {
                 return (
-                    <HomeHeaderIconContainer onPress={handleShowFilterModal}>
+                    <HeaderIconContainer onPress={handleShowFilterModal}>
                         <FilterIcon />
-                    </HomeHeaderIconContainer>
+                    </HeaderIconContainer>
                 );
             },
             headerRight: () => {
                 return (
                     <RowContainer>
-                        <HomeHeaderIconContainer onPress={navigateToSearchScreen}>
+                        <HeaderIconContainer onPress={navigateToSearchScreen}>
                             <SearchIcon />
-                        </HomeHeaderIconContainer>
-                        <HomeHeaderIconContainer onPress={navigateToNotificationScreen}>
+                        </HeaderIconContainer>
+                        <HeaderIconContainer onPress={navigateToNotificationScreen}>
                             {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
-                        </HomeHeaderIconContainer>
+                        </HeaderIconContainer>
                     </RowContainer>
                 );
             },
-            headerLeftContainerStyle: { marginLeft: 10 },
-            headerRightContainerStyle: { marginRight: 10 },
         });
     }, [hasNotification, navigation]);
 

@@ -6,6 +6,7 @@ import Notification from 'screens/Notification';
 import OfficialImageDetail from 'screens/OfficialImageDetail';
 import ReviewEdit from 'screens/ReviewEdit';
 import ReviewNew from 'screens/ReviewNew';
+import { colors } from 'styles/base/Variable';
 
 import MainTabNavigation from './MainTabNavigation';
 
@@ -13,7 +14,18 @@ const Stack = createStackNavigator();
 
 export default function RootStackNavigation() {
     return (
-        <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+                headerLeftContainerStyle: { marginLeft: 10 },
+                headerRightContainerStyle: { marginRight: 10 },
+                title: '',
+                headerStyle: {
+                    backgroundColor: colors.lightblack,
+                },
+                headerShadowVisible: false,
+            }}>
             <Stack.Screen name="MainTab" component={MainTabNavigation} />
             <Stack.Screen
                 name="AddReviewModal"
@@ -27,6 +39,7 @@ export default function RootStackNavigation() {
                 initialParams={{ photoBoothName: null }}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
                 }}
             />
             <Stack.Screen

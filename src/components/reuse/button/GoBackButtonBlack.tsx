@@ -1,16 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
 
 import BackBlackIcon from 'assets/image/icon/arrow_back_black.svg';
-import { BackButton } from 'styles/layout/reuse/button/GoBackButton.style';
+import { HeaderIconContainer } from 'styles/layout/reuse/header/Header.style';
 
 export default function GoBackButtonBlack() {
     const navigation = useNavigation();
     const onPressGoBack = () => {
         navigation.goBack();
     };
+
     return (
-        <BackButton onPress={onPressGoBack}>
+        <HeaderIconContainer onPress={onPressGoBack}>
             <BackBlackIcon />
-        </BackButton>
+        </HeaderIconContainer>
     );
 }
