@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { colors } from 'styles/base/Variable';
 
-export const HomeMenuBarContainer = styled.View`
+export const HomeHeaderContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     background-color: ${colors.lightblack};
@@ -10,10 +10,13 @@ export const HomeMenuBarContainer = styled.View`
     padding: 15px;
 `;
 
-export const HomeMenuBarIconsBox = styled.View`
+export const RowContainer = styled.View`
     flex-direction: row;
 `;
 
-export const HomeMenuBarIconContainer = styled.TouchableOpacity`
-    margin-left: 10px;
+export const HomeHeaderIconContainer = styled.TouchableOpacity`
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
 `;
