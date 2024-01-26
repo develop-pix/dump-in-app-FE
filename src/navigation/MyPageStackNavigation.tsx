@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import Login from 'screens/Login';
 import MyPage from 'screens/MyPage';
@@ -20,8 +20,17 @@ export default function MyPageStackNavigation() {
                 },
                 headerShadowVisible: false,
             }}>
-            <Stack.Screen name="MyPage" component={MyPage} />
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="MyPage" component={MyPage} options={{ headerLeft: () => null }} />
+            <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{
+                    ...TransitionPresets.SlideFromRightIOS,
+                    headerStyle: {
+                        backgroundColor: colors.lightblack,
+                    },
+                }}
+            />
             <Stack.Screen name="PhotoBoothDetail" component={PhotoBoothDetail} initialParams={{ PhotoBoothID: 0 }} />
             <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
         </Stack.Navigator>

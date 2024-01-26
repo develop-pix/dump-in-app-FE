@@ -23,14 +23,6 @@ export default function MyPage() {
 
     const isLoggedIn = accessToken !== null;
 
-    const updateActiveComponent = (newComponent: ActivityComponentProps) => {
-        setActiveComponent(newComponent);
-    };
-
-    useEffect(() => {
-        setActiveComponent(isLoggedIn ? 'MyReviewList' : 'Login');
-    }, [isLoggedIn]);
-
     const activeComponentMap = {
         MyReviewList: <MyReviewList activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />,
         MyPostList: <MyPostList activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />,
@@ -40,6 +32,14 @@ export default function MyPage() {
         MyEventList: <MyEventList activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />,
         Login: <MyPageLogin activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />,
     };
+
+    const updateActiveComponent = (newComponent: ActivityComponentProps) => {
+        setActiveComponent(newComponent);
+    };
+
+    useEffect(() => {
+        setActiveComponent(isLoggedIn ? 'MyReviewList' : 'Login');
+    }, [isLoggedIn]);
 
     useEffect(() => {
         navigation.setOptions({
