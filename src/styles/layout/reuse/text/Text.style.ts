@@ -226,6 +226,13 @@ export const FontYellowSmallestMedium = styled.Text`
     font-weight: ${fontWeight.medium};
 `;
 
+export const FontYellowMiniMedium = styled.Text`
+    font-family: ${fontFamily.Pretendard};
+    color: ${colors.yellow};
+    font-size: ${fontSize.mini};
+    font-weight: ${fontWeight.medium};
+`;
+
 /* red */
 export const FontRedNormalMedium = styled.Text`
     font-family: ${fontFamily.Pretendard};

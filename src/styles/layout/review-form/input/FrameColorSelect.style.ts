@@ -32,5 +32,5 @@ export const EtcFrameColorButton = styled.TouchableOpacity<{
     isSelected: string | null;
 }>`
     justify-content: center;
-    opacity: ${props => (props.isSelected === null ? '1' : props.isSelected === 'etc' ? '1' : '0.2')};
+    opacity: ${props => (props.isSelected === null ? '1' : props.isSelected === 'gradient' ? '1' : '0.2')};
 `;

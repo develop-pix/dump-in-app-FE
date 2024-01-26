@@ -58,7 +58,7 @@ export default function LocationInput({ location, errorData }: LocationInputProp
                         <FontLightGreyNormalMedium>위치를 검색해주세요.</FontLightGreyNormalMedium>
                     ) : (
                         <LocationTextContainer>
-                            <LocationGreyIcon width={16} height={21} />
+                            <LocationGreyIcon width={14} height={18} />
                             <FontWhiteNormalMedium>{location}</FontWhiteNormalMedium>
                         </LocationTextContainer>
                     )}

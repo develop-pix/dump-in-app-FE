@@ -51,7 +51,7 @@ export default function ReviewEdit() {
     const dispatch = useDispatch();
 
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
-    const representativeImageName = useAppSelector(state => state.reviewData).representativeImageName;
+    const representativeImageName = useAppSelector(state => state.reviewData).representativeImage;
     const description = useAppSelector(state => state.reviewData).description;
     const location = useAppSelector(state => state.reviewData).branchID;
     const date = useAppSelector(state => state.reviewData).date;

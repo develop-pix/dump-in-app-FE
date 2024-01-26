@@ -1,6 +1,7 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import EtcImage from 'assets/image/icon/frame_etc.svg';
 import {
     HomeStackScreenProps,
     LocationStackScreenProps,
@@ -14,6 +15,7 @@ import {
     ReviewDescriptionContainer,
     ReviewFrameColor,
     ReviewFrameContainer,
+    ReviewFrameGradient,
     ReviewHashtags,
     ReviewImage,
 } from 'styles/layout/reuse/photo-dump/Review.style';
@@ -50,6 +52,7 @@ export default function Review({ reviewItem }: ReviewProps) {
         }
     };
 
+    //FIXME: 고데기, 소품은 true, false, null 3가지 값이 있음. 수정 필요함
     return (
         <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
             <ReviewImage source={{ uri: reviewItem.mainThumbnailImageUrl }} />
@@ -72,7 +75,13 @@ export default function Review({ reviewItem }: ReviewProps) {
                 <ReviewHashtags>
                     <ReviewFrameContainer>
                         <FontYellowSmallerMediumWithLineSpacing>#</FontYellowSmallerMediumWithLineSpacing>
-                        <ReviewFrameColor colorOption={reviewItem.frameColor} />
+                        {reviewItem.frameColor === 'gradient' ? (
+                            <ReviewFrameGradient>
+                                <EtcImage width={16} height={16} />
+                            </ReviewFrameGradient>
+                        ) : (
+                            <ReviewFrameColor colorOption={reviewItem.frameColor} />
+                        )}
                     </ReviewFrameContainer>
                     <FontYellowSmallerMediumWithLineSpacing>
                         # {reviewItem.participants}
@@ -83,7 +92,7 @@ export default function Review({ reviewItem }: ReviewProps) {
                     {TagsArrayToHashTagArrayForm(reviewItem.concept).map(tag => (
                         <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                     ))}
-                    {reviewItem.curlAmount ? (
+                    {reviewItem.curlAmount === false ? (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
                     ) : (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 없음</FontYellowSmallerMediumWithLineSpacing>

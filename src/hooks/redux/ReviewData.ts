@@ -1,32 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-
+interface ImageData {
+    imageURL: string | undefined;
+    imageName: string | undefined;
+}
 interface ReviewDataState {
-    representativeImage: string | null | undefined;
-    representativeImageName: string | null | undefined;
+    representativeImage: ImageData;
+    image: ImageData[];
+    enlargedImage: ImageData;
     description: string | null;
-    branchID: number | null | undefined;
+    branchID: string | undefined;
     date: Date | null;
     frameColor: string | null;
     party: number | null;
     cameraShot: string | null;
-    hashtag: string[];
+    concept: string[];
     tools: boolean | null;
     hairIron: boolean | null;
     publicOpen: boolean;
 }
 
 const initialState: ReviewDataState = {
-    representativeImage: null,
-    representativeImageName: null,
+    representativeImage: { imageURL: undefined, imageName: undefined },
+    image: [],
+    enlargedImage: { imageURL: undefined, imageName: undefined },
     description: null,
     branchID: undefined,
     date: null,
     frameColor: null,
     party: null,
     cameraShot: null,
-    hashtag: [],
+    concept: [],
     tools: null,
     hairIron: null,
     publicOpen: true,
@@ -36,16 +41,27 @@ export const ReviewDataSlice = createSlice({
     name: 'reviewData',
     initialState,
     reducers: {
-        setRepresentativeImage(state, action: PayloadAction<string | null | undefined>) {
-            state.representativeImage = action.payload;
+        setRepresentativeImage(state, action: PayloadAction<ImageData>) {
+            state.representativeImage.imageURL = action.payload.imageURL;
+            state.representativeImage.imageName = action.payload.imageName;
         },
-        setRepresentativeImageName(state, action: PayloadAction<string | null | undefined>) {
-            state.representativeImageName = action.payload;
+        setImage(state, action: PayloadAction<ImageData[]>) {
+            state.image = [...state.image, ...action.payload];
+        },
+        setRemoveImage(state, action: PayloadAction<ImageData>) {
+            state.image = state.image.filter(imageData => imageData.imageURL !== action.payload.imageURL);
+        },
+        setImageClear(state) {
+            state.image = [];
+        },
+        setEnlargedImage(state, action: PayloadAction<ImageData>) {
+            state.enlargedImage.imageURL = action.payload.imageURL;
+            state.enlargedImage.imageName = action.payload.imageName;
         },
         setDescription(state, action: PayloadAction<string | null>) {
             state.description = action.payload;
         },
-        setBranchID(state, action: PayloadAction<number | null | undefined>) {
+        setBranchID(state, action: PayloadAction<string | undefined>) {
             state.branchID = action.payload;
         },
         setDate(state, action: PayloadAction<Date | null>) {
@@ -61,7 +77,7 @@ export const ReviewDataSlice = createSlice({
             state.cameraShot = action.payload;
         },
         setHashtag(state, action: PayloadAction<string[]>) {
-            state.hashtag = action.payload;
+            state.concept = action.payload;
         },
         setTools(state, action: PayloadAction<boolean | null>) {
             state.tools = action.payload;
@@ -76,7 +92,10 @@ export const ReviewDataSlice = createSlice({
 });
 
 export const { setRepresentativeImage } = ReviewDataSlice.actions;
-export const { setRepresentativeImageName } = ReviewDataSlice.actions;
+export const { setImageClear } = ReviewDataSlice.actions;
+export const { setRemoveImage } = ReviewDataSlice.actions;
+export const { setImage } = ReviewDataSlice.actions;
+export const { setEnlargedImage } = ReviewDataSlice.actions;
 export const { setDescription } = ReviewDataSlice.actions;
 export const { setBranchID } = ReviewDataSlice.actions;
 export const { setDate } = ReviewDataSlice.actions;
