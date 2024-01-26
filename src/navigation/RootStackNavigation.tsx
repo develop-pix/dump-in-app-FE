@@ -53,6 +53,10 @@ export default function RootStackNavigation() {
                 component={LocationSearch}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: colors.blackgrey,
+                    },
                 }}
             />
             <Stack.Screen
