@@ -48,7 +48,8 @@ export default function ReviewDescription({ date, content, concept, isLiked }: R
     const onPressReviewLikeButton = async () => {
         const press_result = await LikeReview(route.params.reviewID);
         if (press_result.success) {
-            setFavorite(!favorite);
+            setFavorite(prev => !prev);
+            console.log(favorite);
         }
     };
 

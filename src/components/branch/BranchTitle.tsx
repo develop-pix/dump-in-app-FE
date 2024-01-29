@@ -27,7 +27,7 @@ export default function BranchTitle({ photoBoothName, branchName, branchHashtag,
     const onPressBranchLikeButton = async () => {
         const press_result = await LikeBranch(route.params.branchID);
         if (press_result.success) {
-            setFavorite(!favorite);
+            setFavorite(prev => !prev);
         }
     };
 
