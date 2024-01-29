@@ -35,7 +35,6 @@ export default function EventDetail() {
                     myEvent: eventData.myEvent,
                 }}
             />
-
             <EventInfo
                 eventData={{
                     descriptionTitle: eventData.descriptionTitle,
@@ -44,7 +43,6 @@ export default function EventDetail() {
                     endDate: eventData.endDate,
                 }}
             />
-
             <EventFrame
                 eventData={{
                     frameImage: eventData.frameImage,

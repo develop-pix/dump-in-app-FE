@@ -13,7 +13,6 @@ export default function MyPageStackNavigation() {
         <Stack.Navigator
             id="MyPageStack"
             screenOptions={{
-                headerShown: true,
                 title: '',
                 headerStyle: {
                     backgroundColor: colors.blackgrey,
@@ -31,7 +30,12 @@ export default function MyPageStackNavigation() {
                     },
                 }}
             />
-            <Stack.Screen name="PhotoBoothDetail" component={PhotoBoothDetail} initialParams={{ PhotoBoothID: 0 }} />
+            <Stack.Screen
+                name="PhotoBoothDetail"
+                component={PhotoBoothDetail}
+                initialParams={{ PhotoBoothID: 0 }}
+                options={{ headerTransparent: true }}
+            />
             <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
         </Stack.Navigator>
     );

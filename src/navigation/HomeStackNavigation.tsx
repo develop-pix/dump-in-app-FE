@@ -20,9 +20,19 @@ export default function HomeStackNavigation() {
                 headerShadowVisible: false,
             }}>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="PhotoBoothDetail" component={PhotoBoothDetail} initialParams={{ PhotoBoothID: 0 }} />
+            <Stack.Screen
+                name="PhotoBoothDetail"
+                component={PhotoBoothDetail}
+                initialParams={{ PhotoBoothID: 0 }}
+                options={{ headerTransparent: true }}
+            />
             <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
-            <Stack.Screen name="EventDetail" component={EventDetail} initialParams={{ EventID: 0 }} />
+            <Stack.Screen
+                name="EventDetail"
+                component={EventDetail}
+                initialParams={{ EventID: 0 }}
+                options={{ headerTransparent: true }}
+            />
         </Stack.Navigator>
     );
 }

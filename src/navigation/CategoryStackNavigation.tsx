@@ -28,7 +28,12 @@ export default function CategoryStackNavigation() {
                 options={{ headerShown: true, headerTransparent: true }}
             />
             <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
-            <Stack.Screen name="EventDetail" component={EventDetail} initialParams={{ EventID: 0 }} />
+            <Stack.Screen
+                name="EventDetail"
+                component={EventDetail}
+                initialParams={{ EventID: 0 }}
+                options={{ headerShown: true, headerTransparent: true }}
+            />
         </Stack.Navigator>
     );
 }
