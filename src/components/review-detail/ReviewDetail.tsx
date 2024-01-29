@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useHeaderHeight } from '@react-navigation/elements';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import SeeMoreIcon from 'assets/image/icon/btn_more.svg';
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
-import ReviewDetailHeader from 'components/reuse/header/ReviewDetailHeader';
+import LocationIcon from 'assets/image/icon/location_white.svg';
+import GoBackButton from 'components/reuse/button/GoBackButton';
 import {
     HomeStackScreenProps,
     LocationStackScreenProps,
@@ -13,6 +16,13 @@ import {
 } from 'interfaces/Navigation.interface';
 import { ReviewData } from 'interfaces/ReviewDetail.interface';
 import { colors } from 'styles/base/Variable';
+import {
+    HeaderIconContainer,
+    HeaderLeftContainer,
+    HeaderRightContainer,
+    RowContainer,
+} from 'styles/layout/reuse/header/Header.style';
+import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';
 import {
     ButtonContainer,
     NextButtonContainer,
@@ -23,23 +33,30 @@ import {
     ReviewDetailFormWrapper,
     ReviewImage,
     ReviewImageContainer,
-    TitleContainer,
 } from 'styles/layout/review-detail/ReviewDetail.style';
 
 import ReviewDescription from './ReviewDescription';
 import ReviewManageModal from './ReviewManageModal';
-
 // FIXME: style이 이상하게 적용되어 있음 재구성 필요
 export default function ReviewDetail() {
-    const [openModal, setOpenModal] = useState<boolean>(false);
-    const [carouselActive, setCarouselActive] = useState<number>(0);
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'ReviewDetail'>['navigation']
+        | LocationStackScreenProps<'ReviewDetail'>['navigation']
+        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
+    >();
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
         | MyPageStackScreenProps<'ReviewDetail'>['route']
     >();
-    const platform = Platform.OS;
+    const headerHeight = useHeaderHeight();
 
+    const [openModal, setOpenModal] = useState(false);
+    const [carouselActive, setCarouselActive] = useState(0);
+
+    const platform = Platform.OS;
+    const width = Dimensions.get('window').width;
+    const height = Dimensions.get('window').height;
     const onPressPrevButton = () => {
         setCarouselActive(prev => prev - 1);
     };
@@ -437,6 +454,37 @@ export default function ReviewDetail() {
             my_review: true,
         },
     ];
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => {
+                return (
+                    <HeaderLeftContainer>
+                        <GoBackButton />
+                    </HeaderLeftContainer>
+                );
+            },
+            // FIXME: isMine 관련 변경 필요
+            headerRight: () => {
+                return (
+                    <HeaderRightContainer>
+                        <HeaderIconContainer onPress={() => {}}>
+                            <SeeMoreIcon width={4} height={16} />
+                        </HeaderIconContainer>
+                    </HeaderRightContainer>
+                );
+            },
+            headerTitle: () => {
+                return (
+                    <RowContainer>
+                        <LocationIcon width={20} height={24} style={{ marginRight: 4 }} />
+                        <FontWhiteNormalMedium>PhotoBooth명</FontWhiteNormalMedium>
+                    </RowContainer>
+                );
+            },
+            headerTitleAlign: 'center',
+        });
+    }, [navigation]);
 
     return (
         <ReviewDetailFormContainer>
