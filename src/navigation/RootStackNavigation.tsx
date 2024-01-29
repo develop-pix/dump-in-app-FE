@@ -67,6 +67,14 @@ export default function RootStackNavigation() {
                     image: '',
                     index: 0,
                 }}
+                options={{
+                    ...TransitionPresets.SlideFromRightIOS,
+                    headerShown: true,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: colors.blackgrey,
+                    },
+                }}
             />
             <Stack.Screen
                 name="ReviewEdit"

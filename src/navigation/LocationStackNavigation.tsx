@@ -8,10 +8,15 @@ const Stack = createStackNavigator();
 
 export default function LocationStackNavigation() {
     return (
-        <Stack.Navigator id="LocationStack" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator id="LocationStack" screenOptions={{ headerShown: false, headerTitleAlign: 'center' }}>
             <Stack.Screen name="Location" component={Location} initialParams={{ PhotoBoothID: null }} />
             <Stack.Screen name="Branch" component={Branch} initialParams={{ branchID: 0 }} />
-            <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
+            <Stack.Screen
+                name="ReviewDetail"
+                component={ReviewDetail}
+                initialParams={{ reviewID: null }}
+                options={{ headerShown: true }}
+            />
         </Stack.Navigator>
     );
 }

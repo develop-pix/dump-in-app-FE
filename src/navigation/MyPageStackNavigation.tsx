@@ -18,6 +18,7 @@ export default function MyPageStackNavigation() {
                     backgroundColor: colors.blackgrey,
                 },
                 headerShadowVisible: false,
+                headerTitleAlign: 'center',
             }}>
             <Stack.Screen name="MyPage" component={MyPage} options={{ headerLeft: () => null }} />
             <Stack.Screen

@@ -18,6 +18,7 @@ export default function HomeStackNavigation() {
                     backgroundColor: colors.lightblack,
                 },
                 headerShadowVisible: false,
+                headerTitleAlign: 'center',
             }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen

@@ -126,10 +126,10 @@ export default function PhotoBoothDetail() {
                     <PhotoBoothEvent eventData={photoBoothData.event} />
                     <OfficialImagesContainer>
                         {/* FIXME: 임시 데이터 타입 오류 */}
-                        {/* <OfficialImages
+                        <OfficialImages
                             image={photoBoothData.officialImage}
                             photoBoothName={photoBoothData.photoBoothName}
-                        /> */}
+                        />
                     </OfficialImagesContainer>
                     <PhotoDumpContainer>
                         {/* <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} /> */}

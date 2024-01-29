@@ -19,6 +19,7 @@ export default function CategoryStackNavigation() {
                     backgroundColor: colors.lightblack,
                 },
                 headerShadowVisible: false,
+                headerTitleAlign: 'center',
             }}>
             <Stack.Screen name="Category" component={Category} />
             <Stack.Screen

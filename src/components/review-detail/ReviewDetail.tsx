@@ -136,7 +136,6 @@ export default function ReviewDetail() {
                     </RowContainer>
                 );
             },
-            headerTitleAlign: 'center',
         });
     }, [navigation, reviewData.isMine, reviewData.photoBoothId]);
 
