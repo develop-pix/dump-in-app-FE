@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import MenuIcon from 'assets/image/icon/menu.svg';
-import MyPageMenu from 'components/my-page/MyPageMenu';
 import GoBackButton from 'components/reuse/button/GoBackButton';
-import MyPageBar from 'components/reuse/header/MyPageBar';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     AppDescriptionWrapper,
