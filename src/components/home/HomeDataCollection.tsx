@@ -234,14 +234,13 @@ export default function HomeDataCollection() {
             ) : (
                 <SkeletonHomeDataCollection />
             )}
-            {isFilterVisible && (
-                <HomeFilterModalForm
-                    filterData={filterData}
-                    setFilterData={setFilterData}
-                    handleHideFilterModal={handleHideFilterModal}
-                    onFilterSubmit={handleFilterSubmit}
-                />
-            )}
+            <HomeFilterModalForm
+                isVisible={isFilterVisible}
+                filterData={filterData}
+                setFilterData={setFilterData}
+                handleHideFilterModal={handleHideFilterModal}
+                onFilterSubmit={handleFilterSubmit}
+            />
         </CollectionContainer>
     );
 }

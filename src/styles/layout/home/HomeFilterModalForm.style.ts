@@ -5,29 +5,29 @@ import { colors } from 'styles/base/Variable';
 export const FilterFormContainer = styled.View`
     flex: 1;
     justify-content: flex-end;
-    elevation: 0;
 `;
 
 export const FilterFormBody = styled.View`
-    height: 92%;
     background-color: ${colors.darkgrey};
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 `;
 
 export const FilterFormHeader = styled.View`
-    flex-direction: row;
-    width: 100%;
     align-items: center;
-    justify-content: flex-end;
-    margin: 10px 0px 0px 0px;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 12px;
 `;
 
-export const FilterFormTitleContainer = styled.View`
-    margin-right: 30%;
-`;
+export const FilterFormTitleContainer = styled.View``;
 
-export const CloseButton = styled.TouchableOpacity``;
+export const CloseButton = styled.TouchableOpacity`
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    right: 10px;
+`;
 
 export const FilterOptionContainer = styled.View`
     padding: 10px 20px;
@@ -35,9 +35,9 @@ export const FilterOptionContainer = styled.View`
 
 export const FilterButtonBox = styled.View`
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     margin: 20px 0px;
-    padding: 20px 10px;
 `;
 
 export const Margin = styled.View`

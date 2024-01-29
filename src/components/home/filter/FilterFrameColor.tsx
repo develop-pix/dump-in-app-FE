@@ -6,7 +6,7 @@ import WhiteCheckIcon from 'assets/image/icon/check_white.svg';
 import EtcImage from 'assets/image/icon/frame_etc.svg';
 import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
 import { frameColors } from 'styles/base/Variable';
-import { FilterContentContainer } from 'styles/layout/home/filter/Filter.style';
+import { FilterContentContainer, FilterLabelContainer } from 'styles/layout/home/filter/Filter.style';
 import { EtcFrameColorButton, FrameColorButton } from 'styles/layout/home/filter/FilterFrameColor.style';
 import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.style';
 
@@ -26,8 +26,9 @@ export default function FilterFrameColor({ filterData, setFilterData, filterOpti
 
     return (
         <View>
-            <FontWhiteGreySmallerSemibold>프레임 색상</FontWhiteGreySmallerSemibold>
-
+            <FilterLabelContainer>
+                <FontWhiteGreySmallerSemibold>프레임 색상</FontWhiteGreySmallerSemibold>
+            </FilterLabelContainer>
             <FilterContentContainer>
                 {availableColors.map(colorOption => {
                     const isSelected = filterData.frameColor === colorOption;
@@ -48,7 +49,6 @@ export default function FilterFrameColor({ filterData, setFilterData, filterOpti
                         </FrameColorButton>
                     );
                 })}
-
                 <EtcFrameColorButton
                     isSelected={filterData.frameColor === 'etc'}
                     selectedColor={filterData.frameColor}

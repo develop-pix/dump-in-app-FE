@@ -8,6 +8,7 @@ export interface FilterProps {
 
 export interface HomeFilterModalFormProps {
     filterData: FilterProps;
+    isVisible: boolean;
     setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
     handleHideFilterModal: () => void;
     onFilterSubmit: (newFilterData: FilterProps) => void;
