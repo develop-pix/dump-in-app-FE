@@ -38,7 +38,6 @@ export default function Branch() {
     });
     const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
-    console.log(route);
     /** Branch 정보 및 PhotoDump 리뷰 정보 획득 */
     const getBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
         const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
