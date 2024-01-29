@@ -1,20 +1,31 @@
 export interface ReviewData {
-    reviewID: number;
-    representativeImage: string;
+    id: number | null;
     image: ImageData[];
-    hashtag: string[];
-    description: string;
-    date: Date;
-    my_review: boolean;
-    mine: boolean;
-    photoBoothName: string;
-    branchName: string;
+    concept: ConceptData[];
+    isMine: boolean;
+    isLiked: boolean;
+    userNickname: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+    content: string | null;
+    mainThumbnailImageUrl: string | null;
+    date: string | null;
+    frameColor: string | null;
+    participants: number;
+    cameraShot: string | null;
+    goodsAmount: boolean | null;
+    curlAmount: boolean | null;
+    isPublic: boolean;
+    viewCount: number;
+    likeCount: number;
+    photoBoothId: string | null;
 }
 
 export interface ReviewDescriptionProps {
-    date: Date;
-    description: string;
-    hashtag: string[];
+    date: string | null;
+    content: string | null;
+    concept: ConceptData[];
+    isLiked: boolean;
 }
 
 export interface ReviewManageModalProps {
@@ -23,6 +34,11 @@ export interface ReviewManageModalProps {
 }
 
 interface ImageData {
-    imageID: number;
+    id: number;
     imageUrl: string;
+}
+
+interface ConceptData {
+    hashtagID: number;
+    name: string;
 }
