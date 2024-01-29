@@ -8,7 +8,6 @@ import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import LocationIcon from 'assets/image/icon/location_white.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
-import ReviewDetailHeader from 'components/reuse/header/ReviewDetailHeader';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
     HomeStackScreenProps,
@@ -118,39 +117,32 @@ export default function ReviewDetail() {
                     </HeaderLeftContainer>
                 );
             },
-            // FIXME: isMine 관련 변경 필요
             headerRight: () => {
                 return (
-                    <HeaderRightContainer>
-                        <HeaderIconContainer onPress={() => {}}>
-                            <SeeMoreIcon width={4} height={16} />
-                        </HeaderIconContainer>
-                    </HeaderRightContainer>
+                    reviewData.isMine && (
+                        <HeaderRightContainer>
+                            <HeaderIconContainer onPress={() => setOpenModal(true)}>
+                                <SeeMoreIcon width={4} height={16} />
+                            </HeaderIconContainer>
+                        </HeaderRightContainer>
+                    )
                 );
             },
             headerTitle: () => {
                 return (
                     <RowContainer>
                         <LocationIcon width={20} height={24} style={{ marginRight: 4 }} />
-                        <FontWhiteNormalMedium>PhotoBooth명</FontWhiteNormalMedium>
+                        {/* <FontWhiteNormalMedium>{reviewData.photoBoothId}</FontWhiteNormalMedium> */}
                     </RowContainer>
                 );
             },
             headerTitleAlign: 'center',
         });
-    }, [navigation]);
+    }, [navigation, reviewData.isMine, reviewData.photoBoothId]);
 
     return (
         <ReviewDetailFormContainer>
             <ReviewDetailForm>
-                {/* <TitleContainer>
-                    <ReviewDetailHeader
-                        photoBoothName={reviewData.photoBoothId}
-                        branchName={reviewData.photoBoothId}
-                        isMine={reviewData.isMine}
-                        setOpenModal={setOpenModal}
-                    />
-                </TitleContainer> */}
                 <ReviewDetailFormWrapper>
                     <ReviewDetailCarousel
                         scrollEnabled={true}
@@ -237,7 +229,7 @@ export default function ReviewDetail() {
                         isLiked={reviewData.isLiked}
                     />
                 </ReviewDetailFormWrapper>
-                {openModal ? <ReviewManageModal setOpenModal={setOpenModal} reviewID={route.params.reviewID} /> : null}
+                {openModal && <ReviewManageModal setOpenModal={setOpenModal} reviewID={route.params.reviewID} />}
             </ReviewDetailForm>
         </ReviewDetailFormContainer>
     );

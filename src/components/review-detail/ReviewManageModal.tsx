@@ -11,6 +11,7 @@ import {
     ReviewManageTouchableOpacity,
 } from 'styles/layout/review-detail/ReviewManageModal.style';
 
+// FIXME: 스타일 재구성 필요
 export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewManageModalProps) {
     const platform = Platform.OS;
     const navigation = useNavigation();
