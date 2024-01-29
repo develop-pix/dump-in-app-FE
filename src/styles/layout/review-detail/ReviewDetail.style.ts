@@ -37,6 +37,16 @@ export const ReviewImage = styled.Image`
     height: ${Dimensions.get('window').height - 88}px;
 `;
 
+export const DotContainer = styled.View`
+    position: absolute;
+    flex-direction: row;
+    align-self: center;
+`;
+
+export const DotActive = styled.View`
+    margin: 3px;
+`;
+
 /** left: ReviewContainer width의 1/2 */
 export const ReviewDescriptionContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';

@@ -17,7 +17,7 @@ import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';
 export default function ReviewDetailHeader({
     photoBoothName,
     branchName,
-    mine,
+    isMine,
     setOpenModal,
 }: ReviewDetailHeaderProps) {
     const platform = Platform.OS;
@@ -42,7 +42,7 @@ export default function ReviewDetailHeader({
                     <FontWhiteNormalMedium>{branchName}</FontWhiteNormalMedium>
                 </ReviewDescTextContainer>
             </BranchNameContainer>
-            {mine ? (
+            {isMine ? (
                 <ReviewManageButtonContainer onPress={onPressOpenModal}>
                     <SeeMoreIcon width={4} height={16} />
                 </ReviewManageButtonContainer>

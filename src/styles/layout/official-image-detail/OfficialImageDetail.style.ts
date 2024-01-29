@@ -21,6 +21,16 @@ export const OfficialImageDetailForm = styled.View`
     width: 100%;
 `;
 
+export const DotContainer = styled.View`
+    position: absolute;
+    flex-direction: row;
+    align-self: center;
+`;
+
+export const DotActive = styled.View`
+    margin: 3px;
+`;
+
 export const OfficialImageDetailContainer = styled.ScrollView`
     background-color: ${colors.white};
 `;

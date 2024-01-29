@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import { MutableRefObject } from 'react';
 import { FlatList } from 'react-native';
 
 export interface FilterButtonProps {
@@ -12,7 +12,7 @@ export interface FilterButtonProps {
 
 export interface FavoriteButtonProps {
     favorite: boolean;
-    setFavorite: React.Dispatch<React.SetStateAction<boolean>>;
+    onPress: () => void; // 버튼 클릭 시 실행할 함수
 }
 
 export interface NormalButtonProps {
@@ -22,5 +22,5 @@ export interface NormalButtonProps {
 
 export interface UpScrollButtonProps {
     top: string;
-    flatListRef: RefObject<FlatList<any>>;
+    flatListRef: MutableRefObject<FlatList | null>;
 }
