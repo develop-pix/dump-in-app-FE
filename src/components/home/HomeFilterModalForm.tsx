@@ -14,7 +14,6 @@ import {
     FilterFormBody,
     FilterFormContainer,
     FilterFormHeader,
-    FilterFormTitleContainer,
     FilterOptionContainer,
 } from 'styles/layout/home/HomeFilterModalForm.style';
 import { FontWhiteGreyNormalSemibold } from 'styles/layout/reuse/text/Text.style';
@@ -110,13 +109,12 @@ export default function HomeFilterModalForm({
                     <ScrollView>
                         <LinearGradient
                             colors={['transparent', colors.lightblack]}
-                            locations={[0.1, 0.3]}
+                            locations={[0, 0.25]}
                             style={{
                                 position: 'absolute',
-                                left: 0,
-                                right: 0,
-                                bottom: -400,
-                                height: 720,
+                                bottom: 0,
+                                height: 96,
+                                width: '100%',
                             }}
                         />
                         <FilterOptionContainer>
