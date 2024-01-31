@@ -12,16 +12,25 @@ import MyPageLogin from './my-activity/MyPageLogin';
 import MyPhotoBoothList from './my-activity/MyPhotoBoothList';
 import MyPostList from './my-activity/MyPostList';
 import MyReviewList from './my-activity/MyReviewList';
-import MyPageMenu from './MyPageMenu';
 
 export default function MyPage() {
     const accessToken = useAppSelector(state => state.login.token);
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
-    const [isMenuVisible, setMenuVisible] = useState(false);
-    const [activeComponent, setActiveComponent] = useState<ActivityComponentProps>('Login');
-
     const isLoggedIn = accessToken !== null;
+    const [activeComponent, setActiveComponent] = useState<ActivityComponentProps>(
+        isLoggedIn ? 'MyReviewList' : 'Login',
+    );
+
+    if (isLoggedIn && activeComponent !== 'MyReviewList') {
+        setActiveComponent('MyReviewList');
+    } else if (!isLoggedIn && activeComponent !== 'Login') {
+        setActiveComponent('Login');
+    }
+
+    const updateActiveComponent = (newComponent: ActivityComponentProps) => {
+        setActiveComponent(newComponent);
+    };
 
     const activeComponentMap = {
         MyReviewList: <MyReviewList activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />,
@@ -33,21 +42,16 @@ export default function MyPage() {
         Login: <MyPageLogin activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />,
     };
 
-    const updateActiveComponent = (newComponent: ActivityComponentProps) => {
-        setActiveComponent(newComponent);
-    };
-
-    useEffect(() => {
-        setActiveComponent(isLoggedIn ? 'MyReviewList' : 'Login');
-    }, [isLoggedIn]);
-
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                if (isLoggedIn) {
+                if (!isLoggedIn) {
                     return (
                         <HeaderRightContainer>
-                            <HeaderIconContainer onPress={() => {}}>
+                            <HeaderIconContainer
+                                onPress={() => {
+                                    navigation.navigate('Menu');
+                                }}>
                                 <MenuIcon width={18} height={12} />
                             </HeaderIconContainer>
                         </HeaderRightContainer>
@@ -57,10 +61,5 @@ export default function MyPage() {
         });
     }, [isLoggedIn, navigation]);
 
-    return (
-        <>
-            {activeComponentMap[activeComponent]}
-            <MyPageMenu visible={isMenuVisible} setMenuVisible={setMenuVisible} />
-        </>
-    );
+    return <>{activeComponentMap[activeComponent]}</>;
 }

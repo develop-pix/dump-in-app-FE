@@ -30,8 +30,3 @@ export interface MyPageUserDataProps {
     activeComponent: ActivityComponentProps;
     updateActiveComponent: (newComponent: ActivityComponentProps) => void;
 }
-
-export interface MyPageMenuProps {
-    visible: boolean;
-    setMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}

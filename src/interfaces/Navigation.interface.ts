@@ -72,6 +72,7 @@ export type CategoryStackScreenProps<RouteName extends keyof CategoryStackParamL
 export type MyPageStackParamList = {
     MyPage: undefined;
     Login: undefined;
+    Menu: undefined;
     PhotoBoothDetail: { photoBoothID: number };
     ReviewDetail: { reviewID: number };
 };

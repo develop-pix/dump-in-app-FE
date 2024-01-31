@@ -1,5 +1,6 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
+import MyPageMenu from 'components/my-page/MyPageMenu';
 import Login from 'screens/Login';
 import MyPage from 'screens/MyPage';
 import PhotoBoothDetail from 'screens/PhotoBoothDetail';
@@ -24,6 +25,16 @@ export default function MyPageStackNavigation() {
             <Stack.Screen
                 name="Login"
                 component={Login}
+                options={{
+                    ...TransitionPresets.SlideFromRightIOS,
+                    headerStyle: {
+                        backgroundColor: colors.lightblack,
+                    },
+                }}
+            />
+            <Stack.Screen
+                name="Menu"
+                component={MyPageMenu}
                 options={{
                     ...TransitionPresets.SlideFromRightIOS,
                     headerStyle: {

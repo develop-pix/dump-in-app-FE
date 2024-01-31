@@ -22,11 +22,7 @@ import {
     HeaderRightContainer,
     RowContainer,
 } from 'styles/layout/reuse/header/Header.style';
-import {
-    FontWhiteGreySmallerMedium,
-    FontWhiteNormalMedium,
-    FontWhiteSmallerMedium,
-} from 'styles/layout/reuse/text/Text.style';
+import { FontWhiteGreySmallerMedium, FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 import {
     ButtonContainer,
     DotActive,
@@ -44,7 +40,7 @@ import {
 import ReviewDescription from './ReviewDescription';
 import ReviewManageModal from './ReviewManageModal';
 
-// FIXME: 해쉬태그, isLiked, isMine 안나오는문제 확인 및 수정 필요함
+// FIXME: 해쉬태그, isLiked, isMine 안 나오는 문제 확인 및 수정 필요함
 export default function ReviewDetail() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [carouselActive, setCarouselActive] = useState<number>(0);

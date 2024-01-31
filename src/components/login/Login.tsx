@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import MenuIcon from 'assets/image/icon/menu.svg';
@@ -24,8 +24,6 @@ import NaverLogin from './NaverLogin';
 // TODO: 로고 사진 수정 필요, 추후 로그인 구현
 export default function Login() {
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
-
-    const [isMenuVisible, setMenuVisible] = useState(false);
 
     useEffect(() => {
         navigation.setOptions({

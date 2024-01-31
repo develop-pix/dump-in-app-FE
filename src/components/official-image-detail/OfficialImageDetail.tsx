@@ -5,7 +5,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
-import OfficialImageDetailHeader from 'components/reuse/header/OfficialImageDetailHeader';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     ButtonContainer,
@@ -17,7 +16,6 @@ import {
     OfficialImageDetailFormContainer,
     OfficialImageDetailImage,
     PrevButtonContainer,
-    TitleContainer,
 } from 'styles/layout/official-image-detail/OfficialImageDetail.style';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 import {

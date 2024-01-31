@@ -3,7 +3,7 @@ import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-im
 import Modal from 'react-native-modal';
 import { useDispatch } from 'react-redux';
 
-import { setRepresentativeImage, setRepresentativeImageName } from 'hooks/redux/ReviewData';
+import { setRepresentativeImage } from 'hooks/redux/ReviewData';
 import { ReviewNewModalProps } from 'interfaces/ReviewEdit.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
@@ -35,7 +35,6 @@ export default function ReviewNewModal({ setOpenModal }: ReviewNewModalProps) {
                     return null;
                 } else if (response.assets) {
                     dispatch(setRepresentativeImage(response.assets[0].uri));
-                    dispatch(setRepresentativeImageName(response.assets[0].fileName));
                 }
             });
         } catch (e) {
