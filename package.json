@@ -7,6 +7,8 @@
         "android:dev": "react-native run-android --mode=development",
         "android:prod": "react-native run-android --mode=production",
         "ios": "react-native run-ios",
+        "ios:dev": "react-native run-ios --scheme Develop",
+        "ios:prod": "react-native run-ios --scheme Production",
         "lint": "eslint .",
         "start": "react-native start",
         "test": "jest"
