@@ -29,7 +29,7 @@ export default function RootStackNavigation() {
                 name="AddReviewModal"
                 component={ReviewNew}
                 initialParams={{ branchID: undefined }}
-                options={{ presentation: 'modal' }}
+                options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
             />
             <Stack.Screen
                 name="HomeSearch"

@@ -30,6 +30,7 @@ export default function MyPageStackNavigation() {
                     headerStyle: {
                         backgroundColor: colors.lightblack,
                     },
+                    headerMode: 'screen',
                 }}
             />
             <Stack.Screen
@@ -40,6 +41,7 @@ export default function MyPageStackNavigation() {
                     headerStyle: {
                         backgroundColor: colors.lightblack,
                     },
+                    headerMode: 'screen',
                 }}
             />
             <Stack.Screen

@@ -34,15 +34,6 @@ export default function Login() {
                     </HeaderLeftContainer>
                 );
             },
-            headerRight: () => {
-                return (
-                    <HeaderRightContainer>
-                        <HeaderIconContainer onPress={() => {}}>
-                            <MenuIcon width={18} height={12} />
-                        </HeaderIconContainer>
-                    </HeaderRightContainer>
-                );
-            },
         });
     }, [navigation]);
 
