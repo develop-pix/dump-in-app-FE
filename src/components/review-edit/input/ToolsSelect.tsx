@@ -1,6 +1,5 @@
 import { setTools } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
-import { ToolsSelectProps } from 'interfaces/ReviewEdit.interface';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import {
     FontBlackSmallerSemibold,
     FontLightGreySmallerMedium,
@@ -14,10 +13,11 @@ import {
 } from 'styles/layout/review-form/input/ToolsSelect.style';
 import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function ToolsSelect({ tools }: ToolsSelectProps) {
+export default function ToolsSelect() {
     const dispatch = useAppDispatch();
+    const tools = useAppSelector(state => state.reviewData).tools;
 
-    // 있음 버튼 선택시 dispatch
+    /** 있음 버튼 선택시 dispatch */
     const onPressTools = () => {
         if (tools === true) {
             dispatch(setTools(null));
@@ -26,7 +26,7 @@ export default function ToolsSelect({ tools }: ToolsSelectProps) {
         }
     };
 
-    // 없음 버튼 선택시 dispatch
+    /** 없음 버튼 선택시 dispatch */
     const onPressNoTools = () => {
         if (tools === false) {
             dispatch(setTools(null));

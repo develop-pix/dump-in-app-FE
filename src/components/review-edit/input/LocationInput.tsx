@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { GetBranchData } from 'hooks/axios/Branch';
 import { setBranchID } from 'hooks/redux/ReviewData';
 import { useAppDispatch } from 'hooks/redux/store';
-import { RootStackScreenProps } from 'interfaces/Navigation.interface';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { LocationInputProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontLightGreyNormalMedium,
@@ -21,10 +21,9 @@ import {
 } from 'styles/layout/review-form/input/LocationInput.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function LocationInput({ errorData }: LocationInputProps) {
-    const [branchName, setBranchName] = useState<string | undefined>(undefined);
+export default function LocationInput({ branchName, setBranchName, errorData }: LocationInputProps) {
     const navigation = useNavigation();
-    const route = useRoute<RootStackScreenProps<'AddReviewModal'>['route']>();
+    const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
 
@@ -35,7 +34,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
         }
     };
 
-    // 페이지 진입시 브랜치 이름
+    // 페이지 진입시 브랜치 이름 (branch 이름으로 Get)
     useEffect(() => {
         dispatch(setBranchID(route.params.branchID));
         const GetBranchNameData = async (branchID: string) => {
@@ -58,7 +57,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
             }
         };
         fetchBranchName();
-    }, [dispatch, route.params.branchID]);
+    }, [dispatch, route.params.branchID, setBranchName]);
 
     return (
         <LocationInputContainer>

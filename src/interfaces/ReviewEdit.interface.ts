@@ -24,6 +24,8 @@ export interface ReviewDescriptionProps {
 }
 
 export interface LocationInputProps {
+    branchName: string | undefined;
+    setBranchName: React.Dispatch<React.SetStateAction<string | undefined>>;
     errorData: InputData[];
 }
 

@@ -54,7 +54,7 @@ export default function DateInput({ errorData }: DateInputProps) {
                 <DateInputWrapper onPress={onPressDatePickerOpen}>
                     <DateTextButton onSelected={date} onPress={onPressDatePickerOpen}>
                         {date ? (
-                            <FontWhiteNormalMedium>{DateToReviewDateForm(date)}</FontWhiteNormalMedium>
+                            <FontWhiteNormalMedium>{DateToReviewDateForm(new Date(date))}</FontWhiteNormalMedium>
                         ) : (
                             <FontLightGreyNormalMedium>날짜를 선택해주세요.</FontLightGreyNormalMedium>
                         )}

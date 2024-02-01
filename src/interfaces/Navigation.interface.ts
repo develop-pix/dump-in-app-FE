@@ -49,7 +49,7 @@ export type HomeStackScreenProps<RouteName extends keyof HomeStackParamList> = C
 export type LocationStackParamList = {
     Location: undefined | { photoBoothID: number | null };
     Branch: { branchID: string };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: { reviewID: number; branchID: string | undefined };
 };
 
 export type LocationStackScreenProps<RouteName extends keyof LocationStackParamList> = CompositeScreenProps<

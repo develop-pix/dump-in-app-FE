@@ -52,6 +52,8 @@ export default function ImageFileInput({
         setOpenImageModal(true);
     };
 
+    console.log(image);
+
     /** 대표사진 교체 */
     const onPressSetRepresentativeImage = (imageURL?: string, imageName?: string) => {
         dispatch(setImage([{ imageURL: representativeImage.imageURL, imageName: representativeImage.imageName }]));

@@ -21,6 +21,7 @@ export const CloseImageContainer = styled.TouchableOpacity`
 `;
 
 export const ReviewDescTextContainer = styled.View`
+    width: 100px;
     flex-direction: row;
     align-items: center;
     gap: 3px;
