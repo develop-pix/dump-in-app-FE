@@ -22,7 +22,7 @@ import LocationInput from './input/LocationInput';
 import PartySelect from './input/PartySelect';
 import PublicOpenSwitch from './input/PublicOpenSwitch';
 import ReviewDescriptionInput from './input/ReviewDescriptionInput';
-import ReviewNewModal from './input/ReviewNewModal';
+import ReviewNewModal from './input/ReviewModal';
 import ToolsSelect from './input/ToolsSelect';
 import ReviewSubmitButton from './ReviewSubmitButton';
 

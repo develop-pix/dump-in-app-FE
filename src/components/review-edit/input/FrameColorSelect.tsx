@@ -3,7 +3,7 @@ import EtcCheckImage from 'assets/image/icon/check_frame_etc.svg';
 import WhiteCheckIcon from 'assets/image/icon/check_white.svg';
 import EtcImage from 'assets/image/icon/frame_etc.svg';
 import { setFrameColor } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { FrameColorSelectProps } from 'interfaces/ReviewEdit.interface';
 import { frameColors } from 'styles/base/Variable';
 import {
@@ -19,11 +19,12 @@ import {
 } from 'styles/layout/review-form/input/FrameColorSelect.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function FrameColorSelect({ frameColor, errorData }: FrameColorSelectProps) {
+export default function FrameColorSelect({ errorData }: FrameColorSelectProps) {
     const availableColors = Object.values(frameColors);
     const dispatch = useAppDispatch();
+    const frameColor = useAppSelector(state => state.reviewData).frameColor;
 
-    // 프레임색상 선택시 dispatch
+    /** 프레임 색상 선택시 dispatch */
     const onPressColor = (color: string) => {
         if (frameColor === color) {
             dispatch(setFrameColor(null));
@@ -63,8 +64,8 @@ export default function FrameColorSelect({ frameColor, errorData }: FrameColorSe
                         </FrameColorButton>
                     );
                 })}
-                <EtcFrameColorButton isSelected={frameColor} onPress={() => onPressColor('etc')}>
-                    {frameColor === 'etc' ? (
+                <EtcFrameColorButton isSelected={frameColor} onPress={() => onPressColor('gradient')}>
+                    {frameColor === 'gradient' ? (
                         <EtcCheckImage width={36} height={36} />
                     ) : (
                         <EtcImage width={36} height={36} />

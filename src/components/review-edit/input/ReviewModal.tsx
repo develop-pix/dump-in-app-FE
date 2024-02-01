@@ -5,16 +5,16 @@ import { useDispatch } from 'react-redux';
 
 import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
 import { useAppSelector } from 'hooks/redux/store';
-import { ReviewNewModalProps } from 'interfaces/ReviewNew.interface';
+import { ReviewModalProps } from 'interfaces/ReviewEdit.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
     HorizonLine,
-    ReviewNewModalContainer,
-    ReviewNewModalWrapper,
-    ReviewNewTouchableOpacity,
-} from 'styles/layout/review-form/input/ReviewNewModal.style';
+    ReviewModalContainer,
+    ReviewModalWrapper,
+    ReviewTouchableOpacity,
+} from 'styles/layout/review-form/input/ReviewModal.style';
 
-export default function ReviewNewModal({ setOpenImageModal, limitImage, setLimitImage }: ReviewNewModalProps) {
+export default function ReviewModal({ setOpenImageModal, limitImage, setLimitImage }: ReviewModalProps) {
     const dispatch = useDispatch();
     const platform = Platform.OS;
     const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
@@ -148,17 +148,17 @@ export default function ReviewNewModal({ setOpenImageModal, limitImage, setLimit
             onBackButtonPress={() => {
                 setOpenImageModal(false);
             }}>
-            <ReviewNewModalContainer platform={platform}>
-                <ReviewNewModalWrapper>
-                    <ReviewNewTouchableOpacity onPress={onPressCameraOpen}>
+            <ReviewModalContainer platform={platform}>
+                <ReviewModalWrapper>
+                    <ReviewTouchableOpacity onPress={onPressCameraOpen}>
                         <FontWhiteNormalSemibold>사진 촬영하기</FontWhiteNormalSemibold>
-                    </ReviewNewTouchableOpacity>
+                    </ReviewTouchableOpacity>
                     <HorizonLine />
-                    <ReviewNewTouchableOpacity onPress={onPressGalleryOpen}>
+                    <ReviewTouchableOpacity onPress={onPressGalleryOpen}>
                         <FontWhiteNormalSemibold>갤러리 항목 선택</FontWhiteNormalSemibold>
-                    </ReviewNewTouchableOpacity>
-                </ReviewNewModalWrapper>
-            </ReviewNewModalContainer>
+                    </ReviewTouchableOpacity>
+                </ReviewModalWrapper>
+            </ReviewModalContainer>
         </Modal>
     );
 }

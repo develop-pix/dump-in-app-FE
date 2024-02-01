@@ -2,7 +2,7 @@ import { useState } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import { setDate } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { DateInputProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontLightGreyNormalMedium,
@@ -15,20 +15,23 @@ import { ReviewDescriptionTextInputContainer } from 'styles/layout/review-form/i
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 import { DateToReviewDateForm } from 'utils/FormChange';
 
-export default function DateInput({ date, errorData }: DateInputProps) {
+export default function DateInput({ errorData }: DateInputProps) {
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+
+    const date = useAppSelector(state => state.reviewData).date;
     const dispatch = useAppDispatch();
 
+    /** datePicker 오픈 */
     const onPressDatePickerOpen = () => {
         setDatePickerOpen(true);
     };
 
-    // 취소 버튼을 눌렀을떄
+    /** 취소버튼 클릭 */
     const onClickCancel = () => {
         setDatePickerOpen(false);
     };
 
-    // 변경 버튼을 눌렀을떄, 날짜 dispatch
+    /** 변경 버튼을 눌렀을떄, 날짜 dispatch */
     const onClickConfirm = (selectDate: Date) => {
         dispatch(setDate(selectDate));
         setDatePickerOpen(false);
