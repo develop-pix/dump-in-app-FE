@@ -5,7 +5,7 @@ import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
+import { useAppDispatch } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -19,8 +19,6 @@ import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 
 export default function MyPageMenu() {
-    const accessToken = useAppSelector(state => state.login.token);
-    const isLoggedIn = accessToken !== null;
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
@@ -79,23 +77,15 @@ export default function MyPageMenu() {
                     </MenuItemContainer>
                 </TextContainer>
 
-                {isLoggedIn ? (
-                    <UserTextContainer>
-                        <MenuItemContainer onPress={onLogoutAlert}>
-                            <FontWhiteGreyBiggerSemibold>로그아웃</FontWhiteGreyBiggerSemibold>
-                        </MenuItemContainer>
+                <UserTextContainer>
+                    <MenuItemContainer onPress={onLogoutAlert}>
+                        <FontWhiteGreyBiggerSemibold>로그아웃</FontWhiteGreyBiggerSemibold>
+                    </MenuItemContainer>
 
-                        <MenuItemContainer>
-                            <FontWhiteGreyBiggerSemibold>회원탈퇴</FontWhiteGreyBiggerSemibold>
-                        </MenuItemContainer>
-                    </UserTextContainer>
-                ) : (
-                    <UserTextContainer>
-                        <MenuItemContainer onPress={() => {}}>
-                            <FontWhiteGreyBiggerSemibold>로그인</FontWhiteGreyBiggerSemibold>
-                        </MenuItemContainer>
-                    </UserTextContainer>
-                )}
+                    <MenuItemContainer>
+                        <FontWhiteGreyBiggerSemibold>회원탈퇴</FontWhiteGreyBiggerSemibold>
+                    </MenuItemContainer>
+                </UserTextContainer>
             </MenuContentContainer>
 
             <ConfirmationAlertModal

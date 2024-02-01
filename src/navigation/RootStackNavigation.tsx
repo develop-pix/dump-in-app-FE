@@ -57,6 +57,7 @@ export default function RootStackNavigation() {
                     headerStyle: {
                         backgroundColor: colors.blackgrey,
                     },
+                    headerMode: 'screen',
                 }}
             />
             <Stack.Screen

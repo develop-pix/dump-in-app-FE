@@ -4,7 +4,7 @@ import { colors } from 'styles/base/Variable';
 
 export const NavigationBarContainer = styled.View`
     flex-direction: row;
-    background-color: ${colors.lightblack};
+    background-color: ${colors.black};
     align-items: center;
     height: 56px;
 `;

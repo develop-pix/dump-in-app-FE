@@ -45,7 +45,7 @@ export default function MyPage() {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                if (!isLoggedIn) {
+                if (isLoggedIn) {
                     return (
                         <HeaderRightContainer>
                             <HeaderIconContainer

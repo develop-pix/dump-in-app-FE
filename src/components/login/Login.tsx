@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import MenuIcon from 'assets/image/icon/menu.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -10,11 +9,7 @@ import {
     LoginContainer,
     LogoIcon,
 } from 'styles/layout/login/Login.style';
-import {
-    HeaderIconContainer,
-    HeaderLeftContainer,
-    HeaderRightContainer,
-} from 'styles/layout/reuse/header/Header.style';
+import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 import { FontWhiteBiggerSemiboldWithTextAlign } from 'styles/layout/reuse/text/Text.style';
 
 import AppleLogin from './AppleLogin';

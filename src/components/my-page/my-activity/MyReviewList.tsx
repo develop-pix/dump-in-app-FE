@@ -8,6 +8,7 @@ import SkeletonGetMoreMyPageReview from 'components/reuse/skeleton/SkeletonGetMo
 import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview';
 import { ReviewProps } from 'interfaces/Home.interface';
 import { MyPageUserDataProps } from 'interfaces/MyPage.interface';
+import { colors } from 'styles/base/Variable';
 import { MyReviewListContainer, SkeletonMyReviewContainer } from 'styles/layout/my-page/MyActivity/MyReviewList.style';
 
 export default function MyReviewList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
@@ -88,6 +89,7 @@ export default function MyReviewList({ activeComponent, updateActiveComponent }:
             {!isLoading ? (
                 <>
                     <FlatList
+                        contentContainerStyle={{ backgroundColor: colors.black }}
                         data={reviewData}
                         keyExtractor={item => item.reviewID.toString()}
                         ref={flatListRef}

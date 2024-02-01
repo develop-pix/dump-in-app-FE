@@ -12,7 +12,7 @@ import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDa
 import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from 'interfaces/Home.interface';
 import { HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
-import { CollectionContainer } from 'styles/layout/home/HomeDataCollection.style';
+import { CollectionContainer, CollectionFlatList } from 'styles/layout/home/HomeDataCollection.style';
 import {
     HeaderIconContainer,
     HeaderLeftContainer,
@@ -214,8 +214,7 @@ export default function HomeDataCollection() {
                     <>
                         {collectionData.length > 0 ? (
                             <>
-                                <FlatList
-                                    style={{ paddingTop: 16 }}
+                                <CollectionFlatList
                                     data={collectionData}
                                     keyExtractor={(_, index) => `${page}-${index}`}
                                     ref={flatListRef}

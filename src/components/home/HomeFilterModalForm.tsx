@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Dimensions, ScrollView } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
@@ -115,6 +115,15 @@ export default function HomeFilterModalForm({
                                 bottom: 0,
                                 height: 96,
                                 width: '100%',
+                            }}
+                        />
+                        <View
+                            style={{
+                                position: 'absolute',
+                                width: '100%',
+                                height,
+                                bottom: -height,
+                                backgroundColor: colors.lightblack,
                             }}
                         />
                         <FilterOptionContainer>
