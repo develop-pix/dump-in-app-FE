@@ -50,7 +50,18 @@ export default function MyPageStackNavigation() {
                 initialParams={{ PhotoBoothID: 0 }}
                 options={{ headerTransparent: true }}
             />
-            <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
+            <Stack.Screen
+                name="ReviewDetail"
+                component={ReviewDetail}
+                initialParams={{ reviewID: null }}
+                options={{
+                    headerStyle: {
+                        backgroundColor: colors.lightblack,
+                    },
+                    headerShadowVisible: false,
+                    headerTitleAlign: 'center',
+                }}
+            />
         </Stack.Navigator>
     );
 }

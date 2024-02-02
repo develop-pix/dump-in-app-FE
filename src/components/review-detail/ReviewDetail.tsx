@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 import { NativeScrollEvent, Platform } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import SeeMoreIcon from 'assets/image/icon/btn_more.svg';
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
-import LocationIcon from 'assets/image/icon/location_white.svg';
-import GoBackButton from 'components/reuse/button/GoBackButton';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
     HomeStackScreenProps,
@@ -16,12 +13,6 @@ import {
 } from 'interfaces/Navigation.interface';
 import { ReviewData } from 'interfaces/ReviewDetail.interface';
 import { colors } from 'styles/base/Variable';
-import {
-    HeaderIconContainer,
-    HeaderLeftContainer,
-    HeaderRightContainer,
-    RowContainer,
-} from 'styles/layout/reuse/header/Header.style';
 import { FontWhiteGreySmallerMedium, FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 import {
     ButtonContainer,
@@ -38,7 +29,6 @@ import {
 } from 'styles/layout/review-detail/ReviewDetail.style';
 
 import ReviewDescription from './ReviewDescription';
-import ReviewManageModal from './ReviewManageModal';
 
 // FIXME: 해쉬태그, isLiked, isMine 안 나오는 문제 확인 및 수정 필요함
 export default function ReviewDetail() {
@@ -66,11 +56,6 @@ export default function ReviewDetail() {
         likeCount: 0,
         photoBoothId: null,
     });
-    const navigation = useNavigation<
-        | HomeStackScreenProps<'ReviewDetail'>['navigation']
-        | LocationStackScreenProps<'ReviewDetail'>['navigation']
-        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
-    >();
 
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
@@ -103,37 +88,6 @@ export default function ReviewDetail() {
         };
         getReviewData();
     }, [route.params.reviewID]);
-
-    useEffect(() => {
-        navigation.setOptions({
-            headerLeft: () => {
-                return (
-                    <HeaderLeftContainer>
-                        <GoBackButton />
-                    </HeaderLeftContainer>
-                );
-            },
-            headerRight: () => {
-                return (
-                    reviewData.isMine && (
-                        <HeaderRightContainer>
-                            <HeaderIconContainer onPress={() => setOpenModal(true)}>
-                                <SeeMoreIcon width={4} height={16} />
-                            </HeaderIconContainer>
-                        </HeaderRightContainer>
-                    )
-                );
-            },
-            headerTitle: () => {
-                return (
-                    <RowContainer>
-                        <LocationIcon width={20} height={24} style={{ marginRight: 4 }} />
-                        {/* <FontWhiteNormalMedium>{reviewData.photoBoothId}</FontWhiteNormalMedium> */}
-                    </RowContainer>
-                );
-            },
-        });
-    }, [navigation, reviewData.isMine, reviewData.photoBoothId]);
 
     return (
         <ReviewDetailFormContainer>
@@ -224,7 +178,6 @@ export default function ReviewDetail() {
                         isLiked={reviewData.isLiked}
                     />
                 </ReviewDetailFormWrapper>
-                {openModal && <ReviewManageModal setOpenModal={setOpenModal} reviewID={route.params.reviewID} />}
             </ReviewDetailForm>
         </ReviewDetailFormContainer>
     );

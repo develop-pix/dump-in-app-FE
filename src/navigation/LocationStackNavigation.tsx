@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Branch from 'screens/Branch';
 import Location from 'screens/Location';
 import ReviewDetail from 'screens/ReviewDetail';
+import { colors } from 'styles/base/Variable';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +16,14 @@ export default function LocationStackNavigation() {
                 name="ReviewDetail"
                 component={ReviewDetail}
                 initialParams={{ reviewID: null }}
-                options={{ headerShown: true }}
+                options={{
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: colors.lightblack,
+                    },
+                    headerShadowVisible: false,
+                    headerTitleAlign: 'center',
+                }}
             />
         </Stack.Navigator>
     );
