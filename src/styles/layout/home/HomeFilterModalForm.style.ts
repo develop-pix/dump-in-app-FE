@@ -43,3 +43,9 @@ export const FilterButtonBox = styled.View`
 export const Margin = styled.View`
     margin-vertical: 15px;
 `;
+
+export const BottomBounceView = styled.View`
+    background-color: ${colors.lightblack};
+    position: absolute;
+    width: 100%;
+`;

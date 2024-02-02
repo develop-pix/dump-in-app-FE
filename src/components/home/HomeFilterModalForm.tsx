@@ -9,6 +9,7 @@ import { FilterButton } from 'components/reuse/button/FilterButton';
 import { FilterProps, HomeFilterModalFormProps } from 'interfaces/reuse/Filter.interface';
 import { colors } from 'styles/base/Variable';
 import {
+    BottomBounceView,
     CloseButton,
     FilterButtonBox,
     FilterFormBody,
@@ -106,7 +107,7 @@ export default function HomeFilterModalForm({
                         </CloseButton>
                     </FilterFormHeader>
 
-                    <ScrollView>
+                    <ScrollView showsVerticalScrollIndicator={false}>
                         <LinearGradient
                             colors={['transparent', colors.lightblack]}
                             locations={[0, 0.25]}
@@ -117,13 +118,10 @@ export default function HomeFilterModalForm({
                                 width: '100%',
                             }}
                         />
-                        <View
+                        <BottomBounceView
                             style={{
-                                position: 'absolute',
-                                width: '100%',
                                 height,
                                 bottom: -height,
-                                backgroundColor: colors.lightblack,
                             }}
                         />
                         <FilterOptionContainer>
