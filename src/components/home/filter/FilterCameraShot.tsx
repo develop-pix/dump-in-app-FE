@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
 import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
-import { FilterContentContainer } from 'styles/layout/home/filter/Filter.style';
+import { FilterContentContainer, FilterLabelContainer } from 'styles/layout/home/filter/Filter.style';
 import {
     CameraShotImage,
     CameraShotImageContainer,
@@ -36,14 +36,14 @@ export default function FilterCameraShot({ filterData, setFilterData, filterOpti
             ...prevFilterData,
             cameraShot: isSelected ? '' : cameraShot,
         }));
-
         filterOptionSelect();
     };
 
     return (
         <View>
-            <FontWhiteGreySmallerSemibold>카메라 샷</FontWhiteGreySmallerSemibold>
-
+            <FilterLabelContainer>
+                <FontWhiteGreySmallerSemibold>카메라 샷</FontWhiteGreySmallerSemibold>
+            </FilterLabelContainer>
             <FilterContentContainer>
                 {availableCameraShots.map(cameraShotOption => {
                     const isSelected = filterData.cameraShot === cameraShotOption.name;

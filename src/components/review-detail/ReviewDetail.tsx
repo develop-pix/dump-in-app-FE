@@ -5,7 +5,6 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
-import ReviewDetailHeader from 'components/reuse/header/ReviewDetailHeader';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
     HomeStackScreenProps,
@@ -27,13 +26,11 @@ import {
     ReviewDetailFormWrapper,
     ReviewImage,
     ReviewImageContainer,
-    TitleContainer,
 } from 'styles/layout/review-detail/ReviewDetail.style';
 
 import ReviewDescription from './ReviewDescription';
-import ReviewManageModal from './ReviewManageModal';
 
-// FIXME: 해쉬태그, isLiked, isMine 안나오는문제 확인 및 수정 필요함
+// FIXME: 해쉬태그, isLiked, isMine 안 나오는 문제 확인 및 수정 필요함
 export default function ReviewDetail() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [carouselActive, setCarouselActive] = useState<number>(0);
@@ -66,7 +63,6 @@ export default function ReviewDetail() {
         | MyPageStackScreenProps<'ReviewDetail'>['route']
     >();
     const platform = Platform.OS;
-
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
         if (nativeEvent) {
@@ -96,14 +92,6 @@ export default function ReviewDetail() {
     return (
         <ReviewDetailFormContainer>
             <ReviewDetailForm>
-                <TitleContainer>
-                    <ReviewDetailHeader
-                        photoBoothName={reviewData.photoBoothId}
-                        branchName={reviewData.photoBoothId}
-                        isMine={reviewData.isMine}
-                        setOpenModal={setOpenModal}
-                    />
-                </TitleContainer>
                 <ReviewDetailFormWrapper>
                     <ReviewDetailCarousel
                         scrollEnabled={true}
@@ -190,7 +178,6 @@ export default function ReviewDetail() {
                         isLiked={reviewData.isLiked}
                     />
                 </ReviewDetailFormWrapper>
-                {openModal ? <ReviewManageModal setOpenModal={setOpenModal} reviewID={route.params.reviewID} /> : null}
             </ReviewDetailForm>
         </ReviewDetailFormContainer>
     );

@@ -536,7 +536,7 @@ PODS:
   - RNNaverLogin (3.0.0):
     - naveridlogin-sdk-ios (~> 4.1.5)
     - React
-  - RNReanimated (3.6.1):
+  - RNReanimated (3.6.2):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
     - ReactCommon/turbomodule/core
@@ -843,7 +843,7 @@ SPEC CHECKSUMS:
   RNDateTimePicker: fc2e4f2795877d45e84d85659bebe627eba5c931
   RNGestureHandler: fe2be3be5598dc74329b211c58c9f2d231461769
   RNNaverLogin: dc2758a157dafaa1ffca63079cad4d4c75208a30
-  RNReanimated: fdbaa9c964bbab7fac50c90862b6cc5f041679b9
+  RNReanimated: ce6bef77caeee09d7f022532cee0c8d9bad09c9a
   RNScreens: 3c5b9f4a9dcde752466854b6109b79c0e205dad3
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
@@ -852,4 +852,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cb97714c012cbbe9e21f56f41ed1188c45ced4fe
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.14.3

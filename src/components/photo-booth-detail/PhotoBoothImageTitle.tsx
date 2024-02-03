@@ -1,8 +1,6 @@
-import { Platform } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import GoBackButton from 'components/reuse/button/GoBackButton';
 import { NormalButton } from 'components/reuse/button/NormalButton';
 import {
     CategoryStackScreenProps,
@@ -19,13 +17,11 @@ import {
     PhotoBoothImageTitleContainer,
     TitleContainer,
 } from 'styles/layout/photo-booth-detail/PhotoBoothImageTitle.style';
-import { GoBackButtonContainer } from 'styles/layout/reuse/button/GoBackButton.style';
 import { FontWhiteBiggestSemibold, FontYellowSmallerMediumWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
 import { ReviewDescBottom } from 'styles/layout/review-detail/ReviewDetail.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
-    const platform = Platform.OS;
     const route = useRoute<
         | HomeStackScreenProps<'PhotoBoothDetail'>['route']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
@@ -89,10 +85,6 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
             </PhotoBoothImage>
 
             <PhotoBoothImageContentContainer>
-                <GoBackButtonContainer platform={platform}>
-                    <GoBackButton />
-                </GoBackButtonContainer>
-
                 <ContentsContainer>
                     <TitleContainer>
                         <FontWhiteBiggestSemibold>{photoBoothData.photoBoothName}</FontWhiteBiggestSemibold>

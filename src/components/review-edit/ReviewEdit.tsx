@@ -15,7 +15,6 @@ import {
     setParty,
     setPublicOpen,
     setRepresentativeImage,
-    setRepresentativeImageName,
     setTools,
 } from 'hooks/redux/ReviewData';
 import { useAppSelector } from 'hooks/redux/store';
@@ -140,7 +139,6 @@ export default function ReviewEdit() {
     // API 연동 하여 초기값 미리 입력
     useEffect(() => {
         dispatch(setRepresentativeImage(tempData.representativeImage));
-        dispatch(setRepresentativeImageName(tempData.representativeImageName));
         dispatch(setDescription(tempData.description));
         dispatch(setBranchID(tempData.location));
         dispatch(setDate(tempData.date));

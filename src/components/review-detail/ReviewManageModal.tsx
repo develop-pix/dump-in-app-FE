@@ -11,7 +11,8 @@ import {
     ReviewManageTouchableOpacity,
 } from 'styles/layout/review-detail/ReviewManageModal.style';
 
-export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewManageModalProps) {
+// FIXME: 스타일 재구성 필요
+export default function ReviewManageModal({ openModal, setOpenModal, reviewID }: ReviewManageModalProps) {
     const platform = Platform.OS;
     const navigation = useNavigation();
     const isFocused = useIsFocused();
@@ -38,7 +39,7 @@ export default function ReviewManageModal({ setOpenModal, reviewID }: ReviewMana
                 margin: 0,
                 justifyContent: 'flex-end',
             }}
-            isVisible={true}
+            isVisible={openModal}
             animationIn="slideInUp"
             animationOut="slideOutDown"
             backdropOpacity={0.7}

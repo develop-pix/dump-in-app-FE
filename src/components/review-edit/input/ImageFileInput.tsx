@@ -14,7 +14,7 @@ import {
     ImageUploadButtonContainer,
     NoDataImageContainer,
     PreviewImage,
-    PreviewImageContainer,
+    // PreviewImageContainer,
     PreviewNoImage,
     ReviewErrorContainerFileInput,
 } from 'styles/layout/review-form/input/ImageFileInput.style';
@@ -33,9 +33,10 @@ export default function ImageFileInput({ representativeImage, setOpenModal, erro
                     </PreviewNoImage>
                 </NoDataImageContainer>
             ) : (
-                <PreviewImageContainer>
-                    <PreviewImage source={{ uri: representativeImage }} />
-                </PreviewImageContainer>
+                // FIXME: PreviewImageContainer 정의되어있지 않음
+                // <PreviewImageContainer>
+                <PreviewImage source={{ uri: representativeImage }} />
+                // </PreviewImageContainer>
             )}
 
             <LinearGradient

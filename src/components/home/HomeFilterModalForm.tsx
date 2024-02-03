@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
+import { useHeaderHeight } from '@react-navigation/elements';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
 
@@ -8,12 +9,12 @@ import { FilterButton } from 'components/reuse/button/FilterButton';
 import { FilterProps, HomeFilterModalFormProps } from 'interfaces/reuse/Filter.interface';
 import { colors } from 'styles/base/Variable';
 import {
+    BottomBounceView,
     CloseButton,
     FilterButtonBox,
     FilterFormBody,
     FilterFormContainer,
     FilterFormHeader,
-    FilterFormTitleContainer,
     FilterOptionContainer,
 } from 'styles/layout/home/HomeFilterModalForm.style';
 import { FontWhiteGreyNormalSemibold } from 'styles/layout/reuse/text/Text.style';
@@ -26,19 +27,20 @@ import FilterParty from './filter/FilterParty';
 
 export default function HomeFilterModalForm({
     filterData,
+    isVisible,
     setFilterData,
     handleHideFilterModal,
     onFilterSubmit,
 }: HomeFilterModalFormProps) {
+    const headerHeight = useHeaderHeight();
+    const height = Dimensions.get('window').height;
+
     // 모달창의 필터 변수
     const [filterModalFilterData, setFilterModalFilterData] = useState<FilterProps>(filterData);
-
     // 필터 옵션이 선택 되었는지 여부(버튼 활성화 용)
     const [isFilterSelected, setIsFilterSelected] = useState<boolean>(false);
-
     // 필터 옵션이 선택 되었는지 여부(초기화 버튼 활성화 용)
     const [activateResetButton, setActivateResetButton] = useState<boolean>(false);
-
     // 필터 옵션 적용 결과 데이터 수
     const [resultNumber, setResultNumber] = useState<number>(0);
 
@@ -74,8 +76,7 @@ export default function HomeFilterModalForm({
 
     useEffect(() => {
         filterOptionSelect();
-
-        // 모달창 열었을 때 선택된 옵션이 있으면 결과 데이터 수 가져옴
+        /** 모달창 열었을 때 선택된 옵션이 있으면 결과 데이터 수 가져옴 */
         const isFilterOptionSelected = Object.values(filterModalFilterData).some(
             val => val !== '' && val !== 0 && val.length !== 0,
         );
@@ -89,80 +90,75 @@ export default function HomeFilterModalForm({
     return (
         <Modal
             style={{ margin: 0 }}
-            isVisible={true}
+            isVisible={isVisible}
             animationIn="slideInUp"
             animationOut="slideOutDown"
             backdropOpacity={0.7}>
             <FilterFormContainer>
-                <FilterFormBody>
+                <FilterFormBody style={{ height: height - headerHeight }}>
                     <FilterFormHeader>
-                        <FilterFormTitleContainer>
-                            <FontWhiteGreyNormalSemibold>상세 필터</FontWhiteGreyNormalSemibold>
-                        </FilterFormTitleContainer>
-
+                        <FontWhiteGreyNormalSemibold>상세 필터</FontWhiteGreyNormalSemibold>
                         <CloseButton
                             onPress={() => {
                                 handleHideFilterModal();
                                 handleFilterReset(); // 창 닫으면서 초기화
                             }}>
-                            <CloseIcon />
+                            <CloseIcon width={44} height={44} />
                         </CloseButton>
                     </FilterFormHeader>
 
-                    <ScrollView>
+                    <ScrollView showsVerticalScrollIndicator={false}>
                         <LinearGradient
                             colors={['transparent', colors.lightblack]}
-                            locations={[0.1, 0.3]}
+                            locations={[0, 0.25]}
                             style={{
                                 position: 'absolute',
-                                left: 0,
-                                right: 0,
-                                bottom: -400,
-                                height: 720,
+                                bottom: 0,
+                                height: 96,
+                                width: '100%',
                             }}
                         />
-
+                        <BottomBounceView
+                            style={{
+                                height,
+                                bottom: -height,
+                            }}
+                        />
                         <FilterOptionContainer>
                             <FilterLocation
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
                                 filterOptionSelect={filterOptionSelect}
                             />
-
                             <FilterFrameColor
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
                                 filterOptionSelect={filterOptionSelect}
                             />
-
                             <FilterParty
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
                                 filterOptionSelect={filterOptionSelect}
                             />
-
                             <FilterCameraShot
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
                                 filterOptionSelect={filterOptionSelect}
                             />
-
                             <FilterConcept
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
                                 filterOptionSelect={filterOptionSelect}
                             />
-
                             <FilterButtonBox>
                                 <FilterButton
                                     onPress={handleFilterReset}
                                     text="초기화"
                                     backgroundColor={colors.darkgrey}
-                                    borderColor={colors.black}
+                                    borderColor={colors.darkgrey}
                                     textColor={colors.white}
                                     disabled={!activateResetButton}
                                 />
-
                                 <FilterButton
                                     onPress={handleFilterSubmit}
                                     text={

@@ -103,6 +103,22 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>BACKEND_API_URL</key>
+	<string>$(BACKEND_API_URL)</string>
+	<key>S3_BUCKET_NAME</key>
+	<string>$(S3_BUCKET_NAME)</string>
+	<key>S3_ACCESSKEY_ID</key>
+	<string>$(S3_ACCESSKEY_ID)</string>
+	<key>S3_SECRET_ACCESSKEY</key>
+	<string>$(S3_SECRET_ACCESSKEY)</string>
+	<key>NAVER_LOGIN_CONSUMER_KEY</key>
+	<string>$(NAVER_LOGIN_CONSUMER_KEY)</string>
+	<key>NAVER_CONSUMER_SECRET</key>
+	<string>$(NAVER_CONSUMER_SECRET)</string>
+	<key>NAVER_MAP_API_ID</key>
+	<string>$(NAVER_MAP_API_ID)</string>
+	<key>NAVER_MAP_API_KEY</key>
+	<string>$(NAVER_MAP_API_KEY)</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

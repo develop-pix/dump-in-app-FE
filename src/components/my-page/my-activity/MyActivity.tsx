@@ -13,7 +13,7 @@ import {
     MyActivityContainer,
 } from 'styles/layout/my-page/MyActivity/MyActivity.style';
 
-export default function MyActive({ activeComponent, updateActiveComponent }: MyActiveProps) {
+export default function MyActivity({ activeComponent, updateActiveComponent }: MyActiveProps) {
     const activityComponentItem: ActivityComponentItemProps[] = [
         {
             key: 'myPicture',
