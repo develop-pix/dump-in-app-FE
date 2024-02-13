@@ -6,6 +6,7 @@ import Notification from 'screens/Notification';
 import OfficialImageDetail from 'screens/OfficialImageDetail';
 import ReviewEdit from 'screens/ReviewEdit';
 import ReviewNew from 'screens/ReviewNew';
+import { colors } from 'styles/base/Variable';
 
 import MainTabNavigation from './MainTabNavigation';
 
@@ -13,13 +14,22 @@ const Stack = createStackNavigator();
 
 export default function RootStackNavigation() {
     return (
-        <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+                title: '',
+                headerStyle: {
+                    backgroundColor: colors.lightblack,
+                },
+                headerShadowVisible: false,
+            }}>
             <Stack.Screen name="MainTab" component={MainTabNavigation} />
             <Stack.Screen
                 name="AddReviewModal"
                 component={ReviewNew}
                 initialParams={{ branchID: undefined }}
-                options={{ presentation: 'modal' }}
+                options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
             />
             <Stack.Screen
                 name="HomeSearch"
@@ -27,6 +37,7 @@ export default function RootStackNavigation() {
                 initialParams={{ photoBoothName: null }}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
                 }}
             />
             <Stack.Screen
@@ -34,6 +45,7 @@ export default function RootStackNavigation() {
                 component={Notification}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
                 }}
             />
             <Stack.Screen
@@ -41,6 +53,11 @@ export default function RootStackNavigation() {
                 component={LocationSearch}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: colors.blackgrey,
+                    },
+                    headerMode: 'screen',
                 }}
             />
             <Stack.Screen
@@ -50,6 +67,14 @@ export default function RootStackNavigation() {
                     photoBoothName: null,
                     image: '',
                     index: 0,
+                }}
+                options={{
+                    ...TransitionPresets.SlideFromRightIOS,
+                    headerShown: true,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: colors.blackgrey,
+                    },
                 }}
             />
             <Stack.Screen

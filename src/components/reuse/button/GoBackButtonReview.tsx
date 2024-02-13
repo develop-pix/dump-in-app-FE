@@ -15,9 +15,9 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/ReviewData';
+} from 'hooks/redux/ReviewNew';
 import { useAppDispatch } from 'hooks/redux/store';
-import { BackButton } from 'styles/layout/reuse/button/GoBackButton.style';
+import { HeaderIconContainer } from 'styles/layout/reuse/header/Header.style';
 
 import ConfirmationAlertModal from '../modal/ConfirmationAlertModal';
 
@@ -47,9 +47,8 @@ export default function GoBackButtonReview() {
     };
 
     return (
-        <BackButton onPress={() => setOpenCloseModal(true)}>
+        <HeaderIconContainer onPress={() => setOpenCloseModal(true)}>
             <BackIcon width={16} height={16} />
-
             <ConfirmationAlertModal
                 isVisible={openCloseModal}
                 title="리뷰 작성을 취소하시겠어요?"
@@ -58,6 +57,6 @@ export default function GoBackButtonReview() {
                 onAgree={onPressGoHome}
                 onDisagree={() => setOpenCloseModal(false)}
             />
-        </BackButton>
+        </HeaderIconContainer>
     );
 }

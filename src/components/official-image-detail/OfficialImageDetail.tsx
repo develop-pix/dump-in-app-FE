@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Dimensions, NativeScrollEvent } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
-import OfficialImageDetailHeader from 'components/reuse/header/OfficialImageDetailHeader';
+import GoBackButton from 'components/reuse/button/GoBackButton';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     ButtonContainer,
@@ -16,11 +16,16 @@ import {
     OfficialImageDetailFormContainer,
     OfficialImageDetailImage,
     PrevButtonContainer,
-    TitleContainer,
 } from 'styles/layout/official-image-detail/OfficialImageDetail.style';
-import { FontWhiteGreySmallerMedium, FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
+import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
+import {
+    FontWhiteGreySmallerMedium,
+    FontWhiteNormalMedium,
+    FontWhiteSmallerMedium,
+} from 'styles/layout/reuse/text/Text.style';
 
 export default function OfficialImageDetail() {
+    const navigation = useNavigation<RootStackScreenProps<'OfficialImageDetail'>['navigation']>();
     const route = useRoute<RootStackScreenProps<'OfficialImageDetail'>['route']>();
 
     const [carouselActive, setCarouselActive] = useState<number>(0);
@@ -55,11 +60,23 @@ export default function OfficialImageDetail() {
         setCarouselActive(route.params.index);
     }, [route.params.index]);
 
+    useEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => {
+                return (
+                    <HeaderLeftContainer>
+                        <GoBackButton />
+                    </HeaderLeftContainer>
+                );
+            },
+            headerTitle: () => {
+                return <FontWhiteNormalMedium>{route.params.photoBoothName}</FontWhiteNormalMedium>;
+            },
+        });
+    }, [navigation, route.params.photoBoothName]);
+
     return (
         <OfficialImageDetailFormContainer>
-            <TitleContainer>
-                <OfficialImageDetailHeader photoBoothName={route.params.photoBoothName} />
-            </TitleContainer>
             <OfficialImageDetailForm>
                 <OfficialImageDetailContainer
                     scrollEnabled={true}

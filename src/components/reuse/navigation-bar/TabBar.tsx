@@ -1,5 +1,6 @@
 import { TouchableOpacity } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import AddReviewIcon from 'assets/image/icon/btn_add.svg';
 import { NavigationBarContainer, ReviewNewItem } from 'styles/layout/navigation-bar/NavigationBar.style';
@@ -7,8 +8,10 @@ import { NavigationBarContainer, ReviewNewItem } from 'styles/layout/navigation-
 import NavigationBarListItem from './NavigationBarListItem';
 
 export default function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+    const safeAreaInset = useSafeAreaInsets();
+
     return (
-        <NavigationBarContainer>
+        <NavigationBarContainer style={{ paddingBottom: safeAreaInset.bottom, height: safeAreaInset.bottom + 56 }}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =

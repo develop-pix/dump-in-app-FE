@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
 import {
     FilterContentContainer,
+    FilterLabelContainer,
     FilterTextButton,
     FilterTextButtonContent,
 } from 'styles/layout/home/filter/Filter.style';
@@ -41,8 +42,9 @@ export default function FilterLocation({ filterData, setFilterData, filterOption
 
     return (
         <View>
-            <FontWhiteGreySmallerSemibold>지역</FontWhiteGreySmallerSemibold>
-
+            <FilterLabelContainer>
+                <FontWhiteGreySmallerSemibold>지역</FontWhiteGreySmallerSemibold>
+            </FilterLabelContainer>
             <FilterContentContainer>
                 {availableLocations.map(locationOption => {
                     const isSelected = filterData.geolocation === locationOption;

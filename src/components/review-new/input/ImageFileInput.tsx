@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import ButtonAddImage from 'assets/image/icon/btn_add.svg';
 import TrashIcon from 'assets/image/icon/btn_trash.svg';
-import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
+import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/ReviewNew';
 import { useAppSelector } from 'hooks/redux/store';
 import { ImageFileInputProps } from 'interfaces/ReviewNew.interface';
 import { colors } from 'styles/base/Variable';
@@ -42,9 +42,7 @@ export default function ImageFileInput({
     scrollRef,
 }: ImageFileInputProps) {
     const dispatch = useDispatch();
-    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
-    const image = useAppSelector(state => state.reviewData).image;
-    const enlargedImage = useAppSelector(state => state.reviewData).enlargedImage;
+    const { representativeImage, image, enlargedImage } = useAppSelector(state => state.reviewNew);
 
     /** 카메라, 앨범 에서 선택 모달 Open */
     const onPressImageUpload = () => {

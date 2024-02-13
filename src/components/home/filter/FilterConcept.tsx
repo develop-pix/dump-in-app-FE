@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
 import {
     FilterContentContainer,
+    FilterLabelContainer,
     FilterTextButton,
     FilterTextButtonContent,
 } from 'styles/layout/home/filter/Filter.style';
@@ -30,13 +31,9 @@ const availableConcepts = [
 export default function FilterConcept({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
     const handleConceptToggle = (concept: string) => {
         const isSelected = filterData.concept.includes(concept);
-        let conceptArray: string[];
-
-        if (isSelected) {
-            conceptArray = filterData.concept.filter(e => e !== concept);
-        } else {
-            conceptArray = [...filterData.concept, concept];
-        }
+        const conceptArray = isSelected
+            ? filterData.concept.filter(e => e !== concept)
+            : [...filterData.concept, concept];
 
         setFilterData(prevFilterData => ({
             ...prevFilterData,
@@ -48,8 +45,9 @@ export default function FilterConcept({ filterData, setFilterData, filterOptionS
 
     return (
         <View>
-            <FontWhiteGreySmallerSemibold>컨셉</FontWhiteGreySmallerSemibold>
-
+            <FilterLabelContainer>
+                <FontWhiteGreySmallerSemibold>컨셉</FontWhiteGreySmallerSemibold>
+            </FilterLabelContainer>
             <FilterContentContainer>
                 {availableConcepts.map(conceptOption => {
                     const isSelected = filterData.concept.includes(conceptOption);

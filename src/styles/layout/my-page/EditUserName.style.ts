@@ -3,8 +3,7 @@ import styled from 'styled-components/native';
 import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
 export const EditUserNameContainer = styled.View`
-    flex: 1;
-    padding: 30px 20px;
+    padding: 24px;
 `;
 
 export const UserNickNameWrapper = styled.View`

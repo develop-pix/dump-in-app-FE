@@ -2,7 +2,7 @@ import BlackCheckIcon from 'assets/image/icon/check_black.svg';
 import EtcCheckImage from 'assets/image/icon/check_frame_etc.svg';
 import WhiteCheckIcon from 'assets/image/icon/check_white.svg';
 import EtcImage from 'assets/image/icon/frame_etc.svg';
-import { setFrameColor } from 'hooks/redux/ReviewData';
+import { setFrameColor } from 'hooks/redux/BranchReviewEdit';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { FrameColorSelectProps } from 'interfaces/ReviewEdit.interface';
 import { frameColors } from 'styles/base/Variable';
@@ -22,7 +22,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function FrameColorSelect({ errorData }: FrameColorSelectProps) {
     const availableColors = Object.values(frameColors);
     const dispatch = useAppDispatch();
-    const frameColor = useAppSelector(state => state.reviewData).frameColor;
+    const frameColor = useAppSelector(state => state.branchReviewEdit).frameColor;
 
     /** 프레임 색상 선택시 dispatch */
     const onPressColor = (color: string) => {

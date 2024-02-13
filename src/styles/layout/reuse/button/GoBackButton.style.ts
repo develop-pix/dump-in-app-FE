@@ -40,12 +40,6 @@ export const GoBackButtonWithSubmitContainer = styled.View<{
     margin-top: ${props => (props.platform === 'ios' ? '0px' : props.platform === 'android' ? '15px' : null)};
 `;
 
-export const BackButton = styled.TouchableOpacity`
-    width: 16px;
-    height: 16px;
-    margin-left: 20px;
-`;
-
 export const SubmitButton = styled.TouchableOpacity`
     margin-right: 20px;
 `;

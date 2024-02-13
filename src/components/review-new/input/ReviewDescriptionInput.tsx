@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { setDescription } from 'hooks/redux/ReviewData';
+import { setDescription } from 'hooks/redux/ReviewNew';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { ReviewDescriptionProps } from 'interfaces/ReviewNew.interface';
 import { colors } from 'styles/base/Variable';
@@ -22,7 +22,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function ReviewDescriptionInput({ errorData }: ReviewDescriptionProps) {
     const [inputCount, setInputCount] = useState<number>(0);
 
-    const description = useAppSelector(state => state.reviewData).description;
+    const description = useAppSelector(state => state.reviewNew).description;
     const platform = Platform.OS;
     const dispatch = useAppDispatch();
 

@@ -1,25 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { ImageData, ReviewDataState } from 'interfaces/redux/Store.interface';
+
 import type { PayloadAction } from '@reduxjs/toolkit';
-interface ImageData {
-    imageURL: string | undefined;
-    imageName: string | undefined;
-}
-interface ReviewDataState {
-    representativeImage: ImageData;
-    image: ImageData[];
-    enlargedImage: ImageData;
-    description: string | null;
-    branchID: string | undefined;
-    date: Date | null;
-    frameColor: string | null;
-    party: number | null;
-    cameraShot: string | null;
-    concept: string[];
-    tools: boolean | null;
-    hairIron: boolean | null;
-    publicOpen: boolean;
-}
 
 const initialState: ReviewDataState = {
     representativeImage: { imageURL: undefined, imageName: undefined },
@@ -37,8 +20,8 @@ const initialState: ReviewDataState = {
     publicOpen: true,
 };
 
-export const ReviewDataSlice = createSlice({
-    name: 'reviewData',
+export const ReviewNewSlice = createSlice({
+    name: 'reviewNew',
     initialState,
     reducers: {
         setRepresentativeImage(state, action: PayloadAction<ImageData>) {
@@ -64,7 +47,7 @@ export const ReviewDataSlice = createSlice({
         setBranchID(state, action: PayloadAction<string | undefined>) {
             state.branchID = action.payload;
         },
-        setDate(state, action: PayloadAction<Date | null>) {
+        setDate(state, action: PayloadAction<Date | string | null>) {
             state.date = action.payload;
         },
         setFrameColor(state, action: PayloadAction<string | null>) {
@@ -91,19 +74,19 @@ export const ReviewDataSlice = createSlice({
     },
 });
 
-export const { setRepresentativeImage } = ReviewDataSlice.actions;
-export const { setImageClear } = ReviewDataSlice.actions;
-export const { setRemoveImage } = ReviewDataSlice.actions;
-export const { setImage } = ReviewDataSlice.actions;
-export const { setEnlargedImage } = ReviewDataSlice.actions;
-export const { setDescription } = ReviewDataSlice.actions;
-export const { setBranchID } = ReviewDataSlice.actions;
-export const { setDate } = ReviewDataSlice.actions;
-export const { setFrameColor } = ReviewDataSlice.actions;
-export const { setParty } = ReviewDataSlice.actions;
-export const { setCameraShot } = ReviewDataSlice.actions;
-export const { setHashtag } = ReviewDataSlice.actions;
-export const { setTools } = ReviewDataSlice.actions;
-export const { setHairIron } = ReviewDataSlice.actions;
-export const { setPublicOpen } = ReviewDataSlice.actions;
-export default ReviewDataSlice;
+export const { setRepresentativeImage } = ReviewNewSlice.actions;
+export const { setImageClear } = ReviewNewSlice.actions;
+export const { setRemoveImage } = ReviewNewSlice.actions;
+export const { setImage } = ReviewNewSlice.actions;
+export const { setEnlargedImage } = ReviewNewSlice.actions;
+export const { setDescription } = ReviewNewSlice.actions;
+export const { setBranchID } = ReviewNewSlice.actions;
+export const { setDate } = ReviewNewSlice.actions;
+export const { setFrameColor } = ReviewNewSlice.actions;
+export const { setParty } = ReviewNewSlice.actions;
+export const { setCameraShot } = ReviewNewSlice.actions;
+export const { setHashtag } = ReviewNewSlice.actions;
+export const { setTools } = ReviewNewSlice.actions;
+export const { setHairIron } = ReviewNewSlice.actions;
+export const { setPublicOpen } = ReviewNewSlice.actions;
+export default ReviewNewSlice;

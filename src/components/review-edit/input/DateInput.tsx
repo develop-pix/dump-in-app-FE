@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-import { setDate } from 'hooks/redux/ReviewData';
+import { setDate } from 'hooks/redux/BranchReviewEdit';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { DateInputProps } from 'interfaces/ReviewEdit.interface';
 import {
@@ -18,7 +18,7 @@ import { DateToReviewDateForm } from 'utils/FormChange';
 export default function DateInput({ errorData }: DateInputProps) {
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
 
-    const date = useAppSelector(state => state.reviewData).date;
+    const date = useAppSelector(state => state.branchReviewEdit).date;
     const dispatch = useAppDispatch();
 
     /** datePicker 오픈 */

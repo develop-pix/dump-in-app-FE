@@ -17,7 +17,7 @@ export const DateInputWrapper = styled.TouchableOpacity`
 `;
 
 export const DateTextButton = styled.TouchableOpacity<{
-    onSelected: Date | null;
+    onSelected: Date | string | null;
 }>`
     width: 100%;
     background-color: ${colors.blackgrey};

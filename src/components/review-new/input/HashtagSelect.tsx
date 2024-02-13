@@ -1,4 +1,4 @@
-import { setHashtag } from 'hooks/redux/ReviewData';
+import { setHashtag } from 'hooks/redux/ReviewNew';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { HashtagSelectProps } from 'interfaces/ReviewNew.interface';
 import {
@@ -17,7 +17,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 
 export default function HashtagSelect({ errorData }: HashtagSelectProps) {
     const dispatch = useAppDispatch();
-    const concept = useAppSelector(state => state.reviewData).concept;
+    const concept = useAppSelector(state => state.reviewNew).concept;
     const availableHashtag = [
         '일상',
         '커플',

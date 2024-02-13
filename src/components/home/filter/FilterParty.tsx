@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { FilterDataUpdateProps } from 'interfaces/reuse/Filter.interface';
 import {
     FilterContentContainer,
+    FilterLabelContainer,
     FilterTextButton,
     FilterTextButtonContent,
 } from 'styles/layout/home/filter/Filter.style';
@@ -24,8 +25,9 @@ export default function FilterParty({ filterData, setFilterData, filterOptionSel
 
     return (
         <View>
-            <FontWhiteGreySmallerSemibold>인원</FontWhiteGreySmallerSemibold>
-
+            <FilterLabelContainer>
+                <FontWhiteGreySmallerSemibold>인원</FontWhiteGreySmallerSemibold>
+            </FilterLabelContainer>
             <FilterContentContainer>
                 {availableParty.map(partyOption => {
                     const isSelected = filterData.party === partyOption;
@@ -39,7 +41,6 @@ export default function FilterParty({ filterData, setFilterData, filterOptionSel
                         </FilterTextButton>
                     );
                 })}
-
                 <FilterTextButton
                     isSelected={filterData.party === 5}
                     buttonWidth={46}

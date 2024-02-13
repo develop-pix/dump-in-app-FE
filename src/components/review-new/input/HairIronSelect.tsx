@@ -1,4 +1,4 @@
-import { setHairIron } from 'hooks/redux/ReviewData';
+import { setHairIron } from 'hooks/redux/ReviewNew';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import {
     FontBlackSmallerSemibold,
@@ -15,7 +15,7 @@ import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.
 
 export default function HairIronSelect() {
     const dispatch = useAppDispatch();
-    const hairIron = useAppSelector(state => state.reviewData).hairIron;
+    const hairIron = useAppSelector(state => state.reviewNew).hairIron;
 
     /** 있음 버튼 선택시 dispatch */
     const onPressHairIron = () => {

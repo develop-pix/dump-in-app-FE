@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch } from 'react-redux';
@@ -10,8 +9,9 @@ import { GetLocationSearchData } from 'hooks/axios/SearchLocation';
 import { setCurrentLocation } from 'hooks/redux/Location';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchData } from 'interfaces/Location.interface';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { SearchContainer, SearchForm } from 'styles/layout/location-search/Location.style';
-import { GoBackButtonContainerWithSafeArea } from 'styles/layout/reuse/button/GoBackButton.style';
+import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
 import SearchBranchList from './SearchBranchList';
@@ -19,14 +19,13 @@ import SearchBranchList from './SearchBranchList';
 export default function LocationSearchForm() {
     const dispatch = useDispatch();
     const currentLocation = useAppSelector(state => state.location);
-    const navigation = useNavigation();
+    const navigation = useNavigation<RootStackScreenProps<'LocationSearch'>['navigation']>();
 
     const [search, setSearch] = useState<string>('');
     const [resultData, setResultData] = useState<BranchData[] | []>([]);
 
     const routes = navigation.getState().routes;
     const previousRouteName = routes[routes.length - 2].name;
-    const platform = Platform.OS;
 
     const searchBranch = () => {
         // FIXME: ReviewEdit 예외처리 되어있지 않음, 전체적으로 param 보다 전역 상태 관리로 하는 것이 깔끔해 보임
@@ -45,6 +44,18 @@ export default function LocationSearchForm() {
             }
         }
     };
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => {
+                return (
+                    <HeaderLeftContainer>
+                        <GoBackButton />
+                    </HeaderLeftContainer>
+                );
+            },
+        });
+    }, [navigation]);
 
     // LocationSearch 페이지로 이동시 위치 권한 획득
     useEffect(() => {
@@ -114,9 +125,6 @@ export default function LocationSearchForm() {
     return (
         <SearchForm>
             <SearchContainer>
-                <GoBackButtonContainerWithSafeArea platform={platform}>
-                    <GoBackButton />
-                </GoBackButtonContainerWithSafeArea>
                 <Search
                     placeholder="포토부스, 주소 검색"
                     search={search}

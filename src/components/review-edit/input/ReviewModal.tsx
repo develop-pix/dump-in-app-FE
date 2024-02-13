@@ -3,7 +3,7 @@ import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-im
 import Modal from 'react-native-modal';
 import { useDispatch } from 'react-redux';
 
-import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
+import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/BranchReviewEdit';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewModalProps } from 'interfaces/ReviewEdit.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
@@ -17,8 +17,7 @@ import {
 export default function ReviewModal({ setOpenImageModal, limitImage, setLimitImage }: ReviewModalProps) {
     const dispatch = useDispatch();
     const platform = Platform.OS;
-    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
-    const image = useAppSelector(state => state.reviewData).image;
+    const { representativeImage, image } = useAppSelector(state => state.branchReviewEdit);
 
     /** 카메라 작동 */
     const onPressCameraOpen = async () => {

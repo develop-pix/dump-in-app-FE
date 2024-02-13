@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { GetBranchData } from 'hooks/axios/Branch';
-import { setBranchID } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
-import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { LocationInputProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontLightGreyNormalMedium,
@@ -23,9 +21,9 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 
 export default function LocationInput({ branchName, setBranchName, errorData }: LocationInputProps) {
     const navigation = useNavigation();
-    const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
+    const branchID = useAppSelector(state => state.branchReviewEdit).branchID;
 
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {
@@ -36,28 +34,27 @@ export default function LocationInput({ branchName, setBranchName, errorData }: 
 
     // 페이지 진입시 브랜치 이름 (branch 이름으로 Get)
     useEffect(() => {
-        dispatch(setBranchID(route.params.branchID));
-        const GetBranchNameData = async (branchID: string) => {
+        const GetBranchNameData = async () => {
             try {
                 let branchFullName = '';
                 //FIXME: 백엔드 데이터 바뀔시 수정필요(위도,경도 필요없도록 수정예정)
-                const branchData = await GetBranchData(36.8101475281, 127.1470316068, branchID);
-                branchFullName = branchData.data.photoBoothBrand.name + ' ' + branchData.data.name;
-                return branchFullName;
+                if (branchID) {
+                    const branchData = await GetBranchData(36.8101475281, 127.1470316068, branchID);
+                    branchFullName = branchData.data.photoBoothBrand.name + ' ' + branchData.data.name;
+                    return branchFullName;
+                }
             } catch (e) {
                 console.log(e);
             }
         };
         const fetchBranchName = async () => {
-            if (route.params.branchID) {
-                const response = await GetBranchNameData(route.params.branchID);
-                if (response) {
-                    setBranchName(response);
-                }
+            const response = await GetBranchNameData();
+            if (response) {
+                setBranchName(response);
             }
         };
         fetchBranchName();
-    }, [dispatch, route.params.branchID, setBranchName]);
+    }, [branchID, dispatch, setBranchName]);
 
     return (
         <LocationInputContainer>

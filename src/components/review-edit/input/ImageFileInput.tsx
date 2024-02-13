@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import ButtonAddImage from 'assets/image/icon/btn_add.svg';
 import TrashIcon from 'assets/image/icon/btn_trash.svg';
-import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/ReviewData';
+import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/BranchReviewEdit';
 import { useAppSelector } from 'hooks/redux/store';
 import { ImageFileInputProps } from 'interfaces/ReviewEdit.interface';
 import { colors } from 'styles/base/Variable';
@@ -42,17 +42,13 @@ export default function ImageFileInput({
     scrollRef,
 }: ImageFileInputProps) {
     const dispatch = useDispatch();
-    const representativeImage = useAppSelector(state => state.reviewData).representativeImage;
-    const image = useAppSelector(state => state.reviewData).image;
-    const enlargedImage = useAppSelector(state => state.reviewData).enlargedImage;
+    const { representativeImage, image, enlargedImage } = useAppSelector(state => state.branchReviewEdit);
 
     /** 카메라, 앨범 에서 선택 모달 Open */
     const onPressImageUpload = () => {
         scrollRef.current?.scrollTo({ y: 0, animated: false });
         setOpenImageModal(true);
     };
-
-    console.log(image);
 
     /** 대표사진 교체 */
     const onPressSetRepresentativeImage = (imageURL?: string, imageName?: string) => {
@@ -153,9 +149,9 @@ export default function ImageFileInput({
                             </RepresentativeTitleContainer>
                         </PreviewImageButton>
                     ) : null}
-                    {image.map(imageData => (
+                    {image.map((imageData, index) => (
                         <PreviewImageButton
-                            key={imageData.imageURL}
+                            key={index}
                             onPress={() => onPressEnlargeImage(imageData.imageURL, representativeImage.imageName)}>
                             <PreviewImage source={{ uri: imageData.imageURL }} />
                         </PreviewImageButton>

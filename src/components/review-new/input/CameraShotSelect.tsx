@@ -1,4 +1,4 @@
-import { setCameraShot } from 'hooks/redux/ReviewData';
+import { setCameraShot } from 'hooks/redux/ReviewNew';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { CameraShotSelectProps } from 'interfaces/ReviewNew.interface';
 import {
@@ -19,7 +19,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 
 export default function CameraShotSelect({ errorData }: CameraShotSelectProps) {
     const dispatch = useAppDispatch();
-    const cameraShot = useAppSelector(state => state.reviewData).cameraShot;
+    const cameraShot = useAppSelector(state => state.reviewNew).cameraShot;
     const availableCameraShot = [
         {
             name: '클로즈업',

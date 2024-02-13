@@ -16,7 +16,7 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/ReviewData';
+} from 'hooks/redux/ReviewNew';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewSubmitButtonProps } from 'interfaces/ReviewNew.interface';
 import { SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';
@@ -38,7 +38,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         tools,
         hairIron,
         publicOpen,
-    } = useAppSelector(state => state.reviewData);
+    } = useAppSelector(state => state.reviewNew);
 
     /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {

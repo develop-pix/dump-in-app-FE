@@ -1,4 +1,4 @@
-import { setParty } from 'hooks/redux/ReviewData';
+import { setParty } from 'hooks/redux/BranchReviewEdit';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { PartySelectProps } from 'interfaces/ReviewEdit.interface';
 import {
@@ -18,7 +18,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function PartySelect({ errorData }: PartySelectProps) {
     const availableParty: number[] = [1, 2, 3, 4, 5];
     const dispatch = useAppDispatch();
-    const party = useAppSelector(state => state.reviewData).party;
+    const party = useAppSelector(state => state.branchReviewEdit).party;
 
     /** 인원 선택시 dispatch */
     const onPressParty = (partyNumber: number) => {

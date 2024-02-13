@@ -7,11 +7,6 @@ export const MenuSafeContainer = styled.SafeAreaView`
     background-color: ${colors.lightblack};
 `;
 
-export const CloseModalButtonContainer = styled.View`
-    align-self: flex-start;
-    margin-top: 5px;
-`;
-
 export const MenuContentContainer = styled.View`
     padding: 0px 20px;
 `;

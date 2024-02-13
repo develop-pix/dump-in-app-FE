@@ -1,4 +1,4 @@
-import { setPublicOpen } from 'hooks/redux/ReviewData';
+import { setPublicOpen } from 'hooks/redux/ReviewNew';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { colors } from 'styles/base/Variable';
 import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';
@@ -7,7 +7,7 @@ import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.
 
 export default function PublicOpenSwitch() {
     const dispatch = useAppDispatch();
-    const publicOpen = useAppSelector(state => state.reviewData).publicOpen;
+    const publicOpen = useAppSelector(state => state.reviewNew).publicOpen;
 
     /** Toggle 버튼 클릭시 dispatch */
     const onToggleSwitch = () => {
