@@ -147,7 +147,6 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                         hairIron,
                         publicOpen,
                     );
-                    //작성완료시 redux 비워야함
                     onPressGoHome();
                 }
             });
@@ -156,7 +155,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         }
     };
 
-    /** 완료 버튼 클릭시 입력하지 않은  스크롤 이동 */
+    /** 완료 버튼 클릭시 입력하지 않은 항목으로 스크롤 이동 */
     const onErrorScroll = useCallback(
         (height: number) => {
             if (scrollRef.current) {

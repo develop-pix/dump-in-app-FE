@@ -99,7 +99,6 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     const onPressSubmit = async () => {
         checkErrorData();
 
-        //imageFileInput에서 올릴때 이미 redux 에 올라가있음
         try {
             let imageUrls: (string | undefined)[] = image
                 .map(data => {
@@ -113,28 +112,17 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                 const imageUpload = async () => {
                     if (representativeImage.imageURL && representativeImage.imageName) {
                         await UploadImageToS3(representativeImage.imageURL, representativeImage.imageName);
+                    }
 
-                        if (image.length > 0) {
-                            const imageUploadPromises = image.map(async imageData => {
-                                if (imageData.imageURL && imageData.imageName) {
-                                    return await UploadImageToS3(imageData.imageURL, imageData.imageName);
-                                }
-                            });
-                            const updatedImageUrls = await Promise.all(imageUploadPromises);
+                    if (image.length > 0) {
+                        const imageUploadPromises = image.map(async imageData => {
+                            if (imageData.imageURL && imageData.imageName) {
+                                return await UploadImageToS3(imageData.imageURL, imageData.imageName);
+                            }
+                        });
+                        const updatedImageUrls = await Promise.all(imageUploadPromises);
 
-                            imageUrls = imageUrls.concat(updatedImageUrls.filter(url => url !== undefined));
-                        }
-                    } else {
-                        if (image.length > 0) {
-                            const imageUploadPromises = image.map(async imageData => {
-                                if (imageData.imageURL && imageData.imageName) {
-                                    return await UploadImageToS3(imageData.imageURL, imageData.imageName);
-                                }
-                            });
-                            const updatedImageUrls = await Promise.all(imageUploadPromises);
-
-                            imageUrls = imageUrls.concat(updatedImageUrls.filter(url => url !== undefined));
-                        }
+                        imageUrls = imageUrls.concat(updatedImageUrls.filter(url => url !== undefined));
                     }
                 };
 
@@ -174,7 +162,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         }
     };
 
-    /** 완료 버튼 클릭시 입력하지 않은  스크롤 이동 */
+    /** 완료 버튼 클릭시 입력하지 않은 항목으로 스크롤 이동 */
     const onErrorScroll = useCallback(
         (height: number) => {
             if (scrollRef.current) {

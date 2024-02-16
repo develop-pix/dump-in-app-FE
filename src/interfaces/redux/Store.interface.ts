@@ -18,3 +18,21 @@ export interface ImageData {
     imageURL: string | undefined;
     imageName: string | undefined;
 }
+
+export interface AccessTokenState {
+    token: string | null;
+}
+
+export interface AccessTokenExpireState {
+    expire: Date | null;
+}
+
+export interface LocationState {
+    latitude: number | null;
+    longitude: number | null;
+}
+
+export interface UserDataState {
+    userID: string | null;
+    userNickName: string | null;
+}

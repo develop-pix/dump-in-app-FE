@@ -3,7 +3,6 @@ import { Platform, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
-import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
     setBranchID,
@@ -43,6 +42,7 @@ import PublicOpenSwitch from './input/PublicOpenSwitch';
 import ReviewDescriptionInput from './input/ReviewDescriptionInput';
 import ReviewModal from './input/ReviewModal';
 import ToolsSelect from './input/ToolsSelect';
+import ReviewGoBackButton from './ReviewGoBackButton';
 import ReviewSubmitButton from './ReviewSubmitButton';
 
 export default function ReviewEdit() {
@@ -110,7 +110,7 @@ export default function ReviewEdit() {
                 />
             ) : null}
             <GoBackButtonWithSubmitContainer platform={platform}>
-                <GoBackButtonReview />
+                <ReviewGoBackButton />
                 <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
             </GoBackButtonWithSubmitContainer>
             <ImageFileInput

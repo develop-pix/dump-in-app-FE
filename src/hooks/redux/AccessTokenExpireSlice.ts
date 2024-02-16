@@ -1,11 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { PayloadAction } from '@reduxjs/toolkit';
-interface ExpireState {
-    expire: Date | null;
-}
+import { AccessTokenExpireState } from 'interfaces/redux/Store.interface';
 
-const initialState: ExpireState = {
+const initialState: AccessTokenExpireState = {
     expire: null,
 };
 

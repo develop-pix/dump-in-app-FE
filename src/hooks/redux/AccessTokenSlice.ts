@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface TokenState {
-    token: string | null;
-}
-const initialState: TokenState = {
+import { AccessTokenState } from 'interfaces/redux/Store.interface';
+
+const initialState: AccessTokenState = {
     token: null,
 };
 

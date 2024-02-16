@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface LocationState {
-    latitude: number | null;
-    longitude: number | null;
-}
+import { LocationState } from 'interfaces/redux/Store.interface';
+
 const initialState: LocationState = {
     latitude: null,
     longitude: null,

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Platform, ScrollView } from 'react-native';
 
-import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
+import ReviewGoBackButton from 'components/review-new/ReviewGoBackButton';
 import { InputData } from 'interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer } from 'styles/layout/reuse/button/GoBackButton.style';
 import {
@@ -44,7 +44,7 @@ export default function ReviewNew() {
                 />
             ) : null}
             <GoBackButtonWithSubmitContainer platform={platform}>
-                <GoBackButtonReview />
+                <ReviewGoBackButton />
                 <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
             </GoBackButtonWithSubmitContainer>
             <ImageFileInput

@@ -1,8 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ImageData, ReviewDataState } from 'interfaces/redux/Store.interface';
-
-import type { PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ReviewDataState = {
     representativeImage: { imageURL: undefined, imageName: undefined },

@@ -1,11 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { PayloadAction } from '@reduxjs/toolkit';
-
-interface UserDataState {
-    userID: string | null;
-    userNickName: string | null;
-}
+import { UserDataState } from 'interfaces/redux/Store.interface';
 
 // 임시 초기값 설정
 const initialState: UserDataState = {
