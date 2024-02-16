@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
@@ -43,7 +43,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     } = useAppSelector(state => state.branchReviewEdit);
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
 
-    /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
+    /** 리뷰 수정이 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {
         dispatch(setRepresentativeImage({ imageURL: undefined, imageName: undefined }));
         dispatch(setImageClear());
@@ -89,13 +89,9 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         if (concept.length === 0) {
             setErrorData(data => [...data, { InputName: 'concept', height: 880 }]);
         }
-
-        if (errorData.length > 0) {
-            onErrorScroll(errorData[0].height);
-        }
     };
 
-    /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 업로드 */
+    /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 수정 */
     const onPressSubmit = async () => {
         checkErrorData();
 
@@ -121,7 +117,6 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
                             }
                         });
                         const updatedImageUrls = await Promise.all(imageUploadPromises);
-
                         imageUrls = imageUrls.concat(updatedImageUrls.filter(url => url !== undefined));
                     }
                 };
@@ -163,20 +158,17 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     };
 
     /** 완료 버튼 클릭시 입력하지 않은 항목으로 스크롤 이동 */
-    const onErrorScroll = useCallback(
-        (height: number) => {
-            if (scrollRef.current) {
+    useEffect(() => {
+        const onErrorScroll = (height: number) => {
+            if (scrollRef.current && errorData[0].height) {
                 scrollRef.current.scrollTo({ y: height, animated: true });
             }
-        },
-        [scrollRef],
-    );
+        };
 
-    useEffect(() => {
-        if (errorData[0]?.height) {
+        if (errorData.length) {
             onErrorScroll(errorData[0].height);
         }
-    }, [errorData, onErrorScroll]);
+    }, [errorData, scrollRef]);
 
     return (
         <SubmitButton onPress={onPressSubmit}>

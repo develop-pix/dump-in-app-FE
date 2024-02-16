@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
@@ -86,10 +86,6 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         if (concept.length === 0) {
             setErrorData(data => [...data, { InputName: 'concept', height: 880 }]);
         }
-
-        if (errorData.length > 0) {
-            onErrorScroll(errorData[0].height);
-        }
     };
 
     /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 업로드 */
@@ -156,20 +152,17 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     };
 
     /** 완료 버튼 클릭시 입력하지 않은 항목으로 스크롤 이동 */
-    const onErrorScroll = useCallback(
-        (height: number) => {
+    useEffect(() => {
+        const onErrorScroll = (height: number) => {
             if (scrollRef.current) {
                 scrollRef.current.scrollTo({ y: height, animated: true });
             }
-        },
-        [scrollRef],
-    );
+        };
 
-    useEffect(() => {
         if (errorData[0]?.height) {
             onErrorScroll(errorData[0].height);
         }
-    }, [errorData, onErrorScroll]);
+    }, [errorData, scrollRef]);
 
     return (
         <SubmitButton onPress={onPressSubmit}>
