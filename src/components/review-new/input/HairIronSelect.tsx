@@ -1,4 +1,4 @@
-import { setHairIron } from 'hooks/redux/ReviewNew';
+import { setHairIron } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import {
     FontBlackSmallerSemibold,

@@ -18,8 +18,8 @@ const initialState: ReviewDataState = {
     publicOpen: true,
 };
 
-export const BranchReviewEdit = createSlice({
-    name: 'branchReviewEdit',
+export const reviewEditSlice = createSlice({
+    name: 'reviewEdit',
     initialState,
     reducers: {
         setRepresentativeImage(state, action: PayloadAction<ImageData>) {
@@ -72,19 +72,22 @@ export const BranchReviewEdit = createSlice({
     },
 });
 
-export const { setRepresentativeImage } = BranchReviewEdit.actions;
-export const { setImageClear } = BranchReviewEdit.actions;
-export const { setRemoveImage } = BranchReviewEdit.actions;
-export const { setImage } = BranchReviewEdit.actions;
-export const { setEnlargedImage } = BranchReviewEdit.actions;
-export const { setDescription } = BranchReviewEdit.actions;
-export const { setBranchID } = BranchReviewEdit.actions;
-export const { setDate } = BranchReviewEdit.actions;
-export const { setFrameColor } = BranchReviewEdit.actions;
-export const { setParty } = BranchReviewEdit.actions;
-export const { setCameraShot } = BranchReviewEdit.actions;
-export const { setHashtag } = BranchReviewEdit.actions;
-export const { setTools } = BranchReviewEdit.actions;
-export const { setHairIron } = BranchReviewEdit.actions;
-export const { setPublicOpen } = BranchReviewEdit.actions;
-export default BranchReviewEdit;
+export const {
+    setRepresentativeImage,
+    setImageClear,
+    setRemoveImage,
+    setImage,
+    setEnlargedImage,
+    setDescription,
+    setBranchID,
+    setDate,
+    setFrameColor,
+    setParty,
+    setCameraShot,
+    setHashtag,
+    setTools,
+    setHairIron,
+    setPublicOpen,
+} = reviewEditSlice.actions;
+
+export default reviewEditSlice;

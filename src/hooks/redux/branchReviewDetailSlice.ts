@@ -18,8 +18,8 @@ const initialState: ReviewDataState = {
     publicOpen: true,
 };
 
-export const ReviewNewSlice = createSlice({
-    name: 'reviewNew',
+export const branchReviewDetailSlice = createSlice({
+    name: 'branchReviewDetail',
     initialState,
     reducers: {
         setRepresentativeImage(state, action: PayloadAction<ImageData>) {
@@ -72,19 +72,22 @@ export const ReviewNewSlice = createSlice({
     },
 });
 
-export const { setRepresentativeImage } = ReviewNewSlice.actions;
-export const { setImageClear } = ReviewNewSlice.actions;
-export const { setRemoveImage } = ReviewNewSlice.actions;
-export const { setImage } = ReviewNewSlice.actions;
-export const { setEnlargedImage } = ReviewNewSlice.actions;
-export const { setDescription } = ReviewNewSlice.actions;
-export const { setBranchID } = ReviewNewSlice.actions;
-export const { setDate } = ReviewNewSlice.actions;
-export const { setFrameColor } = ReviewNewSlice.actions;
-export const { setParty } = ReviewNewSlice.actions;
-export const { setCameraShot } = ReviewNewSlice.actions;
-export const { setHashtag } = ReviewNewSlice.actions;
-export const { setTools } = ReviewNewSlice.actions;
-export const { setHairIron } = ReviewNewSlice.actions;
-export const { setPublicOpen } = ReviewNewSlice.actions;
-export default ReviewNewSlice;
+export const {
+    setRepresentativeImage,
+    setImageClear,
+    setRemoveImage,
+    setImage,
+    setEnlargedImage,
+    setDescription,
+    setBranchID,
+    setDate,
+    setFrameColor,
+    setParty,
+    setCameraShot,
+    setHashtag,
+    setTools,
+    setHairIron,
+    setPublicOpen,
+} = branchReviewDetailSlice.actions;
+
+export default branchReviewDetailSlice;

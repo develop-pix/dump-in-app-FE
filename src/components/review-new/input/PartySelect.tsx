@@ -1,4 +1,4 @@
-import { setParty } from 'hooks/redux/ReviewNew';
+import { setParty } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { PartySelectProps } from 'interfaces/ReviewNew.interface';
 import {

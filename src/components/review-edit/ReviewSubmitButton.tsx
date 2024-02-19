@@ -17,7 +17,7 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/BranchReviewEdit';
+} from 'hooks/redux/reviewEditSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { ReviewSubmitButtonProps } from 'interfaces/ReviewEdit.interface';

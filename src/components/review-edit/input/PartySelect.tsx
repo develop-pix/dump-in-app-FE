@@ -1,4 +1,4 @@
-import { setParty } from 'hooks/redux/BranchReviewEdit';
+import { setParty } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { PartySelectProps } from 'interfaces/ReviewEdit.interface';
 import {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { setDescription } from 'hooks/redux/ReviewNew';
+import { setDescription } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { ReviewDescriptionProps } from 'interfaces/ReviewNew.interface';
 import { colors } from 'styles/base/Variable';

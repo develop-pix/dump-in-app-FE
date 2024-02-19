@@ -1,4 +1,4 @@
-import { setTools } from 'hooks/redux/ReviewNew';
+import { setTools } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import {
     FontBlackSmallerSemibold,

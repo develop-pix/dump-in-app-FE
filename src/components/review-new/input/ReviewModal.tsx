@@ -3,7 +3,7 @@ import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-im
 import Modal from 'react-native-modal';
 import { useDispatch } from 'react-redux';
 
-import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/ReviewNew';
+import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/reviewNewSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewModalProps } from 'interfaces/ReviewNew.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';

@@ -7,8 +7,8 @@ const initialState: LocationState = {
     longitude: null,
 };
 
-export const CurrentLocationSlice = createSlice({
-    name: 'location',
+export const currentLocationSlice = createSlice({
+    name: 'currentLocation',
     initialState,
     reducers: {
         setCurrentLocation(state, action: PayloadAction<LocationState>) {
@@ -18,5 +18,5 @@ export const CurrentLocationSlice = createSlice({
     },
 });
 
-export const { setCurrentLocation } = CurrentLocationSlice.actions;
-export default CurrentLocationSlice;
+export const { setCurrentLocation } = currentLocationSlice.actions;
+export default currentLocationSlice;

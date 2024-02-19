@@ -1,4 +1,4 @@
-import { setCameraShot } from 'hooks/redux/ReviewNew';
+import { setCameraShot } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { CameraShotSelectProps } from 'interfaces/ReviewNew.interface';
 import {

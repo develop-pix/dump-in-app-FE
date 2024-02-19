@@ -18,7 +18,7 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/BranchReviewEdit';
+} from 'hooks/redux/reviewEditSlice';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { InputData } from 'interfaces/ReviewEdit.interface';
 import { GoBackButtonWithSubmitContainer } from 'styles/layout/reuse/button/GoBackButton.style';

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import Search from 'components/reuse/input/Search';
 import { GetLocationSearchData } from 'hooks/axios/SearchLocation';
-import { setCurrentLocation } from 'hooks/redux/Location';
+import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchData } from 'interfaces/Location.interface';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';

@@ -1,4 +1,4 @@
-import { setHashtag } from 'hooks/redux/ReviewNew';
+import { setHashtag } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { HashtagSelectProps } from 'interfaces/ReviewNew.interface';
 import {

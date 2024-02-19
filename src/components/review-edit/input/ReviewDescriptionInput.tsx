@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { setDescription } from 'hooks/redux/BranchReviewEdit';
+import { setDescription } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { ReviewDescriptionProps } from 'interfaces/ReviewEdit.interface';
 import { colors } from 'styles/base/Variable';

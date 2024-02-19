@@ -5,21 +5,23 @@ import { combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import { persistReducer } from 'redux-persist';
 
-import AccessTokenExpireSlice from './AccessTokenExpireSlice';
-import AccessTokenSlice from './AccessTokenSlice';
-import BranchReviewEdit from './BranchReviewEdit';
-import CurrentLocationSlice from './Location';
-import ReviewNewSlice from './ReviewNew';
-import UserDataSlice from './UserDataSlice';
+import accessTokenExpireSlice from './accessTokenExpireSlice';
+import accessTokenSlice from './accessTokenSlice';
+import branchReviewDetailSlice from './branchReviewDetailSlice';
+import currentLocationSlice from './currentLocationSlice';
+import reviewEditSlice from './reviewEditSlice';
+import reviewNewSlice from './reviewNewSlice';
+import userDataSlice from './userDataSlice';
 
 // 상태 추가 할 것 추가
 const reducers = combineReducers({
-    login: AccessTokenSlice.reducer,
-    expire: AccessTokenExpireSlice.reducer,
-    reviewNew: ReviewNewSlice.reducer,
-    branchReviewEdit: BranchReviewEdit.reducer,
-    userData: UserDataSlice.reducer,
-    location: CurrentLocationSlice.reducer,
+    login: accessTokenSlice.reducer,
+    expire: accessTokenExpireSlice.reducer,
+    reviewNew: reviewNewSlice.reducer,
+    reviewEdit: reviewEditSlice.reducer,
+    userData: userDataSlice.reducer,
+    location: currentLocationSlice.reducer,
+    branchReviewDetail: branchReviewDetailSlice.reducer,
 });
 
 const logger = createLogger();

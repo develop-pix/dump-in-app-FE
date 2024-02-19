@@ -2,7 +2,7 @@ import BlackCheckIcon from 'assets/image/icon/check_black.svg';
 import EtcCheckImage from 'assets/image/icon/check_frame_etc.svg';
 import WhiteCheckIcon from 'assets/image/icon/check_white.svg';
 import EtcImage from 'assets/image/icon/frame_etc.svg';
-import { setFrameColor } from 'hooks/redux/BranchReviewEdit';
+import { setFrameColor } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { FrameColorSelectProps } from 'interfaces/ReviewEdit.interface';
 import { frameColors } from 'styles/base/Variable';

@@ -1,4 +1,4 @@
-import { setHairIron } from 'hooks/redux/BranchReviewEdit';
+import { setHairIron } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import {
     FontBlackSmallerSemibold,

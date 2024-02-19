@@ -6,7 +6,7 @@ const initialState: AccessTokenState = {
     token: null,
 };
 
-export const AccessTokenSlice = createSlice({
+export const accessTokenSlice = createSlice({
     name: 'accessToken',
     initialState,
     reducers: {
@@ -16,5 +16,5 @@ export const AccessTokenSlice = createSlice({
     },
 });
 
-export const { setAccessToken } = AccessTokenSlice.actions;
-export default AccessTokenSlice;
+export const { setAccessToken } = accessTokenSlice.actions;
+export default accessTokenSlice;

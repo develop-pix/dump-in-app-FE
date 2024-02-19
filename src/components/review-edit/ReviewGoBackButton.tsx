@@ -15,7 +15,7 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/BranchReviewEdit';
+} from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { HeaderIconContainer } from 'styles/layout/reuse/header/Header.style';
 

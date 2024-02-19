@@ -16,7 +16,7 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/ReviewNew';
+} from 'hooks/redux/reviewNewSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewSubmitButtonProps } from 'interfaces/ReviewNew.interface';
 import { SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';

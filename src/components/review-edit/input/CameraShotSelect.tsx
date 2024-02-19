@@ -1,4 +1,4 @@
-import { setCameraShot } from 'hooks/redux/BranchReviewEdit';
+import { setCameraShot } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { CameraShotSelectProps } from 'interfaces/ReviewEdit.interface';
 import {

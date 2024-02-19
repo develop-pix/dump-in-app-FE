@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-import { setDate } from 'hooks/redux/BranchReviewEdit';
+import { setDate } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { DateInputProps } from 'interfaces/ReviewEdit.interface';
 import {

@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 import EditIcon from 'assets/image/icon/edit.svg';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { setUserNickName } from 'hooks/redux/UserDataSlice';
+import { setUserNickName } from 'hooks/redux/userDataSlice';
 import {
     CompleteButton,
     EditIconContainer,

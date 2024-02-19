@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import ButtonAddImage from 'assets/image/icon/btn_add.svg';
 import TrashIcon from 'assets/image/icon/btn_trash.svg';
-import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/ReviewNew';
+import { setEnlargedImage, setImage, setRemoveImage, setRepresentativeImage } from 'hooks/redux/reviewNewSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { ImageFileInputProps } from 'interfaces/ReviewNew.interface';
 import { colors } from 'styles/base/Variable';

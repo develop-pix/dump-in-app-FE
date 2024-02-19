@@ -5,9 +5,9 @@ import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
 import AppleIcon from 'assets/image/icon/apple_login.svg';
-import { setAccessToken } from 'hooks/redux/AccessTokenSlice';
+import { setAccessToken } from 'hooks/redux/accessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
-import { setUserID, setUserNickName } from 'hooks/redux/UserDataSlice';
+import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     AppleIconWrapper,

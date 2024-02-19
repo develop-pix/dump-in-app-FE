@@ -1,4 +1,4 @@
-import { setPublicOpen } from 'hooks/redux/BranchReviewEdit';
+import { setPublicOpen } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { colors } from 'styles/base/Variable';
 import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';

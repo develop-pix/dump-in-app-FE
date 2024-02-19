@@ -1,4 +1,4 @@
-import { setHashtag } from 'hooks/redux/BranchReviewEdit';
+import { setHashtag } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { HashtagSelectProps } from 'interfaces/ReviewEdit.interface';
 import {

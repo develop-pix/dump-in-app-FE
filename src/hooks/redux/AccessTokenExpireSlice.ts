@@ -6,7 +6,7 @@ const initialState: AccessTokenExpireState = {
     expire: null,
 };
 
-export const AccessTokenExpireSlice = createSlice({
+export const accessTokenExpireSlice = createSlice({
     name: 'accessTokenExpire',
     initialState,
     reducers: {
@@ -16,5 +16,5 @@ export const AccessTokenExpireSlice = createSlice({
     },
 });
 
-export const { setAccessTokenExpire } = AccessTokenExpireSlice.actions;
-export default AccessTokenExpireSlice;
+export const { setAccessTokenExpire } = accessTokenExpireSlice.actions;
+export default accessTokenExpireSlice;
