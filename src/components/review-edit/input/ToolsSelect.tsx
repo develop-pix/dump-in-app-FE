@@ -15,7 +15,7 @@ import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.
 
 export default function ToolsSelect() {
     const dispatch = useAppDispatch();
-    const tools = useAppSelector(state => state.branchReviewEdit).tools;
+    const tools = useAppSelector(state => state.reviewEdit).tools;
 
     /** 있음 버튼 선택시 dispatch */
     const onPressTools = () => {

@@ -7,7 +7,7 @@ import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.
 
 export default function PublicOpenSwitch() {
     const dispatch = useAppDispatch();
-    const publicOpen = useAppSelector(state => state.branchReviewEdit).publicOpen;
+    const publicOpen = useAppSelector(state => state.reviewEdit).publicOpen;
 
     /** Toggle 버튼 클릭시 dispatch */
     const onToggleSwitch = () => {

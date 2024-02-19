@@ -17,7 +17,7 @@ import {
 export default function ReviewModal({ setOpenImageModal, limitImage, setLimitImage }: ReviewModalProps) {
     const dispatch = useDispatch();
     const platform = Platform.OS;
-    const { representativeImage, image } = useAppSelector(state => state.branchReviewEdit);
+    const { representativeImage, image } = useAppSelector(state => state.reviewEdit);
 
     /** 카메라 작동 */
     const onPressCameraOpen = async () => {

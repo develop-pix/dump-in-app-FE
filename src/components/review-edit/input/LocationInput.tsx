@@ -23,7 +23,7 @@ export default function LocationInput({ branchName, setBranchName, errorData }: 
     const navigation = useNavigation();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
-    const branchID = useAppSelector(state => state.branchReviewEdit).branchID;
+    const branchID = useAppSelector(state => state.reviewEdit).branchID;
 
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {

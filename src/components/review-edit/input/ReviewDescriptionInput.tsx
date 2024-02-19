@@ -22,7 +22,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function ReviewDescriptionInput({ errorData }: ReviewDescriptionProps) {
     const [inputCount, setInputCount] = useState<number>(0);
 
-    const description = useAppSelector(state => state.branchReviewEdit).description;
+    const description = useAppSelector(state => state.reviewEdit).description;
     const platform = Platform.OS;
     const dispatch = useAppDispatch();
 

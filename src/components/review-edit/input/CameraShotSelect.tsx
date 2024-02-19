@@ -19,7 +19,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 
 export default function CameraShotSelect({ errorData }: CameraShotSelectProps) {
     const dispatch = useAppDispatch();
-    const cameraShot = useAppSelector(state => state.branchReviewEdit).cameraShot;
+    const cameraShot = useAppSelector(state => state.reviewEdit).cameraShot;
     const availableCameraShot = [
         {
             name: '클로즈업',

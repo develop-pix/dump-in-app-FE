@@ -18,7 +18,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function PartySelect({ errorData }: PartySelectProps) {
     const availableParty: number[] = [1, 2, 3, 4, 5];
     const dispatch = useAppDispatch();
-    const party = useAppSelector(state => state.branchReviewEdit).party;
+    const party = useAppSelector(state => state.reviewEdit).party;
 
     /** 인원 선택시 dispatch */
     const onPressParty = (partyNumber: number) => {

@@ -17,7 +17,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 
 export default function HashtagSelect({ errorData }: HashtagSelectProps) {
     const dispatch = useAppDispatch();
-    const concept = useAppSelector(state => state.branchReviewEdit).concept;
+    const concept = useAppSelector(state => state.reviewEdit).concept;
     const availableHashtag = [
         '일상',
         '커플',

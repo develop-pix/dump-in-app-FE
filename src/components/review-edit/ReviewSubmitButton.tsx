@@ -40,7 +40,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         tools,
         hairIron,
         publicOpen,
-    } = useAppSelector(state => state.branchReviewEdit);
+    } = useAppSelector(state => state.reviewEdit);
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
 
     /** 리뷰 수정이 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */

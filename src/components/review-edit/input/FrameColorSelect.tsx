@@ -22,7 +22,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function FrameColorSelect({ errorData }: FrameColorSelectProps) {
     const availableColors = Object.values(frameColors);
     const dispatch = useAppDispatch();
-    const frameColor = useAppSelector(state => state.branchReviewEdit).frameColor;
+    const frameColor = useAppSelector(state => state.reviewEdit).frameColor;
 
     /** 프레임 색상 선택시 dispatch */
     const onPressColor = (color: string) => {

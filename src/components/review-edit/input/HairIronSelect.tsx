@@ -15,7 +15,7 @@ import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.
 
 export default function HairIronSelect() {
     const dispatch = useAppDispatch();
-    const hairIron = useAppSelector(state => state.branchReviewEdit).hairIron;
+    const hairIron = useAppSelector(state => state.reviewEdit).hairIron;
 
     /** 있음 버튼 선택시 dispatch */
     const onPressHairIron = () => {

@@ -42,7 +42,7 @@ export default function ImageFileInput({
     scrollRef,
 }: ImageFileInputProps) {
     const dispatch = useDispatch();
-    const { representativeImage, image, enlargedImage } = useAppSelector(state => state.branchReviewEdit);
+    const { representativeImage, image, enlargedImage } = useAppSelector(state => state.reviewEdit);
 
     /** 카메라, 앨범 에서 선택 모달 Open */
     const onPressImageUpload = () => {

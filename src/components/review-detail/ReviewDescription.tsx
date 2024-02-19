@@ -4,12 +4,12 @@ import { useRoute } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeReview } from 'hooks/axios/ReviewDetail';
+import { useAppSelector } from 'hooks/redux/store';
 import {
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
-import { ReviewDescriptionProps } from 'interfaces/ReviewDetail.interface';
 import {
     FontWhiteNormalMedium,
     FontWhiteSmallerMedium,
@@ -24,7 +24,9 @@ import {
 } from 'styles/layout/review-detail/ReviewDetail.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
-export default function ReviewDescription({ date, content, concept, isLiked }: ReviewDescriptionProps) {
+export default function ReviewDescription() {
+    const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
+
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const [numLines, setNumLines] = useState<number>(2);
 

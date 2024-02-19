@@ -1,93 +1,110 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ImageData, ReviewDataState } from 'interfaces/redux/Store.interface';
+import { ConceptData, ReviewDetailState, ReviewImageData } from 'interfaces/redux/Store.interface';
 
-const initialState: ReviewDataState = {
-    representativeImage: { imageURL: undefined, imageName: undefined },
+const initialState: ReviewDetailState = {
+    id: null,
     image: [],
-    enlargedImage: { imageURL: undefined, imageName: undefined },
-    description: null,
-    branchID: undefined,
+    concept: [],
+    isMine: false,
+    isLiked: false,
+    userNickname: null,
+    createdAt: null,
+    updatedAt: null,
+    content: null,
+    mainThumbnailImageUrl: null,
     date: null,
     frameColor: null,
-    party: null,
+    participants: 0,
     cameraShot: null,
-    concept: [],
-    tools: null,
-    hairIron: null,
-    publicOpen: true,
+    goodsAmount: null,
+    curlAmount: null,
+    isPublic: true,
+    viewCount: 0,
+    likeCount: 0,
+    photoBoothId: null,
 };
 
 export const branchReviewDetailSlice = createSlice({
     name: 'branchReviewDetail',
     initialState,
     reducers: {
-        setRepresentativeImage(state, action: PayloadAction<ImageData>) {
-            state.representativeImage.imageURL = action.payload.imageURL;
-            state.representativeImage.imageName = action.payload.imageName;
+        setReviewID(state, action: PayloadAction<number | null>) {
+            state.id = action.payload;
         },
-        setImage(state, action: PayloadAction<ImageData[]>) {
-            state.image = [...state.image, ...action.payload];
-        },
-        setRemoveImage(state, action: PayloadAction<ImageData>) {
-            state.image = state.image.filter(imageData => imageData.imageURL !== action.payload.imageURL);
+        setImage(state, action: PayloadAction<ReviewImageData[]>) {
+            state.image = [...action.payload];
         },
         setImageClear(state) {
             state.image = [];
         },
-        setEnlargedImage(state, action: PayloadAction<ImageData>) {
-            state.enlargedImage.imageURL = action.payload.imageURL;
-            state.enlargedImage.imageName = action.payload.imageName;
+        setConcept(state, action: PayloadAction<ConceptData[]>) {
+            state.concept = [...action.payload];
         },
-        setDescription(state, action: PayloadAction<string | null>) {
-            state.description = action.payload;
+        setConceptClear(state) {
+            state.concept = [];
         },
-        setBranchID(state, action: PayloadAction<string | undefined>) {
-            state.branchID = action.payload;
+        setIsMine(state, action: PayloadAction<boolean>) {
+            state.isMine = action.payload;
         },
-        setDate(state, action: PayloadAction<Date | string | null>) {
+        setIsLiked(state, action: PayloadAction<boolean>) {
+            state.isLiked = action.payload;
+        },
+        setUserNickname(state, action: PayloadAction<string | null>) {
+            state.userNickname = action.payload;
+        },
+        setContent(state, action: PayloadAction<string | null>) {
+            state.content = action.payload;
+        },
+        setMainThumbnailImageUrl(state, action: PayloadAction<string | null>) {
+            state.mainThumbnailImageUrl = action.payload;
+        },
+        setDate(state, action: PayloadAction<string | null>) {
             state.date = action.payload;
         },
         setFrameColor(state, action: PayloadAction<string | null>) {
             state.frameColor = action.payload;
         },
-        setParty(state, action: PayloadAction<number | null>) {
-            state.party = action.payload;
+        setParticipants(state, action: PayloadAction<number>) {
+            state.participants = action.payload;
         },
         setCameraShot(state, action: PayloadAction<string | null>) {
             state.cameraShot = action.payload;
         },
-        setHashtag(state, action: PayloadAction<string[]>) {
-            state.concept = action.payload;
+        setGoodsAmount(state, action: PayloadAction<boolean | null>) {
+            state.goodsAmount = action.payload;
         },
-        setTools(state, action: PayloadAction<boolean | null>) {
-            state.tools = action.payload;
+        setCurlAmount(state, action: PayloadAction<boolean | null>) {
+            state.curlAmount = action.payload;
         },
-        setHairIron(state, action: PayloadAction<boolean | null>) {
-            state.hairIron = action.payload;
+        setLikeCount(state, action: PayloadAction<number>) {
+            state.likeCount = action.payload;
         },
-        setPublicOpen(state, action: PayloadAction<boolean>) {
-            state.publicOpen = action.payload;
+        setPhotoBoothId(state, action: PayloadAction<string | null>) {
+            state.photoBoothId = action.payload;
         },
     },
 });
 
 export const {
-    setRepresentativeImage,
-    setImageClear,
-    setRemoveImage,
+    setReviewID,
     setImage,
-    setEnlargedImage,
-    setDescription,
-    setBranchID,
+    setImageClear,
+    setConcept,
+    setConceptClear,
+    setIsMine,
+    setIsLiked,
+    setUserNickname,
+    setContent,
+    setMainThumbnailImageUrl,
     setDate,
     setFrameColor,
-    setParty,
+    setParticipants,
     setCameraShot,
-    setHashtag,
-    setTools,
-    setHairIron,
-    setPublicOpen,
+    setGoodsAmount,
+    setCurlAmount,
+    setLikeCount,
+    setPhotoBoothId,
 } = branchReviewDetailSlice.actions;
 
 export default branchReviewDetailSlice;

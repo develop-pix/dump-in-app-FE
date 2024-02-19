@@ -18,7 +18,7 @@ import { DateToReviewDateForm } from 'utils/FormChange';
 export default function DateInput({ errorData }: DateInputProps) {
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
 
-    const date = useAppSelector(state => state.branchReviewEdit).date;
+    const date = useAppSelector(state => state.reviewEdit).date;
     const dispatch = useAppDispatch();
 
     /** datePicker 오픈 */

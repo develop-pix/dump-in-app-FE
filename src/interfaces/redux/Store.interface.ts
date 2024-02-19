@@ -36,3 +36,36 @@ export interface UserDataState {
     userID: string | null;
     userNickName: string | null;
 }
+
+export interface ReviewDetailState {
+    id: number | null;
+    image: ReviewImageData[];
+    concept: ConceptData[];
+    isMine: boolean;
+    isLiked: boolean;
+    userNickname: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+    content: string | null;
+    mainThumbnailImageUrl: string | null;
+    date: string | null;
+    frameColor: string | null;
+    participants: number;
+    cameraShot: string | null;
+    goodsAmount: boolean | null;
+    curlAmount: boolean | null;
+    isPublic: boolean;
+    viewCount: number;
+    likeCount: number;
+    photoBoothId: string | null;
+}
+
+export interface ConceptData {
+    hashtagID: number;
+    name: string;
+}
+
+export interface ReviewImageData {
+    id: number;
+    imageUrl: string;
+}
