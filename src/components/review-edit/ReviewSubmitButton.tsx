@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
-import { UploadImageToS3, UploadNewReview } from 'hooks/axios/ReviewNew';
+import { UploadEditReview } from 'hooks/axios/ReviewEdit';
+import { UploadImageToS3 } from 'hooks/axios/ReviewNew';
 import {
     setBranchID,
     setCameraShot,
@@ -16,9 +17,10 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/reviewNewSlice';
+} from 'hooks/redux/reviewEditSlice';
 import { useAppSelector } from 'hooks/redux/store';
-import { ReviewSubmitButtonProps } from 'interfaces/ReviewNew.interface';
+import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
+import { ReviewSubmitButtonProps } from 'interfaces/ReviewEdit.interface';
 import { SubmitButton } from 'styles/layout/reuse/button/GoBackButton.style';
 import { FontYellowBiggerSemibold } from 'styles/layout/reuse/text/Text.style';
 
@@ -38,9 +40,10 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         tools,
         hairIron,
         publicOpen,
-    } = useAppSelector(state => state.reviewNew);
+    } = useAppSelector(state => state.reviewEdit);
+    const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
 
-    /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
+    /** 리뷰 수정이 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {
         dispatch(setRepresentativeImage({ imageURL: undefined, imageName: undefined }));
         dispatch(setImageClear());
@@ -88,64 +91,67 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         }
     };
 
-    /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 업로드 */
+    /** 완료 버튼 클릭시 S3이미지 업로드 및 리뷰 수정 */
     const onPressSubmit = async () => {
         checkErrorData();
 
         try {
-            let mainThumbnailImageUrl: string | undefined;
-            let imageUrls: (string | undefined)[] = [];
-
-            const imageUpload = async () => {
-                if (errorData.length === 0) {
-                    if (representativeImage.imageURL && representativeImage.imageName) {
-                        mainThumbnailImageUrl = await UploadImageToS3(
-                            representativeImage.imageURL,
-                            representativeImage.imageName,
-                        );
-
-                        if (image.length > 0) {
-                            const imageUploadPromises = image.map(async imageData => {
-                                if (imageData.imageURL && imageData.imageName) {
-                                    return await UploadImageToS3(imageData.imageURL, imageData.imageName);
-                                }
-                            });
-                            const updatedImageUrls = await Promise.all(imageUploadPromises);
-                            imageUrls = updatedImageUrls.filter(url => url !== undefined);
-                        }
+            let imageUrls: (string | undefined)[] = image
+                .map(data => {
+                    if (data.imageName === undefined) {
+                        return data.imageURL;
                     }
-                }
-            };
+                })
+                .filter(url => url !== undefined);
 
-            await imageUpload().then(async () => {
-                const errorCheck =
-                    mainThumbnailImageUrl &&
-                    description &&
-                    branchID &&
-                    date &&
-                    frameColor &&
-                    party &&
-                    cameraShot &&
-                    concept.length > 0;
+            if (errorData.length === 0) {
+                const imageUpload = async () => {
+                    if (representativeImage.imageURL && representativeImage.imageName) {
+                        await UploadImageToS3(representativeImage.imageURL, representativeImage.imageName);
+                    }
 
-                if (errorCheck) {
-                    await UploadNewReview(
-                        mainThumbnailImageUrl,
-                        imageUrls,
-                        description,
-                        branchID,
-                        date,
-                        frameColor,
-                        party,
-                        cameraShot,
-                        concept,
-                        tools,
-                        hairIron,
-                        publicOpen,
-                    );
-                    onPressGoHome();
-                }
-            });
+                    if (image.length > 0) {
+                        const imageUploadPromises = image.map(async imageData => {
+                            if (imageData.imageURL && imageData.imageName) {
+                                return await UploadImageToS3(imageData.imageURL, imageData.imageName);
+                            }
+                        });
+                        const updatedImageUrls = await Promise.all(imageUploadPromises);
+                        imageUrls = imageUrls.concat(updatedImageUrls.filter(url => url !== undefined));
+                    }
+                };
+
+                await imageUpload().then(async () => {
+                    const errorCheck =
+                        representativeImage.imageURL &&
+                        description &&
+                        branchID &&
+                        date &&
+                        frameColor &&
+                        party &&
+                        cameraShot &&
+                        concept.length > 0;
+
+                    if (errorCheck) {
+                        await UploadEditReview(
+                            route.params.reviewID,
+                            representativeImage.imageURL,
+                            imageUrls,
+                            description,
+                            branchID,
+                            date,
+                            frameColor,
+                            party,
+                            cameraShot,
+                            concept,
+                            tools,
+                            hairIron,
+                            publicOpen,
+                        );
+                        onPressGoHome();
+                    }
+                });
+            }
         } catch (e) {
             console.log(e);
         }
@@ -154,12 +160,12 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     /** 완료 버튼 클릭시 입력하지 않은 항목으로 스크롤 이동 */
     useEffect(() => {
         const onErrorScroll = (height: number) => {
-            if (scrollRef.current) {
+            if (scrollRef.current && errorData[0].height) {
                 scrollRef.current.scrollTo({ y: height, animated: true });
             }
         };
 
-        if (errorData[0]?.height) {
+        if (errorData.length) {
             onErrorScroll(errorData[0].height);
         }
     }, [errorData, scrollRef]);

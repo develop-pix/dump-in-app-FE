@@ -1,6 +1,5 @@
-import { setHairIron } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
-import { HairIronSelectProps } from 'interfaces/ReviewEdit.interface';
+import { setHairIron } from 'hooks/redux/reviewEditSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import {
     FontBlackSmallerSemibold,
     FontLightGreySmallerMedium,
@@ -14,10 +13,11 @@ import {
 } from 'styles/layout/review-form/input/HairIronSelect.style';
 import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function HairIronSelect({ hairIron }: HairIronSelectProps) {
+export default function HairIronSelect() {
     const dispatch = useAppDispatch();
+    const hairIron = useAppSelector(state => state.reviewEdit).hairIron;
 
-    // 있음 버튼 선택시 dispatch
+    /** 있음 버튼 선택시 dispatch */
     const onPressHairIron = () => {
         if (hairIron === true) {
             dispatch(setHairIron(null));
@@ -26,7 +26,7 @@ export default function HairIronSelect({ hairIron }: HairIronSelectProps) {
         }
     };
 
-    // 없음 버튼 선택시 dispatch
+    /** 없음 버튼 선택시 dispatch */
     const onPressNoHairIron = () => {
         if (hairIron === false) {
             dispatch(setHairIron(null));

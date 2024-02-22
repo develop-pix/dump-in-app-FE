@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { colors } from 'styles/base/Variable';
 
-export const ReviewNewModalContainer = styled.View<{
+export const ReviewModalContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
     flex: 1;
@@ -17,14 +17,14 @@ export const ReviewNewModalContainer = styled.View<{
     bottom: ${props => (props.platform === 'ios' ? 875 : 900)}px;
 `;
 
-export const ReviewNewModalWrapper = styled.View`
+export const ReviewModalWrapper = styled.View`
     width: 90%;
     height: 100%;
     padding: 17px 0px;
     justify-content: space-around;
 `;
 
-export const ReviewNewTouchableOpacity = styled.TouchableOpacity`
+export const ReviewTouchableOpacity = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
 `;

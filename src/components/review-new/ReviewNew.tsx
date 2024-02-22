@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Platform, ScrollView } from 'react-native';
 
-import GoBackButtonReview from 'components/reuse/button/GoBackButtonReview';
+import ReviewGoBackButton from 'components/review-new/ReviewGoBackButton';
 import { InputData } from 'interfaces/ReviewNew.interface';
 import { GoBackButtonWithSubmitContainer } from 'styles/layout/reuse/button/GoBackButton.style';
 import {
@@ -22,7 +22,7 @@ import LocationInput from './input/LocationInput';
 import PartySelect from './input/PartySelect';
 import PublicOpenSwitch from './input/PublicOpenSwitch';
 import ReviewDescriptionInput from './input/ReviewDescriptionInput';
-import ReviewNewModal from './input/ReviewNewModal';
+import ReviewNewModal from './input/ReviewModal';
 import ToolsSelect from './input/ToolsSelect';
 import ReviewSubmitButton from './ReviewSubmitButton';
 
@@ -44,7 +44,7 @@ export default function ReviewNew() {
                 />
             ) : null}
             <GoBackButtonWithSubmitContainer platform={platform}>
-                <GoBackButtonReview />
+                <ReviewGoBackButton />
                 <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
             </GoBackButtonWithSubmitContainer>
             <ImageFileInput

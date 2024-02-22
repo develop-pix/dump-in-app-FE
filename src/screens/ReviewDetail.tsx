@@ -37,7 +37,7 @@ export default function ReviewDetail() {
         id: null,
         image: [],
         concept: [],
-        isMine: false,
+        isMine: true,
         isLiked: false,
         userNickname: null,
         createdAt: null,

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
-import { setDescription } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { setDescription } from 'hooks/redux/reviewEditSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { ReviewDescriptionProps } from 'interfaces/ReviewEdit.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -19,17 +19,19 @@ import {
 } from 'styles/layout/review-form/input/ReviewDescriptionInput.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function ReviewDescriptionInput({ description, errorData }: ReviewDescriptionProps) {
-    // 위치 선택 후 돌아왔을때 게시글 길이를 유지하기 위함
+export default function ReviewDescriptionInput({ errorData }: ReviewDescriptionProps) {
     const [inputCount, setInputCount] = useState<number>(0);
+
+    const description = useAppSelector(state => state.reviewEdit).description;
     const platform = Platform.OS;
     const dispatch = useAppDispatch();
 
-    // 게시글이 변경 될때 글자길이 count 및 문자열 dispatch
+    /** 문자열 dispatch */
     const onChangeText = (e: string) => {
         dispatch(setDescription(e));
     };
 
+    //문자열이 변경될때 마다 글자길이 count
     useEffect(() => {
         if (description) {
             setInputCount(description.length);

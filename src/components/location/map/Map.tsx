@@ -5,7 +5,7 @@ import NaverMapView, { Marker } from 'react-native-nmap';
 import { useDispatch } from 'react-redux';
 
 import { GetAddressFromNaverGeocoding, GetPhotoBoothData } from 'hooks/axios/Location';
-import { setCurrentLocation } from 'hooks/redux/Location';
+import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchCardData, LocationData } from 'interfaces/Location.interface';
 import { NoBranchContainer, NoBranchToastContainer } from 'styles/layout/location/BranchCarousel.style';

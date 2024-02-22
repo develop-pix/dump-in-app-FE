@@ -65,7 +65,7 @@ export const UploadNewReview = async (
     imageUrls: (string | undefined)[],
     content: string | null,
     photoBoothId: string | null | undefined,
-    date: Date | null,
+    date: Date | string | null,
     frameColor: string | null,
     participants: number | null,
     cameraShot: string | null,

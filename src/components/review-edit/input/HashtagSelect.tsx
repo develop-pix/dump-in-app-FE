@@ -1,5 +1,5 @@
-import { setHashtag } from 'hooks/redux/ReviewData';
-import { useAppDispatch } from 'hooks/redux/store';
+import { setHashtag } from 'hooks/redux/reviewEditSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { HashtagSelectProps } from 'interfaces/ReviewEdit.interface';
 import {
     FontBlackSmallerSemibold,
@@ -15,8 +15,9 @@ import {
 } from 'styles/layout/review-form/input/HashtagSelect.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
-export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProps) {
+export default function HashtagSelect({ errorData }: HashtagSelectProps) {
     const dispatch = useAppDispatch();
+    const concept = useAppSelector(state => state.reviewEdit).concept;
     const availableHashtag = [
         '일상',
         '커플',
@@ -36,15 +37,15 @@ export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProp
         '기타',
     ];
 
-    // 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능
+    /** 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능 */
     const onPressHashtag = (tag: string) => {
-        if (hashtags.includes(tag)) {
-            const popHashtag = hashtags.filter(index => index !== tag);
+        if (concept.includes(tag)) {
+            const popHashtag = concept.filter(index => index !== tag);
             dispatch(setHashtag(popHashtag));
             return;
         }
-        if (hashtags.length < 5) {
-            dispatch(setHashtag([...hashtags, tag]));
+        if (concept.length < 5) {
+            dispatch(setHashtag([...concept, tag]));
         }
     };
 
@@ -54,7 +55,7 @@ export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProp
                 <FontWhiteNormalMedium>컨셉</FontWhiteNormalMedium>
                 <FontRedNormalMedium>*</FontRedNormalMedium>
                 {errorData.map(data => {
-                    return data.InputName === 'hashtags' ? (
+                    return data.InputName === 'concept' ? (
                         <ReviewErrorContainer key={data.InputName}>
                             <FontYellowSmallestMedium>필수 입력 항목입니다.</FontYellowSmallestMedium>
                         </ReviewErrorContainer>
@@ -67,9 +68,9 @@ export default function HashtagSelect({ hashtags, errorData }: HashtagSelectProp
                         <HashtagButton
                             key={hashtag}
                             hashtagOption={hashtag}
-                            isSelected={hashtags}
+                            isSelected={concept}
                             onPress={() => onPressHashtag(hashtag)}>
-                            {hashtags.includes(hashtag) ? (
+                            {concept.includes(hashtag) ? (
                                 <FontBlackSmallerSemibold>{hashtag}</FontBlackSmallerSemibold>
                             ) : (
                                 <FontLightGreySmallerMedium>{hashtag}</FontLightGreySmallerMedium>

@@ -10,12 +10,13 @@ export const TagsArrayToHashTagArrayForm = (hashtags: HashtagData[]) => {
     return newForm;
 };
 
-export const DateToReviewDateForm = (date: Date | null) => {
+export const DateToReviewDateForm = (date: Date | string | null) => {
     let dateForm: string = '';
 
     if (date) {
-        dateForm = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+        typeof date === 'string'
+            ? (dateForm = date)
+            : (dateForm = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`);
     }
-
     return dateForm;
 };

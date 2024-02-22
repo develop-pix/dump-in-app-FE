@@ -15,19 +15,19 @@ import {
     setPublicOpen,
     setRepresentativeImage,
     setTools,
-} from 'hooks/redux/ReviewData';
+} from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { HeaderIconContainer } from 'styles/layout/reuse/header/Header.style';
 
-import ConfirmationAlertModal from '../modal/ConfirmationAlertModal';
+import ConfirmationAlertModal from '../reuse/modal/ConfirmationAlertModal';
 
-export default function GoBackButtonReview() {
+export default function ReviewGoBackButton() {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
 
     const [openCloseModal, setOpenCloseModal] = useState<boolean>(false);
 
-    // BackButton 클릭시 redux 내용 초기화
+    /** BackButton 클릭시 redux 내용 초기화 */
     const onPressGoHome = () => {
         dispatch(setRepresentativeImage({ imageURL: undefined, imageName: undefined }));
         dispatch(setImageClear());

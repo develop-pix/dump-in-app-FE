@@ -2,16 +2,35 @@ import { useEffect, useState } from 'react';
 import { NativeScrollEvent, Platform } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useDispatch } from 'react-redux';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
+    setCameraShot,
+    setConcept,
+    setContent,
+    setCurlAmount,
+    setDate,
+    setFrameColor,
+    setGoodsAmount,
+    setImage,
+    setIsLiked,
+    setIsMine,
+    setLikeCount,
+    setMainThumbnailImageUrl,
+    setParticipants,
+    setPhotoBoothId,
+    setReviewID,
+    setUserNickname,
+} from 'hooks/redux/branchReviewDetailSlice';
+import { useAppSelector } from 'hooks/redux/store';
+import {
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
-import { ReviewData } from 'interfaces/ReviewDetail.interface';
 import { colors } from 'styles/base/Variable';
 import { FontWhiteGreySmallerMedium, FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 import {
@@ -30,32 +49,9 @@ import {
 
 import ReviewDescription from './ReviewDescription';
 
-// FIXME: 해쉬태그, isLiked, isMine 안 나오는 문제 확인 및 수정 필요함
+// FIXME: 해쉬태그(concept)가 안 나오는 문제 확인 및 수정 필요함
 export default function ReviewDetail() {
-    const [openModal, setOpenModal] = useState<boolean>(false);
     const [carouselActive, setCarouselActive] = useState<number>(0);
-    const [reviewData, setReviewData] = useState<ReviewData>({
-        id: null,
-        image: [],
-        concept: [],
-        isMine: false,
-        isLiked: false,
-        userNickname: null,
-        createdAt: null,
-        updatedAt: null,
-        content: null,
-        mainThumbnailImageUrl: '',
-        date: null,
-        frameColor: null,
-        participants: 0,
-        cameraShot: null,
-        goodsAmount: null,
-        curlAmount: null,
-        isPublic: false,
-        viewCount: 0,
-        likeCount: 0,
-        photoBoothId: null,
-    });
 
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
@@ -63,6 +59,9 @@ export default function ReviewDetail() {
         | MyPageStackScreenProps<'ReviewDetail'>['route']
     >();
     const platform = Platform.OS;
+    const dispatch = useDispatch();
+    const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
+
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
         if (nativeEvent) {
@@ -80,14 +79,31 @@ export default function ReviewDetail() {
     /** > 버튼 클릭 */
     const onPressNextButton = () => {};
 
-    // ReviewData fetch 및 set
+    // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
             const fetchData = await GetReviewData(route.params.reviewID);
-            setReviewData(fetchData.data);
+            if (fetchData.data) {
+                dispatch(setReviewID(fetchData.data.id));
+                dispatch(setImage(fetchData.data.image));
+                dispatch(setConcept(fetchData.data.concept));
+                dispatch(setIsMine(fetchData.data.isMine));
+                dispatch(setIsLiked(fetchData.data.isLiked));
+                dispatch(setUserNickname(fetchData.data.userNickname));
+                dispatch(setContent(fetchData.data.content));
+                dispatch(setMainThumbnailImageUrl(fetchData.data.mainThumbnailImageUrl));
+                dispatch(setDate(fetchData.data.date));
+                dispatch(setFrameColor(fetchData.data.frameColor));
+                dispatch(setParticipants(fetchData.data.participants));
+                dispatch(setCameraShot(fetchData.data.cameraShot));
+                dispatch(setGoodsAmount(fetchData.data.goodsAmount));
+                dispatch(setCurlAmount(fetchData.data.curlAmount));
+                dispatch(setLikeCount(fetchData.data.likeCount));
+                dispatch(setPhotoBoothId(fetchData.data.photoBoothId));
+            }
         };
         getReviewData();
-    }, [route.params.reviewID]);
+    }, [dispatch, route.params.reviewID]);
 
     return (
         <ReviewDetailFormContainer>
@@ -104,14 +120,12 @@ export default function ReviewDetail() {
                         snapToAlignment="start"
                         decelerationRate="fast">
                         <ReviewImageContainer>
-                            {reviewData.mainThumbnailImageUrl ? (
-                                <ReviewImage source={{ uri: reviewData.mainThumbnailImageUrl }} />
-                            ) : null}
+                            {mainThumbnailImageUrl ? <ReviewImage source={{ uri: mainThumbnailImageUrl }} /> : null}
                         </ReviewImageContainer>
-                        {reviewData.image.map(imageData => {
+                        {image.map(imageData => {
                             return (
                                 <ReviewImageContainer key={imageData.id}>
-                                    {reviewData.mainThumbnailImageUrl ? (
+                                    {mainThumbnailImageUrl ? (
                                         <ReviewImage source={{ uri: imageData.imageUrl }} />
                                     ) : null}
                                 </ReviewImageContainer>
@@ -127,7 +141,7 @@ export default function ReviewDetail() {
                             )}
                         </DotActive>
 
-                        {reviewData.image.map((_, index) => (
+                        {image.map((_, index) => (
                             <DotActive key={index}>
                                 {index + 1 === carouselActive ? (
                                     <FontWhiteSmallerMedium>●</FontWhiteSmallerMedium>
@@ -171,12 +185,7 @@ export default function ReviewDetail() {
                             }}
                         />
                     )}
-                    <ReviewDescription
-                        date={reviewData.date}
-                        content={reviewData.content}
-                        concept={reviewData.concept}
-                        isLiked={reviewData.isLiked}
-                    />
+                    <ReviewDescription />
                 </ReviewDetailFormWrapper>
             </ReviewDetailForm>
         </ReviewDetailFormContainer>

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import OfficialImages from 'components/reuse/official-images/OfficialImages';
 import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
 import { GetBranchData, GetBranchReviewData } from 'hooks/axios/Branch';
-import { setCurrentLocation } from 'hooks/redux/Location';
+import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchData, ReviewData } from 'interfaces/Branch.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';

@@ -5,6 +5,10 @@ export const GetReviewData = async (reviewID: number) => {
     return await axios({
         method: 'get',
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
+        headers: {
+            Authorization:
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
+        },
         params: {
             review_id: reviewID,
         },

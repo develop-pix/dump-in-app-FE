@@ -3,7 +3,7 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { GetBranchData } from 'hooks/axios/Branch';
-import { setBranchID } from 'hooks/redux/ReviewData';
+import { setBranchID } from 'hooks/redux/reviewNewSlice';
 import { useAppDispatch } from 'hooks/redux/store';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { LocationInputProps } from 'interfaces/ReviewNew.interface';
