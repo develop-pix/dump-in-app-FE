@@ -8,6 +8,7 @@ const initialState: ReviewDataState = {
     enlargedImage: { imageURL: undefined, imageName: undefined },
     description: null,
     branchID: undefined,
+    branchName: null,
     date: null,
     frameColor: null,
     party: null,
@@ -45,6 +46,9 @@ export const reviewEditSlice = createSlice({
         setBranchID(state, action: PayloadAction<string | undefined>) {
             state.branchID = action.payload;
         },
+        setBranchName(state, action: PayloadAction<string | null>) {
+            state.branchName = action.payload;
+        },
         setDate(state, action: PayloadAction<Date | string | null>) {
             state.date = action.payload;
         },
@@ -58,7 +62,10 @@ export const reviewEditSlice = createSlice({
             state.cameraShot = action.payload;
         },
         setHashtag(state, action: PayloadAction<string[]>) {
-            state.concept = action.payload;
+            state.concept = [...action.payload];
+        },
+        popHashtag(state, action: PayloadAction<string>) {
+            state.concept = state.concept.filter(index => index !== action.payload);
         },
         setTools(state, action: PayloadAction<boolean | null>) {
             state.tools = action.payload;
@@ -80,11 +87,13 @@ export const {
     setEnlargedImage,
     setDescription,
     setBranchID,
+    setBranchName,
     setDate,
     setFrameColor,
     setParty,
     setCameraShot,
     setHashtag,
+    popHashtag,
     setTools,
     setHairIron,
     setPublicOpen,

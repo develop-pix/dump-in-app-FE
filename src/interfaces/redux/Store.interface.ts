@@ -4,6 +4,7 @@ export interface ReviewDataState {
     enlargedImage: ImageData;
     description: string | null;
     branchID: string | undefined;
+    branchName: string | null;
     date: Date | string | null;
     frameColor: string | null;
     party: number | null;
@@ -57,11 +58,11 @@ export interface ReviewDetailState {
     isPublic: boolean;
     viewCount: number;
     likeCount: number;
-    photoBoothId: string | null;
+    branchName: string | null;
 }
 
 export interface ConceptData {
-    hashtagID: number;
+    id: number;
     name: string;
 }
 

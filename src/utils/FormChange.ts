@@ -1,6 +1,6 @@
-import { HashtagData } from 'interfaces/Location.interface';
+import { ConceptData } from 'interfaces/redux/Store.interface';
 
-export const TagsArrayToHashTagArrayForm = (hashtags: HashtagData[]) => {
+export const TagsArrayToHashTagArrayForm = (hashtags: ConceptData[]) => {
     const newForm: string[] = [];
 
     hashtags.map(hashtag => {

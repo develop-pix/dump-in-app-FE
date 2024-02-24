@@ -8,6 +8,7 @@ const initialState: ReviewDataState = {
     enlargedImage: { imageURL: undefined, imageName: undefined },
     description: null,
     branchID: undefined,
+    branchName: null,
     date: null,
     frameColor: null,
     party: null,
@@ -45,6 +46,9 @@ export const reviewNewSlice = createSlice({
         setBranchID(state, action: PayloadAction<string | undefined>) {
             state.branchID = action.payload;
         },
+        setBranchName(state, action: PayloadAction<string | null>) {
+            state.branchName = action.payload;
+        },
         setDate(state, action: PayloadAction<Date | string | null>) {
             state.date = action.payload;
         },
@@ -80,6 +84,7 @@ export const {
     setEnlargedImage,
     setDescription,
     setBranchID,
+    setBranchName,
     setDate,
     setFrameColor,
     setParty,

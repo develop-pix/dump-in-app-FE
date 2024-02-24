@@ -22,7 +22,7 @@ const initialState: ReviewDetailState = {
     isPublic: true,
     viewCount: 0,
     likeCount: 0,
-    photoBoothId: null,
+    branchName: null,
 };
 
 export const branchReviewDetailSlice = createSlice({
@@ -39,7 +39,7 @@ export const branchReviewDetailSlice = createSlice({
             state.image = [];
         },
         setConcept(state, action: PayloadAction<ConceptData[]>) {
-            state.concept = [...action.payload];
+            state.concept = [...state.concept, ...action.payload];
         },
         setConceptClear(state) {
             state.concept = [];
@@ -80,8 +80,8 @@ export const branchReviewDetailSlice = createSlice({
         setLikeCount(state, action: PayloadAction<number>) {
             state.likeCount = action.payload;
         },
-        setPhotoBoothId(state, action: PayloadAction<string | null>) {
-            state.photoBoothId = action.payload;
+        setBranchName(state, action: PayloadAction<string | null>) {
+            state.branchName = action.payload;
         },
     },
 });
@@ -104,7 +104,7 @@ export const {
     setGoodsAmount,
     setCurlAmount,
     setLikeCount,
-    setPhotoBoothId,
+    setBranchName,
 } = branchReviewDetailSlice.actions;
 
 export default branchReviewDetailSlice;

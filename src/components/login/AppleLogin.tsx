@@ -21,6 +21,8 @@ export default function AppleLogin() {
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
     const platform = Platform.OS;
 
+    console.log(uuid());
+
     // ios 에서 Apple Login
     const LoginWithApple = async () => {
         const appleAuthRequestResponse = await appleAuth.performRequest({

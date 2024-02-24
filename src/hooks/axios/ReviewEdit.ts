@@ -16,6 +16,8 @@ export const UploadEditReview = async (
     curlAmount: boolean | null,
     isPublic: boolean,
 ) => {
+    console.log('최종 테스트');
+    console.log(concept);
     return await axios({
         method: 'put',
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
