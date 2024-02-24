@@ -7,7 +7,7 @@ export const UploadEditReview = async (
     imageUrls: (string | undefined)[],
     content: string | null,
     photoBoothId: string | null | undefined,
-    date: Date | string | null,
+    date: string | null,
     frameColor: string | null,
     participants: number | null,
     cameraShot: string | null,
@@ -16,8 +16,6 @@ export const UploadEditReview = async (
     curlAmount: boolean | null,
     isPublic: boolean,
 ) => {
-    console.log('최종 테스트');
-    console.log(concept);
     return await axios({
         method: 'put',
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
@@ -30,7 +28,7 @@ export const UploadEditReview = async (
             imageUrls,
             content,
             photoBoothId,
-            date: '2024-01-11', //TODO: Date 형식으로 입력받을수 있도록 수정될 예정 임시로 'yyyy-mm-dd' string으로 받도록 고정
+            date,
             frameColor,
             participants,
             cameraShot,

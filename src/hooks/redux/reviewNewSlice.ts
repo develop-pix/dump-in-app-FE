@@ -49,7 +49,7 @@ export const reviewNewSlice = createSlice({
         setBranchName(state, action: PayloadAction<string | null>) {
             state.branchName = action.payload;
         },
-        setDate(state, action: PayloadAction<Date | string | null>) {
+        setDate(state, action: PayloadAction<string | null>) {
             state.date = action.payload;
         },
         setFrameColor(state, action: PayloadAction<string | null>) {

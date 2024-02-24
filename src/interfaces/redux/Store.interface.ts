@@ -5,7 +5,7 @@ export interface ReviewDataState {
     description: string | null;
     branchID: string | undefined;
     branchName: string | null;
-    date: Date | string | null;
+    date: string | null;
     frameColor: string | null;
     party: number | null;
     cameraShot: string | null;

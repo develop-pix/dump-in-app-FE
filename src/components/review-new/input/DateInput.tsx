@@ -13,7 +13,7 @@ import {
 import { DateInputContainer, DateInputWrapper, DateTextButton } from 'styles/layout/review-form/input/DateInput.style';
 import { ReviewDescriptionTextInputContainer } from 'styles/layout/review-form/input/ReviewDescriptionInput.style';
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
-import { DateToReviewDateForm } from 'utils/FormChange';
+import { DateToReviewDateForm, UploadReviewDateForm } from 'utils/FormChange';
 
 export default function DateInput({ errorData }: DateInputProps) {
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
@@ -33,7 +33,7 @@ export default function DateInput({ errorData }: DateInputProps) {
 
     /** 변경 버튼을 눌렀을떄, 날짜 dispatch */
     const onClickConfirm = (selectDate: Date) => {
-        dispatch(setDate(selectDate));
+        dispatch(setDate(UploadReviewDateForm(selectDate)));
         setDatePickerOpen(false);
     };
 

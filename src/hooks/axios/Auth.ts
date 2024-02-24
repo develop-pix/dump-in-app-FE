@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-export const NaverSocialLogin = async (token: string | null) => {
+export const NaverSocialLogin = async (accessToken: string | null) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/naver/login`,
         data: {
-            accessToken: token,
+            accessToken,
         },
     })
         .then(res => {
@@ -17,12 +17,12 @@ export const NaverSocialLogin = async (token: string | null) => {
         });
 };
 
-export const AppleSocialLogin = async (token: string | null) => {
+export const AppleSocialLogin = async (accessToken: string | null) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/apple/login`,
         data: {
-            accessToken: token,
+            accessToken,
         },
     })
         .then(res => {
@@ -33,12 +33,12 @@ export const AppleSocialLogin = async (token: string | null) => {
         });
 };
 
-export const KakaoSocialLogin = async (token: string | null) => {
+export const KakaoSocialLogin = async (accessToken: string | null) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/kakao/login`,
         data: {
-            accessToken: token,
+            accessToken,
         },
     })
         .then(res => {
@@ -50,12 +50,12 @@ export const KakaoSocialLogin = async (token: string | null) => {
 };
 
 //FIXME: API 명세 질문 후 수정
-export const RefreshAccessToken = async (token: string | null) => {
+export const RefreshAccessToken = async (accessToken: string | null) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/jwt/refresh`,
         data: {
-            accessToken: token,
+            accessToken,
         },
     })
         .then(res => {

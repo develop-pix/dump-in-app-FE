@@ -99,7 +99,6 @@ export default function ReviewEdit() {
                 dispatch(setHairIron(fetchData.data.curlAmount));
                 dispatch(setTools(fetchData.data.goodsAmount));
                 dispatch(setPublicOpen(fetchData.data.isPublic));
-                //FIXME: 백엔드 데이터 바뀔시 수정필요(위도,경도 필요없도록 수정예정), 또는 리뷰조회시 해당 브랜치의 이름을 얻어올수 있는지 요청한 상태
                 dispatch(setBranchID(fetchData.data.photoBoothId));
                 dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
             } catch (e) {
