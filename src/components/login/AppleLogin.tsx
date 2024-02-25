@@ -5,8 +5,8 @@ import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
 import AppleIcon from 'assets/image/icon/apple_login.svg';
-import { setAccessToken } from 'hooks/redux/accessTokenSlice';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
+import { setAccessToken } from 'hooks/redux/tokenSlice';
 import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -15,13 +15,35 @@ import {
     AppleLoginContainer,
     AppleText,
 } from 'styles/layout/login/AppleLogin.style';
+import { AppleSocialLogin } from 'hooks/axios/Auth';
 
 export default function AppleLogin() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
     const platform = Platform.OS;
+    const mobileToken = useAppSelector(state => state.token).mobileToken;
 
-    console.log(uuid());
+    const GetTokenLogin = async (identifyToken: string | null | undefined) => {
+        console.log('애플 토큰 관련');
+        console.log(identifyToken);
+        try {
+            if (identifyToken) {
+                const socialLoginResult = await AppleSocialLogin(identifyToken, mobileToken);
+                console.log(socialLoginResult);
+                if (socialLoginResult.data) {
+                    dispatch(setAccessToken(socialLoginResult.data.accessToken));
+
+                    //userID, userNickName 받아서 리덕스에 저장
+                    dispatch(setUserID('jsee53'));
+                    dispatch(setUserNickName('지나가는 오리너구리'));
+
+                    navigation.navigate('MyPage');
+                }
+            }
+        } catch (error) {
+            console.error('Apple Login Error:', error);
+        }
+    };
 
     // ios 에서 Apple Login
     const LoginWithApple = async () => {
@@ -52,17 +74,6 @@ export default function AppleLogin() {
         if (appleAuthRequestResponse) {
             GetTokenLogin(appleAuthRequestResponse.id_token);
         }
-    };
-
-    const GetTokenLogin = (accessToken: string | null | undefined) => {
-        if (accessToken) {
-            // Login API 연동
-            dispatch(setAccessToken('asdqwemalskd'));
-            dispatch(setUserID('jsee53'));
-            dispatch(setUserNickName('지나가는 오리너구리'));
-        }
-
-        navigation.navigate('MyPage');
     };
 
     return (

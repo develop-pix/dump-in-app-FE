@@ -14,7 +14,7 @@ import MyPostList from './my-activity/MyPostList';
 import MyReviewList from './my-activity/MyReviewList';
 
 export default function MyPage() {
-    const accessToken = useAppSelector(state => state.login.token);
+    const accessToken = useAppSelector(state => state.token.accessToken);
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
     const isLoggedIn = accessToken !== null;

@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
-import { setAccessToken } from 'hooks/redux/accessTokenSlice';
 import { useAppDispatch } from 'hooks/redux/store';
+import { setAccessToken } from 'hooks/redux/tokenSlice';
 import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {

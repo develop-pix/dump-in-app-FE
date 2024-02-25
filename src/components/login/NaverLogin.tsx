@@ -3,8 +3,9 @@ import { useNavigation } from '@react-navigation/native';
 import Config from 'react-native-config';
 
 import NaverIcon from 'assets/image/icon/naver_login.svg';
-import { setAccessToken } from 'hooks/redux/accessTokenSlice';
-import { useAppDispatch } from 'hooks/redux/store';
+import { NaverSocialLogin } from 'hooks/axios/Auth';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
+import { setAccessToken } from 'hooks/redux/tokenSlice';
 import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -24,19 +25,22 @@ const naverKeys: NaverLoginRequest = {
 export default function NaverLogin() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const mobileToken = useAppSelector(state => state.token).mobileToken;
 
     const loginWithNaver = async () => {
         try {
             const loginResult = await NaverLoginModule.login(naverKeys);
+
             if (loginResult.isSuccess && loginResult.successResponse) {
-                console.log('네이버 AccessToken: ', loginResult.successResponse.accessToken);
+                const socialLoginResult = await NaverSocialLogin(loginResult.successResponse.accessToken, mobileToken);
+                if (socialLoginResult.data) {
+                    dispatch(setAccessToken(socialLoginResult.data.accessToken));
+                    //userID, userNickName 받아서 리덕스에 저장
+                    dispatch(setUserID('jsee53'));
+                    dispatch(setUserNickName('지나가는 오리너구리'));
 
-                // 서버에 accessToken 토큰 전송하고 JWT토큰, userID, userNickName 받아서 리덕스에 저장
-                dispatch(setAccessToken('asdqwemalskd'));
-                dispatch(setUserID('jsee53'));
-                dispatch(setUserNickName('지나가는 오리너구리'));
-
-                navigation.navigate('MyPage');
+                    navigation.navigate('MyPage');
+                }
             }
         } catch (error) {
             console.error('Naver Login Error:', error);

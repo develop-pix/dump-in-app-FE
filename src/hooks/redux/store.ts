@@ -6,16 +6,16 @@ import { createLogger } from 'redux-logger';
 import { persistReducer } from 'redux-persist';
 
 import accessTokenExpireSlice from './accessTokenExpireSlice';
-import accessTokenSlice from './accessTokenSlice';
 import branchReviewDetailSlice from './branchReviewDetailSlice';
 import currentLocationSlice from './currentLocationSlice';
 import reviewEditSlice from './reviewEditSlice';
 import reviewNewSlice from './reviewNewSlice';
+import tokenSlice from './tokenSlice';
 import userDataSlice from './userDataSlice';
 
 // 상태 추가 할 것 추가
 const reducers = combineReducers({
-    login: accessTokenSlice.reducer,
+    token: tokenSlice.reducer,
     expire: accessTokenExpireSlice.reducer,
     reviewNew: reviewNewSlice.reducer,
     reviewEdit: reviewEditSlice.reducer,
@@ -31,7 +31,7 @@ const initialState = {};
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['login', 'expire', 'userData'],
+    whitelist: ['token', 'expire', 'userData'],
 };
 const persistedReducer = persistReducer(persistConfig, reducers);
 

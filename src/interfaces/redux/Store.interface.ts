@@ -20,8 +20,9 @@ export interface ImageData {
     imageName: string | undefined;
 }
 
-export interface AccessTokenState {
-    token: string | null;
+export interface TokenState {
+    accessToken: string | null;
+    mobileToken: string | null;
 }
 
 export interface AccessTokenExpireState {

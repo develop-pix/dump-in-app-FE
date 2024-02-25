@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeReview } from 'hooks/axios/ReviewDetail';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
@@ -19,9 +20,11 @@ import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/te
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
-
     const isFocused = useIsFocused();
 
+    const [favorite, setFavorite] = useState<boolean>(true);
+
+    /**  */
     const onPressReview = () => {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
@@ -30,7 +33,13 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
         }
     };
 
-    const [favorite, setFavorite] = useState<boolean>(true);
+    /** 하트(좋아요) 버튼 클릭 */
+    const onPressReviewLikeButton = async () => {
+        const press_result = await LikeReview(data.reviewID);
+        if (press_result.success) {
+            setFavorite(prev => !prev);
+        }
+    };
 
     return (
         <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
@@ -48,7 +57,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
             />
 
             <FavoriteIcon>
-                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                <FavoriteButton favorite={favorite} onPress={onPressReviewLikeButton} />
             </FavoriteIcon>
 
             <ReviewInfo>

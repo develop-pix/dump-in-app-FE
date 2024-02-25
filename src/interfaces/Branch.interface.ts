@@ -23,7 +23,7 @@ interface PhotoBoothImageData {
 }
 
 interface BranchHashtagData {
-    hashtagID: number;
+    id: number;
     name: string;
 }
 

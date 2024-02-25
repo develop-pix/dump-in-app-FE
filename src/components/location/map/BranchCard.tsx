@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeBranch } from 'hooks/axios/Branch';
 import { BranchCardProps } from 'interfaces/Location.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -43,6 +44,14 @@ export default function BranchCard({
         }
     };
 
+    /** 하트 버튼 클릭시 */
+    const onPressBranchLikeButton = async () => {
+        const press_result = await LikeBranch(branchID);
+        if (press_result.success) {
+            setFavorite(prev => !prev);
+        }
+    };
+
     return (
         <TouchableCardContainer activeOpacity={0.95} onPress={onPressBranchCard}>
             <CardContainer>
@@ -63,7 +72,7 @@ export default function BranchCard({
                             ))}
                         </BranchCardHashtag>
                     </BranchCardDescription>
-                    <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                    <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
                 </BranchCardTop>
                 <BranchCardHorizonLine />
                 <BranchCardBottom>
