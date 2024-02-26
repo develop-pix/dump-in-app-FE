@@ -2,6 +2,7 @@ import axios from 'axios';
 import Config from 'react-native-config';
 
 export const UploadEditReview = async (
+    accessToken: string,
     reviewID: number,
     mainThumbnailImageUrl: string | undefined,
     imageUrls: (string | undefined)[],
@@ -21,7 +22,7 @@ export const UploadEditReview = async (
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
         headers: {
             Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
+                `Bearer ${accessToken}`,
         },
         data: {
             mainThumbnailImageUrl,

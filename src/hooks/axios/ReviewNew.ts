@@ -55,6 +55,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
 };
 
 export const UploadNewReview = async (
+    accessToken: string,
     mainThumbnailImageUrl: string | undefined,
     imageUrls: (string | undefined)[],
     content: string | null,
@@ -72,8 +73,7 @@ export const UploadNewReview = async (
         method: 'post',
         url: `${Config.BACKEND_API_URL}/reviews/`,
         headers: {
-            Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
+            Authorization: `Bearer ${accessToken}`,
         },
         data: {
             mainThumbnailImageUrl,

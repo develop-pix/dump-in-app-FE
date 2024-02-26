@@ -39,6 +39,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         hairIron,
         publicOpen,
     } = useAppSelector(state => state.reviewNew);
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {
@@ -119,6 +120,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
 
             await imageUpload().then(async () => {
                 const errorCheck =
+                    accessToken &&
                     mainThumbnailImageUrl &&
                     description &&
                     branchID &&
@@ -130,6 +132,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
 
                 if (errorCheck) {
                     await UploadNewReview(
+                        accessToken,
                         mainThumbnailImageUrl,
                         imageUrls,
                         description,

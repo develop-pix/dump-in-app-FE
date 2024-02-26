@@ -60,6 +60,7 @@ export default function ReviewDetail() {
     const platform = Platform.OS;
     const dispatch = useDispatch();
     const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
@@ -81,7 +82,7 @@ export default function ReviewDetail() {
     // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
-            const fetchData = await GetReviewData(route.params.reviewID);
+            const fetchData = await GetReviewData(accessToken, route.params.reviewID);
             if (fetchData.data) {
                 console.log('fetchData.data');
                 console.log(fetchData.data);

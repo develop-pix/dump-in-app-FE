@@ -17,14 +17,16 @@ import {
     ReviewNameContainer,
 } from 'styles/layout/home/photo-booth-list/ReviewFrame.style';
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
+import { useAppSelector } from 'hooks/redux/store';
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     const [favorite, setFavorite] = useState<boolean>(true);
 
-    /**  */
+    /** 리뷰선택시 페이지 이동 */
     const onPressReview = () => {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
@@ -35,9 +37,11 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
 
     /** 하트(좋아요) 버튼 클릭 */
     const onPressReviewLikeButton = async () => {
-        const press_result = await LikeReview(data.reviewID);
-        if (press_result.success) {
-            setFavorite(prev => !prev);
+        if (accessToken) {
+            const press_result = await LikeReview(accessToken, data.reviewID);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
         }
     };
 

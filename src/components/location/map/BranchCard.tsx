@@ -23,6 +23,7 @@ import {
     FontYellowSmallerMediumWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
+import { useAppSelector } from 'hooks/redux/store';
 
 export default function BranchCard({
     branchID,
@@ -36,6 +37,7 @@ export default function BranchCard({
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
     const isFocused = useIsFocused();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
@@ -46,12 +48,14 @@ export default function BranchCard({
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
-        const press_result = await LikeBranch(branchID);
-        if (press_result.success) {
-            setFavorite(prev => !prev);
+        if (accessToken) {
+            const press_result = await LikeBranch(accessToken, branchID);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
         }
     };
-
+    
     return (
         <TouchableCardContainer activeOpacity={0.95} onPress={onPressBranchCard}>
             <CardContainer>
