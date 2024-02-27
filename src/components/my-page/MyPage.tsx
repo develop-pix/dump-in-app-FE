@@ -17,16 +17,7 @@ export default function MyPage() {
     const accessToken = useAppSelector(state => state.token.accessToken);
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
-    const isLoggedIn = accessToken !== null;
-    const [activeComponent, setActiveComponent] = useState<ActivityComponentProps>(
-        isLoggedIn ? 'MyReviewList' : 'Login',
-    );
-
-    if (isLoggedIn && activeComponent !== 'MyReviewList') {
-        setActiveComponent('MyReviewList');
-    } else if (!isLoggedIn && activeComponent !== 'Login') {
-        setActiveComponent('Login');
-    }
+    const [activeComponent, setActiveComponent] = useState<ActivityComponentProps>('Login');
 
     const updateActiveComponent = (newComponent: ActivityComponentProps) => {
         setActiveComponent(newComponent);
@@ -45,7 +36,7 @@ export default function MyPage() {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                if (isLoggedIn) {
+                if (accessToken) {
                     return (
                         <HeaderRightContainer>
                             <HeaderIconContainer
@@ -59,7 +50,11 @@ export default function MyPage() {
                 }
             },
         });
-    }, [isLoggedIn, navigation]);
+    }, [accessToken, navigation]);
+
+    useEffect(() => {
+        accessToken ? setActiveComponent('MyReviewList') : setActiveComponent('Login');
+    }, [accessToken]);
 
     return <>{activeComponentMap[activeComponent]}</>;
 }

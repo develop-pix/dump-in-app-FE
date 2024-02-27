@@ -81,24 +81,28 @@ export default function ReviewSearchInput() {
         const tempFinishedEvent = false; // 검색어에 대한 이벤트가 있지만 종료된 경우
         const tempReviewData: ReviewProps[] = [
             {
-                reviewID: 1,
-                branchName: '포토부스 혜화점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: 1,
+                photoBoothBrandName: '포토부스 혜화점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
-                reviewID: 2,
-                branchName: '포토부스 서울대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: 2,
+                photoBoothBrandName: '포토부스 서울대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
-                reviewID: 3,
-                branchName: '포토그레이 홍대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: 3,
+                photoBoothBrandName: '포토그레이 홍대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
-                reviewID: 4,
-                branchName: '인생네컷 홍대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: 4,
+                photoBoothBrandName: '인생네컷 홍대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
         ];
 

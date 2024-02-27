@@ -15,6 +15,8 @@ import {
     FavoriteIcon,
 } from 'styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
 import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from 'styles/layout/reuse/text/Text.style';
+import { useAppSelector } from 'hooks/redux/store';
+import { LikeEvent } from 'hooks/axios/Event';
 
 export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProps) {
     const navigation = useNavigation<
@@ -22,7 +24,11 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const isFocused = useIsFocused();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
+    const [favorite, setFavorite] = useState<boolean>(event.isLiked);
+
+    /** EventDetail 페이지로 이동 */
     const onPressEvent = (id: number) => {
         if (isFocused) {
             switch (navigation.getId()) {
@@ -40,12 +46,20 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
         }
     };
 
-    const [favorite, setFavorite] = useState<boolean>(event.myEvent);
+    /** 하트 버튼 클릭시 */
+    const onPressEventLikeButton = async () => {
+        if (accessToken) {
+            const press_result = await LikeEvent(accessToken, event.id);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
+        }
+    };
 
     return (
-        <EventItem key={event.eventID} onPress={() => onPressEvent(event.eventID)}>
+        <EventItem key={event.id} onPress={() => onPressEvent(event.id)}>
             <EventImageWrapper>
-                <EventImage source={{ uri: event.representativeImage }} />
+                <EventImage source={{ uri: event.mainThumbnailImageUrl }} />
                 <LinearGradient
                     colors={['transparent', colors.lightblack]}
                     locations={[0.1, 1]}
@@ -59,12 +73,12 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
                 />
 
                 <FavoriteIcon>
-                    <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                    <FavoriteButton favorite={favorite} onPress={onPressEventLikeButton} />
                 </FavoriteIcon>
 
                 <EventInfo>
                     <EventTitleContainer>
-                        <FontWhiteBiggestSemibold>{event.eventTitle}</FontWhiteBiggestSemibold>
+                        <FontWhiteBiggestSemibold>{event.title}</FontWhiteBiggestSemibold>
                     </EventTitleContainer>
                     <FontWhiteGreySmallerMedium>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerMedium>
                 </EventInfo>

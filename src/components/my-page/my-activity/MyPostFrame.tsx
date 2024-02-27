@@ -30,7 +30,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
     const onPressReview = () => {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
-                reviewID: data.reviewID,
+                reviewID: data.id,
             });
         }
     };
@@ -38,7 +38,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
     /** 하트(좋아요) 버튼 클릭 */
     const onPressReviewLikeButton = async () => {
         if (accessToken) {
-            const press_result = await LikeReview(accessToken, data.reviewID);
+            const press_result = await LikeReview(accessToken, data.id);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
@@ -47,7 +47,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
 
     return (
         <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
-            <ReviewFrameImage source={{ uri: data.representativeImage }} />
+            <ReviewFrameImage source={{ uri: data.mainThumbnailImageUrl }} />
             <LinearGradient
                 colors={['transparent', colors.lightblack]}
                 locations={[0.1, 1]}
@@ -70,7 +70,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
                         <LocationGreyIcon width={18} height={21} />
                     </LocationIconContainer>
                     <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.branchName}
+                        {data.photoBoothBrandName + ' ' + data.photoBoothName}
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </ReviewNameContainer>
             </ReviewInfo>

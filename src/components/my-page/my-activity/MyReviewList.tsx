@@ -10,98 +10,101 @@ import { ReviewProps } from 'interfaces/Home.interface';
 import { MyPageUserDataProps } from 'interfaces/MyPage.interface';
 import { colors } from 'styles/base/Variable';
 import { MyReviewListContainer, SkeletonMyReviewContainer } from 'styles/layout/my-page/MyActivity/MyReviewList.style';
+import { GetMyReviewList } from 'hooks/axios/MyPage';
+import { useAppSelector } from 'hooks/redux/store';
 
 export default function MyReviewList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
-    // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const flatListRef = useRef<FlatList>(null);
+    const [dataEnd, setDataEnd] = useState<boolean>(true);
 
+    const dataLimit = 6;
+    const flatListRef = useRef<FlatList>(null);
+    const accessToken = useAppSelector(state => state.token).accessToken;
+
+    /** 내 사진 항목 데이터 Get */
+    const getMyReview = async () => {
+        try {
+            if (accessToken) {
+                const resultList = await GetMyReviewList(accessToken, dataLimit, page);
+                return resultList.data;
+            }
+        } catch (error) {
+            console.log('GetReviewListError' + error);
+        }
+    };
+
+    /** FlatList ListHeaderComponent */
     const renderHeader = useCallback(() => {
         return <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />;
     }, [activeComponent, updateActiveComponent]);
 
-    const onEndReached = () => {
-        const newPage = page + 1;
-        setPage(newPage);
-
-        const moreData = Array(6)
-            .fill(null)
-            .map((_, index) => ({
-                ...reviewData[0],
-                reviewID: newPage * 6 + index + 1,
-            }));
-
-        setReviewData(prevData => [...prevData, ...moreData]);
-    };
-
+    /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
         return <ReviewFrame data={item} />;
     }, []);
 
+    /** FlatList onEndReached */
+    const onEndReached = async () => {
+        setPage(prev => prev + 1);
+        const newData = await getMyReview();
+
+        setReviewData(prevData => [...prevData, ...newData.results]);
+        setIsLoading(false);
+        newData.next !== null && setDataEnd(prev => !prev);
+    };
+
+    // MyPage 진입시 내 사진 항목 데이터 Get
     useEffect(() => {
-        setTimeout(() => {
-            setReviewData([
-                {
-                    reviewID: 1,
-                    branchName: '포토부스 혜화점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 2,
-                    branchName: '포토부스 서울대점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 3,
-                    branchName: '포토그레이 홍대점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 4,
-                    branchName: '인생네컷 홍대점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 5,
-                    branchName: '포토부스 혜화점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 6,
-                    branchName: '포토부스 혜화점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-            ]);
+        const getFirstMyReview = async () => {
+            const reviewList = await getMyReview();
+            setReviewData(reviewList.results);
             setIsLoading(false);
-        }, 500);
+            reviewList.next !== null && setDataEnd(prev => !prev);
+        };
+
+        getFirstMyReview();
     }, []);
 
     return (
         <MyReviewListContainer>
             {!isLoading ? (
                 <>
-                    <FlatList
-                        contentContainerStyle={{ backgroundColor: colors.black }}
-                        data={reviewData}
-                        keyExtractor={item => item.reviewID.toString()}
-                        ref={flatListRef}
-                        ListHeaderComponent={renderHeader}
-                        renderItem={renderReviewItem}
-                        numColumns={2}
-                        columnWrapperStyle={{ justifyContent: 'space-evenly' }}
-                        onEndReached={onEndReached}
-                        onEndReachedThreshold={0.1}
-                        ListFooterComponent={SkeletonGetMoreMyPageReview}
-                    />
-                    <UpScrollButton top="88%" flatListRef={flatListRef} />
+                    {dataEnd ? (
+                        <>
+                            <FlatList
+                                contentContainerStyle={{
+                                    height: '100%',
+                                }}
+                                data={reviewData}
+                                keyExtractor={item => item.id.toString()}
+                                ref={flatListRef}
+                                ListHeaderComponent={renderHeader}
+                                renderItem={renderReviewItem}
+                                numColumns={2}
+                                columnWrapperStyle={{ justifyContent: 'space-evenly' }}
+                            />
+                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                        </>
+                    ) : (
+                        <>
+                            <FlatList
+                                contentContainerStyle={{ backgroundColor: colors.lightblack }}
+                                data={reviewData}
+                                keyExtractor={item => item.id.toString()}
+                                ref={flatListRef}
+                                ListHeaderComponent={renderHeader}
+                                renderItem={renderReviewItem}
+                                numColumns={2}
+                                columnWrapperStyle={{ justifyContent: 'space-evenly' }}
+                                onEndReached={onEndReached}
+                                onEndReachedThreshold={0.1}
+                                ListFooterComponent={SkeletonGetMoreMyPageReview}
+                            />
+                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                        </>
+                    )}
                 </>
             ) : (
                 <SkeletonMyReviewContainer>

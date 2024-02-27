@@ -31,27 +31,31 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
 
     const onEndReached = () => {
         // 스크롤 시 새로운 임시 데이터
-        const lastReviewID = allPhotoBoothData[allPhotoBoothData.length - 1].reviewID;
+        const lastReviewID = allPhotoBoothData[allPhotoBoothData.length - 1].id;
         const newReviewData: ReviewProps[] = [
             {
-                reviewID: lastReviewID + 1,
-                branchName: '포토부스 서울대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: lastReviewID + 1,
+                photoBoothBrandName: '포토부스 서울대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
-                reviewID: lastReviewID + 2,
-                branchName: '포토부스 홍대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: lastReviewID + 2,
+                photoBoothBrandName: '포토부스 홍대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
-                reviewID: lastReviewID + 3,
-                branchName: '포토그레이 서울대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: lastReviewID + 3,
+                photoBoothBrandName: '포토그레이 서울대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
-                reviewID: lastReviewID + 4,
-                branchName: '인생네컷 홍대점',
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
+                id: lastReviewID + 4,
+                photoBoothBrandName: '인생네컷 홍대점',
+                photoBoothName: '',
+                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
         ];
 
@@ -60,7 +64,7 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
     };
 
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
-        return <ReviewFrame key={item.reviewID} data={item} />;
+        return <ReviewFrame key={item.id} data={item} />;
     }, []);
 
     return (
@@ -80,7 +84,7 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
                             </PhotoDumpTitleContainer>
                             <FlatList
                                 data={allPhotoBoothData}
-                                keyExtractor={item => item.reviewID.toString()}
+                                keyExtractor={item => item.id.toString()}
                                 ref={flatListRef}
                                 renderItem={renderReviewItem}
                                 onEndReached={onEndReached}
@@ -113,7 +117,7 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
                             </PhotoDumpTitleContainer>
                             <FlatList
                                 data={allPhotoBoothData}
-                                keyExtractor={item => item.reviewID.toString()}
+                                keyExtractor={item => item.id.toString()}
                                 ref={flatListRef}
                                 renderItem={renderReviewItem}
                                 onEndReached={onEndReached}

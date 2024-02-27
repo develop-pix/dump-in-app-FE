@@ -18,12 +18,19 @@ import {
     FontYellowSmallerMediumWithLineSpacingWithMargin,
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
+import { useAppSelector } from 'hooks/redux/store';
+import { LikeBranch } from 'hooks/axios/Branch';
 
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
 
-    const onPressPhotoBooth = (id: number) => {
+    const [favorite, setFavorite] = useState<boolean>(photoBoothData.isLiked);
+    const accessToken = useAppSelector(state => state.token).accessToken;
+
+    /** 지점 항목 클릭시 */
+    //FIXME: PhotoBoothDetail이 아닌 Branch로 이동해야함
+    const onPressPhotoBooth = (id: string) => {
         if (isFocused) {
             navigation.navigate('PhotoBoothDetail', {
                 photoBoothID: id,
@@ -31,17 +38,26 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
         }
     };
 
-    const [favorite, setFavorite] = useState<boolean>(photoBoothData.myPhotoBooth);
+    /** 하트 버튼 클릭시 */
+    const onPressBranchLikeButton = async () => {
+        if (accessToken) {
+            const press_result = await LikeBranch(accessToken, photoBoothData.id);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
+        }
+    };
 
     return (
-        <MyPhotoBoothFrameContainer onPress={() => onPressPhotoBooth(photoBoothData.photoBoothID)}>
-            <PhotoBoothImage source={{ uri: photoBoothData.representativeImage }} />
+        <MyPhotoBoothFrameContainer onPress={() => onPressPhotoBooth(photoBoothData.id)}>
+            {/* FIXME: resizeMode 수정 필요 ,ios에서 http일경우 사진이 출력되지 않는 문제 */}
+            <PhotoBoothImage source={{ uri: photoBoothData.photoBoothBrandLogoImageUrl }} resizeMode='contain' />
             <InfoContainer>
                 <PhotoBoothNameWrapper>
                     <FontWhiteBiggestSemiboldWithLineHeight>
-                        {photoBoothData.photoBoothName}
+                        {photoBoothData.photoBoothBrandName}
                     </FontWhiteBiggestSemiboldWithLineHeight>
-                    <FontWhiteGreySmallerSemibold>{photoBoothData.branch}</FontWhiteGreySmallerSemibold>
+                    <FontWhiteGreySmallerSemibold>{photoBoothData.photoBoothName}</FontWhiteGreySmallerSemibold>
                 </PhotoBoothNameWrapper>
 
                 <HashtagContainer>
@@ -54,7 +70,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
             </InfoContainer>
 
             <FavoriteIcon>
-                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
             </FavoriteIcon>
         </MyPhotoBoothFrameContainer>
     );
