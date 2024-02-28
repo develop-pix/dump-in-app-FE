@@ -36,6 +36,7 @@ export interface LocationState {
 
 export interface UserDataState {
     userID: string | null;
+    email: string | null;
     userNickName: string | null;
 }
 

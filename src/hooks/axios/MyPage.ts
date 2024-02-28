@@ -81,3 +81,35 @@ export const GetMyEventList = async (accessToken: string, limit: number, offset:
         });
 };
 
+export const GetMyUserData = async (accessToken: string) => {
+    return await axios({
+        method: 'get',
+        url: `${Config.BACKEND_API_URL}/users/detail`,
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const EditMyNickName = async (accessToken: string, nickname: string) => {
+    return await axios({
+        method: 'put',
+        url: `${Config.BACKEND_API_URL}/users/detail`,
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+        data: { nickname },
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};

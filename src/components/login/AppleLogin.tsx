@@ -32,11 +32,6 @@ export default function AppleLogin() {
                 console.log(socialLoginResult);
                 if (socialLoginResult.data) {
                     dispatch(setAccessToken(socialLoginResult.data.accessToken));
-
-                    //userID, userNickName 받아서 리덕스에 저장
-                    dispatch(setUserID('jsee53'));
-                    dispatch(setUserNickName('지나가는 오리너구리'));
-
                     navigation.navigate('MyPage');
                 }
             }

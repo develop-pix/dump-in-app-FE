@@ -26,11 +26,6 @@ export default function KakaoLogin() {
                 const socialLoginResult = await KakaoSocialLogin(token.accessToken, mobileToken);
                 if (socialLoginResult.data) {
                     dispatch(setAccessToken(socialLoginResult.data.accessToken));
-                    
-                    //userID, userNickName 받아서 리덕스에 저장
-                    dispatch(setUserID('jsee53'));
-                    dispatch(setUserNickName('지나가는 오리너구리'));
-    
                     navigation.navigate('MyPage');
                 }
             }
