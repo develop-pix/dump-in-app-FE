@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
-import { useAppDispatch } from 'hooks/redux/store';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setAccessToken } from 'hooks/redux/tokenSlice';
 import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
@@ -21,21 +21,32 @@ import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from 'styles/lay
 export default function MyPageMenu() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const accessToken = useAppSelector(state => state.token).accessToken;
+    const isFocused = useIsFocused();
 
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
 
+    /** 로그아웃 버튼 클릭시 모달 출력 */
     const onLogoutAlert = () => {
         setIsAlertModalVisible(true);
     };
 
+    /** 로그아웃 진행시 토큰 제거 */
     const handleLogout = () => {
-        // 리덕스 토큰 -> 서버로 로그아웃 요청
         setIsAlertModalVisible(false);
         dispatch(setAccessToken(null));
         dispatch(setUserID(null));
         dispatch(setUserNickName(null));
     };
 
+    /** 로그인 버튼 클릭 */
+    const handleLogin = () => {
+        if (isFocused) {
+            navigation.navigate('Login');
+        }
+    };
+
+    /** 알림 버튼 클릭 */
     const onNotificationScreen = () => {
         navigation.navigate('Notification');
     };
@@ -78,9 +89,15 @@ export default function MyPageMenu() {
                 </TextContainer>
 
                 <UserTextContainer>
-                    <MenuItemContainer onPress={onLogoutAlert}>
-                        <FontWhiteGreyBiggerSemibold>로그아웃</FontWhiteGreyBiggerSemibold>
-                    </MenuItemContainer>
+                    {accessToken ? (
+                        <MenuItemContainer onPress={onLogoutAlert}>
+                            <FontWhiteGreyBiggerSemibold>로그아웃</FontWhiteGreyBiggerSemibold>
+                        </MenuItemContainer>
+                    ) : (
+                        <MenuItemContainer onPress={handleLogin}>
+                            <FontWhiteGreyBiggerSemibold>로그인</FontWhiteGreyBiggerSemibold>
+                        </MenuItemContainer>
+                    )}
 
                     <MenuItemContainer>
                         <FontWhiteGreyBiggerSemibold>회원탈퇴</FontWhiteGreyBiggerSemibold>
