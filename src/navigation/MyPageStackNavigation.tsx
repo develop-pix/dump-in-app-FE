@@ -1,9 +1,9 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import MyPageMenu from 'components/my-page/MyPageMenu';
+import Branch from 'screens/Branch';
 import Login from 'screens/Login';
 import MyPage from 'screens/MyPage';
-import PhotoBoothDetail from 'screens/PhotoBoothDetail';
 import ReviewDetail from 'screens/ReviewDetail';
 import { colors } from 'styles/base/Variable';
 
@@ -45,9 +45,9 @@ export default function MyPageStackNavigation() {
                 }}
             />
             <Stack.Screen
-                name="PhotoBoothDetail"
-                component={PhotoBoothDetail}
-                initialParams={{ PhotoBoothID: 0 }}
+                name="Branch"
+                component={Branch}
+                initialParams={{ branchID: null }}
                 options={{ headerTransparent: true }}
             />
             <Stack.Screen

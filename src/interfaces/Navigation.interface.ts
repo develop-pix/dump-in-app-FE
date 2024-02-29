@@ -73,7 +73,7 @@ export type MyPageStackParamList = {
     MyPage: undefined;
     Login: undefined;
     Menu: undefined;
-    PhotoBoothDetail: { photoBoothID: number };
+    Branch: { branchID: string };
     ReviewDetail: { reviewID: number };
 };
 
