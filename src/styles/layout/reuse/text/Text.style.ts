@@ -249,7 +249,7 @@ export const FontRedSmallestMedium = styled.Text`
 `;
 
 /** black */
-export const FontBlackSmallestSemibold = styled.Text`
+export const FontBlackSmallerSemibold = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.black};
     font-size: ${fontSize.smaller};
