@@ -1,44 +1,49 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import ReviewFrame from 'components/home/photo-booth-list/ReviewFrame';
-import MyPageUserData from 'components/my-page/MyPageUserData';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageReview from 'components/reuse/skeleton/SkeletonGetMoreMyPageReview';
 import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview';
-import { ReviewProps } from 'interfaces/Home.interface';
-import { MyPageUserDataProps } from 'interfaces/MyPage.interface';
-import { colors } from 'styles/base/Variable';
-import { MyReviewListContainer, SkeletonMyReviewContainer } from 'styles/layout/my-page/MyActivity/MyReviewList.style';
 import { GetMyReviewList } from 'hooks/axios/MyPage';
 import { useAppSelector } from 'hooks/redux/store';
+import { ReviewProps } from 'interfaces/Home.interface';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { colors } from 'styles/base/Variable';
+import {
+    MyReviewContainer,
+    MyReviewFlatListContainer,
+    MyReviewListContainer,
+    SkeletonMyReviewContainer,
+} from 'styles/layout/my-page/MyActivity/MyReviewList.style';
+import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
-export default function MyReviewList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
+export default function MyReviewList() {
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
+    const [dataEnd, setDataEnd] = useState<boolean>(false);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
     const accessToken = useAppSelector(state => state.token).accessToken;
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
     /** 내 사진 항목 데이터 Get */
     const getMyReview = async () => {
         try {
             if (accessToken) {
-                const resultList = await GetMyReviewList(accessToken, dataLimit, page);
+                const resultList = await GetMyReviewList(accessToken, dataLimit, page * dataLimit);
+                setPage(prev => prev + 1);
                 return resultList.data;
             }
         } catch (error) {
             console.log('GetReviewListError' + error);
         }
     };
-
-    /** FlatList ListHeaderComponent */
-    const renderHeader = useCallback(() => {
-        return <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />;
-    }, [activeComponent, updateActiveComponent]);
 
     /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
@@ -47,13 +52,25 @@ export default function MyReviewList({ activeComponent, updateActiveComponent }:
 
     /** FlatList onEndReached */
     const onEndReached = async () => {
-        setPage(prev => prev + 1);
         const newData = await getMyReview();
 
         setReviewData(prevData => [...prevData, ...newData.results]);
         setIsLoading(false);
-        newData.next !== null && setDataEnd(prev => !prev);
+        newData.next === null && setDataEnd(prev => !prev);
     };
+
+    /** FlatList listFooterItem */
+    const renderFooterItem = useCallback(() => {
+        const onPressFooter = () => {
+            accessToken && navigation.navigate('AddReviewModal', { branchID: undefined });
+        };
+
+        return (
+            <FlatListButtonContainer>
+                <NormalButton text="새 리뷰 등록하기" onPress={onPressFooter} />
+            </FlatListButtonContainer>
+        );
+    }, [accessToken, navigation]);
 
     // MyPage 진입시 내 사진 항목 데이터 Get
     useEffect(() => {
@@ -61,7 +78,7 @@ export default function MyReviewList({ activeComponent, updateActiveComponent }:
             const reviewList = await getMyReview();
             setReviewData(reviewList.results);
             setIsLoading(false);
-            reviewList.next !== null && setDataEnd(prev => !prev);
+            reviewList.next === null && setDataEnd(prev => !prev);
         };
 
         getFirstMyReview();
@@ -70,45 +87,60 @@ export default function MyReviewList({ activeComponent, updateActiveComponent }:
     return (
         <MyReviewListContainer>
             {!isLoading ? (
-                <>
+                <MyReviewContainer>
                     {dataEnd ? (
-                        <>
-                            <FlatList
-                                contentContainerStyle={{
-                                    height: '100%',
-                                }}
-                                data={reviewData}
-                                keyExtractor={item => item.id.toString()}
-                                ref={flatListRef}
-                                ListHeaderComponent={renderHeader}
-                                renderItem={renderReviewItem}
-                                numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-evenly' }}
-                            />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
-                        </>
+                        reviewData.length > 0 ? (
+                            <MyReviewFlatListContainer>
+                                <FlatList
+                                    data={reviewData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderReviewItem}
+                                    numColumns={2}
+                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyReviewFlatListContainer>
+                        ) : (
+                            <MyReviewFlatListContainer>
+                                <SearchNoData
+                                    alertText="내 사진이 없습니다."
+                                    recommendText="첫 리뷰를 등록해 보세요!"
+                                />
+                                <FlatList
+                                    data={reviewData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderReviewItem}
+                                    numColumns={2}
+                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    scrollEnabled={false}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyReviewFlatListContainer>
+                        )
                     ) : (
-                        <>
+                        <MyReviewFlatListContainer>
                             <FlatList
                                 contentContainerStyle={{ backgroundColor: colors.lightblack }}
                                 data={reviewData}
                                 keyExtractor={item => item.id.toString()}
                                 ref={flatListRef}
-                                ListHeaderComponent={renderHeader}
                                 renderItem={renderReviewItem}
                                 numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-evenly' }}
+                                columnWrapperStyle={{ justifyContent: 'space-between' }}
                                 onEndReached={onEndReached}
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageReview}
                             />
                             <UpScrollButton top="88%" flatListRef={flatListRef} />
-                        </>
+                        </MyReviewFlatListContainer>
                     )}
-                </>
+                </MyReviewContainer>
             ) : (
                 <SkeletonMyReviewContainer>
-                    <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />
                     <SkeletonMyPageReview />
                 </SkeletonMyReviewContainer>
             )}

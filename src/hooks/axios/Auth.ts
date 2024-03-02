@@ -1,14 +1,13 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-//TODO: mobileToken 관련 수정 예정 (백엔드)
 export const NaverSocialLogin = async (accessToken: string | null, mobileToken: string | null) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/naver/login`,
         data: {
             accessToken,
-            mobileToken:'test',
+            mobileToken,
         },
     })
         .then(res => {

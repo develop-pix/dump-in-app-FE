@@ -71,7 +71,7 @@ export const UploadNewReview = async (
 ) => {
     return await axios({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/reviews/`,
+        url: `${Config.BACKEND_API_URL}/reviews`,
         headers: {
             Authorization: `Bearer ${accessToken}`,
         },

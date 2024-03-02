@@ -5,6 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeReview } from 'hooks/axios/ReviewDetail';
+import { useAppSelector } from 'hooks/redux/store';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
@@ -17,7 +18,6 @@ import {
     ReviewNameContainer,
 } from 'styles/layout/home/photo-booth-list/ReviewFrame.style';
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
-import { useAppSelector } from 'hooks/redux/store';
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();

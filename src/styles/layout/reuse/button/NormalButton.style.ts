@@ -13,3 +13,8 @@ export const NormalButtonContainer = styled.TouchableOpacity`
     align-items: center;
     margin-top: 30px;
 `;
+
+export const FlatListButtonContainer = styled.View`
+    width: 100%;
+    align-items: center;
+`;

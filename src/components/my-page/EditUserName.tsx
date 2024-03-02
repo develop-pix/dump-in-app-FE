@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import EditIcon from 'assets/image/icon/edit.svg';
+import { EditMyNickName, GetMyUserData } from 'hooks/axios/MyPage';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setEmail, setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import {
@@ -18,7 +19,6 @@ import {
     FontWhiteGreyNormalMedium,
     FontYellowSmallerMedium,
 } from 'styles/layout/reuse/text/Text.style';
-import { EditMyNickName, GetMyUserData } from 'hooks/axios/MyPage';
 
 export default function EditUserName() {
     const dispatch = useAppDispatch();

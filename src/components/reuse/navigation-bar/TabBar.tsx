@@ -3,14 +3,14 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import AddReviewIcon from 'assets/image/icon/btn_add.svg';
+import { useAppSelector } from 'hooks/redux/store';
 import { NavigationBarContainer, ReviewNewItem } from 'styles/layout/navigation-bar/NavigationBar.style';
 
 import NavigationBarListItem from './NavigationBarListItem';
-import { useAppSelector } from 'hooks/redux/store';
 
 export default function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     const safeAreaInset = useSafeAreaInsets();
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = useAppSelector(states => states.token).accessToken;
 
     return (
         <NavigationBarContainer style={{ paddingBottom: safeAreaInset.bottom, height: safeAreaInset.bottom + 56 }}>

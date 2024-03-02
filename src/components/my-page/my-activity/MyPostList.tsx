@@ -1,33 +1,37 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import MyPageUserData from 'components/my-page/MyPageUserData';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageReview from 'components/reuse/skeleton/SkeletonGetMoreMyPageReview';
 import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview';
+import { GetMyPostList } from 'hooks/axios/MyPage';
+import { useAppSelector } from 'hooks/redux/store';
 import { ReviewProps } from 'interfaces/Home.interface';
-import { MyPageUserDataProps } from 'interfaces/MyPage.interface';
-import { MyPostListContainer, SkeletonMyPostContainer } from 'styles/layout/my-page/MyActivity/MyPostList.style';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import {
+    MyPostContainer,
+    MyPostFlatListContainer,
+    MyPostListContainer,
+    SkeletonMyPostContainer,
+} from 'styles/layout/my-page/MyActivity/MyPostList.style';
+import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
 import MyPostFrame from './MyPostFrame';
-import { useAppSelector } from 'hooks/redux/store';
-import { GetMyPostList } from 'hooks/axios/MyPage';
 
-export default function MyPostList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
+export default function MyPostList() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
+    const [dataEnd, setDataEnd] = useState<boolean>(false);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
     const accessToken = useAppSelector(state => state.token).accessToken;
-
-    /** FlatList ListHeaderComponent */
-    const renderHeader = useCallback(() => {
-        return <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />;
-    }, [activeComponent, updateActiveComponent]);
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
     /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
@@ -36,19 +40,31 @@ export default function MyPostList({ activeComponent, updateActiveComponent }: M
 
     /** FlatList onEndReached */
     const onEndReached = async () => {
-        setPage(prev => prev + 1);
         const newData = await getMyPost();
-
         setReviewData(prevData => [...prevData, ...newData.results]);
-        setIsLoading(false);
-        newData.next !== null && setDataEnd(prev => !prev);
+        newData.next === null && setDataEnd(prev => !prev);
     };
+
+    /** FlatList listFooterItem */
+    const renderFooterItem = useCallback(() => {
+        //FIXME: Stack 이아닌 Tab 이동으로 변경
+        const onPressFooter = () => {
+            accessToken && navigation.navigate('Home', undefined);
+        };
+
+        return (
+            <FlatListButtonContainer>
+                <NormalButton text="게시글 보러가기" onPress={onPressFooter} />
+            </FlatListButtonContainer>
+        );
+    }, [accessToken, navigation]);
 
     /** 내가 좋아요 누른 게시글 항목 데이터 Get */
     const getMyPost = async () => {
         try {
             if (accessToken) {
-                const resultList = await GetMyPostList(accessToken, dataLimit, page);
+                const resultList = await GetMyPostList(accessToken, dataLimit, dataLimit * page);
+                setPage(prev => prev + 1);
                 return resultList.data;
             }
         } catch (error) {
@@ -63,7 +79,7 @@ export default function MyPostList({ activeComponent, updateActiveComponent }: M
             setReviewData(reviewList.results);
             setIsLoading(false);
 
-            reviewList.next !== null && setDataEnd(prev => !prev);
+            reviewList.next === null && setDataEnd(prev => !prev);
         };
 
         getFirstMyPost();
@@ -72,47 +88,59 @@ export default function MyPostList({ activeComponent, updateActiveComponent }: M
     return (
         <MyPostListContainer>
             {!isLoading ? (
-                <>
+                <MyPostContainer>
                     {dataEnd ? (
-                        <>
-                            <FlatList
-                                contentContainerStyle={{
-                                    height: '100%',
-                                }}
-                                data={reviewData}
-                                keyExtractor={item => item.id.toString()}
-                                ref={flatListRef}
-                                ListHeaderComponent={renderHeader}
-                                renderItem={renderReviewItem}
-                                numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-evenly' }}
-                            />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
-                        </>
+                        reviewData.length > 0 ? (
+                            <MyPostFlatListContainer>
+                                <FlatList
+                                    data={reviewData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderReviewItem}
+                                    numColumns={2}
+                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyPostFlatListContainer>
+                        ) : (
+                            <MyPostFlatListContainer>
+                                <SearchNoData
+                                    alertText="즐겨찾는 게시글이 없습니다."
+                                    recommendText="마음에 드는 게시글을 찾아보세요!"
+                                />
+                                <FlatList
+                                    data={reviewData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderReviewItem}
+                                    numColumns={2}
+                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    scrollEnabled={false}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyPostFlatListContainer>
+                        )
                     ) : (
-                        <>
+                        <MyPostFlatListContainer>
                             <FlatList
-                                contentContainerStyle={{
-                                    height: '100%',
-                                }}
                                 data={reviewData}
                                 keyExtractor={item => item.id.toString()}
                                 ref={flatListRef}
-                                ListHeaderComponent={renderHeader}
                                 renderItem={renderReviewItem}
                                 numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-evenly' }}
+                                columnWrapperStyle={{ justifyContent: 'space-between' }}
                                 onEndReached={onEndReached}
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageReview}
                             />
                             <UpScrollButton top="88%" flatListRef={flatListRef} />
-                        </>
+                        </MyPostFlatListContainer>
                     )}
-                </>
+                </MyPostContainer>
             ) : (
                 <SkeletonMyPostContainer>
-                    <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />
                     <SkeletonMyPageReview />
                 </SkeletonMyPostContainer>
             )}

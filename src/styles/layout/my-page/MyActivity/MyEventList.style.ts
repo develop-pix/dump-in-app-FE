@@ -8,4 +8,8 @@ export const PhotoBoothEventFrameContainer = styled.View`
     padding: 0px 10px;
 `;
 
+export const MyEventContainer = styled.View``;
+
+export const MyEventFlatListContainer = styled.View``;
+
 export const SkeletonEventContainer = styled.View``;

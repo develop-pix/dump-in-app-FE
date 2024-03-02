@@ -32,12 +32,6 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'import/no-named-as-default': 0,
         'react/prop-types': 'off',
-        'import/named': [
-            'error',
-            {
-                ignore: ['v4'],
-            },
-        ],
         semi: ['error', 'always'],
         'import/order': [
             'error',

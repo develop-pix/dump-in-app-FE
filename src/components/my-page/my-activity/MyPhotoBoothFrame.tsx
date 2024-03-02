@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeBranch } from 'hooks/axios/Branch';
+import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -18,8 +20,6 @@ import {
     FontYellowSmallerMediumWithLineSpacingWithMargin,
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
-import { useAppSelector } from 'hooks/redux/store';
-import { LikeBranch } from 'hooks/axios/Branch';
 
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
@@ -49,7 +49,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
 
     return (
         <MyPhotoBoothFrameContainer onPress={() => onPressPhotoBooth(photoBoothData.id)}>
-            <PhotoBoothImage source={{ uri: photoBoothData.photoBoothBrandLogoImageUrl }} resizeMode='contain' />
+            <PhotoBoothImage source={{ uri: photoBoothData.photoBoothBrandLogoImageUrl }} resizeMode="contain" />
             <InfoContainer>
                 <PhotoBoothNameWrapper>
                     <FontWhiteBiggestSemiboldWithLineHeight>

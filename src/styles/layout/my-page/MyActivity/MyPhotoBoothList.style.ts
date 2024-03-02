@@ -7,5 +7,8 @@ export const MyPhotoBoothListContainer = styled.View`
 export const MyPhotoBoothFrameContainer = styled.View`
     padding: 0px 10px;
 `;
+export const MyPhotoBoothContainer = styled.View``;
+
+export const MyPhotoBoothFlatListContainer = styled.View``;
 
 export const SkeletonPhotoBoothContainer = styled.View``;
