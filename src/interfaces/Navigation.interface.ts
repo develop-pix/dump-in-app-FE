@@ -39,6 +39,7 @@ export type HomeStackParamList = {
     PhotoBoothDetail: { photoBoothID: number };
     ReviewDetail: { reviewID: number };
     EventDetail: { eventID: number };
+    AddReviewModal: { branchID: string | undefined };
 };
 
 export type HomeStackScreenProps<RouteName extends keyof HomeStackParamList> = CompositeScreenProps<
@@ -73,8 +74,11 @@ export type MyPageStackParamList = {
     MyPage: undefined;
     Login: undefined;
     Menu: undefined;
-    PhotoBoothDetail: { photoBoothID: number };
+    Branch: { branchID: string };
     ReviewDetail: { reviewID: number };
+    AddReviewModal: { branchID: string | undefined };
+    Home: undefined;
+    Category: undefined;
 };
 
 export type MyPageStackScreenProps<RouteName extends keyof MyPageStackParamList> = CompositeScreenProps<

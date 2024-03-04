@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
     setBranchID,
+    setBranchName,
     setCameraShot,
     setDate,
     setDescription,
@@ -20,6 +21,7 @@ import {
     setTools,
 } from 'hooks/redux/reviewEditSlice';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
+import { ConceptData } from 'interfaces/redux/Store.interface';
 import { InputData } from 'interfaces/ReviewEdit.interface';
 import { GoBackButtonWithSubmitContainer } from 'styles/layout/reuse/button/GoBackButton.style';
 import {
@@ -44,24 +46,27 @@ import ReviewModal from './input/ReviewModal';
 import ToolsSelect from './input/ToolsSelect';
 import ReviewGoBackButton from './ReviewGoBackButton';
 import ReviewSubmitButton from './ReviewSubmitButton';
+import { useAppSelector } from 'hooks/redux/store';
 
 export default function ReviewEdit() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
     const [openImageModal, setOpenImageModal] = useState<boolean>(false);
     const [limitImage, setLimitImage] = useState<number>(4);
-    const [branchName, setBranchName] = useState<string | undefined>(undefined);
 
     const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
     const dispatch = useDispatch();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     // ReviewEdit 초기 데이터 Set
     useEffect(() => {
         const getReviewData = async () => {
             try {
                 let image = [];
-                const fetchData = await GetReviewData(route.params.reviewID);
+                const fetchData = await GetReviewData(accessToken, route.params.reviewID);
+                console.log('fetchData.data');
+                console.log(fetchData.data);
                 dispatch(
                     setRepresentativeImage({
                         imageURL: fetchData.data.mainThumbnailImageUrl,
@@ -87,12 +92,17 @@ export default function ReviewEdit() {
                 dispatch(setFrameColor(fetchData.data.frameColor));
                 dispatch(setParty(fetchData.data.participants));
                 dispatch(setCameraShot(fetchData.data.cameraShot));
-                dispatch(setHashtag(fetchData.data.concept));
+                if (fetchData.data.concept.length > 0) {
+                    const newConcept = fetchData.data.concept.map((hashtag: ConceptData) => {
+                        return hashtag.name;
+                    });
+                    dispatch(setHashtag([...newConcept]));
+                }
                 dispatch(setHairIron(fetchData.data.curlAmount));
                 dispatch(setTools(fetchData.data.goodsAmount));
                 dispatch(setPublicOpen(fetchData.data.isPublic));
-                //FIXME: 백엔드 데이터 바뀔시 수정필요(위도,경도 필요없도록 수정예정), 또는 리뷰조회시 해당 브랜치의 이름을 얻어올수 있는지 요청한 상태
                 dispatch(setBranchID(fetchData.data.photoBoothId));
+                dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
             } catch (e) {
                 console.log(e);
             }
@@ -123,7 +133,7 @@ export default function ReviewEdit() {
                 <InputWrapper>
                     <ReviewDescriptionInput errorData={errorData} />
                     <LocationAndDateContainer>
-                        <LocationInput branchName={branchName} setBranchName={setBranchName} errorData={errorData} />
+                        <LocationInput errorData={errorData} />
                         <DateInput errorData={errorData} />
                     </LocationAndDateContainer>
                     <FrameColorSelect errorData={errorData} />

@@ -38,7 +38,7 @@ export default function PhotoBoothList({ data }: PhotoBoothListProps) {
                         return <PhotoBoothFrame key={index} data={item as PhotoBoothProps} />;
                     } else if ('eventID' in item) {
                         return <EventFrame key={index} data={item as EventProps} />;
-                    } else if ('reviewID' in item) {
+                    } else if ('id' in item) {
                         return <ReviewFrame key={index} data={item as ReviewProps} />;
                     }
                 })}
@@ -49,7 +49,7 @@ export default function PhotoBoothList({ data }: PhotoBoothListProps) {
                         return <PhotoBoothFrame key={index} data={item as PhotoBoothProps} />;
                     } else if ('eventID' in item) {
                         return <EventFrame key={index} data={item as EventProps} />;
-                    } else if ('reviewID' in item) {
+                    } else if ('id' in item) {
                         return <ReviewFrame key={index} data={item as ReviewProps} />;
                     }
                 })}

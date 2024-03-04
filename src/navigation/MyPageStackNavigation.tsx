@@ -1,9 +1,11 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import MyPageMenu from 'components/my-page/MyPageMenu';
+import Branch from 'screens/Branch';
+import Category from 'screens/Category';
+import Home from 'screens/Home';
 import Login from 'screens/Login';
 import MyPage from 'screens/MyPage';
-import PhotoBoothDetail from 'screens/PhotoBoothDetail';
 import ReviewDetail from 'screens/ReviewDetail';
 import { colors } from 'styles/base/Variable';
 
@@ -45,9 +47,9 @@ export default function MyPageStackNavigation() {
                 }}
             />
             <Stack.Screen
-                name="PhotoBoothDetail"
-                component={PhotoBoothDetail}
-                initialParams={{ PhotoBoothID: 0 }}
+                name="Branch"
+                component={Branch}
+                initialParams={{ branchID: null }}
                 options={{ headerTransparent: true }}
             />
             <Stack.Screen
@@ -61,6 +63,19 @@ export default function MyPageStackNavigation() {
                     headerShadowVisible: false,
                     headerTitleAlign: 'center',
                 }}
+            />
+            {/* FIXME: Screen이 아닌 Tab 전환으로 수정 */}
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                initialParams={undefined}
+                options={{ headerTransparent: false }}
+            />
+            <Stack.Screen
+                name="Category"
+                component={Category}
+                initialParams={undefined}
+                options={{ headerTransparent: false }}
             />
         </Stack.Navigator>
     );

@@ -18,12 +18,17 @@ export interface MyPhotoBoothFrameProps {
 }
 
 export interface MyPhotoBoothFrameType {
-    photoBoothID: number;
+    id: string;
     photoBoothName: string;
-    branch: string;
-    representativeImage: string;
-    hashtag: string[];
-    myPhotoBooth: boolean;
+    photoBoothBrandName: string;
+    photoBoothBrandLogoImageUrl: string;
+    hashtag: HashtagType[];
+    isLiked: boolean;
+}
+
+interface HashtagType {
+    id: number;
+    name: string;
 }
 
 export interface MyPageUserDataProps {

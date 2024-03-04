@@ -1,6 +1,6 @@
-import { HashtagData } from 'interfaces/Location.interface';
+import { ConceptData } from 'interfaces/redux/Store.interface';
 
-export const TagsArrayToHashTagArrayForm = (hashtags: HashtagData[]) => {
+export const TagsArrayToHashTagArrayForm = (hashtags: ConceptData[]) => {
     const newForm: string[] = [];
 
     hashtags.map(hashtag => {
@@ -17,6 +17,17 @@ export const DateToReviewDateForm = (date: Date | string | null) => {
         typeof date === 'string'
             ? (dateForm = date)
             : (dateForm = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`);
+    }
+    return dateForm;
+};
+
+export const UploadReviewDateForm = (date: Date | string | null) => {
+    let dateForm: string = '';
+
+    if (date) {
+        typeof date === 'string'
+            ? (dateForm = date)
+            : (dateForm = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
     }
     return dateForm;
 };

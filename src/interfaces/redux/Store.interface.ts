@@ -4,7 +4,8 @@ export interface ReviewDataState {
     enlargedImage: ImageData;
     description: string | null;
     branchID: string | undefined;
-    date: Date | string | null;
+    branchName: string | null;
+    date: string | null;
     frameColor: string | null;
     party: number | null;
     cameraShot: string | null;
@@ -19,8 +20,9 @@ export interface ImageData {
     imageName: string | undefined;
 }
 
-export interface AccessTokenState {
-    token: string | null;
+export interface TokenState {
+    accessToken: string | null;
+    mobileToken: string | null;
 }
 
 export interface AccessTokenExpireState {
@@ -34,6 +36,7 @@ export interface LocationState {
 
 export interface UserDataState {
     userID: string | null;
+    email: string | null;
     userNickName: string | null;
 }
 
@@ -57,11 +60,11 @@ export interface ReviewDetailState {
     isPublic: boolean;
     viewCount: number;
     likeCount: number;
-    photoBoothId: string | null;
+    branchName: string | null;
 }
 
 export interface ConceptData {
-    hashtagID: number;
+    id: number;
     name: string;
 }
 

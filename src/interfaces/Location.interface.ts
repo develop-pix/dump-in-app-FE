@@ -1,3 +1,5 @@
+import { ConceptData } from './redux/Store.interface';
+
 export interface MapInputProps {
     location: string;
 }
@@ -46,12 +48,7 @@ export interface BranchCardData {
 interface BranchCardPhotoBoothData {
     photoBoothName: string;
     logoImageURL: string;
-    hashtag: HashtagData[];
-}
-
-export interface HashtagData {
-    hashtagID: number;
-    name: string;
+    hashtag: ConceptData[];
 }
 
 export interface BranchCarouselProps {
@@ -63,7 +60,7 @@ export interface BranchCardProps {
     imageLogo: string;
     photoBoothName: string;
     branchName: string;
-    hashtag: HashtagData[];
+    hashtag: ConceptData[];
     isLiked: boolean;
     distance: string;
 }

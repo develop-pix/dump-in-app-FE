@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeBranch } from 'hooks/axios/Branch';
+import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -23,25 +25,37 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
 
-    const onPressPhotoBooth = (id: number) => {
+    const [favorite, setFavorite] = useState<boolean>(photoBoothData.isLiked);
+    const accessToken = useAppSelector(state => state.token).accessToken;
+
+    /** 지점 항목 클릭시 */
+    const onPressPhotoBooth = (id: string) => {
         if (isFocused) {
-            navigation.navigate('PhotoBoothDetail', {
-                photoBoothID: id,
+            navigation.navigate('Branch', {
+                branchID: id,
             });
         }
     };
 
-    const [favorite, setFavorite] = useState<boolean>(photoBoothData.myPhotoBooth);
+    /** 하트 버튼 클릭시 */
+    const onPressBranchLikeButton = async () => {
+        if (accessToken) {
+            const press_result = await LikeBranch(accessToken, photoBoothData.id);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
+        }
+    };
 
     return (
-        <MyPhotoBoothFrameContainer onPress={() => onPressPhotoBooth(photoBoothData.photoBoothID)}>
-            <PhotoBoothImage source={{ uri: photoBoothData.representativeImage }} />
+        <MyPhotoBoothFrameContainer onPress={() => onPressPhotoBooth(photoBoothData.id)}>
+            <PhotoBoothImage source={{ uri: photoBoothData.photoBoothBrandLogoImageUrl }} resizeMode="contain" />
             <InfoContainer>
                 <PhotoBoothNameWrapper>
                     <FontWhiteBiggestSemiboldWithLineHeight>
-                        {photoBoothData.photoBoothName}
+                        {photoBoothData.photoBoothBrandName}
                     </FontWhiteBiggestSemiboldWithLineHeight>
-                    <FontWhiteGreySmallerSemibold>{photoBoothData.branch}</FontWhiteGreySmallerSemibold>
+                    <FontWhiteGreySmallerSemibold>{photoBoothData.photoBoothName}</FontWhiteGreySmallerSemibold>
                 </PhotoBoothNameWrapper>
 
                 <HashtagContainer>
@@ -54,7 +68,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
             </InfoContainer>
 
             <FavoriteIcon>
-                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
             </FavoriteIcon>
         </MyPhotoBoothFrameContainer>
     );

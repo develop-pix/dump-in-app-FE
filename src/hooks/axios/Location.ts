@@ -53,8 +53,8 @@ export const GetPhotoBoothData = async (latitude: number, longitude: number, rad
         method: 'get',
         url: `${Config.BACKEND_API_URL}/photo-booths/locations`,
         params: {
-            latitude: latitude,
-            longitude: longitude,
+            latitude,
+            longitude,
             radius,
         },
     })

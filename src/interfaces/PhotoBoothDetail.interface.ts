@@ -35,12 +35,12 @@ export type PhotoBoothEventFrameProps = {
 };
 
 export interface EventDataType {
-    eventID: number;
-    representativeImage: string;
-    eventTitle: string;
+    id: number;
+    mainThumbnailImageUrl: string;
+    title: string;
     startDate: string;
     endDate: string;
-    myEvent: boolean;
+    isLiked: boolean;
 }
 
 export interface MoreEventModalProps {

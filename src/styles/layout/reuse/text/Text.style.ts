@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
-/* white */
+/** white */
 export const FontWhiteBiggestSemibold = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.white};
@@ -92,7 +92,7 @@ export const FontWhiteSmallestSemibold = styled.Text`
     font-weight: ${fontWeight.semibold};
 `;
 
-/* whitegrey */
+/** whitegrey */
 export const FontWhiteGreyBiggerSemibold = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.whitegrey};
@@ -158,7 +158,7 @@ export const FontWhiteGreySmallestMediumWithLineHeight = styled.Text`
     line-height: 30px;
 `;
 
-/* lightgrey */
+/** lightgrey */
 export const FontLightGreyNormalMedium = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.lightgrey};
@@ -187,7 +187,7 @@ export const FontLightGreySmallestMedium = styled.Text`
     font-weight: ${fontWeight.medium};
 `;
 
-/* yellow */
+/** yellow */
 export const FontYellowBiggerSemibold = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.yellow};
@@ -233,7 +233,7 @@ export const FontYellowMiniMedium = styled.Text`
     font-weight: ${fontWeight.medium};
 `;
 
-/* red */
+/** red */
 export const FontRedNormalMedium = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.red};
@@ -241,6 +241,14 @@ export const FontRedNormalMedium = styled.Text`
     font-weight: ${fontWeight.medium};
 `;
 
+export const FontRedSmallestMedium = styled.Text`
+    font-family: ${fontFamily.Pretendard};
+    color: ${colors.red};
+    font-size: ${fontSize.smallest};
+    font-weight: ${fontWeight.medium};
+`;
+
+/** black */
 export const FontBlackSmallerSemibold = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.black};
@@ -248,7 +256,7 @@ export const FontBlackSmallerSemibold = styled.Text`
     font-weight: ${fontWeight.semibold};
 `;
 
-/* grey */
+/** grey */
 export const FontGreySmallerMedium = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.grey};

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeBranch } from 'hooks/axios/Branch';
 import { BranchCardProps } from 'interfaces/Location.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -22,6 +23,7 @@ import {
     FontYellowSmallerMediumWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
+import { useAppSelector } from 'hooks/redux/store';
 
 export default function BranchCard({
     branchID,
@@ -35,6 +37,7 @@ export default function BranchCard({
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
     const isFocused = useIsFocused();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
@@ -43,6 +46,16 @@ export default function BranchCard({
         }
     };
 
+    /** 하트 버튼 클릭시 */
+    const onPressBranchLikeButton = async () => {
+        if (accessToken) {
+            const press_result = await LikeBranch(accessToken, branchID);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
+        }
+    };
+    
     return (
         <TouchableCardContainer activeOpacity={0.95} onPress={onPressBranchCard}>
             <CardContainer>
@@ -63,7 +76,7 @@ export default function BranchCard({
                             ))}
                         </BranchCardHashtag>
                     </BranchCardDescription>
-                    <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                    <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
                 </BranchCardTop>
                 <BranchCardHorizonLine />
                 <BranchCardBottom>

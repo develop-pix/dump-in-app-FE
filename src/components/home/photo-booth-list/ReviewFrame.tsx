@@ -18,17 +18,18 @@ export default function ReviewFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
     const isFocused = useIsFocused();
 
+    /** ReviewDetail로 이동 */
     const onPressReview = () => {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
-                reviewID: data.reviewID,
+                reviewID: data.id,
             });
         }
     };
 
     return (
         <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
-            <ReviewFrameImage source={{ uri: data.representativeImage }} />
+            <ReviewFrameImage source={{ uri: data.mainThumbnailImageUrl }} />
             <LinearGradient
                 colors={['transparent', colors.lightblack]}
                 locations={[0.1, 1]}
@@ -47,7 +48,7 @@ export default function ReviewFrame({ data }: ReviewFrameProps) {
                         <LocationGreyIcon width={18} height={21} />
                     </LocationIconContainer>
                     <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.branchName}
+                        {data.photoBoothBrandName + ' ' + data.photoBoothName}
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </ReviewNameContainer>
             </ReviewInfo>

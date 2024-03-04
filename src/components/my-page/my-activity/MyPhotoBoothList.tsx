@@ -1,44 +1,40 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import MyPageUserData from 'components/my-page/MyPageUserData';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonGetMoreMyPagePhotoBooth';
 import SkeletonMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonMyPagePhotoBooth';
-import { MyPageUserDataProps, MyPhotoBoothFrameType } from 'interfaces/MyPage.interface';
+import { GetMyPhotoBoothList } from 'hooks/axios/MyPage';
+import { useAppSelector } from 'hooks/redux/store';
+import { MyPhotoBoothFrameType } from 'interfaces/MyPage.interface';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
+    MyPhotoBoothContainer,
+    MyPhotoBoothFlatListContainer,
     MyPhotoBoothFrameContainer,
     MyPhotoBoothListContainer,
     SkeletonPhotoBoothContainer,
 } from 'styles/layout/my-page/MyActivity/MyPhotoBoothList.style';
+import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
 import MyPhotoBoothFrame from './MyPhotoBoothFrame';
 
-export default function MyPhotoBoothList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
+export default function MyPhotoBoothList() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [photoBoothData, setPhotoBoothData] = useState<MyPhotoBoothFrameType[]>([]);
+    const [dataEnd, setDataEnd] = useState<boolean>(true);
+
+    const dataLimit = 8;
     const flatListRef = useRef<FlatList>(null);
+    const accessToken = useAppSelector(state => state.token).accessToken;
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
-    const renderHeader = useCallback(() => {
-        return <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />;
-    }, [activeComponent, updateActiveComponent]);
-
-    const onEndReached = () => {
-        const newPage = page + 1;
-        setPage(newPage);
-
-        const moreData = Array(6)
-            .fill(null)
-            .map((_, index) => ({
-                ...photoBoothData[0],
-                photoBoothID: newPage * 6 + index + 1,
-            }));
-
-        setPhotoBoothData(prevData => [...prevData, ...moreData]);
-    };
-
+    /** FlatList renderItem */
     const renderPhotoBoothItem = useCallback(({ item }: { item: MyPhotoBoothFrameType }) => {
         return (
             <MyPhotoBoothFrameContainer>
@@ -47,44 +43,105 @@ export default function MyPhotoBoothList({ activeComponent, updateActiveComponen
         );
     }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            const photoBoothTempData = Array(6)
-                .fill(null)
-                .map((_, index) => ({
-                    photoBoothID: index + 1,
-                    photoBoothName: '포토그레이',
-                    branch: '연희중앙점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                    hashtag: ['레드프레임', '컨셉사진', '레드', '우정사진'],
-                    myPhotoBooth: true,
-                }));
+    /** FlatList onEndReached */
+    const onEndReached = async () => {
+        setPage(prev => prev + 1);
+        const newData = await getMyPhotoBooth();
 
-            setPhotoBoothData(photoBoothTempData);
+        setPhotoBoothData(prevData => [...prevData, ...newData.results]);
+        setIsLoading(false);
+        newData.next !== null && setDataEnd(prev => !prev);
+    };
+
+    /** FlatList listFooterItem */
+    //FIXME: 디자인팀에 질문중, 포토부스? 지점?
+    const renderFooterItem = useCallback(() => {
+        const onPressFooter = () => {
+            accessToken && navigation.navigate('AddReviewModal', { branchID: undefined });
+        };
+
+        return (
+            <FlatListButtonContainer>
+                <NormalButton text="포토부스 보러가기" onPress={onPressFooter} />
+            </FlatListButtonContainer>
+        );
+    }, [accessToken, navigation]);
+
+    /** 내가 좋아요 누른 지점 항목 데이터 Get */
+    const getMyPhotoBooth = async () => {
+        try {
+            if (accessToken) {
+                const resultList = await GetMyPhotoBoothList(accessToken, dataLimit, page);
+                return resultList.data;
+            }
+        } catch (error) {
+            console.log('GetMyPhotoBoothList ' + error);
+        }
+    };
+
+    // MyPhotoBooth 진입시 내가 좋아요 누른 지점 항목 데이터 Get
+    useEffect(() => {
+        const getFirstMyPhotoBooth = async () => {
+            const photoBoothList = await getMyPhotoBooth();
+            setPhotoBoothData(photoBoothList.results);
             setIsLoading(false);
-        }, 500);
+
+            photoBoothList.next !== null && setDataEnd(prev => !prev);
+        };
+
+        getFirstMyPhotoBooth();
     }, []);
 
     return (
         <MyPhotoBoothListContainer>
             {!isLoading ? (
-                <>
-                    <FlatList
-                        data={photoBoothData}
-                        keyExtractor={item => item.photoBoothID.toString()}
-                        ref={flatListRef}
-                        ListHeaderComponent={renderHeader}
-                        renderItem={renderPhotoBoothItem}
-                        onEndReached={onEndReached}
-                        onEndReachedThreshold={0.1}
-                        ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}
-                    />
-                    <UpScrollButton top="88%" flatListRef={flatListRef} />
-                </>
+                <MyPhotoBoothContainer>
+                    {dataEnd ? (
+                        photoBoothData.length > 0 ? (
+                            <MyPhotoBoothFlatListContainer>
+                                <FlatList
+                                    data={photoBoothData}
+                                    keyExtractor={item => item.id}
+                                    ref={flatListRef}
+                                    renderItem={renderPhotoBoothItem}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyPhotoBoothFlatListContainer>
+                        ) : (
+                            <MyPhotoBoothFlatListContainer>
+                                <SearchNoData
+                                    alertText="즐겨찾는 지점이 없습니다."
+                                    recommendText="다양한 포토부스를 구경해 보세요!"
+                                />
+                                <FlatList
+                                    data={photoBoothData}
+                                    keyExtractor={item => item.id}
+                                    ref={flatListRef}
+                                    renderItem={renderPhotoBoothItem}
+                                    scrollEnabled={false}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyPhotoBoothFlatListContainer>
+                        )
+                    ) : (
+                        <MyPhotoBoothFlatListContainer>
+                            <FlatList
+                                data={photoBoothData}
+                                keyExtractor={item => item.id}
+                                ref={flatListRef}
+                                renderItem={renderPhotoBoothItem}
+                                onEndReached={onEndReached}
+                                onEndReachedThreshold={0.1}
+                                ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}
+                            />
+                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                        </MyPhotoBoothFlatListContainer>
+                    )}
+                </MyPhotoBoothContainer>
             ) : (
                 <SkeletonPhotoBoothContainer>
-                    <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />
                     <SkeletonMyPagePhotoBooth />
                 </SkeletonPhotoBoothContainer>
             )}

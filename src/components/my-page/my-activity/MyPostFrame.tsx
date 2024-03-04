@@ -4,6 +4,8 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeReview } from 'hooks/axios/ReviewDetail';
+import { useAppSelector } from 'hooks/redux/store';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
@@ -19,22 +21,33 @@ import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/te
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
-
     const isFocused = useIsFocused();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
+    const [favorite, setFavorite] = useState<boolean>(true);
+
+    /** 리뷰선택시 페이지 이동 */
     const onPressReview = () => {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
-                reviewID: data.reviewID,
+                reviewID: data.id,
             });
         }
     };
 
-    const [favorite, setFavorite] = useState<boolean>(true);
+    /** 하트(좋아요) 버튼 클릭 */
+    const onPressReviewLikeButton = async () => {
+        if (accessToken) {
+            const press_result = await LikeReview(accessToken, data.id);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
+        }
+    };
 
     return (
         <ReviewFrameContainer activeOpacity={0.9} onPress={onPressReview}>
-            <ReviewFrameImage source={{ uri: data.representativeImage }} />
+            <ReviewFrameImage source={{ uri: data.mainThumbnailImageUrl }} />
             <LinearGradient
                 colors={['transparent', colors.lightblack]}
                 locations={[0.1, 1]}
@@ -48,7 +61,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
             />
 
             <FavoriteIcon>
-                <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                <FavoriteButton favorite={favorite} onPress={onPressReviewLikeButton} />
             </FavoriteIcon>
 
             <ReviewInfo>
@@ -57,7 +70,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
                         <LocationGreyIcon width={18} height={21} />
                     </LocationIconContainer>
                     <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.branchName}
+                        {data.photoBoothBrandName + ' ' + data.photoBoothName}
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </ReviewNameContainer>
             </ReviewInfo>

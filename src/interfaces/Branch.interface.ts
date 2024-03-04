@@ -23,7 +23,7 @@ interface PhotoBoothImageData {
 }
 
 interface BranchHashtagData {
-    hashtagID: number;
+    id: number;
     name: string;
 }
 
@@ -64,6 +64,7 @@ export interface BranchInfoProps {
 export interface BranchTitleProps {
     photoBoothName: string;
     branchName: string;
+    branchID: string | null;
     branchHashtag: BranchHashtagData[];
     isLiked: boolean;
 }

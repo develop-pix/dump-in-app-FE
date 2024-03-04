@@ -26,6 +26,7 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
     const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const [numLines, setNumLines] = useState<number>(2);
@@ -48,9 +49,11 @@ export default function ReviewDescription() {
 
     /** 하트(좋아요) 버튼 클릭 */
     const onPressReviewLikeButton = async () => {
-        const press_result = await LikeReview(route.params.reviewID);
-        if (press_result.success) {
-            setFavorite(prev => !prev);
+        if (accessToken) {
+            const press_result = await LikeReview(accessToken, route.params.reviewID);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
         }
     };
 

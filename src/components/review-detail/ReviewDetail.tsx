@@ -8,6 +8,7 @@ import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
 import {
+    setBranchName,
     setCameraShot,
     setConcept,
     setContent,
@@ -21,7 +22,6 @@ import {
     setLikeCount,
     setMainThumbnailImageUrl,
     setParticipants,
-    setPhotoBoothId,
     setReviewID,
     setUserNickname,
 } from 'hooks/redux/branchReviewDetailSlice';
@@ -49,7 +49,6 @@ import {
 
 import ReviewDescription from './ReviewDescription';
 
-// FIXME: 해쉬태그(concept)가 안 나오는 문제 확인 및 수정 필요함
 export default function ReviewDetail() {
     const [carouselActive, setCarouselActive] = useState<number>(0);
 
@@ -61,6 +60,7 @@ export default function ReviewDetail() {
     const platform = Platform.OS;
     const dispatch = useDispatch();
     const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
@@ -82,8 +82,10 @@ export default function ReviewDetail() {
     // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
-            const fetchData = await GetReviewData(route.params.reviewID);
+            const fetchData = await GetReviewData(accessToken, route.params.reviewID);
             if (fetchData.data) {
+                console.log('fetchData.data');
+                console.log(fetchData.data);
                 dispatch(setReviewID(fetchData.data.id));
                 dispatch(setImage(fetchData.data.image));
                 dispatch(setConcept(fetchData.data.concept));
@@ -99,7 +101,7 @@ export default function ReviewDetail() {
                 dispatch(setGoodsAmount(fetchData.data.goodsAmount));
                 dispatch(setCurlAmount(fetchData.data.curlAmount));
                 dispatch(setLikeCount(fetchData.data.likeCount));
-                dispatch(setPhotoBoothId(fetchData.data.photoBoothId));
+                dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
             }
         };
         getReviewData();

@@ -2,8 +2,9 @@ import { KakaoOAuthToken, login } from '@react-native-seoul/kakao-login';
 import { useNavigation } from '@react-navigation/native';
 
 import KaKaoIcon from 'assets/image/icon/kakao_login.svg';
-import { setAccessToken } from 'hooks/redux/accessTokenSlice';
-import { useAppDispatch } from 'hooks/redux/store';
+import { KakaoSocialLogin } from 'hooks/axios/Auth';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
+import { setAccessToken } from 'hooks/redux/tokenSlice';
 import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
@@ -16,17 +17,23 @@ import {
 export default function KakaoLogin() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const mobileToken = useAppSelector(state => state.token).mobileToken;
 
     const loginWithKakao = async (): Promise<void> => {
-        const token: KakaoOAuthToken = await login();
-        console.log('카카오 AccessToken: ', token.accessToken);
-        // 서버에 accessToken 토큰 전송하고 JWT토큰, userID, userNickName 받아서 리덕스에 저장
-        dispatch(setAccessToken('asdqwemalskd'));
-        dispatch(setUserID('jsee53'));
-        dispatch(setUserNickName('지나가는 오리너구리'));
-
-        navigation.navigate('MyPage');
+        try {
+            const token: KakaoOAuthToken = await login();
+            if (token.accessToken) {
+                const socialLoginResult = await KakaoSocialLogin(token.accessToken, mobileToken);
+                if (socialLoginResult.data) {
+                    dispatch(setAccessToken(socialLoginResult.data.accessToken));
+                    navigation.navigate('MyPage');
+                }
+            }
+        } catch (error) {
+            console.error('Kakao Login Error:', error);
+        }
     };
+
     return (
         <KaKaoLoginContainer>
             <KakaoInfoContainer activeOpacity={1} onPress={loginWithKakao}>

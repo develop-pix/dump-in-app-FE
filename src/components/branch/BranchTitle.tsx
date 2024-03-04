@@ -17,17 +17,21 @@ import {
     FontYellowSmallerMediumWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
+import { useAppSelector } from 'hooks/redux/store';
 
 export default function BranchTitle({ photoBoothName, branchName, branchHashtag, isLiked }: BranchTitleProps) {
     const [favorite, setFavorite] = useState<boolean>(isLiked);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
+    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
-        const press_result = await LikeBranch(route.params.branchID);
-        if (press_result.success) {
-            setFavorite(prev => !prev);
+        if (accessToken) {
+            const press_result = await LikeBranch(accessToken, route.params.branchID);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
         }
     };
 

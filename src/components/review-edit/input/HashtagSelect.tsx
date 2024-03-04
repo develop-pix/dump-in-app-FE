@@ -1,4 +1,4 @@
-import { setHashtag } from 'hooks/redux/reviewEditSlice';
+import { popHashtag, setHashtag } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { HashtagSelectProps } from 'interfaces/ReviewEdit.interface';
 import {
@@ -40,8 +40,7 @@ export default function HashtagSelect({ errorData }: HashtagSelectProps) {
     /** 컨셉 선택시 dispatch , 최대 5개 까지 선택 가능 */
     const onPressHashtag = (tag: string) => {
         if (concept.includes(tag)) {
-            const popHashtag = concept.filter(index => index !== tag);
-            dispatch(setHashtag(popHashtag));
+            dispatch(popHashtag(tag));
             return;
         }
         if (concept.length < 5) {

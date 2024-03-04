@@ -1,44 +1,40 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import MyPageUserData from 'components/my-page/MyPageUserData';
 import PhotoBoothEventFrame from 'components/photo-booth-detail/PhotoBoothEventFrame';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageEvent from 'components/reuse/skeleton/SkeletonGetMoreMyPageEvent';
 import SkeletonMyPageEvent from 'components/reuse/skeleton/SkeletonMyPageEvent';
-import { MyPageUserDataProps } from 'interfaces/MyPage.interface';
+import { GetMyEventList } from 'hooks/axios/MyPage';
+import { useAppSelector } from 'hooks/redux/store';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import { EventDataType } from 'interfaces/PhotoBoothDetail.interface';
 import {
+    MyEventContainer,
+    MyEventFlatListContainer,
     MyEventListContainer,
     PhotoBoothEventFrameContainer,
     SkeletonEventContainer,
 } from 'styles/layout/my-page/MyActivity/MyEventList.style';
+import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
-export default function MyEventList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
+//TODO: 03_Category/Event/detail API 적용후 정상작동하는지 테스트 필요함
+export default function MyEventList() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [eventData, setEventData] = useState<EventDataType[]>([]);
+    const [dataEnd, setDataEnd] = useState<boolean>(true);
+
+    const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
+    const accessToken = useAppSelector(state => state.token).accessToken;
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
-    const renderHeader = useCallback(() => {
-        return <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />;
-    }, [activeComponent, updateActiveComponent]);
-
-    const onEndReached = () => {
-        const newPage = page + 1;
-        setPage(newPage);
-
-        const moreData = Array(6)
-            .fill(null)
-            .map((_, index) => ({
-                ...eventData[0],
-                eventID: newPage * 6 + index + 1,
-            }));
-
-        setEventData(prevData => [...prevData, ...moreData]);
-    };
-
+    /** FlatList renderItem */
     const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
         return (
             <PhotoBoothEventFrameContainer>
@@ -47,45 +43,104 @@ export default function MyEventList({ activeComponent, updateActiveComponent }: 
         );
     }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            const eventTempData = Array(5)
-                .fill(null)
-                .map((_, index) => ({
-                    eventID: index + 1,
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                    eventTitle: '화사의 ‘I Love My Body’ 프레임',
-                    startDate: '2023.09.07',
-                    endDate: '2023.10.31',
-                    photoBoothName: '포토그레이',
-                    myEvent: true,
-                }));
+    /** FlatList onEndReached */
+    const onEndReached = async () => {
+        setPage(prev => prev + 1);
+        const newData = await getMyEvent();
 
-            setEventData(eventTempData);
+        setEventData(prevData => [...prevData, ...newData.results]);
+        setIsLoading(false);
+        newData.next !== null && setDataEnd(prev => !prev);
+    };
+
+    /** FlatList listFooterItem */
+    const renderFooterItem = useCallback(() => {
+        const onPressFooter = () => {
+            accessToken && navigation.navigate('Category', undefined);
+        };
+
+        return (
+            <FlatListButtonContainer>
+                <NormalButton text="이벤트 보러가기" onPress={onPressFooter} />
+            </FlatListButtonContainer>
+        );
+    }, [accessToken, navigation]);
+
+    /** 내가 좋아요 누른 이벤트 항목 데이터 Get */
+    const getMyEvent = async () => {
+        try {
+            if (accessToken) {
+                const resultList = await GetMyEventList(accessToken, dataLimit, page);
+                return resultList.data;
+            }
+        } catch (error) {
+            console.log('GetMyEventList ' + error);
+        }
+    };
+
+    // MyEvent 진입시 내가 좋아요 누른 이벤트 항목 데이터 Get
+    useEffect(() => {
+        const getFirstMyEvent = async () => {
+            const eventList = await getMyEvent();
+            setEventData(eventList.results);
             setIsLoading(false);
-        }, 500);
+
+            eventList.next !== null && setDataEnd(prev => !prev);
+        };
+
+        getFirstMyEvent();
     }, []);
 
     return (
         <MyEventListContainer>
             {!isLoading ? (
-                <>
-                    <FlatList
-                        data={eventData}
-                        keyExtractor={item => item.eventID.toString()}
-                        ref={flatListRef}
-                        ListHeaderComponent={renderHeader}
-                        renderItem={renderEventItem}
-                        onEndReached={onEndReached}
-                        onEndReachedThreshold={0.1}
-                        ListFooterComponent={SkeletonGetMoreMyPageEvent}
-                    />
-                    <UpScrollButton top="88%" flatListRef={flatListRef} />
-                </>
+                <MyEventContainer>
+                    {dataEnd ? (
+                        eventData.length > 0 ? (
+                            <MyEventFlatListContainer>
+                                <FlatList
+                                    data={eventData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderEventItem}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyEventFlatListContainer>
+                        ) : (
+                            <MyEventFlatListContainer>
+                                <SearchNoData
+                                    alertText="즐겨찾는 이벤트가 없습니다."
+                                    recommendText="진행중인 이벤트를 구경해 보세요!"
+                                />
+                                <FlatList
+                                    data={eventData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderEventItem}
+                                    scrollEnabled={false}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyEventFlatListContainer>
+                        )
+                    ) : (
+                        <>
+                            <FlatList
+                                data={eventData}
+                                keyExtractor={item => item.id.toString()}
+                                ref={flatListRef}
+                                renderItem={renderEventItem}
+                                onEndReached={onEndReached}
+                                onEndReachedThreshold={0.1}
+                                ListFooterComponent={SkeletonGetMoreMyPageEvent}
+                            />
+                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                        </>
+                    )}
+                </MyEventContainer>
             ) : (
                 <SkeletonEventContainer>
-                    <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />
                     <SkeletonMyPageEvent />
                 </SkeletonEventContainer>
             )}

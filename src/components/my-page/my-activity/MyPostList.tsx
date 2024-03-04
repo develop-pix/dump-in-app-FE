@@ -1,110 +1,146 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import MyPageUserData from 'components/my-page/MyPageUserData';
+import SearchNoData from 'components/reuse/alert/SearchNoData';
+import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageReview from 'components/reuse/skeleton/SkeletonGetMoreMyPageReview';
 import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview';
+import { GetMyPostList } from 'hooks/axios/MyPage';
+import { useAppSelector } from 'hooks/redux/store';
 import { ReviewProps } from 'interfaces/Home.interface';
-import { MyPageUserDataProps } from 'interfaces/MyPage.interface';
-import { MyPostListContainer, SkeletonMyPostContainer } from 'styles/layout/my-page/MyActivity/MyPostList.style';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import {
+    MyPostContainer,
+    MyPostFlatListContainer,
+    MyPostListContainer,
+    SkeletonMyPostContainer,
+} from 'styles/layout/my-page/MyActivity/MyPostList.style';
+import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
 import MyPostFrame from './MyPostFrame';
 
-export default function MyPostList({ activeComponent, updateActiveComponent }: MyPageUserDataProps) {
+export default function MyPostList() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
+    const [dataEnd, setDataEnd] = useState<boolean>(false);
+
+    const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
+    const accessToken = useAppSelector(state => state.token).accessToken;
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
 
-    const renderHeader = useCallback(() => {
-        return <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />;
-    }, [activeComponent, updateActiveComponent]);
-
-    const onEndReached = () => {
-        const newPage = page + 1;
-        setPage(newPage);
-
-        const moreData = Array(6)
-            .fill(null)
-            .map((_, index) => ({
-                ...reviewData[0],
-                reviewID: newPage * 6 + index + 1,
-            }));
-
-        setReviewData(prevData => [...prevData, ...moreData]);
-    };
-
+    /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
         return <MyPostFrame data={item} />;
     }, []);
 
+    /** FlatList onEndReached */
+    const onEndReached = async () => {
+        const newData = await getMyPost();
+        setReviewData(prevData => [...prevData, ...newData.results]);
+        newData.next === null && setDataEnd(prev => !prev);
+    };
+
+    /** FlatList listFooterItem */
+    const renderFooterItem = useCallback(() => {
+        //FIXME: Stack 이아닌 Tab 이동으로 변경
+        const onPressFooter = () => {
+            accessToken && navigation.navigate('Home', undefined);
+        };
+
+        return (
+            <FlatListButtonContainer>
+                <NormalButton text="게시글 보러가기" onPress={onPressFooter} />
+            </FlatListButtonContainer>
+        );
+    }, [accessToken, navigation]);
+
+    /** 내가 좋아요 누른 게시글 항목 데이터 Get */
+    const getMyPost = async () => {
+        try {
+            if (accessToken) {
+                const resultList = await GetMyPostList(accessToken, dataLimit, dataLimit * page);
+                setPage(prev => prev + 1);
+                return resultList.data;
+            }
+        } catch (error) {
+            console.log('GetMyPostList ' + error);
+        }
+    };
+
+    // MyPost 진입시 내가 좋아요 누른 리뷰 항목 데이터 Get
     useEffect(() => {
-        setTimeout(() => {
-            setReviewData([
-                {
-                    reviewID: 1,
-                    branchName: '포토부스 혜화점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 2,
-                    branchName: '포토부스 서울대점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 3,
-                    branchName: '포토그레이 홍대점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 4,
-                    branchName: '인생네컷 홍대점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 5,
-                    branchName: '포토부스 혜화점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-                {
-                    reviewID: 6,
-                    branchName: '포토부스 혜화점',
-                    representativeImage:
-                        'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                },
-            ]);
+        const getFirstMyPost = async () => {
+            const reviewList = await getMyPost();
+            setReviewData(reviewList.results);
             setIsLoading(false);
-        }, 500);
+
+            reviewList.next === null && setDataEnd(prev => !prev);
+        };
+
+        getFirstMyPost();
     }, []);
 
     return (
         <MyPostListContainer>
             {!isLoading ? (
-                <>
-                    <FlatList
-                        data={reviewData}
-                        keyExtractor={item => item.reviewID.toString()}
-                        ref={flatListRef}
-                        ListHeaderComponent={renderHeader}
-                        renderItem={renderReviewItem}
-                        numColumns={2}
-                        columnWrapperStyle={{ justifyContent: 'space-evenly' }}
-                        onEndReached={onEndReached}
-                        onEndReachedThreshold={0.1}
-                        ListFooterComponent={SkeletonGetMoreMyPageReview}
-                    />
-                    <UpScrollButton top="88%" flatListRef={flatListRef} />
-                </>
+                <MyPostContainer>
+                    {dataEnd ? (
+                        reviewData.length > 0 ? (
+                            <MyPostFlatListContainer>
+                                <FlatList
+                                    data={reviewData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderReviewItem}
+                                    numColumns={2}
+                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyPostFlatListContainer>
+                        ) : (
+                            <MyPostFlatListContainer>
+                                <SearchNoData
+                                    alertText="즐겨찾는 게시글이 없습니다."
+                                    recommendText="마음에 드는 게시글을 찾아보세요!"
+                                />
+                                <FlatList
+                                    data={reviewData}
+                                    keyExtractor={item => item.id.toString()}
+                                    ref={flatListRef}
+                                    renderItem={renderReviewItem}
+                                    numColumns={2}
+                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    scrollEnabled={false}
+                                    ListFooterComponent={renderFooterItem}
+                                />
+                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            </MyPostFlatListContainer>
+                        )
+                    ) : (
+                        <MyPostFlatListContainer>
+                            <FlatList
+                                data={reviewData}
+                                keyExtractor={item => item.id.toString()}
+                                ref={flatListRef}
+                                renderItem={renderReviewItem}
+                                numColumns={2}
+                                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                onEndReached={onEndReached}
+                                onEndReachedThreshold={0.1}
+                                ListFooterComponent={SkeletonGetMoreMyPageReview}
+                            />
+                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                        </MyPostFlatListContainer>
+                    )}
+                </MyPostContainer>
             ) : (
                 <SkeletonMyPostContainer>
-                    <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />
                     <SkeletonMyPageReview />
                 </SkeletonMyPostContainer>
             )}

@@ -54,18 +54,13 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
     }
 };
 
-/**
- * Test
- * photoBoothId: 994ef416-92fa-46f3-b0be-eb8c1445a506
- * AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k
- * date: '2024-01-11'
- * */
 export const UploadNewReview = async (
+    accessToken: string,
     mainThumbnailImageUrl: string | undefined,
     imageUrls: (string | undefined)[],
     content: string | null,
     photoBoothId: string | null | undefined,
-    date: Date | string | null,
+    date: string | null,
     frameColor: string | null,
     participants: number | null,
     cameraShot: string | null,
@@ -76,17 +71,16 @@ export const UploadNewReview = async (
 ) => {
     return await axios({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/reviews/`,
+        url: `${Config.BACKEND_API_URL}/reviews`,
         headers: {
-            Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k',
+            Authorization: `Bearer ${accessToken}`,
         },
         data: {
             mainThumbnailImageUrl,
             imageUrls,
             content,
             photoBoothId,
-            date: '2024-01-11', //TODO: Date 형식으로 입력받을수 있도록 수정될 예정 임시로 'yyyy-mm-dd' string으로 받도록 고정
+            date,
             frameColor,
             participants,
             cameraShot,

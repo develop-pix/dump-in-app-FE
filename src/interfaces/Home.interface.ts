@@ -44,7 +44,8 @@ export interface EventProps {
 }
 
 export interface ReviewProps {
-    reviewID: number;
-    branchName: string;
-    representativeImage: string;
+    id: number;
+    mainThumbnailImageUrl: string;
+    photoBoothBrandName: string;
+    photoBoothName: string;
 }
