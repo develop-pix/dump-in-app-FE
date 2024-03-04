@@ -10,7 +10,7 @@ import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview
 import { GetMyPostList } from 'hooks/axios/MyPage';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewProps } from 'interfaces/Home.interface';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MainTabScreenProps } from 'interfaces/Navigation.interface';
 import {
     MyPostContainer,
     MyPostFlatListContainer,
@@ -31,7 +31,7 @@ export default function MyPostList() {
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
     const accessToken = useAppSelector(state => state.token).accessToken;
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
@@ -47,9 +47,13 @@ export default function MyPostList() {
 
     /** FlatList listFooterItem */
     const renderFooterItem = useCallback(() => {
-        //FIXME: Stack 이아닌 Tab 이동으로 변경
         const onPressFooter = () => {
-            accessToken && navigation.navigate('Home', undefined);
+            navigation.navigate('MainTab', {
+                screen: 'HomeTab',
+                params: {
+                    screen: 'Home',
+                },
+            });
         };
 
         return (
@@ -57,7 +61,7 @@ export default function MyPostList() {
                 <NormalButton text="게시글 보러가기" onPress={onPressFooter} />
             </FlatListButtonContainer>
         );
-    }, [accessToken, navigation]);
+    }, [navigation]);
 
     /** 내가 좋아요 누른 게시글 항목 데이터 Get */
     const getMyPost = async () => {

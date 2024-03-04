@@ -10,7 +10,7 @@ import SkeletonGetMoreMyPageEvent from 'components/reuse/skeleton/SkeletonGetMor
 import SkeletonMyPageEvent from 'components/reuse/skeleton/SkeletonMyPageEvent';
 import { GetMyEventList } from 'hooks/axios/MyPage';
 import { useAppSelector } from 'hooks/redux/store';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MainTabScreenProps } from 'interfaces/Navigation.interface';
 import { EventDataType } from 'interfaces/PhotoBoothDetail.interface';
 import {
     MyEventContainer,
@@ -32,7 +32,7 @@ export default function MyEventList() {
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
     const accessToken = useAppSelector(state => state.token).accessToken;
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */
     const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
@@ -56,7 +56,12 @@ export default function MyEventList() {
     /** FlatList listFooterItem */
     const renderFooterItem = useCallback(() => {
         const onPressFooter = () => {
-            accessToken && navigation.navigate('Category', undefined);
+            navigation.navigate('MainTab', {
+                screen: 'CategoryTab',
+                params: {
+                    screen: 'Category',
+                },
+            });
         };
 
         return (
@@ -64,7 +69,7 @@ export default function MyEventList() {
                 <NormalButton text="이벤트 보러가기" onPress={onPressFooter} />
             </FlatListButtonContainer>
         );
-    }, [accessToken, navigation]);
+    }, [navigation]);
 
     /** 내가 좋아요 누른 이벤트 항목 데이터 Get */
     const getMyEvent = async () => {
