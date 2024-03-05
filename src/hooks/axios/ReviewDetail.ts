@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 export const GetReviewData = async (accessToken: string | undefined, reviewID: number) => {
     return await axios({

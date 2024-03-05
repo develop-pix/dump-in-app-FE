@@ -1,4 +1,4 @@
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 export const GetMyReviewList = async (limit: number, offset: number) => {
     return await axiosInstance({

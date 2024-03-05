@@ -1,4 +1,4 @@
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 //TODO: 테스트 필요함
 export const LikeEvent = async (event_Id: number | null | undefined) => {

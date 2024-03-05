@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
     const str_latitude: string = latitude.toFixed(7);

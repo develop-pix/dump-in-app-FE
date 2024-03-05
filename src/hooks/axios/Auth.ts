@@ -1,4 +1,4 @@
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 export const NaverSocialLogin = async (accessToken: string | null, mobileToken: string | undefined) => {
     return await axiosInstance({

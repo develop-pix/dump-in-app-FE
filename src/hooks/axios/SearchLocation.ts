@@ -1,4 +1,4 @@
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 //TODO: latitude, longitude, radius 가 backend에서 수정될 예정, 추후 변경
 

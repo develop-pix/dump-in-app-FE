@@ -1,4 +1,4 @@
-import { axiosInstance } from './api-header';
+import { axiosInstance } from './ApiHeader';
 
 export const GetBranchData = async (latitude: number | null, longitude: number | null, photo_booth_id: string) => {
     return await axiosInstance({
