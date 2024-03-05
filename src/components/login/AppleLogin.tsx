@@ -30,6 +30,7 @@ export default function AppleLogin() {
                 if (socialLoginResult.data) {
                     storage.set('token.accessToken', socialLoginResult.data.accessToken);
                     storage.set('token.refreshToken', socialLoginResult.data.refreshToken);
+                    storage.getString('token.refreshToken');
                     dispatch(setIsLoggedIn(true));
 
                     navigation.navigate('MyPage');

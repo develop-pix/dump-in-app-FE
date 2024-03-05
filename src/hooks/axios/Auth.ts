@@ -1,10 +1,9 @@
-import axios from 'axios';
-import Config from 'react-native-config';
+import { axiosInstance } from './api-header';
 
 export const NaverSocialLogin = async (accessToken: string | null, mobileToken: string | undefined) => {
-    return await axios({
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/auth/naver/login`,
+        url: `/auth/naver/login`,
         data: {
             accessToken,
             mobileToken,
@@ -19,9 +18,9 @@ export const NaverSocialLogin = async (accessToken: string | null, mobileToken: 
 };
 
 export const AppleSocialLogin = async (identifyToken: string | null | undefined, mobileToken: string | undefined) => {
-    return await axios({
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/auth/apple/login`,
+        url: `/auth/apple/login`,
         data: {
             identifyToken,
             mobileToken,
@@ -36,9 +35,9 @@ export const AppleSocialLogin = async (identifyToken: string | null | undefined,
 };
 
 export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: string | undefined) => {
-    return await axios({
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/auth/kakao/login`,
+        url: `/auth/kakao/login`,
         data: {
             accessToken,
             mobileToken,
@@ -52,13 +51,12 @@ export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: 
         });
 };
 
-//FIXME: API 명세 질문 후 수정
-export const RefreshAccessToken = async (refreshToken: string | null) => {
-    return await axios({
+export const RefreshAccessToken = async (refresh: string) => {
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/auth/jwt/refresh`,
+        url: `/auth/jwt/refresh`,
         data: {
-            refreshToken,
+            refresh,
         },
     })
         .then(res => {

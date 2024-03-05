@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
+import { axiosInstance } from './api-header';
+
 export const GetReviewData = async (accessToken: string | undefined, reviewID: number) => {
     return await axios({
         method: 'get',
@@ -21,12 +23,9 @@ export const GetReviewData = async (accessToken: string | undefined, reviewID: n
 };
 
 export const LikeReview = async (accessToken: string, reviewID: number | null | undefined) => {
-    return await axios({
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/reviews/${reviewID}/likes`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/reviews/${reviewID}/likes`,
         data: {
             review_ID: reviewID,
         },

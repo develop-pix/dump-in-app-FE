@@ -1,5 +1,4 @@
-import axios from 'axios';
-import Config from 'react-native-config';
+import { axiosInstance } from './api-header';
 
 export const UploadEditReview = async (
     accessToken: string,
@@ -17,12 +16,9 @@ export const UploadEditReview = async (
     curlAmount: boolean | null,
     isPublic: boolean,
 ) => {
-    return await axios({
+    return await axiosInstance({
         method: 'put',
-        url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/reviews/${reviewID}`,
         data: {
             mainThumbnailImageUrl,
             imageUrls,

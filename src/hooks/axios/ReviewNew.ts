@@ -1,6 +1,7 @@
 import AWS, { config } from 'aws-sdk';
-import axios from 'axios';
 import Config from 'react-native-config';
+
+import { axiosInstance } from './api-header';
 
 //TODO: Key를 수정하여 UserID로 된 폴더가 생성되도록 수정해야함
 export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
@@ -69,12 +70,9 @@ export const UploadNewReview = async (
     curlAmount: boolean | null,
     isPublic: boolean,
 ) => {
-    return await axios({
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/reviews`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/reviews`,
         data: {
             mainThumbnailImageUrl,
             imageUrls,

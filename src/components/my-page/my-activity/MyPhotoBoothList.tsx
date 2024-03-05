@@ -8,7 +8,6 @@ import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonGetMoreMyPagePhotoBooth';
 import SkeletonMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonMyPagePhotoBooth';
 import { GetMyPhotoBoothList } from 'hooks/axios/MyPage';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameType } from 'interfaces/MyPage.interface';
 import { MainTabScreenProps } from 'interfaces/Navigation.interface';
@@ -32,7 +31,6 @@ export default function MyPhotoBoothList() {
 
     const dataLimit = 8;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
@@ -76,8 +74,8 @@ export default function MyPhotoBoothList() {
     /** 내가 좋아요 누른 지점 항목 데이터 Get */
     const getMyPhotoBooth = async () => {
         try {
-            if (accessToken && isLoggedIn) {
-                const resultList = await GetMyPhotoBoothList(accessToken, dataLimit, page);
+            if (isLoggedIn) {
+                const resultList = await GetMyPhotoBoothList(dataLimit, page);
                 return resultList.data;
             }
         } catch (error) {

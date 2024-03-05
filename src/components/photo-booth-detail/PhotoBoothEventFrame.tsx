@@ -4,7 +4,6 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeEvent } from 'hooks/axios/Event';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
@@ -25,7 +24,6 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const isFocused = useIsFocused();
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(event.isLiked);
@@ -50,8 +48,8 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
 
     /** 하트 버튼 클릭시 */
     const onPressEventLikeButton = async () => {
-        if (accessToken && isLoggedIn) {
-            const press_result = await LikeEvent(accessToken, event.id);
+        if (isLoggedIn) {
+            const press_result = await LikeEvent(event.id);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }

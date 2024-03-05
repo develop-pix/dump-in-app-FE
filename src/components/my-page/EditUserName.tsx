@@ -3,7 +3,6 @@ import { TouchableOpacity } from 'react-native';
 
 import EditIcon from 'assets/image/icon/edit.svg';
 import { EditMyNickName, GetMyUserData } from 'hooks/axios/MyPage';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setEmail, setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import {
@@ -24,7 +23,6 @@ import {
 export default function EditUserName() {
     const dispatch = useAppDispatch();
     const { userID, userNickName } = useAppSelector(state => state.userData);
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [isEditing, setIsEditing] = useState(false);
@@ -48,9 +46,9 @@ export default function EditUserName() {
             return;
         }
 
-        if (accessToken && editedNickName && editedNickName.length > 0) {
+        if (editedNickName && editedNickName.length > 0) {
             try {
-                const editResult = await EditMyNickName(accessToken, editedNickName);
+                const editResult = await EditMyNickName(editedNickName);
                 if (editResult) {
                     dispatch(setUserNickName(editedNickName));
                     setErrorMessage(null);
@@ -70,9 +68,9 @@ export default function EditUserName() {
     // accessToken의 존재 여부에 따라 내 정보 데이터 Get
     useEffect(() => {
         const getMyUserData = async () => {
-            if (accessToken && isLoggedIn) {
+            if (isLoggedIn) {
                 try {
-                    const userData = await GetMyUserData(accessToken);
+                    const userData = await GetMyUserData();
                     if (userData.data) {
                         dispatch(setUserID(userData.data.id));
                         dispatch(setEmail(userData.data.email));
@@ -84,7 +82,7 @@ export default function EditUserName() {
             }
         };
         getMyUserData();
-    }, [accessToken, isLoggedIn, dispatch]);
+    }, [isLoggedIn, dispatch]);
 
     return (
         <EditUserNameContainer>

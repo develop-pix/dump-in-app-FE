@@ -3,7 +3,6 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeBranch } from 'hooks/axios/Branch';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchCardProps } from 'interfaces/Location.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
@@ -38,7 +37,6 @@ export default function BranchCard({
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
     const isFocused = useIsFocused();
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     /** Branch 페이지 이동 */
@@ -50,8 +48,8 @@ export default function BranchCard({
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
-        if (accessToken && isLoggedIn) {
-            const press_result = await LikeBranch(accessToken, branchID);
+        if (isLoggedIn) {
+            const press_result = await LikeBranch(branchID);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }

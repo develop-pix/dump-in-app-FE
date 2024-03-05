@@ -3,7 +3,6 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeBranch } from 'hooks/axios/Branch';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
@@ -25,7 +24,6 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(photoBoothData.isLiked);
@@ -41,8 +39,8 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
-        if (accessToken && isLoggedIn) {
-            const press_result = await LikeBranch(accessToken, photoBoothData.id);
+        if (isLoggedIn) {
+            const press_result = await LikeBranch(photoBoothData.id);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }

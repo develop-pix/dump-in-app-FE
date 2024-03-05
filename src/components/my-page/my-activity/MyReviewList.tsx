@@ -9,7 +9,6 @@ import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageReview from 'components/reuse/skeleton/SkeletonGetMoreMyPageReview';
 import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview';
 import { GetMyReviewList } from 'hooks/axios/MyPage';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewProps } from 'interfaces/Home.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
@@ -30,15 +29,14 @@ export default function MyReviewList() {
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = storage.getString('token.accessToken');
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     /** 내 사진 항목 데이터 Get */
     const getMyReview = async () => {
         try {
-            if (accessToken && isLoggedIn) {
-                const resultList = await GetMyReviewList(accessToken, dataLimit, page * dataLimit);
+            if (isLoggedIn) {
+                const resultList = await GetMyReviewList(dataLimit, page * dataLimit);
                 setPage(prev => prev + 1);
                 return resultList.data;
             }

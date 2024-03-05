@@ -3,7 +3,6 @@ import { useRoute } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeBranch } from 'hooks/axios/Branch';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchTitleProps } from 'interfaces/Branch.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
@@ -24,13 +23,12 @@ export default function BranchTitle({ photoBoothName, branchName, branchHashtag,
     const [favorite, setFavorite] = useState<boolean>(isLiked);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
-        if (accessToken && isLoggedIn) {
-            const press_result = await LikeBranch(accessToken, route.params.branchID);
+        if (isLoggedIn) {
+            const press_result = await LikeBranch(route.params.branchID);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
