@@ -9,6 +9,7 @@ import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageEvent from 'components/reuse/skeleton/SkeletonGetMoreMyPageEvent';
 import SkeletonMyPageEvent from 'components/reuse/skeleton/SkeletonMyPageEvent';
 import { GetMyEventList } from 'hooks/axios/MyPage';
+import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { MainTabScreenProps } from 'interfaces/Navigation.interface';
 import { EventDataType } from 'interfaces/PhotoBoothDetail.interface';
@@ -31,8 +32,9 @@ export default function MyEventList() {
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     /** FlatList renderItem */
     const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
@@ -74,7 +76,7 @@ export default function MyEventList() {
     /** 내가 좋아요 누른 이벤트 항목 데이터 Get */
     const getMyEvent = async () => {
         try {
-            if (accessToken) {
+            if (accessToken && isLoggedIn) {
                 const resultList = await GetMyEventList(accessToken, dataLimit, page);
                 return resultList.data;
             }
@@ -130,7 +132,7 @@ export default function MyEventList() {
                             </MyEventFlatListContainer>
                         )
                     ) : (
-                        <>
+                        <MyEventFlatListContainer>
                             <FlatList
                                 data={eventData}
                                 keyExtractor={item => item.id.toString()}
@@ -141,7 +143,7 @@ export default function MyEventList() {
                                 ListFooterComponent={SkeletonGetMoreMyPageEvent}
                             />
                             <UpScrollButton top="88%" flatListRef={flatListRef} />
-                        </>
+                        </MyEventFlatListContainer>
                     )}
                 </MyEventContainer>
             ) : (

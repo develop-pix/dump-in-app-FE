@@ -12,12 +12,12 @@ import { FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function AddNewReviewDummy() {
     const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
-    //FIXME: accessToken 존재시 AddReviewModal Open , null일시 LoginModal Open
+    //FIXME: isLoggedIn가 true일시 AddReviewModal Open , false일시 LoginModal Open
     /** 로그인 여부에 따라 리뷰추가, 로그인 모달 Open */
     const onPressDummy = () => {
-        accessToken && navigation.navigate('AddReviewModal', { branchID: undefined });
+        isLoggedIn && navigation.navigate('AddReviewModal', { branchID: undefined });
     };
 
     return (

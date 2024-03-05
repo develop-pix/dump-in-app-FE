@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 import EditIcon from 'assets/image/icon/edit.svg';
 import { EditMyNickName, GetMyUserData } from 'hooks/axios/MyPage';
+import { storage } from 'hooks/mmkv/storage';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setEmail, setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import {
@@ -23,7 +24,8 @@ import {
 export default function EditUserName() {
     const dispatch = useAppDispatch();
     const { userID, userNickName } = useAppSelector(state => state.userData);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedNickName, setEditedNickName] = useState<string | null>(null);
@@ -68,7 +70,7 @@ export default function EditUserName() {
     // accessToken의 존재 여부에 따라 내 정보 데이터 Get
     useEffect(() => {
         const getMyUserData = async () => {
-            if (accessToken) {
+            if (accessToken && isLoggedIn) {
                 try {
                     const userData = await GetMyUserData(accessToken);
                     if (userData.data) {
@@ -82,13 +84,11 @@ export default function EditUserName() {
             }
         };
         getMyUserData();
-    }, [accessToken]);
+    }, [accessToken, isLoggedIn, dispatch]);
 
     return (
         <EditUserNameContainer>
-            {accessToken === null ? (
-                <FontWhiteBiggestSemibold>로그인이 필요합니다.</FontWhiteBiggestSemibold>
-            ) : (
+            {isLoggedIn ? (
                 <>
                     {isEditing ? (
                         <UserNickNameWrapper>
@@ -123,6 +123,8 @@ export default function EditUserName() {
                         <FontWhiteGreyNormalMedium>{userID}</FontWhiteGreyNormalMedium>
                     </UserIDWrapper>
                 </>
+            ) : (
+                <FontWhiteBiggestSemibold>로그인이 필요합니다.</FontWhiteBiggestSemibold>
             )}
         </EditUserNameContainer>
     );

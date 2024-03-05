@@ -16,8 +16,8 @@ import MyReviewList from './my-activity/MyReviewList';
 import MyPageUserData from './MyPageUserData';
 
 export default function MyPage() {
-    const accessToken = useAppSelector(state => state.token.accessToken);
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [activeComponent, setActiveComponent] = useState<ActivityComponentProps>('Login');
 
@@ -36,7 +36,7 @@ export default function MyPage() {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                if (accessToken) {
+                if (isLoggedIn) {
                     return (
                         <HeaderRightContainer>
                             <HeaderIconContainer
@@ -50,11 +50,11 @@ export default function MyPage() {
                 }
             },
         });
-    }, [accessToken, navigation]);
+    }, [isLoggedIn, navigation]);
 
     useEffect(() => {
-        accessToken ? setActiveComponent('MyReviewList') : setActiveComponent('Login');
-    }, [accessToken]);
+        isLoggedIn ? setActiveComponent('MyReviewList') : setActiveComponent('Login');
+    }, [isLoggedIn]);
 
     return (
         <MyPageContainer>

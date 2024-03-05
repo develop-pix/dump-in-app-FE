@@ -8,6 +8,7 @@ import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPageReview from 'components/reuse/skeleton/SkeletonGetMoreMyPageReview';
 import SkeletonMyPageReview from 'components/reuse/skeleton/SkeletonMyPageReview';
 import { GetMyPostList } from 'hooks/axios/MyPage';
+import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewProps } from 'interfaces/Home.interface';
 import { MainTabScreenProps } from 'interfaces/Navigation.interface';
@@ -30,7 +31,8 @@ export default function MyPostList() {
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */
@@ -66,7 +68,7 @@ export default function MyPostList() {
     /** 내가 좋아요 누른 게시글 항목 데이터 Get */
     const getMyPost = async () => {
         try {
-            if (accessToken) {
+            if (accessToken && isLoggedIn) {
                 const resultList = await GetMyPostList(accessToken, dataLimit, dataLimit * page);
                 setPage(prev => prev + 1);
                 return resultList.data;

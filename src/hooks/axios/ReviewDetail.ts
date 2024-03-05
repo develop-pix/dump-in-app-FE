@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-export const GetReviewData = async (accessToken: string | null, reviewID: number) => {
+export const GetReviewData = async (accessToken: string | undefined, reviewID: number) => {
     return await axios({
         method: 'get',
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
@@ -20,11 +20,6 @@ export const GetReviewData = async (accessToken: string | null, reviewID: number
         });
 };
 
-/**
- * Test
- * photoBoothId: 994ef416-92fa-46f3-b0be-eb8c1445a506
- * AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyNTY3Njc0NjY2LCJpYXQiOjE3MDM3NjEwNjYsImp0aSI6ImQzYzdkMGY4Y2NlMzQ1NmJiYWRmZTViMDRmYTBhNjdiIiwidXNlcl9pZCI6MTN9.WF9ak0lHvvOBxT8jZ2hqb5nXtI-9IHtkbdh4TnBeQ2k
- * */
 export const LikeReview = async (accessToken: string, reviewID: number | null | undefined) => {
     return await axios({
         method: 'post',

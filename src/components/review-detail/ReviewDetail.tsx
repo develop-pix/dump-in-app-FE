@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
+import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchName,
     setCameraShot,
@@ -60,7 +61,7 @@ export default function ReviewDetail() {
     const platform = Platform.OS;
     const dispatch = useDispatch();
     const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
 
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
@@ -105,7 +106,7 @@ export default function ReviewDetail() {
             }
         };
         getReviewData();
-    }, [dispatch, route.params.reviewID]);
+    }, [accessToken, dispatch, route.params.reviewID]);
 
     return (
         <ReviewDetailFormContainer>

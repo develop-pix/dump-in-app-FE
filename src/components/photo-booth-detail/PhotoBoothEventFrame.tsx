@@ -3,6 +3,9 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeEvent } from 'hooks/axios/Event';
+import { storage } from 'hooks/mmkv/storage';
+import { useAppSelector } from 'hooks/redux/store';
 import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
@@ -15,8 +18,6 @@ import {
     FavoriteIcon,
 } from 'styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
 import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from 'styles/layout/reuse/text/Text.style';
-import { useAppSelector } from 'hooks/redux/store';
-import { LikeEvent } from 'hooks/axios/Event';
 
 export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProps) {
     const navigation = useNavigation<
@@ -24,7 +25,8 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const isFocused = useIsFocused();
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(event.isLiked);
 
@@ -48,7 +50,7 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
 
     /** 하트 버튼 클릭시 */
     const onPressEventLikeButton = async () => {
-        if (accessToken) {
+        if (accessToken && isLoggedIn) {
             const press_result = await LikeEvent(accessToken, event.id);
             if (press_result.success) {
                 setFavorite(prev => !prev);

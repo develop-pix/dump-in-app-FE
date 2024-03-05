@@ -54,8 +54,7 @@ export const LikeBranch = async (accessToken: string, photoBoothId: string | nul
         method: 'post',
         url: `${Config.BACKEND_API_URL}/photo-booths/${photoBoothId}/likes`,
         headers: {
-            Authorization:
-                `Bearer ${accessToken}`,
+            Authorization: `Bearer ${accessToken}`,
         },
         data: {
             photoBoothId,

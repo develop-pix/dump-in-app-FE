@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-export const NaverSocialLogin = async (accessToken: string | null, mobileToken: string | null) => {
+export const NaverSocialLogin = async (accessToken: string | null, mobileToken: string | undefined) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/naver/login`,
@@ -18,7 +18,7 @@ export const NaverSocialLogin = async (accessToken: string | null, mobileToken: 
         });
 };
 
-export const AppleSocialLogin = async (identifyToken: string | null | undefined, mobileToken: string | null) => {
+export const AppleSocialLogin = async (identifyToken: string | null | undefined, mobileToken: string | undefined) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/apple/login`,
@@ -35,7 +35,7 @@ export const AppleSocialLogin = async (identifyToken: string | null | undefined,
         });
 };
 
-export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: string | null) => {
+export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: string | undefined) => {
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/kakao/login`,

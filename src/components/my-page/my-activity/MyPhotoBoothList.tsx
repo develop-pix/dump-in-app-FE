@@ -8,6 +8,7 @@ import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonGetMoreMyPagePhotoBooth';
 import SkeletonMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonMyPagePhotoBooth';
 import { GetMyPhotoBoothList } from 'hooks/axios/MyPage';
+import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameType } from 'interfaces/MyPage.interface';
 import { MainTabScreenProps } from 'interfaces/Navigation.interface';
@@ -31,7 +32,8 @@ export default function MyPhotoBoothList() {
 
     const dataLimit = 8;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */
@@ -69,12 +71,12 @@ export default function MyPhotoBoothList() {
                 <NormalButton text="내 주변 포토부스 보러가기" onPress={onPressFooter} />
             </FlatListButtonContainer>
         );
-    }, [accessToken, navigation]);
+    }, [navigation]);
 
     /** 내가 좋아요 누른 지점 항목 데이터 Get */
     const getMyPhotoBooth = async () => {
         try {
-            if (accessToken) {
+            if (accessToken && isLoggedIn) {
                 const resultList = await GetMyPhotoBoothList(accessToken, dataLimit, page);
                 return resultList.data;
             }

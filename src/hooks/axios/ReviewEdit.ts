@@ -21,8 +21,7 @@ export const UploadEditReview = async (
         method: 'put',
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
         headers: {
-            Authorization:
-                `Bearer ${accessToken}`,
+            Authorization: `Bearer ${accessToken}`,
         },
         data: {
             mainThumbnailImageUrl,

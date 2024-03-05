@@ -1,11 +1,11 @@
 import { KakaoOAuthToken, login } from '@react-native-seoul/kakao-login';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
 import KaKaoIcon from 'assets/image/icon/kakao_login.svg';
 import { KakaoSocialLogin } from 'hooks/axios/Auth';
-import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { setAccessToken } from 'hooks/redux/tokenSlice';
-import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
+import { storage } from 'hooks/mmkv/storage';
+import { setIsLoggedIn } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     KakaoIconWrapper,
@@ -15,9 +15,9 @@ import {
 } from 'styles/layout/login/KaKaoLogin.style';
 
 export default function KakaoLogin() {
-    const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
-    const mobileToken = useAppSelector(state => state.token).mobileToken;
+    const mobileToken = storage.getString('token.mobileToken');
+    const dispatch = useDispatch();
 
     const loginWithKakao = async (): Promise<void> => {
         try {
@@ -25,7 +25,10 @@ export default function KakaoLogin() {
             if (token.accessToken) {
                 const socialLoginResult = await KakaoSocialLogin(token.accessToken, mobileToken);
                 if (socialLoginResult.data) {
-                    dispatch(setAccessToken(socialLoginResult.data.accessToken));
+                    storage.set('token.accessToken', socialLoginResult.data.accessToken);
+                    storage.set('token.refreshToken', socialLoginResult.data.refreshToken);
+                    dispatch(setIsLoggedIn(true));
+
                     navigation.navigate('MyPage');
                 }
             }
