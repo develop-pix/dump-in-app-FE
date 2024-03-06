@@ -176,7 +176,7 @@ export default function HomeDataCollection() {
 
         getHomeReview();
         getHomeEvent();
-        // getHomePhotoBooth();
+        getHomePhotoBooth();
     }, []);
 
     useEffect(() => {
