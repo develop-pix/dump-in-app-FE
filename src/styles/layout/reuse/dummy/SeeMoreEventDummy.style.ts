@@ -6,7 +6,8 @@ import { colors } from 'styles/base/Variable';
 export const SeeMoreEventContainer = styled.View`
     width: ${Dimensions.get('window').width * 0.45}px;
     aspect-ratio: 1;
-    border-radius: 10px;
+    border-radius: 20px;
+    margin-bottom: 15px;
     background-color: ${colors.grey};
     justify-content: center;
 `;
