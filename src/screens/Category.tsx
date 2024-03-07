@@ -1,5 +1,5 @@
 import CategoryForm from 'components/category/CategoryForm';
-import { CategorySafeContainer } from 'styles/layout/Category.style';
+import { CategorySafeContainer } from 'styles/layout/category/Category.style';
 
 export default function Category() {
     return (
