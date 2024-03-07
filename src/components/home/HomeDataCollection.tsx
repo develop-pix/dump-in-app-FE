@@ -60,9 +60,8 @@ export default function HomeDataCollection() {
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
-        setTimeout(() => {
-            setRefreshing(false);
-        }, 2000);
+        setIsLoading(true);
+        getHomeData();
     }, []);
 
     /** 필터 존재 여부 확인 변수 */
@@ -93,13 +92,6 @@ export default function HomeDataCollection() {
 
     const renderReviewItem = useCallback(({ item }: { item: CollectionDataProps }) => {
         return <PhotoBoothList data={item} />;
-    }, []);
-
-    useEffect(() => {
-        // 예시 async ~await로 정상적으로 데이터 fetch완료시 실행
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
     }, []);
 
     useEffect(() => {
@@ -154,29 +146,26 @@ export default function HomeDataCollection() {
         checkNotification();
     }, []);
 
-    useEffect(() => {
-        const getHomeReview = async () => {
-            const response = await fetchHomeReview();
-            if (response) {
-                setReviewData(response.data.results);
-            }
-        };
-        const getHomeEvent = async () => {
-            const response = await fetchHomeEvent();
-            if (response) {
-                setEventData(response.data.results);
-            }
-        };
-        const getHomePhotoBooth = async () => {
-            const response = await fetchHomePhotoBooth();
-            if (response) {
-                setPhotoBoothData(response.data.results);
-            }
-        };
+    const getHomeData = async () => {
+        const reviewResponse = await fetchHomeReview();
+        if (reviewResponse) {
+            setReviewData(reviewResponse.data.results);
+        }
+        const eventResponse = await fetchHomeEvent();
+        if (eventResponse) {
+            setEventData(eventResponse.data.results);
+        }
+        const photoBoothResponse = await fetchHomePhotoBooth();
+        if (photoBoothResponse) {
+            setPhotoBoothData(photoBoothResponse.data.results);
+        }
 
-        getHomeReview();
-        getHomeEvent();
-        getHomePhotoBooth();
+        setRefreshing(false);
+        setIsLoading(false);
+    };
+
+    useEffect(() => {
+        getHomeData();
     }, []);
 
     useEffect(() => {
