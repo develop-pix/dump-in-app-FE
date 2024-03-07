@@ -15,7 +15,7 @@ interface ReviewData {
     concept: ConceptData[];
 }
 
-interface ConceptData {
-    hashtagID: number;
+export interface ConceptData {
+    id: number;
     name: string;
 }

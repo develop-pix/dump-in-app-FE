@@ -1,30 +1,15 @@
+import { PhotoBoothImageData } from './reuse/official-image/OfficialImage.interface';
+import { ConceptData } from './reuse/photo-dump/PhotoDump.interface';
+
 export interface PhotoBoothDataType {
-    photoBoothName: string;
-    hashtag: string[];
-    representativeImage: string;
-    officialImage: string[];
-    event: {
-        eventID: number;
-        representativeImage: string;
-        eventTitle: string;
-        startDate: string;
-        endDate: string;
-        myEvent: boolean;
-    }[];
-    review: {
-        reviewID: number;
-        representativeImage: string;
-        description: string;
-        hashtag: string[];
-    }[];
+    id: number | undefined;
+    name: string;
+    hashtag: ConceptData[];
+    image: PhotoBoothImageData[];
 }
 
 export interface PhotoBoothImageTitleProps {
-    photoBoothData: {
-        representativeImage: string;
-        photoBoothName: string;
-        hashtag: string[];
-    };
+    photoBoothData: PhotoBoothDataType;
 }
 
 export interface PhotoBoothEventProps {

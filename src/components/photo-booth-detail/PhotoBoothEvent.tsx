@@ -40,7 +40,7 @@ export default function PhotoBoothEvent({ eventData }: PhotoBoothEventProps) {
             </TitleContainer>
 
             {eventData.length > 0 ? (
-                <PhotoBoothEventFrame key={eventData[0].eventID} event={eventData[0]} />
+                <PhotoBoothEventFrame key={eventData[0].id} event={eventData[0]} />
             ) : (
                 <>
                     <SearchNoData alertText="등록된 이벤트가 없습니다." recommendText="다른 이벤트를 구경해 보세요!" />

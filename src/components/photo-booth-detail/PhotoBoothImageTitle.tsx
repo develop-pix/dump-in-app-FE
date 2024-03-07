@@ -2,11 +2,7 @@ import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
 import LinearGradient from 'react-native-linear-gradient';
 
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import {
-    CategoryStackScreenProps,
-    HomeStackScreenProps,
-    MyPageStackScreenProps,
-} from 'interfaces/Navigation.interface';
+import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothImageTitleProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -23,14 +19,11 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImageTitleProps) {
     const route = useRoute<
-        | HomeStackScreenProps<'PhotoBoothDetail'>['route']
-        | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
-        | MyPageStackScreenProps<'PhotoBoothDetail'>['route']
+        HomeStackScreenProps<'PhotoBoothDetail'>['route'] | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
     >();
     const navigation = useNavigation<
         | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
-        | MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const isFocused = useIsFocused();
 
@@ -55,22 +48,13 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
                         },
                     });
                     break;
-                case 'MyPageStack':
-                    (navigation as MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('MainTab', {
-                        screen: 'LocationTab',
-                        params: {
-                            screen: 'Location',
-                            params: { photoBoothID: route.params.photoBoothID },
-                        },
-                    });
-                    break;
             }
         }
     };
 
     return (
         <PhotoBoothImageTitleContainer>
-            <PhotoBoothImage source={{ uri: photoBoothData.representativeImage }}>
+            <PhotoBoothImage source={{ uri: photoBoothData.mainThumbnailImageUrl }}>
                 <LinearGradient
                     colors={['transparent', colors.lightblack]}
                     locations={[0.1, 1]}
@@ -87,7 +71,7 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
             <PhotoBoothImageContentContainer>
                 <ContentsContainer>
                     <TitleContainer>
-                        <FontWhiteBiggestSemibold>{photoBoothData.photoBoothName}</FontWhiteBiggestSemibold>
+                        <FontWhiteBiggestSemibold>{photoBoothData.name}</FontWhiteBiggestSemibold>
                     </TitleContainer>
 
                     <ReviewDescBottom>

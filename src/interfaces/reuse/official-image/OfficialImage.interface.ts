@@ -3,7 +3,7 @@ export interface OfficialImageProps {
     image: PhotoBoothImageData[];
 }
 
-interface PhotoBoothImageData {
+export interface PhotoBoothImageData {
     id: number;
     imageUrl: string;
 }

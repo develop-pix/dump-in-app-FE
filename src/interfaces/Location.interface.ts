@@ -60,7 +60,7 @@ export interface BranchCardProps {
     imageLogo: string;
     photoBoothName: string;
     branchName: string;
-    hashtag: ConceptData[];
+    id: ConceptData[];
     isLiked: boolean;
     distance: string;
 }
