@@ -31,7 +31,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {
         if (isFocused) {
-            navigation.navigate('LocationSearch');
+            navigation.navigate('ReviewLocationSearch');
         }
     };
 
@@ -41,8 +41,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
         const GetBranchNameData = async (branchID: string) => {
             try {
                 let branchFullName = '';
-                //FIXME: 백엔드 데이터 바뀔시 수정필요(위도,경도 필요없도록 수정예정)
-                const branchData = await GetBranchData(36.8101475281, 127.1470316068, branchID);
+                const branchData = await GetBranchData(null, null, branchID);
                 branchFullName = branchData.data.photoBoothBrand.name + ' ' + branchData.data.name;
                 return branchFullName;
             } catch (e) {

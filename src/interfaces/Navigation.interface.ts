@@ -7,7 +7,7 @@ export type RootStackParamList = {
     AddReviewModal: { branchID: string | undefined };
     HomeSearch: { photoBoothName: string | null };
     Notification: undefined;
-    LocationSearch: undefined;
+    ReviewLocationSearch: undefined;
     OfficialImageDetail: {
         photoBoothName: string;
         image: string[];
@@ -49,6 +49,7 @@ export type HomeStackScreenProps<RouteName extends keyof HomeStackParamList> = C
 
 export type LocationStackParamList = {
     Location: undefined | { photoBoothID: number | null };
+    LocationSearch: undefined;
     Branch: { branchID: string };
     ReviewDetail: { reviewID: number; branchID: string | undefined };
 };

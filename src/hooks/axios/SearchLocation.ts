@@ -20,9 +20,27 @@ export const GetLocationSearchData = async (
 
         params: {
             photo_booth_brand_name,
-            latitude,
-            longitude,
+            latitude: 36.8101475281,
+            longitude: 127.1470316068,
             radius,
+        },
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const GetReviewLocationSearchData = async (photo_booth_name: string | null, limit: number, offset: number) => {
+    return await axiosInstance({
+        method: 'get',
+        url: `/reviews/photo-booths/locations/search`,
+        params: {
+            photo_booth_name,
+            limit,
+            offset,
         },
     })
         .then(res => {

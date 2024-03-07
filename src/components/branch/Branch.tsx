@@ -89,7 +89,7 @@ export default function Branch() {
     }, []);
 
     return (
-        <BranchScrollView>
+        <BranchScrollView showsVerticalScrollIndicator={false}>
             <BranchForm>
                 <BranchLocation
                     latitude={branchData?.latitude}

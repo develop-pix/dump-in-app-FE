@@ -25,7 +25,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {
         if (isFocused) {
-            navigation.navigate('LocationSearch');
+            navigation.navigate('ReviewLocationSearch');
         }
     };
 
