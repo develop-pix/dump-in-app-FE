@@ -1,11 +1,10 @@
 import { axiosInstance } from './ApiHeader';
 
-export const GetBranchData = async (latitude: number | null, longitude: number | null, photo_booth_id: string) => {
+export const GetBranchData = async (latitude: number | null, longitude: number | null, branchID: string) => {
     return await axiosInstance({
         method: 'get',
-        url: `/photo-booths/${photo_booth_id}`,
+        url: `/photo-booths/${branchID}`,
         params: {
-            photo_booth_id,
             latitude,
             longitude,
         },
@@ -34,7 +33,7 @@ export const GetBranchReviewData = async (branchID: string) => {
         });
 };
 
-export const LikeBranch = async (accessToken: string, photoBoothId: string | null | undefined) => {
+export const LikeBranch = async (photoBoothId: string | null | undefined) => {
     return await axiosInstance({
         method: 'post',
         url: `/photo-booths/${photoBoothId}/likes`,

@@ -11,12 +11,12 @@ export interface SearchBranchListProps {
 export interface BranchData {
     id: string;
     branchName: string;
-    distance: string;
+    distance: string | null;
 }
 
 export interface BranchListProps {
     branchName: string;
-    distance: string;
+    distance: string | null;
     branchID: string;
 }
 

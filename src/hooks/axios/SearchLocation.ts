@@ -4,12 +4,12 @@ import { axiosInstance } from './ApiHeader';
 
 /**
  * Test
- * branchName: string
+ * photo_booth_brand_name: string
  * latitude: 36.8101475281
  * longitude: 127.1470316068
  * */
 export const GetLocationSearchData = async (
-    branchName: string | null,
+    photo_booth_brand_name: string | null,
     latitude: number | null,
     longitude: number | null,
     radius: number,
@@ -19,9 +19,9 @@ export const GetLocationSearchData = async (
         url: `/photo-booths/locations/search`,
 
         params: {
-            photo_booth_brand_name: branchName,
-            latitude: 36.8101475281,
-            longitude: 127.1470316068,
+            photo_booth_brand_name,
+            latitude,
+            longitude,
             radius,
         },
     })

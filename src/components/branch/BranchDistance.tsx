@@ -6,7 +6,11 @@ export default function BranchDistance({ distance }: BranchDistanceProps) {
     return (
         <BranchDistanceContainer>
             <BranchDistanceForm>
-                <FontWhiteSmallerMedium>내 위치로부터 {distance}</FontWhiteSmallerMedium>
+                {distance ? (
+                    <FontWhiteSmallerMedium>내 위치로부터 {distance}</FontWhiteSmallerMedium>
+                ) : (
+                    <FontWhiteSmallerMedium>위치 정보가 없습니다.</FontWhiteSmallerMedium>
+                )}
             </BranchDistanceForm>
         </BranchDistanceContainer>
     );

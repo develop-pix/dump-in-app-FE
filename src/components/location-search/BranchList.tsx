@@ -42,7 +42,7 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
                     <FontWhiteGreyNormalMedium>{branchName}</FontWhiteGreyNormalMedium>
                 </BranchNameWrapper>
                 <BranchDistanceWrapper>
-                    <FontLightGreySmallerMedium>{distance}</FontLightGreySmallerMedium>
+                    {distance && <FontLightGreySmallerMedium>{distance}</FontLightGreySmallerMedium>}
                 </BranchDistanceWrapper>
             </LocationInfo>
         </BranchListContainer>

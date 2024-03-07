@@ -1,14 +1,14 @@
 export interface BranchData {
     id: string;
     name: string;
-    latitude: number;
-    longitude: number;
+    latitude: number | null;
+    longitude: number | null;
     streetAddress: string;
     roadAddress: string;
     operationTime: string;
     isLiked: boolean;
     photoBoothBrand: PhotoBoothBrandData;
-    distance: string;
+    distance: string | null;
 }
 
 interface PhotoBoothBrandData {
@@ -27,7 +27,6 @@ interface BranchHashtagData {
     name: string;
 }
 
-//TODO:Branch.tsx 에서 사용 check
 export interface ReviewData {
     id: number;
     mainThumbnailImageUrl: string;
@@ -46,9 +45,9 @@ interface ConceptData {
 }
 
 export interface BranchLocationProps {
-    latitude: number;
-    longitude: number;
-    distance: string | undefined;
+    latitude: number | null;
+    longitude: number | null;
+    distance: string | null;
 }
 
 export interface BranchInfoProps {
@@ -64,7 +63,6 @@ export interface BranchInfoProps {
 export interface BranchTitleProps {
     photoBoothName: string;
     branchName: string;
-    branchID: string | null;
     branchHashtag: BranchHashtagData[];
     isLiked: boolean;
 }
@@ -81,5 +79,5 @@ export interface Geolocation {
 }
 
 export interface BranchDistanceProps {
-    distance: string | undefined;
+    distance: string | null;
 }
