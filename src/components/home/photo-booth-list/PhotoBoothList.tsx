@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import AddNewReviewDummy from 'components/reuse/dummy/AddNewReviewDummy';
 import SeeMoreEventDummy from 'components/reuse/dummy/SeeMoreEventDummy';
 import SeeNearPhotoBoothDummy from 'components/reuse/dummy/SeeNearPhotoBoothDummy';
@@ -11,17 +13,16 @@ import EventFrame from './EventFrame';
 import PhotoBoothFrame from './PhotoBoothFrame';
 import ReviewFrame from './ReviewFrame';
 
-export default function PhotoBoothList({ data }: PhotoBoothListProps) {
+const PhotoBoothList = ({ data }: PhotoBoothListProps) => {
     const { photoBoothData, eventData, reviewData } = data;
 
-    const columnNumber = Math.max(photoBoothData.length, eventData.length, Math.ceil(reviewData.length / 4));
     const allData: (PhotoBoothProps | EventProps | ReviewProps)[] = [];
 
     let photoBoothIndex = 0;
     let eventIndex = 0;
     let reviewIndex = 0;
 
-    for (let columnIndex = 0; columnIndex < columnNumber; columnIndex++) {
+    for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
         for (let i = 0; i < 6; i++) {
             if (i === 0) {
                 allData.push(photoBoothData[photoBoothIndex]);
@@ -38,7 +39,7 @@ export default function PhotoBoothList({ data }: PhotoBoothListProps) {
 
     const renderColumns = () => {
         const columns = [];
-        for (let i = 0; i < columnNumber; i++) {
+        for (let i = 0; i < 3; i++) {
             columns.push(
                 <PhotoBoothListContainer key={i}>
                     <PhotoBoothListColumnContainer>
@@ -86,4 +87,6 @@ export default function PhotoBoothList({ data }: PhotoBoothListProps) {
     };
 
     return <>{renderColumns()}</>;
-}
+};
+
+export default memo(PhotoBoothList);

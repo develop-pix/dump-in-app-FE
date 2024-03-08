@@ -32,7 +32,7 @@ export default function HomeDataCollection() {
     const flatListRef = useRef<FlatList>(null);
 
     // 무한 스크롤 페이지
-    const [page, setPage] = useState(0);
+    const page = useRef(0);
     const [isLoading, setIsLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
 
@@ -48,13 +48,7 @@ export default function HomeDataCollection() {
     });
 
     // 위 데이터를 담을 변수
-    const [collectionData, setCollectionData] = useState<CollectionDataProps[]>([
-        {
-            photoBoothData: [],
-            eventData: [],
-            reviewData: [],
-        },
-    ]);
+    const [collectionData, setCollectionData] = useState<CollectionDataProps[]>([]);
 
     const reviewOffset = useRef(0);
     const eventOffset = useRef(0);
@@ -175,7 +169,7 @@ export default function HomeDataCollection() {
     };
 
     const onEndReached = () => {
-        setPage(prevPage => prevPage + 1);
+        page.current += 1;
         getHomeData();
     };
 
