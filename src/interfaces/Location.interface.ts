@@ -36,7 +36,7 @@ export interface ResetLocationButtonProps {
 }
 
 export interface BranchCardData {
-    branchID: string;
+    id: string;
     branchName: string;
     latitude: number;
     longitude: number;
@@ -56,11 +56,11 @@ export interface BranchCarouselProps {
 }
 
 export interface BranchCardProps {
-    branchID: string;
+    id: string;
     imageLogo: string;
     photoBoothName: string;
     branchName: string;
-    id: ConceptData[];
+    hashtag: ConceptData[];
     isLiked: boolean;
     distance: string;
 }

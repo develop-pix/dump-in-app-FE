@@ -46,8 +46,15 @@ export default function Map() {
     /** BranchCard 정보 Get */
     const GetBranchCardData = async (latitude: number, longitude: number) => {
         const radius = 1.0;
-        const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
-        setBranchData(photoBoothData.data);
+        try {
+            const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
+            if (photoBoothData.data) {
+                console.log(photoBoothData.data);
+                setBranchData(photoBoothData.data);
+            }
+        } catch (error) {
+            console.log('GetBranchCardDataError ' + error);
+        }
     };
 
     const ChangePosition = (latitude: number, longitude: number) => {

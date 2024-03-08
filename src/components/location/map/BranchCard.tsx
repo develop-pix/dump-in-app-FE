@@ -26,7 +26,7 @@ import {
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function BranchCard({
-    branchID,
+    id,
     imageLogo,
     photoBoothName,
     branchName,
@@ -35,21 +35,21 @@ export default function BranchCard({
     distance,
 }: BranchCardProps) {
     const [favorite, setFavorite] = useState<boolean>(isLiked);
-    const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
+    const navigation = useNavigation<LocationStackScreenProps<'Branch'>['navigation']>();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
         if (isFocused) {
-            navigation.navigate('Branch', { branchID });
+            navigation.navigate('Branch', { branchID: id });
         }
     };
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
         if (isLoggedIn) {
-            const press_result = await LikeBranch(branchID);
+            const press_result = await LikeBranch(id);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
@@ -80,7 +80,7 @@ export default function BranchCard({
                 </BranchCardTop>
                 <BranchCardHorizonLine />
                 <BranchCardBottom>
-                    <FontWhiteGreySmallestMedium>내 위치로부터 {distance} ·</FontWhiteGreySmallestMedium>
+                    <FontWhiteGreySmallestMedium>내 위치로부터 {distance} · </FontWhiteGreySmallestMedium>
                     <FontWhiteGreySmallestMedium>방문하기</FontWhiteGreySmallestMedium>
                 </BranchCardBottom>
             </CardContainer>
