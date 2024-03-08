@@ -10,7 +10,7 @@ import SkeletonMyPagePhotoBooth from 'components/reuse/skeleton/SkeletonMyPagePh
 import { GetMyPhotoBoothList } from 'hooks/axios/MyPage';
 import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameType } from 'interfaces/MyPage.interface';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MainTabScreenProps } from 'interfaces/Navigation.interface';
 import {
     MyPhotoBoothContainer,
     MyPhotoBoothFlatListContainer,
@@ -31,8 +31,8 @@ export default function MyPhotoBoothList() {
 
     const dataLimit = 8;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = useAppSelector(state => state.token).accessToken;
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */
     const renderPhotoBoothItem = useCallback(({ item }: { item: MyPhotoBoothFrameType }) => {
@@ -54,24 +54,28 @@ export default function MyPhotoBoothList() {
     };
 
     /** FlatList listFooterItem */
-    //FIXME: 디자인팀에 질문중, 포토부스? 지점?
     const renderFooterItem = useCallback(() => {
         const onPressFooter = () => {
-            accessToken && navigation.navigate('AddReviewModal', { branchID: undefined });
+            navigation.navigate('MainTab', {
+                screen: 'LocationTab',
+                params: {
+                    screen: 'Location',
+                },
+            });
         };
 
         return (
             <FlatListButtonContainer>
-                <NormalButton text="포토부스 보러가기" onPress={onPressFooter} />
+                <NormalButton text="내 주변 포토부스 보러가기" onPress={onPressFooter} />
             </FlatListButtonContainer>
         );
-    }, [accessToken, navigation]);
+    }, [navigation]);
 
     /** 내가 좋아요 누른 지점 항목 데이터 Get */
     const getMyPhotoBooth = async () => {
         try {
-            if (accessToken) {
-                const resultList = await GetMyPhotoBoothList(accessToken, dataLimit, page);
+            if (isLoggedIn) {
+                const resultList = await GetMyPhotoBoothList(dataLimit, page);
                 return resultList.data;
             }
         } catch (error) {

@@ -10,13 +10,15 @@ import {
 } from 'styles/layout/reuse/dummy/SeeMoreEventDummy.style';
 import { FontLightGreySmallerMedium, FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 
-//TODO: 01_Home 더 많은 신규 이벤트 소식을 들려줄께요.
 export default function SeeMoreEventDummy() {
     const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
 
+    //FIXME: 클릭시 01_Home/Alarm 으로 이동 하도록 수정
+    /** 01_Home/Alarm 으로 이동 */
     const onPressDummy = () => {
         navigation.navigate('AddReviewModal', { branchID: undefined });
     };
+
     return (
         <SeeMoreEventContainer>
             <SeeMoreEventTouchableOpacity onPress={onPressDummy}>

@@ -20,11 +20,6 @@ export interface ImageData {
     imageName: string | undefined;
 }
 
-export interface TokenState {
-    accessToken: string | null;
-    mobileToken: string | null;
-}
-
 export interface AccessTokenExpireState {
     expire: Date | null;
 }
@@ -38,6 +33,7 @@ export interface UserDataState {
     userID: string | null;
     email: string | null;
     userNickName: string | null;
+    isLoggedIn: boolean;
 }
 
 export interface ReviewDetailState {

@@ -41,6 +41,7 @@
         "react-native-get-random-values": "^1.10.0",
         "react-native-image-picker": "^7.1.0",
         "react-native-linear-gradient": "^2.8.3",
+        "react-native-mmkv": "^2.12.1",
         "react-native-modal": "^13.0.1",
         "react-native-modal-datetime-picker": "^17.1.0",
         "react-native-nmap": "github:develop-pix/react-native-naver-map",

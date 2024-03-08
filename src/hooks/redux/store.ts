@@ -10,12 +10,10 @@ import branchReviewDetailSlice from './branchReviewDetailSlice';
 import currentLocationSlice from './currentLocationSlice';
 import reviewEditSlice from './reviewEditSlice';
 import reviewNewSlice from './reviewNewSlice';
-import tokenSlice from './tokenSlice';
 import userDataSlice from './userDataSlice';
 
 // 상태 추가 할 것 추가
 const reducers = combineReducers({
-    token: tokenSlice.reducer,
     expire: accessTokenExpireSlice.reducer,
     reviewNew: reviewNewSlice.reducer,
     reviewEdit: reviewEditSlice.reducer,
@@ -31,7 +29,7 @@ const initialState = {};
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['token', 'expire', 'userData'],
+    whitelist: ['expire', 'userData'],
 };
 const persistedReducer = persistReducer(persistConfig, reducers);
 

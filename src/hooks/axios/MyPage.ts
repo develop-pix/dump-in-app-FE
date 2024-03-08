@@ -1,13 +1,9 @@
-import axios from 'axios';
-import Config from 'react-native-config';
+import { axiosInstance } from './ApiHeader';
 
-export const GetMyReviewList = async (accessToken: string, limit: number, offset: number) => {
-    return await axios({
+export const GetMyReviewList = async (limit: number, offset: number) => {
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/users/reviews`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/users/reviews`,
         params: {
             limit,
             offset,
@@ -21,13 +17,10 @@ export const GetMyReviewList = async (accessToken: string, limit: number, offset
         });
 };
 
-export const GetMyPostList = async (accessToken: string, limit: number, offset: number) => {
-    return await axios({
+export const GetMyPostList = async (limit: number, offset: number) => {
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/users/reviews/likes`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/users/reviews/likes`,
         params: {
             limit,
             offset,
@@ -41,13 +34,10 @@ export const GetMyPostList = async (accessToken: string, limit: number, offset: 
         });
 };
 
-export const GetMyPhotoBoothList = async (accessToken: string, limit: number, offset: number) => {
-    return await axios({
+export const GetMyPhotoBoothList = async (limit: number, offset: number) => {
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/users/photo-booths/likes`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/users/photo-booths/likes`,
         params: {
             limit,
             offset,
@@ -61,13 +51,10 @@ export const GetMyPhotoBoothList = async (accessToken: string, limit: number, of
         });
 };
 
-export const GetMyEventList = async (accessToken: string, limit: number, offset: number) => {
-    return await axios({
+export const GetMyEventList = async (limit: number, offset: number) => {
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/users/events/likes`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/users/events/likes`,
         params: {
             limit,
             offset,
@@ -81,13 +68,10 @@ export const GetMyEventList = async (accessToken: string, limit: number, offset:
         });
 };
 
-export const GetMyUserData = async (accessToken: string) => {
-    return await axios({
+export const GetMyUserData = async () => {
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/users/detail`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/users/detail`,
     })
         .then(res => {
             return res.data;
@@ -97,13 +81,10 @@ export const GetMyUserData = async (accessToken: string) => {
         });
 };
 
-export const EditMyNickName = async (accessToken: string, nickname: string) => {
-    return await axios({
+export const EditMyNickName = async (nickname: string) => {
+    return await axiosInstance({
         method: 'put',
-        url: `${Config.BACKEND_API_URL}/users/detail`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/users/detail`,
         data: { nickname },
     })
         .then(res => {

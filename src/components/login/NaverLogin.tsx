@@ -1,12 +1,12 @@
 import NaverLoginModule, { NaverLoginRequest } from '@react-native-seoul/naver-login';
 import { useNavigation } from '@react-navigation/native';
 import Config from 'react-native-config';
+import { useDispatch } from 'react-redux';
 
 import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { NaverSocialLogin } from 'hooks/axios/Auth';
-import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { setAccessToken } from 'hooks/redux/tokenSlice';
-import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
+import { storage } from 'hooks/mmkv/storage';
+import { setIsLoggedIn } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     NaverIconWrapper,
@@ -23,9 +23,9 @@ const naverKeys: NaverLoginRequest = {
 };
 
 export default function NaverLogin() {
-    const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
-    const mobileToken = useAppSelector(state => state.token).mobileToken;
+    const mobileToken = storage.getString('token.mobileToken');
+    const dispatch = useDispatch();
 
     const loginWithNaver = async () => {
         try {
@@ -34,7 +34,10 @@ export default function NaverLogin() {
             if (loginResult.isSuccess && loginResult.successResponse) {
                 const socialLoginResult = await NaverSocialLogin(loginResult.successResponse.accessToken, mobileToken);
                 if (socialLoginResult.data) {
-                    dispatch(setAccessToken(socialLoginResult.data.accessToken));
+                    storage.set('token.accessToken', socialLoginResult.data.accessToken);
+                    storage.set('token.refreshToken', socialLoginResult.data.refreshToken);
+                    dispatch(setIsLoggedIn(true));
+
                     navigation.navigate('MyPage');
                 }
             }
