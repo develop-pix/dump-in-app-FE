@@ -11,7 +11,9 @@ export const axiosInstance = axios.create(axiosConfig);
 /** 모든 요청의 헤더에 토큰 넣어 보내기 */
 axiosInstance.interceptors.request.use(config => {
     const accessToken = storage.getString('token.accessToken');
-    config.headers.Authorization = `Bearer ${accessToken}`;
+    if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+    }
 
     return config;
 });

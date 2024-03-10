@@ -61,7 +61,12 @@ export default function ReviewSearchBranchList({ search, resultData, setResultDa
     return (
         <SearchBranchContainer>
             {dataEnd ? (
-                <FlatList data={resultData} keyExtractor={item => item.id} renderItem={renderBranchListItem} />
+                <FlatList
+                    data={resultData}
+                    keyExtractor={item => item.id}
+                    renderItem={renderBranchListItem}
+                    showsVerticalScrollIndicator={false}
+                />
             ) : (
                 <FlatList
                     data={resultData}
@@ -69,6 +74,7 @@ export default function ReviewSearchBranchList({ search, resultData, setResultDa
                     renderItem={renderBranchListItem}
                     onEndReached={onEndReached}
                     onEndReachedThreshold={0.1}
+                    showsVerticalScrollIndicator={false}
                 />
             )}
             {resultData.length === 0 && <SearchNoData alertText="검색 결과가 없습니다." recommendText="" />}

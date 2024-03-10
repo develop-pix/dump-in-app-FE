@@ -3,13 +3,10 @@ import Config from 'react-native-config';
 
 import { axiosInstance } from './ApiHeader';
 
-export const GetReviewData = async (accessToken: string | undefined, reviewID: number) => {
+export const GetReviewData = async (reviewID: number) => {
     return await axios({
         method: 'get',
         url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
-        headers: {
-            Authorization: accessToken ? `Bearer ${accessToken}` : null,
-        },
         params: {
             review_id: reviewID,
         },

@@ -23,6 +23,7 @@ export default function LocationStackNavigation() {
                     },
                     headerShadowVisible: false,
                     headerTitleAlign: 'center',
+                    headerTitle: '',
                 }}
             />
             <Stack.Screen

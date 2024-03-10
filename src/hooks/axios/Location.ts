@@ -50,13 +50,13 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
  * latitude: 36.8101475281
  *  longitude: 127.1470316068
  * */
-export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
+export const GetBranchCardList = async (latitude: number, longitude: number, radius: number) => {
     return await axiosInstance({
         method: 'get',
         url: `/photo-booths/locations`,
         params: {
-            latitude,
-            longitude,
+            latitude: 36.8101475281,
+            longitude: 127.1470316068,
             radius,
         },
     })

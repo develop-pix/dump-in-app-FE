@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import Search from 'components/reuse/input/Search';
 import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
+import { setBranchID, setBranchName } from 'hooks/redux/reviewEditSlice';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { BranchSearchData } from 'interfaces/ReviewLocationSearch.interface';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
@@ -25,13 +26,12 @@ export default function ReviewLocationSearchForm() {
     const previousRouteName = routes[routes.length - 2].name;
 
     const searchBranch = () => {
-        // FIXME: ReviewEdit 예외처리 되어있지 않음, 전체적으로 param 보다 전역 상태 관리로 하는 것이 깔끔해 보임
-        // 검색된 지점 클릭, 진입한 페이지가 Map일 경우 Branch, ReviewNew or ReviewEdit일 경우 해당 페이지로 돌아감
-        // 나중에 API 연결
         if (search !== '' && resultData.length !== 0) {
             if (previousRouteName === 'AddReviewModal') {
                 navigation.navigate('AddReviewModal', { branchID: resultData[0].id });
             } else if (previousRouteName === 'ReviewEdit') {
+                dispatch(setBranchID(resultData[0].id));
+                dispatch(setBranchName(resultData[0].name));
                 navigation.goBack();
             }
         }

@@ -4,7 +4,7 @@ import Geolocation from 'react-native-geolocation-service';
 import NaverMapView, { Marker } from 'react-native-nmap';
 import { useDispatch } from 'react-redux';
 
-import { GetAddressFromNaverGeocoding, GetPhotoBoothData } from 'hooks/axios/Location';
+import { GetAddressFromNaverGeocoding, GetBranchCardList } from 'hooks/axios/Location';
 import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchCardData, LocationData } from 'interfaces/Location.interface';
@@ -38,18 +38,18 @@ export default function Map() {
     });
 
     /**  ReverseGeolocation 호출 */
-    const GetAddressData = async (latitude: number, longitude: number) => {
+    const getAddressData = async (latitude: number, longitude: number) => {
         const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
         setLocation(addressData);
     };
 
     /** BranchCard 정보 Get */
-    const GetBranchCardData = async (latitude: number, longitude: number) => {
+    const getBranchCardData = async (latitude: number, longitude: number) => {
         const radius = 1.0;
         try {
-            const photoBoothData = await GetPhotoBoothData(latitude, longitude, radius);
+            const photoBoothData = await GetBranchCardList(latitude, longitude, radius);
+            console.log(photoBoothData.data);
             if (photoBoothData.data) {
-                console.log(photoBoothData.data);
                 setBranchData(photoBoothData.data);
             }
         } catch (error) {
@@ -62,7 +62,7 @@ export default function Map() {
     };
 
     /** 위치 권한 획득 시 redux store에 저장 */
-    const GetCurrentLocation = () => {
+    const getCurrentLocation = () => {
         const watchID = Geolocation.watchPosition(
             position => {
                 dispatch(
@@ -108,7 +108,7 @@ export default function Map() {
         let watch = -1;
         GetLocationAuthorization().then(result => {
             if (result === 'granted') {
-                watch = GetCurrentLocation();
+                watch = getCurrentLocation();
             }
         });
 
@@ -123,7 +123,7 @@ export default function Map() {
     // 현재 화면위치 바뀔때마다 지점 데이터 Get
     useEffect(() => {
         if (myPosition.latitude && myPosition.longitude) {
-            GetBranchCardData(myPosition.latitude, myPosition.longitude);
+            getBranchCardData(myPosition.latitude, myPosition.longitude);
         }
         if (Object.keys(branchData).length === 0) {
             setToastVisible(true);
@@ -149,7 +149,7 @@ export default function Map() {
     // 내 위치가 바뀔때마다. ReverseGeolocation 호출
     useEffect(() => {
         if (currentLocation.latitude && currentLocation.longitude) {
-            GetAddressData(currentLocation.latitude, currentLocation.longitude);
+            getAddressData(currentLocation.latitude, currentLocation.longitude);
         }
     }, [currentLocation.latitude, currentLocation.longitude]);
 
@@ -191,7 +191,7 @@ export default function Map() {
             {branchData.length > 0 ? (
                 <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
                     <ResetLocationButton
-                        GetCurrentLocation={GetCurrentLocation}
+                        GetCurrentLocation={getCurrentLocation}
                         setMyPosition={setMyPosition}
                         setZoom={setZoom}
                     />
@@ -205,7 +205,7 @@ export default function Map() {
                         </NoBranchToastContainer>
                     )}
                     <ResetLocationButton
-                        GetCurrentLocation={GetCurrentLocation}
+                        GetCurrentLocation={getCurrentLocation}
                         setMyPosition={setMyPosition}
                         setZoom={setZoom}
                     />

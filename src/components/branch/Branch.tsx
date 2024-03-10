@@ -46,9 +46,6 @@ export default function Branch() {
         setReviewData(fetchReviewData.data);
     };
 
-    console.log('branchData');
-    console.log(branchData);
-
     /** 초기 위치 설정 */
     const getCurrentLocation = () => {
         const watchID = Geolocation.watchPosition(

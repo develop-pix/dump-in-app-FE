@@ -18,8 +18,8 @@ export const SearchContainer = styled.View`
     align-items: center;
     justify-content: space-between;
 `;
-/* ReviewLocationSearchBranchList */
 
+/* ReviewLocationSearchBranchList */
 export const SearchBranchContainer = styled.View`
     width: 90%;
     display: flex;
@@ -32,13 +32,12 @@ export const ListContainer = styled.View`
 `;
 
 /* BranchList */
-
 export const BranchListContainer = styled.TouchableOpacity`
     display: flex;
     flex-direction: row;
-    width: 100%;
     height: 44px;
     border-bottom-width: 1px;
+    border-bottom-color: ${colors.darkgrey};
 `;
 
 export const LocationDarkIconContainer = styled.View`
