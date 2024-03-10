@@ -17,7 +17,7 @@ export default function AddNewReviewDummy() {
     //FIXME: isLoggedIn가 true일시 AddReviewModal Open , false일시 LoginModal Open
     /** 로그인 여부에 따라 리뷰추가, 로그인 모달 Open */
     const onPressDummy = () => {
-        isLoggedIn && navigation.navigate('AddReviewModal', { branchID: undefined });
+        isLoggedIn && navigation.navigate('AddReviewModal');
     };
 
     return (

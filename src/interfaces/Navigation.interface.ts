@@ -4,7 +4,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 export type RootStackParamList = {
     MainTab: NavigatorScreenParams<MainTabParamList>;
-    AddReviewModal: { branchID: string | undefined };
+    AddReviewModal: undefined;
     HomeSearch: { photoBoothName: string | null };
     Notification: undefined;
     ReviewLocationSearch: undefined;
@@ -39,7 +39,7 @@ export type HomeStackParamList = {
     PhotoBoothDetail: { photoBoothID: number };
     ReviewDetail: { reviewID: number };
     EventDetail: { eventID: number };
-    AddReviewModal: { branchID: string | undefined };
+    AddReviewModal: undefined;
 };
 
 export type HomeStackScreenProps<RouteName extends keyof HomeStackParamList> = CompositeScreenProps<

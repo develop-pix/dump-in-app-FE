@@ -7,6 +7,7 @@ import GoBackButton from 'components/reuse/button/GoBackButton';
 import Search from 'components/reuse/input/Search';
 import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
 import { setBranchID, setBranchName } from 'hooks/redux/reviewEditSlice';
+import { setBranchID as setReviewNewBranchID } from 'hooks/redux/reviewNewSlice';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { BranchSearchData } from 'interfaces/ReviewLocationSearch.interface';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
@@ -28,7 +29,8 @@ export default function ReviewLocationSearchForm() {
     const searchBranch = () => {
         if (search !== '' && resultData.length !== 0) {
             if (previousRouteName === 'AddReviewModal') {
-                navigation.navigate('AddReviewModal', { branchID: resultData[0].id });
+                dispatch(setReviewNewBranchID(resultData[0].id));
+                navigation.navigate('AddReviewModal');
             } else if (previousRouteName === 'ReviewEdit') {
                 dispatch(setBranchID(resultData[0].id));
                 dispatch(setBranchName(resultData[0].name));
