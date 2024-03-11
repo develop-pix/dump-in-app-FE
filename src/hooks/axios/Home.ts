@@ -14,7 +14,7 @@ export const fetchHomeReview = async (offset: number, filterData: FilterProps) =
             frameColor: filterData.frameColor === '' ? null : filterData.frameColor,
             participants: filterData.participants === 0 ? null : filterData.participants,
             cameraShot: filterData.cameraShot === '' ? null : filterData.cameraShot,
-            concept: filterData.concept.length === 0 ? null : filterData.concept,
+            concept: filterData.concept.length === 0 ? null : JSON.stringify(filterData.concept),
         },
     })
         .then(res => {
@@ -34,7 +34,7 @@ export const fetchReviewCount = async (filterData: FilterProps) => {
             frameColor: filterData.frameColor === '' ? null : filterData.frameColor,
             participants: filterData.participants === 0 ? null : filterData.participants,
             cameraShot: filterData.cameraShot === '' ? null : filterData.cameraShot,
-            concept: filterData.concept.length === 0 ? null : filterData.concept,
+            concept: filterData.concept.length === 0 ? null : JSON.stringify(filterData.concept),
         },
     })
         .then(res => {
