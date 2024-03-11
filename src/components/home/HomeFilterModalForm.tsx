@@ -6,6 +6,7 @@ import Modal from 'react-native-modal';
 
 import CloseIcon from 'assets/image/icon/btn_close.svg';
 import { FilterButton } from 'components/reuse/button/FilterButton';
+import { fetchReviewCount } from 'hooks/axios/Home';
 import { FilterProps, HomeFilterModalFormProps } from 'interfaces/reuse/Filter.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -44,7 +45,7 @@ export default function HomeFilterModalForm({
     const [resultNumber, setResultNumber] = useState(0);
 
     // 필터 옵션 선택 시 실행(제출x)
-    const filterOptionSelect = useCallback(() => {
+    const filterOptionSelect = useCallback(async () => {
         const isFilterOptionSelected = Object.values(filterModalFilterData).some(
             val => val !== '' && val !== 0 && val.length !== 0,
         );
@@ -52,7 +53,14 @@ export default function HomeFilterModalForm({
 
         const isFilterChanged = JSON.stringify(filterModalFilterData) !== JSON.stringify(filterData);
         setIsFilterSelected(isFilterChanged);
-    }, [filterModalFilterData, filterData]);
+
+        if (isFilterOptionSelected) {
+            const reviewCountResponse = await fetchReviewCount(filterModalFilterData);
+            if (reviewCountResponse) {
+                setResultNumber(reviewCountResponse.data.count);
+            }
+        }
+    }, [filterData, filterModalFilterData]);
 
     // 필터 데이터 제출 함수
     const handleFilterSubmit = () => {
@@ -74,16 +82,7 @@ export default function HomeFilterModalForm({
 
     useEffect(() => {
         filterOptionSelect();
-        /** 모달창 열었을 때 선택된 옵션이 있으면 결과 데이터 수 가져옴 */
-        const isFilterOptionSelected = Object.values(filterModalFilterData).some(
-            val => val !== '' && val !== 0 && val.length !== 0,
-        );
-        if (isFilterOptionSelected) {
-            // TODO: 서버에서 선택된 필터들(제출한 필터 x) 제출하고 결과데이터 수 받는 로직 추가
-            const resultDataNumber = Math.round(Math.random() * 100);
-            setResultNumber(resultDataNumber);
-        }
-    }, [filterModalFilterData, filterOptionSelect]);
+    }, [filterOptionSelect]);
 
     return (
         <Modal
@@ -99,7 +98,7 @@ export default function HomeFilterModalForm({
                         <CloseButton
                             onPress={() => {
                                 handleHideFilterModal();
-                                handleFilterReset(); // 창 닫으면서 초기화
+                                setFilterModalFilterData(filterData);
                             }}>
                             <CloseIcon width={44} height={44} />
                         </CloseButton>
@@ -126,27 +125,19 @@ export default function HomeFilterModalForm({
                             <FilterLocation
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
-                                filterOptionSelect={filterOptionSelect}
                             />
                             <FilterFrameColor
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
-                                filterOptionSelect={filterOptionSelect}
                             />
-                            <FilterParty
-                                filterData={filterModalFilterData}
-                                setFilterData={setFilterModalFilterData}
-                                filterOptionSelect={filterOptionSelect}
-                            />
+                            <FilterParty filterData={filterModalFilterData} setFilterData={setFilterModalFilterData} />
                             <FilterCameraShot
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
-                                filterOptionSelect={filterOptionSelect}
                             />
                             <FilterConcept
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
-                                filterOptionSelect={filterOptionSelect}
                             />
                             <FilterButtonBox>
                                 <FilterButton

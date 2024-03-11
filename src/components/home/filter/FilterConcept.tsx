@@ -28,7 +28,7 @@ const availableConcepts = [
     '기타',
 ];
 
-export default function FilterConcept({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
+export default function FilterConcept({ filterData, setFilterData }: FilterDataUpdateProps) {
     const handleConceptToggle = (concept: string) => {
         const isSelected = filterData.concept.includes(concept);
         const conceptArray = isSelected
@@ -39,8 +39,6 @@ export default function FilterConcept({ filterData, setFilterData, filterOptionS
             ...prevFilterData,
             concept: conceptArray,
         }));
-
-        filterOptionSelect();
     };
 
     return (

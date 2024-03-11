@@ -11,7 +11,7 @@ import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.styl
 
 const availableParty = [1, 2, 3, 4];
 
-export default function FilterParty({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
+export default function FilterParty({ filterData, setFilterData }: FilterDataUpdateProps) {
     const handlePartyToggle = (party: number) => {
         const isSelected = filterData.participants === party;
 
@@ -19,8 +19,6 @@ export default function FilterParty({ filterData, setFilterData, filterOptionSel
             ...prevFilterData,
             participants: isSelected ? 0 : party,
         }));
-
-        filterOptionSelect();
     };
 
     return (

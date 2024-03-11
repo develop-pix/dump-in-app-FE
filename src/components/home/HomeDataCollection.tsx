@@ -55,11 +55,6 @@ export default function HomeDataCollection() {
     const photoBoothOffset = useRef(0);
 
     const getHomeData = useCallback(async () => {
-        console.log(filterData);
-        console.log(reviewOffset.current);
-        console.log(eventOffset.current);
-        console.log(photoBoothOffset.current);
-
         const reviewResponse = await fetchHomeReview(reviewOffset.current, filterData);
         const eventResponse = await fetchHomeEvent(eventOffset.current);
         const photoBoothResponse = await fetchHomePhotoBooth(photoBoothOffset.current);

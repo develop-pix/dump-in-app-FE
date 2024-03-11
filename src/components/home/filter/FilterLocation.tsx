@@ -28,7 +28,7 @@ const availableLocations = [
     '제주',
 ];
 
-export default function FilterLocation({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
+export default function FilterLocation({ filterData, setFilterData }: FilterDataUpdateProps) {
     const handleLocationToggle = (location: string) => {
         const isSelected = filterData.photoBoothLocation === location;
 
@@ -36,8 +36,6 @@ export default function FilterLocation({ filterData, setFilterData, filterOption
             ...prevFilterData,
             photoBoothLocation: isSelected ? '' : location,
         }));
-
-        filterOptionSelect();
     };
 
     return (
