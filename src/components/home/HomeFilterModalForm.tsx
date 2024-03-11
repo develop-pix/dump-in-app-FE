@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Dimensions, ScrollView, View } from 'react-native';
+import { Dimensions, ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
@@ -28,7 +28,6 @@ import FilterParty from './filter/FilterParty';
 export default function HomeFilterModalForm({
     filterData,
     isVisible,
-    setFilterData,
     handleHideFilterModal,
     onFilterSubmit,
 }: HomeFilterModalFormProps) {
@@ -38,11 +37,11 @@ export default function HomeFilterModalForm({
     // 모달창의 필터 변수
     const [filterModalFilterData, setFilterModalFilterData] = useState<FilterProps>(filterData);
     // 필터 옵션이 선택 되었는지 여부(버튼 활성화 용)
-    const [isFilterSelected, setIsFilterSelected] = useState<boolean>(false);
+    const [isFilterSelected, setIsFilterSelected] = useState(false);
     // 필터 옵션이 선택 되었는지 여부(초기화 버튼 활성화 용)
-    const [activateResetButton, setActivateResetButton] = useState<boolean>(false);
+    const [activateResetButton, setActivateResetButton] = useState(false);
     // 필터 옵션 적용 결과 데이터 수
-    const [resultNumber, setResultNumber] = useState<number>(0);
+    const [resultNumber, setResultNumber] = useState(0);
 
     // 필터 옵션 선택 시 실행(제출x)
     const filterOptionSelect = useCallback(() => {
@@ -57,7 +56,6 @@ export default function HomeFilterModalForm({
 
     // 필터 데이터 제출 함수
     const handleFilterSubmit = () => {
-        setFilterData(filterModalFilterData);
         onFilterSubmit(filterModalFilterData);
         // 제출 후 모달 창 닫음
         handleHideFilterModal();
@@ -66,9 +64,9 @@ export default function HomeFilterModalForm({
     // 필터 데이터 초기화 함수
     const handleFilterReset = () => {
         setFilterModalFilterData({
-            geolocation: '',
+            photoBoothLocation: '',
             frameColor: '',
-            party: 0,
+            participants: 0,
             cameraShot: '',
             concept: [],
         });

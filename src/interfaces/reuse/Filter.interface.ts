@@ -1,7 +1,7 @@
 export interface FilterProps {
-    geolocation: string;
+    photoBoothLocation: string;
     frameColor: string;
-    party: number;
+    participants: number;
     cameraShot: string;
     concept: string[];
 }
@@ -9,7 +9,6 @@ export interface FilterProps {
 export interface HomeFilterModalFormProps {
     filterData: FilterProps;
     isVisible: boolean;
-    setFilterData: React.Dispatch<React.SetStateAction<FilterProps>>;
     handleHideFilterModal: () => void;
     onFilterSubmit: (newFilterData: FilterProps) => void;
 }

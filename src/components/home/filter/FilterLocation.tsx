@@ -30,11 +30,11 @@ const availableLocations = [
 
 export default function FilterLocation({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
     const handleLocationToggle = (location: string) => {
-        const isSelected = filterData.geolocation === location;
+        const isSelected = filterData.photoBoothLocation === location;
 
         setFilterData(prevFilterData => ({
             ...prevFilterData,
-            geolocation: isSelected ? '' : location,
+            photoBoothLocation: isSelected ? '' : location,
         }));
 
         filterOptionSelect();
@@ -47,7 +47,7 @@ export default function FilterLocation({ filterData, setFilterData, filterOption
             </FilterLabelContainer>
             <FilterContentContainer>
                 {availableLocations.map(locationOption => {
-                    const isSelected = filterData.geolocation === locationOption;
+                    const isSelected = filterData.photoBoothLocation === locationOption;
                     return (
                         <FilterTextButton
                             key={locationOption}

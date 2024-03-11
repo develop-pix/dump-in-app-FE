@@ -40,9 +40,9 @@ export default function HomeDataCollection() {
     const [hasNotification, setHasNotification] = useState(false);
     // 필터 변수
     const [filterData, setFilterData] = useState<FilterProps>({
-        geolocation: '',
+        photoBoothLocation: '',
         frameColor: '',
-        party: 0,
+        participants: 0,
         cameraShot: '',
         concept: [],
     });
@@ -54,11 +54,52 @@ export default function HomeDataCollection() {
     const eventOffset = useRef(0);
     const photoBoothOffset = useRef(0);
 
+    const getHomeData = useCallback(async () => {
+        console.log(filterData);
+        console.log(reviewOffset.current);
+        console.log(eventOffset.current);
+        console.log(photoBoothOffset.current);
+
+        const reviewResponse = await fetchHomeReview(reviewOffset.current, filterData);
+        const eventResponse = await fetchHomeEvent(eventOffset.current);
+        const photoBoothResponse = await fetchHomePhotoBooth(photoBoothOffset.current);
+
+        if (reviewResponse && eventResponse && photoBoothResponse) {
+            if (reviewResponse.data.next) {
+                reviewOffset.current += 12;
+            } else {
+                reviewOffset.current = 0;
+            }
+            if (eventResponse.data.next) {
+                eventOffset.current += 3;
+            } else {
+                eventOffset.current = 0;
+            }
+            if (photoBoothResponse.data.next) {
+                photoBoothOffset.current += 3;
+            } else {
+                photoBoothOffset.current = 0;
+            }
+
+            setCollectionData(prevData => [
+                ...prevData,
+                {
+                    photoBoothData: photoBoothResponse.data.results,
+                    eventData: eventResponse.data.results,
+                    reviewData: reviewResponse.data.results,
+                },
+            ]);
+
+            setRefreshing(false);
+            setIsLoading(false);
+        }
+    }, [filterData]);
+
     const onRefresh = useCallback(() => {
         setRefreshing(true);
         setIsLoading(true);
         getHomeData();
-    }, []);
+    }, [getHomeData]);
 
     /** 필터 존재 여부 확인 변수 */
     const hasFilterOptionData = Object.values(filterData).some(
@@ -66,10 +107,12 @@ export default function HomeDataCollection() {
     );
     /** 필터 제출 함수 */
     const handleFilterSubmit = (newFilterData: FilterProps) => {
-        // 필터 데이터 변경
+        reviewOffset.current = 0;
+        eventOffset.current = 0;
+        photoBoothOffset.current = 0;
         setFilterData(newFilterData);
-        // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
         setCollectionData([]);
+        setIsLoading(true);
     };
     /** 필터 모달창 닫는 함수 */
     const handleHideFilterModal = () => {
@@ -132,42 +175,6 @@ export default function HomeDataCollection() {
         checkNotification();
     }, []);
 
-    const getHomeData = async () => {
-        const reviewResponse = await fetchHomeReview(reviewOffset.current);
-        const eventResponse = await fetchHomeEvent(eventOffset.current);
-        const photoBoothResponse = await fetchHomePhotoBooth(photoBoothOffset.current);
-
-        if (reviewResponse && eventResponse && photoBoothResponse) {
-            if (reviewResponse.data.next) {
-                reviewOffset.current += 12;
-            } else {
-                reviewOffset.current = 0;
-            }
-            if (eventResponse.data.next) {
-                eventOffset.current += 3;
-            } else {
-                eventOffset.current = 0;
-            }
-            if (photoBoothResponse.data.next) {
-                photoBoothOffset.current += 3;
-            } else {
-                photoBoothOffset.current = 0;
-            }
-
-            setCollectionData(prevData => [
-                ...prevData,
-                {
-                    photoBoothData: photoBoothResponse.data.results,
-                    eventData: eventResponse.data.results,
-                    reviewData: reviewResponse.data.results,
-                },
-            ]);
-        }
-
-        setRefreshing(false);
-        setIsLoading(false);
-    };
-
     const onEndReached = () => {
         page.current += 1;
         getHomeData();
@@ -175,7 +182,7 @@ export default function HomeDataCollection() {
 
     useEffect(() => {
         getHomeData();
-    }, []);
+    }, [getHomeData]);
 
     return (
         <CollectionContainer>
@@ -206,7 +213,6 @@ export default function HomeDataCollection() {
             <HomeFilterModalForm
                 isVisible={isFilterVisible}
                 filterData={filterData}
-                setFilterData={setFilterData}
                 handleHideFilterModal={handleHideFilterModal}
                 onFilterSubmit={handleFilterSubmit}
             />

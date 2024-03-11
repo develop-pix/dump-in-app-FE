@@ -1,13 +1,20 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
-export const fetchHomeReview = async (offset: number) => {
+import { FilterProps } from 'interfaces/reuse/Filter.interface';
+
+export const fetchHomeReview = async (offset: number, filterData: FilterProps) => {
     return await axios({
         method: 'get',
         url: `${Config.BACKEND_API_URL}/reviews`,
         params: {
             limit: 12,
             offset,
+            photoBoothLocation: filterData.photoBoothLocation === '' ? null : filterData.photoBoothLocation,
+            frameColor: filterData.frameColor === '' ? null : filterData.frameColor,
+            participants: filterData.participants === 0 ? null : filterData.participants,
+            cameraShot: filterData.cameraShot === '' ? null : filterData.cameraShot,
+            concept: filterData.concept.length === 0 ? null : filterData.concept,
         },
     })
         .then(res => {
