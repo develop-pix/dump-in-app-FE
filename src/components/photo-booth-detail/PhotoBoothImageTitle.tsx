@@ -27,6 +27,7 @@ export default function PhotoBoothImageTitle({ photoBoothData }: PhotoBoothImage
     >();
     const isFocused = useIsFocused();
 
+    /** 내 주변 포토부스 보럭가기 버튼 클릭시 Location tab으로 이동  */
     const onPressButton = () => {
         if (isFocused) {
             switch (navigation.getId()) {

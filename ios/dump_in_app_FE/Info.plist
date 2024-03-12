@@ -27,6 +27,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>org.reactjs.native.example.dump-in-app-FE</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakao81ac20430ef63055c81961c0b3f8d2b0</string>
@@ -35,6 +37,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>org.reactjs.native.example.dump-in-app-FE</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>org.reactjs.native.example.dump-in-app-FE</string>
@@ -44,10 +48,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>org.reactjs.native.example.dump-in-app-FE</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>nmap</string>
+				<string>DumpIn</string>
 			</array>
 		</dict>
 	</array>
@@ -62,6 +66,7 @@
 		<string>kakaokompassauth</string>
 		<string>storykompassauth</string>
 		<string>kakaolink</string>
+		<string>nmap</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

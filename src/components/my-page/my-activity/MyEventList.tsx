@@ -21,7 +21,6 @@ import {
 } from 'styles/layout/my-page/MyActivity/MyEventList.style';
 import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
-//TODO: 03_Category/Event/detail API 적용후 정상작동하는지 테스트 필요함
 export default function MyEventList() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState<number>(0);

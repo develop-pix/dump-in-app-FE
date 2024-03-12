@@ -48,7 +48,6 @@ export default function Map() {
         const radius = 1.0;
         try {
             const photoBoothData = await GetBranchCardList(latitude, longitude, radius);
-            console.log(photoBoothData.data);
             if (photoBoothData.data) {
                 setBranchData(photoBoothData.data);
             }

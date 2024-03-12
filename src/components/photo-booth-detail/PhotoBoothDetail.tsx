@@ -51,6 +51,7 @@ export default function PhotoBoothDetail() {
         });
     }, [navigation]);
 
+    // 포토부스 상세 페이지 진입시 해당 포토부스의 데이터, 이벤트, 리뷰 Get
     useEffect(() => {
         const getPhotoBoothData = async () => {
             try {

@@ -6,6 +6,7 @@ export interface PhotoBoothDataType {
     name: string;
     hashtag: ConceptData[];
     image: PhotoBoothImageData[];
+    mainThumbnailImageUrl: string;
 }
 
 export interface PhotoBoothImageTitleProps {

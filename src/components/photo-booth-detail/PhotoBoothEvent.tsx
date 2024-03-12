@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
+import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothEventProps } from 'interfaces/PhotoBoothDetail.interface';
 import { PhotoBoothEventContainer, TitleContainer } from 'styles/layout/photo-booth-detail/PhotoBoothEvent.style';
 import {
@@ -14,18 +16,52 @@ import MoreEventModal from './MoreEventModal';
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 
 export default function PhotoBoothEvent({ eventData }: PhotoBoothEventProps) {
+    const route = useRoute<
+        HomeStackScreenProps<'PhotoBoothDetail'>['route'] | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
+    >();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+    >();
+    const isFocused = useIsFocused();
+
     const [showMoreEventModal, setShowMoreEventModal] = useState(false);
 
+    /** 이벤트 모달 Open */
     const onMoreClick = () => {
         setShowMoreEventModal(true);
     };
 
+    /** 이벤트 모달 Close */
     const closeModal = () => {
         setShowMoreEventModal(false);
     };
 
+    //TODO: 테스트 필요함.
+    /** 내 주변 포토부스 보럭가기 버튼 클릭시 Location tab으로 이동  */
     const onPressButton = () => {
-        // 이벤트 보러가기 페이지로 이동
+        if (isFocused) {
+            switch (navigation.getId()) {
+                case 'HomeStack':
+                    (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('MainTab', {
+                        screen: 'LocationTab',
+                        params: {
+                            screen: 'Location',
+                            params: { photoBoothID: route.params.photoBoothID },
+                        },
+                    });
+                    break;
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('MainTab', {
+                        screen: 'LocationTab',
+                        params: {
+                            screen: 'Location',
+                            params: { photoBoothID: route.params.photoBoothID },
+                        },
+                    });
+                    break;
+            }
+        }
     };
 
     return (

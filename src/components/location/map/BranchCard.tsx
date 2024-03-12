@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Linking } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
@@ -59,23 +59,18 @@ export default function BranchCard({
         }
     };
 
-    const onPressVisitBranch = () => {
-        // Get the deep link used to open the app
-        // Linking.getInitialURL().then(async res => {
-        //     if (res) {
-        //         console.log('res');
-        //         console.log(res);
-        //         const supported = await Linking.canOpenURL(res);
-        //         if (supported) {
-        //             Linking.openURL(
-        //                 `nmap://route/walk?slat=37.4640070&slng=126.9522394&sname=%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90&dlat=37.4764356&dlng=126.9618302&dname=%EB%8F%99%EC%9B%90%EB%82%99%EC%84%B1%EB%8C%80%EC%95%84%ED%8C%8C%ED%8A%B8&appname=org.reactjs.native.example.dump-in-app-FE`,
-        //             );
-        //         }
-        //     } else {
-        //         console.log('res');
-        //         console.log(res);
-        //     }
-        // });
+    const onPressVisitBranch = async () => {
+        /**FIXME: 아래 링크 수정 및 테스트 필요함 , 안드로이드에서 해당앱 설치 여부 확인하는 코드 필요함 */
+        // safari 거치지 않고 바로 appStore 연결 itms-app://itunes.com/apps/dump_in_app_FE';
+        const url = 'nmap://actionPath?parameter=value&appname=dump_in_app_FE';
+        const appStoreUrl = 'https://apps.apple.com/kr/app/naver-map-navigation/id311867728';
+        const supported = await Linking.canOpenURL(url);
+
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            Linking.openURL(appStoreUrl);
+        }
     };
 
     return (
@@ -88,6 +83,7 @@ export default function BranchCard({
                             <FontWhiteBiggestSemiboldWithLineHeight>
                                 {photoBoothName}
                             </FontWhiteBiggestSemiboldWithLineHeight>
+                            {/* FIXME: 백엔드 API 변수 변경후 수정필요 */}
                             <FontWhiteGreySmallerSemibold>{branchName}</FontWhiteGreySmallerSemibold>
                         </BranchCardBranchNameWrapper>
                         <BranchCardHashtag>
