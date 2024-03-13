@@ -10,7 +10,7 @@ import {
     EditIconContainer,
     EditNickName,
     EditUserNameContainer,
-    UserIDWrapper,
+    UserEmailWrapper,
     UserNickNameWrapper,
 } from 'styles/layout/my-page/EditUserName.style';
 import {
@@ -22,7 +22,7 @@ import {
 
 export default function EditUserName() {
     const dispatch = useAppDispatch();
-    const { userID, userNickName } = useAppSelector(state => state.userData);
+    const { email, userNickName } = useAppSelector(state => state.userData);
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [isEditing, setIsEditing] = useState(false);
@@ -117,9 +117,9 @@ export default function EditUserName() {
                         </UserNickNameWrapper>
                     )}
                     {errorMessage && <FontRedSmallestMedium>{errorMessage}</FontRedSmallestMedium>}
-                    <UserIDWrapper>
-                        <FontWhiteGreyNormalMedium>{userID}</FontWhiteGreyNormalMedium>
-                    </UserIDWrapper>
+                    <UserEmailWrapper>
+                        <FontWhiteGreyNormalMedium>{email}</FontWhiteGreyNormalMedium>
+                    </UserEmailWrapper>
                 </>
             ) : (
                 <FontWhiteBiggestSemibold>로그인이 필요합니다.</FontWhiteBiggestSemibold>
