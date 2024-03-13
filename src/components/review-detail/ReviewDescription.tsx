@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
-import { LikeReview } from 'hooks/axios/ReviewDetail';
+import { LikeReview } from 'hooks/axios/Review';
 import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import {

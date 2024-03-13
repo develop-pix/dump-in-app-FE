@@ -1,12 +1,9 @@
-import axios from 'axios';
-import Config from 'react-native-config';
-
 import { axiosInstance } from './ApiHeader';
 
 export const GetReviewData = async (reviewID: number) => {
-    return await axios({
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
+        url: `/reviews/${reviewID}`,
         params: {
             review_id: reviewID,
         },

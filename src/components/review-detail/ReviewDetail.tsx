@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
-import { GetReviewData } from 'hooks/axios/ReviewDetail';
+import { GetReviewData } from 'hooks/axios/Review';
 import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchName,
@@ -83,7 +83,7 @@ export default function ReviewDetail() {
     // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
-            const fetchData = await GetReviewData(accessToken, route.params.reviewID);
+            const fetchData = await GetReviewData(route.params.reviewID);
             if (fetchData.data) {
                 console.log('fetchData.data');
                 console.log(fetchData.data);

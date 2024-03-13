@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import { GetEventData } from 'hooks/axios/EventDetail';
+import { GetEventData } from 'hooks/axios/Event';
 import { EventData } from 'interfaces/EventDetail.interface';
 import { CategoryStackScreenProps } from 'interfaces/Navigation.interface';
 

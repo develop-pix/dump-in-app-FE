@@ -3,7 +3,7 @@ import { Platform, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
-import { GetReviewData } from 'hooks/axios/ReviewDetail';
+import { GetReviewData } from 'hooks/axios/Review';
 import {
     setBranchID,
     setBranchName,
