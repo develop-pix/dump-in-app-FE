@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import { LikeEvent } from 'hooks/axios/Event';
+import { useAppSelector } from 'hooks/redux/store';
 import { EventImageTitleProps } from 'interfaces/EventDetail.interface';
+import { CategoryStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import {
     ContentsContainer,
@@ -15,11 +19,24 @@ import { FontWhiteBiggestSemibold, FontYellowSmallerMediumWithLineSpacing } from
 import { ReviewDescBottom } from 'styles/layout/review-detail/ReviewDetail.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
-export default function ImageTitle({ eventData }: EventImageTitleProps) {
-    const [favorite, setFavorite] = useState<boolean>(eventData.myEvent);
+export default function ImageTitle({ mainThumbnailImageUrl, title, hashtag, isLiked }: EventImageTitleProps) {
+    const route = useRoute<CategoryStackScreenProps<'EventDetail'>['route']>();
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+
+    const [favorite, setFavorite] = useState<boolean>(isLiked);
+
+    /** 하트 버튼 클릭시 */
+    const onPressEventLikeButton = async () => {
+        if (isLoggedIn) {
+            const press_result = await LikeEvent(route.params.eventID);
+            if (press_result.success) {
+                setFavorite(prev => !prev);
+            }
+        }
+    };
     return (
         <EventImageTitleContainer>
-            <EventImage source={{ uri: eventData.representativeImage }}>
+            <EventImage source={{ uri: mainThumbnailImageUrl }}>
                 <LinearGradient
                     colors={['transparent', colors.lightblack]}
                     locations={[0.1, 0.7]}
@@ -36,12 +53,12 @@ export default function ImageTitle({ eventData }: EventImageTitleProps) {
             <EventImageContentContainer>
                 <ContentsContainer>
                     <TitleContainer>
-                        <FontWhiteBiggestSemibold>{eventData.eventTitle}</FontWhiteBiggestSemibold>
-                        <FavoriteButton favorite={favorite} setFavorite={setFavorite} />
+                        <FontWhiteBiggestSemibold>{title}</FontWhiteBiggestSemibold>
+                        <FavoriteButton favorite={favorite} onPress={onPressEventLikeButton} />
                     </TitleContainer>
 
                     <ReviewDescBottom>
-                        {TagsArrayToHashTagArrayForm(eventData.hashtag).map(tag => (
+                        {TagsArrayToHashTagArrayForm(hashtag).map(tag => (
                             <FontYellowSmallerMediumWithLineSpacing key={tag}>
                                 {tag}
                             </FontYellowSmallerMediumWithLineSpacing>

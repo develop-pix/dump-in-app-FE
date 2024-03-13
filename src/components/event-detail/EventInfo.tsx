@@ -15,17 +15,18 @@ import {
     FontWhiteSmallerSemiboldWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 
-export default function EventInfo({ eventData }: EventInfoProps) {
+export default function EventInfo({ title, content, startDate, endDate }: EventInfoProps) {
     return (
         <EventInfoContainer>
             <FontWhiteSmallerSemiboldWithLineSpacing>INFO</FontWhiteSmallerSemiboldWithLineSpacing>
 
             <InfoContainer>
+                {/* FIXME: 물어보고 수정react-native-render-html */}
                 <InfoTitleContainer>
-                    <FontWhiteGreySmallerSemibold>{eventData.descriptionTitle}</FontWhiteGreySmallerSemibold>
+                    <FontWhiteGreySmallerSemibold>{title}</FontWhiteGreySmallerSemibold>
                 </InfoTitleContainer>
                 <InfoDescriptionContainer>
-                    <FontLightGreySmallerSemibold>{eventData.description}</FontLightGreySmallerSemibold>
+                    <FontLightGreySmallerSemibold>{content}</FontLightGreySmallerSemibold>
                 </InfoDescriptionContainer>
 
                 <InfoDateContainer>
@@ -33,7 +34,7 @@ export default function EventInfo({ eventData }: EventInfoProps) {
                         <CalenderIcon width={16} height={21} />
                     </CalenderIconContainer>
                     <FontLightGreySmallerMedium>
-                        {eventData.startDate} ~ {eventData.endDate}
+                        {startDate} ~ {endDate}
                     </FontLightGreySmallerMedium>
                 </InfoDateContainer>
             </InfoContainer>
