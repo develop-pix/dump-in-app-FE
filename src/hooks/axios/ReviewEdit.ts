@@ -1,7 +1,6 @@
 import { axiosInstance } from './ApiHeader';
 
 export const UploadEditReview = async (
-    accessToken: string,
     reviewID: number,
     mainThumbnailImageUrl: string | undefined,
     imageUrls: (string | undefined)[],

@@ -17,7 +17,7 @@ const userDataSlice = createSlice({
             state.userID = action.payload;
         },
         setEmail: (state, action: PayloadAction<string | null>) => {
-            state.userID = action.payload;
+            state.email = action.payload;
         },
         setUserNickName: (state, action: PayloadAction<string | null>) => {
             state.userNickName = action.payload;
