@@ -48,12 +48,7 @@ export default function EventDetail() {
                 hashtag={eventData.hashtag}
                 isLiked={eventData.isLiked}
             />
-            <EventInfo
-                title={eventData.title}
-                content={eventData.content}
-                startDate={eventData.startDate}
-                endDate={eventData.endDate}
-            />
+            <EventInfo content={eventData.content} startDate={eventData.startDate} endDate={eventData.endDate} />
             <EventFrame image={eventData.image} />
         </ScrollView>
     );

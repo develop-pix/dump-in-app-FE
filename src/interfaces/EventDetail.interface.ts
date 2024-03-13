@@ -25,7 +25,6 @@ export interface EventImageTitleProps {
 }
 
 export interface EventInfoProps {
-    title: string;
     content: string;
     startDate: string;
     endDate: string;

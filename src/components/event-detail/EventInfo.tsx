@@ -1,3 +1,5 @@
+import RenderHTML from 'react-native-render-html';
+
 import CalenderIcon from 'assets/image/icon/calendar.svg';
 import { EventInfoProps } from 'interfaces/EventDetail.interface';
 import {
@@ -6,27 +8,23 @@ import {
     InfoContainer,
     InfoDateContainer,
     InfoDescriptionContainer,
-    InfoTitleContainer,
 } from 'styles/layout/event-detail/EventInfo.style';
 import {
     FontLightGreySmallerMedium,
-    FontLightGreySmallerSemibold,
-    FontWhiteGreySmallerSemibold,
     FontWhiteSmallerSemiboldWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 
-export default function EventInfo({ title, content, startDate, endDate }: EventInfoProps) {
+export default function EventInfo({ content, startDate, endDate }: EventInfoProps) {
+    const source = {
+        html: `${content}`,
+    };
+
     return (
         <EventInfoContainer>
             <FontWhiteSmallerSemiboldWithLineSpacing>INFO</FontWhiteSmallerSemiboldWithLineSpacing>
-
             <InfoContainer>
-                {/* FIXME: 물어보고 수정react-native-render-html */}
-                <InfoTitleContainer>
-                    <FontWhiteGreySmallerSemibold>{title}</FontWhiteGreySmallerSemibold>
-                </InfoTitleContainer>
                 <InfoDescriptionContainer>
-                    <FontLightGreySmallerSemibold>{content}</FontLightGreySmallerSemibold>
+                    <RenderHTML source={source} contentWidth={100} />
                 </InfoDescriptionContainer>
 
                 <InfoDateContainer>
