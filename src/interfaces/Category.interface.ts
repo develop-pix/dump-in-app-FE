@@ -11,7 +11,7 @@ export interface CategoryEventItemProps {
 export interface CategoryEventList {
     id: number;
     title: string;
-    mainThumbnailImagUrl: string;
+    mainThumbnailImageUrl: string;
     startDate: string;
     endDate: string;
     isLiked: boolean;

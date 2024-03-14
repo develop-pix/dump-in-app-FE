@@ -16,7 +16,7 @@ export const GetReviewData = async (reviewID: number) => {
         });
 };
 
-export const LikeReview = async (accessToken: string, reviewID: number | null | undefined) => {
+export const LikeReview = async (reviewID: number | null | undefined) => {
     return await axiosInstance({
         method: 'post',
         url: `/reviews/${reviewID}/likes`,

@@ -51,7 +51,7 @@ export default function CategoryEventItem({ eventData }: CategoryEventItemProps)
     return (
         <EventItemContainer key={eventData.id} onPress={() => onPressEvent(eventData.id)}>
             <EventImageWrapper>
-                <EventImage source={{ uri: eventData.mainThumbnailImagUrl }} />
+                <EventImage source={{ uri: eventData.mainThumbnailImageUrl }} />
                 <LinearGradient
                     colors={['transparent', colors.lightblack]}
                     locations={[0.1, 1]}

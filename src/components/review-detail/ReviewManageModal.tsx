@@ -25,7 +25,6 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
                 reviewID,
             });
         }
-        // TODO: 추후 ReviewEdit 페이지 추가후 이동
     };
 
     const onPressReviewDelete = () => {

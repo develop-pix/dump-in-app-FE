@@ -5,7 +5,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeReview } from 'hooks/axios/Review';
-import { storage } from 'hooks/mmkv/storage';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
@@ -23,7 +22,6 @@ import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/te
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
-    const accessToken = storage.getString('token.accessToken');
     const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(true);
@@ -39,8 +37,8 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
 
     /** 하트(좋아요) 버튼 클릭 */
     const onPressReviewLikeButton = async () => {
-        if (accessToken && isLoggedIn) {
-            const press_result = await LikeReview(accessToken, data.id);
+        if (isLoggedIn) {
+            const press_result = await LikeReview(data.id);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
