@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 
+import { DeleteReview } from 'hooks/axios/Review';
 import { ReviewManageModalProps } from 'interfaces/ReviewDetail.interface';
 import { FontWhiteNormalSemibold } from 'styles/layout/reuse/text/Text.style';
 import {
@@ -27,9 +28,16 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
         }
     };
 
-    const onPressReviewDelete = () => {
-        setOpenModal(false);
-        // TODO: 추후 ReviewDelete 페이지 추가후 이동
+    const onPressReviewDelete = async () => {
+        try {
+            const result = await DeleteReview(reviewID);
+            if (result.data) {
+                setOpenModal(false);
+                navigation.goBack();
+            }
+        } catch (error) {
+            console.log('DeleteReviewError ' + error);
+        }
     };
 
     return (
