@@ -10,7 +10,12 @@ import BranchDistance from './BranchDistance';
 
 export default function BranchLocation({ latitude, longitude, distance }: BranchLocationProps) {
     const platform = Platform.OS;
-    const geolocation = { latitude: latitude ? latitude : 37.564362, longitude: longitude ? longitude : 126.977011 };
+    const defaultLatitude = 37.564362;
+    const defaultLongitude = 126.977011;
+    const geolocation = {
+        latitude: latitude || defaultLatitude,
+        longitude: longitude || defaultLongitude,
+    };
     return (
         <BranchLocationContainer>
             <NaverMapView
