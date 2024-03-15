@@ -26,6 +26,11 @@ export default function Map() {
     const cardMoveY = useRef(new Animated.Value(0)).current;
     const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
 
+    /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
+    const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
+    const defaultLatitude = 37.564362;
+    const defaultLongitude = 126.977011;
+
     const [location, setLocation] = useState<string>('주소 입력');
     const [branchData, setBranchData] = useState<BranchCardData[]>([]);
     const [zoom, setZoom] = useState<number>(18);
@@ -33,12 +38,9 @@ export default function Map() {
     const [toastVisible, setToastVisible] = useState<boolean>(false);
     /** 현재 내가 보고있는 지도의 center */
     const [myPosition, setMyPosition] = useState<LocationData>({
-        latitude: 37.564362,
-        longitude: 126.977011,
+        latitude: currentLocation.latitude || defaultLatitude,
+        longitude: currentLocation.longitude || defaultLongitude,
     });
-
-    /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
-    const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
 
     /**  ReverseGeolocation 호출 */
     const getAddressData = async (latitude: number, longitude: number) => {
@@ -60,8 +62,35 @@ export default function Map() {
         }
     };
 
+    /** 지도상에서 지점 클릭시 지점상세 페이지로 이동 */
+    const onClickBranch = (branchID: string) => {
+        navigation.navigate('Branch', { branchID });
+    };
+
+    /** 카메라 위치 변경시 */
+    const ChangePosition = useCallback(
+        (latitude: number, longitude: number) => {
+            /** 위도가 최북단 보다 크거나 최남단 보다 작을때 (reset) */
+            if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
+                setMyPosition({
+                    latitude: currentLocation.latitude ? currentLocation.latitude : defaultLatitude,
+                    longitude: currentLocation.longitude ? currentLocation.longitude : defaultLongitude,
+                });
+                /** 경도가 최동단 보다 크거나 최서단 보다 작을때 (reset) */
+            } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
+                setMyPosition({
+                    latitude: currentLocation.latitude ? currentLocation.latitude : defaultLatitude,
+                    longitude: currentLocation.longitude ? currentLocation.longitude : defaultLongitude,
+                });
+            } else {
+                setMyPosition(prev => ({ ...prev, latitude, longitude }));
+            }
+        },
+        [MAX_COORD, currentLocation.latitude, currentLocation.longitude],
+    );
+
     /** 위치 권한 획득 시 redux store에 저장 */
-    const getCurrentLocation = () => {
+    const getCurrentLocation = useCallback(() => {
         const watchID = Geolocation.watchPosition(
             position => {
                 dispatch(
@@ -75,34 +104,7 @@ export default function Map() {
         );
 
         return watchID;
-    };
-
-    /** 지도상에서 지점 클릭시 지점상세 페이지로 이동 */
-    const onClickBranch = (branchID: string) => {
-        navigation.navigate('Branch', { branchID });
-    };
-
-    /** 카메라 위치 변경시 */
-    const ChangePosition = useCallback(
-        (latitude: number, longitude: number) => {
-            /** 위도가 최북단 보다 크거나 최남단 보다 작을때 (reset) */
-            if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
-                setMyPosition({
-                    latitude: currentLocation.latitude ? currentLocation.latitude : 37.564362,
-                    longitude: currentLocation.longitude ? currentLocation.longitude : 126.977011,
-                });
-                /** 경도가 최동단 보다 크거나 최서단 보다 작을때 (reset) */
-            } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
-                setMyPosition({
-                    latitude: currentLocation.latitude ? currentLocation.latitude : 37.564362,
-                    longitude: currentLocation.longitude ? currentLocation.longitude : 126.977011,
-                });
-            } else {
-                setMyPosition(prev => ({ ...prev, latitude, longitude }));
-            }
-        },
-        [MAX_COORD, currentLocation.latitude, currentLocation.longitude],
-    );
+    }, [dispatch]);
 
     // LocationSearch 페이지로 이동시 위치 권한 획득
     useEffect(() => {
@@ -118,8 +120,7 @@ export default function Map() {
                 Geolocation.clearWatch(watch);
             }
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [getCurrentLocation]);
 
     // 현재 화면위치 바뀔때마다 지점 데이터 Get
     useEffect(() => {
