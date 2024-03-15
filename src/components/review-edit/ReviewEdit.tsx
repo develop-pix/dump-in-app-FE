@@ -4,7 +4,6 @@ import { useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
 import { GetReviewData } from 'hooks/axios/ReviewDetail';
-import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchID,
     setBranchName,
@@ -57,14 +56,13 @@ export default function ReviewEdit() {
     const platform = Platform.OS;
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
     const dispatch = useDispatch();
-    const accessToken = storage.getString('token.accessToken');
 
     // ReviewEdit 초기 데이터 Set
     useEffect(() => {
         const getReviewData = async () => {
             try {
                 let image = [];
-                const fetchData = await GetReviewData(accessToken, route.params.reviewID);
+                const fetchData = await GetReviewData(route.params.reviewID);
                 dispatch(
                     setRepresentativeImage({
                         imageURL: fetchData.data.mainThumbnailImageUrl,
@@ -100,13 +98,13 @@ export default function ReviewEdit() {
                 dispatch(setTools(fetchData.data.goodsAmount));
                 dispatch(setPublicOpen(fetchData.data.isPublic));
                 dispatch(setBranchID(fetchData.data.photoBoothId));
-                dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
+                dispatch(setBranchName(fetchData.data.photoBoothName));
             } catch (e) {
                 console.log(e);
             }
         };
         getReviewData();
-    }, [accessToken, dispatch, route.params.reviewID]);
+    }, [dispatch, route.params.reviewID]);
 
     return (
         <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal}>

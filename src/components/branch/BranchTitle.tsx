@@ -40,6 +40,7 @@ export default function BranchTitle({ photoBoothName, branchName, branchHashtag,
             <TitleContainer>
                 <BranchNameContainer>
                     <FontWhiteBiggestSemibold>{photoBoothName}</FontWhiteBiggestSemibold>
+                    {/* FIXME: 백엔드 API 변수 변경후 수정필요 */}
                     <FontWhiteGreySmallestSemibold>{branchName}</FontWhiteGreySmallestSemibold>
                 </BranchNameContainer>
                 <BranchHashTagsContainer>

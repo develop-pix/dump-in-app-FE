@@ -23,12 +23,12 @@ export default function Branch() {
     const [branchData, setBranchData] = useState<BranchData>({
         id: '',
         name: '',
-        latitude: 37.564362,
-        longitude: 126.977011,
+        latitude: null,
+        longitude: null,
         streetAddress: '',
         roadAddress: '',
         isLiked: false,
-        distance: '알 수 없음',
+        distance: null,
         operationTime: '',
         photoBoothBrand: {
             name: '',
@@ -86,7 +86,7 @@ export default function Branch() {
     }, []);
 
     return (
-        <BranchScrollView>
+        <BranchScrollView showsVerticalScrollIndicator={false}>
             <BranchForm>
                 <BranchLocation
                     latitude={branchData?.latitude}

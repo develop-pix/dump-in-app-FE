@@ -2,6 +2,12 @@ import styled from 'styled-components/native';
 
 import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 
+export const CategorySafeContainer = styled.SafeAreaView`
+    flex: 1;
+    justify-content: space-between;
+    background-color: ${colors.lightblack};
+`;
+
 export const CategoryContainer = styled.View`
     flex: 1;
     align-items: flex-start;

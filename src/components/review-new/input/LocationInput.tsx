@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import LocationGreyIcon from 'assets/image/icon/location_grey.svg';
 import { GetBranchData } from 'hooks/axios/Branch';
-import { setBranchID } from 'hooks/redux/reviewNewSlice';
-import { useAppDispatch } from 'hooks/redux/store';
-import { RootStackScreenProps } from 'interfaces/Navigation.interface';
+import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { LocationInputProps } from 'interfaces/ReviewNew.interface';
 import {
     FontLightGreyNormalMedium,
@@ -24,41 +22,39 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 export default function LocationInput({ errorData }: LocationInputProps) {
     const [branchName, setBranchName] = useState<string | undefined>(undefined);
     const navigation = useNavigation();
-    const route = useRoute<RootStackScreenProps<'AddReviewModal'>['route']>();
     const isFocused = useIsFocused();
     const dispatch = useAppDispatch();
+    const branchID = useAppSelector(state => state.reviewNew.branchID);
 
     // Branch 검색 페이지로 이동
     const onPressSelectLocation = () => {
         if (isFocused) {
-            navigation.navigate('LocationSearch');
+            navigation.navigate('ReviewLocationSearch');
         }
     };
 
     // 페이지 진입시 브랜치 이름
     useEffect(() => {
-        dispatch(setBranchID(route.params.branchID));
-        const GetBranchNameData = async (branchID: string) => {
+        const GetBranchNameData = async (Id: string) => {
             try {
-                let branchFullName = '';
-                //FIXME: 백엔드 데이터 바뀔시 수정필요(위도,경도 필요없도록 수정예정)
-                const branchData = await GetBranchData(36.8101475281, 127.1470316068, branchID);
-                branchFullName = branchData.data.photoBoothBrand.name + ' ' + branchData.data.name;
-                return branchFullName;
+                if (Id) {
+                    const branchData = await GetBranchData(null, null, Id);
+                    return branchData.data.name;
+                }
             } catch (e) {
                 console.log(e);
             }
         };
         const fetchBranchName = async () => {
-            if (route.params.branchID) {
-                const response = await GetBranchNameData(route.params.branchID);
+            if (branchID) {
+                const response = await GetBranchNameData(branchID);
                 if (response) {
                     setBranchName(response);
                 }
             }
         };
         fetchBranchName();
-    }, [dispatch, route.params.branchID]);
+    }, [branchID, dispatch]);
 
     return (
         <LocationInputContainer>

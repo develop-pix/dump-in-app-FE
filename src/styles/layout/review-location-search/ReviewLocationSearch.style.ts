@@ -15,34 +15,26 @@ export const SearchForm = styled.SafeAreaView`
 
 export const SearchContainer = styled.View`
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
 `;
-/* SearchBranchList */
 
-export const SearchBranchScrollView = styled.ScrollView.attrs({
-    contentContainerStyle: { paddingBottom: 100 },
-})`
-    width: 100%;
-`;
-
+/* ReviewLocationSearchBranchList */
 export const SearchBranchContainer = styled.View`
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: center;
 `;
 
 export const ListContainer = styled.View`
-    width: 90%;
+    width: 100%;
 `;
 
 /* BranchList */
-
 export const BranchListContainer = styled.TouchableOpacity`
     display: flex;
     flex-direction: row;
-    width: 100%;
     height: 44px;
     border-bottom-width: 1px;
     border-bottom-color: ${colors.darkgrey};

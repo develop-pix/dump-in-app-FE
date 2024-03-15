@@ -60,3 +60,5 @@ export const BranchCardBottom = styled.View`
     justify-content: center;
     align-items: center;
 `;
+
+export const BranchCardAppScheme = styled.TouchableOpacity``;

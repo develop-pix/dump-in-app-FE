@@ -3,9 +3,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import EtcImage from 'assets/image/icon/frame_etc.svg';
 import {
+    CategoryStackScreenProps,
     HomeStackScreenProps,
     LocationStackScreenProps,
-    MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
 import { ReviewProps } from 'interfaces/reuse/photo-dump/Review.interface';
 import { colors } from 'styles/base/Variable';
@@ -24,12 +24,11 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function Review({ reviewItem }: ReviewProps) {
     const navigation = useNavigation<
-        | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
-        | LocationStackScreenProps<'Branch'>['navigation']
-        | MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']
+        HomeStackScreenProps<'PhotoBoothDetail'>['navigation'] | LocationStackScreenProps<'Branch'>['navigation']
     >();
     const isFocused = useIsFocused();
 
+    //TODO: 테스트 픨요함 (리뷰 클릭시 navigation)
     const onPressReview = () => {
         if (isFocused) {
             switch (navigation.getId()) {
@@ -41,18 +40,21 @@ export default function Review({ reviewItem }: ReviewProps) {
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
                         reviewID: reviewItem.id,
+                        branchID: undefined,
                     });
                     break;
-                case 'MyPageStack':
-                    (navigation as MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: reviewItem.id,
-                    });
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate(
+                        'ReviewDetail',
+                        {
+                            reviewID: reviewItem.id,
+                        },
+                    );
                     break;
             }
         }
     };
 
-    //FIXME: 고데기, 소품은 true, false, null 3가지 값이 있음. 수정 필요함
     return (
         <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
             <ReviewImage source={{ uri: reviewItem.mainThumbnailImageUrl }} />
@@ -67,7 +69,6 @@ export default function Review({ reviewItem }: ReviewProps) {
                     height: 200,
                 }}
             />
-
             <ReviewDescriptionContainer>
                 <ReviewDescription>
                     <FontWhiteNormalMedium>{reviewItem.content}</FontWhiteNormalMedium>
@@ -92,14 +93,14 @@ export default function Review({ reviewItem }: ReviewProps) {
                     {TagsArrayToHashTagArrayForm(reviewItem.concept).map(tag => (
                         <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                     ))}
-                    {reviewItem.curlAmount === false ? (
+                    {reviewItem.curlAmount === true ? (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
                     ) : (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 없음</FontYellowSmallerMediumWithLineSpacing>
                     )}
-                    {reviewItem.goodsAmount ? (
+                    {reviewItem.goodsAmount === true && (
                         <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>
-                    ) : null}
+                    )}
                 </ReviewHashtags>
             </ReviewDescriptionContainer>
         </ReviewContainer>

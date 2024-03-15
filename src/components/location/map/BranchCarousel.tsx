@@ -36,7 +36,7 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
                     return (
                         <Card key={index}>
                             <BranchCard
-                                branchID={data.branchID}
+                                id={data.id}
                                 imageLogo={data.photoBoothBrand.logoImageURL}
                                 photoBoothName={data.photoBoothBrand.photoBoothName}
                                 branchName={data.branchName}

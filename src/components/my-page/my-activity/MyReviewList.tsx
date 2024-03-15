@@ -62,7 +62,7 @@ export default function MyReviewList() {
     /** FlatList listFooterItem */
     const renderFooterItem = useCallback(() => {
         const onPressFooter = () => {
-            isLoggedIn && navigation.navigate('AddReviewModal', { branchID: undefined });
+            isLoggedIn && navigation.navigate('AddReviewModal');
         };
 
         return (

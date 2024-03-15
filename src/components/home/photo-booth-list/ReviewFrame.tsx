@@ -48,7 +48,7 @@ export default function ReviewFrame({ data }: ReviewFrameProps) {
                         <LocationGreyIcon width={18} height={21} />
                     </LocationIconContainer>
                     <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.photoBoothBrandName + ' ' + data.photoBoothName}
+                        {data.photoBoothName}
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </ReviewNameContainer>
             </ReviewInfo>

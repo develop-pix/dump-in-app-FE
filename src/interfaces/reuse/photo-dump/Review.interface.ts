@@ -15,6 +15,6 @@ export interface ReviewData {
 }
 
 interface ConceptData {
-    hashtagID: number;
+    id: number;
     name: string;
 }

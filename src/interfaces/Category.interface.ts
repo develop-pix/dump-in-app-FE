@@ -23,3 +23,9 @@ export interface CategoryPhotoBoothProps {
     representativeImage: string;
     photoBoothName: string;
 }
+
+export interface PhotoBoothListData {
+    id: number;
+    logoImageUrl: string;
+    name: string;
+}

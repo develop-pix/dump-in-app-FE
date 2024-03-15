@@ -2,6 +2,12 @@ import styled from 'styled-components/native';
 
 import { colors } from 'styles/base/Variable';
 
+export const NotificationSafeContainer = styled.SafeAreaView`
+    flex: 1;
+    justify-content: space-between;
+    background-color: ${colors.lightblack};
+`;
+
 export const NoticeContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;

@@ -1,10 +1,10 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import HomeSearch from 'screens/HomeSearch';
-import LocationSearch from 'screens/LocationSearch';
 import Notification from 'screens/Notification';
 import OfficialImageDetail from 'screens/OfficialImageDetail';
 import ReviewEdit from 'screens/ReviewEdit';
+import ReviewLocationSearch from 'screens/ReviewLocationSearch';
 import ReviewNew from 'screens/ReviewNew';
 import { colors } from 'styles/base/Variable';
 
@@ -49,8 +49,8 @@ export default function RootStackNavigation() {
                 }}
             />
             <Stack.Screen
-                name="LocationSearch"
-                component={LocationSearch}
+                name="ReviewLocationSearch"
+                component={ReviewLocationSearch}
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
                     headerShown: true,

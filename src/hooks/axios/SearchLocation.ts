@@ -4,12 +4,12 @@ import { axiosInstance } from './ApiHeader';
 
 /**
  * Test
- * branchName: string
+ * photo_booth_brand_name: string
  * latitude: 36.8101475281
  * longitude: 127.1470316068
  * */
 export const GetLocationSearchData = async (
-    branchName: string | null,
+    photo_booth_brand_name: string | null,
     latitude: number | null,
     longitude: number | null,
     radius: number,
@@ -19,10 +19,28 @@ export const GetLocationSearchData = async (
         url: `/photo-booths/locations/search`,
 
         params: {
-            photo_booth_brand_name: branchName,
+            photo_booth_brand_name,
             latitude: 36.8101475281,
             longitude: 127.1470316068,
             radius,
+        },
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const GetReviewLocationSearchData = async (photo_booth_name: string | null, limit: number, offset: number) => {
+    return await axiosInstance({
+        method: 'get',
+        url: `/reviews/photo-booths/locations/search`,
+        params: {
+            photo_booth_name,
+            limit,
+            offset,
         },
     })
         .then(res => {
