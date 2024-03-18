@@ -23,7 +23,7 @@ import {
 export default function EditUserName() {
     const dispatch = useAppDispatch();
     const { userID, userNickName } = useAppSelector(state => state.userData);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedNickName, setEditedNickName] = useState<string | null>(null);
@@ -46,9 +46,9 @@ export default function EditUserName() {
             return;
         }
 
-        if (accessToken && editedNickName && editedNickName.length > 0) {
+        if (editedNickName && editedNickName.length > 0) {
             try {
-                const editResult = await EditMyNickName(accessToken, editedNickName);
+                const editResult = await EditMyNickName(editedNickName);
                 if (editResult) {
                     dispatch(setUserNickName(editedNickName));
                     setErrorMessage(null);
@@ -68,9 +68,9 @@ export default function EditUserName() {
     // accessToken의 존재 여부에 따라 내 정보 데이터 Get
     useEffect(() => {
         const getMyUserData = async () => {
-            if (accessToken) {
+            if (isLoggedIn) {
                 try {
-                    const userData = await GetMyUserData(accessToken);
+                    const userData = await GetMyUserData();
                     if (userData.data) {
                         dispatch(setUserID(userData.data.id));
                         dispatch(setEmail(userData.data.email));
@@ -82,13 +82,11 @@ export default function EditUserName() {
             }
         };
         getMyUserData();
-    }, [accessToken]);
+    }, [isLoggedIn, dispatch]);
 
     return (
         <EditUserNameContainer>
-            {accessToken === null ? (
-                <FontWhiteBiggestSemibold>로그인이 필요합니다.</FontWhiteBiggestSemibold>
-            ) : (
+            {isLoggedIn ? (
                 <>
                     {isEditing ? (
                         <UserNickNameWrapper>
@@ -123,6 +121,8 @@ export default function EditUserName() {
                         <FontWhiteGreyNormalMedium>{userID}</FontWhiteGreyNormalMedium>
                     </UserIDWrapper>
                 </>
+            ) : (
+                <FontWhiteBiggestSemibold>로그인이 필요합니다.</FontWhiteBiggestSemibold>
             )}
         </EditUserNameContainer>
     );

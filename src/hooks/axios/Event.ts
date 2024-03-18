@@ -1,14 +1,10 @@
-import axios from 'axios';
-import Config from 'react-native-config';
+import { axiosInstance } from './ApiHeader';
 
 //TODO: 테스트 필요함
-export const LikeEvent = async (accessToken: string, event_Id: number | null | undefined) => {
-    return await axios({
+export const LikeEvent = async (event_Id: number | null | undefined) => {
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/events/${event_Id}/likes`,
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+        url: `/events/${event_Id}/likes`,
         data: {
             event_Id,
         },

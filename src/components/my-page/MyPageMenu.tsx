@@ -4,9 +4,9 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
+import { storage } from 'hooks/mmkv/storage';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { setAccessToken } from 'hooks/redux/tokenSlice';
-import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
+import { setIsLoggedIn, setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     MenuContentContainer,
@@ -21,7 +21,7 @@ import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from 'styles/lay
 export default function MyPageMenu() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
     const isFocused = useIsFocused();
 
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
@@ -34,7 +34,9 @@ export default function MyPageMenu() {
     /** 로그아웃 진행시 토큰 제거 */
     const handleLogout = () => {
         setIsAlertModalVisible(false);
-        dispatch(setAccessToken(null));
+        dispatch(setIsLoggedIn(false));
+        storage.delete('token.accessToken');
+        storage.delete('token.refreshToken');
         dispatch(setUserID(null));
         dispatch(setUserNickName(null));
     };
@@ -89,7 +91,7 @@ export default function MyPageMenu() {
                 </TextContainer>
 
                 <UserTextContainer>
-                    {accessToken ? (
+                    {isLoggedIn ? (
                         <MenuItemContainer onPress={onLogoutAlert}>
                             <FontWhiteGreyBiggerSemibold>로그아웃</FontWhiteGreyBiggerSemibold>
                         </MenuItemContainer>

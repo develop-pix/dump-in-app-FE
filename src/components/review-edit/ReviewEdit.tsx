@@ -46,7 +46,6 @@ import ReviewModal from './input/ReviewModal';
 import ToolsSelect from './input/ToolsSelect';
 import ReviewGoBackButton from './ReviewGoBackButton';
 import ReviewSubmitButton from './ReviewSubmitButton';
-import { useAppSelector } from 'hooks/redux/store';
 
 export default function ReviewEdit() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
@@ -57,16 +56,13 @@ export default function ReviewEdit() {
     const platform = Platform.OS;
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
     const dispatch = useDispatch();
-    const accessToken = useAppSelector(state => state.token).accessToken;
 
     // ReviewEdit 초기 데이터 Set
     useEffect(() => {
         const getReviewData = async () => {
             try {
                 let image = [];
-                const fetchData = await GetReviewData(accessToken, route.params.reviewID);
-                console.log('fetchData.data');
-                console.log(fetchData.data);
+                const fetchData = await GetReviewData(route.params.reviewID);
                 dispatch(
                     setRepresentativeImage({
                         imageURL: fetchData.data.mainThumbnailImageUrl,
@@ -102,7 +98,7 @@ export default function ReviewEdit() {
                 dispatch(setTools(fetchData.data.goodsAmount));
                 dispatch(setPublicOpen(fetchData.data.isPublic));
                 dispatch(setBranchID(fetchData.data.photoBoothId));
-                dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
+                dispatch(setBranchName(fetchData.data.photoBoothName));
             } catch (e) {
                 console.log(e);
             }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { UploadEditReview } from 'hooks/axios/ReviewEdit';
 import { UploadImageToS3 } from 'hooks/axios/ReviewNew';
+import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchID,
     setCameraShot,
@@ -42,7 +43,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         publicOpen,
     } = useAppSelector(state => state.reviewEdit);
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
 
     /** 리뷰 수정이 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {

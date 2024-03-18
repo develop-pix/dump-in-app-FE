@@ -10,7 +10,7 @@ import NavigationBarListItem from './NavigationBarListItem';
 
 export default function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     const safeAreaInset = useSafeAreaInsets();
-    const accessToken = useAppSelector(states => states.token).accessToken;
+    const isLoggedIn = useAppSelector(states => states.userData).isLoggedIn;
 
     return (
         <NavigationBarContainer style={{ paddingBottom: safeAreaInset.bottom, height: safeAreaInset.bottom + 56 }}>
@@ -35,7 +35,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
 
                     if (!isFocused && !event.defaultPrevented) {
                         if (isAddReview) {
-                            accessToken && navigation.navigate('AddReviewModal', route.params);
+                            isLoggedIn && navigation.navigate('AddReviewModal');
                         } else {
                             navigation.navigate(route.name, route.params);
                         }

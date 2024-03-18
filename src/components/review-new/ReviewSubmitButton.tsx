@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
 import { UploadImageToS3, UploadNewReview } from 'hooks/axios/ReviewNew';
+import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchID,
     setCameraShot,
@@ -39,7 +40,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         hairIron,
         publicOpen,
     } = useAppSelector(state => state.reviewNew);
-    const accessToken = useAppSelector(state => state.token).accessToken;
+    const accessToken = storage.getString('token.accessToken');
 
     /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {

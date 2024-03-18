@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import OfficialImages from 'components/reuse/official-images/OfficialImages';
 import PhotoDump from 'components/reuse/photo-dump/PhotoDump';
 import {
-    CategoryStackScreenProps,
-    HomeStackScreenProps,
-    MyPageStackScreenProps,
-} from 'interfaces/Navigation.interface';
-import { PhotoBoothDataType } from 'interfaces/PhotoBoothDetail.interface';
+    GetDetailPhotoBoothBrandData,
+    GetPhotoBoothEventList,
+    GetPhotoBoothReviewList,
+} from 'hooks/axios/PhotoBoothBrand';
+import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
+import { EventDataType, PhotoBoothDataType } from 'interfaces/PhotoBoothDetail.interface';
+import { ReviewData } from 'interfaces/reuse/photo-dump/Review.interface';
 import { OfficialImagesContainer, PhotoDumpContainer } from 'styles/layout/photo-booth-detail/PhotoBoothDetail.style';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 
@@ -21,18 +23,21 @@ export default function PhotoBoothDetail() {
     const navigation = useNavigation<
         | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
-        | MyPageStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
+    const route = useRoute<CategoryStackScreenProps<'PhotoBoothDetail'>['route']>();
+    const eventDataLimit = 8;
+    const reviewDataLimit = 10;
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothDataType>({
-        photoBoothName: '',
+        id: undefined,
+        name: '',
         hashtag: [],
-        representativeImage: '',
-        officialImage: [],
-        event: [],
-        review: [],
+        image: [],
+        mainThumbnailImageUrl: '',
     });
+    const [eventData, setEventData] = useState<EventDataType[]>([]);
+    const [reviewData, setReviewData] = useState<ReviewData[]>([]);
 
     useEffect(() => {
         navigation.setOptions({
@@ -46,93 +51,44 @@ export default function PhotoBoothDetail() {
         });
     }, [navigation]);
 
+    // 포토부스 상세 페이지 진입시 해당 포토부스의 데이터, 이벤트, 리뷰 Get
     useEffect(() => {
-        setTimeout(() => {
-            // 선언된 데이터를 사용하여 상태를 설정합니다.
-            setPhotoBoothData({
-                photoBoothName: '포토그레이',
-                hashtag: ['레드프레임', '컨셉사진', '레드'],
-                representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                officialImage: [
-                    'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                    'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                    'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                    'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                ],
-                event: [
-                    {
-                        eventID: 1,
-                        representativeImage:
-                            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                        eventTitle: '화사의 ‘I Love My Body’ 프레임',
-                        startDate: '2023-09-07',
-                        endDate: '2023-10-31',
-                        myEvent: true,
-                    },
-                    {
-                        eventID: 2,
-                        representativeImage:
-                            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                        eventTitle: '화사의 ‘I Love My Body’ 프레임',
-                        startDate: '2023-09-07',
-                        endDate: '2023-10-31',
-                        myEvent: false,
-                    },
-                    {
-                        eventID: 3,
-                        representativeImage:
-                            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                        eventTitle: '화사의 ‘I Love My Body’ 프레임',
-                        startDate: '2023-09-07',
-                        endDate: '2023-10-31',
-                        myEvent: true,
-                    },
-                    {
-                        eventID: 4,
-                        representativeImage:
-                            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                        eventTitle: '화사의 ‘I Love My Body’ 프레임',
-                        startDate: '2023-09-07',
-                        endDate: '2023-10-31',
-                        myEvent: false,
-                    },
-                ],
-                review: [
-                    {
-                        reviewID: 1,
-                        representativeImage:
-                            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                        description: '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
-                        hashtag: ['3', '무릎', '생일', '고데기 있음', '소품 많음'],
-                    },
-                    {
-                        reviewID: 2,
-                        representativeImage:
-                            'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                        description: '처음 본 이벤트 프레임! 간만에 홍대왔다가 술톤으로 픽닷 찍기 ㅎㅎ',
-                        hashtag: ['3', '무릎', '생일', '고데기 있음', '소품 많음'],
-                    },
-                ],
-            });
-            setIsLoading(false);
-        }, 1000);
-    }, []);
+        const getPhotoBoothData = async () => {
+            try {
+                const detailPhotoBoothBrandData = await GetDetailPhotoBoothBrandData(route.params.photoBoothID);
+                const photoBoothBrandEventData = await GetPhotoBoothEventList(
+                    route.params.photoBoothID,
+                    eventDataLimit,
+                );
+                const photoBoothBrandReviewData = await GetPhotoBoothReviewList(
+                    route.params.photoBoothID,
+                    reviewDataLimit,
+                );
+                if (detailPhotoBoothBrandData.data && photoBoothBrandEventData && photoBoothBrandReviewData) {
+                    setPhotoBoothData(detailPhotoBoothBrandData.data);
+                    setEventData(photoBoothBrandEventData.data);
+                    setReviewData(photoBoothBrandReviewData.data);
+                    setIsLoading(prev => !prev);
+                }
+            } catch (error) {
+                console.log('GetPhotoBoothBrandsListError ' + error);
+            }
+        };
+
+        getPhotoBoothData();
+    }, [route.params.photoBoothID]);
 
     return (
         <>
             {!isLoading ? (
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <PhotoBoothImageTitle photoBoothData={photoBoothData} />
-                    <PhotoBoothEvent eventData={photoBoothData.event} />
+                    <PhotoBoothEvent eventData={eventData} />
                     <OfficialImagesContainer>
-                        {/* FIXME: 임시 데이터 타입 오류 */}
-                        <OfficialImages
-                            image={photoBoothData.officialImage}
-                            photoBoothName={photoBoothData.photoBoothName}
-                        />
+                        <OfficialImages photoBoothName={photoBoothData.name} image={photoBoothData.image} />
                     </OfficialImagesContainer>
                     <PhotoDumpContainer>
-                        {/* <PhotoDump photoBoothName={photoBoothData.photoBoothName} reviewData={photoBoothData.review} /> */}
+                        <PhotoDump photoBoothName={photoBoothData.name} reviewData={reviewData} />
                     </PhotoDumpContainer>
                 </ScrollView>
             ) : (

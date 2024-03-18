@@ -2,12 +2,13 @@ import { Platform } from 'react-native';
 import { appleAuth, appleAuthAndroid } from '@invertase/react-native-apple-authentication';
 import { useNavigation } from '@react-navigation/native';
 import 'react-native-get-random-values';
+import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 
 import AppleIcon from 'assets/image/icon/apple_login.svg';
-import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { setAccessToken } from 'hooks/redux/tokenSlice';
-import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
+import { AppleSocialLogin } from 'hooks/axios/Auth';
+import { storage } from 'hooks/mmkv/storage';
+import { setIsLoggedIn } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     AppleIconWrapper,
@@ -15,23 +16,22 @@ import {
     AppleLoginContainer,
     AppleText,
 } from 'styles/layout/login/AppleLogin.style';
-import { AppleSocialLogin } from 'hooks/axios/Auth';
 
 export default function AppleLogin() {
-    const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
     const platform = Platform.OS;
-    const mobileToken = useAppSelector(state => state.token).mobileToken;
+    const mobileToken = storage.getString('token.mobileToken');
+    const dispatch = useDispatch();
 
     const GetTokenLogin = async (identifyToken: string | null | undefined) => {
-        console.log('애플 토큰 관련');
-        console.log(identifyToken);
         try {
             if (identifyToken) {
                 const socialLoginResult = await AppleSocialLogin(identifyToken, mobileToken);
-                console.log(socialLoginResult);
                 if (socialLoginResult.data) {
-                    dispatch(setAccessToken(socialLoginResult.data.accessToken));
+                    storage.set('token.accessToken', socialLoginResult.data.accessToken);
+                    storage.set('token.refreshToken', socialLoginResult.data.refreshToken);
+                    dispatch(setIsLoggedIn(true));
+
                     navigation.navigate('MyPage');
                 }
             }

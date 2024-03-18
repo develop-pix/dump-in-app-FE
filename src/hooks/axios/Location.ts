@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Config from 'react-native-config';
 
+import { axiosInstance } from './ApiHeader';
+
 export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
     const str_latitude: string = latitude.toFixed(7);
     const str_longitude: string = longitude.toFixed(7);
@@ -43,15 +45,10 @@ export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: 
         });
 };
 
-/**
- * Test
- * latitude: 36.8101475281
- *  longitude: 127.1470316068
- * */
-export const GetPhotoBoothData = async (latitude: number, longitude: number, radius: number) => {
-    return await axios({
+export const GetBranchCardList = async (latitude: number, longitude: number, radius: number) => {
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/photo-booths/locations`,
+        url: `/photo-booths/locations`,
         params: {
             latitude,
             longitude,

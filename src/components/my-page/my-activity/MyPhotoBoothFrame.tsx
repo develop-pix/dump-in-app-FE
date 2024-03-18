@@ -24,9 +24,9 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(photoBoothData.isLiked);
-    const accessToken = useAppSelector(state => state.token).accessToken;
 
     /** 지점 항목 클릭시 */
     const onPressPhotoBooth = (id: string) => {
@@ -39,8 +39,8 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {
-        if (accessToken) {
-            const press_result = await LikeBranch(accessToken, photoBoothData.id);
+        if (isLoggedIn) {
+            const press_result = await LikeBranch(photoBoothData.id);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
@@ -55,6 +55,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
                     <FontWhiteBiggestSemiboldWithLineHeight>
                         {photoBoothData.photoBoothBrandName}
                     </FontWhiteBiggestSemiboldWithLineHeight>
+                    {/* FIXME: 백엔드 API 변수 변경후 수정필요 */}
                     <FontWhiteGreySmallerSemibold>{photoBoothData.photoBoothName}</FontWhiteGreySmallerSemibold>
                 </PhotoBoothNameWrapper>
 

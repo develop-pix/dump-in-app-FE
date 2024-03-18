@@ -10,7 +10,6 @@ import {
 } from 'styles/layout/reuse/dummy/SeeNearPhotoBoothDummy.style';
 import { FontLightGreySmallerMedium, FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 
-//TODO: 01_Home 내 주변 포토부스를 찾아볼까요?
 export default function SeeNearPhotoBoothDummy() {
     const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
 

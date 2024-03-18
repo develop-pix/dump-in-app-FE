@@ -29,14 +29,14 @@ export default function MyReviewList() {
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
-    const accessToken = useAppSelector(state => state.token).accessToken;
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
 
     /** 내 사진 항목 데이터 Get */
     const getMyReview = async () => {
         try {
-            if (accessToken) {
-                const resultList = await GetMyReviewList(accessToken, dataLimit, page * dataLimit);
+            if (isLoggedIn) {
+                const resultList = await GetMyReviewList(dataLimit, page * dataLimit);
                 setPage(prev => prev + 1);
                 return resultList.data;
             }
@@ -62,7 +62,7 @@ export default function MyReviewList() {
     /** FlatList listFooterItem */
     const renderFooterItem = useCallback(() => {
         const onPressFooter = () => {
-            accessToken && navigation.navigate('AddReviewModal', { branchID: undefined });
+            isLoggedIn && navigation.navigate('AddReviewModal');
         };
 
         return (
@@ -70,7 +70,7 @@ export default function MyReviewList() {
                 <NormalButton text="새 리뷰 등록하기" onPress={onPressFooter} />
             </FlatListButtonContainer>
         );
-    }, [accessToken, navigation]);
+    }, [isLoggedIn, navigation]);
 
     // MyPage 진입시 내 사진 항목 데이터 Get
     useEffect(() => {

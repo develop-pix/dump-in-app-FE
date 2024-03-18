@@ -1,10 +1,9 @@
-import axios from 'axios';
-import Config from 'react-native-config';
+import { axiosInstance } from './ApiHeader';
 
 export const sendTokenToServer = async (mobileToken: string) => {
-    return await axios({
+    return await axiosInstance({
         method: 'post',
-        url: `${Config.BACKEND_API_URL}/users/mobile-token`,
+        url: `/users/mobile-token`,
         params: {
             mobileToken,
         },
