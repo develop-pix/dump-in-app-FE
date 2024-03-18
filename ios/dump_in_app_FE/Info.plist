@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BACKEND_API_URL</key>
+	<string>$(BACKEND_API_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -55,6 +57,14 @@
 	<true/>
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array/>
+	<key>NAVER_CONSUMER_SECRET</key>
+	<string>$(NAVER_CONSUMER_SECRET)</string>
+	<key>NAVER_LOGIN_CONSUMER_KEY</key>
+	<string>$(NAVER_LOGIN_CONSUMER_KEY)</string>
+	<key>NAVER_MAP_API_ID</key>
+	<string>$(NAVER_MAP_API_ID)</string>
+	<key>NAVER_MAP_API_KEY</key>
+	<string>$(NAVER_MAP_API_KEY)</string>
 	<key>NMFClientId</key>
 	<string>sc9favxy2w</string>
 	<key>NSAppTransportSecurity</key>
@@ -76,6 +86,12 @@
 	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>포토부스 리뷰 작성을 위해 앨범 정보가 필요합니다.</string>
+	<key>S3_ACCESSKEY_ID</key>
+	<string>$(S3_ACCESSKEY_ID)</string>
+	<key>S3_BUCKET_NAME</key>
+	<string>$(S3_BUCKET_NAME)</string>
+	<key>S3_SECRET_ACCESSKEY</key>
+	<string>$(S3_SECRET_ACCESSKEY)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Black.otf</string>
@@ -91,6 +107,10 @@
 		<string>Montserrat-SemiBold.ttf</string>
 		<string>Montserrat-Light.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -103,22 +123,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>BACKEND_API_URL</key>
-	<string>$(BACKEND_API_URL)</string>
-	<key>S3_BUCKET_NAME</key>
-	<string>$(S3_BUCKET_NAME)</string>
-	<key>S3_ACCESSKEY_ID</key>
-	<string>$(S3_ACCESSKEY_ID)</string>
-	<key>S3_SECRET_ACCESSKEY</key>
-	<string>$(S3_SECRET_ACCESSKEY)</string>
-	<key>NAVER_LOGIN_CONSUMER_KEY</key>
-	<string>$(NAVER_LOGIN_CONSUMER_KEY)</string>
-	<key>NAVER_CONSUMER_SECRET</key>
-	<string>$(NAVER_CONSUMER_SECRET)</string>
-	<key>NAVER_MAP_API_ID</key>
-	<string>$(NAVER_MAP_API_ID)</string>
-	<key>NAVER_MAP_API_KEY</key>
-	<string>$(NAVER_MAP_API_KEY)</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
