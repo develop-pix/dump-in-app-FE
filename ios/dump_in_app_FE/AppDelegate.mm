@@ -29,7 +29,8 @@
 
 - (UIView *)createRootViewWithBridge:(RCTBridge *)bridge
                           moduleName:(NSString *)moduleName
-                           initProps:(NSDictionary *)initProps {
+                           initProps:(NSDictionary *)initProps 
+{
   UIView *rootView = [super createRootViewWithBridge:bridge
                                           moduleName:moduleName
                                            initProps:initProps];
@@ -37,10 +38,11 @@
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
 
   return rootView;
+}
 
 - (BOOL)application:(UIApplication *)application
-   openURL:(NSURL *)url
-   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
   return [RCTLinkingManager application:application openURL:url options:options];
 }
