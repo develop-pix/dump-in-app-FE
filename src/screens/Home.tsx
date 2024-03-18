@@ -3,6 +3,7 @@ import { PermissionsAndroid, Platform } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 
 import HomeForm from 'components/home/HomeForm';
+import { sendTokenToServer } from 'hooks/axios/PushNotification';
 import { HomeSafeContainer } from 'styles/layout/home/Home.style';
 
 export default function Home() {
@@ -21,16 +22,12 @@ export default function Home() {
                             );
                             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                                 if (fcmToken) {
-                                    console.log(fcmToken);
-                                    console.log('1111');
-                                    //  토큰 저장
+                                    sendTokenToServer(fcmToken);
                                 }
                             }
                         } else {
                             if (fcmToken) {
-                                console.log(fcmToken);
-                                console.log(Platform.Version);
-                                //  토큰 저장
+                                sendTokenToServer(fcmToken);
                             }
                         }
                     }
@@ -44,13 +41,11 @@ export default function Home() {
             try {
                 const authorizationStatus = await messaging().requestPermission();
                 if (authorizationStatus === messaging.AuthorizationStatus.AUTHORIZED) {
-                    await firebaseMessaging.registerDeviceForRemoteMessages();
                     const apnsToken = await firebaseMessaging.getAPNSToken();
                     if (apnsToken) {
                         const fcmToken = await firebaseMessaging.getToken();
                         if (fcmToken) {
-                            console.log(fcmToken);
-                            //  토큰 저장
+                            sendTokenToServer(fcmToken);
                         }
                     }
                 }
