@@ -4,6 +4,7 @@ import messaging from '@react-native-firebase/messaging';
 
 import HomeForm from 'components/home/HomeForm';
 import { sendTokenToServer } from 'hooks/axios/PushNotification';
+import { storage } from 'hooks/mmkv/storage';
 import { HomeSafeContainer } from 'styles/layout/home/Home.style';
 
 export default function Home() {
@@ -23,11 +24,13 @@ export default function Home() {
                             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                                 if (fcmToken) {
                                     sendTokenToServer(fcmToken);
+                                    storage.set('mobileToken', fcmToken);
                                 }
                             }
                         } else {
                             if (fcmToken) {
                                 sendTokenToServer(fcmToken);
+                                storage.set('mobileToken', fcmToken);
                             }
                         }
                     }
@@ -46,6 +49,7 @@ export default function Home() {
                         const fcmToken = await firebaseMessaging.getToken();
                         if (fcmToken) {
                             sendTokenToServer(fcmToken);
+                            storage.set('mobileToken', fcmToken);
                         }
                     }
                 }
