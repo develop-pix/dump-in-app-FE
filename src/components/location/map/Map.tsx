@@ -178,6 +178,12 @@ export default function Map() {
                 {currentLocation.latitude !== null && currentLocation.longitude !== null && (
                     <Marker coordinate={{ latitude: currentLocation.latitude, longitude: currentLocation.longitude }} />
                 )}
+                {currentLocation.latitude !== null && currentLocation.longitude !== null && (
+                    <Marker
+                        coordinate={{ latitude: myPosition.latitude, longitude: myPosition.longitude }}
+                        pinColor="blue"
+                    />
+                )}
                 {branchData.map(branch => (
                     <Marker
                         key={branch.id}

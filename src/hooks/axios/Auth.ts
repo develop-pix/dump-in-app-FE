@@ -1,3 +1,6 @@
+import axios from 'axios';
+import Config from 'react-native-config';
+
 import { axiosInstance } from './ApiHeader';
 
 export const NaverSocialLogin = async (accessToken: string | null, mobileToken: string | undefined) => {
@@ -51,12 +54,19 @@ export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: 
         });
 };
 
-export const RefreshAccessToken = async (refresh: string) => {
-    return await axiosInstance({
+export const RefreshAccessToken = async (refresh: string, refreshTokenExpireAt: string) => {
+    const currentDate = new Date();
+    const refreshExpireDate = new Date(refreshTokenExpireAt);
+    const timeParams = 60 * 60 * 1000; // 1시간
+
+    const gapTime = refreshExpireDate.getTime() - currentDate.getTime();
+    const refreshCheck: boolean = gapTime < timeParams;
+    return await axios({
         method: 'post',
-        url: `/auth/jwt/refresh`,
+        url: `${Config.BACKEND_API_URL}/auth/jwt/refresh`,
         data: {
             refresh,
+            isRefreshGenerated: refreshCheck,
         },
     })
         .then(res => {
