@@ -1,20 +1,24 @@
 import { axiosInstance } from './ApiHeader';
 
 export const GetLocationSearchData = async (
-    photo_booth_brand_name: string | null,
+    photo_booth_name: string | null,
     latitude: number | null,
     longitude: number | null,
     radius: number,
+    limit: number,
+    offset: number,
 ) => {
     return await axiosInstance({
         method: 'get',
         url: `/photo-booths/locations/search`,
 
         params: {
-            photo_booth_brand_name,
+            photo_booth_name,
             latitude,
             longitude,
             radius,
+            limit,
+            offset,
         },
     })
         .then(res => {
