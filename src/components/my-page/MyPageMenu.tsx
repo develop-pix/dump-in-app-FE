@@ -4,6 +4,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
+import { WithDrawalUser } from 'hooks/axios/Auth';
 import { storage } from 'hooks/mmkv/storage';
 import { setIsLoggedIn } from 'hooks/redux/loginSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
@@ -26,6 +27,7 @@ export default function MyPageMenu() {
     const isFocused = useIsFocused();
 
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** 로그아웃 버튼 클릭시 모달 출력 */
     const onLogoutAlert = () => {
@@ -52,6 +54,27 @@ export default function MyPageMenu() {
     /** 알림 버튼 클릭 */
     const onNotificationScreen = () => {
         navigation.navigate('Notification');
+    };
+
+    const onWithDrawalAlert = () => {
+        setIsModalVisible(true);
+    };
+
+    const onPressWithdrawal = async () => {
+        try {
+            const withdrawalResult = await WithDrawalUser();
+            // FIXME: 회원탈퇴 응답 확인후 변경 필요
+            if (withdrawalResult.data) {
+                setIsModalVisible(false);
+                dispatch(setIsLoggedIn(false));
+                storage.delete('token.accessToken');
+                storage.delete('token.refreshToken');
+                dispatch(setUserID(null));
+                dispatch(setUserNickName(null));
+            }
+        } catch (error) {
+            console.log('onPressWithdrawalError ' + error);
+        }
     };
 
     useEffect(() => {
@@ -102,9 +125,11 @@ export default function MyPageMenu() {
                         </MenuItemContainer>
                     )}
 
-                    <MenuItemContainer>
-                        <FontWhiteGreyBiggerSemibold>회원탈퇴</FontWhiteGreyBiggerSemibold>
-                    </MenuItemContainer>
+                    {isLoggedIn && (
+                        <MenuItemContainer onPress={onWithDrawalAlert}>
+                            <FontWhiteGreyBiggerSemibold>회원탈퇴</FontWhiteGreyBiggerSemibold>
+                        </MenuItemContainer>
+                    )}
                 </UserTextContainer>
             </MenuContentContainer>
 
@@ -115,6 +140,15 @@ export default function MyPageMenu() {
                 disagreeMessage="아니오"
                 onAgree={handleLogout}
                 onDisagree={() => setIsAlertModalVisible(false)}
+            />
+
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="정말로 회원탈퇴 하시겠습니까?"
+                agreeMessage="회원탈퇴"
+                disagreeMessage="아니오"
+                onAgree={onPressWithdrawal}
+                onDisagree={() => setIsModalVisible(false)}
             />
         </MenuSafeContainer>
     );

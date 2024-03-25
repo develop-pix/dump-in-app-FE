@@ -40,10 +40,14 @@ export default function Branch() {
 
     /** Branch 정보 및 PhotoDump 리뷰 정보 획득 */
     const getBranchDetailData = async (latitude: number | null, longitude: number | null, branchID: string) => {
-        const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
-        const fetchReviewData = await GetBranchReviewData(route.params.branchID);
-        setBranchData(fetchBranchData.data);
-        setReviewData(fetchReviewData.data);
+        try {
+            const fetchBranchData = await GetBranchData(latitude, longitude, branchID);
+            const fetchReviewData = await GetBranchReviewData(route.params.branchID);
+            setBranchData(fetchBranchData.data);
+            setReviewData(fetchReviewData.data);
+        } catch (error) {
+            console.log('getBranchDetailDataError ' + error);
+        }
     };
 
     /** 초기 위치 설정 */

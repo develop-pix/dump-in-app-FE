@@ -33,7 +33,6 @@ export const LikeReview = async (reviewID: number | null | undefined) => {
 };
 
 export const DeleteReview = async (review_id: number | null | undefined) => {
-    console.log(review_id);
     return await axiosInstance({
         method: 'delete',
         url: `/reviews/${review_id}`,
