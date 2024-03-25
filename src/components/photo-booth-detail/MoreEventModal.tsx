@@ -1,9 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
 
 import CloseIcon from 'assets/image/icon/btn_close.svg';
 import SkeletonGetMoreMyPageEvent from 'components/reuse/skeleton/SkeletonGetMoreMyPageEvent';
+import { GetPhotoBoothEventList } from 'hooks/axios/PhotoBoothBrand';
+import { CategoryStackScreenProps } from 'interfaces/Navigation.interface';
 import { EventDataType, MoreEventModalProps } from 'interfaces/PhotoBoothDetail.interface';
 import {
     CloseButtonContainer,
@@ -14,54 +18,63 @@ import { FontWhiteGreyNormalSemibold } from 'styles/layout/reuse/text/Text.style
 
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 
-export default function MoreEventModal({ visible, onClose, eventData }: MoreEventModalProps) {
-    const [allEventData, setAllEventData] = useState(eventData);
+export default function MoreEventModal({ dataLimit, page, setPage, visible, onClose }: MoreEventModalProps) {
+    const route = useRoute<CategoryStackScreenProps<'PhotoBoothDetail'>['route']>();
+    const navigation = useNavigation<CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']>();
+    const isFocused = useIsFocused();
 
-    const onEndReached = () => {
-        // 스크롤 시 새로운 임시 데이터
-        const lastEventID = allEventData[allEventData.length - 1].id;
-        const newEventData: EventDataType[] = [
-            {
-                id: lastEventID + 1,
-                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                title: '화사의 ‘I Love My Body’ 프레임',
-                startDate: '2023-09-07',
-                endDate: '2023-10-31',
-                isLiked: true,
-            },
-            {
-                id: lastEventID + 2,
-                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                title: '화사의 ‘I Love My Body’ 프레임',
-                startDate: '2023-09-07',
-                endDate: '2023-10-31',
-                isLiked: true,
-            },
-            {
-                id: lastEventID + 3,
-                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                title: '화사의 ‘I Love My Body’ 프레임',
-                startDate: '2023-09-07',
-                endDate: '2023-10-31',
-                isLiked: true,
-            },
-            {
-                id: lastEventID + 4,
-                mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-                title: '화사의 ‘I Love My Body’ 프레임',
-                startDate: '2023-09-07',
-                endDate: '2023-10-31',
-                isLiked: true,
-            },
-        ];
+    const [allEventData, setAllEventData] = useState<EventDataType[]>([]);
+    const [dataEnd, setDataEnd] = useState<boolean>(true);
 
-        // 새로운 데이터를 기존 데이터에 추가
-        setAllEventData(prevData => [...prevData, ...newEventData]);
+    /** EventDetail 페이지로 이동 */
+    const onPressEvent = (id: number) => {
+        if (isFocused) {
+            navigation.navigate('EventDetail', {
+                eventID: id,
+            });
+        }
+        onClose();
+    };
+    /** FlatList onEndReached */
+    const onEndReached = async () => {
+        setPage(prev => prev + 1);
+        const newData = await GetPhotoBoothEventList(dataLimit, page, route.params.photoBoothID);
+
+        setAllEventData(prevData => [...prevData, ...newData.data.results]);
+        newData.data.next !== null && setDataEnd(prev => !prev);
     };
 
+    /** FlatList renderItem */
     const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
-        return <PhotoBoothEventFrame event={item} />;
+        return (
+            <TouchableOpacity onPress={() => onPressEvent(item.id)}>
+                <PhotoBoothEventFrame event={item} />
+            </TouchableOpacity>
+        );
     }, []);
+
+    // 포토부스 상세 페이지 진입시 해당 포토부스의 데이터, 이벤트, 리뷰 Get
+    useEffect(() => {
+        const getPhotoBoothData = async () => {
+            try {
+                const photoBoothBrandEventData = await GetPhotoBoothEventList(
+                    dataLimit,
+                    page,
+                    route.params.photoBoothID,
+                );
+
+                console.log(photoBoothBrandEventData.data);
+                if (photoBoothBrandEventData.data) {
+                    setAllEventData(photoBoothBrandEventData.data.results);
+                    photoBoothBrandEventData.data.next !== null && setDataEnd(prev => !prev);
+                }
+            } catch (error) {
+                console.log('GetPhotoBoothBrandsListError ' + error);
+            }
+        };
+
+        getPhotoBoothData();
+    }, [dataLimit, route.params.photoBoothID]);
 
     return (
         <Modal
@@ -77,14 +90,22 @@ export default function MoreEventModal({ visible, onClose, eventData }: MoreEven
                     </CloseButtonContainer>
                 </TitleContainer>
 
-                <FlatList
-                    data={allEventData}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={renderEventItem}
-                    onEndReached={onEndReached}
-                    onEndReachedThreshold={0.1}
-                    ListFooterComponent={<SkeletonGetMoreMyPageEvent />}
-                />
+                {dataEnd ? (
+                    <FlatList
+                        data={allEventData}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={renderEventItem}
+                    />
+                ) : (
+                    <FlatList
+                        data={allEventData}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={renderEventItem}
+                        onEndReached={onEndReached}
+                        onEndReachedThreshold={0.1}
+                        ListFooterComponent={<SkeletonGetMoreMyPageEvent />}
+                    />
+                )}
             </MoreEventModalContainer>
         </Modal>
     );

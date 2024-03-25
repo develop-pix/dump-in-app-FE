@@ -25,10 +25,10 @@ export default function PhotoBoothDetail() {
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const route = useRoute<CategoryStackScreenProps<'PhotoBoothDetail'>['route']>();
-    const eventDataLimit = 8;
+    const eventDataLimit = 6;
     const reviewDataLimit = 10;
 
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState<number>(0);
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothDataType>({
         id: undefined,
         name: '',
@@ -57,18 +57,20 @@ export default function PhotoBoothDetail() {
             try {
                 const detailPhotoBoothBrandData = await GetDetailPhotoBoothBrandData(route.params.photoBoothID);
                 const photoBoothBrandEventData = await GetPhotoBoothEventList(
-                    route.params.photoBoothID,
                     eventDataLimit,
+                    page,
+                    route.params.photoBoothID,
                 );
                 const photoBoothBrandReviewData = await GetPhotoBoothReviewList(
                     route.params.photoBoothID,
                     reviewDataLimit,
                 );
-                if (detailPhotoBoothBrandData.data && photoBoothBrandEventData && photoBoothBrandReviewData) {
+
+                console.log(photoBoothBrandEventData.data);
+                if (detailPhotoBoothBrandData.data && photoBoothBrandEventData.data && photoBoothBrandReviewData) {
                     setPhotoBoothData(detailPhotoBoothBrandData.data);
-                    setEventData(photoBoothBrandEventData.data);
+                    setEventData(photoBoothBrandEventData.data.results);
                     setReviewData(photoBoothBrandReviewData.data);
-                    setIsLoading(prev => !prev);
                 }
             } catch (error) {
                 console.log('GetPhotoBoothBrandsListError ' + error);
@@ -79,21 +81,15 @@ export default function PhotoBoothDetail() {
     }, [route.params.photoBoothID]);
 
     return (
-        <>
-            {!isLoading ? (
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <PhotoBoothImageTitle photoBoothData={photoBoothData} />
-                    <PhotoBoothEvent eventData={eventData} />
-                    <OfficialImagesContainer>
-                        <OfficialImages photoBoothName={photoBoothData.name} image={photoBoothData.image} />
-                    </OfficialImagesContainer>
-                    <PhotoDumpContainer>
-                        <PhotoDump photoBoothName={photoBoothData.name} reviewData={reviewData} />
-                    </PhotoDumpContainer>
-                </ScrollView>
-            ) : (
-                <></>
-            )}
-        </>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <PhotoBoothImageTitle photoBoothData={photoBoothData} />
+            <PhotoBoothEvent dataLimit={eventDataLimit} page={page} setPage={setPage} eventData={eventData} />
+            <OfficialImagesContainer>
+                <OfficialImages photoBoothName={photoBoothData.name} image={photoBoothData.image} />
+            </OfficialImagesContainer>
+            <PhotoDumpContainer>
+                <PhotoDump photoBoothName={photoBoothData.name} reviewData={reviewData} />
+            </PhotoDumpContainer>
+        </ScrollView>
     );
 }

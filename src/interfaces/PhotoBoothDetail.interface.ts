@@ -14,6 +14,9 @@ export interface PhotoBoothImageTitleProps {
 }
 
 export interface PhotoBoothEventProps {
+    dataLimit: number;
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
     eventData: EventDataType[];
 }
 export type PhotoBoothEventFrameProps = {
@@ -30,7 +33,9 @@ export interface EventDataType {
 }
 
 export interface MoreEventModalProps {
+    dataLimit: number;
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
     visible: boolean;
     onClose: () => void;
-    eventData: EventDataType[];
 }
