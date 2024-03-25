@@ -28,7 +28,7 @@ import {
 export default function CategoryEventItem({ eventData }: CategoryEventItemProps) {
     const navigation = useNavigation<CategoryStackScreenProps<'Category'>['navigation']>();
     const isFocused = useIsFocused();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(eventData.isLiked);
 

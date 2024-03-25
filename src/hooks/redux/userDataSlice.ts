@@ -6,7 +6,6 @@ const initialState: UserDataState = {
     userID: null,
     email: null,
     userNickName: null,
-    isLoggedIn: false,
 };
 
 const userDataSlice = createSlice({
@@ -22,11 +21,8 @@ const userDataSlice = createSlice({
         setUserNickName: (state, action: PayloadAction<string | null>) => {
             state.userNickName = action.payload;
         },
-        setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
-            state.isLoggedIn = action.payload;
-        },
     },
 });
 
-export const { setUserID, setEmail, setUserNickName, setIsLoggedIn } = userDataSlice.actions;
+export const { setUserID, setEmail, setUserNickName } = userDataSlice.actions;
 export default userDataSlice;

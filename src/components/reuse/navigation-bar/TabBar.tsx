@@ -10,7 +10,7 @@ import NavigationBarListItem from './NavigationBarListItem';
 
 export default function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     const safeAreaInset = useSafeAreaInsets();
-    const isLoggedIn = useAppSelector(states => states.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(states => states.login).isLoggedIn;
 
     return (
         <NavigationBarContainer style={{ paddingBottom: safeAreaInset.bottom, height: safeAreaInset.bottom + 56 }}>

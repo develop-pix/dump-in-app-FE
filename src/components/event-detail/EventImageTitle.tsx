@@ -21,7 +21,7 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ImageTitle({ mainThumbnailImageUrl, title, hashtag, isLiked }: EventImageTitleProps) {
     const route = useRoute<CategoryStackScreenProps<'EventDetail'>['route']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(isLiked);
 

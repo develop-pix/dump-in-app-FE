@@ -23,7 +23,7 @@ import {
 export default function EditUserName() {
     const dispatch = useAppDispatch();
     const { email, userNickName } = useAppSelector(state => state.userData);
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedNickName, setEditedNickName] = useState<string | null>(null);

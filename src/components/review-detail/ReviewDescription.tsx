@@ -26,7 +26,7 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
     const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const [numLines, setNumLines] = useState<number>(2);

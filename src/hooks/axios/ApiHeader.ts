@@ -21,15 +21,17 @@ axiosInstance.interceptors.request.use(config => {
 /** token 재발급 요청, 실패시 로그아웃 처리(refreshToken도 만료)  */
 const reIssueToken = async () => {
     const refreshToken = storage.getString('token.refreshToken');
-    const refreshTokenExpireAt = storage.getString('token.refreshToken');
+    const refreshTokenExpireAt = storage.getString('token.refreshTokenExpire');
     try {
         if (refreshToken && refreshTokenExpireAt) {
             const result = await RefreshAccessToken(refreshToken, refreshTokenExpireAt);
             if (result.data) {
-                storage.set('token.accessToken', result.data.accessToken);
-                result.data.refreshToken && storage.set('token.refreshToken', result.data.refreshToken.token);
-                result.data.refreshTokenExpireAt &&
-                    storage.set('token.refreshTokenExpire', result.data.refreshToken.expiredAt);
+                storage.set('token.accessToken', result.data.accessToken.token);
+                if (result.data.refreshToken) {
+                    result.data.refreshToken.token && storage.set('token.refreshToken', result.data.refreshToken.token);
+                    result.data.refreshToken.expiredAt &&
+                        storage.set('token.refreshTokenExpire', result.data.refreshToken.expiredAt);
+                }
             }
         }
 

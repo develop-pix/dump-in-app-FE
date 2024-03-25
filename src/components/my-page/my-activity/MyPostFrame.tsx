@@ -22,7 +22,7 @@ import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/te
 export default function MyPostFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(true);
 

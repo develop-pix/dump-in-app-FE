@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { NaverSocialLogin } from 'hooks/axios/Auth';
 import { storage } from 'hooks/mmkv/storage';
-import { setIsLoggedIn } from 'hooks/redux/userDataSlice';
+import { setIsLoggedIn } from 'hooks/redux/loginSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     NaverIconWrapper,

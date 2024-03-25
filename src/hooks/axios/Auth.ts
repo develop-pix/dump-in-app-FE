@@ -57,10 +57,11 @@ export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: 
 export const RefreshAccessToken = async (refresh: string, refreshTokenExpireAt: string) => {
     const currentDate = new Date();
     const refreshExpireDate = new Date(refreshTokenExpireAt);
-    const timeParams = 60 * 60 * 1000; // 1시간
+    const timeParams = 7 * 24 * 60 * 60 * 1000;
 
     const gapTime = refreshExpireDate.getTime() - currentDate.getTime();
     const refreshCheck: boolean = gapTime < timeParams;
+
     return await axios({
         method: 'post',
         url: `${Config.BACKEND_API_URL}/auth/jwt/refresh`,

@@ -40,7 +40,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
         publicOpen,
     } = useAppSelector(state => state.reviewNew);
     const userID = useAppSelector(state => state.userData).userID;
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** 리뷰업로드가 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {

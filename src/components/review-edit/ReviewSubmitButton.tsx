@@ -43,7 +43,7 @@ export default function ReviewSubmitButton({ errorData, setErrorData, scrollRef 
     } = useAppSelector(state => state.reviewEdit);
     const userID = useAppSelector(state => state.userData).userID;
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** 리뷰 수정이 문제없이 실행됐을 시 redux 초기화 하고 이전페이지로 돌아감 */
     const onPressGoHome = () => {
