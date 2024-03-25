@@ -4,7 +4,7 @@ export const sendTokenToServer = async (mobileToken: string) => {
     return await axiosInstance({
         method: 'post',
         url: `/users/mobile-token`,
-        params: {
+        data: {
             mobileToken,
         },
     })

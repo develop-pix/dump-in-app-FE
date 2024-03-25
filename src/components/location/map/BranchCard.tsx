@@ -43,6 +43,7 @@ export default function BranchCard({
     // const { latitude, longitude } = useAppSelector(state => state.location);
 
     /** TODO: 위도, 경도, 이름 옵션 변경 */
+    // nmap://route/walk?slat=37.4640070&slng=126.9522394&sname=%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90&dlat=37.4764356&dlng=126.9618302&dname=%EB%8F%99%EC%9B%90%EB%82%99%EC%84%B1%EB%8C%80%EC%95%84%ED%8C%8C%ED%8A%B8&appname=com.example.myapp
     const GOOGLE_PLAY_STORE_LINK =
         'nmap://place?lat=37.3677345&lng=127.1083617&name=인생네컷&appname=com.dump_in_app_fe';
     const GOOGLE_PLAY_STORE_WEB_LINK = 'market://details?id=com.nhn.android.nmap';
