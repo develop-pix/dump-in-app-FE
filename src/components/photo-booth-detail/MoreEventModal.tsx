@@ -63,7 +63,6 @@ export default function MoreEventModal({ dataLimit, page, setPage, visible, onCl
                     route.params.photoBoothID,
                 );
 
-                console.log(photoBoothBrandEventData.data);
                 if (photoBoothBrandEventData.data) {
                     setAllEventData(photoBoothBrandEventData.data.results);
                     photoBoothBrandEventData.data.next !== null && setDataEnd(prev => !prev);

@@ -66,7 +66,6 @@ export default function PhotoBoothDetail() {
                     reviewDataLimit,
                 );
 
-                console.log(photoBoothBrandEventData.data);
                 if (detailPhotoBoothBrandData.data && photoBoothBrandEventData.data && photoBoothBrandReviewData) {
                     setPhotoBoothData(detailPhotoBoothBrandData.data);
                     setEventData(photoBoothBrandEventData.data.results);
