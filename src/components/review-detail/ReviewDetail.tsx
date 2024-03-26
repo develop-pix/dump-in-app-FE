@@ -6,8 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
-import { GetReviewData } from 'hooks/axios/Review';
-import { storage } from 'hooks/mmkv/storage';
+import { GetReviewData, GetReviewReels } from 'hooks/axios/Review';
 import {
     setBranchName,
     setCameraShot,
@@ -61,7 +60,6 @@ export default function ReviewDetail() {
     const platform = Platform.OS;
     const dispatch = useDispatch();
     const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
-    const accessToken = storage.getString('token.accessToken');
 
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
@@ -83,30 +81,40 @@ export default function ReviewDetail() {
     // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
-            const fetchData = await GetReviewData(route.params.reviewID);
-            if (fetchData.data) {
-                console.log('fetchData.data');
-                console.log(fetchData.data);
-                dispatch(setReviewID(fetchData.data.id));
-                dispatch(setImage(fetchData.data.image));
-                dispatch(setConcept(fetchData.data.concept));
-                dispatch(setIsMine(fetchData.data.isMine));
-                dispatch(setIsLiked(fetchData.data.isLiked));
-                dispatch(setUserNickname(fetchData.data.userNickname));
-                dispatch(setContent(fetchData.data.content));
-                dispatch(setMainThumbnailImageUrl(fetchData.data.mainThumbnailImageUrl));
-                dispatch(setDate(fetchData.data.date));
-                dispatch(setFrameColor(fetchData.data.frameColor));
-                dispatch(setParticipants(fetchData.data.participants));
-                dispatch(setCameraShot(fetchData.data.cameraShot));
-                dispatch(setGoodsAmount(fetchData.data.goodsAmount));
-                dispatch(setCurlAmount(fetchData.data.curlAmount));
-                dispatch(setLikeCount(fetchData.data.likeCount));
-                dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
+            try {
+                const fetchData = await GetReviewData(route.params.reviewID);
+                if (fetchData.data) {
+                    dispatch(setReviewID(fetchData.data.id));
+                    dispatch(setImage(fetchData.data.image));
+                    dispatch(setConcept(fetchData.data.concept));
+                    dispatch(setIsMine(fetchData.data.isMine));
+                    dispatch(setIsLiked(fetchData.data.isLiked));
+                    dispatch(setUserNickname(fetchData.data.userNickname));
+                    dispatch(setContent(fetchData.data.content));
+                    dispatch(setMainThumbnailImageUrl(fetchData.data.mainThumbnailImageUrl));
+                    dispatch(setDate(fetchData.data.date));
+                    dispatch(setFrameColor(fetchData.data.frameColor));
+                    dispatch(setParticipants(fetchData.data.participants));
+                    dispatch(setCameraShot(fetchData.data.cameraShot));
+                    dispatch(setGoodsAmount(fetchData.data.goodsAmount));
+                    dispatch(setCurlAmount(fetchData.data.curlAmount));
+                    dispatch(setLikeCount(fetchData.data.likeCount));
+                    dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
+                }
+            } catch (error) {
+                console.log('getReviewDataError ' + error);
+            }
+        };
+        const getReelsData = async () => {
+            try {
+                //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
+                // const reelsData = await GetReviewReels(,,,,route.params.reviewID);
+            } catch (error) {
+                console.log('getReelsDataError ' + error);
             }
         };
         getReviewData();
-    }, [accessToken, dispatch, route.params.reviewID]);
+    }, [dispatch, route.params.reviewID]);
 
     return (
         <ReviewDetailFormContainer>

@@ -63,8 +63,7 @@ export default function MyPageMenu() {
     const onPressWithdrawal = async () => {
         try {
             const withdrawalResult = await WithDrawalUser();
-            // FIXME: 회원탈퇴 응답 확인후 변경 필요
-            if (withdrawalResult.data) {
+            if (withdrawalResult.data.isDeleted) {
                 setIsModalVisible(false);
                 dispatch(setIsLoggedIn(false));
                 storage.delete('token.accessToken');

@@ -51,7 +51,7 @@ export type LocationStackParamList = {
     Location: undefined | { photoBoothID: number | null };
     LocationSearch: undefined;
     Branch: { branchID: string };
-    ReviewDetail: { reviewID: number; branchID: string | undefined };
+    ReviewDetail: { reviewID: number };
 };
 
 export type LocationStackScreenProps<RouteName extends keyof LocationStackParamList> = CompositeScreenProps<
