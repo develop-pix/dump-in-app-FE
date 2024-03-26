@@ -1,6 +1,6 @@
 export interface BranchData {
     id: string;
-    name: string;
+    location: string;
     latitude: number | null;
     longitude: number | null;
     streetAddress: string;
@@ -52,7 +52,7 @@ export interface BranchLocationProps {
 
 export interface BranchInfoProps {
     photoBoothName: string;
-    branchName: string;
+    location: string;
     branchHashtag: BranchHashtagData[];
     loadAddress: string;
     streetAddress: string;
@@ -62,7 +62,7 @@ export interface BranchInfoProps {
 
 export interface BranchTitleProps {
     photoBoothName: string;
-    branchName: string;
+    location: string;
     branchHashtag: BranchHashtagData[];
     isLiked: boolean;
 }

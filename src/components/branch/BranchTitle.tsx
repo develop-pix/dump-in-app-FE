@@ -19,7 +19,7 @@ import {
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
-export default function BranchTitle({ photoBoothName, branchName, branchHashtag, isLiked }: BranchTitleProps) {
+export default function BranchTitle({ photoBoothName, location, branchHashtag, isLiked }: BranchTitleProps) {
     const [favorite, setFavorite] = useState<boolean>(isLiked);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
@@ -40,8 +40,7 @@ export default function BranchTitle({ photoBoothName, branchName, branchHashtag,
             <TitleContainer>
                 <BranchNameContainer>
                     <FontWhiteBiggestSemibold>{photoBoothName}</FontWhiteBiggestSemibold>
-                    {/* FIXME: 백엔드 API 변수 변경후 수정필요 */}
-                    <FontWhiteGreySmallestSemibold>{branchName}</FontWhiteGreySmallestSemibold>
+                    <FontWhiteGreySmallestSemibold>{location}</FontWhiteGreySmallestSemibold>
                 </BranchNameContainer>
                 <BranchHashTagsContainer>
                     {TagsArrayToHashTagArrayForm(branchHashtag).map(tag => (

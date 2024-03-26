@@ -22,7 +22,7 @@ export default function Branch() {
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
     const [branchData, setBranchData] = useState<BranchData>({
         id: '',
-        name: '',
+        location: '',
         latitude: null,
         longitude: null,
         streetAddress: '',
@@ -99,7 +99,7 @@ export default function Branch() {
                 />
                 <BranchInfo
                     photoBoothName={branchData?.photoBoothBrand.name}
-                    branchName={branchData?.name}
+                    location={branchData?.location}
                     branchHashtag={branchData?.photoBoothBrand.hashtag}
                     loadAddress={branchData?.roadAddress}
                     streetAddress={branchData?.streetAddress}

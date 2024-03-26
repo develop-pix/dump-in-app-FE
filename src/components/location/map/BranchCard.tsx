@@ -31,7 +31,7 @@ export default function BranchCard({
     id,
     imageLogo,
     photoBoothName,
-    branchName,
+    location,
     hashtag,
     isLiked,
     distance,
@@ -83,8 +83,7 @@ export default function BranchCard({
                             <FontWhiteBiggestSemiboldWithLineHeight>
                                 {photoBoothName}
                             </FontWhiteBiggestSemiboldWithLineHeight>
-                            {/* FIXME: 백엔드 API 변수 변경후 수정필요 */}
-                            <FontWhiteGreySmallerSemibold>{branchName}</FontWhiteGreySmallerSemibold>
+                            <FontWhiteGreySmallerSemibold>{location}</FontWhiteGreySmallerSemibold>
                         </BranchCardBranchNameWrapper>
                         <BranchCardHashtag>
                             {TagsArrayToHashTagArrayForm(hashtag).map(tag => (
