@@ -68,7 +68,7 @@ export default function Map() {
     };
 
     /** 카메라 위치 변경시 */
-    const ChangePosition = useCallback(
+    const changePosition = useCallback(
         (latitude: number, longitude: number) => {
             /** 위도가 최북단 보다 크거나 최남단 보다 작을때 (reset) */
             if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
@@ -162,7 +162,7 @@ export default function Map() {
                 center={{ ...myPosition, zoom }}
                 onCameraChange={e => {
                     setZoom(e.zoom);
-                    ChangePosition(e.latitude, e.longitude);
+                    changePosition(e.latitude, e.longitude);
                     setShowNearBranch(false);
                 }}
                 onMapClick={() => {
