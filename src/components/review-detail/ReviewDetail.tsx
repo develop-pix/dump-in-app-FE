@@ -71,6 +71,9 @@ export default function ReviewDetail() {
         }
     };
 
+    console.log('route.params');
+    console.log(route.params);
+
     //TODO: 좌우 버튼 클릭시 리뷰이동 (navigation)
     /** < 버튼 클릭 */
     const onPressPrevButton = () => {};
@@ -105,7 +108,7 @@ export default function ReviewDetail() {
                 console.log('getReviewDataError ' + error);
             }
         };
-        const getReelsData = async () => {
+        const getReviewReelsData = async () => {
             try {
                 //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
                 // const reelsData = await GetReviewReels(,,,,route.params.reviewID);

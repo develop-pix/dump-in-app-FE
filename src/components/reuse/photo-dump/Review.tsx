@@ -40,7 +40,6 @@ export default function Review({ reviewItem }: ReviewProps) {
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
                         reviewID: reviewItem.id,
-                        branchID: undefined,
                     });
                     break;
                 case 'CategoryStack':
