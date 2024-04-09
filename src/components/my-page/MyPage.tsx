@@ -17,7 +17,7 @@ import MyPageUserData from './MyPageUserData';
 
 export default function MyPage() {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [activeComponent, setActiveComponent] = useState<ActivityComponentProps>('Login');
 

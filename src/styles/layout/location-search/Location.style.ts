@@ -20,21 +20,14 @@ export const SearchContainer = styled.View`
 `;
 /* SearchBranchList */
 
-export const SearchBranchScrollView = styled.ScrollView.attrs({
-    contentContainerStyle: { paddingBottom: 100 },
-})`
-    width: 100%;
-`;
-
 export const SearchBranchContainer = styled.View`
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    align-items: center;
 `;
 
 export const ListContainer = styled.View`
-    width: 90%;
+    width: 100%;
 `;
 
 /* BranchList */

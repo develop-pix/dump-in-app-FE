@@ -1,23 +1,35 @@
+import { ConceptData } from './redux/Store.interface';
+
+export interface EventData {
+    id: number | undefined;
+    title: string;
+    content: string;
+    mainThumbnailImageUrl: string;
+    startDate: string;
+    endDate: string;
+    isLiked: boolean;
+    hashtag: ConceptData[];
+    image: ImageData[];
+}
+
+interface ImageData {
+    id: number;
+    imageUrl: string;
+}
+
 export interface EventImageTitleProps {
-    eventData: {
-        representativeImage: string;
-        eventTitle: string;
-        hashtag: string[];
-        myEvent: boolean;
-    };
+    mainThumbnailImageUrl: string;
+    title: string;
+    hashtag: ConceptData[];
+    isLiked: boolean;
 }
 
 export interface EventInfoProps {
-    eventData: {
-        descriptionTitle: string;
-        description: string;
-        startDate: string;
-        endDate: string;
-    };
+    content: string;
+    startDate: string;
+    endDate: string;
 }
 
 export interface EventFrameProps {
-    eventData: {
-        frameImage: string[];
-    };
+    image: ImageData[];
 }

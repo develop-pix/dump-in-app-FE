@@ -13,10 +13,6 @@ export const InfoContainer = styled.View`
     border-radius: 10px;
 `;
 
-export const InfoTitleContainer = styled.View`
-    margin-bottom: 10px;
-`;
-
 export const InfoDescriptionContainer = styled.View`
     margin-bottom: 20px;
 `;

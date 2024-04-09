@@ -24,7 +24,7 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const isFocused = useIsFocused();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(event.isLiked);
 

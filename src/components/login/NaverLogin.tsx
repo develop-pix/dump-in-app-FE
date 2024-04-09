@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { NaverSocialLogin } from 'hooks/axios/Auth';
 import { storage } from 'hooks/mmkv/storage';
-import { setIsLoggedIn } from 'hooks/redux/userDataSlice';
+import { setIsLoggedIn } from 'hooks/redux/loginSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     NaverIconWrapper,
@@ -34,8 +34,9 @@ export default function NaverLogin() {
             if (loginResult.isSuccess && loginResult.successResponse) {
                 const socialLoginResult = await NaverSocialLogin(loginResult.successResponse.accessToken, mobileToken);
                 if (socialLoginResult.data) {
-                    storage.set('token.accessToken', socialLoginResult.data.accessToken);
-                    storage.set('token.refreshToken', socialLoginResult.data.refreshToken);
+                    storage.set('token.accessToken', socialLoginResult.data.accessToken.token);
+                    storage.set('token.refreshToken', socialLoginResult.data.refreshToken.token);
+                    storage.set('token.refreshTokenExpire', socialLoginResult.data.refreshToken.expiredAt);
                     dispatch(setIsLoggedIn(true));
 
                     navigation.navigate('MyPage');

@@ -30,7 +30,7 @@ export default function MyPostList() {
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */

@@ -5,31 +5,31 @@ import { CategoryEventFilterContainer } from 'styles/layout/category/CategoryEve
 import { FilterTextButton, FilterTextButtonContent } from 'styles/layout/home/filter/Filter.style';
 
 const availableHashtags = [
-    '전체',
-    '캐릭터',
+    '일상',
+    '커플',
+    '우정샷',
+    '가족',
+    '앵글',
     '콜라보',
     '연예인',
+    '캐릭터',
+    '이달의 프레임',
     '계절',
-    '전체2',
-    '캐릭터2',
-    '콜라보2',
-    '연예인2',
-    '계절2',
+    '생일',
+    '코믹',
+    '여행',
+    '할로윈',
+    '크리스마스',
+    '기타',
 ];
 
 export default function CategoryEventFilter({ hashtags, setHashtags, filterOptionSelect }: CategoryEventFilterProps) {
     const handleHashtagToggle = (hashtag: string) => {
         const isSelected = hashtags.includes(hashtag);
         let hashtagArray: string[];
-
-        if (isSelected) {
-            hashtagArray = hashtags.filter(e => e !== hashtag);
-        } else {
-            hashtagArray = [...hashtags, hashtag];
-        }
-
-        setHashtags(hashtagArray);
+        isSelected ? (hashtagArray = hashtags.filter(e => e !== hashtag)) : (hashtagArray = [...hashtags, hashtag]);
         filterOptionSelect();
+        setHashtags(hashtagArray);
     };
 
     return (

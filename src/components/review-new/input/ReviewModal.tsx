@@ -81,6 +81,8 @@ export default function ReviewModal({ setOpenImageModal, limitImage, setLimitIma
                     if (response.didCancel) {
                         return null;
                     } else if (response.assets) {
+                        console.log('assets');
+                        console.log(response.assets);
                         /** 중복된 이미지 제거 */
                         //FIXME: ios 시뮬레이터에서는 fileName과 fileURL이 변경되므로 테스트가 어려움. 따라서 파일이름으로 중복체크를 하였는데, 파일이름 기준으로 중복 체크 할 시 우연히 두 파일 이름이 같을수 있으므로 수정필요.
                         const deduplicatedAssets = response.assets?.filter(asset => {

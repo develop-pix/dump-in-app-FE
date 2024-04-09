@@ -27,7 +27,7 @@ export const EditNickName = styled.TextInput`
     border-radius: 7px;
 `;
 
-export const UserIDWrapper = styled.View`
+export const UserEmailWrapper = styled.View`
     flex-direction: row;
     align-items: center;
     padding: 5px;

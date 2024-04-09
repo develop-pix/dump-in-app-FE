@@ -30,7 +30,7 @@ export default function MyReviewList() {
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** 내 사진 항목 데이터 Get */
     const getMyReview = async () => {

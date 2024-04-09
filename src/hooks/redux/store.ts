@@ -5,16 +5,16 @@ import { combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import { persistReducer } from 'redux-persist';
 
-import accessTokenExpireSlice from './accessTokenExpireSlice';
 import branchReviewDetailSlice from './branchReviewDetailSlice';
 import currentLocationSlice from './currentLocationSlice';
+import LoginSlice from './loginSlice';
 import reviewEditSlice from './reviewEditSlice';
 import reviewNewSlice from './reviewNewSlice';
 import userDataSlice from './userDataSlice';
 
 // 상태 추가 할 것 추가
 const reducers = combineReducers({
-    expire: accessTokenExpireSlice.reducer,
+    login: LoginSlice.reducer,
     reviewNew: reviewNewSlice.reducer,
     reviewEdit: reviewEditSlice.reducer,
     userData: userDataSlice.reducer,

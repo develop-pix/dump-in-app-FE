@@ -21,19 +21,24 @@ axiosInstance.interceptors.request.use(config => {
 /** token 재발급 요청, 실패시 로그아웃 처리(refreshToken도 만료)  */
 const reIssueToken = async () => {
     const refreshToken = storage.getString('token.refreshToken');
+    const refreshTokenExpireAt = storage.getString('token.refreshTokenExpire');
     try {
-        if (refreshToken) {
-            const result = await RefreshAccessToken(refreshToken);
+        if (refreshToken && refreshTokenExpireAt) {
+            const result = await RefreshAccessToken(refreshToken, refreshTokenExpireAt);
             if (result.data) {
-                storage.set('token.accessToken', result.data.accessToken);
-                //FIXME: 백엔드 API 수정중 refreshToken도 같이 받을 예정, 추후 수정
-                // result.data.refreshToken && storage.set('token.refreshToken', result.data.refreshToken);
+                storage.set('token.accessToken', result.data.accessToken.token);
+                if (result.data.refreshToken) {
+                    result.data.refreshToken.token && storage.set('token.refreshToken', result.data.refreshToken.token);
+                    result.data.refreshToken.expiredAt &&
+                        storage.set('token.refreshTokenExpire', result.data.refreshToken.expiredAt);
+                }
             }
         }
 
         return storage.getString('accessToken');
-    } catch (e) {
+    } catch (error) {
         //FIXME: redux-store 내 isLoggedIn 값을 false로 만들어줘야함.
+        console.log('Token교체 에러 ' + error);
         storage.delete('token.accessToken');
         storage.delete('token.refreshToken');
     }

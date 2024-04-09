@@ -47,6 +47,7 @@
         "react-native-nmap": "github:develop-pix/react-native-naver-map",
         "react-native-reanimated": "^3.6.2",
         "react-native-reanimated-carousel": "^3.5.1",
+        "react-native-render-html": "^6.3.4",
         "react-native-safe-area-context": "^4.7.4",
         "react-native-screens": "^3.27.0",
         "react-native-skeleton-placeholder": "^5.2.4",

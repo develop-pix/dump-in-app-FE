@@ -23,7 +23,7 @@ export default function BranchTitle({ photoBoothName, branchName, branchHashtag,
     const [favorite, setFavorite] = useState<boolean>(isLiked);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** 하트 버튼 클릭시 */
     const onPressBranchLikeButton = async () => {

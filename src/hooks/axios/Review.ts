@@ -1,12 +1,9 @@
-import axios from 'axios';
-import Config from 'react-native-config';
-
 import { axiosInstance } from './ApiHeader';
 
 export const GetReviewData = async (reviewID: number) => {
-    return await axios({
+    return await axiosInstance({
         method: 'get',
-        url: `${Config.BACKEND_API_URL}/reviews/${reviewID}`,
+        url: `/reviews/${reviewID}`,
         params: {
             review_id: reviewID,
         },
@@ -19,13 +16,27 @@ export const GetReviewData = async (reviewID: number) => {
         });
 };
 
-export const LikeReview = async (accessToken: string, reviewID: number | null | undefined) => {
+export const LikeReview = async (reviewID: number | null | undefined) => {
     return await axiosInstance({
         method: 'post',
         url: `/reviews/${reviewID}/likes`,
         data: {
             review_ID: reviewID,
         },
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const DeleteReview = async (review_id: number | null | undefined) => {
+    console.log(review_id);
+    return await axiosInstance({
+        method: 'delete',
+        url: `/reviews/${review_id}`,
     })
         .then(res => {
             return res.data;

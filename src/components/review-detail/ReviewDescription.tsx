@@ -3,8 +3,7 @@ import { Platform } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
-import { LikeReview } from 'hooks/axios/ReviewDetail';
-import { storage } from 'hooks/mmkv/storage';
+import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import {
     HomeStackScreenProps,
@@ -27,8 +26,7 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
     const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
-    const accessToken = storage.getString('token.accessToken');
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const [numLines, setNumLines] = useState<number>(2);
@@ -51,8 +49,8 @@ export default function ReviewDescription() {
 
     /** 하트(좋아요) 버튼 클릭 */
     const onPressReviewLikeButton = async () => {
-        if (accessToken && isLoggedIn) {
-            const press_result = await LikeReview(accessToken, route.params.reviewID);
+        if (isLoggedIn) {
+            const press_result = await LikeReview(route.params.reviewID);
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }

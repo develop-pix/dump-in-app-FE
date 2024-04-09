@@ -3,8 +3,7 @@ import Config from 'react-native-config';
 
 import { axiosInstance } from './ApiHeader';
 
-//TODO: Key를 수정하여 UserID로 된 폴더가 생성되도록 수정해야함
-export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
+export const UploadImageToS3 = async (imageURL: string, ImageName: string, userID: string) => {
     const photo = {
         uri: imageURL,
         type: 'image/jpeg',
@@ -43,7 +42,7 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
         ContentType: photo.type,
         Body: file,
         Bucket: S3Data.bucketName,
-        Key: 'reviews/test/' + Date.now() + '-' + photo.name,
+        Key: `reviews/${userID}/` + Date.now() + '-' + photo.name,
     };
 
     try {
@@ -56,7 +55,6 @@ export const UploadImageToS3 = async (imageURL: string, ImageName: string) => {
 };
 
 export const UploadNewReview = async (
-    accessToken: string,
     mainThumbnailImageUrl: string | undefined,
     imageUrls: (string | undefined)[],
     content: string | null,

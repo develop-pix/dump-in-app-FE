@@ -5,9 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import Search from 'components/reuse/input/Search';
-import { GetLocationSearchData } from 'hooks/axios/SearchLocation';
 import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
-import { useAppSelector } from 'hooks/redux/store';
 import { BranchData } from 'interfaces/Location.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
 import { SearchContainer, SearchForm } from 'styles/layout/location-search/Location.style';
@@ -18,7 +16,6 @@ import SearchBranchList from './SearchBranchList';
 
 export default function LocationSearchForm() {
     const dispatch = useDispatch();
-    const currentLocation = useAppSelector(state => state.location);
     const navigation = useNavigation<LocationStackScreenProps<'LocationSearch'>['navigation']>();
 
     const [search, setSearch] = useState<string>('');
@@ -86,30 +83,6 @@ export default function LocationSearchForm() {
         };
     }, [dispatch]);
 
-    // 검색어 입력시 0.2초 Debounce
-    useEffect(() => {
-        /** TODO: 자동 검색 , backend 수정후 API 수정 필요함 */
-        const getSearchData = async (branchName: string) => {
-            const searchData = await GetLocationSearchData(
-                branchName,
-                currentLocation.latitude,
-                currentLocation.longitude,
-                1.5,
-            );
-            setResultData(searchData.data);
-        };
-
-        if (search !== '') {
-            const debounce = setTimeout(() => {
-                getSearchData(search);
-            }, 200);
-
-            return () => {
-                clearTimeout(debounce);
-            };
-        }
-    }, [currentLocation.latitude, currentLocation.longitude, search]);
-
     return (
         <SearchForm>
             <SearchContainer>
@@ -119,7 +92,9 @@ export default function LocationSearchForm() {
                     setSearch={setSearch}
                     submitSearch={searchBranch}
                 />
-                {search === '' ? null : <SearchBranchList data={resultData} />}
+                {search === '' ? null : (
+                    <SearchBranchList search={search} resultData={resultData} setResultData={setResultData} />
+                )}
             </SearchContainer>
         </SearchForm>
     );
