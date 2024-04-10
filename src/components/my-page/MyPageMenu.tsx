@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Linking } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
@@ -28,6 +29,15 @@ export default function MyPageMenu() {
 
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    /** 메일로 문의하기(ios simulator 작동X) */
+    const onMailToDevelop = async () => {
+        const emailAddress = encodeURIComponent('pix.develop.team@gmail.com');
+        const subject = encodeURIComponent('Dump-in-APP 문의');
+        if (isFocused) {
+            await Linking.openURL(`mailto:${emailAddress}?subject=${subject}`);
+        }
+    };
 
     /** 로그아웃 버튼 클릭시 모달 출력 */
     const onLogoutAlert = () => {
@@ -99,7 +109,7 @@ export default function MyPageMenu() {
                 </TextContainer>
 
                 <TextContainer>
-                    <MenuItemContainer>
+                    <MenuItemContainer onPress={onMailToDevelop}>
                         <FontWhiteGreyBiggerSemibold>문의하기</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
                     <MenuItemContainer>
