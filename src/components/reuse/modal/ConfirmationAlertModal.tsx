@@ -31,7 +31,6 @@ export default function ConfirmationAlertModal({
                         <CustomButton onPress={onDisagree}>
                             <FontWhiteNormalMedium>{disagreeMessage}</FontWhiteNormalMedium>
                         </CustomButton>
-
                         <CustomButton onPress={onAgree}>
                             <FontWhiteNormalMedium>{agreeMessage}</FontWhiteNormalMedium>
                         </CustomButton>
