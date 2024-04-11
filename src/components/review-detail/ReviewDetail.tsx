@@ -71,9 +71,6 @@ export default function ReviewDetail() {
         }
     };
 
-    console.log('route.params');
-    console.log(route.params);
-
     //TODO: 좌우 버튼 클릭시 리뷰이동 (navigation)
     /** < 버튼 클릭 */
     const onPressPrevButton = () => {};

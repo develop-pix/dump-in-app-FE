@@ -28,10 +28,11 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
         }
     };
 
+    //FIXME: Delete 응답확인후 수정
     const onPressReviewDelete = async () => {
         try {
             const result = await DeleteReview(reviewID);
-            if (result.data) {
+            if (result.data.isDeleted) {
                 setOpenModal(false);
                 navigation.goBack();
             }
