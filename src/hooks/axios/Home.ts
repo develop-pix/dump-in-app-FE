@@ -13,7 +13,7 @@ export const fetchHomeReview = async (offset: number, filterData: FilterProps) =
             frameColor: filterData.frameColor === '' ? null : filterData.frameColor,
             participants: filterData.participants === 0 ? null : filterData.participants,
             cameraShot: filterData.cameraShot === '' ? null : filterData.cameraShot,
-            concept: filterData.concept.length === 0 ? null : JSON.stringify(filterData.concept),
+            concept: filterData.concept.length === 0 ? null : filterData.concept,
         },
     })
         .then(res => {
@@ -25,7 +25,6 @@ export const fetchHomeReview = async (offset: number, filterData: FilterProps) =
 };
 
 export const fetchReviewCount = async (filterData: FilterProps) => {
-    console.warn(filterData);
     return await axiosInstance({
         method: 'get',
         url: `reviews/count`,
