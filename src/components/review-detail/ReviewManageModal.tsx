@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 
@@ -11,9 +10,7 @@ import {
     ReviewManageTouchableOpacity,
 } from 'styles/layout/review-detail/ReviewManageModal.style';
 
-// FIXME: 스타일 재구성 필요
 export default function ReviewManageModal({ openModal, setOpenModal, reviewID }: ReviewManageModalProps) {
-    const platform = Platform.OS;
     const navigation = useNavigation();
     const isFocused = useIsFocused();
 
@@ -42,15 +39,16 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
             isVisible={openModal}
             animationIn="slideInUp"
             animationOut="slideOutDown"
-            backdropOpacity={0.7}
+            backdropOpacity={0.5}
             coverScreen={false}
+            useNativeDriver={true}
             onBackdropPress={() => {
                 setOpenModal(false);
             }}
             onBackButtonPress={() => {
                 setOpenModal(false);
             }}>
-            <ReviewManageModalContainer platform={platform}>
+            <ReviewManageModalContainer>
                 <ReviewManageModalWrapper>
                     <ReviewManageTouchableOpacity onPress={onPressReviewEdit}>
                         <FontWhiteNormalSemibold>리뷰 수정하기</FontWhiteNormalSemibold>

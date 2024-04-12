@@ -11,7 +11,6 @@ import {
     LocationStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
-import { ReviewData } from 'interfaces/ReviewDetail.interface';
 import {
     HeaderIconContainer,
     HeaderLeftContainer,
@@ -33,7 +32,7 @@ export default function ReviewDetail() {
     >();
 
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [reviewData, setReviewData] = useState<ReviewData>({
+    const [reviewData, setReviewData] = useState({
         id: null,
         image: [],
         concept: [],
