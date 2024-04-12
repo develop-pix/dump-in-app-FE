@@ -43,32 +43,6 @@ export default function Notification() {
         setIsAlertModalVisible(false);
     };
 
-    // const fetchNotifications = async () => {
-    //     // 임시 데이터
-    //     const data: NotificationItemProps[] = [
-    //         {
-    //             id: 1,
-    //             title: '포토이즘 <2023 AUTUMN> 프레임 오픈픈픈픈픈픈',
-    //             content:
-    //                 '포토이즘즘2023AUTUMN프레임오픈포토이즘즘즘즘2023AUTUMN프레임오픈즘즘포토이즘즘즘즘즘즘즘즘2023AUTUMN프레임임오픈픈픈픈픈픈픈픈픈픈즘즘2023AUTUMN프레임오픈픈픈픈',
-    //             date: new Date('2023-12-14T00:00:00+09:00'),
-    //         },
-    //         {
-    //             id: 2,
-    //             title: '포토이즘 <2023 WINTER> 프레임 오픈',
-    //             content: '포토이즘 <2023 WINTER> 프레임이 오픈되었습니다.',
-    //             date: new Date('2023-12-14T00:00:00+09:00'),
-    //         },
-    //         {
-    //             id: 3,
-    //             title: '포토이즘 <2023 WINTER> 프레임 오픈',
-    //             content: '포토이즘 <2023 WINTER> 프레임이 오픈되었습니다.',
-    //             date: new Date('2023-12-14T00:00:00+09:00'),
-    //         },
-    //     ];
-    //     setNotifications(data);
-    // };
-
     const getNotificationData = useCallback(async () => {
         const notificationResponse = await fetchNotificationListCheck();
         console.log('알림');
