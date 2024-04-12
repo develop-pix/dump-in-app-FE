@@ -8,7 +8,7 @@ import {
 } from 'styles/layout/event-detail/EventFrame.style';
 import { FontWhiteSmallerSemiboldWithLineSpacing } from 'styles/layout/reuse/text/Text.style';
 
-export default function EventFrame({ eventData }: EventFrameProps) {
+export default function EventFrame({ image }: EventFrameProps) {
     return (
         <FrameContainer>
             <SubTitleContainer>
@@ -16,9 +16,9 @@ export default function EventFrame({ eventData }: EventFrameProps) {
             </SubTitleContainer>
 
             <FrameImageContainer>
-                {eventData.frameImage.map((image, index) => (
-                    <FrameImageWrapper key={index}>
-                        <FrameImage source={{ uri: image }} />
+                {image.map(imageData => (
+                    <FrameImageWrapper key={imageData.id}>
+                        <FrameImage source={{ uri: imageData.imageUrl }} />
                     </FrameImageWrapper>
                 ))}
             </FrameImageContainer>

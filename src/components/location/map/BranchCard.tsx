@@ -39,7 +39,7 @@ export default function BranchCard({
     const [favorite, setFavorite] = useState<boolean>(isLiked);
     const navigation = useNavigation<LocationStackScreenProps<'Branch'>['navigation']>();
     const isFocused = useIsFocused();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
     // const { latitude, longitude } = useAppSelector(state => state.location);
 
     /** TODO: 위도, 경도, 이름 옵션 변경 */

@@ -12,7 +12,7 @@ import { FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 
 export default function AddNewReviewDummy() {
     const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     //FIXME: isLoggedIn가 true일시 AddReviewModal Open , false일시 LoginModal Open
     /** 로그인 여부에 따라 리뷰추가, 로그인 모달 Open */

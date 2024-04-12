@@ -166,13 +166,6 @@ export const FontLightGreyNormalMedium = styled.Text`
     font-weight: ${fontWeight.medium};
 `;
 
-export const FontLightGreySmallerSemibold = styled.Text`
-    font-family: ${fontFamily.Pretendard};
-    color: ${colors.lightgrey};
-    font-size: ${fontSize.smaller};
-    font-weight: ${fontWeight.semibold};
-`;
-
 export const FontLightGreySmallerMedium = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.lightgrey};

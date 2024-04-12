@@ -31,7 +31,7 @@ export default function MyEventList() {
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** FlatList renderItem */
     const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {

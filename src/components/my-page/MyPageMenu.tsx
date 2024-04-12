@@ -5,8 +5,9 @@ import NextButtonIcon from 'assets/image/icon/btn_next_grey.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { storage } from 'hooks/mmkv/storage';
+import { setIsLoggedIn } from 'hooks/redux/loginSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
-import { setIsLoggedIn, setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
+import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     MenuContentContainer,
@@ -21,7 +22,7 @@ import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from 'styles/lay
 export default function MyPageMenu() {
     const dispatch = useAppDispatch();
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
-    const isLoggedIn = useAppSelector(state => state.userData).isLoggedIn;
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
     const isFocused = useIsFocused();
 
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);

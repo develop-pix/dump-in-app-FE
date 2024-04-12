@@ -5,12 +5,14 @@ export interface MapInputProps {
 }
 
 export interface SearchBranchListProps {
-    data: BranchData[];
+    search: string;
+    resultData: BranchData[];
+    setResultData: React.Dispatch<React.SetStateAction<BranchData[]>>;
 }
 
 export interface BranchData {
     id: string;
-    branchName: string;
+    name: string;
     distance: string | null;
 }
 
