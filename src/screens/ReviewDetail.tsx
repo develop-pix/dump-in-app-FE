@@ -6,6 +6,7 @@ import LocationIcon from 'assets/image/icon/location_white.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ReviewDetailForm from 'components/review-detail/ReviewDetailForm';
 import ReviewManageModal from 'components/review-detail/ReviewManageModal';
+import { useAppSelector } from 'hooks/redux/store';
 import {
     HomeStackScreenProps,
     LocationStackScreenProps,
@@ -32,28 +33,7 @@ export default function ReviewDetail() {
     >();
 
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [reviewData, setReviewData] = useState({
-        id: null,
-        image: [],
-        concept: [],
-        isMine: true,
-        isLiked: false,
-        userNickname: null,
-        createdAt: null,
-        updatedAt: null,
-        content: null,
-        mainThumbnailImageUrl: '',
-        date: null,
-        frameColor: null,
-        participants: 0,
-        cameraShot: null,
-        goodsAmount: null,
-        curlAmount: null,
-        isPublic: false,
-        viewCount: 0,
-        likeCount: 0,
-        photoBoothId: null,
-    });
+    const { isMine } = useAppSelector(state => state.branchReviewDetail);
 
     useEffect(() => {
         navigation.setOptions({
@@ -66,7 +46,7 @@ export default function ReviewDetail() {
             },
             headerRight: () => {
                 return (
-                    reviewData.isMine && (
+                    isMine && (
                         <HeaderRightContainer>
                             <HeaderIconContainer onPress={() => setOpenModal(true)}>
                                 <SeeMoreIcon width={4} height={16} />
@@ -84,7 +64,7 @@ export default function ReviewDetail() {
                 );
             },
         });
-    }, [navigation, reviewData.isMine, reviewData.photoBoothId]);
+    }, [isMine, navigation]);
 
     return (
         <ReviewDetailContainer>
