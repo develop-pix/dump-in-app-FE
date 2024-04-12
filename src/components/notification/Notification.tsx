@@ -7,7 +7,7 @@ import EventListIcon from 'assets/image/icon/result_event.svg';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
-import { fetchNotificationList } from 'hooks/axios/Notification';
+import { fetchNotificationList, fetchNotificationListCheck } from 'hooks/axios/Notification';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { NotificationItemProps } from 'interfaces/Notification.interface';
 import {
@@ -70,7 +70,7 @@ export default function Notification() {
     // };
 
     const getNotificationData = useCallback(async () => {
-        const notificationResponse = await fetchNotificationList();
+        const notificationResponse = await fetchNotificationListCheck();
         console.log('알림');
         if (notificationResponse) {
             console.log(notificationResponse);
