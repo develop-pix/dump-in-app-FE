@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native';
 
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { GetLocationSearchData } from 'hooks/axios/SearchLocation';

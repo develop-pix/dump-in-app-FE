@@ -23,14 +23,14 @@ export default function PhotoBoothFrame({ data }: PhotoBoothFrameProps) {
     const onPressPhotoBooth = () => {
         if (isFocused) {
             navigation.navigate('PhotoBoothDetail', {
-                photoBoothID: data.photoBoothID,
+                photoBoothID: data.id,
             });
         }
     };
 
     return (
         <PhotoBoothFrameContainer activeOpacity={0.9} onPress={onPressPhotoBooth}>
-            <PhotoBoothFrameImage source={{ uri: data.representativeImage }} />
+            <PhotoBoothFrameImage source={{ uri: data.mainThumbnailImageUrl }} />
             <LinearGradient
                 colors={['transparent', colors.lightblack]}
                 locations={[0.1, 1]}
@@ -52,9 +52,7 @@ export default function PhotoBoothFrame({ data }: PhotoBoothFrameProps) {
                     <LocationIconContainer>
                         <LocationGreyIcon width={18} height={21} />
                     </LocationIconContainer>
-                    <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.photoBoothName}
-                    </FontWhiteGreySmallerMediumWithLineHeight>
+                    <FontWhiteGreySmallerMediumWithLineHeight>{data.name}</FontWhiteGreySmallerMediumWithLineHeight>
                 </PhotoBoothNameContainer>
             </PhotoBoothInfo>
         </PhotoBoothFrameContainer>

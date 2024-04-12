@@ -11,16 +11,14 @@ import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.styl
 
 const availableParty = [1, 2, 3, 4];
 
-export default function FilterParty({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
+export default function FilterParty({ filterData, setFilterData }: FilterDataUpdateProps) {
     const handlePartyToggle = (party: number) => {
-        const isSelected = filterData.party === party;
+        const isSelected = filterData.participants === party;
 
         setFilterData(prevFilterData => ({
             ...prevFilterData,
-            party: isSelected ? 0 : party,
+            participants: isSelected ? 0 : party,
         }));
-
-        filterOptionSelect();
     };
 
     return (
@@ -30,7 +28,7 @@ export default function FilterParty({ filterData, setFilterData, filterOptionSel
             </FilterLabelContainer>
             <FilterContentContainer>
                 {availableParty.map(partyOption => {
-                    const isSelected = filterData.party === partyOption;
+                    const isSelected = filterData.participants === partyOption;
                     return (
                         <FilterTextButton
                             key={partyOption}
@@ -42,10 +40,10 @@ export default function FilterParty({ filterData, setFilterData, filterOptionSel
                     );
                 })}
                 <FilterTextButton
-                    isSelected={filterData.party === 5}
+                    isSelected={filterData.participants === 5}
                     buttonWidth={46}
                     onPress={() => handlePartyToggle(5)}>
-                    <FilterTextButtonContent isSelected={filterData.party === 5}>5+</FilterTextButtonContent>
+                    <FilterTextButtonContent isSelected={filterData.participants === 5}>5+</FilterTextButtonContent>
                 </FilterTextButton>
             </FilterContentContainer>
         </View>

@@ -12,14 +12,14 @@ export default function EventFrame({ data }: EventFrameProps) {
     const onPressEvent = () => {
         if (isFocused) {
             navigation.navigate('EventDetail', {
-                eventID: data.eventID,
+                eventID: data.id,
             });
         }
     };
 
     return (
         <EventFrameContainer activeOpacity={0.9} onPress={onPressEvent}>
-            <EventFrameImage source={{ uri: data.representativeImage }} />
+            <EventFrameImage source={{ uri: data.mainThumbnailImageUrl }} />
             <TagImage>
                 <NewEventIcon />
             </TagImage>

@@ -33,19 +33,19 @@ export interface ReviewFrameProps {
 }
 
 export interface PhotoBoothProps {
-    photoBoothID: number;
-    photoBoothName: string;
-    representativeImage: string;
+    id: number;
+    name: string;
+    mainThumbnailImageUrl: string;
 }
 
 export interface EventProps {
-    eventID: number;
-    representativeImage: string;
+    id: number;
+    title: string;
+    mainThumbnailImageUrl: string;
 }
 
 export interface ReviewProps {
     id: number;
-    mainThumbnailImageUrl: string;
-    photoBoothBrandName: string;
     photoBoothName: string;
+    mainThumbnailImageUrl: string;
 }

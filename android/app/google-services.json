@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "977139867204",
+    "project_id": "dump-in-notification",
+    "storage_bucket": "dump-in-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977139867204:android:a3fd2988b87fb340d5e611",
+        "android_client_info": {
+          "package_name": "com.dump_in_app_fe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbgAB4XjoAKhgaVAiPC12KeaCuzyMYwAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

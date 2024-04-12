@@ -38,6 +38,7 @@ export default function RootStackNavigation() {
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
                     headerShown: true,
+                    headerMode: 'screen',
                 }}
             />
             <Stack.Screen
@@ -46,6 +47,7 @@ export default function RootStackNavigation() {
                 options={{
                     ...TransitionPresets.FadeFromBottomAndroid,
                     headerShown: true,
+                    headerMode: 'screen',
                 }}
             />
             <Stack.Screen

@@ -60,6 +60,35 @@ jest.mock('@react-navigation/native', () => ({
     useIsFocused: () => jest.fn(() => true),
 }));
 
+jest.mock('react-native-bootsplash', () => {
+    return {
+        hide: jest.fn().mockResolvedValue(),
+        isVisible: jest.fn().mockResolvedValue(false),
+        useHideAnimation: jest.fn().mockReturnValue({
+            container: {},
+            logo: { source: 0 },
+            brand: { source: 0 },
+        }),
+    };
+});
+
+jest.mock('@react-native-firebase/messaging', () => {
+    const module = () => {
+        return {
+            getToken: jest.fn(() => Promise.resolve('myMockToken')),
+        };
+    };
+
+    module.AuthorizationStatus = {
+        NOT_DETERMINED: -1,
+        DENIED: 0,
+        AUTHORIZED: 1,
+        PROVISIONAL: 2,
+    };
+
+    return module;
+});
+
 it('renders correctly', () => {
     create(<App />);
 });

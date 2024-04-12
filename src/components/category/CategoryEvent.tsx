@@ -69,7 +69,7 @@ export default function CategoryEvent() {
             }
         };
         getFirstEventList();
-    }, [hashtags.length, hashtags]);
+    }, [hashtags]);
 
     return (
         <CategoryEventContainer>

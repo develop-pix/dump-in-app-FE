@@ -12,7 +12,7 @@ import { FontWhiteGreySmallerSemibold } from 'styles/layout/reuse/text/Text.styl
 
 const availableColors = Object.values(frameColors);
 
-export default function FilterFrameColor({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
+export default function FilterFrameColor({ filterData, setFilterData }: FilterDataUpdateProps) {
     const handleColorToggle = (color: string) => {
         const isSelected = filterData.frameColor === color;
 
@@ -20,8 +20,6 @@ export default function FilterFrameColor({ filterData, setFilterData, filterOpti
             ...prevFilterData,
             frameColor: isSelected ? '' : color,
         }));
-
-        filterOptionSelect();
     };
 
     return (

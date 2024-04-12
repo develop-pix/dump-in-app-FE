@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import NewNotificationIcon from 'assets/image/icon/alert_notification.svg';
@@ -9,7 +9,8 @@ import SearchIcon from 'assets/image/icon/search.svg';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreHomeData from 'components/reuse/skeleton/SkeletonGetMoreHomeData';
 import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDataCollection';
-import { CollectionDataProps, EventProps, PhotoBoothProps, ReviewProps } from 'interfaces/Home.interface';
+import { fetchHomeEvent, fetchHomePhotoBooth, fetchHomeReview } from 'hooks/axios/Home';
+import { CollectionDataProps } from 'interfaces/Home.interface';
 import { HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
 import { CollectionContainer, CollectionFlatList } from 'styles/layout/home/HomeDataCollection.style';
@@ -31,99 +32,69 @@ export default function HomeDataCollection() {
     const flatListRef = useRef<FlatList>(null);
 
     // 무한 스크롤 페이지
-    const [page, setPage] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const page = useRef(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
+
     const [isFilterVisible, setFilterVisible] = useState(false);
     const [hasNotification, setHasNotification] = useState(false);
     // 필터 변수
     const [filterData, setFilterData] = useState<FilterProps>({
-        geolocation: '',
+        photoBoothLocation: '',
         frameColor: '',
-        party: 0,
+        participants: 0,
         cameraShot: '',
         concept: [],
     });
-    // 포토부스, 이벤트, 리뷰 데이터 12개 임의로 생성
-    const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothProps[]>([
-        {
-            photoBoothID: 1,
-            photoBoothName: '포토랩',
-            representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            photoBoothID: 2,
-            photoBoothName: '인생네컷',
-            representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-    ]);
-    const [eventData, setEventData] = useState<EventProps[]>([
-        {
-            eventID: 1,
-            representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            eventID: 2,
-            representativeImage: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-    ]);
-    const [reviewData, setReviewData] = useState<ReviewProps[]>([
-        {
-            id: 1,
-            photoBoothBrandName: '포토부스 혜화점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 2,
-            photoBoothBrandName: '포토부스 서울대점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 3,
-            photoBoothBrandName: '포토그레이 홍대점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 4,
-            photoBoothBrandName: '인생네컷 홍대점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 5,
-            photoBoothBrandName: '포토부스 혜화점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 6,
-            photoBoothBrandName: '포토부스 서울대점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 7,
-            photoBoothBrandName: '포토그레이 홍대점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-        {
-            id: 8,
-            photoBoothBrandName: '인생네컷 홍대점',
-            photoBoothName: '',
-            mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
-        },
-    ]);
+
     // 위 데이터를 담을 변수
-    const [collectionData, setCollectionData] = useState<CollectionDataProps[]>([
-        {
-            photoBoothData,
-            eventData,
-            reviewData,
-        },
-    ]);
+    const [collectionData, setCollectionData] = useState<CollectionDataProps[]>([]);
+
+    const reviewOffset = useRef(0);
+    const eventOffset = useRef(0);
+    const photoBoothOffset = useRef(0);
+
+    const getHomeData = useCallback(async () => {
+        const reviewResponse = await fetchHomeReview(reviewOffset.current, filterData);
+        const eventResponse = await fetchHomeEvent(eventOffset.current);
+        const photoBoothResponse = await fetchHomePhotoBooth(photoBoothOffset.current);
+
+        if (reviewResponse && eventResponse && photoBoothResponse) {
+            if (reviewResponse.data.next) {
+                reviewOffset.current += 12;
+            } else {
+                reviewOffset.current = 0;
+            }
+            if (eventResponse.data.next) {
+                eventOffset.current += 3;
+            } else {
+                eventOffset.current = 0;
+            }
+            if (photoBoothResponse.data.next) {
+                photoBoothOffset.current += 3;
+            } else {
+                photoBoothOffset.current = 0;
+            }
+
+            setCollectionData(prevData => [
+                ...prevData,
+                {
+                    photoBoothData: photoBoothResponse.data.results,
+                    eventData: eventResponse.data.results,
+                    reviewData: reviewResponse.data.results,
+                },
+            ]);
+
+            setRefreshing(false);
+            setIsLoading(false);
+        }
+    }, [filterData]);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        setIsLoading(true);
+        getHomeData();
+    }, [getHomeData]);
 
     /** 필터 존재 여부 확인 변수 */
     const hasFilterOptionData = Object.values(filterData).some(
@@ -131,35 +102,20 @@ export default function HomeDataCollection() {
     );
     /** 필터 제출 함수 */
     const handleFilterSubmit = (newFilterData: FilterProps) => {
-        // 필터 데이터 변경
+        reviewOffset.current = 0;
+        eventOffset.current = 0;
+        photoBoothOffset.current = 0;
         setFilterData(newFilterData);
-        // 포토부스 데이터 없는 화면 구현을 위해 필터 제출 후 임시로 초기화
         setCollectionData([]);
+        setIsLoading(true);
     };
     /** 필터 모달창 닫는 함수 */
     const handleHideFilterModal = () => {
         setFilterVisible(false);
     };
 
-    const onEndReached = () => {
-        const moreData = {
-            photoBoothData: [...collectionData[0].photoBoothData],
-            eventData: [...collectionData[0].eventData],
-            reviewData: [...collectionData[0].reviewData],
-        };
-        setPage(prevPage => prevPage + 1);
-        setCollectionData(prevData => [...prevData, moreData]);
-    };
-
     const renderReviewItem = useCallback(({ item }: { item: CollectionDataProps }) => {
         return <PhotoBoothList data={item} />;
-    }, []);
-
-    useEffect(() => {
-        // 예시 async ~await로 정상적으로 데이터 fetch완료시 실행
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
     }, []);
 
     useEffect(() => {
@@ -214,29 +170,37 @@ export default function HomeDataCollection() {
         checkNotification();
     }, []);
 
+    const onEndReached = () => {
+        page.current += 1;
+        getHomeData();
+    };
+
+    useEffect(() => {
+        getHomeData();
+    }, [getHomeData]);
+
     return (
         <CollectionContainer>
             {!isLoading ? (
                 <>
                     {hasFilterOptionData && <HomeSelectedFilterOption filterData={filterData} />}
-                    <>
-                        {collectionData.length > 0 ? (
-                            <>
-                                <CollectionFlatList
-                                    data={collectionData}
-                                    keyExtractor={(_, index) => `${page}-${index}`}
-                                    ref={flatListRef}
-                                    renderItem={renderReviewItem}
-                                    onEndReached={onEndReached}
-                                    onEndReachedThreshold={0.1}
-                                    ListFooterComponent={<SkeletonGetMoreHomeData />}
-                                />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
-                            </>
-                        ) : (
-                            <NoResultPhotoBooth filterData={filterData} />
-                        )}
-                    </>
+                    {collectionData.length > 0 ? (
+                        <>
+                            <CollectionFlatList
+                                data={collectionData}
+                                keyExtractor={(_, index) => `${page}-${index}`}
+                                ref={flatListRef}
+                                renderItem={renderReviewItem}
+                                onEndReached={onEndReached}
+                                onEndReachedThreshold={0.1}
+                                ListFooterComponent={<SkeletonGetMoreHomeData />}
+                                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                            />
+                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                        </>
+                    ) : (
+                        <NoResultPhotoBooth filterData={filterData} />
+                    )}
                 </>
             ) : (
                 <SkeletonHomeDataCollection />
@@ -244,7 +208,6 @@ export default function HomeDataCollection() {
             <HomeFilterModalForm
                 isVisible={isFilterVisible}
                 filterData={filterData}
-                setFilterData={setFilterData}
                 handleHideFilterModal={handleHideFilterModal}
                 onFilterSubmit={handleFilterSubmit}
             />

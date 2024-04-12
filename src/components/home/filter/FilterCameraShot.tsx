@@ -28,7 +28,7 @@ const availableCameraShots = [
     },
 ];
 
-export default function FilterCameraShot({ filterData, setFilterData, filterOptionSelect }: FilterDataUpdateProps) {
+export default function FilterCameraShot({ filterData, setFilterData }: FilterDataUpdateProps) {
     const handleCameraShotToggle = (cameraShot: string) => {
         const isSelected = filterData.cameraShot === cameraShot;
 
@@ -36,7 +36,6 @@ export default function FilterCameraShot({ filterData, setFilterData, filterOpti
             ...prevFilterData,
             cameraShot: isSelected ? '' : cameraShot,
         }));
-        filterOptionSelect();
     };
 
     return (
