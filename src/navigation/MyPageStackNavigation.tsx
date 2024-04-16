@@ -53,7 +53,15 @@ export default function MyPageStackNavigation() {
             <Stack.Screen
                 name="ReviewDetail"
                 component={ReviewDetail}
-                initialParams={{ reviewID: null }}
+                initialParams={{
+                    reviewID: null,
+                    prevReviewID: null,
+                    reviewType: 'my_review',
+                    frameColor: null,
+                    participants: null,
+                    cameraShot: null,
+                    concept: [],
+                }}
                 options={{
                     headerStyle: {
                         backgroundColor: colors.lightblack,

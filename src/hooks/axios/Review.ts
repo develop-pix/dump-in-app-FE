@@ -88,16 +88,20 @@ export const GetReviewReels = async (
 ) => {
     const searchParams = new URLSearchParams();
 
-    searchParams.append('prev_review_id', prev_review_id.toString());
-    searchParams.append('review_type', review_type.toString());
-    searchParams.append('frame_color', frame_color.toString());
-    searchParams.append('participants', participants.toString());
-    searchParams.append('camera_shot', camera_shot.toString());
-    concept.forEach((tag: string) => {
-        searchParams.append('hashtag', tag);
-    });
-    searchParams.append('review_id', review_id.toString());
+    prev_review_id && searchParams.append('prev_review_id', prev_review_id?.toString());
 
+    searchParams.append('review_type', review_type.toString());
+    frame_color && searchParams.append('frame_color', frame_color?.toString());
+    participants && searchParams.append('participants', participants?.toString());
+    camera_shot && searchParams.append('camera_shot', camera_shot?.toString());
+
+    concept.length > 0 &&
+        concept.forEach((tag: string) => {
+            searchParams.append('hashtag', tag);
+        });
+    searchParams.append('review_id', review_id?.toString());
+
+    console.log(searchParams);
     try {
         const response = await axiosInstance.get(`/reviews/${review_id}/reels?${searchParams}`);
         return response.data;

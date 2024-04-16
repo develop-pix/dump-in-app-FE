@@ -90,10 +90,12 @@ export const ButtonContainer = styled.View`
 `;
 
 export const PrevButtonContainer = styled.TouchableOpacity`
+    border: 1px solid blue;
     position: absolute;
     left: 0;
 `;
 export const NextButtonContainer = styled.TouchableOpacity`
+    border: 1px solid red;
     position: absolute;
     right: 0;
 `;

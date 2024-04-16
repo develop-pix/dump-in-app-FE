@@ -114,9 +114,12 @@ export default function HomeDataCollection() {
         setFilterVisible(false);
     };
 
-    const renderReviewItem = useCallback(({ item }: { item: CollectionDataProps }) => {
-        return <PhotoBoothList data={item} />;
-    }, []);
+    const renderReviewItem = useCallback(
+        ({ item }: { item: CollectionDataProps }) => {
+            return <PhotoBoothList data={item} filterData={filterData} />;
+        },
+        [filterData],
+    );
 
     useEffect(() => {
         /** 필터 모달창 여는 함수 */

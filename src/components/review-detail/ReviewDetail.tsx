@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NativeScrollEvent, Platform } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
 
@@ -27,6 +27,7 @@ import {
 } from 'hooks/redux/branchReviewDetailSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import {
+    CategoryStackScreenProps,
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
@@ -50,13 +51,23 @@ import {
 import ReviewDescription from './ReviewDescription';
 
 export default function ReviewDetail() {
-    const [carouselActive, setCarouselActive] = useState<number>(0);
+    const [carouselActive, setCarouselActive] = useState(0);
+    const [nextReviewID, setNextReviewID] = useState(0);
+    const [prevReviewID, setPrevReviewID] = useState(0);
 
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
         | MyPageStackScreenProps<'ReviewDetail'>['route']
+        | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'Home'>['navigation']
+        | LocationStackScreenProps<'Branch'>['navigation']
+        | MyPageStackScreenProps<'MyPage'>['navigation']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+    >();
+    const isFocused = useIsFocused();
     const platform = Platform.OS;
     const dispatch = useDispatch();
     const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
@@ -71,12 +82,116 @@ export default function ReviewDetail() {
         }
     };
 
+    //TODO: 테스트 완료후 삭제
+    console.log('route');
+    console.log(route);
+
     //TODO: 좌우 버튼 클릭시 리뷰이동 (navigation)
     /** < 버튼 클릭 */
-    const onPressPrevButton = () => {};
+    const onPressPrevButton = () => {
+        if (isFocused) {
+            setCarouselActive(0);
+            switch (navigation.getId()) {
+                case 'HomeStack':
+                    (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: prevReviewID,
+                        prevReviewID: nextReviewID,
+                        reviewType: 'filter',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+                case 'LocationStack':
+                    (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: prevReviewID,
+                        prevReviewID: nextReviewID,
+                        reviewType: 'photo_booth',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+                case 'MyPageStack':
+                    (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: prevReviewID,
+                        prevReviewID: nextReviewID,
+                        reviewType: 'like_review' || 'my_review',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: prevReviewID,
+                        prevReviewID: nextReviewID,
+                        reviewType: 'photo_booth_brand',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+            }
+        }
+    };
 
     /** > 버튼 클릭 */
-    const onPressNextButton = () => {};
+    const onPressNextButton = () => {
+        if (isFocused) {
+            setCarouselActive(0);
+            switch (navigation.getId()) {
+                case 'HomeStack':
+                    (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: nextReviewID,
+                        prevReviewID: route.params.reviewID,
+                        reviewType: 'filter',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+                case 'LocationStack':
+                    (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: nextReviewID,
+                        prevReviewID: route.params.reviewID,
+                        reviewType: 'photo_booth',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+                case 'MyPageStack':
+                    (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: nextReviewID,
+                        prevReviewID: route.params.reviewID,
+                        reviewType: 'like_review' || 'my_review',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
+                        reviewID: nextReviewID,
+                        prevReviewID: route.params.reviewID,
+                        reviewType: 'photo_booth_brand',
+                        frameColor: route.params.frameColor,
+                        participants: route.params.participants,
+                        cameraShot: route.params.cameraShot,
+                        concept: route.params.concept,
+                    });
+                    break;
+            }
+        }
+    };
 
     // ReviewData fetch 및 dataSet
     useEffect(() => {
@@ -105,16 +220,40 @@ export default function ReviewDetail() {
                 console.log('getReviewDataError ' + error);
             }
         };
+
         const getReviewReelsData = async () => {
             try {
                 //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
-                // const reelsData = await GetReviewReels(,,,,route.params.reviewID);
+
+                const reelsData = await GetReviewReels(
+                    route.params.prevReviewID,
+                    route.params.reviewType,
+                    route.params.frameColor,
+                    route.params.participants,
+                    route.params.cameraShot,
+                    route.params.concept,
+                    route.params.reviewID,
+                );
+
+                setNextReviewID(reelsData.data.nextReviewId);
+                setPrevReviewID(reelsData.data.prevReviewId);
             } catch (error) {
                 console.log('getReelsDataError ' + error);
             }
         };
+
         getReviewData();
-    }, [dispatch, route.params.reviewID]);
+        getReviewReelsData();
+    }, [
+        dispatch,
+        route.params.cameraShot,
+        route.params.concept,
+        route.params.frameColor,
+        route.params.participants,
+        route.params.prevReviewID,
+        route.params.reviewID,
+        route.params.reviewType,
+    ]);
 
     return (
         <ReviewDetailFormContainer>

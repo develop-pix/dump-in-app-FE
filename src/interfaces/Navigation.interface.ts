@@ -37,7 +37,15 @@ export type MainTabScreenProps<RouteName extends keyof MainTabParamList> = Compo
 export type HomeStackParamList = {
     Home: undefined;
     PhotoBoothDetail: { photoBoothID: number };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        prevReviewID: number;
+        reviewType: 'filter';
+        frameColor: string;
+        participants: number;
+        cameraShot: string;
+        concept: string[];
+    };
     EventDetail: { eventID: number };
     AddReviewModal: undefined;
 };
@@ -51,7 +59,15 @@ export type LocationStackParamList = {
     Location: undefined | { photoBoothID: number | null };
     LocationSearch: undefined;
     Branch: { branchID: string };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        prevReviewID: number;
+        reviewType: 'photo_booth';
+        frameColor: string;
+        participants: number;
+        cameraShot: string;
+        concept: string[];
+    };
 };
 
 export type LocationStackScreenProps<RouteName extends keyof LocationStackParamList> = CompositeScreenProps<
@@ -62,7 +78,15 @@ export type LocationStackScreenProps<RouteName extends keyof LocationStackParamL
 export type CategoryStackParamList = {
     Category: undefined;
     PhotoBoothDetail: { photoBoothID: number };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        prevReviewID: number;
+        reviewType: 'photo_booth_brand';
+        frameColor: string;
+        participants: number;
+        cameraShot: string;
+        concept: string[];
+    };
     EventDetail: { eventID: number };
 };
 
@@ -76,7 +100,15 @@ export type MyPageStackParamList = {
     Login: undefined;
     Menu: undefined;
     Branch: { branchID: string };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        prevReviewID: number;
+        reviewType: 'my_review' | 'like_review';
+        frameColor: string;
+        participants: number;
+        cameraShot: string;
+        concept: string[];
+    };
 };
 
 export type MyPageStackScreenProps<RouteName extends keyof MyPageStackParamList> = CompositeScreenProps<

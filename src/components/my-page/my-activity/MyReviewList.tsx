@@ -1,6 +1,6 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import ReviewFrame from 'components/home/photo-booth-list/ReviewFrame';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
@@ -22,10 +22,10 @@ import {
 import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
 export default function MyReviewList() {
-    const [page, setPage] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [dataEnd, setDataEnd] = useState(false);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(false);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
@@ -73,18 +73,16 @@ export default function MyReviewList() {
     }, [isLoggedIn, navigation]);
 
     // MyPage 진입시 내 사진 항목 데이터 Get
-    useFocusEffect(
-        useCallback(() => {
-            const getFirstMyReview = async () => {
-                const reviewList = await getMyReview();
-                setReviewData(reviewList.results);
-                setIsLoading(false);
-                reviewList.next === null && setDataEnd(prev => !prev);
-            };
+    useEffect(() => {
+        const getFirstMyReview = async () => {
+            const reviewList = await getMyReview();
+            setReviewData(reviewList.results);
+            setIsLoading(false);
+            reviewList.next === null && setDataEnd(prev => !prev);
+        };
 
-            getFirstMyReview();
-        }, []),
-    );
+        getFirstMyReview();
+    }, []);
 
     return (
         <MyReviewListContainer>
