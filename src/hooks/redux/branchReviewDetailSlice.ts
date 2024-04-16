@@ -39,7 +39,7 @@ export const branchReviewDetailSlice = createSlice({
             state.image = [];
         },
         setConcept(state, action: PayloadAction<ConceptData[]>) {
-            state.concept = [...state.concept, ...action.payload];
+            state.concept = [...action.payload];
         },
         setConceptClear(state) {
             state.concept = [];
