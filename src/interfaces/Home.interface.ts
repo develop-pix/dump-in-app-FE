@@ -31,8 +31,8 @@ export interface EventFrameProps {
 
 export interface ReviewFrameProps {
     data: ReviewProps;
-    prevReviewID: number;
-    filterData: FilterProps;
+    prevReviewID: number | undefined;
+    filterData?: FilterProps;
 }
 
 export interface PhotoBoothProps {

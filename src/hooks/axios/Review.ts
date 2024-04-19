@@ -78,27 +78,34 @@ export const DeleteReview = async (review_id: number | null | undefined) => {
 // };
 
 export const GetReviewReels = async (
-    prev_review_id: number,
+    prev_review_id: number | undefined,
     review_type: string,
-    frame_color: string,
-    participants: number,
-    camera_shot: string,
-    concept: string[],
+    frame_color: string | undefined,
+    participants: number | undefined,
+    camera_shot: string | undefined,
+    concept: string[] | undefined,
     review_id: number,
 ) => {
     const searchParams = new URLSearchParams();
 
-    prev_review_id && searchParams.append('prev_review_id', prev_review_id?.toString());
+    prev_review_id
+        ? searchParams.append('prev_review_id', prev_review_id?.toString())
+        : searchParams.append('prev_review_id', '');
 
     searchParams.append('review_type', review_type.toString());
-    frame_color && searchParams.append('frame_color', frame_color?.toString());
-    participants && searchParams.append('participants', participants?.toString());
-    camera_shot && searchParams.append('camera_shot', camera_shot?.toString());
+    frame_color ? searchParams.append('frame_color', frame_color?.toString()) : searchParams.append('frame_color', '');
+    participants
+        ? searchParams.append('participants', participants?.toString())
+        : searchParams.append('participants', '');
+    camera_shot ? searchParams.append('camera_shot', camera_shot?.toString()) : searchParams.append('camera_shot', '');
 
-    concept.length > 0 &&
-        concept.forEach((tag: string) => {
-            searchParams.append('hashtag', tag);
-        });
+    concept
+        ? concept.length > 0 &&
+          concept.forEach((tag: string) => {
+              searchParams.append('hashtag', tag);
+          })
+        : searchParams.append('hashtag', '');
+
     searchParams.append('review_id', review_id?.toString());
 
     console.log(searchParams);

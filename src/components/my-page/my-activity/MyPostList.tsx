@@ -33,9 +33,12 @@ export default function MyPostList() {
     const navigation = useNavigation<MainTabScreenProps<'HomeTab'>['navigation']>();
 
     /** FlatList renderItem */
-    const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
-        return <MyPostFrame data={item} />;
-    }, []);
+    const renderReviewItem = useCallback(
+        ({ item, index }: { item: ReviewProps; index: number }) => {
+            return <MyPostFrame data={item} prevReviewID={reviewData[index - 1]?.id} />;
+        },
+        [reviewData],
+    );
 
     /** FlatList onEndReached */
     const onEndReached = async () => {

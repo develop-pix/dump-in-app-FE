@@ -25,10 +25,10 @@ export default function ReviewFrame({ data, prevReviewID, filterData }: ReviewFr
                 reviewID: data.id,
                 prevReviewID,
                 reviewType: 'filter',
-                frameColor: filterData.frameColor,
-                participants: filterData.participants,
-                cameraShot: filterData.cameraShot,
-                concept: filterData.concept,
+                frameColor: filterData?.frameColor,
+                participants: filterData?.participants,
+                cameraShot: filterData?.cameraShot,
+                concept: filterData?.concept,
             });
         }
     };

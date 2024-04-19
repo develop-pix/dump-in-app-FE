@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NativeScrollEvent, Platform } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -52,8 +52,8 @@ import ReviewDescription from './ReviewDescription';
 
 export default function ReviewDetail() {
     const [carouselActive, setCarouselActive] = useState(0);
-    const [nextReviewID, setNextReviewID] = useState(0);
-    const [prevReviewID, setPrevReviewID] = useState(0);
+    const nextReviewID = useRef(0);
+    const prevReviewID = useRef(0);
 
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
@@ -94,8 +94,8 @@ export default function ReviewDetail() {
             switch (navigation.getId()) {
                 case 'HomeStack':
                     (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: prevReviewID,
-                        prevReviewID: nextReviewID,
+                        reviewID: prevReviewID.current,
+                        prevReviewID: nextReviewID.current,
                         reviewType: 'filter',
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
@@ -105,8 +105,8 @@ export default function ReviewDetail() {
                     break;
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: prevReviewID,
-                        prevReviewID: nextReviewID,
+                        reviewID: prevReviewID.current,
+                        prevReviewID: nextReviewID.current,
                         reviewType: 'photo_booth',
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
@@ -116,8 +116,8 @@ export default function ReviewDetail() {
                     break;
                 case 'MyPageStack':
                     (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: prevReviewID,
-                        prevReviewID: nextReviewID,
+                        reviewID: prevReviewID.current,
+                        prevReviewID: nextReviewID.current,
                         reviewType: 'like_review' || 'my_review',
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
@@ -127,8 +127,8 @@ export default function ReviewDetail() {
                     break;
                 case 'CategoryStack':
                     (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: prevReviewID,
-                        prevReviewID: nextReviewID,
+                        reviewID: prevReviewID.current,
+                        prevReviewID: nextReviewID.current,
                         reviewType: 'photo_booth_brand',
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
@@ -147,7 +147,7 @@ export default function ReviewDetail() {
             switch (navigation.getId()) {
                 case 'HomeStack':
                     (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: nextReviewID,
+                        reviewID: nextReviewID.current,
                         prevReviewID: route.params.reviewID,
                         reviewType: 'filter',
                         frameColor: route.params.frameColor,
@@ -158,7 +158,7 @@ export default function ReviewDetail() {
                     break;
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: nextReviewID,
+                        reviewID: nextReviewID.current,
                         prevReviewID: route.params.reviewID,
                         reviewType: 'photo_booth',
                         frameColor: route.params.frameColor,
@@ -169,7 +169,7 @@ export default function ReviewDetail() {
                     break;
                 case 'MyPageStack':
                     (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: nextReviewID,
+                        reviewID: nextReviewID.current,
                         prevReviewID: route.params.reviewID,
                         reviewType: 'like_review' || 'my_review',
                         frameColor: route.params.frameColor,
@@ -180,7 +180,7 @@ export default function ReviewDetail() {
                     break;
                 case 'CategoryStack':
                     (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
-                        reviewID: nextReviewID,
+                        reviewID: nextReviewID.current,
                         prevReviewID: route.params.reviewID,
                         reviewType: 'photo_booth_brand',
                         frameColor: route.params.frameColor,
@@ -224,7 +224,6 @@ export default function ReviewDetail() {
         const getReviewReelsData = async () => {
             try {
                 //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
-
                 const reelsData = await GetReviewReels(
                     route.params.prevReviewID,
                     route.params.reviewType,
@@ -235,8 +234,8 @@ export default function ReviewDetail() {
                     route.params.reviewID,
                 );
 
-                setNextReviewID(reelsData.data.nextReviewId);
-                setPrevReviewID(reelsData.data.prevReviewId);
+                nextReviewID.current = reelsData.data.nextReviewId;
+                prevReviewID.current = reelsData.data.prevReviewId;
             } catch (error) {
                 console.log('getReelsDataError ' + error);
             }
@@ -303,11 +302,11 @@ export default function ReviewDetail() {
                     </DotContainer>
                     <ButtonContainer>
                         <PrevButtonContainer onPress={onPressPrevButton}>
-                            <PrevIcon width={40} height={40} />
+                            <PrevIcon />
                         </PrevButtonContainer>
 
                         <NextButtonContainer onPress={onPressNextButton}>
-                            <NextIcon width={40} height={40} />
+                            <NextIcon />
                         </NextButtonContainer>
                     </ButtonContainer>
                     {platform === 'ios' ? (
