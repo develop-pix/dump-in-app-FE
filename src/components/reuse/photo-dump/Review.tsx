@@ -28,18 +28,33 @@ export default function Review({ reviewItem }: ReviewProps) {
     >();
     const isFocused = useIsFocused();
 
-    //TODO: 테스트 픨요함 (리뷰 클릭시 navigation)
     const onPressReview = () => {
         if (isFocused) {
             switch (navigation.getId()) {
                 case 'HomeStack':
                     (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: reviewItem.id,
+                        reviewType: 'search',
+                        photoBoothLocation: undefined,
+                        frameColor: undefined,
+                        participants: undefined,
+                        cameraShot: undefined,
+                        concept: undefined,
+                        keyword: undefined,
+                        isEventReview: undefined,
                     });
                     break;
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
                         reviewID: reviewItem.id,
+                        reviewType: 'photo_booth',
+                        photoBoothLocation: undefined,
+                        frameColor: undefined,
+                        participants: undefined,
+                        cameraShot: undefined,
+                        concept: undefined,
+                        keyword: undefined,
+                        isEventReview: undefined,
                     });
                     break;
                 case 'CategoryStack':
@@ -47,6 +62,14 @@ export default function Review({ reviewItem }: ReviewProps) {
                         'ReviewDetail',
                         {
                             reviewID: reviewItem.id,
+                            reviewType: 'photo_booth_brand',
+                            photoBoothLocation: undefined,
+                            frameColor: undefined,
+                            participants: undefined,
+                            cameraShot: undefined,
+                            concept: undefined,
+                            keyword: undefined,
+                            isEventReview: undefined,
                         },
                     );
                     break;

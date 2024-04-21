@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData, GetReviewReels } from 'hooks/axios/Review';
-import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchName,
     setCameraShot,
@@ -83,12 +82,6 @@ export default function ReviewDetail() {
         }
     };
 
-    //TODO: 테스트 완료후 삭제
-    console.log('route');
-    console.log(route);
-    console.log(storage.getString('token.accessToken'));
-
-    //TODO: 좌우 버튼 클릭시 리뷰이동 (navigation)
     /** < 버튼 클릭 */
     const onPressPrevButton = () => {
         if (isFocused && prevReviewID.current !== null) {

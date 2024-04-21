@@ -39,7 +39,7 @@ export type HomeStackParamList = {
     PhotoBoothDetail: { photoBoothID: number };
     ReviewDetail: {
         reviewID: number;
-        reviewType: 'filter';
+        reviewType: 'filter' | 'search';
         photoBoothLocation: string | undefined;
         frameColor: string | undefined;
         participants: number | undefined;
