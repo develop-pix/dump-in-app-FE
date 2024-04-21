@@ -30,13 +30,15 @@ export default function LocationStackNavigation() {
                 name="ReviewDetail"
                 component={ReviewDetail}
                 initialParams={{
-                    reviewID: null,
-                    prevReviewID: null,
+                    reviewID: undefined,
                     reviewType: 'photo_booth',
-                    frameColor: null,
-                    participants: null,
-                    cameraShot: null,
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: undefined,
+                    cameraShot: undefined,
                     concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
                 }}
                 options={{
                     headerShown: true,

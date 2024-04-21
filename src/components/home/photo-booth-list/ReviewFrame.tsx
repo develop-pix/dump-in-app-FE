@@ -25,6 +25,7 @@ export default function ReviewFrame({ data, prevReviewID, filterData }: ReviewFr
                 reviewID: data.id,
                 prevReviewID,
                 reviewType: 'filter',
+                photoBoothLocation: filterData?.photoBoothLocation,
                 frameColor: filterData?.frameColor,
                 participants: filterData?.participants,
                 cameraShot: filterData?.cameraShot,

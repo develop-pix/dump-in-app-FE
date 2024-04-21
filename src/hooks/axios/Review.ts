@@ -78,33 +78,53 @@ export const DeleteReview = async (review_id: number | null | undefined) => {
 // };
 
 export const GetReviewReels = async (
-    prev_review_id: number | undefined,
     review_type: string,
+    photo_booth_location: string | undefined,
     frame_color: string | undefined,
     participants: number | undefined,
     camera_shot: string | undefined,
     concept: string[] | undefined,
+    keyword: string | undefined,
+    is_event_review: boolean | undefined,
     review_id: number,
 ) => {
     const searchParams = new URLSearchParams();
+    console.log('GetReviewReels Inside Data');
+    console.log('review_type');
+    console.log(review_type);
+    console.log('photo_booth_location');
+    console.log(photo_booth_location);
+    console.log('frame_color');
+    console.log(frame_color);
+    console.log('participants');
+    console.log(participants);
+    console.log('camera_shot');
+    console.log(camera_shot);
+    console.log('concept');
+    console.log(concept);
+    console.log('review_id');
+    console.log(review_id);
 
-    prev_review_id
-        ? searchParams.append('prev_review_id', prev_review_id?.toString())
-        : searchParams.append('prev_review_id', '');
-
+    /**FIXME: keyword, prev_review_id, is_event_review 확인 */
     searchParams.append('review_type', review_type.toString());
-    frame_color ? searchParams.append('frame_color', frame_color?.toString()) : searchParams.append('frame_color', '');
-    participants
-        ? searchParams.append('participants', participants?.toString())
-        : searchParams.append('participants', '');
-    camera_shot ? searchParams.append('camera_shot', camera_shot?.toString()) : searchParams.append('camera_shot', '');
 
-    concept
-        ? concept.length > 0 &&
-          concept.forEach((tag: string) => {
-              searchParams.append('hashtag', tag);
-          })
-        : searchParams.append('hashtag', '');
+    photo_booth_location && searchParams.append('photo_booth_location', photo_booth_location?.toString());
+
+    frame_color && searchParams.append('frame_color', frame_color?.toString());
+
+    participants && searchParams.append('participants', participants?.toString());
+
+    camera_shot && searchParams.append('camera_shot', camera_shot?.toString());
+
+    concept &&
+        concept.length > 0 &&
+        concept.forEach((tag: string) => {
+            searchParams.append('concept', tag);
+        });
+
+    keyword && searchParams.append('keyword', keyword?.toString());
+
+    is_event_review && searchParams.append('is_event_review', is_event_review?.toString());
 
     searchParams.append('review_id', review_id?.toString());
 

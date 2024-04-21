@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData, GetReviewReels } from 'hooks/axios/Review';
+import { storage } from 'hooks/mmkv/storage';
 import {
     setBranchName,
     setCameraShot,
@@ -85,55 +86,64 @@ export default function ReviewDetail() {
     //TODO: 테스트 완료후 삭제
     console.log('route');
     console.log(route);
+    console.log(storage.getString('token.accessToken'));
 
     //TODO: 좌우 버튼 클릭시 리뷰이동 (navigation)
     /** < 버튼 클릭 */
     const onPressPrevButton = () => {
-        if (isFocused) {
+        if (isFocused && prevReviewID.current !== null) {
             setCarouselActive(0);
             switch (navigation.getId()) {
                 case 'HomeStack':
                     (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
-                        prevReviewID: nextReviewID.current,
                         reviewType: 'filter',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: route.params.keyword,
+                        isEventReview: route.params.isEventReview,
                     });
                     break;
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
-                        prevReviewID: nextReviewID.current,
                         reviewType: 'photo_booth',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: undefined,
+                        isEventReview: undefined,
                     });
                     break;
                 case 'MyPageStack':
                     (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
-                        prevReviewID: nextReviewID.current,
-                        reviewType: 'like_review' || 'my_review',
+                        reviewType: 'like' || 'mine',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: undefined,
+                        isEventReview: undefined,
                     });
                     break;
                 case 'CategoryStack':
                     (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
-                        prevReviewID: nextReviewID.current,
                         reviewType: 'photo_booth_brand',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: route.params.keyword,
+                        isEventReview: route.params.isEventReview,
                     });
                     break;
             }
@@ -142,51 +152,59 @@ export default function ReviewDetail() {
 
     /** > 버튼 클릭 */
     const onPressNextButton = () => {
-        if (isFocused) {
+        if (isFocused && nextReviewID.current !== null) {
             setCarouselActive(0);
             switch (navigation.getId()) {
                 case 'HomeStack':
                     (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
-                        prevReviewID: route.params.reviewID,
                         reviewType: 'filter',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: route.params.keyword,
+                        isEventReview: route.params.isEventReview,
                     });
                     break;
                 case 'LocationStack':
                     (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
-                        prevReviewID: route.params.reviewID,
                         reviewType: 'photo_booth',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: route.params.keyword,
+                        isEventReview: route.params.isEventReview,
                     });
                     break;
                 case 'MyPageStack':
                     (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
-                        prevReviewID: route.params.reviewID,
-                        reviewType: 'like_review' || 'my_review',
+                        reviewType: 'like' || 'mine',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: route.params.keyword,
+                        isEventReview: route.params.isEventReview,
                     });
                     break;
                 case 'CategoryStack':
                     (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
-                        prevReviewID: route.params.reviewID,
                         reviewType: 'photo_booth_brand',
+                        photoBoothLocation: route.params.photoBoothLocation,
                         frameColor: route.params.frameColor,
                         participants: route.params.participants,
                         cameraShot: route.params.cameraShot,
                         concept: route.params.concept,
+                        keyword: route.params.keyword,
+                        isEventReview: route.params.isEventReview,
                     });
                     break;
             }
@@ -225,14 +243,19 @@ export default function ReviewDetail() {
             try {
                 //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
                 const reelsData = await GetReviewReels(
-                    route.params.prevReviewID,
                     route.params.reviewType,
+                    route.params.photoBoothLocation,
                     route.params.frameColor,
                     route.params.participants,
                     route.params.cameraShot,
                     route.params.concept,
+                    route.params.keyword,
+                    route.params.isEventReview,
                     route.params.reviewID,
                 );
+
+                console.log('reelsData.data');
+                console.log(reelsData.data);
 
                 nextReviewID.current = reelsData.data.nextReviewId;
                 prevReviewID.current = reelsData.data.prevReviewId;
@@ -249,7 +272,6 @@ export default function ReviewDetail() {
         route.params.concept,
         route.params.frameColor,
         route.params.participants,
-        route.params.prevReviewID,
         route.params.reviewID,
         route.params.reviewType,
     ]);
@@ -301,13 +323,17 @@ export default function ReviewDetail() {
                         ))}
                     </DotContainer>
                     <ButtonContainer>
-                        <PrevButtonContainer onPress={onPressPrevButton}>
-                            <PrevIcon />
-                        </PrevButtonContainer>
+                        {prevReviewID.current !== null && (
+                            <PrevButtonContainer onPress={onPressPrevButton}>
+                                <PrevIcon />
+                            </PrevButtonContainer>
+                        )}
 
-                        <NextButtonContainer onPress={onPressNextButton}>
-                            <NextIcon />
-                        </NextButtonContainer>
+                        {nextReviewID.current !== null && (
+                            <NextButtonContainer onPress={onPressNextButton}>
+                                <NextIcon />
+                            </NextButtonContainer>
+                        )}
                     </ButtonContainer>
                     {platform === 'ios' ? (
                         <LinearGradient

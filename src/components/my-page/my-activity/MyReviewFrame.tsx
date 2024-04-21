@@ -19,7 +19,7 @@ import {
 } from 'styles/layout/home/photo-booth-list/ReviewFrame.style';
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
-export default function MyReviewFrame({ data, prevReviewID }: ReviewFrameProps) {
+export default function MyReviewFrame({ data }: ReviewFrameProps) {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
@@ -31,12 +31,14 @@ export default function MyReviewFrame({ data, prevReviewID }: ReviewFrameProps) 
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
                 reviewID: data.id,
-                prevReviewID,
-                reviewType: 'my_review',
+                reviewType: 'mine',
+                photoBoothLocation: undefined,
                 frameColor: undefined,
                 participants: undefined,
                 cameraShot: undefined,
                 concept: undefined,
+                keyword: undefined,
+                isEventReview: undefined,
             });
         }
     };

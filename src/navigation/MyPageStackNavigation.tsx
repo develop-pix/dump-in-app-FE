@@ -54,13 +54,15 @@ export default function MyPageStackNavigation() {
                 name="ReviewDetail"
                 component={ReviewDetail}
                 initialParams={{
-                    reviewID: null,
-                    prevReviewID: null,
-                    reviewType: 'my_review',
-                    frameColor: null,
-                    participants: null,
-                    cameraShot: null,
+                    reviewID: undefined,
+                    reviewType: 'mine',
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: undefined,
+                    cameraShot: undefined,
                     concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
                 }}
                 options={{
                     headerStyle: {

@@ -32,13 +32,16 @@ export default function CategoryStackNavigation() {
                 name="ReviewDetail"
                 component={ReviewDetail}
                 initialParams={{
-                    reviewID: null,
-                    prevReviewID: null,
+                    reviewID: undefined,
+                    prevReviewID: undefined,
                     reviewType: 'photo_booth_brand',
-                    frameColor: null,
-                    participants: null,
-                    cameraShot: null,
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: undefined,
+                    cameraShot: undefined,
                     concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
                 }}
             />
             <Stack.Screen

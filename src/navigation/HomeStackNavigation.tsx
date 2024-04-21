@@ -31,13 +31,15 @@ export default function HomeStackNavigation() {
                 name="ReviewDetail"
                 component={ReviewDetail}
                 initialParams={{
-                    reviewID: null,
-                    prevReviewID: null,
+                    reviewID: undefined,
                     reviewType: 'filter',
-                    frameColor: null,
-                    participants: null,
-                    cameraShot: null,
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: 0,
+                    cameraShot: undefined,
                     concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
                 }}
             />
             <Stack.Screen

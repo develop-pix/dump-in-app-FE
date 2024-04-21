@@ -47,12 +47,9 @@ export default function MyReviewList() {
     };
 
     /** FlatList renderItem */
-    const renderReviewItem = useCallback(
-        ({ item, index }: { item: ReviewProps; index: number }) => {
-            return <MyReviewFrame data={item} prevReviewID={reviewData[index - 1]?.id} />;
-        },
-        [reviewData],
-    );
+    const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
+        return <MyReviewFrame data={item} />;
+    }, []);
 
     /** FlatList onEndReached */
     const onEndReached = async () => {

@@ -57,12 +57,7 @@ const PhotoBoothList = ({ data, filterData }: PhotoBoothListProps) => {
                                     return <AddNewReviewDummy key={index} />;
                                 } else {
                                     return (
-                                        <ReviewFrame
-                                            key={index}
-                                            data={item as ReviewProps}
-                                            prevReviewID={data.reviewData[index - 2]?.id}
-                                            filterData={filterData}
-                                        />
+                                        <ReviewFrame key={index} data={item as ReviewProps} filterData={filterData} />
                                     );
                                 }
                             }
@@ -83,12 +78,7 @@ const PhotoBoothList = ({ data, filterData }: PhotoBoothListProps) => {
                                     return <AddNewReviewDummy key={index} />;
                                 } else {
                                     return (
-                                        <ReviewFrame
-                                            key={index}
-                                            data={item as ReviewProps}
-                                            prevReviewID={data.reviewData[index - 2]?.id}
-                                            filterData={filterData}
-                                        />
+                                        <ReviewFrame key={index} data={item as ReviewProps} filterData={filterData} />
                                     );
                                 }
                             }

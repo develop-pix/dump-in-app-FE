@@ -39,12 +39,14 @@ export type HomeStackParamList = {
     PhotoBoothDetail: { photoBoothID: number };
     ReviewDetail: {
         reviewID: number;
-        prevReviewID: number | undefined;
         reviewType: 'filter';
+        photoBoothLocation: string | undefined;
         frameColor: string | undefined;
         participants: number | undefined;
         cameraShot: string | undefined;
         concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
     };
     EventDetail: { eventID: number };
     AddReviewModal: undefined;
@@ -61,12 +63,14 @@ export type LocationStackParamList = {
     Branch: { branchID: string };
     ReviewDetail: {
         reviewID: number;
-        prevReviewID: number | undefined;
         reviewType: 'photo_booth';
+        photoBoothLocation: string | undefined;
         frameColor: string | undefined;
         participants: number | undefined;
         cameraShot: string | undefined;
         concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
     };
 };
 
@@ -80,12 +84,14 @@ export type CategoryStackParamList = {
     PhotoBoothDetail: { photoBoothID: number };
     ReviewDetail: {
         reviewID: number;
-        prevReviewID: number | undefined;
         reviewType: 'photo_booth_brand';
+        photoBoothLocation: string | undefined;
         frameColor: string | undefined;
         participants: number | undefined;
         cameraShot: string | undefined;
         concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
     };
     EventDetail: { eventID: number };
 };
@@ -102,12 +108,14 @@ export type MyPageStackParamList = {
     Branch: { branchID: string };
     ReviewDetail: {
         reviewID: number;
-        prevReviewID: number | undefined;
-        reviewType: 'my_review' | 'like_review';
+        reviewType: 'mine' | 'like';
+        photoBoothLocation: string | undefined;
         frameColor: string | undefined;
         participants: number | undefined;
         cameraShot: string | undefined;
         concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
     };
 };
 
