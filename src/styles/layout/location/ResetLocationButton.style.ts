@@ -1,13 +1,12 @@
 import styled from 'styled-components/native';
 
-export const ResetLocationButtonContainer = styled.View`
-    position: absolute;
-    right: 10px;
-    bottom: 20px;
-    border-radius: 50px;
-`;
-
 export const ResetLocation = styled.TouchableOpacity`
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    border-radius: 18px;
+    align-items: center;
+    justify-content: center;
 `;

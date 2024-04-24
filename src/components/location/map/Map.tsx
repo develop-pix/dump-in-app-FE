@@ -156,7 +156,7 @@ export default function Map() {
     }, [currentLocation.latitude, currentLocation.longitude]);
 
     return (
-        <MapContainer platform={platform}>
+        <MapContainer>
             <NaverMapView
                 style={{ width: '100%', height: '100%' }}
                 center={{ ...myPosition, zoom }}

@@ -43,10 +43,8 @@ export default function ResetLocationButton({ GetCurrentLocation, setMyPosition,
     }, []);
 
     return (
-        <ResetLocationButtonContainer>
-            <ResetLocation onPress={onPressResetLocation}>
-                <ResetLocationIcon width={44} height={44} />
-            </ResetLocation>
-        </ResetLocationButtonContainer>
+        <ResetLocation onPress={onPressResetLocation}>
+            <ResetLocationIcon width={44} height={44} />
+        </ResetLocation>
     );
 }
