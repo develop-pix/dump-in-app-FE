@@ -141,7 +141,7 @@ export default function Map() {
     useEffect(() => {
         if (branchData.length > 0) {
             Animated.timing(cardMoveY, {
-                toValue: showNearBranch ? -180 : -10,
+                toValue: showNearBranch ? -176 : -0,
                 duration: 330,
                 useNativeDriver: true,
             }).start();

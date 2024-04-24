@@ -5,9 +5,8 @@ import { colors } from 'styles/base/Variable';
 
 export const BranchCardContainer = styled.View`
     position: absolute;
-    bottom: -170px;
+    bottom: -160px;
     width: 100%;
-    display: flex;
     gap: 10px;
     align-items: center;
 `;
