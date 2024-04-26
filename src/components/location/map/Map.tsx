@@ -42,12 +42,6 @@ export default function Map() {
         longitude: currentLocation.longitude || defaultLongitude,
     });
 
-    /**  ReverseGeolocation 호출 */
-    const getAddressData = async (latitude: number, longitude: number) => {
-        const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
-        setLocation(addressData);
-    };
-
     /** BranchCard 정보 Get */
     //TODO: zoom의 크기에따라 radius를 조절할수 해야함. zoom과 radius는 반비례 해야할것 같음. API명세에 명시된 radius 범위가 달라서 확인이 필요함
     const getBranchCardData = async (latitude: number, longitude: number) => {
@@ -150,6 +144,18 @@ export default function Map() {
 
     // 내 위치가 바뀔때마다. ReverseGeolocation 호출
     useEffect(() => {
+        /**  ReverseGeolocation 호출 */
+        const getAddressData = async (latitude: number, longitude: number) => {
+            try {
+                const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
+                if (addressData) {
+                    setLocation(addressData);
+                }
+            } catch (error) {
+                console.log('getAddressDataError ' + error);
+            }
+        };
+
         if (currentLocation.latitude && currentLocation.longitude) {
             getAddressData(currentLocation.latitude, currentLocation.longitude);
         }
