@@ -4,10 +4,10 @@ import Geolocation from 'react-native-geolocation-service';
 import ResetLocationIcon from 'assets/image/icon/btn_reset.svg';
 import { useAppSelector } from 'hooks/redux/store';
 import { ResetLocationButtonProps } from 'interfaces/Location.interface';
-import { ResetLocation, ResetLocationButtonContainer } from 'styles/layout/location/ResetLocationButton.style';
+import { ResetLocation } from 'styles/layout/location/ResetLocationButton.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
-export default function ResetLocationButton({ GetCurrentLocation, setMyPosition, setZoom }: ResetLocationButtonProps) {
+export default function ResetLocationButton({ getCurrentLocation, setMyPosition, setZoom }: ResetLocationButtonProps) {
     const currentLocation = useAppSelector(state => state.location);
 
     /** 지도 zoom 변경 및, 화면을 내 위치로 전환 */
@@ -30,7 +30,7 @@ export default function ResetLocationButton({ GetCurrentLocation, setMyPosition,
         let watch = -1;
         GetLocationAuthorization().then(result => {
             if (result === 'granted') {
-                watch = GetCurrentLocation();
+                watch = getCurrentLocation();
             }
         });
 

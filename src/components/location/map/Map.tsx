@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Platform } from 'react-native';
+import { Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Geolocation from 'react-native-geolocation-service';
 import NaverMapView, { Marker } from 'react-native-nmap';
@@ -22,12 +22,9 @@ import ResetLocationButton from './ResetLocationButton';
 export default function Map() {
     const currentLocation = useAppSelector(state => state.location);
     const dispatch = useDispatch();
-    const platform = Platform.OS;
     const cardMoveY = useRef(new Animated.Value(0)).current;
     const navigation = useNavigation<LocationStackScreenProps<'Location'>['navigation']>();
 
-    /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
-    const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
     const defaultLatitude = 37.564362;
     const defaultLongitude = 126.977011;
 
@@ -70,6 +67,9 @@ export default function Map() {
     /** 카메라 위치 변경시 */
     const changePosition = useCallback(
         (latitude: number, longitude: number) => {
+            /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
+            const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
+
             /** 위도가 최북단 보다 크거나 최남단 보다 작을때 (reset) */
             if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
                 setMyPosition({
@@ -86,7 +86,7 @@ export default function Map() {
                 setMyPosition(prev => ({ ...prev, latitude, longitude }));
             }
         },
-        [MAX_COORD, currentLocation.latitude, currentLocation.longitude],
+        [currentLocation.latitude, currentLocation.longitude],
     );
 
     /** 위치 권한 획득 시 redux store에 저장 */
@@ -197,7 +197,7 @@ export default function Map() {
             {branchData.length > 0 ? (
                 <Animated.View style={{ transform: [{ translateY: cardMoveY }] }}>
                     <ResetLocationButton
-                        GetCurrentLocation={getCurrentLocation}
+                        getCurrentLocation={getCurrentLocation}
                         setMyPosition={setMyPosition}
                         setZoom={setZoom}
                     />
@@ -211,7 +211,7 @@ export default function Map() {
                         </NoBranchToastContainer>
                     )}
                     <ResetLocationButton
-                        GetCurrentLocation={getCurrentLocation}
+                        getCurrentLocation={getCurrentLocation}
                         setMyPosition={setMyPosition}
                         setZoom={setZoom}
                     />
