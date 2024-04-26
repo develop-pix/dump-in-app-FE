@@ -117,6 +117,8 @@ export type MyPageStackParamList = {
         keyword: string | undefined;
         isEventReview: boolean | undefined;
     };
+    TermsOfUse: undefined;
+    PrivacyPolicy: undefined;
 };
 
 export type MyPageStackScreenProps<RouteName extends keyof MyPageStackParamList> = CompositeScreenProps<

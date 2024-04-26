@@ -39,6 +39,20 @@ export default function MyPageMenu() {
         }
     };
 
+    /** 이용약관 페이지이동(Webview) */
+    const onPressTermsOfUse = () => {
+        if (isFocused) {
+            navigation.navigate('TermsOfUse');
+        }
+    };
+
+    /** 개인정보 처리방침 페이지이동(Webview)*/
+    const onPressPrivacyPolicy = () => {
+        if (isFocused) {
+            navigation.navigate('PrivacyPolicy');
+        }
+    };
+
     /** 로그아웃 버튼 클릭시 모달 출력 */
     const onLogoutAlert = () => {
         setIsAlertModalVisible(true);
@@ -112,10 +126,10 @@ export default function MyPageMenu() {
                     <MenuItemContainer onPress={onMailToDevelop}>
                         <FontWhiteGreyBiggerSemibold>문의하기</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
-                    <MenuItemContainer>
+                    <MenuItemContainer onPress={onPressTermsOfUse}>
                         <FontWhiteGreyBiggerSemibold>이용약관</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
-                    <MenuItemContainer>
+                    <MenuItemContainer onPress={onPressPrivacyPolicy}>
                         <FontWhiteGreyBiggerSemibold>개인정보 처리방침</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
                     <MenuItemContainer>

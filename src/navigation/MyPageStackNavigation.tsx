@@ -1,5 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
+import PrivacyPolicy from 'components/my-page/my-activity/PrivacyPolicy';
+import TermsOfUse from 'components/my-page/my-activity/TermsOfUse';
 import MyPageMenu from 'components/my-page/MyPageMenu';
 import Branch from 'screens/Branch';
 import Login from 'screens/Login';
@@ -72,6 +74,8 @@ export default function MyPageStackNavigation() {
                     headerTitleAlign: 'center',
                 }}
             />
+            <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
+            <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         </Stack.Navigator>
     );
 }
