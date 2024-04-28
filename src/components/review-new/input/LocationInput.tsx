@@ -39,7 +39,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
             try {
                 if (Id) {
                     const branchData = await GetBranchData(null, null, Id);
-                    return branchData.data.name;
+                    return branchData.data;
                 }
             } catch (e) {
                 console.log(e);
@@ -49,7 +49,7 @@ export default function LocationInput({ errorData }: LocationInputProps) {
             if (branchID) {
                 const response = await GetBranchNameData(branchID);
                 if (response) {
-                    setBranchName(response);
+                    setBranchName(`${response.photoBoothBrand.name} ${response.location}`);
                 }
             }
         };

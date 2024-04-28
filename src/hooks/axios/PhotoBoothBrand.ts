@@ -16,13 +16,14 @@ export const GetDetailPhotoBoothBrandData = async (photo_booth_brand_id: number)
         });
 };
 
-export const GetPhotoBoothEventList = async (photo_booth_brand_id: number, limit: number) => {
+export const GetPhotoBoothEventList = async (limit: number, offset: number, photo_booth_brand_id: number) => {
     return await axiosInstance({
         method: 'get',
         url: `/photo-booths/brands/${photo_booth_brand_id}/events`,
         params: {
-            photo_booth_brand_id,
             limit,
+            offset,
+            photo_booth_brand_id,
         },
     })
         .then(res => {

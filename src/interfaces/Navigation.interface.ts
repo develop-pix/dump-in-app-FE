@@ -37,7 +37,17 @@ export type MainTabScreenProps<RouteName extends keyof MainTabParamList> = Compo
 export type HomeStackParamList = {
     Home: undefined;
     PhotoBoothDetail: { photoBoothID: number };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        reviewType: 'filter' | 'search';
+        photoBoothLocation: string | undefined;
+        frameColor: string | undefined;
+        participants: number | undefined;
+        cameraShot: string | undefined;
+        concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
+    };
     EventDetail: { eventID: number };
     AddReviewModal: undefined;
 };
@@ -51,7 +61,17 @@ export type LocationStackParamList = {
     Location: undefined | { photoBoothID: number | null };
     LocationSearch: undefined;
     Branch: { branchID: string };
-    ReviewDetail: { reviewID: number; branchID: string | undefined };
+    ReviewDetail: {
+        reviewID: number;
+        reviewType: 'photo_booth';
+        photoBoothLocation: string | undefined;
+        frameColor: string | undefined;
+        participants: number | undefined;
+        cameraShot: string | undefined;
+        concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
+    };
 };
 
 export type LocationStackScreenProps<RouteName extends keyof LocationStackParamList> = CompositeScreenProps<
@@ -62,7 +82,17 @@ export type LocationStackScreenProps<RouteName extends keyof LocationStackParamL
 export type CategoryStackParamList = {
     Category: undefined;
     PhotoBoothDetail: { photoBoothID: number };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        reviewType: 'photo_booth_brand';
+        photoBoothLocation: string | undefined;
+        frameColor: string | undefined;
+        participants: number | undefined;
+        cameraShot: string | undefined;
+        concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
+    };
     EventDetail: { eventID: number };
 };
 
@@ -76,7 +106,17 @@ export type MyPageStackParamList = {
     Login: undefined;
     Menu: undefined;
     Branch: { branchID: string };
-    ReviewDetail: { reviewID: number };
+    ReviewDetail: {
+        reviewID: number;
+        reviewType: 'mine' | 'like';
+        photoBoothLocation: string | undefined;
+        frameColor: string | undefined;
+        participants: number | undefined;
+        cameraShot: string | undefined;
+        concept: string[] | undefined;
+        keyword: string | undefined;
+        isEventReview: boolean | undefined;
+    };
 };
 
 export type MyPageStackScreenProps<RouteName extends keyof MyPageStackParamList> = CompositeScreenProps<

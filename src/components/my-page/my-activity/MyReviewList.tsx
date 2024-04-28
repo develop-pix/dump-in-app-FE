@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import ReviewFrame from 'components/home/photo-booth-list/ReviewFrame';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
@@ -21,11 +20,13 @@ import {
 } from 'styles/layout/my-page/MyActivity/MyReviewList.style';
 import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
+import MyReviewFrame from './MyReviewFrame';
+
 export default function MyReviewList() {
-    const [page, setPage] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [dataEnd, setDataEnd] = useState(false);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(false);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
@@ -47,7 +48,7 @@ export default function MyReviewList() {
 
     /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
-        return <ReviewFrame data={item} />;
+        return <MyReviewFrame data={item} />;
     }, []);
 
     /** FlatList onEndReached */

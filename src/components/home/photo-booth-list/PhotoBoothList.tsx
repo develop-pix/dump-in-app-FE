@@ -13,7 +13,7 @@ import EventFrame from './EventFrame';
 import PhotoBoothFrame from './PhotoBoothFrame';
 import ReviewFrame from './ReviewFrame';
 
-const PhotoBoothList = ({ data }: PhotoBoothListProps) => {
+const PhotoBoothList = ({ data, filterData }: PhotoBoothListProps) => {
     const { photoBoothData, eventData, reviewData } = data;
 
     const allData: (PhotoBoothProps | EventProps | ReviewProps)[] = [];
@@ -56,7 +56,9 @@ const PhotoBoothList = ({ data }: PhotoBoothListProps) => {
                                 if (!item) {
                                     return <AddNewReviewDummy key={index} />;
                                 } else {
-                                    return <ReviewFrame key={index} data={item as ReviewProps} />;
+                                    return (
+                                        <ReviewFrame key={index} data={item as ReviewProps} filterData={filterData} />
+                                    );
                                 }
                             }
                         })}
@@ -75,7 +77,9 @@ const PhotoBoothList = ({ data }: PhotoBoothListProps) => {
                                 if (!item) {
                                     return <AddNewReviewDummy key={index} />;
                                 } else {
-                                    return <ReviewFrame key={index} data={item as ReviewProps} />;
+                                    return (
+                                        <ReviewFrame key={index} data={item as ReviewProps} filterData={filterData} />
+                                    );
                                 }
                             }
                         })}

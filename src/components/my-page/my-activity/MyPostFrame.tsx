@@ -31,6 +31,14 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
                 reviewID: data.id,
+                reviewType: 'like',
+                photoBoothLocation: undefined,
+                frameColor: undefined,
+                participants: 0,
+                cameraShot: undefined,
+                concept: undefined,
+                keyword: undefined,
+                isEventReview: undefined,
             });
         }
     };

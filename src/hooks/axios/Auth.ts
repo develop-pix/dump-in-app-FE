@@ -54,6 +54,19 @@ export const KakaoSocialLogin = async (accessToken: string | null, mobileToken: 
         });
 };
 
+export const WithDrawalUser = async () => {
+    return await axiosInstance({
+        method: 'delete',
+        url: `/users/detail`,
+    })
+        .then(res => {
+            return res.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 export const RefreshAccessToken = async (refresh: string, refreshTokenExpireAt: string) => {
     const currentDate = new Date();
     const refreshExpireDate = new Date(refreshTokenExpireAt);

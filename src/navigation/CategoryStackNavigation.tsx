@@ -28,7 +28,22 @@ export default function CategoryStackNavigation() {
                 initialParams={{ PhotoBoothID: 0 }}
                 options={{ headerShown: true, headerTransparent: true }}
             />
-            <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
+            <Stack.Screen
+                name="ReviewDetail"
+                component={ReviewDetail}
+                initialParams={{
+                    reviewID: undefined,
+                    prevReviewID: undefined,
+                    reviewType: 'photo_booth_brand',
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: undefined,
+                    cameraShot: undefined,
+                    concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
+                }}
+            />
             <Stack.Screen
                 name="EventDetail"
                 component={EventDetail}

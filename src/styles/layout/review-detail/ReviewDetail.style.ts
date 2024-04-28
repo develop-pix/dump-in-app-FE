@@ -22,7 +22,7 @@ export const ReviewDetailFormWrapper = styled.View`
 `;
 
 export const ReviewDetailCarousel = styled.ScrollView`
-    background-color: ${colors.white};
+    background-color: ${colors.lightblack};
 `;
 
 export const ReviewImageContainer = styled.View`

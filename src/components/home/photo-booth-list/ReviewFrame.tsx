@@ -14,7 +14,7 @@ import {
 } from 'styles/layout/home/photo-booth-list/ReviewFrame.style';
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
-export default function ReviewFrame({ data }: ReviewFrameProps) {
+export default function ReviewFrame({ data, filterData }: ReviewFrameProps) {
     const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
     const isFocused = useIsFocused();
 
@@ -23,6 +23,14 @@ export default function ReviewFrame({ data }: ReviewFrameProps) {
         if (isFocused) {
             navigation.navigate('ReviewDetail', {
                 reviewID: data.id,
+                reviewType: 'filter',
+                photoBoothLocation: filterData?.photoBoothLocation,
+                frameColor: filterData?.frameColor,
+                participants: filterData?.participants,
+                cameraShot: filterData?.cameraShot,
+                concept: filterData?.concept,
+                keyword: undefined,
+                isEventReview: undefined,
             });
         }
     };

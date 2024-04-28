@@ -8,6 +8,7 @@ import ReviewDetailForm from 'components/review-detail/ReviewDetailForm';
 import ReviewManageModal from 'components/review-detail/ReviewManageModal';
 import { useAppSelector } from 'hooks/redux/store';
 import {
+    CategoryStackScreenProps,
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
@@ -25,11 +26,13 @@ export default function ReviewDetail() {
         | HomeStackScreenProps<'ReviewDetail'>['navigation']
         | LocationStackScreenProps<'ReviewDetail'>['navigation']
         | MyPageStackScreenProps<'ReviewDetail'>['navigation']
+        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
     >();
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
         | MyPageStackScreenProps<'ReviewDetail'>['route']
+        | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
 
     const [openModal, setOpenModal] = useState<boolean>(false);

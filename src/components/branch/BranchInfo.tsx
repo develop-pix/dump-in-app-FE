@@ -6,7 +6,7 @@ import BranchTitle from './BranchTitle';
 
 export default function BranchInfo({
     photoBoothName,
-    branchName,
+    location,
     branchHashtag,
     loadAddress,
     streetAddress,
@@ -17,7 +17,7 @@ export default function BranchInfo({
         <BranchInfoContainer>
             <BranchTitle
                 photoBoothName={photoBoothName}
-                branchName={branchName}
+                location={location}
                 branchHashtag={branchHashtag}
                 isLiked={isLiked}
             />

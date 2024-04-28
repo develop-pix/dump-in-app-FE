@@ -29,7 +29,17 @@ export default function LocationStackNavigation() {
             <Stack.Screen
                 name="ReviewDetail"
                 component={ReviewDetail}
-                initialParams={{ reviewID: null }}
+                initialParams={{
+                    reviewID: undefined,
+                    reviewType: 'photo_booth',
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: undefined,
+                    cameraShot: undefined,
+                    concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
+                }}
                 options={{
                     headerShown: true,
                     headerStyle: {

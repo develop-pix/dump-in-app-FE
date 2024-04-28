@@ -15,6 +15,7 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
     const navigation = useNavigation();
     const isFocused = useIsFocused();
 
+    /** 리뷰 수정 */
     const onPressReviewEdit = () => {
         setOpenModal(false);
 
@@ -25,10 +26,11 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
         }
     };
 
+    /** 리뷰 삭제 */
     const onPressReviewDelete = async () => {
         try {
             const result = await DeleteReview(reviewID);
-            if (result.data) {
+            if (result.data.isDeleted) {
                 setOpenModal(false);
                 navigation.goBack();
             }

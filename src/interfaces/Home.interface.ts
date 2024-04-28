@@ -18,6 +18,7 @@ export interface CollectionDataProps {
 
 export interface PhotoBoothListProps {
     data: CollectionDataProps;
+    filterData: FilterProps;
 }
 
 export interface PhotoBoothFrameProps {
@@ -30,6 +31,7 @@ export interface EventFrameProps {
 
 export interface ReviewFrameProps {
     data: ReviewProps;
+    filterData?: FilterProps;
 }
 
 export interface PhotoBoothProps {
