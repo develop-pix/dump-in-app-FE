@@ -6,8 +6,11 @@ import { createLogger } from 'redux-logger';
 import { persistReducer } from 'redux-persist';
 
 import branchReviewDetailSlice from './branchReviewDetailSlice';
+import categoryReviewDetailSlice from './categoryReviewDetailSlice';
 import currentLocationSlice from './currentLocationSlice';
+import homeReviewDetailSlice from './homeReviewDetailSlice';
 import LoginSlice from './loginSlice';
+import myPageReviewDetailSlice from './myPageReviewDetailSlice';
 import reviewEditSlice from './reviewEditSlice';
 import reviewNewSlice from './reviewNewSlice';
 import userDataSlice from './userDataSlice';
@@ -20,6 +23,9 @@ const reducers = combineReducers({
     userData: userDataSlice.reducer,
     location: currentLocationSlice.reducer,
     branchReviewDetail: branchReviewDetailSlice,
+    homeReviewDetail: homeReviewDetailSlice,
+    categoryReviewDetail: categoryReviewDetailSlice,
+    myPageReviewDetail: myPageReviewDetailSlice,
 });
 
 const logger = createLogger();

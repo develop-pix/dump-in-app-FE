@@ -8,6 +8,7 @@ import ReviewDetailForm from 'components/review-detail/ReviewDetailForm';
 import ReviewManageModal from 'components/review-detail/ReviewManageModal';
 import { useAppSelector } from 'hooks/redux/store';
 import {
+    CategoryStackScreenProps,
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
@@ -22,19 +23,36 @@ import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';
 import { ReviewDetailContainer } from 'styles/layout/review-detail/ReviewDetail.style';
 
 export default function ReviewDetail() {
-    const navigation = useNavigation<
-        | HomeStackScreenProps<'ReviewDetail'>['navigation']
-        | LocationStackScreenProps<'ReviewDetail'>['navigation']
-        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
-    >();
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
         | MyPageStackScreenProps<'ReviewDetail'>['route']
+        | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'ReviewDetail'>['navigation']
+        | LocationStackScreenProps<'ReviewDetail'>['navigation']
+        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
+        | CategoryStackScreenProps<'ReviewDetail'>['navigation']
+    >();
+    const routes = navigation.getState().routes;
+    const tabRouteName = routes[0].name;
 
     const [openModal, setOpenModal] = useState(false);
-    const { isMine, photoBoothName } = useAppSelector(state => state.branchReviewDetail);
+    const { isMine, photoBoothName } = useAppSelector(state => {
+        switch (tabRouteName) {
+            case 'Home':
+                return state.homeReviewDetail;
+            case 'Location':
+                return state.branchReviewDetail;
+            case 'MyPage':
+                return state.myPageReviewDetail;
+            case 'Category':
+                return state.categoryReviewDetail;
+            default:
+                return state.homeReviewDetail;
+        }
+    });
 
     useEffect(() => {
         navigation.setOptions({

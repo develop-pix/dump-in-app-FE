@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Dimensions, NativeScrollEvent } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import { useDispatch } from 'react-redux';
 
@@ -8,9 +8,13 @@ import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData } from 'hooks/axios/Review';
 import { storage } from 'hooks/mmkv/storage';
-import { setReview } from 'hooks/redux/branchReviewDetailSlice';
+import { setBranchReview } from 'hooks/redux/branchReviewDetailSlice';
+import { setCategoryReview } from 'hooks/redux/categoryReviewDetailSlice';
+import { setHomeReview } from 'hooks/redux/homeReviewDetailSlice';
+import { setMyPageReview } from 'hooks/redux/myPageReviewDetailSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import {
+    CategoryStackScreenProps,
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
@@ -38,10 +42,32 @@ export default function ReviewDetail() {
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
         | MyPageStackScreenProps<'ReviewDetail'>['route']
+        | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'ReviewDetail'>['navigation']
+        | LocationStackScreenProps<'ReviewDetail'>['navigation']
+        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
+        | CategoryStackScreenProps<'ReviewDetail'>['navigation']
+    >();
+    const routes = navigation.getState().routes;
+    const tabRouteName = routes[0].name;
 
     const dispatch = useDispatch();
-    const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
+    const { mainThumbnailImageUrl, image } = useAppSelector(state => {
+        switch (tabRouteName) {
+            case 'Home':
+                return state.homeReviewDetail;
+            case 'Location':
+                return state.branchReviewDetail;
+            case 'MyPage':
+                return state.myPageReviewDetail;
+            case 'Category':
+                return state.categoryReviewDetail;
+            default:
+                return state.homeReviewDetail;
+        }
+    });
     const accessToken = storage.getString('token.accessToken');
 
     /** 캐러셀동작 */
@@ -63,15 +89,30 @@ export default function ReviewDetail() {
 
     // ReviewData fetch 및 dataSet
     useEffect(() => {
+        console.warn(tabRouteName);
         const getReviewData = async () => {
             const fetchData = await GetReviewData(route.params.reviewID);
+            console.warn(fetchData.data);
 
             if (fetchData.success) {
-                dispatch(setReview(fetchData.data));
+                switch (tabRouteName) {
+                    case 'Home':
+                        dispatch(setHomeReview(fetchData.data));
+                        break;
+                    case 'Location':
+                        dispatch(setBranchReview(fetchData.data));
+                        break;
+                    case 'MyPage':
+                        dispatch(setMyPageReview(fetchData.data));
+                        break;
+                    case 'Category':
+                        dispatch(setCategoryReview(fetchData.data));
+                        break;
+                }
             }
         };
         getReviewData();
-    }, [accessToken, dispatch, route.params.reviewID]);
+    }, [accessToken, dispatch, route.params.reviewID, tabRouteName]);
 
     return (
         <ReviewDetailFormContainer>
@@ -125,7 +166,6 @@ export default function ReviewDetail() {
                         <PrevButtonContainer onPress={onPressPrevButton}>
                             <PrevIcon width={40} height={40} />
                         </PrevButtonContainer>
-
                         <NextButtonContainer onPress={onPressNextButton}>
                             <NextIcon width={40} height={40} />
                         </NextButtonContainer>

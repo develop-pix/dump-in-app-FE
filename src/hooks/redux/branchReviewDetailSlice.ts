@@ -30,7 +30,7 @@ export const branchReviewDetailSlice = createSlice({
     name: 'branchReviewDetail',
     initialState,
     reducers: {
-        setReview(state, action) {
+        setBranchReview(state, action) {
             state.id = action.payload.id;
             state.image = [...action.payload.image];
             state.concept = [...action.payload.concept];
@@ -104,7 +104,7 @@ export const branchReviewDetailSlice = createSlice({
 });
 
 export const {
-    setReview,
+    setBranchReview,
     setReviewID,
     setImage,
     setImageClear,
