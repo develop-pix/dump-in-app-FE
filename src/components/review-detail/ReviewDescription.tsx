@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Platform } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
+import EtcImage from 'assets/image/icon/frame_etc.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
@@ -21,11 +22,15 @@ import {
     ReviewDescriptionContainer,
     ReviewDescriptionTouchableContainer,
     ReviewDescTop,
+    ReviewFrameColor,
+    ReviewFrameContainer,
+    ReviewFrameGradient,
 } from 'styles/layout/review-detail/ReviewDetail.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
-    const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
+    const { date, content, concept, isLiked, participants, cameraShot, curlAmount, goodsAmount, frameColor } =
+        useAppSelector(state => state.branchReviewDetail);
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState<boolean>(isLiked);
@@ -69,9 +74,27 @@ export default function ReviewDescription() {
                 </ReviewDescriptionTouchableContainer>
             </ReviewDescMiddle>
             <ReviewDescBottom>
+                <ReviewFrameContainer>
+                    <FontYellowSmallerMediumWithLineSpacing>#</FontYellowSmallerMediumWithLineSpacing>
+                    {frameColor === 'gradient' ? (
+                        <ReviewFrameGradient>
+                            <EtcImage width={16} height={16} />
+                        </ReviewFrameGradient>
+                    ) : (
+                        frameColor && <ReviewFrameColor colorOption={frameColor} />
+                    )}
+                </ReviewFrameContainer>
+                <FontYellowSmallerMediumWithLineSpacing># {participants}명</FontYellowSmallerMediumWithLineSpacing>
+                <FontYellowSmallerMediumWithLineSpacing># {cameraShot}</FontYellowSmallerMediumWithLineSpacing>
                 {TagsArrayToHashTagArrayForm(concept).map(tag => (
                     <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                 ))}
+                {curlAmount === true && (
+                    <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
+                )}
+                {goodsAmount === true && (
+                    <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>
+                )}
             </ReviewDescBottom>
         </ReviewDescriptionContainer>
     );

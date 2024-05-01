@@ -69,7 +69,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
         navigation.navigate('AddReviewModal');
     };
 
-    /** 검색페이지로 이동(추후 업데이트) */
+    /**TODO: 검색페이지로 이동(추후 업데이트) */
     const onPressHomeSearch = () => {
         navigation.navigate('HomeSearch', {
             photoBoothName,
