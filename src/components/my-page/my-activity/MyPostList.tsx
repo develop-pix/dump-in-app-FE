@@ -22,10 +22,10 @@ import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton
 import MyPostFrame from './MyPostFrame';
 
 export default function MyPostList() {
-    const [page, setPage] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(false);
+    const [dataEnd, setDataEnd] = useState(false);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);

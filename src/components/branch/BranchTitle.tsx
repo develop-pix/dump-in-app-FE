@@ -20,7 +20,7 @@ import {
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function BranchTitle({ photoBoothName, location, branchHashtag, isLiked }: BranchTitleProps) {
-    const [favorite, setFavorite] = useState<boolean>(isLiked);
+    const [favorite, setFavorite] = useState(isLiked);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;

@@ -36,7 +36,7 @@ export default function BranchCard({
     isLiked,
     distance,
 }: BranchCardProps) {
-    const [favorite, setFavorite] = useState<boolean>(isLiked);
+    const [favorite, setFavorite] = useState(isLiked);
     const navigation = useNavigation<LocationStackScreenProps<'Branch'>['navigation']>();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;

@@ -20,7 +20,7 @@ export default function ReviewLocationSearchForm() {
     const dispatch = useDispatch();
     const navigation = useNavigation<RootStackScreenProps<'ReviewLocationSearch'>['navigation']>();
 
-    const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState('');
     const [resultData, setResultData] = useState<BranchSearchData[]>([]);
 
     const routes = navigation.getState().routes;

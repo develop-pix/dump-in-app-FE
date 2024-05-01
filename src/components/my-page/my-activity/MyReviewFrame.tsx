@@ -24,7 +24,7 @@ export default function MyReviewFrame({ data }: ReviewFrameProps) {
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(true);
+    const [favorite, setFavorite] = useState(true);
 
     /** 리뷰선택시 페이지 이동 */
     const onPressReview = () => {

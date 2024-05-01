@@ -10,8 +10,8 @@ import { ListContainer, SearchBranchContainer } from 'styles/layout/location-sea
 import BranchList from './BranchList';
 
 export default function SearchBranchList({ search, resultData, setResultData }: SearchBranchListProps) {
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
-    const [page, setPage] = useState<number>(0);
+    const [dataEnd, setDataEnd] = useState(true);
+    const [page, setPage] = useState(0);
 
     const searchLimit = 20;
     const currentLocation = useAppSelector(state => state.location);

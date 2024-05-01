@@ -49,8 +49,8 @@ import ReviewSubmitButton from './ReviewSubmitButton';
 
 export default function ReviewEdit() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
-    const [openImageModal, setOpenImageModal] = useState<boolean>(false);
-    const [limitImage, setLimitImage] = useState<number>(4);
+    const [openImageModal, setOpenImageModal] = useState(false);
+    const [limitImage, setLimitImage] = useState(4);
 
     const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;

@@ -31,11 +31,11 @@ export default function Map() {
     const defaultLatitude = 37.564362;
     const defaultLongitude = 126.977011;
 
-    const [location, setLocation] = useState<string>('주소 입력');
+    const [location, setLocation] = useState('주소 입력');
     const [branchData, setBranchData] = useState<BranchCardData[]>([]);
-    const [zoom, setZoom] = useState<number>(18);
-    const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
-    const [toastVisible, setToastVisible] = useState<boolean>(false);
+    const [zoom, setZoom] = useState(18);
+    const [showNearBranch, setShowNearBranch] = useState(false);
+    const [toastVisible, setToastVisible] = useState(false);
     /** 현재 내가 보고있는 지도의 center */
     const [myPosition, setMyPosition] = useState<LocationData>({
         latitude: currentLocation.latitude || defaultLatitude,

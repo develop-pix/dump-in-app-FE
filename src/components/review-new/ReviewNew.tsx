@@ -28,8 +28,8 @@ import ReviewSubmitButton from './ReviewSubmitButton';
 
 export default function ReviewNew() {
     const [errorData, setErrorData] = useState<InputData[]>([]);
-    const [openImageModal, setOpenImageModal] = useState<boolean>(false);
-    const [limitImage, setLimitImage] = useState<number>(5);
+    const [openImageModal, setOpenImageModal] = useState(false);
+    const [limitImage, setLimitImage] = useState(5);
 
     const scrollRef = useRef<ScrollView | null>(null);
     const platform = Platform.OS;

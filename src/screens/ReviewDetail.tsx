@@ -35,7 +35,7 @@ export default function ReviewDetail() {
         | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
 
-    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [openModal, setOpenModal] = useState(false);
     const { isMine } = useAppSelector(state => state.branchReviewDetail);
 
     useEffect(() => {

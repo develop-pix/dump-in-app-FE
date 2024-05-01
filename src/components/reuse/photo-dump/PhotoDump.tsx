@@ -41,7 +41,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     const gap = Dimensions.get('window').width * 0.04;
     const offset = Dimensions.get('window').width * 0.06;
 
-    const [reviewActive, setReviewActive] = useState<number>(0);
+    const [reviewActive, setReviewActive] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
 
     const translateIn = scrollX.interpolate({

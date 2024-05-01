@@ -33,8 +33,8 @@ export default function ReviewDescription() {
         useAppSelector(state => state.branchReviewDetail);
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(isLiked);
-    const [numLines, setNumLines] = useState<number>(2);
+    const [favorite, setFavorite] = useState(isLiked);
+    const [numLines, setNumLines] = useState(2);
 
     const platform = Platform.OS;
     const route = useRoute<

@@ -26,7 +26,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(photoBoothData.isLiked);
+    const [favorite, setFavorite] = useState(photoBoothData.isLiked);
 
     /** 지점 항목 클릭시 */
     const onPressPhotoBooth = (id: string) => {

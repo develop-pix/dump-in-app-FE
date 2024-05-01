@@ -18,7 +18,7 @@ export default function LocationSearchForm() {
     const dispatch = useDispatch();
     const navigation = useNavigation<LocationStackScreenProps<'LocationSearch'>['navigation']>();
 
-    const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState('');
     const [resultData, setResultData] = useState<BranchData[] | []>([]);
 
     const searchBranch = () => {

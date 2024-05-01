@@ -26,7 +26,7 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(event.isLiked);
+    const [favorite, setFavorite] = useState(event.isLiked);
 
     /** EventDetail 페이지로 이동 */
     const onPressEvent = (id: number) => {

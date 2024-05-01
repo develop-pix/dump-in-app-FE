@@ -17,10 +17,10 @@ import CategoryEventFilter from './CategoryEventFilter';
 import CategoryEventItem from './CategoryEventItem';
 
 export default function CategoryEvent() {
-    const [page, setPage] = useState<number>(1);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState(1);
     const [hashtags, setHashtags] = useState<string[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState(true);
+    const [dataEnd, setDataEnd] = useState(true);
     const [eventList, setEventList] = useState<CategoryEventList[]>([]);
 
     const flatListRef = useRef<FlatList>(null);
