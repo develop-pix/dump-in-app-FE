@@ -19,7 +19,7 @@ const reducers = combineReducers({
     reviewEdit: reviewEditSlice.reducer,
     userData: userDataSlice.reducer,
     location: currentLocationSlice.reducer,
-    branchReviewDetail: branchReviewDetailSlice.reducer,
+    branchReviewDetail: branchReviewDetailSlice,
 });
 
 const logger = createLogger();

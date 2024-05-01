@@ -1,9 +1,8 @@
-import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 import { colors } from 'styles/base/Variable';
 
-export const ReviewDetailContainer = styled.SafeAreaView`
+export const ReviewDetailContainer = styled.View`
     flex: 1;
     justify-content: space-between;
     background-color: ${colors.lightblack};
@@ -12,75 +11,73 @@ export const ReviewDetailContainer = styled.SafeAreaView`
 export const TitleContainer = styled.View`
     width: 100%;
 `;
-export const ReviewDetailFormContainer = styled.SafeAreaView`
-    width: 100%;
-    align-items: center;
+export const ReviewDetailFormContainer = styled.View`
+    flex: 1;
 `;
 
 export const ReviewDetailFormWrapper = styled.View`
-    width: 100%;
+    flex: 1;
 `;
 
 export const ReviewDetailCarousel = styled.ScrollView`
     background-color: ${colors.white};
 `;
 
-export const ReviewImageContainer = styled.View`
-    object-fit: scale-down;
-    width: ${Dimensions.get('screen').width}px;
-    height: ${Dimensions.get('window').height}px;
-`;
-
-export const ReviewImage = styled.Image`
-    object-fit: scale-down;
-    width: 100%;
-    height: ${Dimensions.get('window').height - 88}px;
-`;
-
 export const DotContainer = styled.View`
     position: absolute;
     flex-direction: row;
     align-self: center;
+    top: 16px;
+    gap: 5px;
 `;
 
-export const DotActive = styled.View`
-    margin: 3px;
+export const DotActive = styled.View``;
+
+export const FillDot = styled.View`
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: ${colors.whitegrey};
+    border-color: ${colors.whitegrey};
+    border-width: 1px;
+`;
+
+export const EmptyDot = styled.View`
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: ${colors.white};
+    border-color: ${colors.whitegrey};
+    border-width: 1px;
 `;
 
 /** left: ReviewContainer width의 1/2 */
-export const ReviewDescriptionContainer = styled.View<{
-    platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
-}>`
-    display: flex;
-    gap: 10px;
-    width: 90%;
+export const ReviewDescriptionContainer = styled.View`
+    width: 100%;
     position: absolute;
-    bottom: ${props => (props.platform === 'ios' ? '170px' : props.platform === 'android' ? '140px' : null)};
-    left: ${Dimensions.get('window').width * 0.05}px;
+    bottom: 0;
+    left: 0;
 `;
 
 export const ReviewDescTop = styled.View`
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 44px;
 `;
 
-export const ReviewDescMiddle = styled.View`
-    gap: 10px;
-`;
+export const ReviewDescMiddle = styled.View``;
 
 export const ReviewDescriptionTouchableContainer = styled.TouchableOpacity``;
 
 export const ReviewDescBottom = styled.View`
-    display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 32px;
 `;
 
 export const ReviewDetailForm = styled.View`
-    width: 100%;
-    height: ${Dimensions.get('window').height}px;
+    flex: 1;
 `;
 
 export const ButtonContainer = styled.View`

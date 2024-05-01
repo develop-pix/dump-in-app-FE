@@ -22,13 +22,33 @@ const initialState: ReviewDetailState = {
     isPublic: true,
     viewCount: 0,
     likeCount: 0,
-    branchName: null,
+    photoBoothBrandName: null,
+    photoBoothName: null,
 };
 
 export const branchReviewDetailSlice = createSlice({
     name: 'branchReviewDetail',
     initialState,
     reducers: {
+        setReview(state, action) {
+            state.id = action.payload.id;
+            state.image = [...action.payload.image];
+            state.concept = [...action.payload.concept];
+            state.isMine = action.payload.isMine;
+            state.isLiked = action.payload.isLiked;
+            state.userNickname = action.payload.userNickname;
+            state.content = action.payload.content;
+            state.mainThumbnailImageUrl = action.payload.mainThumbnailImageUrl;
+            state.date = action.payload.date;
+            state.frameColor = action.payload.frameColor;
+            state.participants = action.payload.participants;
+            state.cameraShot = action.payload.cameraShot;
+            state.goodsAmount = action.payload.goodsAmount;
+            state.curlAmount = action.payload.curlAmount;
+            state.likeCount = action.payload.likeCount;
+            state.photoBoothBrandName = action.payload.photoBoothBrandName;
+            state.photoBoothName = action.payload.photoBoothName;
+        },
         setReviewID(state, action: PayloadAction<number | null>) {
             state.id = action.payload;
         },
@@ -80,13 +100,11 @@ export const branchReviewDetailSlice = createSlice({
         setLikeCount(state, action: PayloadAction<number>) {
             state.likeCount = action.payload;
         },
-        setBranchName(state, action: PayloadAction<string | null>) {
-            state.branchName = action.payload;
-        },
     },
 });
 
 export const {
+    setReview,
     setReviewID,
     setImage,
     setImageClear,
@@ -104,7 +122,6 @@ export const {
     setGoodsAmount,
     setCurlAmount,
     setLikeCount,
-    setBranchName,
 } = branchReviewDetailSlice.actions;
 
-export default branchReviewDetailSlice;
+export default branchReviewDetailSlice.reducer;

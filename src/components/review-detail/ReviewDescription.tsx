@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeReview } from 'hooks/axios/Review';
@@ -10,6 +11,7 @@ import {
     LocationStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
+import { colors } from 'styles/base/Variable';
 import {
     FontWhiteNormalMedium,
     FontWhiteSmallerMedium,
@@ -28,10 +30,9 @@ export default function ReviewDescription() {
     const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(isLiked);
-    const [numLines, setNumLines] = useState<number>(2);
+    const [favorite, setFavorite] = useState(isLiked);
+    const [numLines, setNumLines] = useState(2);
 
-    const platform = Platform.OS;
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
@@ -58,21 +59,31 @@ export default function ReviewDescription() {
     };
 
     return (
-        <ReviewDescriptionContainer platform={platform}>
-            <ReviewDescTop>
-                <FontWhiteSmallerMedium>{date}</FontWhiteSmallerMedium>
-                <FavoriteButton favorite={favorite} onPress={onPressReviewLikeButton} />
-            </ReviewDescTop>
-            <ReviewDescMiddle>
-                <ReviewDescriptionTouchableContainer onPress={onPressSeeMore} activeOpacity={0.8}>
-                    <FontWhiteNormalMedium numberOfLines={numLines}>{content}</FontWhiteNormalMedium>
-                </ReviewDescriptionTouchableContainer>
-            </ReviewDescMiddle>
-            <ReviewDescBottom>
-                {TagsArrayToHashTagArrayForm(concept).map(tag => (
-                    <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
-                ))}
-            </ReviewDescBottom>
+        <ReviewDescriptionContainer>
+            <LinearGradient
+                colors={['transparent', '#00000080', colors.black]}
+                locations={[0, 0.3, 1]}
+                style={{
+                    width: '100%',
+                    paddingVertical: 12,
+                    paddingHorizontal: 20,
+                    minHeight: 160,
+                }}>
+                <ReviewDescTop>
+                    <FontWhiteSmallerMedium>{date}</FontWhiteSmallerMedium>
+                    <FavoriteButton favorite={favorite} onPress={onPressReviewLikeButton} />
+                </ReviewDescTop>
+                <ReviewDescMiddle>
+                    <ReviewDescriptionTouchableContainer onPress={onPressSeeMore} activeOpacity={0.8}>
+                        <FontWhiteNormalMedium numberOfLines={numLines}>{content}</FontWhiteNormalMedium>
+                    </ReviewDescriptionTouchableContainer>
+                </ReviewDescMiddle>
+                <ReviewDescBottom>
+                    {TagsArrayToHashTagArrayForm(concept).map(tag => (
+                        <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
+                    ))}
+                </ReviewDescBottom>
+            </LinearGradient>
         </ReviewDescriptionContainer>
     );
 }

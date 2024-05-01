@@ -18,6 +18,7 @@ import {
     HeaderRightContainer,
     RowContainer,
 } from 'styles/layout/reuse/header/Header.style';
+import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';
 import { ReviewDetailContainer } from 'styles/layout/review-detail/ReviewDetail.style';
 
 export default function ReviewDetail() {
@@ -32,8 +33,8 @@ export default function ReviewDetail() {
         | MyPageStackScreenProps<'ReviewDetail'>['route']
     >();
 
-    const [openModal, setOpenModal] = useState<boolean>(false);
-    const { isMine } = useAppSelector(state => state.branchReviewDetail);
+    const [openModal, setOpenModal] = useState(false);
+    const { isMine, photoBoothName } = useAppSelector(state => state.branchReviewDetail);
 
     useEffect(() => {
         navigation.setOptions({
@@ -59,7 +60,7 @@ export default function ReviewDetail() {
                 return (
                     <RowContainer>
                         <LocationIcon width={20} height={24} style={{ marginRight: 4 }} />
-                        {/* <FontWhiteNormalMedium>{reviewData.photoBoothId}</FontWhiteNormalMedium> */}
+                        <FontWhiteNormalMedium>{photoBoothName}</FontWhiteNormalMedium>
                     </RowContainer>
                 );
             },
