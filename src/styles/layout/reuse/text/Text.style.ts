@@ -25,14 +25,6 @@ export const FontWhiteBiggerSemibold = styled.Text`
     font-weight: ${fontWeight.semibold};
 `;
 
-export const FontWhiteBiggerSemiboldWithTextAlign = styled.Text`
-    font-family: ${fontFamily.Pretendard};
-    color: ${colors.white};
-    font-size: ${fontSize.bigger};
-    font-weight: ${fontWeight.semibold};
-    text-align: center;
-`;
-
 export const FontWhiteNormalSemibold = styled.Text`
     font-family: ${fontFamily.Pretendard};
     color: ${colors.white};

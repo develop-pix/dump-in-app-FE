@@ -41,16 +41,6 @@
 			<string>org.reactjs.native.example.dump-in-app-FE</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>org.reactjs.native.example.dump-in-app-FE</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>org.reactjs.native.example.dump-in-app-FE</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
 				<string>DumpIn</string>
 			</array>
 		</dict>
