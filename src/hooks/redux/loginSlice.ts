@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { storage } from 'hooks/mmkv/storage';
 import { LoginState } from 'interfaces/redux/Store.interface';
 
 const initialState: LoginState = {
-    isLoggedIn: false,
+    isLoggedIn: storage.getString('token.accessToken') !== null,
 };
 
 export const LoginSlice = createSlice({
