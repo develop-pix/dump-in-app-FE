@@ -9,6 +9,7 @@ declare module 'react-native-config' {
         NAVER_CONSUMER_SECRET: string;
         NAVER_MAP_API_ID: string;
         NAVER_MAP_API_KEY: string;
+        MMKV_ENCRYPTION_KEY: string;
     }
 
     export const Config: NativeConfig;
