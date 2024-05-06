@@ -148,9 +148,9 @@ export default function HomeDataCollection() {
                 return (
                     <HeaderRightContainer>
                         <RowContainer>
-                            <HeaderIconContainer onPress={navigateToSearchScreen}>
+                            {/* <HeaderIconContainer onPress={navigateToSearchScreen}>
                                 <SearchIcon />
-                            </HeaderIconContainer>
+                            </HeaderIconContainer> */}
                             <HeaderIconContainer onPress={navigateToNotificationScreen}>
                                 {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
                             </HeaderIconContainer>
