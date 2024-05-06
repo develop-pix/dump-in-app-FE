@@ -196,7 +196,7 @@ export default function HomeDataCollection() {
                                 ListFooterComponent={<SkeletonGetMoreHomeData />}
                                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </>
                     ) : (
                         <NoResultPhotoBooth filterData={filterData} />

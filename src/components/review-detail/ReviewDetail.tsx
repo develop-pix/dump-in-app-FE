@@ -89,10 +89,8 @@ export default function ReviewDetail() {
 
     // ReviewData fetch 및 dataSet
     useEffect(() => {
-        console.warn(tabRouteName);
         const getReviewData = async () => {
             const fetchData = await GetReviewData(route.params.reviewID);
-            console.warn(fetchData.data);
 
             if (fetchData.success) {
                 switch (tabRouteName) {

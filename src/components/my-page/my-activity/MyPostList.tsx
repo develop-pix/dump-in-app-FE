@@ -105,7 +105,7 @@ export default function MyPostList() {
                                     columnWrapperStyle={{ justifyContent: 'space-between' }}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                <UpScrollButton flatListRef={flatListRef} />
                             </MyPostFlatListContainer>
                         ) : (
                             <MyPostFlatListContainer>
@@ -123,7 +123,7 @@ export default function MyPostList() {
                                     scrollEnabled={false}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                <UpScrollButton flatListRef={flatListRef} />
                             </MyPostFlatListContainer>
                         )
                     ) : (
@@ -139,7 +139,7 @@ export default function MyPostList() {
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageReview}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </MyPostFlatListContainer>
                     )}
                 </MyPostContainer>

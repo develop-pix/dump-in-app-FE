@@ -23,7 +23,7 @@ export const FilterTextButton = styled.TouchableOpacity<{
     width: ${({ buttonWidth }) => (buttonWidth ? `${buttonWidth}px` : 'auto')};
     height: 36px;
     padding: 4px 14px 4px 14px;
-    margin: 5px;
+    /* margin: 5px; */
     border-radius: 8px;
     background-color: ${({ isSelected }) => (isSelected ? colors.white : colors.blackgrey)};
     justify-content: center;

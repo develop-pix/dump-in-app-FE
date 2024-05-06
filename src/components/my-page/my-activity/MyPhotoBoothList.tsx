@@ -110,7 +110,7 @@ export default function MyPhotoBoothList() {
                                     renderItem={renderPhotoBoothItem}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                <UpScrollButton flatListRef={flatListRef} />
                             </MyPhotoBoothFlatListContainer>
                         ) : (
                             <MyPhotoBoothFlatListContainer>
@@ -126,7 +126,7 @@ export default function MyPhotoBoothList() {
                                     scrollEnabled={false}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                <UpScrollButton flatListRef={flatListRef} />
                             </MyPhotoBoothFlatListContainer>
                         )
                     ) : (
@@ -140,7 +140,7 @@ export default function MyPhotoBoothList() {
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </MyPhotoBoothFlatListContainer>
                     )}
                 </MyPhotoBoothContainer>

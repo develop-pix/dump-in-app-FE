@@ -109,7 +109,7 @@ export default function MyEventList() {
                                     renderItem={renderEventItem}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                <UpScrollButton flatListRef={flatListRef} />
                             </MyEventFlatListContainer>
                         ) : (
                             <MyEventFlatListContainer>
@@ -125,7 +125,7 @@ export default function MyEventList() {
                                     scrollEnabled={false}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                <UpScrollButton flatListRef={flatListRef} />
                             </MyEventFlatListContainer>
                         )
                     ) : (
@@ -139,7 +139,7 @@ export default function MyEventList() {
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageEvent}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </MyEventFlatListContainer>
                     )}
                 </MyEventContainer>

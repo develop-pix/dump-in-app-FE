@@ -81,6 +81,7 @@ export default function CategoryEvent() {
 
             {!isLoading ? (
                 <CategoryEventListContainer>
+                    <UpScrollButton flatListRef={flatListRef} />
                     {eventList.length > 0 ? (
                         <CategoryEventFlatListContainer>
                             {dataEnd ? (
@@ -92,7 +93,6 @@ export default function CategoryEvent() {
                                         renderItem={renderEventItem}
                                         showsVerticalScrollIndicator={false}
                                     />
-                                    <UpScrollButton top="90%" flatListRef={flatListRef} />
                                 </>
                             ) : (
                                 <>
@@ -106,7 +106,6 @@ export default function CategoryEvent() {
                                         ListFooterComponent={SkeletonGetMoreCategoryEventData}
                                         showsVerticalScrollIndicator={false}
                                     />
-                                    <UpScrollButton top="90%" flatListRef={flatListRef} />
                                 </>
                             )}
                         </CategoryEventFlatListContainer>

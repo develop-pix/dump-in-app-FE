@@ -83,7 +83,7 @@ export default function ReviewDetail() {
                 );
             },
         });
-    }, [isMine, navigation]);
+    }, [isMine, navigation, photoBoothName]);
 
     return (
         <ReviewDetailContainer>
