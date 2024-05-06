@@ -33,13 +33,14 @@ export const BranchCardLogo = styled.Image`
 
 export const BranchCardDescription = styled.View`
     display: flex;
+    gap: 10px;
     width: 70%;
 `;
 
 export const BranchCardBranchNameWrapper = styled.View`
     display: flex;
     flex-direction: row;
-    gap: 3px;
+    gap: 7px;
     align-items: center;
 `;
 

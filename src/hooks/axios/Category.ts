@@ -13,21 +13,19 @@ export const GetPhotoBoothBrandsList = async () => {
         });
 };
 
-//TODO: hashtag 수정필요 (배열? string?)
-export const GetEventList = async (hashtag: string[], limit: number, offset: number) => {
-    return await axiosInstance({
-        method: 'get',
-        url: `/events`,
-        params: {
-            hashtag: hashtag[0],
-            limit,
-            offset,
-        },
-    })
-        .then(res => {
-            return res.data;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+export const GetEventList = async (hashtags: string[], limit: number, offset: number) => {
+    const searchParams = new URLSearchParams();
+    hashtags.forEach((tag: string) => {
+        searchParams.append('hashtag', tag);
+    });
+
+    searchParams.append('limit', limit.toString());
+    searchParams.append('offset', offset.toString());
+
+    try {
+        const response = await axiosInstance.get(`/events?${searchParams}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 };

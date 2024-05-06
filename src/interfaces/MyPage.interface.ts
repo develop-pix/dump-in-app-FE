@@ -19,7 +19,7 @@ export interface MyPhotoBoothFrameProps {
 
 export interface MyPhotoBoothFrameType {
     id: string;
-    photoBoothName: string;
+    location: string;
     photoBoothBrandName: string;
     photoBoothBrandLogoImageUrl: string;
     hashtag: HashtagType[];

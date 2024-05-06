@@ -15,7 +15,7 @@ import {
 import MoreEventModal from './MoreEventModal';
 import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 
-export default function PhotoBoothEvent({ eventData }: PhotoBoothEventProps) {
+export default function PhotoBoothEvent({ dataLimit, page, setPage, eventData }: PhotoBoothEventProps) {
     const route = useRoute<
         HomeStackScreenProps<'PhotoBoothDetail'>['route'] | CategoryStackScreenProps<'PhotoBoothDetail'>['route']
     >();
@@ -37,7 +37,6 @@ export default function PhotoBoothEvent({ eventData }: PhotoBoothEventProps) {
         setShowMoreEventModal(false);
     };
 
-    //TODO: 테스트 필요함.
     /** 내 주변 포토부스 보럭가기 버튼 클릭시 Location tab으로 이동  */
     const onPressButton = () => {
         if (isFocused) {
@@ -84,7 +83,13 @@ export default function PhotoBoothEvent({ eventData }: PhotoBoothEventProps) {
                 </>
             )}
 
-            <MoreEventModal visible={showMoreEventModal} onClose={closeModal} eventData={eventData} />
+            <MoreEventModal
+                dataLimit={dataLimit}
+                page={page}
+                setPage={setPage}
+                visible={showMoreEventModal}
+                onClose={closeModal}
+            />
         </PhotoBoothEventContainer>
     );
 }

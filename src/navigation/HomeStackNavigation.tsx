@@ -27,7 +27,21 @@ export default function HomeStackNavigation() {
                 initialParams={{ PhotoBoothID: 0 }}
                 options={{ headerTransparent: true }}
             />
-            <Stack.Screen name="ReviewDetail" component={ReviewDetail} initialParams={{ reviewID: null }} />
+            <Stack.Screen
+                name="ReviewDetail"
+                component={ReviewDetail}
+                initialParams={{
+                    reviewID: undefined,
+                    reviewType: 'filter',
+                    photoBoothLocation: undefined,
+                    frameColor: undefined,
+                    participants: 0,
+                    cameraShot: undefined,
+                    concept: [],
+                    keyword: undefined,
+                    isEventReview: undefined,
+                }}
+            />
             <Stack.Screen
                 name="EventDetail"
                 component={EventDetail}

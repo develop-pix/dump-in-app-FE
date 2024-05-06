@@ -39,7 +39,7 @@ export interface ResetLocationButtonProps {
 
 export interface BranchCardData {
     id: string;
-    branchName: string;
+    location: string;
     latitude: number;
     longitude: number;
     isLiked: boolean;
@@ -48,7 +48,7 @@ export interface BranchCardData {
 }
 
 interface BranchCardPhotoBoothData {
-    photoBoothName: string;
+    name: string;
     logoImageURL: string;
     hashtag: ConceptData[];
 }
@@ -61,7 +61,7 @@ export interface BranchCardProps {
     id: string;
     imageLogo: string;
     photoBoothName: string;
-    branchName: string;
+    location: string;
     hashtag: ConceptData[];
     isLiked: boolean;
     distance: string;
