@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeBranch } from 'hooks/axios/Branch';
 import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
@@ -27,6 +28,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState(photoBoothData.isLiked);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** 지점 항목 클릭시 */
     const onPressPhotoBooth = (id: string) => {
@@ -34,6 +36,8 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
             navigation.navigate('Branch', {
                 branchID: id,
             });
+        } else {
+            setIsModalVisible(prev => !prev);
         }
     };
 
@@ -45,6 +49,12 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
                 setFavorite(prev => !prev);
             }
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        navigation.navigate('Login');
     };
 
     return (
@@ -70,6 +80,15 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
             <FavoriteIcon>
                 <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
             </FavoriteIcon>
+
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </MyPhotoBoothFrameContainer>
     );
 }

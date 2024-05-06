@@ -3,9 +3,14 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeEvent } from 'hooks/axios/Event';
 import { useAppSelector } from 'hooks/redux/store';
-import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
+import {
+    CategoryStackScreenProps,
+    HomeStackScreenProps,
+    MyPageStackScreenProps,
+} from 'interfaces/Navigation.interface';
 import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -22,11 +27,13 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
     const navigation = useNavigation<
         | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | MyPageStackScreenProps<'Login'>['navigation']
     >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState(event.isLiked);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** EventDetail 페이지로 이동 */
     const onPressEvent = (id: number) => {
@@ -53,7 +60,15 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        (navigation as MyPageStackScreenProps<'Login'>['navigation']).navigate('Login');
     };
 
     return (
@@ -83,6 +98,14 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
                     <FontWhiteGreySmallerMedium>{`${event.startDate} ~ ${event.endDate}`}</FontWhiteGreySmallerMedium>
                 </EventInfo>
             </EventImageWrapper>
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </EventItem>
     );
 }

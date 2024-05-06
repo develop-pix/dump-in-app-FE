@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
@@ -25,6 +26,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     const [favorite, setFavorite] = useState(true);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** 리뷰선택시 페이지 이동 */
     const onPressReview = () => {
@@ -50,7 +52,15 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        navigation.navigate('Login');
     };
 
     return (
@@ -82,6 +92,15 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </ReviewNameContainer>
             </ReviewInfo>
+
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </ReviewFrameContainer>
     );
 }

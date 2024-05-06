@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Platform } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import EtcImage from 'assets/image/icon/frame_etc.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import {
@@ -32,9 +33,11 @@ export default function ReviewDescription() {
     const { date, content, concept, isLiked, participants, cameraShot, curlAmount, goodsAmount, frameColor } =
         useAppSelector(state => state.branchReviewDetail);
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
+    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
 
     const [favorite, setFavorite] = useState(isLiked);
     const [numLines, setNumLines] = useState(2);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const platform = Platform.OS;
     const route = useRoute<
@@ -59,7 +62,15 @@ export default function ReviewDescription() {
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        navigation.navigate('Login');
     };
 
     return (
@@ -96,6 +107,14 @@ export default function ReviewDescription() {
                     <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>
                 )}
             </ReviewDescBottom>
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </ReviewDescriptionContainer>
     );
 }

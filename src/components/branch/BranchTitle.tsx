@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeBranch } from 'hooks/axios/Branch';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchTitleProps } from 'interfaces/Branch.interface';
-import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
+import { LocationStackScreenProps, MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     BranchHashTagsContainer,
     BranchNameContainer,
@@ -21,8 +22,10 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function BranchTitle({ photoBoothName, location, branchHashtag, isLiked }: BranchTitleProps) {
     const [favorite, setFavorite] = useState(isLiked);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
+    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** 하트 버튼 클릭시 */
@@ -32,7 +35,15 @@ export default function BranchTitle({ photoBoothName, location, branchHashtag, i
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        navigation.navigate('Login');
     };
 
     return (
@@ -49,6 +60,14 @@ export default function BranchTitle({ photoBoothName, location, branchHashtag, i
                 </BranchHashTagsContainer>
             </TitleContainer>
             <FavoriteButton favorite={favorite} onPress={onPressBranchLikeButton} />
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </BranchTitleContainer>
     );
 }
