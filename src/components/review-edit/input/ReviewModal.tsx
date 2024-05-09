@@ -1,6 +1,6 @@
-import { Platform } from 'react-native';
 import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Modal from 'react-native-modal';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 import { setEnlargedImage, setImage, setRepresentativeImage } from 'hooks/redux/reviewEditSlice';
@@ -14,10 +14,15 @@ import {
     ReviewTouchableOpacity,
 } from 'styles/layout/review-form/input/ReviewModal.style';
 
-export default function ReviewModal({ setOpenImageModal, limitImage, setLimitImage }: ReviewModalProps) {
+export default function ReviewModal({
+    openImageModal,
+    setOpenImageModal,
+    limitImage,
+    setLimitImage,
+}: ReviewModalProps) {
     const dispatch = useDispatch();
-    const platform = Platform.OS;
     const { representativeImage, image } = useAppSelector(state => state.reviewEdit);
+    const safeAreaInset = useSafeAreaInsets();
 
     /** 카메라 작동 */
     const onPressCameraOpen = async () => {
@@ -134,7 +139,7 @@ export default function ReviewModal({ setOpenImageModal, limitImage, setLimitIma
                 margin: 0,
                 justifyContent: 'flex-end',
             }}
-            isVisible={true}
+            isVisible={openImageModal}
             animationIn="slideInUp"
             animationOut="slideOutDown"
             backdropOpacity={0.7}
@@ -147,7 +152,7 @@ export default function ReviewModal({ setOpenImageModal, limitImage, setLimitIma
             onBackButtonPress={() => {
                 setOpenImageModal(false);
             }}>
-            <ReviewModalContainer platform={platform}>
+            <ReviewModalContainer style={{ paddingBottom: safeAreaInset.bottom }}>
                 <ReviewModalWrapper>
                     <ReviewTouchableOpacity onPress={onPressCameraOpen}>
                         <FontWhiteNormalSemibold>사진 촬영하기</FontWhiteNormalSemibold>
