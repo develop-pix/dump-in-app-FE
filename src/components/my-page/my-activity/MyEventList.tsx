@@ -23,10 +23,10 @@ import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton
 
 export default function MyEventList() {
     // 무한 스크롤 페이지
-    const [page, setPage] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const [eventData, setEventData] = useState<EventDataType[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
+    const [dataEnd, setDataEnd] = useState(true);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
@@ -117,15 +117,7 @@ export default function MyEventList() {
                                     alertText="즐겨찾는 이벤트가 없습니다."
                                     recommendText="진행중인 이벤트를 구경해 보세요!"
                                 />
-                                <FlatList
-                                    data={eventData}
-                                    keyExtractor={item => item.id.toString()}
-                                    ref={flatListRef}
-                                    renderItem={renderEventItem}
-                                    scrollEnabled={false}
-                                    ListFooterComponent={renderFooterItem}
-                                />
-                                <UpScrollButton flatListRef={flatListRef} />
+                                {renderFooterItem()}
                             </MyEventFlatListContainer>
                         )
                     ) : (

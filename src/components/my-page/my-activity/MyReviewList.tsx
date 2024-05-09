@@ -109,17 +109,7 @@ export default function MyReviewList() {
                                     alertText="내 사진이 없습니다."
                                     recommendText="첫 리뷰를 등록해 보세요!"
                                 />
-                                <FlatList
-                                    data={reviewData}
-                                    keyExtractor={item => item.id.toString()}
-                                    ref={flatListRef}
-                                    renderItem={renderReviewItem}
-                                    numColumns={2}
-                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                                    scrollEnabled={false}
-                                    ListFooterComponent={renderFooterItem}
-                                />
-                                <UpScrollButton flatListRef={flatListRef} />
+                                {renderFooterItem()}
                             </MyReviewFlatListContainer>
                         )
                     ) : (

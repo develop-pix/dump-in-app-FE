@@ -22,10 +22,10 @@ import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton
 import MyPostFrame from './MyPostFrame';
 
 export default function MyPostList() {
-    const [page, setPage] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(false);
+    const [dataEnd, setDataEnd] = useState(false);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
@@ -112,17 +112,7 @@ export default function MyPostList() {
                                     alertText="즐겨찾는 게시글이 없습니다."
                                     recommendText="마음에 드는 게시글을 찾아보세요!"
                                 />
-                                <FlatList
-                                    data={reviewData}
-                                    keyExtractor={item => item.id.toString()}
-                                    ref={flatListRef}
-                                    renderItem={renderReviewItem}
-                                    numColumns={2}
-                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                                    scrollEnabled={false}
-                                    ListFooterComponent={renderFooterItem}
-                                />
-                                <UpScrollButton flatListRef={flatListRef} />
+                                {renderFooterItem()}
                             </MyPostFlatListContainer>
                         )
                     ) : (
