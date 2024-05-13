@@ -8,5 +8,5 @@ export const CollectionContainer = styled.View`
 `;
 
 export const CollectionFlatList = styled(FlatList<CollectionDataProps>)`
-    padding-top: 16px;
+    padding-top: 4px;
 `;

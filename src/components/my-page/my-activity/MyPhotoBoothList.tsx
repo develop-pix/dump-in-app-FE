@@ -28,6 +28,7 @@ export default function MyPhotoBoothList() {
     const [isLoading, setIsLoading] = useState(true);
     const [photoBoothData, setPhotoBoothData] = useState<MyPhotoBoothFrameType[]>([]);
     const [dataEnd, setDataEnd] = useState(true);
+    const [scrollOffsetY, setScrollOffsetY] = useState(0);
 
     const dataLimit = 8;
     const flatListRef = useRef<FlatList>(null);
@@ -109,8 +110,15 @@ export default function MyPhotoBoothList() {
                                     ref={flatListRef}
                                     renderItem={renderPhotoBoothItem}
                                     ListFooterComponent={renderFooterItem}
+                                    showsVerticalScrollIndicator={false}
+                                    contentContainerStyle={{
+                                        paddingVertical: 16,
+                                    }}
+                                    onMomentumScrollEnd={event => {
+                                        setScrollOffsetY(event.nativeEvent.contentOffset.y);
+                                    }}
                                 />
-                                <UpScrollButton flatListRef={flatListRef} />
+                                {scrollOffsetY > 0 && <UpScrollButton flatListRef={flatListRef} />}
                             </MyPhotoBoothFlatListContainer>
                         ) : (
                             <MyPhotoBoothFlatListContainer>
@@ -131,6 +139,10 @@ export default function MyPhotoBoothList() {
                                 onEndReached={onEndReached}
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPagePhotoBooth}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={{
+                                    paddingVertical: 16,
+                                }}
                             />
                             <UpScrollButton flatListRef={flatListRef} />
                         </MyPhotoBoothFlatListContainer>

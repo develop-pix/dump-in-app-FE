@@ -27,6 +27,7 @@ export default function MyEventList() {
     const [isLoading, setIsLoading] = useState(true);
     const [eventData, setEventData] = useState<EventDataType[]>([]);
     const [dataEnd, setDataEnd] = useState(true);
+    const [scrollOffsetY, setScrollOffsetY] = useState(0);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
@@ -108,8 +109,15 @@ export default function MyEventList() {
                                     ref={flatListRef}
                                     renderItem={renderEventItem}
                                     ListFooterComponent={renderFooterItem}
+                                    showsVerticalScrollIndicator={false}
+                                    contentContainerStyle={{
+                                        paddingVertical: 16,
+                                    }}
+                                    onMomentumScrollEnd={event => {
+                                        setScrollOffsetY(event.nativeEvent.contentOffset.y);
+                                    }}
                                 />
-                                <UpScrollButton flatListRef={flatListRef} />
+                                {scrollOffsetY > 0 && <UpScrollButton flatListRef={flatListRef} />}
                             </MyEventFlatListContainer>
                         ) : (
                             <MyEventFlatListContainer>
@@ -130,6 +138,10 @@ export default function MyEventList() {
                                 onEndReached={onEndReached}
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageEvent}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={{
+                                    paddingVertical: 16,
+                                }}
                             />
                             <UpScrollButton flatListRef={flatListRef} />
                         </MyEventFlatListContainer>
