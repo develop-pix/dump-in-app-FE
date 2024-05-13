@@ -7,7 +7,6 @@ export const CameraShotImageContainer = styled.TouchableOpacity<{
     isSelected: boolean;
 }>`
     align-items: center;
-    position: relative;
     border-width: 1px;
     border-radius: 6px;
     border-color: ${({ isSelected }) => (isSelected ? colors.white : 'transparent')};
