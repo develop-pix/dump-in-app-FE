@@ -7,7 +7,6 @@ export const ReviewContainer = styled.TouchableOpacity`
     border-radius: 10px;
     width: ${Dimensions.get('window').width * 0.8}px;
     aspect-ratio: 1;
-    display: flex;
     gap: 10px;
     align-items: center;
     background-color: ${colors.white};
@@ -21,7 +20,6 @@ export const ReviewImage = styled.Image`
 
 /* left: ReviewContainer width의 1/2 */
 export const ReviewDescriptionContainer = styled.View`
-    display: flex;
     gap: 20px;
     width: 90%;
     position: absolute;
@@ -32,7 +30,6 @@ export const ReviewDescriptionContainer = styled.View`
 export const ReviewDescription = styled.View``;
 
 export const ReviewHashtags = styled.View`
-    display: flex;
     flex-direction: row;
     gap: 10px;
     flex-wrap: wrap;

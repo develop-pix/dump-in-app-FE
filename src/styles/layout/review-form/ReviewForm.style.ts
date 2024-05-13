@@ -28,7 +28,6 @@ export const InputWrapper = styled.View`
 `;
 
 export const LocationAndDateContainer = styled.View`
-    display: flex;
     width: 100%;
     flex-direction: row;
     gap: 20px;
@@ -42,7 +41,6 @@ export const ReviewDescriptionInputContainer = styled.View`
 `;
 
 export const EquipmentContainer = styled.View`
-    display: flex;
     width: 100%;
     flex-direction: row;
     gap: 20px;

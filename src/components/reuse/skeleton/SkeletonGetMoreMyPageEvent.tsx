@@ -8,7 +8,6 @@ export default function SkeletonGetMoreMyPageEvent() {
         <SkeletonPlaceholder backgroundColor={colors.blackgrey} highlightColor={colors.lightgrey}>
             <SkeletonPlaceholder.Item
                 width={Dimensions.get('window').width}
-                flexDirection="column"
                 justifyContent="center"
                 alignItems="center">
                 <SkeletonPlaceholder.Item width={Dimensions.get('window').width - 20} height={145} borderRadius={10} />

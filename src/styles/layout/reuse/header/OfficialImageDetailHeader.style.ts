@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 export const OfficialImageDetailHeaderContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
-    display: flex;
     flex-direction: row;
     width: 100%;
     height: 44px;

@@ -4,7 +4,6 @@ import { colors } from 'styles/base/Variable';
 
 export const LocationInputContainer = styled.View`
     width: 47%;
-    flex-direction: column;
     gap: 10px;
 `;
 

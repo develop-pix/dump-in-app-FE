@@ -6,7 +6,7 @@ import { colors } from 'styles/base/Variable';
 export default function SkeletonCategoryEvent() {
     return (
         <SkeletonPlaceholder backgroundColor={colors.blackgrey} highlightColor={colors.lightgrey}>
-            <SkeletonPlaceholder.Item flexDirection="column" justifyContent="center" alignItems="center">
+            <SkeletonPlaceholder.Item justifyContent="center" alignItems="center">
                 <SkeletonPlaceholder.Item
                     width={Dimensions.get('window').width - 40}
                     aspectRatio={1}
