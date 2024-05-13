@@ -16,7 +16,10 @@ export const MyPostFlatListContainer = styled.View`
     flex: 1;
 `;
 
-export const SkeletonMyPostContainer = styled.View``;
+export const SkeletonMyPostContainer = styled.View`
+    flex: 1;
+    padding-vertical: 16px;
+`;
 
 export const MyPostFrameContainer = styled.View`
     flex: 0.5;

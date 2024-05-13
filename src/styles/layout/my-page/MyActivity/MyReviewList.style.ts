@@ -16,7 +16,10 @@ export const MyReviewFlatListContainer = styled.View`
     flex: 1;
 `;
 
-export const SkeletonMyReviewContainer = styled.View``;
+export const SkeletonMyReviewContainer = styled.View`
+    flex: 1;
+    padding-vertical: 16px;
+`;
 
 export const MyReviewFrameContainer = styled.View`
     flex: 0.5;
