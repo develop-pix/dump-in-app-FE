@@ -6,5 +6,4 @@ import { colors } from 'styles/base/Variable';
 export const ActivityContainer = styled.View`
     width: ${Dimensions.get('window').width}px;
     background-color: ${colors.blackgrey};
-    margin-bottom: 16px;
 `;

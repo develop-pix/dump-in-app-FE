@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { Platform } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import {
+    CategoryStackScreenProps,
     HomeStackScreenProps,
     LocationStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
+import { colors } from 'styles/base/Variable';
 import {
     FontWhiteNormalMedium,
     FontWhiteSmallerMedium,
@@ -25,18 +27,39 @@ import {
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
-    const { date, content, concept, isLiked } = useAppSelector(state => state.branchReviewDetail);
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(isLiked);
-    const [numLines, setNumLines] = useState<number>(2);
-
-    const platform = Platform.OS;
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
         | MyPageStackScreenProps<'ReviewDetail'>['route']
+        | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
+    const navigation = useNavigation<
+        | HomeStackScreenProps<'ReviewDetail'>['navigation']
+        | LocationStackScreenProps<'ReviewDetail'>['navigation']
+        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
+        | CategoryStackScreenProps<'ReviewDetail'>['navigation']
+    >();
+    const routes = navigation.getState().routes;
+    const tabRouteName = routes[0].name;
+
+    const { date, content, concept, isLiked } = useAppSelector(state => {
+        switch (tabRouteName) {
+            case 'Home':
+                return state.homeReviewDetail;
+            case 'Location':
+                return state.branchReviewDetail;
+            case 'MyPage':
+                return state.myPageReviewDetail;
+            case 'Category':
+                return state.categoryReviewDetail;
+            default:
+                return state.homeReviewDetail;
+        }
+    });
+    const [favorite, setFavorite] = useState(isLiked);
+    const [numLines, setNumLines] = useState(2);
 
     /** 리뷰(content) 더보기, 줄이기 */
     const onPressSeeMore = () => {
@@ -58,21 +81,31 @@ export default function ReviewDescription() {
     };
 
     return (
-        <ReviewDescriptionContainer platform={platform}>
-            <ReviewDescTop>
-                <FontWhiteSmallerMedium>{date}</FontWhiteSmallerMedium>
-                <FavoriteButton favorite={favorite} onPress={onPressReviewLikeButton} />
-            </ReviewDescTop>
-            <ReviewDescMiddle>
-                <ReviewDescriptionTouchableContainer onPress={onPressSeeMore} activeOpacity={0.8}>
-                    <FontWhiteNormalMedium numberOfLines={numLines}>{content}</FontWhiteNormalMedium>
-                </ReviewDescriptionTouchableContainer>
-            </ReviewDescMiddle>
-            <ReviewDescBottom>
-                {TagsArrayToHashTagArrayForm(concept).map(tag => (
-                    <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
-                ))}
-            </ReviewDescBottom>
+        <ReviewDescriptionContainer>
+            <LinearGradient
+                colors={['transparent', '#00000080', colors.black]}
+                locations={[0, 0.3, 1]}
+                style={{
+                    width: '100%',
+                    paddingVertical: 12,
+                    paddingHorizontal: 20,
+                    minHeight: 160,
+                }}>
+                <ReviewDescTop>
+                    <FontWhiteSmallerMedium>{date}</FontWhiteSmallerMedium>
+                    <FavoriteButton favorite={favorite} onPress={onPressReviewLikeButton} />
+                </ReviewDescTop>
+                <ReviewDescMiddle>
+                    <ReviewDescriptionTouchableContainer onPress={onPressSeeMore} activeOpacity={0.8}>
+                        <FontWhiteNormalMedium numberOfLines={numLines}>{content}</FontWhiteNormalMedium>
+                    </ReviewDescriptionTouchableContainer>
+                </ReviewDescMiddle>
+                <ReviewDescBottom>
+                    {TagsArrayToHashTagArrayForm(concept).map(tag => (
+                        <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
+                    ))}
+                </ReviewDescBottom>
+            </LinearGradient>
         </ReviewDescriptionContainer>
     );
 }

@@ -7,7 +7,6 @@ import { colors } from 'styles/base/Variable';
 
 export const PhotoDumpContainer = styled.View`
     width: 100%;
-    display: flex;
     gap: 10px;
     align-items: center;
 `;
@@ -18,7 +17,6 @@ export const SubTitleContainer = styled.View`
 
 export const OfficialImagesContainer = styled.View`
     width: 90%;
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 11px;
@@ -46,7 +44,6 @@ export const FindMoreReviewContainer = styled.View`
     border-radius: 10px;
     width: ${Dimensions.get('window').width * 0.8}px;
     aspect-ratio: 1;
-    display: flex;
     gap: 10px;
     align-items: center;
     background-color: ${colors.lightgrey};

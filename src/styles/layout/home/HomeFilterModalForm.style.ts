@@ -31,6 +31,7 @@ export const CloseButton = styled.TouchableOpacity`
 
 export const FilterOptionContainer = styled.View`
     padding: 10px 20px;
+    gap: 28px;
 `;
 
 export const FilterButtonBox = styled.View`

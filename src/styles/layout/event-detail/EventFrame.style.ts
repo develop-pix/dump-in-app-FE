@@ -5,7 +5,6 @@ import { colors } from 'styles/base/Variable';
 export const FrameContainer = styled.View`
     padding-bottom: 120px;
     width: 100%;
-    display: flex;
     gap: 10px;
     align-items: center;
 `;
@@ -16,7 +15,6 @@ export const SubTitleContainer = styled.View`
 
 export const FrameImageContainer = styled.View`
     width: 90%;
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 11px;

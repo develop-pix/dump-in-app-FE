@@ -43,6 +43,7 @@ export default function CategoryStackNavigation() {
                     keyword: undefined,
                     isEventReview: undefined,
                 }}
+                options={{ headerShown: true }}
             />
             <Stack.Screen
                 name="EventDetail"

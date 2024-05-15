@@ -48,6 +48,7 @@ export interface HashtagSelectProps {
 }
 
 export interface ReviewModalProps {
+    openImageModal: boolean;
     setOpenImageModal: React.Dispatch<React.SetStateAction<boolean>>;
     limitImage: number;
     setLimitImage: React.Dispatch<React.SetStateAction<number>>;

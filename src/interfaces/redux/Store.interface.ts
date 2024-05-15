@@ -55,7 +55,8 @@ export interface ReviewDetailState {
     isPublic: boolean;
     viewCount: number;
     likeCount: number;
-    branchName: string | null;
+    photoBoothBrandName: string | null;
+    photoBoothName: string | null;
 }
 
 export interface ConceptData {

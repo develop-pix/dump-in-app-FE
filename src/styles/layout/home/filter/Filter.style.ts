@@ -7,7 +7,8 @@ export const FilterContentContainer = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: 10px 0px 15px 0px;
+    margin-top: 12px;
+    gap: 10px;
 `;
 
 /** 필터 종류 텍스트 */
@@ -23,7 +24,6 @@ export const FilterTextButton = styled.TouchableOpacity<{
     width: ${({ buttonWidth }) => (buttonWidth ? `${buttonWidth}px` : 'auto')};
     height: 36px;
     padding: 4px 14px 4px 14px;
-    margin: 5px;
     border-radius: 8px;
     background-color: ${({ isSelected }) => (isSelected ? colors.white : colors.blackgrey)};
     justify-content: center;

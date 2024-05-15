@@ -6,10 +6,7 @@ import { colors, fontFamily, fontSize, fontWeight } from 'styles/base/Variable';
 export const CameraShotImageContainer = styled.TouchableOpacity<{
     isSelected: boolean;
 }>`
-    margin: 5px;
     align-items: center;
-    position: relative;
-
     border-width: 1px;
     border-radius: 6px;
     border-color: ${({ isSelected }) => (isSelected ? colors.white : 'transparent')};

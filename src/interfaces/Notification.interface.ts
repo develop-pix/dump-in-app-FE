@@ -1,6 +1,9 @@
 export interface NotificationItemProps {
     id: number;
+    category: string;
     title: string;
     content: string;
-    date: Date;
+    createdAt: Date;
+    updatedAt: Date;
+    isRead: boolean;
 }

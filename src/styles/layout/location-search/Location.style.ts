@@ -14,7 +14,6 @@ export const SearchForm = styled.SafeAreaView`
 `;
 
 export const SearchContainer = styled.View`
-    display: flex;
     align-items: flex-end;
     justify-content: space-between;
 `;
@@ -22,7 +21,6 @@ export const SearchContainer = styled.View`
 
 export const SearchBranchContainer = styled.View`
     width: 100%;
-    display: flex;
     align-items: center;
 `;
 
@@ -33,7 +31,6 @@ export const ListContainer = styled.View`
 /* BranchList */
 
 export const BranchListContainer = styled.TouchableOpacity`
-    display: flex;
     flex-direction: row;
     width: 100%;
     height: 44px;
@@ -46,7 +43,6 @@ export const LocationDarkIconContainer = styled.View`
 `;
 
 export const LocationInfo = styled.View`
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -55,11 +51,9 @@ export const LocationInfo = styled.View`
 export const BranchNameWrapper = styled.View`
     margin-left: 10px;
     margin-right: 30px;
-    display: flex;
     align-items: center;
 `;
 
 export const BranchDistanceWrapper = styled.View`
-    display: flex;
     align-items: center;
 `;

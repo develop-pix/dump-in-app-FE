@@ -1,12 +1,13 @@
 import styled from 'styled-components/native';
 
 export const PhotoBoothListContainer = styled.View`
+    width: 100%;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    column-gap: 16px;
+    padding-horizontal: 16px;
 `;
 
 export const PhotoBoothListColumnContainer = styled.View`
-    flex-direction: column;
+    flex: 0.5;
     align-items: center;
 `;

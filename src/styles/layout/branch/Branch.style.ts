@@ -15,7 +15,5 @@ export const BranchScrollView = styled.ScrollView.attrs({
 
 /* Branch */
 export const BranchForm = styled.View`
-    display: flex;
-    flex-direction: column;
     gap: 30px;
 `;

@@ -35,25 +35,21 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
         const newReviewData: ReviewProps[] = [
             {
                 id: lastReviewID + 1,
-                photoBoothBrandName: '포토부스 서울대점',
                 photoBoothName: '',
                 mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
                 id: lastReviewID + 2,
-                photoBoothBrandName: '포토부스 홍대점',
                 photoBoothName: '',
                 mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
                 id: lastReviewID + 3,
-                photoBoothBrandName: '포토그레이 서울대점',
                 photoBoothName: '',
                 mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
             {
                 id: lastReviewID + 4,
-                photoBoothBrandName: '인생네컷 홍대점',
                 photoBoothName: '',
                 mainThumbnailImageUrl: 'https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png',
             },
@@ -131,7 +127,7 @@ export default function SearchResult({ searchData, eventData, photoDumpData }: S
                 </>
             )}
 
-            {allPhotoBoothData.length >= 6 && <UpScrollButton top="50%" flatListRef={flatListRef} />}
+            {allPhotoBoothData.length >= 6 && <UpScrollButton flatListRef={flatListRef} />}
 
             <Modal
                 animationType="slide"
