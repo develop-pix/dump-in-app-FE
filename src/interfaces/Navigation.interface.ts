@@ -119,6 +119,7 @@ export type MyPageStackParamList = {
     };
     TermsOfUse: undefined;
     PrivacyPolicy: undefined;
+    AppInfo: undefined;
 };
 
 export type MyPageStackScreenProps<RouteName extends keyof MyPageStackParamList> = CompositeScreenProps<

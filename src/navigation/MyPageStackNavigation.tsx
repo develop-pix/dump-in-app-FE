@@ -1,5 +1,6 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
+import AppInfo from 'components/my-page/my-activity/AppInfo';
 import PrivacyPolicy from 'components/my-page/my-activity/PrivacyPolicy';
 import TermsOfUse from 'components/my-page/my-activity/TermsOfUse';
 import MyPageMenu from 'components/my-page/MyPageMenu';
@@ -76,6 +77,7 @@ export default function MyPageStackNavigation() {
             />
             <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+            <Stack.Screen name="AppInfo" component={AppInfo} />
         </Stack.Navigator>
     );
 }

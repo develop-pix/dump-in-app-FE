@@ -53,6 +53,13 @@ export default function MyPageMenu() {
         }
     };
 
+    /** */
+    const onPressVersionInfo = () => {
+        if (isFocused) {
+            navigation.navigate('AppInfo');
+        }
+    };
+
     /** 로그아웃 버튼 클릭시 모달 출력 */
     const onLogoutAlert = () => {
         setIsAlertModalVisible(true);
@@ -132,8 +139,8 @@ export default function MyPageMenu() {
                     <MenuItemContainer onPress={onPressPrivacyPolicy}>
                         <FontWhiteGreyBiggerSemibold>개인정보 처리방침</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
-                    <MenuItemContainer>
-                        <FontWhiteGreyBiggerSemibold>버전 정보</FontWhiteGreyBiggerSemibold>
+                    <MenuItemContainer onPress={onPressVersionInfo}>
+                        <FontWhiteGreyBiggerSemibold>앱 정보</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
                 </TextContainer>
 

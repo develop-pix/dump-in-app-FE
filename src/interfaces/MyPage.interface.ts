@@ -35,3 +35,10 @@ export interface MyPageUserDataProps {
     activeComponent: ActivityComponentProps;
     updateActiveComponent: (newComponent: ActivityComponentProps) => void;
 }
+
+export interface OpenSourceLicenseType {
+    libraryName?: string;
+    _license?: string;
+    homepage?: string;
+    _licenseContent?: string;
+}
