@@ -5,9 +5,8 @@ import { colors } from 'styles/base/Variable';
 
 export const BranchCardContainer = styled.View`
     position: absolute;
-    bottom: -170px;
+    bottom: -160px;
     width: 100%;
-    display: flex;
     gap: 10px;
     align-items: center;
 `;
@@ -27,13 +26,10 @@ export const NoBranchContainer = styled.View``;
 
 export const NoBranchToastContainer = styled.View`
     position: absolute;
-    left: 80px;
-    bottom: 25px;
-    width: 242px;
-    height: 37px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    left: ${Dimensions.get('window').width / 2 - 120}px;
+    bottom: 16px;
+    width: 240px;
+    height: 36px;
     background-color: ${colors.black};
     opacity: 0.6;
     border-radius: 12px;

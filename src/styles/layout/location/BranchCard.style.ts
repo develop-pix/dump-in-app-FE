@@ -14,12 +14,10 @@ export const TouchableCardContainer = styled.TouchableOpacity`
 export const CardContainer = styled.View`
     width: 90%;
     height: 100%;
-    display: flex;
     justify-content: space-between;
 `;
 
 export const BranchCardTop = styled.View`
-    display: flex;
     padding-bottom: 10px;
     flex-direction: row;
     width: 100%;
@@ -32,13 +30,11 @@ export const BranchCardLogo = styled.Image`
 `;
 
 export const BranchCardDescription = styled.View`
-    display: flex;
     gap: 10px;
     width: 70%;
 `;
 
 export const BranchCardBranchNameWrapper = styled.View`
-    display: flex;
     flex-direction: row;
     gap: 7px;
     align-items: center;

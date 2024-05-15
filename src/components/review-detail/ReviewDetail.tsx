@@ -1,30 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { NativeScrollEvent, Platform } from 'react-native';
+import { Dimensions, NativeScrollEvent } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
+import FastImage from 'react-native-fast-image';
 import { useDispatch } from 'react-redux';
 
 import NextIcon from 'assets/image/icon/btn_next.svg';
 import PrevIcon from 'assets/image/icon/btn_prev.svg';
 import { GetReviewData, GetReviewReels } from 'hooks/axios/Review';
-import {
-    setBranchName,
-    setCameraShot,
-    setConcept,
-    setContent,
-    setCurlAmount,
-    setDate,
-    setFrameColor,
-    setGoodsAmount,
-    setImage,
-    setIsLiked,
-    setIsMine,
-    setLikeCount,
-    setMainThumbnailImageUrl,
-    setParticipants,
-    setReviewID,
-    setUserNickname,
-} from 'hooks/redux/branchReviewDetailSlice';
+import { setBranchReview } from 'hooks/redux/branchReviewDetailSlice';
+import { setCategoryReview } from 'hooks/redux/categoryReviewDetailSlice';
+import { setHomeReview } from 'hooks/redux/homeReviewDetailSlice';
+import { setMyPageReview } from 'hooks/redux/myPageReviewDetailSlice';
 import { useAppSelector } from 'hooks/redux/store';
 import {
     CategoryStackScreenProps,
@@ -32,20 +18,18 @@ import {
     LocationStackScreenProps,
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
-import { colors } from 'styles/base/Variable';
-import { FontWhiteGreySmallerMedium, FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 import {
     ButtonContainer,
     DotActive,
     DotContainer,
+    EmptyDot,
+    FillDot,
     NextButtonContainer,
     PrevButtonContainer,
     ReviewDetailCarousel,
     ReviewDetailForm,
     ReviewDetailFormContainer,
     ReviewDetailFormWrapper,
-    ReviewImage,
-    ReviewImageContainer,
 } from 'styles/layout/review-detail/ReviewDetail.style';
 
 import ReviewDescription from './ReviewDescription';
@@ -62,21 +46,37 @@ export default function ReviewDetail() {
         | CategoryStackScreenProps<'ReviewDetail'>['route']
     >();
     const navigation = useNavigation<
-        | HomeStackScreenProps<'Home'>['navigation']
-        | LocationStackScreenProps<'Branch'>['navigation']
-        | MyPageStackScreenProps<'MyPage'>['navigation']
-        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
+        | HomeStackScreenProps<'ReviewDetail'>['navigation']
+        | LocationStackScreenProps<'ReviewDetail'>['navigation']
+        | MyPageStackScreenProps<'ReviewDetail'>['navigation']
+        | CategoryStackScreenProps<'ReviewDetail'>['navigation']
     >();
-    const isFocused = useIsFocused();
-    const platform = Platform.OS;
+    const routes = navigation.getState().routes;
+    const tabRouteName = routes[0].name;
+
     const dispatch = useDispatch();
-    const { mainThumbnailImageUrl, image } = useAppSelector(state => state.branchReviewDetail);
+    const isFocused = useIsFocused();
+
+    const { mainThumbnailImageUrl, image } = useAppSelector(state => {
+        switch (tabRouteName) {
+            case 'Home':
+                return state.homeReviewDetail;
+            case 'Location':
+                return state.branchReviewDetail;
+            case 'MyPage':
+                return state.myPageReviewDetail;
+            case 'Category':
+                return state.categoryReviewDetail;
+            default:
+                return state.homeReviewDetail;
+        }
+    });
 
     /** 캐러셀동작 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {
         if (nativeEvent) {
             const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
-            if (slide !== carouselActive) {
+            if (slide !== carouselActive && slide <= image.length) {
                 setCarouselActive(slide);
             }
         }
@@ -88,7 +88,7 @@ export default function ReviewDetail() {
             setCarouselActive(0);
             switch (navigation.getId()) {
                 case 'HomeStack':
-                    (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as HomeStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
                         reviewType: 'filter',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -101,7 +101,7 @@ export default function ReviewDetail() {
                     });
                     break;
                 case 'LocationStack':
-                    (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as LocationStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
                         reviewType: 'photo_booth',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -114,7 +114,7 @@ export default function ReviewDetail() {
                     });
                     break;
                 case 'MyPageStack':
-                    (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as MyPageStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
                         reviewType: 'like' || 'mine',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -127,7 +127,7 @@ export default function ReviewDetail() {
                     });
                     break;
                 case 'CategoryStack':
-                    (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as CategoryStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: prevReviewID.current,
                         reviewType: 'photo_booth_brand',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -149,7 +149,7 @@ export default function ReviewDetail() {
             setCarouselActive(0);
             switch (navigation.getId()) {
                 case 'HomeStack':
-                    (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as HomeStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
                         reviewType: 'filter',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -162,7 +162,7 @@ export default function ReviewDetail() {
                     });
                     break;
                 case 'LocationStack':
-                    (navigation as LocationStackScreenProps<'Branch'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as LocationStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
                         reviewType: 'photo_booth',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -175,7 +175,7 @@ export default function ReviewDetail() {
                     });
                     break;
                 case 'MyPageStack':
-                    (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as MyPageStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
                         reviewType: 'like' || 'mine',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -188,7 +188,7 @@ export default function ReviewDetail() {
                     });
                     break;
                 case 'CategoryStack':
-                    (navigation as CategoryStackScreenProps<'Category'>['navigation']).navigate('ReviewDetail', {
+                    (navigation as CategoryStackScreenProps<'ReviewDetail'>['navigation']).navigate('ReviewDetail', {
                         reviewID: nextReviewID.current,
                         reviewType: 'photo_booth_brand',
                         photoBoothLocation: route.params.photoBoothLocation,
@@ -207,34 +207,28 @@ export default function ReviewDetail() {
     // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
-            try {
-                const fetchData = await GetReviewData(route.params.reviewID);
-                if (fetchData.data) {
-                    dispatch(setReviewID(fetchData.data.id));
-                    dispatch(setImage(fetchData.data.image));
-                    dispatch(setConcept(fetchData.data.concept));
-                    dispatch(setIsMine(fetchData.data.isMine));
-                    dispatch(setIsLiked(fetchData.data.isLiked));
-                    dispatch(setUserNickname(fetchData.data.userNickname));
-                    dispatch(setContent(fetchData.data.content));
-                    dispatch(setMainThumbnailImageUrl(fetchData.data.mainThumbnailImageUrl));
-                    dispatch(setDate(fetchData.data.date));
-                    dispatch(setFrameColor(fetchData.data.frameColor));
-                    dispatch(setParticipants(fetchData.data.participants));
-                    dispatch(setCameraShot(fetchData.data.cameraShot));
-                    dispatch(setGoodsAmount(fetchData.data.goodsAmount));
-                    dispatch(setCurlAmount(fetchData.data.curlAmount));
-                    dispatch(setLikeCount(fetchData.data.likeCount));
-                    dispatch(setBranchName(fetchData.data.photoBoothBrandName + ' ' + fetchData.data.photoBoothName));
+            const fetchData = await GetReviewData(route.params.reviewID);
+
+            if (fetchData.success) {
+                switch (tabRouteName) {
+                    case 'Home':
+                        dispatch(setHomeReview(fetchData.data));
+                        break;
+                    case 'Location':
+                        dispatch(setBranchReview(fetchData.data));
+                        break;
+                    case 'MyPage':
+                        dispatch(setMyPageReview(fetchData.data));
+                        break;
+                    case 'Category':
+                        dispatch(setCategoryReview(fetchData.data));
+                        break;
                 }
-            } catch (error) {
-                console.log('getReviewDataError ' + error);
             }
         };
 
         const getReviewReelsData = async () => {
             try {
-                //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
                 const reelsData = await GetReviewReels(
                     route.params.reviewType,
                     route.params.photoBoothLocation,
@@ -246,10 +240,6 @@ export default function ReviewDetail() {
                     route.params.isEventReview,
                     route.params.reviewID,
                 );
-
-                console.log('reelsData.data');
-                console.log(reelsData.data);
-
                 nextReviewID.current = reelsData.data.nextReviewId;
                 prevReviewID.current = reelsData.data.prevReviewId;
             } catch (error) {
@@ -264,9 +254,13 @@ export default function ReviewDetail() {
         route.params.cameraShot,
         route.params.concept,
         route.params.frameColor,
+        route.params.isEventReview,
+        route.params.keyword,
         route.params.participants,
+        route.params.photoBoothLocation,
         route.params.reviewID,
         route.params.reviewType,
+        tabRouteName,
     ]);
 
     return (
@@ -283,38 +277,40 @@ export default function ReviewDetail() {
                         showsHorizontalScrollIndicator={false}
                         snapToAlignment="start"
                         decelerationRate="fast">
-                        <ReviewImageContainer>
-                            {mainThumbnailImageUrl ? <ReviewImage source={{ uri: mainThumbnailImageUrl }} /> : null}
-                        </ReviewImageContainer>
+                        {mainThumbnailImageUrl && (
+                            <FastImage
+                                style={{ width: Dimensions.get('window').width }}
+                                source={{
+                                    uri: mainThumbnailImageUrl,
+                                }}
+                                resizeMode={FastImage.resizeMode.contain}
+                            />
+                        )}
                         {image.map(imageData => {
                             return (
-                                <ReviewImageContainer key={imageData.id}>
-                                    {mainThumbnailImageUrl ? (
-                                        <ReviewImage source={{ uri: imageData.imageUrl }} />
-                                    ) : null}
-                                </ReviewImageContainer>
+                                imageData.imageUrl && (
+                                    <FastImage
+                                        key={imageData.id}
+                                        style={{ width: Dimensions.get('window').width }}
+                                        source={{
+                                            uri: imageData.imageUrl,
+                                        }}
+                                        resizeMode={FastImage.resizeMode.contain}
+                                    />
+                                )
                             );
                         })}
                     </ReviewDetailCarousel>
-                    <DotContainer>
-                        <DotActive>
-                            {carouselActive === 0 ? (
-                                <FontWhiteSmallerMedium>●</FontWhiteSmallerMedium>
-                            ) : (
-                                <FontWhiteGreySmallerMedium>●</FontWhiteGreySmallerMedium>
-                            )}
-                        </DotActive>
-
-                        {image.map((_, index) => (
-                            <DotActive key={index}>
-                                {index + 1 === carouselActive ? (
-                                    <FontWhiteSmallerMedium>●</FontWhiteSmallerMedium>
-                                ) : (
-                                    <FontWhiteGreySmallerMedium>●</FontWhiteGreySmallerMedium>
-                                )}
-                            </DotActive>
-                        ))}
-                    </DotContainer>
+                    {image.length > 0 && (
+                        <DotContainer>
+                            {carouselActive === 0 ? <FillDot /> : <EmptyDot />}
+                            {image.map((_, index) => (
+                                <DotActive key={index}>
+                                    {index + 1 === carouselActive ? <FillDot /> : <EmptyDot />}
+                                </DotActive>
+                            ))}
+                        </DotContainer>
+                    )}
                     <ButtonContainer>
                         {prevReviewID.current !== null && (
                             <PrevButtonContainer onPress={onPressPrevButton}>
@@ -328,31 +324,6 @@ export default function ReviewDetail() {
                             </NextButtonContainer>
                         )}
                     </ButtonContainer>
-                    {platform === 'ios' ? (
-                        <LinearGradient
-                            colors={['transparent', colors.lightblack]}
-                            locations={[0, 1]}
-                            style={{
-                                position: 'absolute',
-                                left: 0,
-                                right: 0,
-                                bottom: 150,
-                                height: 300,
-                            }}
-                        />
-                    ) : (
-                        <LinearGradient
-                            colors={['transparent', colors.lightblack]}
-                            locations={[0.1, 1]}
-                            style={{
-                                position: 'absolute',
-                                left: 0,
-                                right: 0,
-                                bottom: 120,
-                                height: 300,
-                            }}
-                        />
-                    )}
                     <ReviewDescription />
                 </ReviewDetailFormWrapper>
             </ReviewDetailForm>

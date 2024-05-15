@@ -107,42 +107,43 @@ export default function ReviewEdit() {
     }, [dispatch, route.params.reviewID]);
 
     return (
-        <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal}>
-            {openImageModal ? (
-                <ReviewModal
+        <>
+            <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal}>
+                <GoBackButtonWithSubmitContainer platform={platform}>
+                    <ReviewGoBackButton />
+                    <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
+                </GoBackButtonWithSubmitContainer>
+                <ImageFileInput
                     setOpenImageModal={setOpenImageModal}
-                    limitImage={limitImage}
+                    errorData={errorData}
                     setLimitImage={setLimitImage}
+                    scrollRef={scrollRef}
                 />
-            ) : null}
-            <GoBackButtonWithSubmitContainer platform={platform}>
-                <ReviewGoBackButton />
-                <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
-            </GoBackButtonWithSubmitContainer>
-            <ImageFileInput
+                <InputContainer>
+                    <InputWrapper>
+                        <ReviewDescriptionInput errorData={errorData} />
+                        <LocationAndDateContainer>
+                            <LocationInput errorData={errorData} />
+                            <DateInput errorData={errorData} />
+                        </LocationAndDateContainer>
+                        <FrameColorSelect errorData={errorData} />
+                        <PartySelect errorData={errorData} />
+                        <CameraShotSelect errorData={errorData} />
+                        <HashtagSelect errorData={errorData} />
+                        <EquipmentContainer>
+                            <ToolsSelect />
+                            <HairIronSelect />
+                        </EquipmentContainer>
+                        <PublicOpenSwitch />
+                    </InputWrapper>
+                </InputContainer>
+            </ReviewFormScrollView>
+            <ReviewModal
+                openImageModal={openImageModal}
                 setOpenImageModal={setOpenImageModal}
-                errorData={errorData}
+                limitImage={limitImage}
                 setLimitImage={setLimitImage}
-                scrollRef={scrollRef}
             />
-            <InputContainer>
-                <InputWrapper>
-                    <ReviewDescriptionInput errorData={errorData} />
-                    <LocationAndDateContainer>
-                        <LocationInput errorData={errorData} />
-                        <DateInput errorData={errorData} />
-                    </LocationAndDateContainer>
-                    <FrameColorSelect errorData={errorData} />
-                    <PartySelect errorData={errorData} />
-                    <CameraShotSelect errorData={errorData} />
-                    <HashtagSelect errorData={errorData} />
-                    <EquipmentContainer>
-                        <ToolsSelect />
-                        <HairIronSelect />
-                    </EquipmentContainer>
-                    <PublicOpenSwitch />
-                </InputWrapper>
-            </InputContainer>
-        </ReviewFormScrollView>
+        </>
     );
 }

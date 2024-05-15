@@ -66,11 +66,11 @@ export default function CameraShotSelect({ errorData }: CameraShotSelectProps) {
                         <CameraShotButton
                             key={cameraShotData.name}
                             currentImage={cameraShotData.name}
-                            SelectedImage={cameraShot}
+                            selectedImage={cameraShot}
                             onPress={() => onPressCameraShotImage(cameraShotData.name)}>
                             <CameraShotImage
                                 currentImage={cameraShotData.name}
-                                SelectedImage={cameraShot}
+                                selectedImage={cameraShot}
                                 source={cameraShotData.image}
                             />
                             <CameraShotTextContainer>

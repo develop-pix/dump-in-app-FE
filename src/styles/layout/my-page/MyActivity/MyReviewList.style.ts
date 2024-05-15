@@ -4,14 +4,23 @@ import styled from 'styled-components/native';
 export const MyReviewListContainer = styled.View`
     width: ${Dimensions.get('window').width}px;
     align-items: center;
+    flex: 1;
 `;
 
-//FIXME: 높이를 추후 수정해주어야함(MyPage FlatList Footer)
 export const MyReviewContainer = styled.View`
-    width: 95%;
-    height: 450px;
+    flex: 1;
+    width: ${Dimensions.get('window').width}px;
 `;
 
-export const MyReviewFlatListContainer = styled.View``;
+export const MyReviewFlatListContainer = styled.View`
+    flex: 1;
+`;
 
-export const SkeletonMyReviewContainer = styled.View``;
+export const SkeletonMyReviewContainer = styled.View`
+    flex: 1;
+    padding-vertical: 16px;
+`;
+
+export const MyReviewFrameContainer = styled.View`
+    flex: 0.5;
+`;

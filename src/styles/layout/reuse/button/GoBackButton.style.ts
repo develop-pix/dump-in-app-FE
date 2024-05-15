@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 export const GoBackButtonContainer = styled.View<{
     platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
 }>`
-    display: flex;
     justify-content: center;
     width: 100%;
     height: 44px;
@@ -21,7 +20,6 @@ export const GoBackButtonFloatContainer = styled.View<{
 export const GoBackButtonContainerWithSafeArea = styled.View<{
     platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
 }>`
-    display: flex;
     justify-content: center;
     width: 100%;
     height: 44px;
@@ -31,7 +29,6 @@ export const GoBackButtonContainerWithSafeArea = styled.View<{
 export const GoBackButtonWithSubmitContainer = styled.View<{
     platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
 }>`
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

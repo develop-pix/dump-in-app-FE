@@ -11,10 +11,10 @@ import { GetMyReviewList } from 'hooks/axios/MyPage';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewProps } from 'interfaces/Home.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
-import { colors } from 'styles/base/Variable';
 import {
     MyReviewContainer,
     MyReviewFlatListContainer,
+    MyReviewFrameContainer,
     MyReviewListContainer,
     SkeletonMyReviewContainer,
 } from 'styles/layout/my-page/MyActivity/MyReviewList.style';
@@ -26,6 +26,7 @@ export default function MyReviewList() {
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [dataEnd, setDataEnd] = useState(false);
+    const [scrollOffsetY, setScrollOffsetY] = useState(0);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
 
     const dataLimit = 6;
@@ -48,7 +49,11 @@ export default function MyReviewList() {
 
     /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
-        return <MyReviewFrame data={item} />;
+        return (
+            <MyReviewFrameContainer>
+                <MyReviewFrame data={item} />
+            </MyReviewFrameContainer>
+        );
     }, []);
 
     /** FlatList onEndReached */
@@ -98,10 +103,20 @@ export default function MyReviewList() {
                                     ref={flatListRef}
                                     renderItem={renderReviewItem}
                                     numColumns={2}
-                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    showsVerticalScrollIndicator={false}
+                                    contentContainerStyle={{
+                                        paddingVertical: 16,
+                                    }}
+                                    columnWrapperStyle={{
+                                        paddingHorizontal: 16,
+                                        columnGap: 16,
+                                    }}
+                                    onMomentumScrollEnd={event => {
+                                        setScrollOffsetY(event.nativeEvent.contentOffset.y);
+                                    }}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                {scrollOffsetY > 0 && <UpScrollButton flatListRef={flatListRef} />}
                             </MyReviewFlatListContainer>
                         ) : (
                             <MyReviewFlatListContainer>
@@ -109,34 +124,30 @@ export default function MyReviewList() {
                                     alertText="내 사진이 없습니다."
                                     recommendText="첫 리뷰를 등록해 보세요!"
                                 />
-                                <FlatList
-                                    data={reviewData}
-                                    keyExtractor={item => item.id.toString()}
-                                    ref={flatListRef}
-                                    renderItem={renderReviewItem}
-                                    numColumns={2}
-                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                                    scrollEnabled={false}
-                                    ListFooterComponent={renderFooterItem}
-                                />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                {renderFooterItem()}
                             </MyReviewFlatListContainer>
                         )
                     ) : (
                         <MyReviewFlatListContainer>
                             <FlatList
-                                contentContainerStyle={{ backgroundColor: colors.lightblack }}
                                 data={reviewData}
                                 keyExtractor={item => item.id.toString()}
                                 ref={flatListRef}
                                 renderItem={renderReviewItem}
                                 numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={{
+                                    paddingVertical: 16,
+                                }}
+                                columnWrapperStyle={{
+                                    paddingHorizontal: 16,
+                                    columnGap: 16,
+                                }}
                                 onEndReached={onEndReached}
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageReview}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </MyReviewFlatListContainer>
                     )}
                 </MyReviewContainer>

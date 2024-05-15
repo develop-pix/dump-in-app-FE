@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 export const CloseButtonWithBranchNameContainer = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;

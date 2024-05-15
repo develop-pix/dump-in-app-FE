@@ -151,9 +151,9 @@ export default function HomeDataCollection() {
                 return (
                     <HeaderRightContainer>
                         <RowContainer>
-                            <HeaderIconContainer onPress={navigateToSearchScreen}>
+                            {/* <HeaderIconContainer onPress={navigateToSearchScreen}>
                                 <SearchIcon />
-                            </HeaderIconContainer>
+                            </HeaderIconContainer> */}
                             <HeaderIconContainer onPress={navigateToNotificationScreen}>
                                 {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
                             </HeaderIconContainer>
@@ -199,7 +199,7 @@ export default function HomeDataCollection() {
                                 ListFooterComponent={<SkeletonGetMoreHomeData />}
                                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </>
                     ) : (
                         <NoResultPhotoBooth filterData={filterData} />

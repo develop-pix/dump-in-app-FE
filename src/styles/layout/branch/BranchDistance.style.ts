@@ -7,14 +7,12 @@ export const BranchDistanceContainer = styled.View`
     bottom: 15px;
     margin-bottom: 20px;
     width: 100%;
-    display: flex;
     flex-direction: row;
     justify-content: center;
 `;
 
 export const BranchDistanceForm = styled.View`
     width: 238px;
-    display: flex;
     flex-direction: row;
     justify-content: center;
     background-color: ${colors.black};

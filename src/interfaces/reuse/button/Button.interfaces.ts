@@ -21,6 +21,5 @@ export interface NormalButtonProps {
 }
 
 export interface UpScrollButtonProps {
-    top: string;
     flatListRef: MutableRefObject<FlatList | null>;
 }

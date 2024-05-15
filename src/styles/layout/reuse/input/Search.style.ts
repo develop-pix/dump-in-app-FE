@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 import { colors } from 'styles/base/Variable';
 
 export const Wrapper = styled.View`
-    display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
@@ -11,7 +10,6 @@ export const Wrapper = styled.View`
 `;
 
 export const SearchWrapper = styled.View`
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

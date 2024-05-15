@@ -14,6 +14,7 @@ import { MainTabScreenProps } from 'interfaces/Navigation.interface';
 import {
     MyPostContainer,
     MyPostFlatListContainer,
+    MyPostFrameContainer,
     MyPostListContainer,
     SkeletonMyPostContainer,
 } from 'styles/layout/my-page/MyActivity/MyPostList.style';
@@ -26,6 +27,7 @@ export default function MyPostList() {
     const [isLoading, setIsLoading] = useState(true);
     const [reviewData, setReviewData] = useState<ReviewProps[]>([]);
     const [dataEnd, setDataEnd] = useState(false);
+    const [scrollOffsetY, setScrollOffsetY] = useState(0);
 
     const dataLimit = 6;
     const flatListRef = useRef<FlatList>(null);
@@ -34,7 +36,11 @@ export default function MyPostList() {
 
     /** FlatList renderItem */
     const renderReviewItem = useCallback(({ item }: { item: ReviewProps }) => {
-        return <MyPostFrame data={item} />;
+        return (
+            <MyPostFrameContainer>
+                <MyPostFrame data={item} />
+            </MyPostFrameContainer>
+        );
     }, []);
 
     /** FlatList onEndReached */
@@ -101,10 +107,20 @@ export default function MyPostList() {
                                     ref={flatListRef}
                                     renderItem={renderReviewItem}
                                     numColumns={2}
-                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                    showsVerticalScrollIndicator={false}
+                                    contentContainerStyle={{
+                                        paddingVertical: 16,
+                                    }}
+                                    columnWrapperStyle={{
+                                        paddingHorizontal: 16,
+                                        columnGap: 16,
+                                    }}
+                                    onMomentumScrollEnd={event => {
+                                        setScrollOffsetY(event.nativeEvent.contentOffset.y);
+                                    }}
                                     ListFooterComponent={renderFooterItem}
                                 />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                {scrollOffsetY > 0 && <UpScrollButton flatListRef={flatListRef} />}
                             </MyPostFlatListContainer>
                         ) : (
                             <MyPostFlatListContainer>
@@ -112,17 +128,7 @@ export default function MyPostList() {
                                     alertText="즐겨찾는 게시글이 없습니다."
                                     recommendText="마음에 드는 게시글을 찾아보세요!"
                                 />
-                                <FlatList
-                                    data={reviewData}
-                                    keyExtractor={item => item.id.toString()}
-                                    ref={flatListRef}
-                                    renderItem={renderReviewItem}
-                                    numColumns={2}
-                                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                                    scrollEnabled={false}
-                                    ListFooterComponent={renderFooterItem}
-                                />
-                                <UpScrollButton top="88%" flatListRef={flatListRef} />
+                                {renderFooterItem()}
                             </MyPostFlatListContainer>
                         )
                     ) : (
@@ -133,12 +139,19 @@ export default function MyPostList() {
                                 ref={flatListRef}
                                 renderItem={renderReviewItem}
                                 numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={{
+                                    paddingVertical: 16,
+                                }}
+                                columnWrapperStyle={{
+                                    paddingHorizontal: 16,
+                                    columnGap: 16,
+                                }}
                                 onEndReached={onEndReached}
                                 onEndReachedThreshold={0.1}
                                 ListFooterComponent={SkeletonGetMoreMyPageReview}
                             />
-                            <UpScrollButton top="88%" flatListRef={flatListRef} />
+                            <UpScrollButton flatListRef={flatListRef} />
                         </MyPostFlatListContainer>
                     )}
                 </MyPostContainer>

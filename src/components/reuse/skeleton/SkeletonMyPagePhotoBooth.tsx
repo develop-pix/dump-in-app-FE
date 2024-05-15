@@ -8,7 +8,6 @@ export default function SkeletonMyPagePhotoBooth() {
         <SkeletonPlaceholder backgroundColor={colors.blackgrey} highlightColor={colors.lightgrey}>
             <SkeletonPlaceholder.Item
                 width={Dimensions.get('window').width}
-                flexDirection="column"
                 justifyContent="center"
                 alignItems="center"
                 gap={10}>

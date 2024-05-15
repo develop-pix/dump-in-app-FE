@@ -1,7 +1,10 @@
 import { ScrollView } from 'react-native';
 
 import { CategoryEventFilterProps } from 'interfaces/Category.interface';
-import { CategoryEventFilterContainer } from 'styles/layout/category/CategoryEventFilter.style';
+import {
+    CategoryEventFilterContainer,
+    CategoryEventFilterListContainer,
+} from 'styles/layout/category/CategoryEventFilter.style';
 import { FilterTextButton, FilterTextButtonContent } from 'styles/layout/home/filter/Filter.style';
 
 const availableHashtags = [
@@ -34,18 +37,22 @@ export default function CategoryEventFilter({ hashtags, setHashtags, filterOptio
 
     return (
         <CategoryEventFilterContainer>
-            <ScrollView horizontal>
-                {availableHashtags.map(hashtagOption => {
-                    const isSelected = hashtags.includes(hashtagOption);
-                    return (
-                        <FilterTextButton
-                            key={hashtagOption}
-                            isSelected={isSelected}
-                            onPress={() => handleHashtagToggle(hashtagOption)}>
-                            <FilterTextButtonContent isSelected={isSelected}>{hashtagOption}</FilterTextButtonContent>
-                        </FilterTextButton>
-                    );
-                })}
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <CategoryEventFilterListContainer>
+                    {availableHashtags.map(hashtagOption => {
+                        const isSelected = hashtags.includes(hashtagOption);
+                        return (
+                            <FilterTextButton
+                                key={hashtagOption}
+                                isSelected={isSelected}
+                                onPress={() => handleHashtagToggle(hashtagOption)}>
+                                <FilterTextButtonContent isSelected={isSelected}>
+                                    {hashtagOption}
+                                </FilterTextButtonContent>
+                            </FilterTextButton>
+                        );
+                    })}
+                </CategoryEventFilterListContainer>
             </ScrollView>
         </CategoryEventFilterContainer>
     );

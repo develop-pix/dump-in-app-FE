@@ -10,12 +10,9 @@ export const FrameColorButton = styled.TouchableOpacity<{
 }>`
     width: 36px;
     height: 36px;
-    padding: 4px 14px 4px 14px;
-    margin: 5px;
     border-radius: 8px;
     justify-content: center;
     align-items: center;
-    position: relative;
     background-color: ${props => props.colorOption};
     border-color: ${props => (props.isSelected ? frameColors.white : 'transparent')};
     border-width: 1px;
@@ -29,9 +26,7 @@ export const EtcFrameColorButton = styled.TouchableOpacity<{
 }>`
     width: 36px;
     height: 36px;
-    margin: 5px;
     justify-content: center;
     align-items: center;
-    position: relative;
     opacity: ${props => (!props.isSelected && props.selectedColor ? 0.2 : 1)};
 `;

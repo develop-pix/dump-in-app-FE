@@ -44,12 +44,13 @@ export default function Notification() {
     };
 
     const getNotificationData = useCallback(async () => {
-        const notificationResponse = await fetchNotificationListCheck();
-        console.log('알림');
+        const notificationResponse = await fetchNotificationList();
         if (notificationResponse) {
-            console.log(notificationResponse);
+            setNotifications(notificationResponse.data);
         }
     }, []);
+
+    getNotificationData();
 
     useEffect(() => {
         navigation.setOptions({
@@ -63,12 +64,8 @@ export default function Notification() {
         });
     }, [navigation]);
 
-    useEffect(() => {
-        getNotificationData();
-    }, [getNotificationData]);
-
     return (
-        <ScrollView>
+        <>
             <NoticeContainer>
                 <FontWhiteNormalSemiboldWithLineSpacing>NOTICE</FontWhiteNormalSemiboldWithLineSpacing>
                 <DeleteContainer onPress={onDeleteAlert} disabled={!notifications || notifications.length === 0}>
@@ -78,34 +75,39 @@ export default function Notification() {
                     </DeleteIconWrapper>
                 </DeleteContainer>
             </NoticeContainer>
+            <ScrollView>
+                <NotificationContentContainer>
+                    {notifications && notifications.length > 0 ? (
+                        notifications.map((notification, _) => (
+                            <NotificationItemContainer key={notification.id}>
+                                <EventListIcon width={24} height={24} />
 
-            <NotificationContentContainer>
-                {notifications && notifications.length > 0 ? (
-                    notifications.map((notification, _) => (
-                        <NotificationItemContainer key={notification.id}>
-                            <EventListIcon width={24} height={24} />
+                                <InfoWrapper>
+                                    <FontWhiteGreyNormalMedium>{notification.title}</FontWhiteGreyNormalMedium>
+                                    <FontLightGreySmallerMedium>{notification.content}</FontLightGreySmallerMedium>
+                                    <FontGreySmallerMedium>
+                                        {DateToReviewDateForm(notification.createdAt)}
+                                    </FontGreySmallerMedium>
+                                </InfoWrapper>
+                            </NotificationItemContainer>
+                        ))
+                    ) : (
+                        <SearchNoData
+                            alertText="알림이 없습니다."
+                            recommendText="새로운 이벤트 소식을 기대해 주세요!"
+                        />
+                    )}
+                </NotificationContentContainer>
 
-                            <InfoWrapper>
-                                <FontWhiteGreyNormalMedium>{notification.title}</FontWhiteGreyNormalMedium>
-
-                                <FontLightGreySmallerMedium>{notification.content}</FontLightGreySmallerMedium>
-                                <FontGreySmallerMedium>{DateToReviewDateForm(notification.date)}</FontGreySmallerMedium>
-                            </InfoWrapper>
-                        </NotificationItemContainer>
-                    ))
-                ) : (
-                    <SearchNoData alertText="알림이 없습니다." recommendText="새로운 이벤트 소식을 기대해 주세요!" />
-                )}
-            </NotificationContentContainer>
-
-            <ConfirmationAlertModal
-                isVisible={isAlertModalVisible}
-                title="알림함의 모든 메시지를 삭제하시겠어요?"
-                agreeMessage="전체 삭제"
-                disagreeMessage="아니오"
-                onAgree={deleteNotification}
-                onDisagree={() => setIsAlertModalVisible(false)}
-            />
-        </ScrollView>
+                <ConfirmationAlertModal
+                    isVisible={isAlertModalVisible}
+                    title="알림함의 모든 메시지를 삭제하시겠어요?"
+                    agreeMessage="전체 삭제"
+                    disagreeMessage="아니오"
+                    onAgree={deleteNotification}
+                    onDisagree={() => setIsAlertModalVisible(false)}
+                />
+            </ScrollView>
+        </>
     );
 }

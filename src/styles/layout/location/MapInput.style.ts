@@ -5,7 +5,6 @@ import { colors } from 'styles/base/Variable';
 export const InputWrapper = styled.View<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
-    display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
@@ -20,7 +19,6 @@ export const MapInputContainer = styled.View`
 export const MapInputWrapper = styled.TouchableOpacity<{
     platform: 'web' | 'ios' | 'android' | 'windows' | 'macos';
 }>`
-    display: flex;
     flex-direction: row;
     align-items: center;
     height: 46px;
@@ -30,7 +28,6 @@ export const MapInputWrapper = styled.TouchableOpacity<{
 `;
 
 export const InputForm = styled.View`
-    display: flex;
     height: 46px;
     flex-direction: row;
     align-items: center;
