@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { getVersion } from 'react-native-device-info';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import { OpenSourceLicenseType } from 'interfaces/MyPage.interface';
@@ -17,6 +18,7 @@ import { HeaderLeftContainer, RowContainer } from 'styles/layout/reuse/header/He
 import {
     FontLightGreyNormalMedium,
     FontWhiteGreyBiggerSemibold,
+    FontWhiteGreySmallestMedium,
     FontWhiteNormalMedium,
 } from 'styles/layout/reuse/text/Text.style';
 
@@ -24,6 +26,7 @@ import { OpenSourceLicense } from './../../../../OpenSourceLicense';
 
 export default function AppInfo() {
     const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const currentVersion = getVersion();
 
     /** FlatList renderItem */
     const renderItem = useCallback(({ item }: { item: OpenSourceLicenseType }) => {
@@ -67,7 +70,10 @@ export default function AppInfo() {
                         <FontWhiteGreyBiggerSemibold>버전 정보</FontWhiteGreyBiggerSemibold>
                     </AppInfoTextContainer>
                     <AppInfoTextContainer>
-                        <FontLightGreyNormalMedium>ver 1.0</FontLightGreyNormalMedium>
+                        <FontLightGreyNormalMedium>ver {currentVersion}</FontLightGreyNormalMedium>
+                        {/* TODO: 추후 react-native-version-check로 업데이트 확인 */}
+                        {/* <FontRedSmallestMedium>업데이트가 필요합니다.</FontRedSmallestMedium> */}
+                        <FontWhiteGreySmallestMedium>최신 버전입니다.</FontWhiteGreySmallestMedium>
                     </AppInfoTextContainer>
                 </AppMenuItemContainer>
 

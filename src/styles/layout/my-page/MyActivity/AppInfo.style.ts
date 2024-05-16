@@ -15,6 +15,7 @@ export const AppInfoContainer = styled.View`
 
 export const AppInfoTextContainer = styled.View`
     padding: 10px 0px;
+    align-items: flex-end;
 `;
 
 export const LicenseInfoTextContainer = styled.View`
