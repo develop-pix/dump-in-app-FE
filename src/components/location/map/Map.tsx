@@ -28,18 +28,18 @@ export default function Map() {
     const defaultLatitude = 37.564362;
     const defaultLongitude = 126.977011;
 
-    const [location, setLocation] = useState<string>('주소 입력');
+    const [location, setLocation] = useState('주소 입력');
     const [branchData, setBranchData] = useState<BranchCardData[]>([]);
-    const [zoom, setZoom] = useState<number>(18);
-    const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
-    const [toastVisible, setToastVisible] = useState<boolean>(false);
+    const [zoom, setZoom] = useState(18);
+    const [showNearBranch, setShowNearBranch] = useState(false);
+    const [toastVisible, setToastVisible] = useState(false);
     /** 현재 내가 보고있는 지도의 center */
     const [myPosition, setMyPosition] = useState<LocationData>({
         latitude: currentLocation.latitude || defaultLatitude,
         longitude: currentLocation.longitude || defaultLongitude,
     });
 
-    /**  ReverseGeolocation 호출 */
+    /** ReverseGeolocation 호출 */
     const getAddressData = async (latitude: number, longitude: number) => {
         const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
         setLocation(addressData);
@@ -53,6 +53,11 @@ export default function Map() {
             const photoBoothData = await GetBranchCardList(latitude, longitude, radius);
             if (photoBoothData.data) {
                 setBranchData(photoBoothData.data);
+                if (photoBoothData.data.length === 0) {
+                    setToastVisible(true);
+                } else {
+                    setShowNearBranch(true);
+                }
             }
         } catch (error) {
             console.log('GetBranchCardDataError ' + error);
@@ -64,20 +69,21 @@ export default function Map() {
         navigation.navigate('Branch', { branchID });
     };
 
-    /** 카메라 위치 변경시 */
+    /** 카메라 위치 변경 시 */
     const changePosition = useCallback(
         (latitude: number, longitude: number) => {
             /** 대한민국 북,동,남,서 끝단의 위도 or 경도 */
             const MAX_COORD = [38.6111111, 131.8695555, 33.11194444, 124.61];
 
-            /** 위도가 최북단 보다 크거나 최남단 보다 작을때 (reset) */
+            // 위도가 최북단 보다 크거나 최남단 보다 작을때 (reset)
             if (latitude > MAX_COORD[0] || latitude < MAX_COORD[2]) {
                 setMyPosition({
                     latitude: currentLocation.latitude ? currentLocation.latitude : defaultLatitude,
                     longitude: currentLocation.longitude ? currentLocation.longitude : defaultLongitude,
                 });
-                /** 경도가 최동단 보다 크거나 최서단 보다 작을때 (reset) */
-            } else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
+            }
+            // 경도가 최동단 보다 크거나 최서단 보다 작을때 (reset)
+            else if (longitude > MAX_COORD[1] || longitude < MAX_COORD[3]) {
                 setMyPosition({
                     latitude: currentLocation.latitude ? currentLocation.latitude : defaultLatitude,
                     longitude: currentLocation.longitude ? currentLocation.longitude : defaultLongitude,
@@ -127,17 +133,15 @@ export default function Map() {
         if (myPosition.latitude && myPosition.longitude) {
             getBranchCardData(myPosition.latitude, myPosition.longitude);
         }
-        if (Object.keys(branchData).length === 0) {
-            setToastVisible(true);
-        }
+
         const toastTime = setTimeout(() => {
             setToastVisible(false);
         }, 2000);
+
         return () => clearTimeout(toastTime);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [myPosition.latitude, myPosition.longitude]);
 
-    //  카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능
+    // 카드 및 ResetLocation 버튼 애니메이션 적용 , duration 수정하면 애니메이션 속도 수정 가능
     useEffect(() => {
         if (branchData.length > 0) {
             Animated.timing(cardMoveY, {
@@ -163,10 +167,9 @@ export default function Map() {
                 onCameraChange={e => {
                     setZoom(e.zoom);
                     changePosition(e.latitude, e.longitude);
-                    setShowNearBranch(false);
                 }}
                 onMapClick={() => {
-                    setShowNearBranch(true);
+                    setShowNearBranch(prev => !prev);
                 }}
                 showsMyLocationButton={false}
                 scaleBar={false}
