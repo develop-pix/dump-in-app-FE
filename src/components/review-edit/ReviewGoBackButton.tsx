@@ -52,7 +52,7 @@ export default function ReviewGoBackButton() {
             <ConfirmationAlertModal
                 isVisible={openCloseModal}
                 title="리뷰 작성을 취소하시겠어요?"
-                agreeMessage="작성취소"
+                agreeMessage="작성 취소"
                 disagreeMessage="아니요"
                 onAgree={onPressGoHome}
                 onDisagree={() => setOpenCloseModal(false)}
