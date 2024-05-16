@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import NewNotificationIcon from 'assets/image/icon/alert_notification.svg';
 import FilterIcon from 'assets/image/icon/filter.svg';
@@ -129,7 +129,9 @@ export default function HomeDataCollection() {
         }
     }, []);
 
-    getNotificationCheckData();
+    useFocusEffect(() => {
+        getNotificationCheckData();
+    });
 
     useEffect(() => {
         /** 필터 모달창 여는 함수 */
