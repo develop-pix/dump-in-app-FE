@@ -17,4 +17,6 @@ export const MyPhotoBoothFlatListContainer = styled.View`
     flex: 1;
 `;
 
-export const SkeletonPhotoBoothContainer = styled.View``;
+export const SkeletonPhotoBoothContainer = styled.View`
+    padding-vertical: 16px;
+`;

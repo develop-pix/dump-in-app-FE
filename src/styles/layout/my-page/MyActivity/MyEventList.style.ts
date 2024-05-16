@@ -18,4 +18,6 @@ export const MyEventFlatListContainer = styled.View`
     flex: 1;
 `;
 
-export const SkeletonEventContainer = styled.View``;
+export const SkeletonEventContainer = styled.View`
+    padding-vertical: 16px;
+`;
