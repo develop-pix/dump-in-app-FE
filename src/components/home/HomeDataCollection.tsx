@@ -10,6 +10,7 @@ import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreHomeData from 'components/reuse/skeleton/SkeletonGetMoreHomeData';
 import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDataCollection';
 import { fetchHomeEvent, fetchHomePhotoBooth, fetchHomeReview } from 'hooks/axios/Home';
+import { fetchNotificationListCheck } from 'hooks/axios/Notification';
 import { CollectionDataProps } from 'interfaces/Home.interface';
 import { HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
@@ -37,7 +38,7 @@ export default function HomeDataCollection() {
     const [refreshing, setRefreshing] = useState(false);
 
     const [isFilterVisible, setFilterVisible] = useState(false);
-    const [hasNotification, setHasNotification] = useState(false);
+    const [hasUnreadNotification, setHasUnreadNotification] = useState(false);
     // 필터 변수
     const [filterData, setFilterData] = useState<FilterProps>({
         photoBoothLocation: '',
@@ -121,6 +122,15 @@ export default function HomeDataCollection() {
         [filterData],
     );
 
+    const getNotificationCheckData = useCallback(async () => {
+        const notificationResponse = await fetchNotificationListCheck();
+        if (notificationResponse) {
+            setHasUnreadNotification(notificationResponse.data.isUnread);
+        }
+    }, []);
+
+    getNotificationCheckData();
+
     useEffect(() => {
         /** 필터 모달창 여는 함수 */
         const handleShowFilterModal = () => {
@@ -155,23 +165,14 @@ export default function HomeDataCollection() {
                                 <SearchIcon />
                             </HeaderIconContainer> */}
                             <HeaderIconContainer onPress={navigateToNotificationScreen}>
-                                {hasNotification ? <NewNotificationIcon /> : <NotificationIcon />}
+                                {hasUnreadNotification ? <NewNotificationIcon /> : <NotificationIcon />}
                             </HeaderIconContainer>
                         </RowContainer>
                     </HeaderRightContainer>
                 );
             },
         });
-    }, [hasNotification, navigation]);
-
-    useEffect(() => {
-        /** TODO: 알림 유무 확인 로직 추가 */
-        const checkNotification = async () => {
-            setHasNotification(true);
-        };
-
-        checkNotification();
-    }, []);
+    }, [hasUnreadNotification, navigation]);
 
     const onEndReached = () => {
         page.current += 1;
