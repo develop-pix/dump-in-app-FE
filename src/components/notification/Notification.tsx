@@ -7,7 +7,7 @@ import EventListIcon from 'assets/image/icon/result_event.svg';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
-import { fetchNotificationList, fetchNotificationListCheck } from 'hooks/axios/Notification';
+import { deleteNotificationList, fetchNotificationList } from 'hooks/axios/Notification';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { NotificationItemProps } from 'interfaces/Notification.interface';
 import {
@@ -30,27 +30,33 @@ import { DateToReviewDateForm } from 'utils/FormChange';
 export default function Notification() {
     const navigation = useNavigation<RootStackScreenProps<'HomeSearch'>['navigation']>();
 
-    const [notifications, setNotifications] = useState<NotificationItemProps[] | null>(null);
+    const [notifications, setNotifications] = useState<NotificationItemProps[]>([]);
     const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
+    const [dataFetched, setDataFetched] = useState(false);
 
     const onDeleteAlert = () => {
         setIsAlertModalVisible(true);
     };
 
-    const deleteNotification = () => {
-        // 서버로 아이디 토큰값 보내서 알림 삭제 처리, 임시로 초기화
-        setNotifications([]);
+    const deleteNotification = async () => {
+        const deleteNotificationResponse = await deleteNotificationList();
+        if (deleteNotificationResponse.success) {
+            setNotifications([]);
+        }
         setIsAlertModalVisible(false);
     };
 
     const getNotificationData = useCallback(async () => {
         const notificationResponse = await fetchNotificationList();
-        if (notificationResponse) {
+        if (notificationResponse.success) {
             setNotifications(notificationResponse.data);
         }
+        setDataFetched(true);
     }, []);
 
-    getNotificationData();
+    useEffect(() => {
+        getNotificationData();
+    }, [getNotificationData]);
 
     useEffect(() => {
         navigation.setOptions({
@@ -77,11 +83,15 @@ export default function Notification() {
             </NoticeContainer>
             <ScrollView>
                 <NotificationContentContainer>
-                    {notifications && notifications.length > 0 ? (
+                    {dataFetched && notifications.length === 0 ? (
+                        <SearchNoData
+                            alertText="알림이 없습니다."
+                            recommendText="새로운 이벤트 소식을 기대해 주세요!"
+                        />
+                    ) : (
                         notifications.map((notification, _) => (
                             <NotificationItemContainer key={notification.id}>
                                 <EventListIcon width={24} height={24} />
-
                                 <InfoWrapper>
                                     <FontWhiteGreyNormalMedium>{notification.title}</FontWhiteGreyNormalMedium>
                                     <FontLightGreySmallerMedium>{notification.content}</FontLightGreySmallerMedium>
@@ -91,14 +101,8 @@ export default function Notification() {
                                 </InfoWrapper>
                             </NotificationItemContainer>
                         ))
-                    ) : (
-                        <SearchNoData
-                            alertText="알림이 없습니다."
-                            recommendText="새로운 이벤트 소식을 기대해 주세요!"
-                        />
                     )}
                 </NotificationContentContainer>
-
                 <ConfirmationAlertModal
                     isVisible={isAlertModalVisible}
                     title="알림함의 모든 메시지를 삭제하시겠어요?"
