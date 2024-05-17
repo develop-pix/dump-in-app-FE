@@ -40,7 +40,7 @@ export default function Notification() {
 
     const deleteNotification = async () => {
         const deleteNotificationResponse = await deleteNotificationList();
-        if (deleteNotificationResponse.success) {
+        if (deleteNotificationResponse) {
             setNotifications([]);
         }
         setIsAlertModalVisible(false);
@@ -48,7 +48,7 @@ export default function Notification() {
 
     const getNotificationData = useCallback(async () => {
         const notificationResponse = await fetchNotificationList();
-        if (notificationResponse.success) {
+        if (notificationResponse) {
             setNotifications(notificationResponse.data);
         }
         setDataFetched(true);
