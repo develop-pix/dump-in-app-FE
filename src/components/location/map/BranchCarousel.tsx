@@ -19,6 +19,7 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
             slide !== carouselActive ? setCarouselActive(slide) : null;
         }
     };
+    console.log(branchData);
 
     return (
         <BranchCardContainer>
@@ -43,6 +44,8 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
                                 hashtag={data.photoBoothBrand.hashtag}
                                 isLiked={data.isLiked}
                                 distance={data.distance}
+                                branchLatitude={data.latitude}
+                                branchLongitude={data.longitude}
                             />
                         </Card>
                     );

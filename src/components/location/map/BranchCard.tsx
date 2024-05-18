@@ -36,6 +36,8 @@ export default function BranchCard({
     hashtag,
     isLiked,
     distance,
+    branchLatitude,
+    branchLongitude,
 }: BranchCardProps) {
     const [favorite, setFavorite] = useState(isLiked);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -45,16 +47,14 @@ export default function BranchCard({
     >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
-    // const { latitude, longitude } = useAppSelector(state => state.location);
+    const { latitude, longitude } = useAppSelector(state => state.location);
 
-    /** TODO: 위도, 경도, 이름 옵션 변경 */
-    // nmap://route/walk?slat=37.4640070&slng=126.9522394&sname=%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90&dlat=37.4764356&dlng=126.9618302&dname=%EB%8F%99%EC%9B%90%EB%82%99%EC%84%B1%EB%8C%80%EC%95%84%ED%8C%8C%ED%8A%B8&appname=com.example.myapp
+    /** FIXME: Android 위도, 경도, 이름 옵션 변경 */
     const GOOGLE_PLAY_STORE_LINK =
         'nmap://place?lat=37.3677345&lng=127.1083617&name=인생네컷&appname=com.dump_in_app_fe';
     const GOOGLE_PLAY_STORE_WEB_LINK = 'market://details?id=com.nhn.android.nmap';
 
-    // safari 거치지 않고 바로 appStore 연결 itms-app://itunes.com/apps/dump_in_app_FE';
-    const APPLE_APP_STORE_LINK = 'nmap://map?&appname=org.reactjs.native.example.dump-in-app-FE';
+    const APPLE_APP_STORE_LINK = `nmap://route/walk?slat=${latitude}&slng=${longitude}&sname=내 위치&dlat=${branchLatitude}&dlng=${branchLongitude}&dname=${photoBoothName + ' ' + location}&appname=org.reactjs.native.example.dump-in-app-FE`;
     const APPLE_APP_STORE_WEB_LINK = 'https://apps.apple.com/kr/app/naver-map-navigation/id311867728';
 
     /** Branch 페이지 이동 */
