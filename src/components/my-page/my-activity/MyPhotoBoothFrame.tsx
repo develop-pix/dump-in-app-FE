@@ -6,7 +6,7 @@ import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModa
 import { LikeBranch } from 'hooks/axios/Branch';
 import { useAppSelector } from 'hooks/redux/store';
 import { MyPhotoBoothFrameProps } from 'interfaces/MyPage.interface';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MyPageStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     FavoriteIcon,
     HashtagContainer,
@@ -23,7 +23,9 @@ import {
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameProps) {
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const navigation = useNavigation<
+        MyPageStackScreenProps<'MyPage'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
+    >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
@@ -33,7 +35,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
     /** 지점 항목 클릭시 */
     const onPressPhotoBooth = (id: string) => {
         if (isFocused) {
-            navigation.navigate('Branch', {
+            (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('Branch', {
                 branchID: id,
             });
         } else {
@@ -54,7 +56,7 @@ export default function MyPhotoBoothFrame({ photoBoothData }: MyPhotoBoothFrameP
     /** 로그인 버튼 클릭시 */
     const onPressLogin = () => {
         setIsModalVisible(prev => !prev);
-        navigation.navigate('Login');
+        (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Login');
     };
 
     return (

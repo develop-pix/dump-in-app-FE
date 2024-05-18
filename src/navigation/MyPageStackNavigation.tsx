@@ -5,7 +5,6 @@ import PrivacyPolicy from 'components/my-page/my-activity/PrivacyPolicy';
 import TermsOfUse from 'components/my-page/my-activity/TermsOfUse';
 import MyPageMenu from 'components/my-page/MyPageMenu';
 import Branch from 'screens/Branch';
-import Login from 'screens/Login';
 import MyPage from 'screens/MyPage';
 import ReviewDetail from 'screens/ReviewDetail';
 import { colors } from 'styles/base/Variable';
@@ -25,17 +24,6 @@ export default function MyPageStackNavigation() {
                 headerTitleAlign: 'center',
             }}>
             <Stack.Screen name="MyPage" component={MyPage} options={{ headerLeft: () => null }} />
-            <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{
-                    ...TransitionPresets.SlideFromRightIOS,
-                    headerStyle: {
-                        backgroundColor: colors.lightblack,
-                    },
-                    headerMode: 'screen',
-                }}
-            />
             <Stack.Screen
                 name="Menu"
                 component={MyPageMenu}

@@ -1,6 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import HomeSearch from 'screens/HomeSearch';
+import Login from 'screens/Login';
 import Notification from 'screens/Notification';
 import OfficialImageDetail from 'screens/OfficialImageDetail';
 import ReviewEdit from 'screens/ReviewEdit';
@@ -84,6 +85,15 @@ export default function RootStackNavigation() {
                 component={ReviewEdit}
                 initialParams={{ reviewID: null }}
                 options={{ presentation: 'modal' }}
+            />
+            <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                    headerShown: true,
+                    headerMode: 'screen',
+                }}
             />
         </Stack.Navigator>
     );

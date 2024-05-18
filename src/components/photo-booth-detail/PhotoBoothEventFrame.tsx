@@ -6,11 +6,7 @@ import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeEvent } from 'hooks/axios/Event';
 import { useAppSelector } from 'hooks/redux/store';
-import {
-    CategoryStackScreenProps,
-    HomeStackScreenProps,
-    MyPageStackScreenProps,
-} from 'interfaces/Navigation.interface';
+import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -27,7 +23,6 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
     const navigation = useNavigation<
         | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
-        | MyPageStackScreenProps<'Login'>['navigation']
     >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
@@ -68,7 +63,16 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
     /** 로그인 버튼 클릭시 */
     const onPressLogin = () => {
         setIsModalVisible(prev => !prev);
-        (navigation as MyPageStackScreenProps<'Login'>['navigation']).navigate('Login');
+        if (isFocused) {
+            switch (navigation.getId()) {
+                case 'HomeStack':
+                    (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('Login');
+                    break;
+                case 'CategoryStack':
+                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('Login');
+                    break;
+            }
+        }
     };
 
     return (

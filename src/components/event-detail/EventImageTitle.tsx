@@ -7,7 +7,7 @@ import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModa
 import { LikeEvent } from 'hooks/axios/Event';
 import { useAppSelector } from 'hooks/redux/store';
 import { EventImageTitleProps } from 'interfaces/EventDetail.interface';
-import { CategoryStackScreenProps, MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { CategoryStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import {
     ContentsContainer,
@@ -23,7 +23,7 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function ImageTitle({ mainThumbnailImageUrl, title, hashtag, isLiked }: EventImageTitleProps) {
     const route = useRoute<CategoryStackScreenProps<'EventDetail'>['route']>();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
-    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const navigation = useNavigation<RootStackScreenProps<'MainTab'>['navigation']>();
 
     const [favorite, setFavorite] = useState(isLiked);
     const [isModalVisible, setIsModalVisible] = useState(false);

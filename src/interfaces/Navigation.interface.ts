@@ -14,6 +14,7 @@ export type RootStackParamList = {
         index: number;
     };
     ReviewEdit: { reviewID: number | null; branchID?: string };
+    Login: undefined;
 };
 
 export type RootStackScreenProps<RouteName extends keyof RootStackParamList> = StackScreenProps<
@@ -103,7 +104,6 @@ export type CategoryStackScreenProps<RouteName extends keyof CategoryStackParamL
 
 export type MyPageStackParamList = {
     MyPage: undefined;
-    Login: undefined;
     Menu: undefined;
     Branch: { branchID: string };
     ReviewDetail: {

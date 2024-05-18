@@ -77,8 +77,6 @@ export default function Review({ reviewItem }: ReviewProps) {
         }
     };
 
-    console.log(reviewItem);
-
     return (
         <ReviewContainer activeOpacity={0.9} onPress={onPressReview}>
             <ReviewImage source={{ uri: reviewItem.mainThumbnailImageUrl }} />

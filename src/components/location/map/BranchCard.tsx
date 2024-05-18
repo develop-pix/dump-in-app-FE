@@ -3,10 +3,11 @@ import { Linking, Platform } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeBranch } from 'hooks/axios/Branch';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchCardProps } from 'interfaces/Location.interface';
-import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
+import { LocationStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     BranchCardAppScheme,
     BranchCardBottom,
@@ -37,7 +38,11 @@ export default function BranchCard({
     distance,
 }: BranchCardProps) {
     const [favorite, setFavorite] = useState(isLiked);
-    const navigation = useNavigation<LocationStackScreenProps<'Branch'>['navigation']>();
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const navigation = useNavigation<
+        LocationStackScreenProps<'Location'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
+    >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
     // const { latitude, longitude } = useAppSelector(state => state.location);
@@ -55,7 +60,7 @@ export default function BranchCard({
     /** Branch 페이지 이동 */
     const onPressBranchCard = () => {
         if (isFocused) {
-            navigation.navigate('Branch', { branchID: id });
+            (navigation as LocationStackScreenProps<'Location'>['navigation']).navigate('Branch', { branchID: id });
         }
     };
 
@@ -66,9 +71,18 @@ export default function BranchCard({
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
     };
 
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Login');
+    };
+
+    /** 네이버 지도 연결 */
     const onPressVisitBranch = async () => {
         if (Platform.OS === 'android') {
             linkingNaverMap(GOOGLE_PLAY_STORE_LINK, GOOGLE_PLAY_STORE_WEB_LINK);
@@ -118,6 +132,14 @@ export default function BranchCard({
                     </BranchCardAppScheme>
                 </BranchCardBottom>
             </CardContainer>
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </TouchableCardContainer>
     );
 }

@@ -6,7 +6,7 @@ import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModa
 import { LikeBranch } from 'hooks/axios/Branch';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchTitleProps } from 'interfaces/Branch.interface';
-import { LocationStackScreenProps, MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { LocationStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     BranchHashTagsContainer,
     BranchNameContainer,
@@ -25,7 +25,7 @@ export default function BranchTitle({ photoBoothName, location, branchHashtag, i
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const route = useRoute<LocationStackScreenProps<'Branch'>['route']>();
-    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const navigation = useNavigation<RootStackScreenProps<'MainTab'>['navigation']>();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
     /** 하트 버튼 클릭시 */

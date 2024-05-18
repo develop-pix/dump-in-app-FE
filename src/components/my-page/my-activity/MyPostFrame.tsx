@@ -8,7 +8,7 @@ import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModa
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MyPageStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import { FavoriteIcon } from 'styles/layout/category/CategoryEventItem.style';
 import {
@@ -21,7 +21,9 @@ import {
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
 export default function MyPostFrame({ data }: ReviewFrameProps) {
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const navigation = useNavigation<
+        MyPageStackScreenProps<'MyPage'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
+    >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
@@ -31,7 +33,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
     /** 리뷰선택시 페이지 이동 */
     const onPressReview = () => {
         if (isFocused) {
-            navigation.navigate('ReviewDetail', {
+            (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
                 reviewID: data.id,
                 reviewType: 'like',
                 photoBoothLocation: undefined,
@@ -60,7 +62,7 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
     /** 로그인 버튼 클릭시 */
     const onPressLogin = () => {
         setIsModalVisible(prev => !prev);
-        navigation.navigate('Login');
+        (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Login');
     };
 
     return (
