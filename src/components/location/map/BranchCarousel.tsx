@@ -19,7 +19,6 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
             slide !== carouselActive ? setCarouselActive(slide) : null;
         }
     };
-    console.log(branchData);
 
     return (
         <BranchCardContainer>

@@ -49,9 +49,7 @@ export default function BranchCard({
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
     const { latitude, longitude } = useAppSelector(state => state.location);
 
-    /** FIXME: Android 위도, 경도, 이름 옵션 변경 */
-    const GOOGLE_PLAY_STORE_LINK =
-        'nmap://place?lat=37.3677345&lng=127.1083617&name=인생네컷&appname=com.dump_in_app_fe';
+    const GOOGLE_PLAY_STORE_LINK = `nmap://route/walk?slat=${latitude}&slng=${longitude}&sname=내 위치&dlat=${branchLatitude}&dlng=${branchLongitude}&dname=${photoBoothName + ' ' + location}&appname=com.dump_in_app_fe`;
     const GOOGLE_PLAY_STORE_WEB_LINK = 'market://details?id=com.nhn.android.nmap';
 
     const APPLE_APP_STORE_LINK = `nmap://route/walk?slat=${latitude}&slng=${longitude}&sname=내 위치&dlat=${branchLatitude}&dlng=${branchLongitude}&dname=${photoBoothName + ' ' + location}&appname=org.reactjs.native.example.dump-in-app-FE`;
