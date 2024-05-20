@@ -2,8 +2,12 @@ import axios, { AxiosRequestConfig } from 'axios';
 import Config from 'react-native-config';
 
 import { storage } from 'hooks/mmkv/storage';
+import { setIsLoggedIn } from 'hooks/redux/loginSlice';
+import store from 'hooks/redux/store';
 
 import { RefreshAccessToken } from './Auth';
+
+const { dispatch } = store;
 
 const axiosConfig: AxiosRequestConfig = { baseURL: `${Config.BACKEND_API_URL}` };
 export const axiosInstance = axios.create(axiosConfig);
@@ -37,8 +41,8 @@ const reIssueToken = async () => {
 
         return storage.getString('accessToken');
     } catch (error) {
-        //FIXME: redux-store 내 isLoggedIn 값을 false로 만들어줘야함.
         console.log('Token교체 에러 ' + error);
+        dispatch(setIsLoggedIn(false));
         storage.delete('token.accessToken');
         storage.delete('token.refreshToken');
     }

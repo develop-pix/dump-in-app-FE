@@ -70,7 +70,8 @@ export const WithDrawalUser = async () => {
 export const RefreshAccessToken = async (refresh: string, refreshTokenExpireAt: string) => {
     const currentDate = new Date();
     const refreshExpireDate = new Date(refreshTokenExpireAt);
-    const timeParams = 7 * 24 * 60 * 60 * 1000;
+    // const timeParams = 7 * 24 * 60 * 60 * 1000;
+    const timeParams = 2 * 60 * 1000;
 
     const gapTime = refreshExpireDate.getTime() - currentDate.getTime();
     const refreshCheck: boolean = gapTime < timeParams;
