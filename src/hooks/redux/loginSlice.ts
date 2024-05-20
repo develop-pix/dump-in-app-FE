@@ -4,7 +4,7 @@ import { storage } from 'hooks/mmkv/storage';
 import { LoginState } from 'interfaces/redux/Store.interface';
 
 const initialState: LoginState = {
-    isLoggedIn: storage.getString('token.accessToken') !== null,
+    isLoggedIn: storage.getString('token.accessToken') !== undefined,
 };
 
 export const LoginSlice = createSlice({

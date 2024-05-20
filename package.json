@@ -81,7 +81,7 @@
         "@types/react-native-version-check": "^3.4.8",
         "@types/react-test-renderer": "^18.0.0",
         "@types/redux-logger": "^3.0.12",
-        "@types/uuid": "^9.0.7",
+        "@types/uuid": "^9.0.8",
         "@typescript-eslint/eslint-plugin": "^6.17.0",
         "@typescript-eslint/parser": "^6.17.0",
         "babel-jest": "^29.7.0",
