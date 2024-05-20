@@ -25,7 +25,7 @@ export default function ReviewGoBackButton() {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
 
-    const [openCloseModal, setOpenCloseModal] = useState<boolean>(false);
+    const [openCloseModal, setOpenCloseModal] = useState(false);
 
     /** BackButton 클릭시 redux 내용 초기화 */
     const onPressGoHome = () => {

@@ -28,22 +28,16 @@ export default function Map() {
     const defaultLatitude = 37.564362;
     const defaultLongitude = 126.977011;
 
-    const [location, setLocation] = useState<string>('주소 입력');
+    const [location, setLocation] = useState('주소 입력');
     const [branchData, setBranchData] = useState<BranchCardData[]>([]);
-    const [zoom, setZoom] = useState<number>(18);
-    const [showNearBranch, setShowNearBranch] = useState<boolean>(false);
-    const [toastVisible, setToastVisible] = useState<boolean>(false);
+    const [zoom, setZoom] = useState(18);
+    const [showNearBranch, setShowNearBranch] = useState(false);
+    const [toastVisible, setToastVisible] = useState(false);
     /** 현재 내가 보고있는 지도의 center */
     const [myPosition, setMyPosition] = useState<LocationData>({
         latitude: currentLocation.latitude || defaultLatitude,
         longitude: currentLocation.longitude || defaultLongitude,
     });
-
-    /**  ReverseGeolocation 호출 */
-    const getAddressData = async (latitude: number, longitude: number) => {
-        const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
-        setLocation(addressData);
-    };
 
     /** BranchCard 정보 Get */
     //TODO: zoom의 크기에따라 radius를 조절할수 해야함. zoom과 radius는 반비례 해야할것 같음. API명세에 명시된 radius 범위가 달라서 확인이 필요함
@@ -150,6 +144,18 @@ export default function Map() {
 
     // 내 위치가 바뀔때마다. ReverseGeolocation 호출
     useEffect(() => {
+        /**  ReverseGeolocation 호출 */
+        const getAddressData = async (latitude: number, longitude: number) => {
+            try {
+                const addressData = await GetAddressFromNaverGeocoding(latitude, longitude);
+                if (addressData) {
+                    setLocation(addressData);
+                }
+            } catch (error) {
+                console.log('getAddressDataError ' + error);
+            }
+        };
+
         if (currentLocation.latitude && currentLocation.longitude) {
             getAddressData(currentLocation.latitude, currentLocation.longitude);
         }

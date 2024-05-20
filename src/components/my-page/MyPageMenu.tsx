@@ -10,7 +10,7 @@ import { storage } from 'hooks/mmkv/storage';
 import { setIsLoggedIn } from 'hooks/redux/loginSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { setUserID, setUserNickName } from 'hooks/redux/userDataSlice';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MyPageStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     MenuContentContainer,
     MenuItemContainer,
@@ -23,7 +23,11 @@ import { FontWhiteBiggerSemibold, FontWhiteGreyBiggerSemibold } from 'styles/lay
 
 export default function MyPageMenu() {
     const dispatch = useAppDispatch();
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+
+    const navigation = useNavigation<
+        MyPageStackScreenProps<'MyPage'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
+    >();
+
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
     const isFocused = useIsFocused();
 
@@ -36,6 +40,27 @@ export default function MyPageMenu() {
         const subject = encodeURIComponent('Dump-in-APP 문의');
         if (isFocused) {
             await Linking.openURL(`mailto:${emailAddress}?subject=${subject}`);
+        }
+    };
+
+    /** 이용약관 페이지이동(Webview) */
+    const onPressTermsOfUse = () => {
+        if (isFocused) {
+            (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('TermsOfUse');
+        }
+    };
+
+    /** 개인정보 처리방침 페이지이동(Webview)*/
+    const onPressPrivacyPolicy = () => {
+        if (isFocused) {
+            (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('PrivacyPolicy');
+        }
+    };
+
+    /** 앱 정보 페이지이동 */
+    const onPressVersionInfo = () => {
+        if (isFocused) {
+            (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('AppInfo');
         }
     };
 
@@ -57,13 +82,13 @@ export default function MyPageMenu() {
     /** 로그인 버튼 클릭 */
     const handleLogin = () => {
         if (isFocused) {
-            navigation.navigate('Login');
+            (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Login');
         }
     };
 
     /** 알림 버튼 클릭 */
     const onNotificationScreen = () => {
-        navigation.navigate('Notification');
+        (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Notification');
     };
 
     const onWithDrawalAlert = () => {
@@ -112,14 +137,14 @@ export default function MyPageMenu() {
                     <MenuItemContainer onPress={onMailToDevelop}>
                         <FontWhiteGreyBiggerSemibold>문의하기</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
-                    <MenuItemContainer>
+                    <MenuItemContainer onPress={onPressTermsOfUse}>
                         <FontWhiteGreyBiggerSemibold>이용약관</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
-                    <MenuItemContainer>
+                    <MenuItemContainer onPress={onPressPrivacyPolicy}>
                         <FontWhiteGreyBiggerSemibold>개인정보 처리방침</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
-                    <MenuItemContainer>
-                        <FontWhiteGreyBiggerSemibold>버전 정보</FontWhiteGreyBiggerSemibold>
+                    <MenuItemContainer onPress={onPressVersionInfo}>
+                        <FontWhiteGreyBiggerSemibold>앱 정보</FontWhiteGreyBiggerSemibold>
                     </MenuItemContainer>
                 </TextContainer>
 

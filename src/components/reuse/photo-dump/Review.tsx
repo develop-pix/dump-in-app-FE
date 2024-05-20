@@ -107,7 +107,7 @@ export default function Review({ reviewItem }: ReviewProps) {
                         )}
                     </ReviewFrameContainer>
                     <FontYellowSmallerMediumWithLineSpacing>
-                        # {reviewItem.participants}
+                        # {reviewItem.participants}명
                     </FontYellowSmallerMediumWithLineSpacing>
                     <FontYellowSmallerMediumWithLineSpacing>
                         # {reviewItem.cameraShot}
@@ -115,10 +115,8 @@ export default function Review({ reviewItem }: ReviewProps) {
                     {TagsArrayToHashTagArrayForm(reviewItem.concept).map(tag => (
                         <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                     ))}
-                    {reviewItem.curlAmount === true ? (
+                    {reviewItem.curlAmount === true && (
                         <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
-                    ) : (
-                        <FontYellowSmallerMediumWithLineSpacing># 고데기 없음</FontYellowSmallerMediumWithLineSpacing>
                     )}
                     {reviewItem.goodsAmount === true && (
                         <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>

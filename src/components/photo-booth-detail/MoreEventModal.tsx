@@ -24,7 +24,7 @@ export default function MoreEventModal({ dataLimit, page, setPage, visible, onCl
     const isFocused = useIsFocused();
 
     const [allEventData, setAllEventData] = useState<EventDataType[]>([]);
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
+    const [dataEnd, setDataEnd] = useState(true);
 
     /** EventDetail 페이지로 이동 */
     const onPressEvent = (id: number) => {

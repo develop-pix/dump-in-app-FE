@@ -41,7 +41,7 @@
 			<string>org.reactjs.native.example.dump-in-app-FE</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>org.reactjs.native.example.dump-in-app-FE</string>
+				<string>DumpIn</string>
 			</array>
 		</dict>
 		<dict>
@@ -51,7 +51,7 @@
 			<string>org.reactjs.native.example.dump-in-app-FE</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>DumpIn</string>
+				<string>org.reactjs.native.example.dump-in-app-FE</string>
 			</array>
 		</dict>
 	</array>

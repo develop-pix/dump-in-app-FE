@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import EtcImage from 'assets/image/icon/frame_etc.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import {
@@ -23,12 +25,13 @@ import {
     ReviewDescriptionContainer,
     ReviewDescriptionTouchableContainer,
     ReviewDescTop,
+    ReviewFrameColor,
+    ReviewFrameContainer,
+    ReviewFrameGradient,
 } from 'styles/layout/review-detail/ReviewDetail.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
-    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
-
     const route = useRoute<
         | HomeStackScreenProps<'ReviewDetail'>['route']
         | LocationStackScreenProps<'ReviewDetail'>['route']
@@ -41,25 +44,30 @@ export default function ReviewDescription() {
         | MyPageStackScreenProps<'ReviewDetail'>['navigation']
         | CategoryStackScreenProps<'ReviewDetail'>['navigation']
     >();
+
     const routes = navigation.getState().routes;
     const tabRouteName = routes[0].name;
 
-    const { date, content, concept, isLiked } = useAppSelector(state => {
-        switch (tabRouteName) {
-            case 'Home':
-                return state.homeReviewDetail;
-            case 'Location':
-                return state.branchReviewDetail;
-            case 'MyPage':
-                return state.myPageReviewDetail;
-            case 'Category':
-                return state.categoryReviewDetail;
-            default:
-                return state.homeReviewDetail;
-        }
-    });
+    const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
+    const { date, content, concept, isLiked, frameColor, participants, cameraShot, curlAmount, goodsAmount } =
+        useAppSelector(state => {
+            switch (tabRouteName) {
+                case 'Home':
+                    return state.homeReviewDetail;
+                case 'Location':
+                    return state.branchReviewDetail;
+                case 'MyPage':
+                    return state.myPageReviewDetail;
+                case 'Category':
+                    return state.categoryReviewDetail;
+                default:
+                    return state.homeReviewDetail;
+            }
+        });
+
     const [favorite, setFavorite] = useState(isLiked);
     const [numLines, setNumLines] = useState(2);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** 리뷰(content) 더보기, 줄이기 */
     const onPressSeeMore = () => {
@@ -77,7 +85,15 @@ export default function ReviewDescription() {
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        (navigation as MyPageStackScreenProps<'ReviewDetail'>['navigation']).navigate('Login');
     };
 
     return (
@@ -101,10 +117,36 @@ export default function ReviewDescription() {
                     </ReviewDescriptionTouchableContainer>
                 </ReviewDescMiddle>
                 <ReviewDescBottom>
+                    <ReviewFrameContainer>
+                        <FontYellowSmallerMediumWithLineSpacing>#</FontYellowSmallerMediumWithLineSpacing>
+                        {frameColor === 'gradient' ? (
+                            <ReviewFrameGradient>
+                                <EtcImage width={16} height={16} />
+                            </ReviewFrameGradient>
+                        ) : (
+                            frameColor && <ReviewFrameColor colorOption={frameColor} />
+                        )}
+                    </ReviewFrameContainer>
+                    <FontYellowSmallerMediumWithLineSpacing># {participants}명</FontYellowSmallerMediumWithLineSpacing>
+                    <FontYellowSmallerMediumWithLineSpacing># {cameraShot}</FontYellowSmallerMediumWithLineSpacing>
                     {TagsArrayToHashTagArrayForm(concept).map(tag => (
                         <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
                     ))}
+                    {curlAmount === true && (
+                        <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
+                    )}
+                    {goodsAmount === true && (
+                        <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>
+                    )}
                 </ReviewDescBottom>
+                <ConfirmationAlertModal
+                    isVisible={isModalVisible}
+                    title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                    agreeMessage="확인"
+                    disagreeMessage="취소"
+                    onAgree={onPressLogin}
+                    onDisagree={() => setIsModalVisible(false)}
+                />
             </LinearGradient>
         </ReviewDescriptionContainer>
     );

@@ -22,8 +22,5 @@ export const LogoIcon = styled.Image`
     width: 140px;
     height: 140px;
     border-radius: 70px;
-`;
-export const AppDescriptionWrapper = styled.View`
-    margin-top: 20px;
-    width: 50%;
+    margin-bottom: 20%;
 `;

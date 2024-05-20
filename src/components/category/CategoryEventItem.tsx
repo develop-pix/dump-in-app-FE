@@ -30,7 +30,7 @@ export default function CategoryEventItem({ eventData }: CategoryEventItemProps)
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(eventData.isLiked);
+    const [favorite, setFavorite] = useState(eventData.isLiked);
 
     const onPressEvent = (id: number) => {
         if (isFocused) {

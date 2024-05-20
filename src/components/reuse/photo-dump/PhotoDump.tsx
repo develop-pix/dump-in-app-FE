@@ -41,7 +41,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
     const gap = Dimensions.get('window').width * 0.04;
     const offset = Dimensions.get('window').width * 0.06;
 
-    const [reviewActive, setReviewActive] = useState<number>(0);
+    const [reviewActive, setReviewActive] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
 
     const translateIn = scrollX.interpolate({
@@ -69,6 +69,7 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
         navigation.navigate('AddReviewModal');
     };
 
+    /**TODO: 검색페이지로 이동(추후 업데이트) */
     const onPressHomeSearch = () => {
         navigation.navigate('HomeSearch', {
             photoBoothName,
@@ -138,8 +139,8 @@ export default function PhotoDump({ photoBoothName, reviewData }: PhotoDumpProps
                                             <FontWhiteNormalMedium>더 많은 리뷰 보기</FontWhiteNormalMedium>
                                         </FindMoreReviewTextWrapper>
                                     </FindMoreReviewTextContainer>
-                                    <SeeMoreButton onPress={onPressHomeSearch}>
-                                        <FontWhiteSmallerMedium>리뷰 더보기</FontWhiteSmallerMedium>
+                                    <SeeMoreButton>
+                                        <FontWhiteSmallerMedium>업데이트 예정</FontWhiteSmallerMedium>
                                         <NextIcon width={20} height={20} color={colors.white} />
                                     </SeeMoreButton>
                                 </FindMoreReviewWrapper>

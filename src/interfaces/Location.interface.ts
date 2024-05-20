@@ -65,4 +65,6 @@ export interface BranchCardProps {
     hashtag: ConceptData[];
     isLiked: boolean;
     distance: string;
+    branchLatitude: number;
+    branchLongitude: number;
 }

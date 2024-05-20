@@ -28,7 +28,7 @@ export default function OfficialImageDetail() {
     const navigation = useNavigation<RootStackScreenProps<'OfficialImageDetail'>['navigation']>();
     const route = useRoute<RootStackScreenProps<'OfficialImageDetail'>['route']>();
 
-    const [carouselActive, setCarouselActive] = useState<number>(0);
+    const [carouselActive, setCarouselActive] = useState(0);
 
     /** Carousel 좌우 스크롤시 페이지 이동 */
     const onScrollCarousel = (nativeEvent: NativeScrollEvent) => {

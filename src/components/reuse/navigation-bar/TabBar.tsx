@@ -35,7 +35,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
 
                     if (!isFocused && !event.defaultPrevented) {
                         if (isAddReview) {
-                            isLoggedIn && navigation.navigate('AddReviewModal');
+                            isLoggedIn ? navigation.navigate('AddReviewModal') : navigation.navigate('Login');
                         } else {
                             navigation.navigate(route.name, route.params);
                         }

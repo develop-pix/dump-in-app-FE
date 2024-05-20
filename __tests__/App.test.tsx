@@ -32,6 +32,7 @@ jest.mock('@react-native-seoul/naver-login', () => '@react-native-seoul/naver-lo
 
 jest.mock('@invertase/react-native-apple-authentication', () => '@invertase/react-native-apple-authentication');
 jest.mock('react-native-config', () => 'react-native-config');
+jest.mock('react-native-device-info', () => 'react-native-device-info');
 
 // include this section and the NativeAnimatedHelper section for mocking react-native-reanimated
 jest.mock('react-native-reanimated', () => {

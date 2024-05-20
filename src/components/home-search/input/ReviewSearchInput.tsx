@@ -20,7 +20,7 @@ export default function ReviewSearchInput() {
     const route = useRoute();
     const currentPhotoBoothName = (route.params as { PhotoBoothName: string | null }).PhotoBoothName;
 
-    const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState('');
     const [showSearchResult, setShowSearchResult] = useState(false);
 
     // 결과 데이터
