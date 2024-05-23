@@ -3,8 +3,8 @@ import styled from 'styled-components/native';
 export const PhotoBoothListContainer = styled.View`
     width: 100%;
     flex-direction: row;
-    column-gap: 16px;
-    padding-horizontal: 16px;
+    column-gap: 12px;
+    padding-horizontal: 12px;
 `;
 
 export const PhotoBoothListColumnContainer = styled.View`

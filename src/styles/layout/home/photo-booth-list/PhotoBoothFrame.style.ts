@@ -5,9 +5,9 @@ import { colors } from 'styles/base/Variable';
 export const PhotoBoothFrameContainer = styled.TouchableOpacity`
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     background-color: ${colors.white};
 `;
 

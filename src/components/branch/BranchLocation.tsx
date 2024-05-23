@@ -32,6 +32,7 @@ export default function BranchLocation({ latitude, longitude, distance }: Branch
                 scaleBar={false}>
                 <Marker coordinate={geolocation} />
             </NaverMapView>
+            {/* FIXME: headerLeft로 변경 */}
             <GoBackButtonFloatContainer platform={platform}>
                 <GoBackButtonBlack />
             </GoBackButtonFloatContainer>

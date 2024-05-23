@@ -5,8 +5,8 @@ import { colors } from 'styles/base/Variable';
 export const SeeNearPhotoBoothContainer = styled.View`
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 20px;
-    margin-bottom: 15px;
+    border-radius: 14px;
+    margin-bottom: 12px;
     background-color: ${colors.grey};
     justify-content: center;
 `;
