@@ -37,7 +37,7 @@ export default function RootStackNavigation() {
                 component={HomeSearch}
                 initialParams={{ photoBoothName: null }}
                 options={{
-                    ...TransitionPresets.FadeFromBottomAndroid,
+                    ...TransitionPresets.BottomSheetAndroid,
                     headerShown: true,
                     headerMode: 'screen',
                 }}
@@ -46,7 +46,7 @@ export default function RootStackNavigation() {
                 name="Notification"
                 component={Notification}
                 options={{
-                    ...TransitionPresets.FadeFromBottomAndroid,
+                    ...TransitionPresets.BottomSheetAndroid,
                     headerShown: true,
                     headerMode: 'screen',
                 }}
@@ -55,7 +55,7 @@ export default function RootStackNavigation() {
                 name="ReviewLocationSearch"
                 component={ReviewLocationSearch}
                 options={{
-                    ...TransitionPresets.FadeFromBottomAndroid,
+                    ...TransitionPresets.BottomSheetAndroid,
                     headerShown: true,
                     headerStyle: {
                         backgroundColor: colors.blackgrey,
@@ -90,7 +90,7 @@ export default function RootStackNavigation() {
                 name="Login"
                 component={Login}
                 options={{
-                    ...TransitionPresets.FadeFromBottomAndroid,
+                    ...TransitionPresets.BottomSheetAndroid,
                     headerShown: true,
                     headerMode: 'screen',
                 }}
