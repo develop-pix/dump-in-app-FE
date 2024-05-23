@@ -9,7 +9,7 @@ import AppleIcon from 'assets/image/icon/apple_login.svg';
 import { AppleSocialLogin } from 'hooks/axios/Auth';
 import { storage } from 'hooks/mmkv/storage';
 import { setIsLoggedIn } from 'hooks/redux/loginSlice';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     AppleIconWrapper,
     AppleInfoContainer,
@@ -18,7 +18,7 @@ import {
 } from 'styles/layout/login/AppleLogin.style';
 
 export default function AppleLogin() {
-    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const navigation = useNavigation<RootStackScreenProps<'Login'>['navigation']>();
     const platform = Platform.OS;
     const mobileToken = storage.getString('token.mobileToken');
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default function AppleLogin() {
                     storage.set('token.refreshTokenExpire', socialLoginResult.data.refreshToken.expiredAt);
                     dispatch(setIsLoggedIn(true));
 
-                    navigation.navigate('MyPage');
+                    navigation.pop();
                 }
             }
         } catch (error) {

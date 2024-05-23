@@ -1,11 +1,11 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import { NormalButton } from 'components/reuse/button/NormalButton';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { LoginButtonContainer } from 'styles/layout/my-page/MyActivity/LoginButton.style';
 
 export default function MyPageLogin() {
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const navigation = useNavigation<RootStackScreenProps<'MainTab'>['navigation']>();
     const isFocused = useIsFocused();
 
     const handleLogin = () => {

@@ -4,10 +4,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import LocationGreyIcon from 'assets/image/icon/list_location.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeReview } from 'hooks/axios/Review';
 import { useAppSelector } from 'hooks/redux/store';
 import { ReviewFrameProps } from 'interfaces/Home.interface';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { MyPageStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import { FavoriteIcon } from 'styles/layout/category/CategoryEventItem.style';
 import {
@@ -20,21 +21,24 @@ import {
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
 export default function MyReviewFrame({ data }: ReviewFrameProps) {
-    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
+    const navigation = useNavigation<
+        MyPageStackScreenProps<'MyPage'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
+    >();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
-    const [favorite, setFavorite] = useState<boolean>(true);
+    const [favorite, setFavorite] = useState(true);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** 리뷰선택시 페이지 이동 */
     const onPressReview = () => {
         if (isFocused) {
-            navigation.navigate('ReviewDetail', {
+            (navigation as MyPageStackScreenProps<'MyPage'>['navigation']).navigate('ReviewDetail', {
                 reviewID: data.id,
-                reviewType: 'mine',
+                reviewType: 'like',
                 photoBoothLocation: undefined,
                 frameColor: undefined,
-                participants: undefined,
+                participants: 0,
                 cameraShot: undefined,
                 concept: undefined,
                 keyword: undefined,
@@ -50,7 +54,15 @@ export default function MyReviewFrame({ data }: ReviewFrameProps) {
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
+    };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Login');
     };
 
     return (
@@ -82,6 +94,15 @@ export default function MyReviewFrame({ data }: ReviewFrameProps) {
                     </FontWhiteGreySmallerMediumWithLineHeight>
                 </ReviewNameContainer>
             </ReviewInfo>
+
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </ReviewFrameContainer>
     );
 }

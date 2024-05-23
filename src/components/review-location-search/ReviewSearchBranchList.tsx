@@ -9,8 +9,8 @@ import { ListContainer, SearchBranchContainer } from 'styles/layout/review-locat
 import BranchList from './BranchList';
 
 export default function ReviewSearchBranchList({ search, resultData, setResultData }: ReviewSearchBranchListProps) {
-    const [dataEnd, setDataEnd] = useState<boolean>(true);
-    const [page, setPage] = useState<number>(1);
+    const [dataEnd, setDataEnd] = useState(true);
+    const [page, setPage] = useState(1);
 
     const searchLimit = 20;
 

@@ -19,7 +19,7 @@ export default function CategoryPhotoBooth() {
     const navigation = useNavigation<CategoryStackScreenProps<'Category'>['navigation']>();
     const isFocused = useIsFocused();
 
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [photoBoothList, setPhotoBoothList] = useState<PhotoBoothListData[]>([]);
 
     const onPressPhotoBooth = (id: number) => {

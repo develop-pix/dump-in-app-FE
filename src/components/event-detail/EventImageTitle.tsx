@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
+import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeEvent } from 'hooks/axios/Event';
 import { useAppSelector } from 'hooks/redux/store';
 import { EventImageTitleProps } from 'interfaces/EventDetail.interface';
-import { CategoryStackScreenProps } from 'interfaces/Navigation.interface';
+import { CategoryStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
 import {
     ContentsContainer,
@@ -22,8 +23,10 @@ import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 export default function ImageTitle({ mainThumbnailImageUrl, title, hashtag, isLiked }: EventImageTitleProps) {
     const route = useRoute<CategoryStackScreenProps<'EventDetail'>['route']>();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
+    const navigation = useNavigation<RootStackScreenProps<'MainTab'>['navigation']>();
 
-    const [favorite, setFavorite] = useState<boolean>(isLiked);
+    const [favorite, setFavorite] = useState(isLiked);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     /** 하트 버튼 클릭시 */
     const onPressEventLikeButton = async () => {
@@ -32,8 +35,17 @@ export default function ImageTitle({ mainThumbnailImageUrl, title, hashtag, isLi
             if (press_result.success) {
                 setFavorite(prev => !prev);
             }
+        } else {
+            setIsModalVisible(prev => !prev);
         }
     };
+
+    /** 로그인 버튼 클릭시 */
+    const onPressLogin = () => {
+        setIsModalVisible(prev => !prev);
+        navigation.navigate('Login');
+    };
+
     return (
         <EventImageTitleContainer>
             <EventImage source={{ uri: mainThumbnailImageUrl }}>
@@ -66,6 +78,14 @@ export default function ImageTitle({ mainThumbnailImageUrl, title, hashtag, isLi
                     </ReviewDescBottom>
                 </ContentsContainer>
             </EventImageContentContainer>
+            <ConfirmationAlertModal
+                isVisible={isModalVisible}
+                title="로그인이 필요합니다.  로그인 하시겠습니까?"
+                agreeMessage="확인"
+                disagreeMessage="취소"
+                onAgree={onPressLogin}
+                onDisagree={() => setIsModalVisible(false)}
+            />
         </EventImageTitleContainer>
     );
 }

@@ -10,7 +10,7 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
     const pageWidth = Dimensions.get('window').width * 0.9;
     const gap = Dimensions.get('window').width * 0.02;
     const offset = Dimensions.get('window').width * 0.03;
-    const [carouselActive, setCarouselActive] = useState<number>(0);
+    const [carouselActive, setCarouselActive] = useState(0);
 
     //TODO: 추후 필요 없을 시 제거
     const onCarouselScroll = (nativeEvent: NativeScrollEvent) => {
@@ -43,6 +43,8 @@ export default function BranchCarousel({ branchData }: BranchCarouselProps) {
                                 hashtag={data.photoBoothBrand.hashtag}
                                 isLiked={data.isLiked}
                                 distance={data.distance}
+                                branchLatitude={data.latitude}
+                                branchLongitude={data.longitude}
                             />
                         </Card>
                     );

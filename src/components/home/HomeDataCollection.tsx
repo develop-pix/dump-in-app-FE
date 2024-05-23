@@ -12,7 +12,7 @@ import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDa
 import { fetchHomeEvent, fetchHomePhotoBooth, fetchHomeReview } from 'hooks/axios/Home';
 import { fetchNotificationListCheck } from 'hooks/axios/Notification';
 import { CollectionDataProps } from 'interfaces/Home.interface';
-import { HomeStackScreenProps } from 'interfaces/Navigation.interface';
+import { HomeStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
 import { CollectionContainer, CollectionFlatList } from 'styles/layout/home/HomeDataCollection.style';
 import {
@@ -28,7 +28,9 @@ import NoResultPhotoBooth from './NoResultPhotoBooth';
 import PhotoBoothList from './photo-booth-list/PhotoBoothList';
 
 export default function HomeDataCollection() {
-    const navigation = useNavigation<HomeStackScreenProps<'Home'>['navigation']>();
+    const navigation = useNavigation<
+        HomeStackScreenProps<'Home'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
+    >();
 
     const flatListRef = useRef<FlatList>(null);
 
@@ -140,13 +142,13 @@ export default function HomeDataCollection() {
         };
 
         const navigateToSearchScreen = () => {
-            navigation.navigate('HomeSearch', {
+            (navigation as HomeStackScreenProps<'Home'>['navigation']).navigate('HomeSearch', {
                 photoBoothName: null,
             });
         };
 
         const navigateToNotificationScreen = () => {
-            navigation.navigate('Notification');
+            (navigation as RootStackScreenProps<'MainTab'>['navigation']).navigate('Notification');
         };
 
         navigation.setOptions({

@@ -2,23 +2,16 @@ import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
-import {
-    AppDescriptionWrapper,
-    LoginComponentsContainer,
-    LoginContainer,
-    LogoIcon,
-} from 'styles/layout/login/Login.style';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
+import { LoginComponentsContainer, LoginContainer, LogoIcon } from 'styles/layout/login/Login.style';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
-import { FontWhiteBiggerSemiboldWithTextAlign } from 'styles/layout/reuse/text/Text.style';
 
 import AppleLogin from './AppleLogin';
 import KakaoLogin from './KakaoLogin';
 import NaverLogin from './NaverLogin';
 
-// TODO: 로고 사진 수정 필요, 추후 로그인 구현
 export default function Login() {
-    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const navigation = useNavigation<RootStackScreenProps<'Login'>['navigation']>();
 
     useEffect(() => {
         navigation.setOptions({
@@ -35,12 +28,7 @@ export default function Login() {
     return (
         <LoginContainer>
             <LoginComponentsContainer>
-                <LogoIcon source={require('assets/image/source/filter-knee.png')} resizeMode="cover" />
-                <AppDescriptionWrapper>
-                    <FontWhiteBiggerSemiboldWithTextAlign>
-                        덤핀 서비스 설명글 간단하게 한두줄 정도
-                    </FontWhiteBiggerSemiboldWithTextAlign>
-                </AppDescriptionWrapper>
+                <LogoIcon source={require('assets/image/source/logo.png')} resizeMode="contain" />
                 <KakaoLogin />
                 <NaverLogin />
                 <AppleLogin />

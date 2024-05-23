@@ -16,7 +16,7 @@ import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/r
 import { DateToReviewDateForm, UploadReviewDateForm } from 'utils/FormChange';
 
 export default function DateInput({ errorData }: DateInputProps) {
-    const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+    const [datePickerOpen, setDatePickerOpen] = useState(false);
 
     const date = useAppSelector(state => state.reviewEdit).date;
     const dispatch = useAppDispatch();

@@ -229,7 +229,6 @@ export default function ReviewDetail() {
 
         const getReviewReelsData = async () => {
             try {
-                //TODO: ReviewDetail 페이지 진입시 이전리뷰ID, (filter 일경우 지역,프레임색상,참가자수, 카메라샷, 해시태그)
                 const reelsData = await GetReviewReels(
                     route.params.reviewType,
                     route.params.photoBoothLocation,

@@ -5,7 +5,7 @@ import { ScreenContextType, ScreenProviderProps } from 'interfaces/ScreenContext
 const ScreenContext = createContext<ScreenContextType | undefined>(undefined);
 
 export function ScreenProvider({ children }: ScreenProviderProps) {
-    const [screen, setScreen] = useState<string>('Home');
+    const [screen, setScreen] = useState('Home');
 
     return <ScreenContext.Provider value={{ screen, setScreen }}>{children}</ScreenContext.Provider>;
 }

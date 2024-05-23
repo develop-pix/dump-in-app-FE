@@ -94,3 +94,27 @@ export const NextButtonContainer = styled.TouchableOpacity`
     position: absolute;
     right: 0;
 `;
+
+export const ReviewFrameContainer = styled.View`
+    flex-direction: row;
+    gap: 3px;
+`;
+
+export const ReviewFrameColor = styled.View<{
+    colorOption: string;
+}>`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: ${props => props.colorOption};
+`;
+
+export const ReviewFrameGradient = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+`;

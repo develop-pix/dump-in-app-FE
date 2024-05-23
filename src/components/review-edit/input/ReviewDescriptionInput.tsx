@@ -20,7 +20,7 @@ import {
 import { ReviewErrorContainer, ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.style';
 
 export default function ReviewDescriptionInput({ errorData }: ReviewDescriptionProps) {
-    const [inputCount, setInputCount] = useState<number>(0);
+    const [inputCount, setInputCount] = useState(0);
 
     const description = useAppSelector(state => state.reviewEdit).description;
     const platform = Platform.OS;

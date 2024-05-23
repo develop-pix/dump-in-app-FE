@@ -28,7 +28,7 @@ export default function PhotoBoothDetail() {
     const eventDataLimit = 6;
     const reviewDataLimit = 10;
 
-    const [page, setPage] = useState<number>(0);
+    const [page, setPage] = useState(0);
     const [photoBoothData, setPhotoBoothData] = useState<PhotoBoothDataType>({
         id: undefined,
         name: '',

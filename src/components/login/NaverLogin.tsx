@@ -7,7 +7,7 @@ import NaverIcon from 'assets/image/icon/naver_login.svg';
 import { NaverSocialLogin } from 'hooks/axios/Auth';
 import { storage } from 'hooks/mmkv/storage';
 import { setIsLoggedIn } from 'hooks/redux/loginSlice';
-import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
+import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import {
     NaverIconWrapper,
     NaverInfoContainer,
@@ -23,7 +23,7 @@ const naverKeys: NaverLoginRequest = {
 };
 
 export default function NaverLogin() {
-    const navigation = useNavigation<MyPageStackScreenProps<'Login'>['navigation']>();
+    const navigation = useNavigation<RootStackScreenProps<'Login'>['navigation']>();
     const mobileToken = storage.getString('token.mobileToken');
     const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ export default function NaverLogin() {
                     storage.set('token.refreshTokenExpire', socialLoginResult.data.refreshToken.expiredAt);
                     dispatch(setIsLoggedIn(true));
 
-                    navigation.navigate('MyPage');
+                    navigation.pop();
                 }
             }
         } catch (error) {

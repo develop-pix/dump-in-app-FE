@@ -6,6 +6,7 @@ import { axiosInstance } from './ApiHeader';
 export const GetAddressFromNaverGeocoding = async (latitude: number, longitude: number) => {
     const str_latitude: string = latitude.toFixed(7);
     const str_longitude: string = longitude.toFixed(7);
+
     const URL =
         'https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=' +
         str_longitude +
