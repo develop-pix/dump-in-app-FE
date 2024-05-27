@@ -34,19 +34,19 @@ export const DotContainer = styled.View`
 export const DotActive = styled.View``;
 
 export const FillDot = styled.View`
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 5px;
-    background-color: ${colors.whitegrey};
-    border-color: ${colors.whitegrey};
+    background-color: ${colors.white};
+    border-color: ${colors.white};
     border-width: 1px;
 `;
 
 export const EmptyDot = styled.View`
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 5px;
-    background-color: ${colors.white};
+    background-color: ${colors.whitegrey};
     border-color: ${colors.whitegrey};
     border-width: 1px;
 `;
