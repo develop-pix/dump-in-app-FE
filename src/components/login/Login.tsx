@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import Logo from 'assets/image/icon/logo.svg';
 import GoBackButton from 'components/reuse/button/GoBackButton';
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
-import { LoginComponentsContainer, LoginContainer, LogoIcon } from 'styles/layout/login/Login.style';
+import { LoginComponentsContainer, LoginContainer, LogoIconContainer } from 'styles/layout/login/Login.style';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 
 import AppleLogin from './AppleLogin';
@@ -28,7 +29,9 @@ export default function Login() {
     return (
         <LoginContainer>
             <LoginComponentsContainer>
-                <LogoIcon source={require('assets/image/source/logo.png')} resizeMode="contain" />
+                <LogoIconContainer>
+                    <Logo />
+                </LogoIconContainer>
                 <KakaoLogin />
                 <NaverLogin />
                 <AppleLogin />
