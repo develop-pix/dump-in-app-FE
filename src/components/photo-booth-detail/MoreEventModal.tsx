@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useRoute } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 
 import CloseIcon from 'assets/image/icon/btn_close.svg';
@@ -20,21 +19,10 @@ import PhotoBoothEventFrame from './PhotoBoothEventFrame';
 
 export default function MoreEventModal({ dataLimit, page, setPage, visible, onClose }: MoreEventModalProps) {
     const route = useRoute<CategoryStackScreenProps<'PhotoBoothDetail'>['route']>();
-    const navigation = useNavigation<CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']>();
-    const isFocused = useIsFocused();
 
     const [allEventData, setAllEventData] = useState<EventDataType[]>([]);
     const [dataEnd, setDataEnd] = useState(true);
 
-    /** EventDetail 페이지로 이동 */
-    const onPressEvent = (id: number) => {
-        if (isFocused) {
-            navigation.navigate('EventDetail', {
-                eventID: id,
-            });
-        }
-        onClose();
-    };
     /** FlatList onEndReached */
     const onEndReached = async () => {
         setPage(prev => prev + 1);
@@ -45,13 +33,12 @@ export default function MoreEventModal({ dataLimit, page, setPage, visible, onCl
     };
 
     /** FlatList renderItem */
-    const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
-        return (
-            <TouchableOpacity onPress={() => onPressEvent(item.id)}>
-                <PhotoBoothEventFrame event={item} />
-            </TouchableOpacity>
-        );
-    }, []);
+    const renderEventItem = useCallback(
+        ({ item }: { item: EventDataType }) => {
+            return <PhotoBoothEventFrame event={item} onClose={onClose} />;
+        },
+        [onClose],
+    );
 
     // 포토부스 상세 페이지 진입시 해당 포토부스의 데이터, 이벤트, 리뷰 Get
     useEffect(() => {
@@ -73,7 +60,7 @@ export default function MoreEventModal({ dataLimit, page, setPage, visible, onCl
         };
 
         getPhotoBoothData();
-    }, [dataLimit, route.params.photoBoothID]);
+    }, [dataLimit, page, route.params.photoBoothID]);
 
     return (
         <Modal

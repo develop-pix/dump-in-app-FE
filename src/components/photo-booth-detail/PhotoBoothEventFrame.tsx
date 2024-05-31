@@ -19,7 +19,7 @@ import {
 } from 'styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
 import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
-export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProps) {
+export default function PhotoBoothEventFrame({ event, onClose }: PhotoBoothEventFrameProps) {
     const navigation = useNavigation<
         | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
         | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
@@ -32,6 +32,9 @@ export default function PhotoBoothEventFrame({ event }: PhotoBoothEventFrameProp
 
     /** EventDetail 페이지로 이동 */
     const onPressEvent = (id: number) => {
+        if (onClose) {
+            onClose();
+        }
         if (isFocused) {
             switch (navigation.getId()) {
                 case 'HomeStack':

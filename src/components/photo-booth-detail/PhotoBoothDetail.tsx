@@ -77,7 +77,7 @@ export default function PhotoBoothDetail() {
         };
 
         getPhotoBoothData();
-    }, [route.params.photoBoothID]);
+    }, [page, route.params.photoBoothID]);
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
