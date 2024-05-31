@@ -83,14 +83,14 @@ export default function PhotoBoothEventFrame({ event, onClose }: PhotoBoothEvent
             <EventImageWrapper>
                 <EventImage source={{ uri: event.mainThumbnailImageUrl }} />
                 <LinearGradient
-                    colors={['transparent', colors.lightblack]}
+                    colors={['transparent', colors.darkgrey]}
                     locations={[0.1, 1]}
                     style={{
                         position: 'absolute',
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        height: 200,
+                        height: 145,
                     }}
                 />
 
