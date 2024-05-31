@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Linking, Platform } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
+import NextButtonSmall from 'assets/image/icon/btn_next_small.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeBranch } from 'hooks/axios/Branch';
@@ -127,6 +128,7 @@ export default function BranchCard({
                     <FontWhiteGreySmallestMedium>내 위치로부터 {distance} · </FontWhiteGreySmallestMedium>
                     <BranchCardAppScheme onPress={onPressVisitBranch}>
                         <FontWhiteGreySmallestMedium>방문하기</FontWhiteGreySmallestMedium>
+                        <NextButtonSmall />
                     </BranchCardAppScheme>
                 </BranchCardBottom>
             </CardContainer>
