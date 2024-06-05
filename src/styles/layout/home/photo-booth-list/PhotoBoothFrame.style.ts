@@ -12,8 +12,7 @@ export const PhotoBoothFrameContainer = styled.TouchableOpacity`
 `;
 
 export const PhotoBoothFrameImage = styled.Image`
-    width: 100%;
-    height: 100%;
+    flex: 1;
     resize-mode: cover;
 `;
 
@@ -28,16 +27,19 @@ export const PhotoBoothInfo = styled.View`
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
 `;
 
 export const PhotoBoothNameContainer = styled.View`
     flex-direction: row;
     align-items: center;
     margin-bottom: 10px;
+    margin-horizontal: 5px;
+    gap: 4px;
 `;
 
-export const LocationIconContainer = styled.View`
-    margin-right: 5px;
-    margin-left: 5px;
+export const PhotoBoothNameTextContainer = styled.View`
+    flex: 1;
 `;

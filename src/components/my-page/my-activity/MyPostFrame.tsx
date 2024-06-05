@@ -12,11 +12,11 @@ import { MyPageStackScreenProps, RootStackScreenProps } from 'interfaces/Navigat
 import { colors } from 'styles/base/Variable';
 import { FavoriteIcon } from 'styles/layout/category/CategoryEventItem.style';
 import {
-    LocationIconContainer,
     ReviewFrameContainer,
     ReviewFrameImage,
     ReviewInfo,
     ReviewNameContainer,
+    ReviewNameTextContainer,
 } from 'styles/layout/home/photo-booth-list/ReviewFrame.style';
 import { FontWhiteGreySmallerMediumWithLineHeight } from 'styles/layout/reuse/text/Text.style';
 
@@ -86,12 +86,12 @@ export default function MyPostFrame({ data }: ReviewFrameProps) {
 
             <ReviewInfo>
                 <ReviewNameContainer>
-                    <LocationIconContainer>
-                        <LocationGreyIcon width={18} height={21} />
-                    </LocationIconContainer>
-                    <FontWhiteGreySmallerMediumWithLineHeight>
-                        {data.photoBoothName}
-                    </FontWhiteGreySmallerMediumWithLineHeight>
+                    <LocationGreyIcon width={18} height={21} />
+                    <ReviewNameTextContainer>
+                        <FontWhiteGreySmallerMediumWithLineHeight ellipsizeMode="tail" numberOfLines={1}>
+                            {data.photoBoothName}
+                        </FontWhiteGreySmallerMediumWithLineHeight>
+                    </ReviewNameTextContainer>
                 </ReviewNameContainer>
             </ReviewInfo>
 
