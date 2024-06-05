@@ -9,6 +9,7 @@ export const PhotoDumpContainer = styled.View`
     width: 100%;
     gap: 10px;
     align-items: center;
+    margin-top: 30px;
 `;
 
 export const SubTitleContainer = styled.View`
