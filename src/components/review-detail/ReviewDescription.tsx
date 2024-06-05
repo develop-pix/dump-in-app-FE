@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import EtcImage from 'assets/image/icon/frame_etc.svg';
 import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeReview } from 'hooks/axios/Review';
@@ -14,22 +13,13 @@ import {
     MyPageStackScreenProps,
 } from 'interfaces/Navigation.interface';
 import { colors } from 'styles/base/Variable';
+import { FontWhiteNormalMedium, FontWhiteSmallerMedium } from 'styles/layout/reuse/text/Text.style';
 import {
-    FontWhiteNormalMedium,
-    FontWhiteSmallerMedium,
-    FontYellowSmallerMediumWithLineSpacing,
-} from 'styles/layout/reuse/text/Text.style';
-import {
-    ReviewDescBottom,
     ReviewDescMiddle,
     ReviewDescriptionContainer,
     ReviewDescriptionTouchableContainer,
     ReviewDescTop,
-    ReviewFrameColor,
-    ReviewFrameContainer,
-    ReviewFrameGradient,
 } from 'styles/layout/review-detail/ReviewDetail.style';
-import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
 
 export default function ReviewDescription() {
     const route = useRoute<
@@ -49,21 +39,20 @@ export default function ReviewDescription() {
     const tabRouteName = routes[0].name;
 
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
-    const { date, content, concept, isLiked, frameColor, participants, cameraShot, curlAmount, goodsAmount } =
-        useAppSelector(state => {
-            switch (tabRouteName) {
-                case 'Home':
-                    return state.homeReviewDetail;
-                case 'Location':
-                    return state.branchReviewDetail;
-                case 'MyPage':
-                    return state.myPageReviewDetail;
-                case 'Category':
-                    return state.categoryReviewDetail;
-                default:
-                    return state.homeReviewDetail;
-            }
-        });
+    const { date, content, isLiked } = useAppSelector(state => {
+        switch (tabRouteName) {
+            case 'Home':
+                return state.homeReviewDetail;
+            case 'Location':
+                return state.branchReviewDetail;
+            case 'MyPage':
+                return state.myPageReviewDetail;
+            case 'Category':
+                return state.categoryReviewDetail;
+            default:
+                return state.homeReviewDetail;
+        }
+    });
 
     const [favorite, setFavorite] = useState(isLiked);
     const [numLines, setNumLines] = useState(2);
@@ -105,7 +94,7 @@ export default function ReviewDescription() {
                     width: '100%',
                     paddingVertical: 12,
                     paddingHorizontal: 20,
-                    minHeight: 160,
+                    minHeight: 110,
                 }}>
                 <ReviewDescTop>
                     <FontWhiteSmallerMedium>{date}</FontWhiteSmallerMedium>
@@ -116,29 +105,6 @@ export default function ReviewDescription() {
                         <FontWhiteNormalMedium numberOfLines={numLines}>{content}</FontWhiteNormalMedium>
                     </ReviewDescriptionTouchableContainer>
                 </ReviewDescMiddle>
-                <ReviewDescBottom>
-                    <ReviewFrameContainer>
-                        <FontYellowSmallerMediumWithLineSpacing>#</FontYellowSmallerMediumWithLineSpacing>
-                        {frameColor === 'gradient' ? (
-                            <ReviewFrameGradient>
-                                <EtcImage width={16} height={16} />
-                            </ReviewFrameGradient>
-                        ) : (
-                            frameColor && <ReviewFrameColor colorOption={frameColor} />
-                        )}
-                    </ReviewFrameContainer>
-                    <FontYellowSmallerMediumWithLineSpacing># {participants}명</FontYellowSmallerMediumWithLineSpacing>
-                    <FontYellowSmallerMediumWithLineSpacing># {cameraShot}</FontYellowSmallerMediumWithLineSpacing>
-                    {TagsArrayToHashTagArrayForm(concept).map(tag => (
-                        <FontYellowSmallerMediumWithLineSpacing key={tag}>{tag}</FontYellowSmallerMediumWithLineSpacing>
-                    ))}
-                    {curlAmount === true && (
-                        <FontYellowSmallerMediumWithLineSpacing># 고데기 있음</FontYellowSmallerMediumWithLineSpacing>
-                    )}
-                    {goodsAmount === true && (
-                        <FontYellowSmallerMediumWithLineSpacing># 소품 많음</FontYellowSmallerMediumWithLineSpacing>
-                    )}
-                </ReviewDescBottom>
                 <ConfirmationAlertModal
                     isVisible={isModalVisible}
                     title="로그인이 필요합니다.  로그인 하시겠습니까?"

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Dimensions, NativeScrollEvent } from 'react-native';
+import { Dimensions, LayoutChangeEvent, NativeScrollEvent } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import { useDispatch } from 'react-redux';
@@ -33,9 +33,11 @@ import {
 } from 'styles/layout/review-detail/ReviewDetail.style';
 
 import ReviewDescription from './ReviewDescription';
+import ReviewTag from './ReviewTag';
 
 export default function ReviewDetail() {
     const [carouselActive, setCarouselActive] = useState(0);
+    const [arrowButtonTop, setArrowButtonTop] = useState(0);
     const nextReviewID = useRef(0);
     const prevReviewID = useRef(0);
 
@@ -204,6 +206,11 @@ export default function ReviewDetail() {
         }
     };
 
+    const onLayout = (e: LayoutChangeEvent) => {
+        const { layout } = e.nativeEvent;
+        setArrowButtonTop(layout.height / 2 - 30);
+    };
+
     // ReviewData fetch 및 dataSet
     useEffect(() => {
         const getReviewData = async () => {
@@ -268,6 +275,7 @@ export default function ReviewDetail() {
             <ReviewDetailForm>
                 <ReviewDetailFormWrapper>
                     <ReviewDetailCarousel
+                        onLayout={onLayout}
                         scrollEnabled={true}
                         onScroll={({ nativeEvent }) => onScrollCarousel(nativeEvent)}
                         horizontal
@@ -311,13 +319,12 @@ export default function ReviewDetail() {
                             ))}
                         </DotContainer>
                     )}
-                    <ButtonContainer>
+                    <ButtonContainer style={{ top: arrowButtonTop }}>
                         {prevReviewID.current !== null && (
                             <PrevButtonContainer onPress={onPressPrevButton}>
                                 <PrevIcon />
                             </PrevButtonContainer>
                         )}
-
                         {nextReviewID.current !== null && (
                             <NextButtonContainer onPress={onPressNextButton}>
                                 <NextIcon />
@@ -326,6 +333,7 @@ export default function ReviewDetail() {
                     </ButtonContainer>
                     <ReviewDescription />
                 </ReviewDetailFormWrapper>
+                <ReviewTag />
             </ReviewDetailForm>
         </ReviewDetailFormContainer>
     );

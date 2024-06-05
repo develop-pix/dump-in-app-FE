@@ -73,7 +73,8 @@ export const ReviewDescriptionTouchableContainer = styled.TouchableOpacity``;
 export const ReviewDescBottom = styled.View`
     flex-direction: row;
     gap: 8px;
-    margin-top: 32px;
+    padding: 12px 20px;
+    background-color: ${colors.black};
 `;
 
 export const ReviewDetailForm = styled.View`
