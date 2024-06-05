@@ -10,11 +10,9 @@ export const GoBackButtonContainer = styled.View<{
     margin-top: ${props => (props.platform === 'ios' ? '55' : props.platform === 'android' ? '15' : null)}px;
 `;
 
-export const GoBackButtonFloatContainer = styled.View<{
-    platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
-}>`
+export const GoBackButtonFloatContainer = styled.View`
     position: absolute;
-    top: ${props => (props.platform === 'ios' ? '75' : props.platform === 'android' ? '30' : null)}px;
+    left: 10px;
 `;
 
 export const GoBackButtonContainerWithSafeArea = styled.View<{

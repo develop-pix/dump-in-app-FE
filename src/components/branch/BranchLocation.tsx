@@ -1,5 +1,5 @@
-import { Platform } from 'react-native';
 import NaverMapView, { Marker } from 'react-native-nmap';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import GoBackButtonBlack from 'components/reuse/button/GoBackButtonBlack';
 import { BranchLocationProps } from 'interfaces/Branch.interface';
@@ -9,7 +9,7 @@ import { GoBackButtonFloatContainer } from 'styles/layout/reuse/button/GoBackBut
 import BranchDistance from './BranchDistance';
 
 export default function BranchLocation({ latitude, longitude, distance }: BranchLocationProps) {
-    const platform = Platform.OS;
+    const safeAreaInset = useSafeAreaInsets();
     const defaultLatitude = 37.564362;
     const defaultLongitude = 126.977011;
     const geolocation = {
@@ -32,8 +32,7 @@ export default function BranchLocation({ latitude, longitude, distance }: Branch
                 scaleBar={false}>
                 <Marker coordinate={geolocation} />
             </NaverMapView>
-            {/* FIXME: headerLeft로 변경 */}
-            <GoBackButtonFloatContainer platform={platform}>
+            <GoBackButtonFloatContainer style={{ top: safeAreaInset.top }}>
                 <GoBackButtonBlack />
             </GoBackButtonFloatContainer>
             <BranchDistance distance={distance} />
