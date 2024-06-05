@@ -3,10 +3,10 @@ import styled from 'styled-components/native';
 import { colors } from 'styles/base/Variable';
 
 export const FilterOptionContainer = styled.View`
-    padding: 0px 20px 20px;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+    padding: 6px 20px 20px 20px;
 `;
 
 export const ColorBox = styled.View<{ backgroundColor: string }>`
