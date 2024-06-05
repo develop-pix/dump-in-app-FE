@@ -38,8 +38,6 @@ export default function HomeFilterModalForm({
 
     // 모달창의 필터 변수
     const [filterModalFilterData, setFilterModalFilterData] = useState<FilterProps>(filterData);
-    // 필터 옵션이 선택 되었는지 여부(버튼 활성화 용)
-    const [isFilterSelected, setIsFilterSelected] = useState(false);
     // 필터 옵션이 선택 되었는지 여부(초기화 버튼 활성화 용)
     const [activateResetButton, setActivateResetButton] = useState(false);
     // 필터 옵션 적용 결과 데이터 수
@@ -52,16 +50,13 @@ export default function HomeFilterModalForm({
         );
         setActivateResetButton(isFilterOptionSelected);
 
-        const isFilterChanged = JSON.stringify(filterModalFilterData) !== JSON.stringify(filterData);
-        setIsFilterSelected(isFilterChanged);
-
         if (isFilterOptionSelected) {
             const reviewCountResponse = await fetchReviewCount(filterModalFilterData);
             if (reviewCountResponse) {
                 setResultNumber(reviewCountResponse.data.count);
             }
         }
-    }, [filterData, filterModalFilterData]);
+    }, [filterModalFilterData]);
 
     // 필터 데이터 제출 함수
     const handleFilterSubmit = () => {
@@ -155,7 +150,7 @@ export default function HomeFilterModalForm({
                             backgroundColor={colors.black}
                             borderColor={colors.white}
                             textColor={colors.white}
-                            disabled={!isFilterSelected}
+                            disabled={false}
                         />
                     </FilterButtonBox>
                 </FilterFormBody>

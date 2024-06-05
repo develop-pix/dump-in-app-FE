@@ -110,6 +110,7 @@ export default function HomeDataCollection() {
         setFilterData(newFilterData);
         setCollectionData([]);
         setIsLoading(true);
+        getHomeData();
     };
     /** 필터 모달창 닫는 함수 */
     const handleHideFilterModal = () => {
