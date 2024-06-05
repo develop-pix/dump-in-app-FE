@@ -8,6 +8,12 @@ export const HeaderRightContainer = styled.View`
     margin-right: 10px;
 `;
 
+export const HeaderRowContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const RowContainer = styled.View`
     flex-direction: row;
 `;

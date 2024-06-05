@@ -17,7 +17,7 @@ import {
     HeaderIconContainer,
     HeaderLeftContainer,
     HeaderRightContainer,
-    RowContainer,
+    HeaderRowContainer,
 } from 'styles/layout/reuse/header/Header.style';
 import { FontWhiteNormalMedium } from 'styles/layout/reuse/text/Text.style';
 import { ReviewDetailContainer } from 'styles/layout/review-detail/ReviewDetail.style';
@@ -76,10 +76,10 @@ export default function ReviewDetail() {
             },
             headerTitle: () => {
                 return (
-                    <RowContainer>
+                    <HeaderRowContainer>
                         <LocationIcon width={20} height={24} style={{ marginRight: 4 }} />
                         <FontWhiteNormalMedium>{photoBoothName}</FontWhiteNormalMedium>
-                    </RowContainer>
+                    </HeaderRowContainer>
                 );
             },
         });

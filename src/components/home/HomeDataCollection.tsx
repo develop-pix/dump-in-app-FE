@@ -5,7 +5,6 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import NewNotificationIcon from 'assets/image/icon/alert_notification.svg';
 import FilterIcon from 'assets/image/icon/filter.svg';
 import NotificationIcon from 'assets/image/icon/notification.svg';
-import SearchIcon from 'assets/image/icon/search.svg';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
 import SkeletonGetMoreHomeData from 'components/reuse/skeleton/SkeletonGetMoreHomeData';
 import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDataCollection';
@@ -19,7 +18,7 @@ import {
     HeaderIconContainer,
     HeaderLeftContainer,
     HeaderRightContainer,
-    RowContainer,
+    HeaderRowContainer,
 } from 'styles/layout/reuse/header/Header.style';
 
 import HomeFilterModalForm from './HomeFilterModalForm';
@@ -164,14 +163,14 @@ export default function HomeDataCollection() {
             headerRight: () => {
                 return (
                     <HeaderRightContainer>
-                        <RowContainer>
+                        <HeaderRowContainer>
                             {/* <HeaderIconContainer onPress={navigateToSearchScreen}>
                                 <SearchIcon />
                             </HeaderIconContainer> */}
                             <HeaderIconContainer onPress={navigateToNotificationScreen}>
                                 {hasUnreadNotification ? <NewNotificationIcon /> : <NotificationIcon />}
                             </HeaderIconContainer>
-                        </RowContainer>
+                        </HeaderRowContainer>
                     </HeaderRightContainer>
                 );
             },
