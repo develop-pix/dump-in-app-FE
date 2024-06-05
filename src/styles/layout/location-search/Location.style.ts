@@ -13,10 +13,7 @@ export const SearchForm = styled.SafeAreaView`
     flex: 1;
 `;
 
-export const SearchContainer = styled.View`
-    align-items: flex-end;
-    justify-content: space-between;
-`;
+export const SearchContainer = styled.View``;
 /* SearchBranchList */
 
 export const SearchBranchContainer = styled.View`

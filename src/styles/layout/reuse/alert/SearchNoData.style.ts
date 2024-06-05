@@ -7,9 +7,8 @@ export const SearchNoDataContainer = styled.View`
 `;
 
 export const NoDataContainer = styled.View`
-    width: 90%;
-    padding: 30px 0px 30px 0px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    padding-top: 30px;
+    gap: 12px;
 `;

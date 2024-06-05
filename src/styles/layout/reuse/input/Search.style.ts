@@ -6,15 +6,17 @@ export const Wrapper = styled.View`
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    margin: 10px 0px 20px 0px;
+    margin-top: 16px;
+    padding-horizontal: 20px;
 `;
 
 export const SearchWrapper = styled.View`
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
+    width: 100%;
     height: 46px;
+    justify-content: space-between;
+    padding-horizontal: 16px;
+    align-items: center;
     background-color: ${colors.darkgrey};
     border-radius: 10px;
 `;
@@ -24,6 +26,8 @@ export const SearchInput = styled.TextInput.attrs({
 })`
     margin-left: 10px;
     color: ${colors.white};
+    font-weight: 600;
+    font-size: 16px;
 `;
 
 export const SearchButtonIconContainer = styled.View`
