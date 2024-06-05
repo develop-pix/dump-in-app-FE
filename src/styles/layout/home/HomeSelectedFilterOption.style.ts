@@ -20,4 +20,6 @@ export const FilterOptionTextBox = styled.View`
     padding: 4px 10px;
     background-color: ${colors.blackgrey};
     border-radius: 6px;
+    justify-content: center;
+    align-items: center;
 `;
