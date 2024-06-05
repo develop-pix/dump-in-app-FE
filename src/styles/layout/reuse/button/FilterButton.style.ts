@@ -8,14 +8,13 @@ export const FilterButtonContainer = styled.TouchableOpacity<{
 }>`
     border-radius: 10px;
     border-width: 1px;
-    width: 162px;
-    height: 43px;
+    height: 44px;
+    flex: 1;
     justify-content: center;
     align-items: center;
     background-color: ${({ backgroundColor }) => backgroundColor};
     border-color: ${({ borderColor }) => borderColor};
     opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-    margin-horizontal: 5px;
 `;
 
 export const FilterButtonText = styled.Text<{

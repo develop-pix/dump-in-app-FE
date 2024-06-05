@@ -35,10 +35,15 @@ export const FilterOptionContainer = styled.View`
 `;
 
 export const FilterButtonBox = styled.View`
+    position: absolute;
+    bottom: 0;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 20px 0px;
+    padding-bottom: 0px;
+    width: 100%;
+    gap: 12px;
+    padding-horizontal: 20px;
 `;
 
 export const Margin = styled.View`
@@ -46,7 +51,7 @@ export const Margin = styled.View`
 `;
 
 export const BottomBounceView = styled.View`
-    background-color: ${colors.lightblack};
+    /* background-color: ${colors.lightblack}; */
     position: absolute;
     width: 100%;
 `;

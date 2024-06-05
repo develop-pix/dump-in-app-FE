@@ -3,6 +3,7 @@ import { Dimensions, ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import CloseIcon from 'assets/image/icon/btn_close.svg';
 import { FilterButton } from 'components/reuse/button/FilterButton';
@@ -10,7 +11,6 @@ import { fetchReviewCount } from 'hooks/axios/Home';
 import { FilterProps, HomeFilterModalFormProps } from 'interfaces/reuse/Filter.interface';
 import { colors } from 'styles/base/Variable';
 import {
-    BottomBounceView,
     CloseButton,
     FilterButtonBox,
     FilterFormBody,
@@ -33,6 +33,7 @@ export default function HomeFilterModalForm({
     onFilterSubmit,
 }: HomeFilterModalFormProps) {
     const headerHeight = useHeaderHeight();
+    const safeAreaInset = useSafeAreaInsets();
     const height = Dimensions.get('window').height;
 
     // 모달창의 필터 변수
@@ -104,23 +105,7 @@ export default function HomeFilterModalForm({
                         </CloseButton>
                     </FilterFormHeader>
 
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <LinearGradient
-                            colors={['transparent', colors.lightblack]}
-                            locations={[0, 0.25]}
-                            style={{
-                                position: 'absolute',
-                                bottom: 0,
-                                height: 96,
-                                width: '100%',
-                            }}
-                        />
-                        <BottomBounceView
-                            style={{
-                                height,
-                                bottom: -height,
-                            }}
-                        />
+                    <ScrollView style={{ marginBottom: 96 }} showsVerticalScrollIndicator={false}>
                         <FilterOptionContainer>
                             <FilterLocation
                                 filterData={filterModalFilterData}
@@ -139,30 +124,40 @@ export default function HomeFilterModalForm({
                                 filterData={filterModalFilterData}
                                 setFilterData={setFilterModalFilterData}
                             />
-                            <FilterButtonBox>
-                                <FilterButton
-                                    onPress={handleFilterReset}
-                                    text="초기화"
-                                    backgroundColor={colors.darkgrey}
-                                    borderColor={colors.darkgrey}
-                                    textColor={colors.white}
-                                    disabled={!activateResetButton}
-                                />
-                                <FilterButton
-                                    onPress={handleFilterSubmit}
-                                    text={
-                                        activateResetButton
-                                            ? `필터 적용하기 (${resultNumber >= 100 ? '99+' : resultNumber})`
-                                            : '필터 적용하기'
-                                    }
-                                    backgroundColor={colors.black}
-                                    borderColor={colors.white}
-                                    textColor={colors.white}
-                                    disabled={!isFilterSelected}
-                                />
-                            </FilterButtonBox>
                         </FilterOptionContainer>
                     </ScrollView>
+                    <LinearGradient
+                        colors={['transparent', colors.lightblack]}
+                        locations={[0, 0.25]}
+                        style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            height: 96,
+                            width: '100%',
+                        }}
+                    />
+                    <FilterButtonBox style={{ paddingBottom: safeAreaInset.bottom }}>
+                        <FilterButton
+                            onPress={handleFilterReset}
+                            text="초기화"
+                            backgroundColor={colors.darkgrey}
+                            borderColor={colors.darkgrey}
+                            textColor={colors.white}
+                            disabled={!activateResetButton}
+                        />
+                        <FilterButton
+                            onPress={handleFilterSubmit}
+                            text={
+                                activateResetButton
+                                    ? `필터 적용하기 (${resultNumber >= 100 ? '99+' : resultNumber})`
+                                    : '필터 적용하기'
+                            }
+                            backgroundColor={colors.black}
+                            borderColor={colors.white}
+                            textColor={colors.white}
+                            disabled={!isFilterSelected}
+                        />
+                    </FilterButtonBox>
                 </FilterFormBody>
             </FilterFormContainer>
         </Modal>
