@@ -40,13 +40,13 @@ export default function MyPageStackNavigation() {
                 name="Branch"
                 component={Branch}
                 initialParams={{ branchID: null }}
-                options={{ headerTransparent: true }}
+                options={{ headerTransparent: true, headerShown: false }}
             />
             <Stack.Screen
                 name="EventDetail"
                 component={EventDetail}
                 initialParams={{ EventID: 0 }}
-                options={{ headerShown: true, headerTransparent: true }}
+                options={{ headerShown: true, headerTransparent: false }}
             />
             <Stack.Screen
                 name="ReviewDetail"

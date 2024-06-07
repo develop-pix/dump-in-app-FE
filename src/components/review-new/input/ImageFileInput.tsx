@@ -27,6 +27,7 @@ import {
     PreviewImage,
     PreviewImageButton,
     PreviewImagesContainer,
+    PreviewImageWrapper,
     PreviewNoImage,
     PreviewRepresentativeImage,
     RepresentativeTitleContainer,
@@ -136,33 +137,40 @@ export default function ImageFileInput({
                     ) : null}
                 </ImageUploadButtonContainer>
             </EnlargedImageContainer>
-            <ImagesContainer>
-                <PreviewImagesContainer>
-                    {representativeImage.imageURL !== undefined ? (
-                        <PreviewImageButton
-                            onPress={() =>
-                                onPressEnlargeImage(representativeImage.imageURL, representativeImage.imageName)
-                            }>
-                            <PreviewRepresentativeImage source={{ uri: representativeImage.imageURL }} />
-                            <RepresentativeTitleContainer>
-                                <FontYellowMiniMedium>대표</FontYellowMiniMedium>
-                            </RepresentativeTitleContainer>
-                        </PreviewImageButton>
-                    ) : null}
-                    {image.map(imageData => (
-                        <PreviewImageButton
-                            key={imageData.imageURL}
-                            onPress={() => onPressEnlargeImage(imageData.imageURL, representativeImage.imageName)}>
-                            <PreviewImage source={{ uri: imageData.imageURL }} />
-                        </PreviewImageButton>
-                    ))}
-                    {image.length < 4 ? (
-                        <AddImageContainer onPress={onPressImageUpload}>
-                            <ButtonAddImage width={14} height={14} />
-                        </AddImageContainer>
-                    ) : null}
-                </PreviewImagesContainer>
-            </ImagesContainer>
+            {representativeImage.imageURL && (
+                <ImagesContainer>
+                    <PreviewImagesContainer>
+                        {representativeImage.imageURL !== undefined && (
+                            <PreviewImageWrapper>
+                                <PreviewImageButton
+                                    onPress={() =>
+                                        onPressEnlargeImage(representativeImage.imageURL, representativeImage.imageName)
+                                    }>
+                                    <PreviewRepresentativeImage source={{ uri: representativeImage.imageURL }} />
+                                    <RepresentativeTitleContainer>
+                                        <FontYellowMiniMedium>대표</FontYellowMiniMedium>
+                                    </RepresentativeTitleContainer>
+                                </PreviewImageButton>
+                            </PreviewImageWrapper>
+                        )}
+                        {image.map(imageData => (
+                            <PreviewImageWrapper key={imageData.imageURL}>
+                                <PreviewImageButton
+                                    onPress={() =>
+                                        onPressEnlargeImage(imageData.imageURL, representativeImage.imageName)
+                                    }>
+                                    <PreviewImage source={{ uri: imageData.imageURL }} />
+                                </PreviewImageButton>
+                            </PreviewImageWrapper>
+                        ))}
+                        {image.length < 4 && (
+                            <AddImageContainer onPress={onPressImageUpload}>
+                                <ButtonAddImage width={14} height={14} />
+                            </AddImageContainer>
+                        )}
+                    </PreviewImagesContainer>
+                </ImagesContainer>
+            )}
         </ImageFileInputContainer>
     );
 }

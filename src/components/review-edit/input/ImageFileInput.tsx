@@ -136,33 +136,35 @@ export default function ImageFileInput({
                     ) : null}
                 </ImageUploadButtonContainer>
             </EnlargedImageContainer>
-            <ImagesContainer>
-                <PreviewImagesContainer>
-                    {representativeImage.imageURL !== undefined ? (
-                        <PreviewImageButton
-                            onPress={() =>
-                                onPressEnlargeImage(representativeImage.imageURL, representativeImage.imageName)
-                            }>
-                            <PreviewRepresentativeImage source={{ uri: representativeImage.imageURL }} />
-                            <RepresentativeTitleContainer>
-                                <FontYellowMiniMedium>대표</FontYellowMiniMedium>
-                            </RepresentativeTitleContainer>
-                        </PreviewImageButton>
-                    ) : null}
-                    {image.map((imageData, index) => (
-                        <PreviewImageButton
-                            key={index}
-                            onPress={() => onPressEnlargeImage(imageData.imageURL, representativeImage.imageName)}>
-                            <PreviewImage source={{ uri: imageData.imageURL }} />
-                        </PreviewImageButton>
-                    ))}
-                    {image.length < 4 ? (
-                        <AddImageContainer onPress={onPressImageUpload}>
-                            <ButtonAddImage width={14} height={14} />
-                        </AddImageContainer>
-                    ) : null}
-                </PreviewImagesContainer>
-            </ImagesContainer>
+            {representativeImage.imageURL && (
+                <ImagesContainer>
+                    <PreviewImagesContainer>
+                        {representativeImage.imageURL !== undefined ? (
+                            <PreviewImageButton
+                                onPress={() =>
+                                    onPressEnlargeImage(representativeImage.imageURL, representativeImage.imageName)
+                                }>
+                                <PreviewRepresentativeImage source={{ uri: representativeImage.imageURL }} />
+                                <RepresentativeTitleContainer>
+                                    <FontYellowMiniMedium>대표</FontYellowMiniMedium>
+                                </RepresentativeTitleContainer>
+                            </PreviewImageButton>
+                        ) : null}
+                        {image.map((imageData, index) => (
+                            <PreviewImageButton
+                                key={index}
+                                onPress={() => onPressEnlargeImage(imageData.imageURL, representativeImage.imageName)}>
+                                <PreviewImage source={{ uri: imageData.imageURL }} />
+                            </PreviewImageButton>
+                        ))}
+                        {image.length < 4 ? (
+                            <AddImageContainer onPress={onPressImageUpload}>
+                                <ButtonAddImage width={14} height={14} />
+                            </AddImageContainer>
+                        ) : null}
+                    </PreviewImagesContainer>
+                </ImagesContainer>
+            )}
         </ImageFileInputContainer>
     );
 }
