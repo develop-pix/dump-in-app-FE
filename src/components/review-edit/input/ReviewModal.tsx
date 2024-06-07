@@ -26,8 +26,6 @@ export default function ReviewModal({
 
     /** 카메라 작동 */
     const onPressCameraOpen = async () => {
-        setOpenImageModal(false);
-        //ios emulator 에서는 카메라를 지원하지 않으므로 오류 발생
         try {
             const cameraOption: CameraOptions = {
                 mediaType: 'photo',
@@ -40,8 +38,10 @@ export default function ReviewModal({
             };
             await launchCamera(cameraOption, response => {
                 if (response.didCancel) {
+                    setOpenImageModal(false);
                     return null;
                 } else if (response.assets) {
+                    setOpenImageModal(false);
                     if (representativeImage.imageName || representativeImage.imageURL) {
                         dispatch(
                             setImage([{ imageURL: response.assets[0].uri, imageName: response.assets[0].fileName }]),
@@ -71,7 +71,6 @@ export default function ReviewModal({
 
     /** 앨범에서 선택 */
     const onPressGalleryOpen = async () => {
-        setOpenImageModal(false);
         try {
             await launchImageLibrary(
                 {
@@ -84,10 +83,12 @@ export default function ReviewModal({
                 },
                 response => {
                     if (response.didCancel) {
+                        setOpenImageModal(false);
                         return null;
                     } else if (response.assets) {
                         /** 중복된 이미지 제거 */
                         //FIXME: ios 시뮬레이터에서는 fileName과 fileURL이 변경되므로 테스트가 어려움. 따라서 파일이름으로 중복체크를 하였는데, 파일이름 기준으로 중복 체크 할 시 우연히 두 파일 이름이 같을수 있으므로 수정필요.
+                        setOpenImageModal(false);
                         const deduplicatedAssets = response.assets?.filter(asset => {
                             if (
                                 representativeImage.imageName !== asset.fileName &&
@@ -143,7 +144,7 @@ export default function ReviewModal({
             animationIn="slideInUp"
             animationOut="slideOutDown"
             backdropOpacity={0.7}
-            coverScreen={false}
+            coverScreen={true}
             propagateSwipe={false}
             useNativeDriver={true}
             onBackdropPress={() => {
