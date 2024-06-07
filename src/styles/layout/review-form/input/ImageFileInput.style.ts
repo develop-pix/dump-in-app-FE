@@ -102,6 +102,13 @@ export const PreviewImageWrapper = styled.View`
     align-items: center;
 `;
 
+export const SelectedPreviewImageWrapper = styled.View`
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid ${colors.yellow};
+`;
+
 export const PreviewImageButton = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
