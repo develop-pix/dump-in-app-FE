@@ -23,8 +23,8 @@ import {
 } from 'styles/layout/location/BranchCard.style';
 import {
     FontWhiteBiggestSemiboldWithLineHeight,
+    FontWhiteGreySmallerMedium,
     FontWhiteGreySmallerSemibold,
-    FontWhiteGreySmallestMedium,
     FontYellowSmallerMediumWithLineSpacing,
 } from 'styles/layout/reuse/text/Text.style';
 import { TagsArrayToHashTagArrayForm } from 'utils/FormChange';
@@ -91,7 +91,6 @@ export default function BranchCard({
     };
 
     const linkingNaverMap = async (url: string, webURL: string) => {
-        // FIXME: 아래 링크 수정 및 테스트 필요함 , 안드로이드에서 해당앱 설치 여부 확인하는 코드 필요함
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
@@ -125,9 +124,9 @@ export default function BranchCard({
                 </BranchCardTop>
                 <BranchCardHorizonLine />
                 <BranchCardBottom>
-                    <FontWhiteGreySmallestMedium>내 위치로부터 {distance} · </FontWhiteGreySmallestMedium>
+                    <FontWhiteGreySmallerMedium>내 위치로부터 {distance} </FontWhiteGreySmallerMedium>
                     <BranchCardAppScheme onPress={onPressVisitBranch}>
-                        <FontWhiteGreySmallestMedium>방문하기</FontWhiteGreySmallestMedium>
+                        <FontWhiteGreySmallerMedium>방문하기</FontWhiteGreySmallerMedium>
                         <NextButtonSmall />
                     </BranchCardAppScheme>
                 </BranchCardBottom>
