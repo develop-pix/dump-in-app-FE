@@ -10,14 +10,15 @@ export const CameraShotImageContainer = styled.TouchableOpacity<{
     border-width: 1px;
     border-radius: 6px;
     border-color: ${({ isSelected }) => (isSelected ? colors.white : 'transparent')};
+    flex: 1;
 `;
 
 export const CameraShotImage = styled.Image<{
     isSelected: boolean;
     cameraShot: string;
 }>`
-    width: 75px;
-    height: 100px;
+    width: 100%;
+    border-radius: 6px;
     opacity: ${({ isSelected, cameraShot }) => (!cameraShot ? 1 : isSelected ? 1 : 0.2)};
 `;
 

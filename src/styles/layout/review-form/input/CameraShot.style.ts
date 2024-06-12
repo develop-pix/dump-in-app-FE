@@ -21,14 +21,15 @@ export const CameraShotButton = styled.TouchableOpacity<{
     justify-content: center;
     border-radius: 6px;
     border: ${props => (props.currentImage === props.selectedImage ? '1px solid white' : '1px solid transparent')};
+    flex: 1;
 `;
 
 export const CameraShotImage = styled.Image<{
     currentImage: string;
     selectedImage: string | null;
 }>`
-    width: 77px;
-    height: 102px;
+    width: 100%;
+    border-radius: 6px;
     opacity: ${props =>
         props.selectedImage === null ? '1' : props.currentImage === props.selectedImage ? '1' : '0.2'};
 `;
