@@ -77,7 +77,7 @@ export default function ReviewDetail() {
             headerTitle: () => {
                 return (
                     <HeaderRowContainer>
-                        <LocationIcon width={20} height={24} style={{ marginRight: 4 }} />
+                        <LocationIcon width={20} height={24} style={{ marginRight: 4, marginBottom: 1 }} />
                         <FontWhiteNormalMedium>{photoBoothName}</FontWhiteNormalMedium>
                     </HeaderRowContainer>
                 );
