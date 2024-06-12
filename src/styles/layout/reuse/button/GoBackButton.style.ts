@@ -24,15 +24,12 @@ export const GoBackButtonContainerWithSafeArea = styled.View<{
     margin-top: ${props => (props.platform === 'ios' ? '0px' : props.platform === 'android' ? '15px' : null)};
 `;
 
-export const GoBackButtonWithSubmitContainer = styled.View<{
-    platform: 'ios' | 'android' | 'web' | 'windows' | 'macos';
-}>`
+export const GoBackButtonWithSubmitContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 44px;
-    margin-top: ${props => (props.platform === 'ios' ? '0px' : props.platform === 'android' ? '15px' : null)};
 `;
 
 export const SubmitButton = styled.TouchableOpacity`

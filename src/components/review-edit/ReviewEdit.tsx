@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Platform, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
@@ -53,7 +53,6 @@ export default function ReviewEdit() {
     const [limitImage, setLimitImage] = useState(4);
 
     const scrollRef = useRef<ScrollView | null>(null);
-    const platform = Platform.OS;
     const route = useRoute<LocationStackScreenProps<'ReviewDetail'>['route']>();
     const dispatch = useDispatch();
 
@@ -108,11 +107,11 @@ export default function ReviewEdit() {
 
     return (
         <>
-            <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal}>
-                <GoBackButtonWithSubmitContainer platform={platform}>
-                    <ReviewGoBackButton />
-                    <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
-                </GoBackButtonWithSubmitContainer>
+            <GoBackButtonWithSubmitContainer>
+                <ReviewGoBackButton />
+                <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
+            </GoBackButtonWithSubmitContainer>
+            <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal} showsVerticalScrollIndicator={false}>
                 <ImageFileInput
                     setOpenImageModal={setOpenImageModal}
                     errorData={errorData}

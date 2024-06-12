@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Platform, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import ReviewGoBackButton from 'components/review-new/ReviewGoBackButton';
 import { InputData } from 'interfaces/ReviewNew.interface';
@@ -32,15 +32,14 @@ export default function ReviewNew() {
     const [limitImage, setLimitImage] = useState(5);
 
     const scrollRef = useRef<ScrollView | null>(null);
-    const platform = Platform.OS;
 
     return (
         <>
-            <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal}>
-                <GoBackButtonWithSubmitContainer platform={platform}>
-                    <ReviewGoBackButton />
-                    <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
-                </GoBackButtonWithSubmitContainer>
+            <GoBackButtonWithSubmitContainer>
+                <ReviewGoBackButton />
+                <ReviewSubmitButton errorData={errorData} setErrorData={setErrorData} scrollRef={scrollRef} />
+            </GoBackButtonWithSubmitContainer>
+            <ReviewFormScrollView ref={scrollRef} scrollEnabled={!openImageModal} showsVerticalScrollIndicator={false}>
                 <ImageFileInput
                     setOpenImageModal={setOpenImageModal}
                     errorData={errorData}
