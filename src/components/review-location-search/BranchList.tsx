@@ -10,7 +10,6 @@ import { FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
 import {
     BranchListContainer,
     BranchNameWrapper,
-    LocationDarkIconContainer,
     LocationInfo,
 } from 'styles/layout/review-location-search/ReviewLocationSearch.style';
 
@@ -33,9 +32,7 @@ export default function BranchList({ name, branchID }: BranchListProps) {
 
     return (
         <BranchListContainer onPress={onSelectLocation}>
-            <LocationDarkIconContainer>
-                <LocationDarkIcon />
-            </LocationDarkIconContainer>
+            <LocationDarkIcon />
             <LocationInfo>
                 <BranchNameWrapper>
                     <FontWhiteGreyNormalMedium>{name}</FontWhiteGreyNormalMedium>

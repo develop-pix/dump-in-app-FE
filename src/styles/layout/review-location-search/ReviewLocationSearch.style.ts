@@ -32,14 +32,13 @@ export const ListContainer = styled.View`
 /* BranchList */
 export const BranchListContainer = styled.TouchableOpacity`
     flex-direction: row;
-    height: 44px;
+    height: 54px;
+    align-items: center;
     border-bottom-width: 1px;
     border-bottom-color: ${colors.darkgrey};
 `;
 
-export const LocationDarkIconContainer = styled.View`
-    margin-top: 10px;
-`;
+export const LocationDarkIconContainer = styled.View``;
 
 export const LocationInfo = styled.View`
     flex-direction: row;

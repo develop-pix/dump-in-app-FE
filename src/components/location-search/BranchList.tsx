@@ -23,9 +23,7 @@ export default function BranchList({ branchName, distance, branchID }: BranchLis
 
     return (
         <BranchListContainer onPress={onSelectLocation}>
-            <LocationDarkIconContainer>
-                <LocationDarkIcon />
-            </LocationDarkIconContainer>
+            <LocationDarkIcon />
             <LocationInfo>
                 <BranchNameWrapper>
                     <FontWhiteGreyNormalMedium>{branchName}</FontWhiteGreyNormalMedium>

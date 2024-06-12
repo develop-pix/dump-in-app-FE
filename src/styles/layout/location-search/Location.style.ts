@@ -30,7 +30,8 @@ export const ListContainer = styled.View`
 export const BranchListContainer = styled.TouchableOpacity`
     flex-direction: row;
     width: 100%;
-    height: 44px;
+    height: 54px;
+    align-items: center;
     border-bottom-width: 1px;
     border-bottom-color: ${colors.darkgrey};
 `;
