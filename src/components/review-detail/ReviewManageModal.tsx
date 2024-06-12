@@ -1,5 +1,6 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { DeleteReview } from 'hooks/axios/Review';
 import { ReviewManageModalProps } from 'interfaces/ReviewDetail.interface';
@@ -14,6 +15,7 @@ import {
 export default function ReviewManageModal({ openModal, setOpenModal, reviewID }: ReviewManageModalProps) {
     const navigation = useNavigation();
     const isFocused = useIsFocused();
+    const safeAreaInset = useSafeAreaInsets();
 
     /** 리뷰 수정 */
     const onPressReviewEdit = () => {
@@ -49,7 +51,6 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
             animationIn="slideInUp"
             animationOut="slideOutDown"
             backdropOpacity={0.5}
-            coverScreen={false}
             useNativeDriver={true}
             onBackdropPress={() => {
                 setOpenModal(false);
@@ -57,7 +58,7 @@ export default function ReviewManageModal({ openModal, setOpenModal, reviewID }:
             onBackButtonPress={() => {
                 setOpenModal(false);
             }}>
-            <ReviewManageModalContainer>
+            <ReviewManageModalContainer style={{ paddingBottom: safeAreaInset.bottom + 20 }}>
                 <ReviewManageModalWrapper>
                     <ReviewManageTouchableOpacity onPress={onPressReviewEdit}>
                         <FontWhiteNormalSemibold>리뷰 수정하기</FontWhiteNormalSemibold>
