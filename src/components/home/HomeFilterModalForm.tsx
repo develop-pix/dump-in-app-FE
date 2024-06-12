@@ -127,11 +127,11 @@ export default function HomeFilterModalForm({
                         style={{
                             position: 'absolute',
                             bottom: 0,
-                            height: 96,
+                            height: 80 + safeAreaInset.bottom,
                             width: '100%',
                         }}
                     />
-                    <FilterButtonBox style={{ paddingBottom: safeAreaInset.bottom }}>
+                    <FilterButtonBox style={{ paddingBottom: safeAreaInset.bottom + 16 }}>
                         <FilterButton
                             onPress={handleFilterReset}
                             text="초기화"
