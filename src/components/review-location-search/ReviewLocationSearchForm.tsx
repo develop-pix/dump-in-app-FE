@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Geolocation from 'react-native-geolocation-service';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
@@ -11,7 +12,7 @@ import { setBranchID as setReviewNewBranchID } from 'hooks/redux/reviewNewSlice'
 import { RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { BranchSearchData } from 'interfaces/ReviewLocationSearch.interface';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
-import { SearchContainer, SearchForm } from 'styles/layout/review-location-search/ReviewLocationSearch.style';
+import { SearchForm, SearchListContainer } from 'styles/layout/review-location-search/ReviewLocationSearch.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
 import SearchBranchList from './ReviewSearchBranchList';
@@ -19,6 +20,7 @@ import SearchBranchList from './ReviewSearchBranchList';
 export default function ReviewLocationSearchForm() {
     const dispatch = useDispatch();
     const navigation = useNavigation<RootStackScreenProps<'ReviewLocationSearch'>['navigation']>();
+    const safeAreaInset = useSafeAreaInsets();
 
     const [search, setSearch] = useState('');
     const [resultData, setResultData] = useState<BranchSearchData[]>([]);
@@ -94,17 +96,17 @@ export default function ReviewLocationSearchForm() {
 
     return (
         <SearchForm>
-            <SearchContainer>
-                <Search
-                    placeholder="포토부스, 주소 검색"
-                    search={search}
-                    setSearch={setSearch}
-                    submitSearch={searchBranch}
-                />
+            <Search
+                placeholder="포토부스, 주소 검색"
+                search={search}
+                setSearch={setSearch}
+                submitSearch={searchBranch}
+            />
+            <SearchListContainer style={{ paddingBottom: safeAreaInset.bottom }}>
                 {search === '' ? null : (
                     <SearchBranchList search={search} resultData={resultData} setResultData={setResultData} />
                 )}
-            </SearchContainer>
+            </SearchListContainer>
         </SearchForm>
     );
 }

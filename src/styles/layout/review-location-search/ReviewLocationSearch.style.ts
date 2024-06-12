@@ -9,24 +9,22 @@ export const LocationSearchContainer = styled.View`
 `;
 
 /* LocationSearchForm */
-export const SearchForm = styled.SafeAreaView`
+export const SearchForm = styled.View`
     flex: 1;
 `;
 
-export const SearchContainer = styled.View`
-    align-items: center;
-    justify-content: space-between;
+export const SearchListContainer = styled.View`
+    flex: 1;
 `;
 
 /* ReviewLocationSearchBranchList */
 export const SearchBranchContainer = styled.View`
-    width: 90%;
-    flex-direction: row;
-    justify-content: center;
+    padding-horizontal: 20px;
 `;
 
 export const ListContainer = styled.View`
     width: 100%;
+    padding-horizontal: 4px;
 `;
 
 /* BranchList */
@@ -34,8 +32,12 @@ export const BranchListContainer = styled.TouchableOpacity`
     flex-direction: row;
     height: 54px;
     align-items: center;
-    border-bottom-width: 1px;
-    border-bottom-color: ${colors.darkgrey};
+`;
+
+export const Divider = styled.View`
+    width: 100%;
+    height: 1;
+    background-color: ${colors.darkgrey};
 `;
 
 export const LocationDarkIconContainer = styled.View``;

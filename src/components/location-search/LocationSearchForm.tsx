@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Geolocation from 'react-native-geolocation-service';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
@@ -8,7 +9,7 @@ import Search from 'components/reuse/input/Search';
 import { setCurrentLocation } from 'hooks/redux/currentLocationSlice';
 import { BranchData } from 'interfaces/Location.interface';
 import { LocationStackScreenProps } from 'interfaces/Navigation.interface';
-import { SearchContainer, SearchForm } from 'styles/layout/location-search/Location.style';
+import { SearchForm, SearchListContainer } from 'styles/layout/location-search/Location.style';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 import { GetLocationAuthorization } from 'utils/GetLocation';
 
@@ -17,6 +18,7 @@ import SearchBranchList from './SearchBranchList';
 export default function LocationSearchForm() {
     const dispatch = useDispatch();
     const navigation = useNavigation<LocationStackScreenProps<'LocationSearch'>['navigation']>();
+    const safeAreaInset = useSafeAreaInsets();
 
     const [search, setSearch] = useState('');
     const [resultData, setResultData] = useState<BranchData[] | []>([]);
@@ -85,17 +87,17 @@ export default function LocationSearchForm() {
 
     return (
         <SearchForm>
-            <SearchContainer>
-                <Search
-                    placeholder="포토부스, 주소 검색"
-                    search={search}
-                    setSearch={setSearch}
-                    submitSearch={searchBranch}
-                />
+            <Search
+                placeholder="포토부스, 주소 검색"
+                search={search}
+                setSearch={setSearch}
+                submitSearch={searchBranch}
+            />
+            <SearchListContainer style={{ paddingBottom: safeAreaInset.bottom }}>
                 {search === '' ? null : (
                     <SearchBranchList search={search} resultData={resultData} setResultData={setResultData} />
                 )}
-            </SearchContainer>
+            </SearchListContainer>
         </SearchForm>
     );
 }

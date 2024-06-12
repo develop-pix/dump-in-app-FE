@@ -5,7 +5,7 @@ import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { GetLocationSearchData } from 'hooks/axios/SearchLocation';
 import { useAppSelector } from 'hooks/redux/store';
 import { BranchData, SearchBranchListProps } from 'interfaces/Location.interface';
-import { ListContainer, SearchBranchContainer } from 'styles/layout/location-search/Location.style';
+import { Divider, ListContainer, SearchBranchContainer } from 'styles/layout/location-search/Location.style';
 
 import BranchList from './BranchList';
 
@@ -40,6 +40,10 @@ export default function SearchBranchList({ search, resultData, setResultData }: 
             setResultData(prevData => [...prevData, ...newData.data.results]);
             newData.data.next !== null && setDataEnd(prev => !prev);
         }
+    };
+
+    const renderItemSeparatorComponent = () => {
+        return <Divider />;
     };
 
     // 검색어 입력시 0.2초 Debounce
@@ -80,6 +84,7 @@ export default function SearchBranchList({ search, resultData, setResultData }: 
                     keyExtractor={item => item.id}
                     renderItem={renderBranchListItem}
                     showsVerticalScrollIndicator={false}
+                    ItemSeparatorComponent={renderItemSeparatorComponent}
                 />
             ) : (
                 <FlatList
@@ -89,6 +94,7 @@ export default function SearchBranchList({ search, resultData, setResultData }: 
                     onEndReached={onEndReached}
                     onEndReachedThreshold={0.1}
                     showsVerticalScrollIndicator={false}
+                    ItemSeparatorComponent={renderItemSeparatorComponent}
                 />
             )}
             {resultData.length === 0 && <SearchNoData alertText="검색 결과가 없습니다." recommendText="" />}

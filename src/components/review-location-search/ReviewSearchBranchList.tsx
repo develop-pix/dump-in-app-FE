@@ -4,7 +4,11 @@ import { FlatList } from 'react-native';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { GetReviewLocationSearchData } from 'hooks/axios/SearchLocation';
 import { BranchSearchData, ReviewSearchBranchListProps } from 'interfaces/ReviewLocationSearch.interface';
-import { ListContainer, SearchBranchContainer } from 'styles/layout/review-location-search/ReviewLocationSearch.style';
+import {
+    Divider,
+    ListContainer,
+    SearchBranchContainer,
+} from 'styles/layout/review-location-search/ReviewLocationSearch.style';
 
 import BranchList from './BranchList';
 
@@ -31,6 +35,10 @@ export default function ReviewSearchBranchList({ search, resultData, setResultDa
             setResultData(prevData => [...prevData, ...newData.data.results]);
             newData.data.next !== null && setDataEnd(prev => !prev);
         }
+    };
+
+    const renderItemSeparatorComponent = () => {
+        return <Divider />;
     };
 
     // 검색어 입력시 0.2초 Debounce
@@ -66,6 +74,7 @@ export default function ReviewSearchBranchList({ search, resultData, setResultDa
                     keyExtractor={item => item.id}
                     renderItem={renderBranchListItem}
                     showsVerticalScrollIndicator={false}
+                    ItemSeparatorComponent={renderItemSeparatorComponent}
                 />
             ) : (
                 <FlatList
@@ -75,6 +84,7 @@ export default function ReviewSearchBranchList({ search, resultData, setResultDa
                     onEndReached={onEndReached}
                     onEndReachedThreshold={0.1}
                     showsVerticalScrollIndicator={false}
+                    ItemSeparatorComponent={renderItemSeparatorComponent}
                 />
             )}
             {resultData.length === 0 && <SearchNoData alertText="검색 결과가 없습니다." recommendText="" />}

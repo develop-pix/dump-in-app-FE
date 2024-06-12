@@ -9,20 +9,22 @@ export const LocationSearchContainer = styled.View`
 `;
 
 /* LocationSearchForm */
-export const SearchForm = styled.SafeAreaView`
+export const SearchForm = styled.View`
     flex: 1;
 `;
 
-export const SearchContainer = styled.View``;
+export const SearchListContainer = styled.View`
+    flex: 1;
+`;
 /* SearchBranchList */
 
 export const SearchBranchContainer = styled.View`
-    width: 100%;
-    align-items: center;
+    padding-horizontal: 20px;
 `;
 
 export const ListContainer = styled.View`
     width: 100%;
+    padding-horizontal: 4px;
 `;
 
 /* BranchList */
@@ -32,8 +34,12 @@ export const BranchListContainer = styled.TouchableOpacity`
     width: 100%;
     height: 54px;
     align-items: center;
-    border-bottom-width: 1px;
-    border-bottom-color: ${colors.darkgrey};
+`;
+
+export const Divider = styled.View`
+    width: 100%;
+    height: 1;
+    background-color: ${colors.darkgrey};
 `;
 
 export const LocationDarkIconContainer = styled.View`

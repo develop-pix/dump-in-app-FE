@@ -7,6 +7,7 @@ export const Wrapper = styled.View`
     justify-content: center;
     width: 100%;
     margin-top: 16px;
+    margin-bottom: 8px;
     padding-horizontal: 20px;
 `;
 

@@ -7,7 +7,6 @@ import {
     BranchDistanceWrapper,
     BranchListContainer,
     BranchNameWrapper,
-    LocationDarkIconContainer,
     LocationInfo,
 } from 'styles/layout/location-search/Location.style';
 import { FontLightGreySmallerMedium, FontWhiteGreyNormalMedium } from 'styles/layout/reuse/text/Text.style';
