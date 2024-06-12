@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import MenuIcon from 'assets/image/icon/menu.svg';
+import BottomScrollGradient from 'components/reuse/gradient/BottomScrollGradient';
 import { useAppSelector } from 'hooks/redux/store';
 import { ActivityComponentProps } from 'interfaces/MyPage.interface';
 import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
@@ -60,6 +61,7 @@ export default function MyPage() {
         <MyPageContainer>
             <MyPageUserData activeComponent={activeComponent} updateActiveComponent={updateActiveComponent} />
             {activeComponentMap[activeComponent]}
+            <BottomScrollGradient />
         </MyPageContainer>
     );
 }

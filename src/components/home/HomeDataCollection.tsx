@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import NewNotificationIcon from 'assets/image/icon/alert_notification.svg';
 import FilterIcon from 'assets/image/icon/filter.svg';
 import NotificationIcon from 'assets/image/icon/notification.svg';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
+import BottomScrollGradient from 'components/reuse/gradient/BottomScrollGradient';
 import SkeletonGetMoreHomeData from 'components/reuse/skeleton/SkeletonGetMoreHomeData';
 import SkeletonHomeDataCollection from 'components/reuse/skeleton/SkeletonHomeDataCollection';
 import { fetchHomeEvent, fetchHomePhotoBooth, fetchHomeReview } from 'hooks/axios/Home';
@@ -13,6 +16,7 @@ import { fetchNotificationListCheck } from 'hooks/axios/Notification';
 import { CollectionDataProps } from 'interfaces/Home.interface';
 import { HomeStackScreenProps, RootStackScreenProps } from 'interfaces/Navigation.interface';
 import { FilterProps } from 'interfaces/reuse/Filter.interface';
+import { colors } from 'styles/base/Variable';
 import { CollectionContainer, CollectionFlatList } from 'styles/layout/home/HomeDataCollection.style';
 import {
     HeaderIconContainer,
@@ -30,6 +34,7 @@ export default function HomeDataCollection() {
     const navigation = useNavigation<
         HomeStackScreenProps<'Home'>['navigation'] | RootStackScreenProps<'MainTab'>['navigation']
     >();
+    const safeAreaInset = useSafeAreaInsets();
 
     const flatListRef = useRef<FlatList>(null);
 
@@ -205,6 +210,7 @@ export default function HomeDataCollection() {
                                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                             />
                             <UpScrollButton flatListRef={flatListRef} />
+                            <BottomScrollGradient />
                         </>
                     ) : (
                         <NoResultPhotoBooth filterData={filterData} />

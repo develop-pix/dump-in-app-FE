@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import BottomScrollGradient from 'components/reuse/gradient/BottomScrollGradient';
 import { CategoryContainer, PageBar, PageBarText } from 'styles/layout/category/Category.style';
 
 import CategoryEvent from './CategoryEvent';
@@ -21,6 +22,7 @@ export default function Category() {
             </PageBar>
 
             {categoryPage === 'photoBooth' ? <CategoryPhotoBooth /> : <CategoryEvent />}
+            <BottomScrollGradient />
         </CategoryContainer>
     );
 }
