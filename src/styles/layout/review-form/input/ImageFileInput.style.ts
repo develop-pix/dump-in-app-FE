@@ -136,7 +136,7 @@ export const RepresentativeTitleContainer = styled.View`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 35%;
+    top: 25px;
 `;
 
 export const AddImageContainer = styled.TouchableOpacity`
