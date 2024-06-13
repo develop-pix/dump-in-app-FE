@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 import { setPublicOpen } from 'hooks/redux/reviewEditSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux/store';
 import { colors } from 'styles/base/Variable';
@@ -8,6 +10,8 @@ import { ReviewInputTitleContainer } from 'styles/layout/review-form/ReviewForm.
 export default function PublicOpenSwitch() {
     const dispatch = useAppDispatch();
     const publicOpen = useAppSelector(state => state.reviewEdit).publicOpen;
+    const platform = Platform.OS;
+    const isAndroid = platform === 'android';
 
     /** Toggle 버튼 클릭시 dispatch */
     const onToggleSwitch = () => {
@@ -16,11 +20,11 @@ export default function PublicOpenSwitch() {
     return (
         <PublicOpenSwitchContainer>
             <ReviewInputTitleContainer>
-                <FontWhiteNormalMedium>공개허용</FontWhiteNormalMedium>
+                <FontWhiteNormalMedium>공개 허용</FontWhiteNormalMedium>
             </ReviewInputTitleContainer>
             <PublicOpenToggle
                 trackColor={{ false: colors.lightgrey, true: colors.yellow }}
-                thumbColor={publicOpen ? colors.lightblack : colors.darkgrey}
+                thumbColor={publicOpen ? (isAndroid ? colors.lightgrey : colors.lightblack) : colors.darkgrey}
                 ios_backgroundColor={colors.lightgrey}
                 onValueChange={onToggleSwitch}
                 value={publicOpen}
