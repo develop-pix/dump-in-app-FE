@@ -11,7 +11,7 @@ export const ToolsInputContainer = styled.View`
     border-radius: 10px;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 4px;
 `;
 
 export const ToolsButtonLeft = styled.TouchableOpacity<{

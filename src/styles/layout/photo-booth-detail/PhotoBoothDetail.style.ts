@@ -8,6 +8,12 @@ export const PhotoBoothDetailContainer = styled.View`
     background-color: ${colors.lightblack};
 `;
 
+export const PhotoBoothDetailScrollView = styled.ScrollView``;
+
+export const PhotoBoothDetailWrapper = styled.View`
+    gap: 40px;
+`;
+
 export const OfficialImagesContainer = styled.View`
     flex: 1;
     padding-bottom: 40px;

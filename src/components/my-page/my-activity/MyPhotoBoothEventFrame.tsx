@@ -6,7 +6,7 @@ import FavoriteButton from 'components/reuse/button/FavoriteButton';
 import ConfirmationAlertModal from 'components/reuse/modal/ConfirmationAlertModal';
 import { LikeEvent } from 'hooks/axios/Event';
 import { useAppSelector } from 'hooks/redux/store';
-import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
+import { MyPageStackScreenProps } from 'interfaces/Navigation.interface';
 import { PhotoBoothEventFrameProps } from 'interfaces/PhotoBoothDetail.interface';
 import { colors } from 'styles/base/Variable';
 import {
@@ -19,11 +19,8 @@ import {
 } from 'styles/layout/photo-booth-detail/PhotoBoothEventFrame.style';
 import { FontWhiteBiggestSemibold, FontWhiteGreySmallerMedium } from 'styles/layout/reuse/text/Text.style';
 
-export default function PhotoBoothEventFrame({ event, onClose }: PhotoBoothEventFrameProps) {
-    const navigation = useNavigation<
-        | HomeStackScreenProps<'PhotoBoothDetail'>['navigation']
-        | CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']
-    >();
+export default function MyPhotoBoothEventFrame({ event, onClose }: PhotoBoothEventFrameProps) {
+    const navigation = useNavigation<MyPageStackScreenProps<'MyPage'>['navigation']>();
     const isFocused = useIsFocused();
     const isLoggedIn = useAppSelector(state => state.login).isLoggedIn;
 
@@ -36,18 +33,7 @@ export default function PhotoBoothEventFrame({ event, onClose }: PhotoBoothEvent
             onClose();
         }
         if (isFocused) {
-            switch (navigation.getId()) {
-                case 'HomeStack':
-                    (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('EventDetail', {
-                        eventID: id,
-                    });
-                    break;
-                case 'CategoryStack':
-                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('EventDetail', {
-                        eventID: id,
-                    });
-                    break;
-            }
+            navigation.navigate('EventDetail', { eventID: id });
         }
     };
 
@@ -67,14 +53,7 @@ export default function PhotoBoothEventFrame({ event, onClose }: PhotoBoothEvent
     const onPressLogin = () => {
         setIsModalVisible(prev => !prev);
         if (isFocused) {
-            switch (navigation.getId()) {
-                case 'HomeStack':
-                    (navigation as HomeStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('Login');
-                    break;
-                case 'CategoryStack':
-                    (navigation as CategoryStackScreenProps<'PhotoBoothDetail'>['navigation']).navigate('Login');
-                    break;
-            }
+            navigation.navigate('Login');
         }
     };
 

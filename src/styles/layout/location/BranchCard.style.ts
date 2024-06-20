@@ -3,12 +3,17 @@ import styled from 'styled-components/native';
 import { colors } from 'styles/base/Variable';
 
 export const TouchableCardContainer = styled.TouchableOpacity`
-    border-radius: 10px;
+    border-radius: 20px;
     width: 100%;
     height: 160px;
     background-color: ${colors.grey};
     padding: 20px 0px 20px 0px;
     align-items: center;
+    shadow-color: ${colors.black};
+    shadow-offset: 0px 4px;
+    shadow-opacity: 0.2;
+    shadow-radius: 12px;
+    elevation: 4;
 `;
 
 export const CardContainer = styled.View`
@@ -42,7 +47,7 @@ export const BranchCardBranchNameWrapper = styled.View`
 
 export const BranchCardHashtag = styled.View`
     flex-direction: row;
-    gap: 3px;
+    gap: 5px;
     flex-wrap: wrap;
     overflow: hidden;
 `;
@@ -58,4 +63,9 @@ export const BranchCardBottom = styled.View`
     align-items: center;
 `;
 
-export const BranchCardAppScheme = styled.TouchableOpacity``;
+export const BranchCardAppScheme = styled.TouchableOpacity`
+    position: absolute;
+    right: 0;
+    flex-direction: row;
+    align-items: center;
+`;

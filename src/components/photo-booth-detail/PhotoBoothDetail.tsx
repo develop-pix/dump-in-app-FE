@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import GoBackButton from 'components/reuse/button/GoBackButton';
@@ -13,7 +12,12 @@ import {
 import { CategoryStackScreenProps, HomeStackScreenProps } from 'interfaces/Navigation.interface';
 import { EventDataType, PhotoBoothDataType } from 'interfaces/PhotoBoothDetail.interface';
 import { ReviewData } from 'interfaces/reuse/photo-dump/Review.interface';
-import { OfficialImagesContainer, PhotoDumpContainer } from 'styles/layout/photo-booth-detail/PhotoBoothDetail.style';
+import {
+    OfficialImagesContainer,
+    PhotoBoothDetailScrollView,
+    PhotoBoothDetailWrapper,
+    PhotoDumpContainer,
+} from 'styles/layout/photo-booth-detail/PhotoBoothDetail.style';
 import { HeaderLeftContainer } from 'styles/layout/reuse/header/Header.style';
 
 import PhotoBoothEvent from './PhotoBoothEvent';
@@ -77,18 +81,20 @@ export default function PhotoBoothDetail() {
         };
 
         getPhotoBoothData();
-    }, [route.params.photoBoothID]);
+    }, [page, route.params.photoBoothID]);
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            <PhotoBoothImageTitle photoBoothData={photoBoothData} />
-            <PhotoBoothEvent dataLimit={eventDataLimit} page={page} setPage={setPage} eventData={eventData} />
-            <OfficialImagesContainer>
-                <OfficialImages photoBoothName={photoBoothData.name} image={photoBoothData.image} />
-            </OfficialImagesContainer>
-            <PhotoDumpContainer>
-                <PhotoDump photoBoothName={photoBoothData.name} reviewData={reviewData} />
-            </PhotoDumpContainer>
-        </ScrollView>
+        <PhotoBoothDetailScrollView showsVerticalScrollIndicator={false}>
+            <PhotoBoothDetailWrapper>
+                <PhotoBoothImageTitle photoBoothData={photoBoothData} />
+                <PhotoBoothEvent dataLimit={eventDataLimit} page={page} setPage={setPage} eventData={eventData} />
+                <OfficialImagesContainer>
+                    <OfficialImages photoBoothName={photoBoothData.name} image={photoBoothData.image} />
+                </OfficialImagesContainer>
+                <PhotoDumpContainer>
+                    <PhotoDump photoBoothName={photoBoothData.name} reviewData={reviewData} />
+                </PhotoDumpContainer>
+            </PhotoBoothDetailWrapper>
+        </PhotoBoothDetailScrollView>
     );
 }

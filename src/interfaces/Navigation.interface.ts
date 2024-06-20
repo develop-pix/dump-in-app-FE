@@ -106,6 +106,7 @@ export type MyPageStackParamList = {
     MyPage: undefined;
     Menu: undefined;
     Branch: { branchID: string };
+    EventDetail: { eventID: number };
     ReviewDetail: {
         reviewID: number;
         reviewType: 'mine' | 'like';

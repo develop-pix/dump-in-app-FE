@@ -5,6 +5,7 @@ import PrivacyPolicy from 'components/my-page/my-activity/PrivacyPolicy';
 import TermsOfUse from 'components/my-page/my-activity/TermsOfUse';
 import MyPageMenu from 'components/my-page/MyPageMenu';
 import Branch from 'screens/Branch';
+import EventDetail from 'screens/EventDetail';
 import MyPage from 'screens/MyPage';
 import ReviewDetail from 'screens/ReviewDetail';
 import { colors } from 'styles/base/Variable';
@@ -39,7 +40,13 @@ export default function MyPageStackNavigation() {
                 name="Branch"
                 component={Branch}
                 initialParams={{ branchID: null }}
-                options={{ headerTransparent: true }}
+                options={{ headerTransparent: true, headerShown: false }}
+            />
+            <Stack.Screen
+                name="EventDetail"
+                component={EventDetail}
+                initialParams={{ EventID: 0 }}
+                options={{ headerShown: true, headerTransparent: false }}
             />
             <Stack.Screen
                 name="ReviewDetail"

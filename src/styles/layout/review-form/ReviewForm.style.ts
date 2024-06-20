@@ -18,6 +18,7 @@ export const ReviewFormScrollView = styled.ScrollView.attrs({
 `;
 
 export const InputContainer = styled.View`
+    margin-top: 40px;
     width: 100%;
     align-items: center;
 `;

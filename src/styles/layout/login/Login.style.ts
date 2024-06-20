@@ -17,7 +17,7 @@ export const LoginComponentsContainer = styled.View`
     flex: 1;
 `;
 
-export const LogoIcon = styled.Image`
+export const LogoIconContainer = styled.View`
     margin-top: 80px;
     width: 140px;
     height: 140px;

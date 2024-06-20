@@ -21,6 +21,7 @@ export interface PhotoBoothEventProps {
 }
 export type PhotoBoothEventFrameProps = {
     event: EventDataType;
+    onClose?: () => void;
 };
 
 export interface EventDataType {

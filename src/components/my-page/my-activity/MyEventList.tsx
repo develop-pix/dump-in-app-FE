@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import PhotoBoothEventFrame from 'components/photo-booth-detail/PhotoBoothEventFrame';
 import SearchNoData from 'components/reuse/alert/SearchNoData';
 import { NormalButton } from 'components/reuse/button/NormalButton';
 import { UpScrollButton } from 'components/reuse/button/UpScrollButton';
@@ -21,6 +20,8 @@ import {
 } from 'styles/layout/my-page/MyActivity/MyEventList.style';
 import { FlatListButtonContainer } from 'styles/layout/reuse/button/NormalButton.style';
 
+import MyPhotoBoothEventFrame from './MyPhotoBoothEventFrame';
+
 export default function MyEventList() {
     // 무한 스크롤 페이지
     const [page, setPage] = useState(0);
@@ -38,7 +39,7 @@ export default function MyEventList() {
     const renderEventItem = useCallback(({ item }: { item: EventDataType }) => {
         return (
             <PhotoBoothEventFrameContainer>
-                <PhotoBoothEventFrame event={item} />
+                <MyPhotoBoothEventFrame event={item} />
             </PhotoBoothEventFrameContainer>
         );
     }, []);

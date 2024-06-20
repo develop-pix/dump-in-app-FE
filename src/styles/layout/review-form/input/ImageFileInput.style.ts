@@ -96,13 +96,25 @@ export const PreviewImagesContainer = styled.View`
     margin-bottom: 20px;
 `;
 
+export const PreviewImageWrapper = styled.View`
+    position: relative;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const SelectedPreviewImageWrapper = styled.View`
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid ${colors.yellow};
+`;
+
 export const PreviewImageButton = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 `;
 
 export const PreviewRepresentativeImage = styled.Image`
-    position: absolute;
     width: 48px;
     height: 72px;
     justify-content: center;
@@ -123,6 +135,8 @@ export const RepresentativeTitleContainer = styled.View`
     height: 20px;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 25px;
 `;
 
 export const AddImageContainer = styled.TouchableOpacity`
